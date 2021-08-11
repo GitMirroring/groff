@@ -1,3 +1,11 @@
+2021-08-11  Douglas McIlroy <douglas.mcilroy@dartmouth.edu>
+
+	* src/prepic/pic/pic.1.man (Caveats): Explain dotted/dashed line
+	space scaling, since this document is not yet a full _pic_
+	reference.
+
+	Fixes <https://savannah.gnu.org/bugs/?44530>.
+
 2026-01-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* Makefile.am: Stop adding ".version" file to the `EXTRA_DIST`
