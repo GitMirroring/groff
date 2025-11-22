@@ -6,7 +6,9 @@
 	has a null pointer to its `charinfo`), and the build used
 	`NDEBUG` to suppress assertions, skip the character and process
 	the next token (if any) instead of ignoring the rest of the
-	input line, as the `cflags` and `rchar` requests do.
+	input line.  Also proceed to the next token if the font-specific
+	character to be removed already doesn't exist as such.
+	`rfschar` now better aligns with what `cflags` and `rchar` do.
 
 2025-11-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 

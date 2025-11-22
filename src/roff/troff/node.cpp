@@ -7059,11 +7059,13 @@ static void remove_font_specific_character()
 	  gl += s->nm.contents();
 	  gl += '\0';
 	  charinfo *ci = lookup_charinfo(symbol(gl.contents()));
-	  if (0 /* nullptr */ == ci)
-	    break;
-	  macro *m = ci->set_macro(0 /* nullptr */);
-	  if (m != 0 /* nullptr */)
-	    delete m;
+	  // Expect a null pointer if the font-specific character was
+	  // already removed or never existed.
+	  if (ci != 0 /* nullptr */) {
+	    macro *m = ci->set_macro(0 /* nullptr */);
+	    if (m != 0 /* nullptr */)
+	      delete m;
+	  }
 	}
       }
       tok.next();
