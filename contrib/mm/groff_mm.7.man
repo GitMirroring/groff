@@ -574,7 +574,9 @@ Use the
 .B fp
 request to mount substitute fonts at these positions as desired.
 .
-The default font family is Times.
+The default font family is
+.RB \[lq] T \[rq]
+(Times).
 .
 Select a different one
 by invoking
