@@ -1,6 +1,17 @@
 2025-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (assign_control_character)
+	(assign_no_break_control_character): Fix blunders in `assert()`
+	usage.  I'm trying to make groff safe for builds using `NDEBUG`.
+	That can't be achieved if we wrap substantive function calls (or
+	expressions with side effects) with `assert()`.
+
+	Continues commit e09bc6c083, 7 May 2023 (but not merged onto the
+	master branch until after the groff 1.23.0 release).
+
+2025-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp (assign_control_character)
 	(assign_no_break_control_character): Improve diagnostics when
 	user fumbles control character selections.
 

@@ -273,6 +273,7 @@ void assign_control_character()
       already_message = already_nbcc;
       do_nothing = true;
   }
+  bool assignment_worked = false;
   if (do_nothing)
     error("ignoring control character change request; %1%2 %3",
 	  is_invalid ? "cannot select invalid control character, and"
@@ -280,10 +281,11 @@ void assign_control_character()
   else if (is_invalid) {
     error("cannot select %1 as control character; using '.'",
 	  tok.description());
-    assert(curenv->set_control_character('.'));
+    assignment_worked = curenv->set_control_character('.');
   }
   else
-    assert(curenv->set_control_character(cc));
+    assignment_worked = curenv->set_control_character(cc);
+  assert(assignment_worked);
   skip_line();
 }
 
@@ -311,6 +313,7 @@ void assign_no_break_control_character()
       already_message = already_cc;
       do_nothing = true;
   }
+  bool assignment_worked = false;
   if (do_nothing)
     error("ignoring no-break control character change request; %1%2 %3",
 	  is_invalid ? "cannot select invalid no-break control"
@@ -319,10 +322,11 @@ void assign_no_break_control_character()
   else if (is_invalid) {
     error("cannot select %1 as no-break control character;"
 	  " using \"\'\"", tok.description());
-    assert(curenv->set_no_break_control_character('\''));
+    assignment_worked = curenv->set_no_break_control_character('\'');
   }
   else
-    assert(curenv->set_no_break_control_character(nbcc));
+    assignment_worked = curenv->set_no_break_control_character(nbcc);
+  assert(assignment_worked);
   skip_line();
 }
 
