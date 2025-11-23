@@ -2011,7 +2011,7 @@ likewise assigns a type size to each heading level.
 .
 .\" XXX: Why not an "Hvs" string?
 The vertical spacing used by headings may be controlled by
-the user-definable macros
+the hook macros
 .B HX
 and/or
 .BR HZ .
@@ -3440,7 +3440,7 @@ contains the reference list caption.
 .
 .TP
 .B RPX
-This user-definable hook macro assumes responsibility for formatting
+This hook macro assumes responsibility for formatting
 the heading of the reference page that
 .B RP
 produces.
@@ -3834,7 +3834,7 @@ numbering of these pages is suppressed.
 If
 .B TC
 is called with at most four arguments,
-it calls the user-defined macro
+it calls the hook macro
 .B TX
 (if defined)
 prior to formatting the contents caption,
@@ -4961,7 +4961,7 @@ is a copy of register
 .BR H1 ,
 but it is incremented just before a page break.
 .
-This can be useful in user-defined macros;
+This can be useful in hook macros;
 see
 .B H
 and
