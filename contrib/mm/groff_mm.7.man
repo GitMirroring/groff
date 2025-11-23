@@ -137,8 +137,8 @@ and
 .B DF
 start static and floating displays,
 respectively;
-either is terminated with
-.BR DE .
+.B DE
+terminates either.
 .
 .
 .P
@@ -174,10 +174,11 @@ macros.
 .
 .
 .IP \[bu]
-The
+.I "groff mm"
+implements the
 .B CS
 (output cover page or \[lq]sheet\[rq])
-macro is implemented only for memorandum type 4.
+macro only for memorandum type 4.
 .
 .
 .IP \[bu]
@@ -1125,10 +1126,10 @@ without space between the arguments.
 .B BS
 Begin bottom block.
 .
-Input is collected until
-.B BE
-is called,
-and output between the footnote area and footer of each page.
+.I mm
+collects input into the bottom block until the document calls
+.BR BE ,
+and outputs it between the footnote area and footer of each page.
 .
 .
 .\" XXX: Couldn't this have been done with an extra parameter to `VL`?
@@ -1303,9 +1304,9 @@ to end the list.
 .IR right-indentation ]]]
 Begin static display.
 .
-Input until
-.B DE
-is called is collected into a display.
+.I mm
+collects input into a display until the document calls
+.BR DE .
 .
 The display is output on a single page unless it is taller than the
 height of the page.
@@ -1755,9 +1756,8 @@ captions this list.
 Start footnote.
 .
 .I mm
-collects input into a footnote until
-.B FE
-is called,
+collects input into a footnote until the document calls,
+.BR FE ,
 outputting it when the vertical drawing position nears the page bottom.
 .
 By default,
@@ -2000,21 +2000,21 @@ thresholds.
 .IP
 .I Heading typeface and size.
 .
-The fonts used for heading marks and titles at each level are
-configured by the
+The
 .B HF
-string.
+string configures the fonts used
+for heading marks and titles at each level.
 .
 The string
 .B HP
 likewise assigns a type size to each heading level.
 .
 .\" XXX: Why not an "Hvs" string?
-The vertical spacing used by headings may be controlled by
-the hook macros
+The hook macros
 .B HX
 and/or
-.BR HZ .
+.B HZ
+can control the vertical spacing used by headings.
 .
 .
 .IP
@@ -2239,15 +2239,17 @@ Specify the inside address in a letter.
 .
 The arguments give each recipient a name and title.
 .
-Input is collected into the inside address until
-.B IE
-is called,
-and then output.
+.I mm
+collects
+input into the inside address until the document calls
+.BR IE ,
+then outputs it.
 .
 You can specify multiple recipients with empty
 .BR IA / IE
 pairs;
-only the last address is used.
+.I mm
+uses only the last address.
 .
 See
 .BR LT .
@@ -2571,10 +2573,11 @@ to follow the list.
 Begin a list item.
 .
 .I mm
-collects input into a list item until the current list terminates
-or
+collects input into a list item
+until the document terminates the current list
+or calls
 .B LI
-is called again.
+again.
 .
 By default,
 the item's text is preceded by any mark configured by the current list.
@@ -3004,9 +3007,8 @@ The text corresponding to
 .I code
 is output,
 and filling is disabled
-until
-.B NE
-is called.
+until the document calls
+.BR NE .
 .
 Typically,
 a list of names or attachments lies within
@@ -3468,9 +3470,8 @@ Begin citation of an automatically numbered bibliographic reference
 entry.
 .
 .I mm
-collects input until
-.B RF
-is called.
+collects input into a reference entry until the document calls
+.BR RF .
 .
 A subsequent
 .B RP
@@ -3648,13 +3649,15 @@ If
 .I n
 .RB is\~ 0
 or omitted,
-the page is broken.
+.I mm
+breaks the page if necessary.
 .
 Otherwise,
+.I mm
+prints
 .I n
 pages,
-blank except for any headers and footers,
-are printed.
+blank except for any headers and footers.
 .
 .
 .br
@@ -3792,7 +3795,8 @@ register),
 along with its associated page number.
 .
 By default,
-an entry is indented by an amount corresponding to its heading level
+.I mm
+indents an entry by an amount corresponding to its heading level
 and the maximum heading length encountered at that heading level;
 if defined,
 the string
@@ -3834,12 +3838,12 @@ numbering of these pages is suppressed.
 .
 .
 .IP
-If
+If the document calls
 .B TC
-is called with at most four arguments,
-it calls the hook macro
+with at most four arguments,
+.I mm
+calls the hook macro
 .B TX
-(if defined)
 prior to formatting the contents caption,
 and
 .B TY
@@ -4129,10 +4133,10 @@ Specify the writer(s) of an
 .B LT
 letter.
 .
-Input is collected into the writer's address until
-.B WA
-is called,
-and then output.
+.I mm
+collects input into the writer's address until the document calls
+.BR WA ,
+then outputs it.
 .
 You can specify multiple writers with empty
 .BR WA / WE
