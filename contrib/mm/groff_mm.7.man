@@ -301,6 +301,12 @@ and vertical ones in vees
 (scaling unit
 .BR v ).
 .
+.I "groff mm"
+permits use of non-integral
+.I "typographer's points"
+(scaling unit
+.BR z ).
+.
 Use explicit scaling units for clarity and predictable behavior.
 .
 .
@@ -3983,7 +3989,7 @@ the default
 .
 Further arguments configure the
 .I type-size
-in scaled points
+in typographer's points
 (on typesetting devices),
 and the face
 .RI ( font ).
@@ -4373,8 +4379,10 @@ assigns type sizes,
 separated by spaces,
 to heading levels in one-to-one correspondence.
 .
-Each size is interpreted in scaled points;
-zero values are translated to
+.I "groff mm"
+interprets each size in typographer's points,
+translating
+zero values to
 .BR 10 .
 .
 Omitted values are assumed to be\~0
