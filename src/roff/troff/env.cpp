@@ -407,6 +407,7 @@ node *environment::make_char_node(charinfo *ci)
 
 void environment::add_node(node *nd)
 {
+  assert(nd != 0 /* nullptr */);
   if (nd == 0 /* nullptr */)
     return;
   if (!suppress_push) {
