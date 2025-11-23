@@ -305,7 +305,7 @@
 
 	* src/roff/troff/input.cpp: Slightly refactor.
 	(assign_escape_character, interpolate_arg): Mark variables
-	pointing to character array literals as `static` and `const`.
+	pointing to C string literals as `static` and `const`.
 	(assign_escape_character): Mark variable that selects between
 	one of the aforementioned static literals a pointer to `const`.
 
