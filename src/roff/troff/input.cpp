@@ -220,7 +220,8 @@ static void assign_escape_character()
 	  is_invalid ? "cannot select invalid escape character, and"
 	  : "", already_message, input_char_description(ec));
   else if (is_invalid) {
-    error("cannot select invalid escape character; using '\\'");
+    error("cannot select %1 as escape character; using '\\'",
+	  tok.description());
     escape_char = '\\';
   }
   else
