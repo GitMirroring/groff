@@ -2612,7 +2612,11 @@ Specify letter options;
 see
 .BR LT .
 .
-Standard options are as follows.
+By default,
+.I mm
+recognizes the following
+.I option
+values.
 .
 See
 .B IA
