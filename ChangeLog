@@ -43,7 +43,7 @@
 
 2025-11-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	[troff]: Give node types self-reported type information
+	[troff]: Give node types' self-reported type information
 	human-readable names.  That is, use English noun phrases for
 	them instead of C++ identifiers.
 
