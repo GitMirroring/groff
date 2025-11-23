@@ -4944,7 +4944,8 @@ see
 .
 .
 .\" XXX: This could be generalized to an "Hdot" threshold register with
-.\" a default of 2.
+.\" a default of 0.  ("Apply dots after heading marks beyond/above this
+.\" threshold.")
 .TP
 .B H1dot
 appends a period to the number of a level one heading;
