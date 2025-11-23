@@ -8376,8 +8376,8 @@ static void do_translate(bool transparently, bool as_input)
     }
     charinfo *ci1 = tok.get_charinfo(true /* required */);
     if (0 /* nullptr */ == ci1) {
-      assert(0 == "attempted to use token without charinfo in title"
-	     " formatting request");
+      assert(0 == "attempted to use token without charinfo in character"
+	     " translation request");
       break;
     }
     tok.next();
