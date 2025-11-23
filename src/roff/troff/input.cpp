@@ -2896,9 +2896,15 @@ bool token::is_usable_as_delimiter(bool report_error,
 	    static_cast<char>(c));
     return is_valid;
   case TOKEN_NODE:
-    // the user doesn't know what a node is
-    if (report_error)
-      error("missing argument or invalid delimiter");
+    if (report_error) {
+      // Reserve a buffer large enough to handle the lengthiest case.
+      const size_t maxstr
+	= sizeof "space character horizontal motion node token";
+      const size_t bufsz = maxstr + 1; // for trailing '\0'
+      static char buf[bufsz];
+      describe_node(buf, bufsz);
+      error("%1 is not allowed as a delimiter", buf);
+    }
     return false;
   case TOKEN_SPACE:
   case TOKEN_STRETCHABLE_SPACE:

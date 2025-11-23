@@ -1,5 +1,10 @@
 2025-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (token::is_usable_as_delimiter): Use
+	new node token description member function.
+
+2025-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Refactor new token description logic into its own
 	function, since there is a second place it can be used.
 
