@@ -3297,11 +3297,17 @@ without space between the arguments.
 .
 .TP
 .BR RD \~\c
-.RI [ prompt\~ [ div\~ [ string ]]]
-Read from standard input stream into a diversion and/or string.
-.
-The text is saved in a diversion named
-.IR div .
+.RI [ prompt\~ [ div\~ [ str ]]]
+Write
+.I prompt
+(if specified,
+a tab and colon \[lq]:\[rq]
+to the standard error stream
+and read response from standard input stream,
+optionally into a diversion
+.I div
+and/or string
+.I str.
 .
 Interpolate the saved text by calling its name like a macro.
 .
