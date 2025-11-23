@@ -1861,7 +1861,10 @@ Set a numbered section heading at
 .IR level .
 .
 .I mm
-produces numbered
+calls
+.B LC
+to clear any lists,
+then produces numbered
 .I "heading marks"
 of the form
 .IR a . b . c .\|.\|.,
@@ -2528,14 +2531,6 @@ either all
 or only those from the current level down to
 .I list-level
 if specified.
-.
-.B H
-and
-.B HU
-call
-.B LC
-automatically.
-.\" `H` calls `LC`, and `HU` calls `H`.
 .
 .
 .TP
