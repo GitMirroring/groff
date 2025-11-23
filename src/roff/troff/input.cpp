@@ -1733,8 +1733,8 @@ static node *do_bracket() // \b
       return 0 /* nullptr */;
     }
     else {
-       node *n = curenv->make_char_node(ci);
-       if (n != 0 /* nullptr */)
+      node *n = curenv->make_char_node(ci);
+      if (n != 0 /* nullptr */)
 	bracketnode->bracket(n);
     }
   }
