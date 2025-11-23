@@ -383,9 +383,9 @@ Macro packages
    below.  Thanks to Deri James.
 
 *  The an (man) package now supports use of its hyperlink macros (`UR`,
-   `UE`, `MT`, and `ME`) as paragraph tags (that is, on the next line
+   `UE`, `MT`, and `ME`) in paragraph tags (that is, on the next line
    after a `TP` macro call).  Use of the `MR` man page cross reference
-   macro as a tag was already supported in groff 1.23.0.
+   macro in a tag was already supported in groff 1.23.0.
 
 *  The behavior of the an (man) package's `SY` and `YS` macros has been
    expanded to enable greater user control over vertical spacing and to
