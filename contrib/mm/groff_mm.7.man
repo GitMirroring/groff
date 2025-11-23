@@ -176,7 +176,7 @@ macros.
 .IP \[bu]
 The
 .B CS
-(output cover sheet)
+(output cover page or \[lq]sheet\[rq])
 macro is implemented only for memorandum type 4.
 .
 .
@@ -695,7 +695,7 @@ At most one can be declared;
 .I org-name
 is used by
 .B MT
-memoranda and available to cover sheets.
+memoranda and available to cover pages.
 .
 See
 .BR COVER .
@@ -838,7 +838,7 @@ Input up to the next
 call is included in the abstract.
 .
 .I placement
-influences the location of the abstract on the cover sheet of a
+influences the location of the abstract on the cover page of a
 memorandum
 (see
 .BR MT ).
@@ -860,23 +860,23 @@ lf(BI) lb
 l lx.
 placement@Effect
 0@T{
-The abstract appears on page\~1 and cover sheet if the document is a
+The abstract appears on page\~1 and cover page if the document is a
 \[lq]released paper\[rq] memorandum
 .RB (\[lq] ".MT 4" \[rq]);
 otherwise,
-it appears on page\~1 without a cover sheet.
+it appears on page\~1 without a cover page.
 T}
 1@T{
-The abstract appears only on the cover sheet
+The abstract appears only on the cover page
 .RB (\[lq] ".MT 4" \[rq]
 only).
 T}
 .\" XXX: This does not appear to be implemented.
 .\"2@T{
-.\"The abstract is printed only on the cover sheet (if not
+.\"The abstract is printed only on the cover page (if not
 .\".BR ".MT 4" )
 .\".
-.\"The cover sheet is printed without a need for \fBCS\fP.
+.\"The cover page is printed without a need for \fBCS\fP.
 .\"T}
 .TE
 .
@@ -927,7 +927,7 @@ memoranda.
 .
 The
 .I ms
-cover sheet style also formats these data.
+cover page style also formats these data.
 .
 .
 .br
@@ -950,7 +950,7 @@ terminates a document title started with
 .BR TL ,
 and can be called without arguments for that purpose.
 .
-Author information is used by cover sheets,
+Author information is used by cover page,
 .B MT
 memoranda,
 and
@@ -2861,7 +2861,7 @@ implies
 .BR 1 .
 .
 .I addressee
-sets a string analogous to one used by AT&T cover sheet macros
+sets a string analogous to one used by AT&T cover page macros
 not implemented in
 .IR "groff mm" .
 .
@@ -2887,7 +2887,7 @@ string@captioned \fIstring\fP
 .IP
 See
 .B \%COVER
-for a more flexible cover sheet mechanism.
+for a more flexible cover page mechanism.
 .
 .
 .TP
@@ -3911,7 +3911,7 @@ input into the title until a subsequent
 .B AU
 call and formats it as directed by the
 .B MT
-memorandum type or cover sheet macros.
+memorandum type or cover page macros.
 .
 .I mm
 saves
@@ -5836,7 +5836,7 @@ support for
 .I @TMAC_MDIR@/ms.cov
 implements an
 .IR ms -like
-cover sheet.
+cover page.
 .
 .
 .TP
