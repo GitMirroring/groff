@@ -3592,6 +3592,9 @@ In other memoranda,
 each of an author's titles is set on a subsequent line,
 indented to align with the name.
 .
+.\" DWB 3.3 mm's manual documented the following behavior, including
+.\" examples, but it, Plan 9 mm, and Heirloom Doctools mm don't actually
+.\" do it.  groff mm does.
 They furthermore encode a secretarial annotation
 including the location,
 department,
