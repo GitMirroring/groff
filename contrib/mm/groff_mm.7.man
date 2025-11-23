@@ -1217,6 +1217,7 @@ are required.
 \&.TL
 \&.AU
 \&.AT
+\&.\[rs]" Add additional AU and AT calls as needed.
 \&.AS
 .ne 2v
 \&.AE
