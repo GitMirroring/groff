@@ -2467,7 +2467,7 @@ node *environment::make_tag(const char *nm, int i)
     m.append_int(i);
     return new device_extension_node(m);
   }
-  return 0 /* nullptr */;
+  return new transparent_dummy_node;
 }
 
 void environment::dump_troff_state()

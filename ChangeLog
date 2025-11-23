@@ -1,5 +1,15 @@
 2025-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp (environment::make_tag): When not
+	formatting HTML, return a new transparent dummy node instead of
+	a null pointer.  When this function was implemented in
+	2001-2004, the decision to return a null pointer violated an
+	{undocumented, possibly uncontemplated} invariant that
+	`environment::add_node()` was never passed a null pointer.  By a
+	returning an actual object, we can restore that invariant.
+
+2025-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp: Fix code style nits.
 	(environment::make_tab_node): Parenthesize formally complex
 	expression.
