@@ -1,5 +1,15 @@
 2025-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp: Fix code style nits.
+	(environment::make_tab_node): Parenthesize formally complex
+	expression.
+	(environment::make_tab_node, environment::advance_to_tab_stop):
+	Explicitly compare value of pointer type to null pointer literal
+	instead of letting it pun down to a Boolean.  Revise logic for
+	less cleverness (gratuitous use of ternary operator on pointer).
+
+2025-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp: Trivially refactor.
 	(add_hyphenation_exceptions): Rename this...
 	(add_hyphenation_exception_words_request): ...to this.
