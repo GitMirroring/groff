@@ -1,5 +1,12 @@
 2025-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp: Trivially refactor.
+	(add_hyphenation_exceptions): Rename this...
+	(add_hyphenation_exception_words_request): ...to this.
+	(init_hyphenation_pattern_requests): Update wiry-uppery.
+
+2025-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (do_translate): Fix copy-and-paste
 	braino in assertion message.
 

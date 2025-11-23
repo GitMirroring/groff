@@ -3824,7 +3824,7 @@ void environment_switch()
 const int WORD_MAX = 256;	// we use unsigned char for offsets in
 				// hyphenation exceptions
 
-static void add_hyphenation_exceptions()
+static void add_hyphenation_exception_words_request()
 {
   if (!has_arg()) {
     warning(WARN_MISSING, "hyphenation exception word request expects"
@@ -4624,7 +4624,7 @@ void init_hyphenation_pattern_requests()
 {
   init_request("hpf", load_hyphenation_patterns_from_file);
   init_request("hpfa", append_hyphenation_patterns_from_file);
-  init_request("hw", add_hyphenation_exceptions);
+  init_request("hw", add_hyphenation_exception_words_request);
   init_request("phw", print_hyphenation_exceptions);
 }
 
