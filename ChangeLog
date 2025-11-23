@@ -87,9 +87,9 @@
 	* src/roff/troff/input.cpp
 	(encode_special_character_for_device_output): Simplify logic.
 	Both branches in this function were doing the same thing, except
-	for a null pointer check.  Add anothing null pointer check
-	since, in theory, `charinfo::get_symbol()` can return one.
-	Continues commit c4259eb20a, 14 September 2024.
+	for a null pointer check.  Add another null pointer check since,
+	in theory, `charinfo::get_symbol()` can return one.  Continues
+	commit c4259eb20a, 14 September 2024.
 
 2025-11-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -319,7 +319,7 @@
 2025-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (do_suppress): Improve diagnostic
-	message when input malfored; the one we had wasn't clear in the
+	message when input malformed; the one we had wasn't clear in the
 	easily anticipated scenario where the user assumes that `\O` is
 	a delimited escape sequence (it isn't) and selects "'" as the
 	"delimiter".
