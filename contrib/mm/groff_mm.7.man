@@ -3648,8 +3648,7 @@ If
 .I n
 .RB is\~ 0
 or omitted,
-the page is broken unless the drawing position is already at the top of
-a page.
+the page is broken.
 .
 Otherwise,
 .I n
