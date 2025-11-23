@@ -115,6 +115,7 @@ public:
   bool add_to_zero_width_node_list(node **);
   void make_space();
   void make_newline();
+  void describe_node(char * /* buf */, size_t /* bufsz */);
   const char *description();
 
   friend void process_input_stack();

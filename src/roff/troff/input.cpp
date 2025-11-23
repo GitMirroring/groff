@@ -2795,6 +2795,29 @@ static bool is_char_usable_as_delimiter(int c)
   }
 }
 
+void token::describe_node(char *buf, size_t bufsz)
+{
+  assert(nd != 0 /* nullptr */);
+  if (0 /* nullptr */ == nd) {
+    (void) snprintf(buf, bufsz, "a null(!) node");
+    return;
+  }
+  // Ah, the joys of computational natural language grammar.
+  const char *ndtype = nd->type();
+  const char initial_letter = ndtype[0];
+  bool is_vowelly = false;
+  // I wonder if Kernighan thought that the presence of set types and an
+  // "in" operator was one of Pascal's great blunders.  --GBR
+  if (('a' == initial_letter)
+      || ('e' == initial_letter)
+      || ('i' == initial_letter)
+      || ('o' == initial_letter)
+      || ('u' == initial_letter))
+    is_vowelly = true;
+  (void) memset(buf, 0, bufsz);
+  (void) snprintf(buf, bufsz, "a%s %s", is_vowelly ? "n" : "", ndtype);
+}
+
 // Is the token a valid delimiter (like `'`)?
 bool token::is_usable_as_delimiter(bool report_error,
 				   enum delimiter_context context)
@@ -2897,9 +2920,11 @@ const char *token::description()
   //   "character code XXX"
   //   "special character 'bracketrighttp'"
   //   "indexed character -2147483648"
+  //   "space character horizontal motion node token"
   // Future:
   //   "character code XXX (U+XXXX)" or similar
-  const size_t maxstr = sizeof "special character 'bracketrighttp'";
+  const size_t maxstr
+    = sizeof "space character horizontal motion node token";
   const size_t bufsz = maxstr + 2; // for trailing '"' and null
   static char buf[bufsz];
   (void) memset(buf, 0, bufsz);
@@ -2940,21 +2965,9 @@ const char *token::description()
   case TOKEN_NEWLINE:
     return "a newline";
   case TOKEN_NODE:
-    // Ah, the joys of computational natural language grammar.
     {
-      const char *ndtype = nd->type();
-      const char initial_letter = ndtype[0];
-      bool is_vowelly = false;
-      // I wonder if Kernighan thought that the presence of set types
-      // and an "in" operator was one of Pascal's great blunders.  --GBR
-      if (('a' == initial_letter)
-	  || ('e' == initial_letter)
-	  || ('i' == initial_letter)
-	  || ('o' == initial_letter)
-	  || ('u' == initial_letter))
-	is_vowelly = true;
-      (void) snprintf(buf, bufsz, "a%s %s token", is_vowelly ? "n" : "",
-		      ndtype);
+      static char nodebuf[bufsz];
+      describe_node(nodebuf, bufsz);
       return buf;
     }
   case TOKEN_INDEXED_CHAR:
@@ -8891,7 +8904,7 @@ void token::process()
   case TOKEN_NODE:
   case TOKEN_HORIZONTAL_SPACE:
     curenv->add_node(nd);
-    nd = 0;
+    nd = 0 /* nullptr */;
     break;
   case TOKEN_INDEXED_CHAR:
     // Optimize `curenv->add_char(get_charinfo())` for token type.

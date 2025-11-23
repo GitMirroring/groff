@@ -1,5 +1,17 @@
 2025-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Refactor new token description logic into its own
+	function, since there is a second place it can be used.
+
+	* src/roff/troff/token.h (class token): Declare new
+	`describe_node()` member function.
+	* src/roff/troff/input.cpp (token::description): Move the logic
+	from here...
+	(token::describe_node): ...to this new member function.
+	(token::description): Call the new member function.
+
+2025-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp
 	(read_drawing_command)
 	(do_device_extension)
