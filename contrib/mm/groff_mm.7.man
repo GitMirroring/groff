@@ -2237,6 +2237,8 @@ switch font to italic style.
 .IR title ]]
 Specify the inside address in a letter.
 .
+The arguments give each recipient a name and title.
+.
 Input is collected into the inside address until
 .B IE
 is called,
@@ -2246,8 +2248,6 @@ You can specify multiple recipients with empty
 .BR IA / IE
 pairs;
 only the last address is used.
-.
-The arguments give each recipient a name and title.
 .
 See
 .BR LT .
