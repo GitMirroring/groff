@@ -2943,8 +2943,8 @@ const char *token::description()
       const char *ndtype = nd->type();
       const char initial_letter = ndtype[0];
       bool is_vowelly = false;
-      // I wonder if Kernighan thought that the absence of set types and
-      // an "in" operator was one of Pascal's great blunders.
+      // I wonder if Kernighan thought that the presence of set types
+      // and an "in" operator was one of Pascal's great blunders.  --GBR
       if (('a' == initial_letter)
 	  || ('e' == initial_letter)
 	  || ('i' == initial_letter)
