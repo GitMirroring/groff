@@ -1745,15 +1745,18 @@ captions this list.
 .
 .TP
 .BR FS \~[\c
-.IR label ]
+.IR mark ]
 Start footnote.
 .
-Input until
+.I mm
+collects input into a footnote until
 .B FE
-is called is collected into a footnote.
+is called,
+outputting it when the vertical drawing position nears the page bottom.
 .
 By default,
-footnotes are automatically numbered starting at 1;
+.I mm
+automatically numbers footnotes starting at 1;
 the number is available in register
 .B Ftnum
 and,
@@ -1761,8 +1764,13 @@ with a trailing period,
 in
 .RB string\~ F .
 .
-This string precedes the footnote text at the bottom of the column or
-page.
+If desired,
+interpolate this string in the body text to format the footnote mark.
+.
+.I mm
+interpolates
+.RB string\~ F
+prior to the footnote text.
 .
 Footnotes are vertically separated by the product of
 .RB registers\~ Fs
@@ -1776,13 +1784,17 @@ footnotes may be used in displays.
 .
 .IP
 A
-.I label
-argument replaces the contents of the string
-.BR F ;
-it need not be numeric.
+.I mark
+argument,
+which need not be numeric,
+replaces the default footnote mark,
+leaving the
+.RB string\~ F
+unchanged.
 .
-In this event,
-the footnote marker in the body text must be explicitly written.
+In that event,
+you must explicitly write any footnote mark to appear
+in the footnote itself.
 .
 .
 .TP
@@ -4302,7 +4314,7 @@ interpolates an em dash,
 .
 .TP
 .B F
-interpolates an automatically numbered footnote marker;
+interpolates an automatically numbered footnote mark;
 the number is used by the next
 .B FS
 call without an argument.
@@ -4310,7 +4322,7 @@ call without an argument.
 In
 .I troff
 mode,
-the marker is superscripted;
+the mark is superscripted;
 in
 .I nroff
 mode,
