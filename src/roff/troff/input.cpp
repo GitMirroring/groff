@@ -278,7 +278,8 @@ void assign_control_character()
 	  is_invalid ? "cannot select invalid control character, and"
 	  : "", already_message, input_char_description(cc));
   else if (is_invalid) {
-    error("cannot select invalid control character; using '.'");
+    error("cannot select %1 as control character; using '.'",
+	  tok.description());
     assert(curenv->set_control_character('.'));
   }
   else
@@ -316,8 +317,8 @@ void assign_no_break_control_character()
 	               " character, and"
 	  : "", already_message, input_char_description(nbcc));
   else if (is_invalid) {
-    error("cannot select invalid no-break control character;"
-	  " using \"\'\"");
+    error("cannot select %1 as no-break control character;"
+	  " using \"\'\"", tok.description());
     assert(curenv->set_no_break_control_character('\''));
   }
   else

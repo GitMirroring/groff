@@ -1,5 +1,11 @@
 2025-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (assign_control_character)
+	(assign_no_break_control_character): Improve diagnostics when
+	user fumbles control character selections.
+
+2025-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (assign_escape_character): Improve
 	diagnostic when user fumbles escape character selection.
 
