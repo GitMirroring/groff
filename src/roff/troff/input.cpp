@@ -1671,10 +1671,11 @@ node *do_overstrike() // \o
       osnode->overstrike(n);
     }
     else {
+      // TODO: In theory, we could accept spaces and horizontal motions.
       charinfo *ci = tok.get_charinfo(true /* required */);
       if (0 /* nullptr */ == ci) {
-	assert(0 == "attempted to use token without charinfo in"
-	       " overstrike escape sequence");
+	error("%1 is not supported in an overstrike escape sequence"
+	      " argument", tok.description());
 	delete osnode;
 	return 0 /* nullptr */;
       }
@@ -1729,10 +1730,11 @@ static node *do_bracket() // \b
     if (tok == start_token
 	&& (want_att_compat || input_stack::get_level() == start_level))
       break;
+    // TODO: In theory, we could accept spaces and horizontal motions.
     charinfo *ci = tok.get_charinfo(true /* required */);
     if (0 /* nullptr */ == ci) {
-      assert(0 == "attempted to use token without charinfo in"
-	     " bracket-building escape sequence");
+      error("%1 is not supported in a bracket-building escape sequence"
+	    " argument", tok.description());
       delete bracketnode;
       return 0 /* nullptr */;
     }
@@ -2651,10 +2653,12 @@ void token::next()
 	  if (type == TOKEN_NODE || type == TOKEN_HORIZONTAL_SPACE)
 	    nd = new zero_width_node(nd);
 	  else {
+	    // TODO: In theory, we could accept spaces and horizontal
+	    // motions.
 	    charinfo *ci = get_charinfo(true /* required */);
 	    if (0 /* nullptr */ == ci) {
-	      assert(0 == "attempted to use token without charinfo in"
-		     " zero-width escape sequence");
+	      error("%1 is not supported in a zero-width character"
+		    " escape sequence argument", tok.description());
 	      break;
 	    }
 	    node *gn = curenv->make_char_node(ci);
