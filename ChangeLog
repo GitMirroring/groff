@@ -1,6 +1,7 @@
 2025-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp
+	(do_register)
 	(do_zero_width_output)
 	(do_name_test)
 	(do_bracket)
