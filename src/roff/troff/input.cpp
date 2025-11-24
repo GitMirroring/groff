@@ -10156,9 +10156,8 @@ static node *read_drawing_command() // \D
   token start_token;
   start_token.next();
   if (!want_att_compat && !start_token.is_usable_as_delimiter())
-    warning(WARN_DELIM, "interpreting %1 as an escape sequence"
-	    " delimiter; it is ambiguous because it can also begin a"
-	    " numeric expression", start_token.description());
+    warning(WARN_DELIM, "using %1 as an escape sequence delimiter"
+			" is deprecated", tok.description());
   else if (want_att_compat
            && !start_token.is_usable_as_delimiter(false,
 		  DELIMITER_ATT_STRING_EXPRESSION)) {

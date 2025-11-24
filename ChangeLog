@@ -1,6 +1,7 @@
 2025-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp
+	(read_drawing_command)
 	(do_device_extension)
 	(do_register)
 	(do_zero_width_output)
