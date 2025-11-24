@@ -1,5 +1,11 @@
 2025-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (do_zero_width_output): Adjust
+	wording of warning diagnostic to describe the escape sequence
+	consistently with other messages.
+
+2025-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (do_overstrike, do_bracket)
 	(token::next): Convert some recent assertions to error
 	diagnostics, since inputs to provoke them are not impossible.

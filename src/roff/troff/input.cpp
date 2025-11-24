@@ -1890,7 +1890,7 @@ static node *do_zero_width_output() // \Z
   else if (want_att_compat
            && !start_token.is_usable_as_delimiter(false,
 		  DELIMITER_ATT_STRING_EXPRESSION)) {
-    warning(WARN_DELIM, "zero-width sequence escape sequence"
+    warning(WARN_DELIM, "zero-width output escape sequence"
 	    " does not accept %1 as a delimiter",
 	    start_token.description());
     return 0 /* nullptr */;
