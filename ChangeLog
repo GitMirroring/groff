@@ -1,6 +1,7 @@
 2025-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp
+	(do_width)
 	(read_size):
 	Revise text of warnings in category "delim" thrown when an
 	inauspicious delimiter is selected outside of compatibility

@@ -6243,9 +6243,8 @@ static void do_width() // \w
   token start_token;
   start_token.next();
   if (!want_att_compat && !start_token.is_usable_as_delimiter())
-    warning(WARN_DELIM, "interpreting %1 as an escape sequence"
-	    " delimiter; it is ambiguous because it is also meaningful"
-	    " in a numeric expression", start_token.description());
+    warning(WARN_DELIM, "using %1 as an escape sequence delimiter"
+			" is deprecated", start_token.description());
   else if (want_att_compat
            && !start_token.is_usable_as_delimiter(false,
 		  DELIMITER_ATT_STRING_EXPRESSION)) {
