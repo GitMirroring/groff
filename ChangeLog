@@ -1,5 +1,13 @@
 2025-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp
+	(read_size):
+	Revise text of warnings in category "delim" thrown when an
+	inauspicious delimiter is selected outside of compatibility
+	mode.
+
+2025-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (assign_control_character)
 	(assign_no_break_control_character): Fix blunders in `assert()`
 	usage.  I'm trying to make groff safe for builds using `NDEBUG`.
