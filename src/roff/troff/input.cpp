@@ -1991,7 +1991,7 @@ bool token_node::is_tag()
   return false;
 }
 
-token::token() : nd(0), type(TOKEN_EMPTY)
+token::token() : nd(0 /* nullptr */), type(TOKEN_EMPTY)
 {
 }
 
@@ -2935,6 +2935,8 @@ const char *token::description()
   static char buf[bufsz];
   (void) memset(buf, 0, bufsz);
   switch (type) {
+  case TOKEN_EMPTY:
+    return "an indeterminate token (at start of input?)";
   case TOKEN_BACKSPACE:
     return "a backspace character";
   case TOKEN_CHAR:

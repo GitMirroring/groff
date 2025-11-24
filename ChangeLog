@@ -1,3 +1,13 @@
+2025-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp (token::description): Add description
+	of the "empty" token type to which the global `tok` is
+	initialized.  This comes up in a corner case of parser state,
+	because sometimes we have to read multiple characters to decide
+	what kind of token the very first one in the input stream is.
+	Consider a delimited escape sequence whose wheels fall off
+	because it's invalidly delimited.
+
 2025-11-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (read_delimited_number)
