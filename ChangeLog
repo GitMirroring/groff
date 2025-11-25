@@ -1,5 +1,11 @@
 2025-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (do_request): Adjust wording of
+	warning diagnostic to better describe what the `do` request
+	actually does.
+
+2025-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (do_zero_width_output): Adjust
 	wording of warning diagnostic to describe the escape sequence
 	consistently with other messages.

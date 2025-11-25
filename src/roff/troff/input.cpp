@@ -3277,8 +3277,8 @@ std::stack<bool> want_att_compat_stack;
 void do_request()
 {
   if (!has_arg()) {
-    warning(WARN_MISSING, "compatibility mode interpretation request"
-	    " expects a request or macro as argument");
+    warning(WARN_MISSING, "groff syntax interpretation request expects"
+	    " a request or macro as argument");
     skip_line();
     return;
   }
