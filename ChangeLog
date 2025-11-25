@@ -1,5 +1,13 @@
 2025-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/reg.cpp (define_register_request)
+	(assign_register_format_request, remove_register_request)
+	(alias_register_request, rename_register_request)
+	(print_register_request): Mark functions `static` since they do
+	not require external linkage.
+
+2025-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (are_comparands_equal): Fix code
 	style nit; parenthesize formally complex expression.
 
