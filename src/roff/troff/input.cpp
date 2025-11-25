@@ -4942,7 +4942,7 @@ void do_define_string(define_mode mode, comp_mode comp)
 void define_string()
 {
   do_define_string(DEFINE_NORMAL,
-		   want_att_compat ? COMP_ENABLE: COMP_IGNORE);
+		   want_att_compat ? COMP_ENABLE : COMP_IGNORE);
 }
 
 void define_nocomp_string()
