@@ -1,5 +1,9 @@
 2025-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/reg.cpp (dump_register): Add assertion.
+
+2025-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/reg.cpp (define_register_request)
 	(assign_register_format_request, remove_register_request)
 	(alias_register_request, rename_register_request)
