@@ -474,7 +474,6 @@ static bool is_valid_term(units *u, int scaling_unit,
   case '9':
     *u = 0;
     do {
-      // If wrapping, don't `break`; eat and discard further digits.
       if (!is_overflowing) {
 	  saved_u = *u;
 	  if (ckd_mul(u, *u, 10))
@@ -483,7 +482,8 @@ static bool is_valid_term(units *u, int scaling_unit,
 	    is_overflowing = true;
 	  if (is_overflowing)
 	    *u = saved_u;
-	}
+      }
+      // No `else` on overflow; consume and discard further digits.
       tok.next();
       c = tok.ch();
     } while (csdigit(c));
