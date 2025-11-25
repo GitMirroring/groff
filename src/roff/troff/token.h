@@ -90,7 +90,8 @@ public:
   bool is_unstretchable_space();
   bool is_horizontal_space();
   bool is_white_space();
-  bool is_character();
+  bool is_any_character();
+  // XXX: Do we need a `is_ordinary_character()`?
   bool is_special_character();
   bool is_indexed_character();
   bool is_newline();
@@ -213,7 +214,7 @@ inline unsigned char token::ch()
   return type == TOKEN_CHAR ? c : '\0';
 }
 
-inline bool token::is_character()
+inline bool token::is_any_character()
 {
   return (TOKEN_CHAR == type) || (TOKEN_SPECIAL_CHAR == type)
 	  || (TOKEN_INDEXED_CHAR == type);

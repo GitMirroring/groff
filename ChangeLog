@@ -1,5 +1,19 @@
 2025-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Trivially refactor.  Rename `token` class's member
+	function `is_character()` to `is_any_character()` to try and get
+	across the idea that it's true for _any_ sort of character:
+	ordinary {`A`}, special {`\[em]`, `\C'em'`}, or indexed
+	{`\N'45'`}.
+
+	* src/roff/troff/token.h (class token): Update declaration.
+	(token::is_any_character): Update (inline) definition.
+	* src/roff/troff/input.cpp (print_character_request)
+	(remove_character):
+	* src/roff/troff/node.cpp (embolden_font): Update call sites.
+
+2025-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/reg.cpp (dump_register): Add assertion.
 
 2025-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>

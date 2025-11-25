@@ -5085,7 +5085,7 @@ static void print_character_request()
   charinfo *ci;
   do {
     tok.skip_spaces();
-    if (!tok.is_character()) {
+    if (!tok.is_any_character()) {
       error("character report request expects characters or character"
 	    " classes as arguments; got %1", tok.description());
       break;
@@ -5114,7 +5114,7 @@ static void remove_character()
   }
   while (!tok.is_newline() && !tok.is_eof()) {
     if (!tok.is_space() && !tok.is_tab()) {
-      if (tok.is_character()) {
+      if (tok.is_any_character()) {
 	charinfo *ci = tok.get_charinfo(true /* required */,
 					true /* suppress creation */);
 	if (0 /* nullptr */ == ci)
