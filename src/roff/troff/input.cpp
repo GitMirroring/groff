@@ -6994,9 +6994,9 @@ static bool are_comparands_equal()
 	curenv = oldenv;
 	return false;
       }
-      if (tok == delim
+      if ((tok == delim)
 	  && (want_att_compat
-	      || input_stack::get_level() == delim_level))
+	      || (input_stack::get_level() == delim_level)))
         break;
       tok.process();
     }
