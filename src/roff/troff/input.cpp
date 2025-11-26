@@ -1786,7 +1786,7 @@ static const char *do_name_test() // \A
     if (tok == start_token
 	&& (want_att_compat || input_stack::get_level() == start_level))
       break;
-    if (!tok.ch())
+    if (tok.ch() == 0U)
       got_bad_char = true;
     got_some_char = true;
   }
@@ -3240,7 +3240,7 @@ void exit_request()
 
 void return_macro_request()
 {
-  if (has_arg() && tok.ch())
+  if (has_arg() && (tok.ch() != 0U))
     input_stack::pop_macro();
   input_stack::pop_macro();
   tok.next();

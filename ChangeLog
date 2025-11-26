@@ -1,5 +1,12 @@
 2025-11-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (do_name_test, return_macro_request):
+	Fix code style nits.  Rather than letting an input character pun
+	down to a Boolean value, compare it to an appropriate constant
+	literal.
+
+2025-11-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (read_identifier, do_get_long_name)
 	(get_delimited_name): Fix code style nits.  Compare input
 	character values to constant literals of appropriate type and
