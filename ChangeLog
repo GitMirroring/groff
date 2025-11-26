@@ -1,3 +1,9 @@
+2025-11-26  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp (do_get_long_name, read_size):
+	* src/roff/troff/reg.cpp (assign_register_format_request): Fix
+	code style nit; parenthesize formally complex expressions.
+
 2025-11-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (do_name_test, return_macro_request):

@@ -3158,7 +3158,7 @@ static symbol do_get_long_name(bool required, char end_char)
       buf_size = new_buf_size;
       delete[] old_buf;
     }
-    if ((buf[i] = tok.ch()) == 0U || (buf[i] == end_char))
+    if (((buf[i] = tok.ch()) == 0U) || (buf[i] == end_char))
       break;
     i++;
     tok.next();
@@ -6097,13 +6097,13 @@ static bool read_size(int *x) // \s
     token start(tok);
     tok.next();
     c = tok.ch();
-    if (!inc && (c == '-' || c == '+')) {
-      inc = c == '+' ? 1 : -1;
+    if (!inc && ((c == '-') || (c == '+'))) {
+      inc = (c == '+') ? 1 : -1;
       tok.next();
     }
     if (!read_measurement(&val, 'z'))
       return false;
-    if (!(start.ch() == '[' && tok.ch() == ']') && start != tok) {
+    if (!((start.ch() == '[') && (tok.ch() == ']')) && (start != tok)) {
       if (start.ch() == '[')
 	error("missing ']' in type size escape sequence");
       else

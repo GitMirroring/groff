@@ -456,7 +456,10 @@ static void assign_register_format_request()
     } while (csdigit(tok.ch()));
     r->alter_format('1', n);
   }
-  else if (c == 'i' || c == 'I' || c == 'a' || c == 'A')
+  else if ((c == 'i')
+	   || (c == 'I')
+	   || (c == 'a')
+	   || (c == 'A'))
     r->alter_format(c);
   else if (!has_arg())
     warning(WARN_MISSING, "register interpolation format assignment"
