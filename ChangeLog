@@ -1,3 +1,11 @@
+2025-11-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp (read_identifier, do_get_long_name)
+	(get_delimited_name): Fix code style nits.  Compare input
+	character values to constant literals of appropriate type and
+	signedness--they should be `unsigned char`s, since the formatter
+	reads its input as bytes.
+
 2025-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Trivially refactor.  Rename `token` class's member

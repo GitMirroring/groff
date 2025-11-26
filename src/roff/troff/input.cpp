@@ -3103,9 +3103,9 @@ symbol read_identifier(bool required)
   if (want_att_compat) {
     char buf[3];
     tok.skip_spaces();
-    if ((buf[0] = tok.ch()) != 0) {
+    if ((buf[0] = tok.ch()) != 0U) {
       tok.next();
-      if ((buf[1] = tok.ch()) != 0) {
+      if ((buf[1] = tok.ch()) != 0U) {
 	buf[2] = 0;
 	tok.make_space();
       }
@@ -3158,7 +3158,7 @@ static symbol do_get_long_name(bool required, char end_char)
       buf_size = new_buf_size;
       delete[] old_buf;
     }
-    if ((buf[i] = tok.ch()) == '\0' || (buf[i] == end_char))
+    if ((buf[i] = tok.ch()) == 0U || (buf[i] == end_char))
       break;
     i++;
     tok.next();
@@ -6201,7 +6201,7 @@ static symbol read_delimited_name()
 	&& (want_att_compat
 	    || (input_stack::get_level() == start_level)))
       break;
-    if ((buf[i] = tok.ch()) == '\0') {
+    if ((buf[i] = tok.ch()) == 0U) {
       // token::description() writes to static, class-wide storage, so
       // we must allocate a copy of it before issuing the next
       // diagnostic.
