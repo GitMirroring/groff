@@ -6055,7 +6055,7 @@ static bool read_size(int *x) // \s
       if (!csdigit(c))
 	contains_invalid_digit = true;
       else {
-	val = val*10 + (c - '0');
+	val = val * 10 + (c - '0');
 	val *= sizescale;
       }
     }
@@ -6069,7 +6069,7 @@ static bool read_size(int *x) // \s
       if (!csdigit(c))
 	contains_invalid_digit = true;
       else {
-	val = val*10 + (c - '0');
+	val = val * 10 + (c - '0');
 	error("ambiguous type size in escape sequence; rewrite to use"
 	      " '%1s(%2' or similar", static_cast<char>(escape_char),
 	      val);
