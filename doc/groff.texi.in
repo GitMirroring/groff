@@ -9276,13 +9276,15 @@ unusual words found in technical literature.  We can instruct GNU
 @c TODO: Add request `rhw`; see Savannah #64478.
 @cindex hyphenation exception words
 @Defreq {hw, word @dots{}}
-Define each argument @var{word},
+Define each argument @var{word}
 (comprising ordinary,
 special,
 or indexed characters)
 as a
 @dfn{hyphenation exception word}
-such that each occurence of a hyphen-minus `-' in
+such that each occurence of a hyphen-minus
+`-'
+in
 @var{word}
 indicates a hyphenation point.
 For example,

@@ -3731,7 +3731,7 @@ Define each argument
 special,
 or indexed characters)
 as a
-.I "hyphenation exception"
+.I "hyphenation exception word"
 such that each occurence of a hyphen-minus
 .RB \[lq] \- \[rq]
 in
