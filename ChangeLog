@@ -13,7 +13,8 @@
 	* src/roff/troff/env.cpp (configure_tab_stops_request):
 	* src/roff/troff/number.cpp (get_incr_number)
 	(is_valid_expression, is_valid_term):
-	* src/roff/troff/input.cpp (get_line_arg):
+	* src/roff/troff/input.cpp (get_line_arg)
+	(read_size):
 	Construct integer from character literal.
 	* src/roff/troff/env.cpp (adjust):
 	* src/roff/troff/reg.cpp (assign_register_format_request):
@@ -22,6 +23,10 @@
 	`char`, type.
 	* src/roff/troff/env.cpp: Retype global `TAB_REPEAT_CHAR` from
 	{`const`} `char` to `unsigned char`.
+	* src/roff/troff/input.cpp (read_size): Use local variables to
+	avoid repeated member function calls.  (Presumably a smart
+	optimizer would do the equivalent on its own, but this change
+	also makes a lengthy compound conditional expression shorter.)
 
 2025-11-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 

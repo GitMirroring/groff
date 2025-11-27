@@ -6103,8 +6103,11 @@ static bool read_size(int *x) // \s
     }
     if (!read_measurement(&val, 'z'))
       return false;
-    if (!((start.ch() == '[') && (tok.ch() == ']')) && (start != tok)) {
-      if (start.ch() == '[')
+    // safely compares to char literals; TODO: grochar
+    int s = start.ch();
+    int t = tok.ch();
+    if (!((s == int('[')) && (t == int(']'))) && (start != tok)) {
+      if (s == int('['))
 	error("missing ']' in type size escape sequence");
       else
 	error("missing closing delimiter in type size escape sequence");
@@ -6630,7 +6633,7 @@ static node *do_device_extension() // \X
     if (tok == start_token
 	&& (want_att_compat || input_stack::get_level() == start_level))
       break;
-    unsigned char c;
+    unsigned char c; // TODO: grochar
     if (tok.is_space())
       c = ' ';
     // TODO: Stop silently ignoring these when we have a string
