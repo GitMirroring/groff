@@ -5353,7 +5353,7 @@ AT&T
 .I troff \" AT&T
 only up to a point.
 GNU
-.IR troff , \" GNU
+.I troff \" GNU
 accepts leaders and tabs as delimiters,
 as well as
 Control+D
