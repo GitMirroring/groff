@@ -2735,7 +2735,8 @@ void adjust()
 {
   curenv->adjust_mode |= 1;
   if (has_arg()) {
-    switch (tok.ch()) {
+    int c = tok.ch(); // safely compares to char literals; TODO: grochar
+    switch (c) {
     case 'l':
       curenv->adjust_mode = ADJUST_LEFT;
       break;
@@ -2806,7 +2807,7 @@ void input_trap_continued()
 /* tabs */
 
 // must not be R or C or L or a legitimate part of a number expression
-const char TAB_REPEAT_CHAR = 'T';
+const unsigned char TAB_REPEAT_CHAR = 'T';
 
 struct tab {
   tab *next;
@@ -3017,15 +3018,15 @@ static void configure_tab_stops_request()
     if (!get_hunits(&pos, 'm', prev_pos))
       break;
     tab_type type = TAB_LEFT;
-    if (tok.ch() == 'C') {
+    if (tok.ch() == int('C')) { // TODO: grochar
       tok.next();
       type = TAB_CENTER;
     }
-    else if (tok.ch() == 'R') {
+    else if (tok.ch() == int('R')) { // TODO: grochar
       tok.next();
       type = TAB_RIGHT;
     }
-    else if (tok.ch() == 'L') {
+    else if (tok.ch() == int('L')) { // TODO: grochar
       tok.next();
     }
     if (pos <= prev_pos && ((!is_first_stop) || is_repeating_stop))

@@ -10,10 +10,14 @@
 
 	* src/roff/troff/div.cpp (return_request):
 	* src/roff/troff/reg.cpp (assign_register_format_request):
+	* src/roff/troff/env.cpp (configure_tab_stops_request):
 	Construct integer from character literal.
+	* src/roff/troff/env.cpp (adjust):
 	* src/roff/troff/reg.cpp (assign_register_format_request):
 	Store return value of `tok.ch()` in local variable of `int`, not
 	`char`, type.
+	* src/roff/troff/env.cpp: Retype global `TAB_REPEAT_CHAR` from
+	{`const`} `char` to `unsigned char`.
 
 2025-11-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
