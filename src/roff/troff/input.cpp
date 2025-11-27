@@ -10335,10 +10335,12 @@ static void read_drawing_command_color_arguments(token &start)
     error("missing color scheme");
     return;
   }
-  unsigned char scheme = tok.ch();
+  // safely compares to char literals; TODO: grochar
+  int scheme = tok.ch();
   tok.next();
   color *col = 0 /* nullptr */;
-  char end = start.ch();
+  // TODO: grochar
+  int end = start.ch();
   switch (scheme) {
   case 'c':
     col = read_cmy(end);

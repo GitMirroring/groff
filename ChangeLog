@@ -21,6 +21,8 @@
 	* src/roff/troff/reg.cpp (assign_register_format_request):
 	* src/roff/troff/number.cpp (is_valid_term):
 	* src/roff/troff/input.cpp (is_conditional_expression_true):
+	* src/roff/troff/input.cpp (is_conditional_expression_true)
+	(read_drawing_command):
 	Store return value of `tok.ch()` in local variable of `int`, not
 	`char`, type.
 	* src/roff/troff/env.cpp: Retype global `TAB_REPEAT_CHAR` from
