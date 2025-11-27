@@ -6097,7 +6097,7 @@ static bool read_size(int *x) // \s
     token start(tok);
     tok.next();
     c = tok.ch();
-    if (!inc && ((c == '-') || (c == '+'))) {
+    if ((inc == 0) && ((c == '-') || (c == '+'))) {
       inc = (c == '+') ? 1 : -1;
       tok.next();
     }

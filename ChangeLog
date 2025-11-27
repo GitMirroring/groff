@@ -1,3 +1,9 @@
+2025-11-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp (read_size): Fix code style nit;
+	compare integer-valued variable to integer literal instead of
+	letting it pun down to a Boolean.
+
 2025-11-26  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (do_get_long_name, read_size):
