@@ -6710,8 +6710,8 @@ have not (yet) been formatted.
 .
 Glyphs represent graphemes
 (supplied by the output device)
-and populate diversions
-or the pending output line.
+and populate diversions.
+.\" (recall @ref{Diversions}).
 .
 Formatting converts characters into
 (sequences of)

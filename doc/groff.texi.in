@@ -20362,7 +20362,7 @@ have not (yet) been formatted.
 Glyphs represent graphemes
 (supplied by the output device)
 and populate diversions
-or the pending output line.
+(recall @ref{Diversions}).
 Formatting converts characters into
 (sequences of)
 glyphs.
