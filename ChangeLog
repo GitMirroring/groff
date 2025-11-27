@@ -8,8 +8,12 @@
 	lay foundation for future migration of GNU troff's internal
 	character type to a custom, wider type.
 
-	* src/roff/troff/div.cpp (return_request): Construct integer
-	from character literal.
+	* src/roff/troff/div.cpp (return_request):
+	* src/roff/troff/reg.cpp (assign_register_format_request):
+	Construct integer from character literal.
+	* src/roff/troff/reg.cpp (assign_register_format_request):
+	Store return value of `tok.ch()` in local variable of `int`, not
+	`char`, type.
 
 2025-11-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 

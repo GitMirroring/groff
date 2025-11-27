@@ -447,7 +447,7 @@ static void assign_register_format_request()
     register_dictionary.define(nm, r);
   }
   tok.skip_spaces();
-  char c = tok.ch();
+  int c = tok.ch(); // safely compares to char literals; TODO: grochar
   if (csdigit(c)) {
     int n = 0;
     do {
@@ -456,10 +456,10 @@ static void assign_register_format_request()
     } while (csdigit(tok.ch()));
     r->alter_format('1', n);
   }
-  else if ((c == 'i')
-	   || (c == 'I')
-	   || (c == 'a')
-	   || (c == 'A'))
+  else if ((c == int('i'))
+	   || (c == int('I'))
+	   || (c == int('a'))
+	   || (c == int('A'))) // TODO: grochar * 4
     r->alter_format(c);
   else if (!has_arg())
     warning(WARN_MISSING, "register interpolation format assignment"
