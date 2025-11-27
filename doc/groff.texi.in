@@ -1121,9 +1121,16 @@ current working directory is otherwise searched last.  @option{-I} works
 similarly to, and is named for, the ``include'' option of Unix C
 compilers.
 
-@command{groff} passes @option{-I} options and their arguments to
-@command{gsoelim}, @command{gtroff}, and output drivers; with the option
-changed to @option{-M}, the same arguments are passed to @command{ggrn}.
+@command{groff}
+passes
+@option{-I}
+options and their arguments to
+@command{gsoelim},
+@command{gtroff},
+and output drivers;
+with the option letter changed to
+@option{-M},
+it passes the same arguments to @command{ggrn}.
 
 @item -j
 Run @command{gchem} preprocessor.  Implies @option{-p}.

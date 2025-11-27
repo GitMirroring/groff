@@ -281,7 +281,7 @@ options and their arguments to
 and output drivers;
 with the option letter changed to
 .BR \-M ,
-the same arguments are passed to
+it passes the same arguments to
 .MR @g@grn @MAN1EXT@ .
 .
 .
