@@ -199,8 +199,8 @@
 	* src/roff/troff/input.cpp (has_arg, get_long_name)
 	(print_character_request, do_register, nop_request)
 	(is_conditional_expression_true, read_character): Slightly
-	refactor.  Call `tok.space()` instead of open-coding exactly
-	what it does.
+	refactor.  Call `tok.skip()` instead of open-coding exactly what
+	it does.
 
 2025-11-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
