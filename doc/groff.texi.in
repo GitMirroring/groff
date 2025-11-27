@@ -973,7 +973,7 @@ groff [-abcCeEgGijklNpRsStUVXzZ] [-d @var{c}@var{s}]@
 relevant options and operands to it.
 
 @Example
-gtroff [-abcCEiRUz] [-f @var{font-family}] [-F @var{font-directory}]
+gtroff [-abcCEiRSUz] [-f @var{font-family}] [-F @var{font-directory}]
        [-I @var{inclusion-directory}] [-m @var{macro-package}]
        [-M @var{macro-directory}] [-n @var{page-number}]@
 [-o @var{page-list}]
@@ -1233,6 +1233,8 @@ see
 @option{-U}
 below for its opposite.
 Safer mode is enabled by default.
+Explicitly specifying @code{-S} causes @command{gtroff} to ignore any
+subsequent @code{-U} option.
 
 @item -t
 Run @command{gtbl} preprocessor.
