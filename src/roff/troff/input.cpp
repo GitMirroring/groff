@@ -7024,21 +7024,21 @@ static bool is_conditional_expression_true()
   bool perform_output_comparison = false;
   bool want_test_sense_inverted = false;
   tok.skip_spaces();
-  while (tok.ch() == '!') {
+  while (tok.ch() == int('!')) { // TODO: grochar
     tok.next();
     want_test_sense_inverted = !want_test_sense_inverted;
   }
   bool result;
-  unsigned char c = tok.ch();
+  int c = tok.ch(); // safely compares to char literals; TODO: grochar
   if (want_att_compat)
     switch (c) {
-    case 'F':
-    case 'S':
-    case 'c':
-    case 'd':
-    case 'm':
-    case 'r':
-    case 'v':
+    case int('F'): // TODO: grochar
+    case int('S'): // TODO: grochar
+    case int('c'): // TODO: grochar
+    case int('d'): // TODO: grochar
+    case int('m'): // TODO: grochar
+    case int('r'): // TODO: grochar
+    case int('v'): // TODO: grochar
       warning(WARN_SYNTAX,
 	      "conditional expression operator '%1' is not portable to"
 	      " AT&T troff",
@@ -7048,25 +7048,25 @@ static bool is_conditional_expression_true()
     default:
       break;
     }
-  if (c == 't') {
+  if (c == int('t')) { // TODO: grochar
     tok.next();
     result = !in_nroff_mode;
   }
-  else if (c == 'n') {
+  else if (c == int('n')) { // TODO: grochar
     tok.next();
     result = in_nroff_mode;
   }
-  else if (c == 'o') {
-    result = (topdiv->get_page_number() & 1);
+  else if (c == int('o')) { // TODO: grochar
+    result = (topdiv->get_page_number() & 1); // TODO: dump cleverness
     tok.next();
   }
-  else if (c == 'e') {
-    result = !(topdiv->get_page_number() & 1);
+  else if (c == int('e')) { // TODO: grochar
+    result = !(topdiv->get_page_number() & 1); // TODO: dump cleverness
     tok.next();
   }
   // TODO: else if (!want_att_compat) {
   // Check for GNU troff extended conditional expression operators.
-  else if ((c == 'd') || (c == 'r')) {
+  else if ((c == int('d') || (c == int('r')))) { // TODO: grochar
     tok.next();
     symbol nm = read_identifier(true /* required */);
     if (nm.is_null()) {
@@ -8314,7 +8314,7 @@ void warnscale_request()
     skip_line();
     return;
   }
-  char c = tok.ch();
+  int c = tok.ch(); // safely compares to char literals; TODO: grochar
   if (c == 'u')
     warn_scale = 1.0;
   else if (c == 'i')
@@ -8654,7 +8654,8 @@ static void define_class_request()
     // Chained range expressions like
     //   \[u3041]-\[u3096]-\[u30FF]
     // are not valid.
-    if ((child1 != 0 /* nullptr */) && (tok.ch() == '-')) {
+    // TODO: use grochar
+    if ((child1 != 0 /* nullptr */) && (tok.ch() == int('-'))) {
       tok.next();
       child2 = tok.get_charinfo();
       if (0 /* nullptr */ == child2) {
@@ -10217,7 +10218,8 @@ static node *read_drawing_command() // \D
       warning(WARN_MISSING, "missing arguments to drawing escape"
 	      " sequence");
     else {
-      unsigned char type = tok.ch();
+      int type = tok.ch(); // safely compares to char literals
+      // TODO: grochar
       if (type == 'F') {
 	read_drawing_command_color_arguments(start_token);
 	return 0 /* nullptr */;

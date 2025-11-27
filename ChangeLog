@@ -14,11 +14,13 @@
 	* src/roff/troff/number.cpp (get_incr_number)
 	(is_valid_expression, is_valid_term):
 	* src/roff/troff/input.cpp (get_line_arg)
-	(read_size):
+	(read_size)
+	(is_conditional_expression_true):
 	Construct integer from character literal.
 	* src/roff/troff/env.cpp (adjust):
 	* src/roff/troff/reg.cpp (assign_register_format_request):
 	* src/roff/troff/number.cpp (is_valid_term):
+	* src/roff/troff/input.cpp (is_conditional_expression_true):
 	Store return value of `tok.ch()` in local variable of `int`, not
 	`char`, type.
 	* src/roff/troff/env.cpp: Retype global `TAB_REPEAT_CHAR` from
