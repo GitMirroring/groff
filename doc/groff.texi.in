@@ -18998,10 +18998,12 @@ or are interested @emph{only} in diagnostic output, you can suppress GNU
 @Defreq {pchar, c @r{@dots{}}}
 Report,
 to the standard error stream,
-information about each ordinary,
+information about each character
+(be it
+ordinary,
 special,
-or indexed
-character@tie{}@var{c}.
+or indexed)
+or character class @tie{}@var{c}.
 A character defined by a request
 (@code{char},
 @code{fchar},

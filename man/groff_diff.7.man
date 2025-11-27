@@ -3762,10 +3762,12 @@ in the top-level diversion.
 \&.\|.\|.
 Report,
 to the standard error stream,
-information about each ordinary,
+information about each character
+(be it
+ordinary,
 special,
-or indexed
-.RI character\~ c .
+or indexed)
+.RI "or character class\~" c .
 .
 A character defined by a request
 .RB ( char ,
