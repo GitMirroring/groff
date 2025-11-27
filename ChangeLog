@@ -1,3 +1,16 @@
+2025-11-26  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Perform more careful comparisons of the `unsigned char`
+	values the formatter reads from input (or a token sequence) by
+	promoting either the token or a character literal to which it is
+	compared to `int` to (A) explicitly avoid issues with the
+	implementation-defined signedness of unqualified `char`, and (B)
+	lay foundation for future migration of GNU troff's internal
+	character type to a custom, wider type.
+
+	* src/roff/troff/div.cpp (return_request): Construct integer
+	from character literal.
+
 2025-11-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (read_size): Fix code style nit;

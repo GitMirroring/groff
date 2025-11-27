@@ -1024,7 +1024,7 @@ void return_request()
 {
   vunits dist = curdiv->marked_place - curdiv->get_vertical_position();
   if (has_arg()) {
-    if (tok.ch() == '-') {
+    if (tok.ch() == int('-')) { // TODO: grochar
       tok.next();
       vunits x;
       if (get_vunits(&x, 'v'))
