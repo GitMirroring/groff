@@ -1861,8 +1861,8 @@ see below.
 .br
 .ne 3v
 .P
-The following escape sequences don't take arguments and thus are allowed
-as delimiters:
+The following escape sequences don't take arguments
+and thus are allowed as delimiters:
 .BI \[rs] space\c
 ,
 .BR \[rs]% ,
