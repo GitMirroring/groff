@@ -1,3 +1,11 @@
+2025-11-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp: Trivially refactor.  Rename
+	`get_delimited_name()` to `read_delimited_name()` because it
+	does not retrieve a property; it advances the input stream
+	pointer.  Update declaration and definition.
+	(token::next): Update call site.
+
 2025-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (token::is_usable_as_delimiter): Use
