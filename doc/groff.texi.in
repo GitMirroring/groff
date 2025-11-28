@@ -7823,8 +7823,6 @@ and thus are allowed as delimiters:
 @c original input.
 @code{\@key{SPC}},
 @code{\%},
-@code{\|},
-@code{\^},
 @code{\@{},
 @code{\@}},
 @code{\'},
@@ -7839,7 +7837,6 @@ and thus are allowed as delimiters:
 @code{\&},
 @code{\:},
 @code{\~},
-@code{\0},
 @code{\a},
 @code{\c},
 @code{\d},
@@ -7851,7 +7848,7 @@ and thus are allowed as delimiters:
 and
 @code{\u}.
 However,
-using them this way is discouraged;
+we discourage using them this way;
 they can make the input confusing to read.
 
 @cindex @code{\D}, delimiters allowed by

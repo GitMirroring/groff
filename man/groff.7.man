@@ -1881,8 +1881,6 @@ and thus are allowed as delimiters:
 .BI \[rs] space\c
 ,
 .BR \[rs]% ,
-.BR \[rs]| ,
-.BR \[rs]\[ha] ,
 .BR \[rs]{ ,
 .BR \[rs]} ,
 .BR \[rs]\[aq] ,
@@ -1897,7 +1895,6 @@ and thus are allowed as delimiters:
 .BR \[rs]& ,
 .BR \[rs]: ,
 .BR \[rs]\[ti] ,
-.BR \[rs]0 ,
 .BR \[rs]a ,
 .BR \[rs]c ,
 .BR \[rs]d ,
@@ -1910,7 +1907,7 @@ and
 .BR \[rs]u .
 .
 However,
-using them this way is discouraged;
+we discourage using them this way;
 they can make the input confusing to read.
 .
 .

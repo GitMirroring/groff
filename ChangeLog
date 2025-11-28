@@ -1,5 +1,24 @@
 2025-11-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (read_delimited_name): Stop accepting
+	horizontal motion tokens as escape sequence delimiters.  This to
+	prohibit use of the delimited `\h` escape sequence as a
+	delimiter, but because of GNU troff's internal design, also
+	prohibits the parameterless `\0`, `\^`, and `\|` delimiters.
+
+	* doc/groff.texi.in (Delimiters):
+	* man/groff.7.man (Delimiters): De-document support for these
+	delimiters.
+
+	* NEWS: Report change.
+
+	Fixes <https://savannah.gnu.org/bugs/?67744>.  The problem of
+	acceptance of `\h` as an escape sequence delimiter appears to
+	date back to groff's birth.  (`get_delim_name()` didn't check
+	for any token types except EOF and newline.)
+
+2025-11-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/groff/tests/check-delimiter-validity.sh:
 	Regression-test Savannah #67744.
 

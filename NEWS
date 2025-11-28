@@ -116,6 +116,10 @@ troff
    parameterized escape sequences `\A`, `\b`, `\o`, `\w`, `\X`, and
    `\Z`.
 
+*  GNU troff no longer accepts `\0`, `\^`, and `\|` as escape sequence
+   delimiters; doing so inadvertently permited the delimited `\h` escape
+   sequence to serve as delimiter to another delimited escape sequence.
+
 *  The `color`, `cp`, `kern`, `linetabs`, and `vpt` requests now
    interpret arguments with negative values as instructions to disable
    the corresponding feature, using the *roff integer-to-Boolean

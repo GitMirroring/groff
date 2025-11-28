@@ -6146,8 +6146,9 @@ static symbol read_delimited_name()
     error("end of input at start of delimited name");
     return NULL_SYMBOL;
   }
-  if (start_token.is_newline()) {
-    error("a newline is not allowed to delimit a name");
+  if (start_token.is_newline() || start_token.is_horizontal_space()) {
+    error("%1 is not allowed to delimit a name",
+	  start_token.description());
     return NULL_SYMBOL;
   }
   int start_level = input_stack::get_level();
