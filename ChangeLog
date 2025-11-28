@@ -1,5 +1,14 @@
 2025-11-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (token::description): Add assertion;
+	every token type should have a human-readable description.  In
+	the event that's not the case and `NDEBUG` is defined, describe
+	the anomalous token as "an undescribed token" rather than "a
+	magic token", to make it clearer that the problem results from
+	developer oversight.
+
+2025-11-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/token.h: Add new inline member function
 	`is_node()` to aid input parser diagnostics.
 

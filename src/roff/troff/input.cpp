@@ -3031,9 +3031,9 @@ const char *token::description()
   case TOKEN_EOF:
     return "end of input";
   default:
-    break;
+    assert(0 == "unhandled case of `type` (token)");
+    return "an undescribed token";
   }
-  return "a magic token";
 }
 
 void skip_line()
