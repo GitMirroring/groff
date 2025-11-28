@@ -83,6 +83,7 @@ public:
   void skip_spaces();
   void diagnose_non_character();
   int nspaces();		// is_space() as integer
+  bool is_node();
   bool is_eof();
   bool is_space();
   bool is_stretchable_space();
@@ -227,6 +228,11 @@ inline int token::character_index()
 {
   assert(TOKEN_INDEXED_CHAR == type);
   return val;
+}
+
+inline bool token::is_node()
+{
+  return type == TOKEN_NODE;
 }
 
 inline bool token::is_eof()

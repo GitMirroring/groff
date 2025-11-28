@@ -1,5 +1,10 @@
 2025-11-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/token.h: Add new inline member function
+	`is_node()` to aid input parser diagnostics.
+
+2025-11-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp: Trivially refactor.  Rename
 	`get_delimited_name()` to `read_delimited_name()` because it
 	does not retrieve a property; it advances the input stream
