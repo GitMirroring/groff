@@ -57,6 +57,11 @@ do
     echo "$output" | grep -qx 1n+2n_. || wail
 done
 
+# Regression-test Savannah #67744.
+echo "checking invalidity of \h as delimiter in normal mode" >&2
+output=$(printf 'foo\\C\\h"1m"em\\h"1m"bar\n' \ | "$groff" -T ascii -a)
+echo "$output" | grep -Fqx "foo--bar" && wail
+
 # Now test the context-dependent sets of delimiters of AT&T troff.
 
 # not tested: '_' (because it's part of our delimited expression)

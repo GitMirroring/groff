@@ -1,5 +1,10 @@
 2025-11-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/groff/tests/check-delimiter-validity.sh:
+	Regression-test Savannah #67744.
+
+2025-11-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (token::description): Add assertion;
 	every token type should have a human-readable description.  In
 	the event that's not the case and `NDEBUG` is defined, describe
