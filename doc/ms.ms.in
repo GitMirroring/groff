@@ -44,7 +44,7 @@
 .ds FR 1
 .nr TC-MARGIN \w'00' \" expect 2-digit page numbers at most
 .ds header-title Using \f[I]groff\f[] with the \f[I]ms\f[] macros\"
-.ds date August 2025\"
+.ds date November 2025\"
 .ND \*[date]
 .ds CH \" empty
 .ie t \{\
@@ -358,6 +358,13 @@ _
 \[rs]n[\f[I]reg\f[]]	T{
 Interpolate value of register
 .I reg .
+T}
+\[rs]n\f[I]r	T{
+abbreviation of
+.CW \[rs]n[\f[I]r\f[]] ;
+the name
+.I r
+must be only one character
 T}
 \[rs]*[\f[I]str\f[]]	T{
 Interpolate contents of string
