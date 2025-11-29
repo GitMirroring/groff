@@ -223,11 +223,11 @@ static incr_number_result get_incr_number(units *res, unsigned char si)
   if (!is_valid_expression_start())
     return INVALID;
   incr_number_result result = ASSIGN;
-  if (tok.ch() == '+') {
+  if (tok.ch() == int('+')) { // TODO: grochar
     tok.next();
     result = INCREMENT;
   }
-  else if (tok.ch() == '-') {
+  else if (tok.ch() == int('-')) { // TODO: grochar
     tok.next();
     result = DECREMENT;
   }
@@ -264,7 +264,7 @@ static bool is_valid_expression(units *u, int scaling_unit,
   while (result) {
     if (is_parenthesized)
       tok.skip_spaces();
-    int op = tok.ch();
+    int op = tok.ch();// safely compares to char literals; TODO: grochar
     switch (op) {
     case '+':
     case '-':
@@ -277,29 +277,29 @@ static bool is_valid_expression(units *u, int scaling_unit,
       break;
     case '>':
       tok.next();
-      if (tok.ch() == '=') {
+      if (tok.ch() == int('=')) { // TODO: grochar
 	tok.next();
 	op = OP_GEQ;
       }
-      else if (tok.ch() == '?') {
+      else if (tok.ch() == int('?')) { // TODO: grochar
 	tok.next();
 	op = OP_MAX;
       }
       break;
     case '<':
       tok.next();
-      if (tok.ch() == '=') {
+      if (tok.ch() == int('=')) { // TODO: grochar
 	tok.next();
 	op = OP_LEQ;
       }
-      else if (tok.ch() == '?') {
+      else if (tok.ch() == int('?')) { // TODO: grochar
 	tok.next();
 	op = OP_MIN;
       }
       break;
     case '=':
       tok.next();
-      if (tok.ch() == '=')
+      if (tok.ch() == int('=')) // TODO: grochar
 	tok.next();
       break;
     default:
@@ -387,15 +387,15 @@ static bool is_valid_term(units *u, int scaling_unit,
   for (;;)
     if (is_parenthesized && tok.is_space())
       tok.next();
-    else if (tok.ch() == '+')
+    else if (tok.ch() == int('+')) // TODO: grochar
       tok.next();
-    else if (tok.ch() == '-') {
+    else if (tok.ch() == int('-')) { // TODO: grochar
       tok.next();
       is_negative = !is_negative;
     }
     else
       break;
-  unsigned char c = tok.ch();
+  int c = tok.ch(); // safely compares to char literals; TODO: grochar
   switch (c) {
   case '|':
     // | is not restricted to the outermost level
@@ -418,7 +418,7 @@ static bool is_valid_term(units *u, int scaling_unit,
   case '(':
     tok.next();
     c = tok.ch();
-    if (c == ')') {
+    if (c == ')') { // TODO: grochar
       if (is_mandatory)
 	return false;
       warning(WARN_SYNTAX, "empty parentheses");
@@ -428,7 +428,7 @@ static bool is_valid_term(units *u, int scaling_unit,
     }
     else if (c != 0 && strchr(SCALING_UNITS, c) != 0) {
       tok.next();
-      if (tok.ch() == ';') {
+      if (tok.ch() == ';') { // TODO: grochar
 	tok.next();
 	scaling_unit = c;
       }
@@ -446,7 +446,7 @@ static bool is_valid_term(units *u, int scaling_unit,
 			     true /* is_parenthesized */, is_mandatory))
       return false;
     tok.skip_spaces();
-    if (tok.ch() != ')') {
+    if (tok.ch() != ')') { // TODO: grochar
       if (is_mandatory)
 	return false;
       warning(WARN_SYNTAX, "expected ')', got %1", tok.description());
@@ -507,7 +507,7 @@ static bool is_valid_term(units *u, int scaling_unit,
     return false;
   }
   int divisor = 1;
-  if (tok.ch() == '.') {
+  if (tok.ch() == int('.')) { // TODO: grochar
     tok.next();
     for (;;) {
       c = tok.ch();
