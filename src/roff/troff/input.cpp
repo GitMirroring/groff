@@ -5898,6 +5898,10 @@ static bool read_delimited_number(units *n,
 {
   token start_token;
   start_token.next();
+  if (start_token.is_eof()) {
+    error("end of input at start of delimited numeric expression");
+    return false;
+  }
   bool is_valid = false;
   if (!want_att_compat && start_token.is_usable_as_delimiter())
     is_valid = true;
@@ -6146,9 +6150,16 @@ static symbol read_delimited_name()
     error("end of input at start of delimited name");
     return NULL_SYMBOL;
   }
-  if (start_token.is_newline() || start_token.is_horizontal_space()) {
-    error("%1 is not allowed to delimit a name",
-	  start_token.description());
+  bool is_valid = false;
+  if (!want_att_compat && start_token.is_usable_as_delimiter())
+    is_valid = true;
+  else if (want_att_compat
+           && start_token.is_usable_as_delimiter(false,
+		  DELIMITER_ATT_STRING_EXPRESSION))
+    is_valid = true;
+  if (!is_valid) {
+    warning(WARN_DELIM, "cannot use %1 to delimit a name",
+	    start_token.description());
     return NULL_SYMBOL;
   }
   int start_level = input_stack::get_level();

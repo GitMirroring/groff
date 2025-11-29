@@ -1,5 +1,15 @@
 2025-11-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (read_delimited_number)
+	(read_delimited_name): Refactor.  Make logic more parallel.
+	Make both functions check explicitly for EOF where the starting
+	delimiter should be (and throw error if it's encountered).  Make
+	both call `is_usable_as_delimiter()` member function of
+	`start_token` object.  Parallelize wording of warning
+	diagnostics in "delim" category.
+
+2025-11-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/groff/tests/check-delimiter-validity.sh: Add unit
 	test for foregoing change to delimiters accepted when reading a
 	delimited name.
