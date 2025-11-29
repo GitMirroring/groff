@@ -1153,11 +1153,11 @@ Set a paragraph with a first-line left indentation of
 .CW \[rs]n[PI] .
 T}
 _
-\&.IP \f[R][\f[I]marker\f[] [\f[I]width\f[]]]	T{
+\&.IP \f[R][\f[I]mark\f[] [\f[I]width\f[]]]	T{
 Set a paragraph with a left indentation.
 .
 The optional
-.I marker
+.I mark
 is not indented and is empty by default.
 .
 It has several applications;
@@ -1945,7 +1945,7 @@ Lists
 .
 .LP
 The
-.I marker
+.I mark
 argument to the
 .CW IP
 macro can be employed to present a variety of lists;
@@ -2096,10 +2096,10 @@ or label
 breaks the line.
 .
 Finally,
-you may append a horizontal motion to the marker with the
+you may append a horizontal motion to the mark with the
 .CW \[rs]h
 escape sequence;
-using the same amount as the indentation will ensure that the marker is
+using the same amount as the indentation will ensure that the mark is
 too wide for
 .I groff
 to treat it as \[lq]fitting\[rq] on the same line as the paragraph text.
@@ -2805,7 +2805,7 @@ Footnotes
 .\" The following sentence is used below as an example as well.  Keep it
 .\" in sync.
 A footnote is typically anchored to a place in the text with a
-.I marker,
+.I mark,
 which is a small integer,\**
 .FS
 like this numeric footnote
@@ -2826,7 +2826,7 @@ _
 \[rs]**	T{
 Place an
 .I "automatic number,"
-an automatically updated numeric footnote marker,
+an automatically updated numeric footnote mark,
 in the text.
 .
 Each time this string is interpolated,
@@ -2856,7 +2856,7 @@ cb cb
 lfCR lx .
 Macro	Description
 _
-\&.FS \f[R][\f[I]marker\f[]]	T{
+\&.FS \f[R][\f[I]mark\f[]]	T{
 Begin a footnote.
 .
 The
@@ -2864,12 +2864,12 @@ The
 hook
 (see below)
 is called with any supplied
-.I marker
+.I mark
 argument,
 which is then also placed at the beginning of the footnote text.
 .
 If
-.I marker
+.I mark
 is omitted,
 the next pending automatic number enqueued by interpolation of the
 .CW *
@@ -2888,7 +2888,7 @@ You may not desire automatically numbered footnotes in spite of their
 convenience.
 .
 You can indicate a footnote with a symbol or other text by specifying
-its marker at the appropriate place
+its mark at the appropriate place
 (for example,
 by using
 .CW \[rs][dg]
@@ -2906,7 +2906,7 @@ You may wish to use
 .CW \[rs]*{
 and
 .CW \[rs]*}
-to superscript the marker at the anchor point,
+to superscript the mark at the anchor point,
 in the footnote text,
 or both.
 .
@@ -2945,7 +2945,7 @@ section.
 box center;
 lfCR.
 A footnote is anchored to a place in the text with a
-\&.I marker,
+\&.I mark,
 which is a small integer,\[rs]**
 \&.FS
 like this numeric footnote
@@ -3015,7 +3015,7 @@ paragraphs,
 and those for which
 .CW FS
 is given a
-.I marker
+.I mark
 argument,
 at the bottom of a column or page as follows.
 .
@@ -3046,7 +3046,7 @@ T}
 1	T{
 As
 .CW 0 ,
-but set the marker as regular text,
+but set the mark as regular text,
 and follow an automatic number with a period.
 T}
 2	T{
@@ -3059,7 +3059,7 @@ T}
 3	T{
 As
 .CW 1 ,
-but set the footnote paragraph with the marker hanging
+but set the footnote paragraph with the mark hanging
 (like
 .CW IP ).
 T}
