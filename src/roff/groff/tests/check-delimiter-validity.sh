@@ -62,6 +62,17 @@ echo "checking invalidity of \h as delimiter in normal mode" >&2
 output=$(printf 'foo\\C\\h"1m"em\\h"1m"bar\n' \ | "$groff" -T ascii -a)
 echo "$output" | grep -Fqx "foo--bar" && wail
 
+# Test invalid delimiters to `read_delimited_name()`.
+
+for c in '0' '^' '|'
+do
+    echo "checking invalidity of '$c' as name delimiter in normal" \
+        "mode" >&2
+    output=$(printf 'foo\\C\\%cem\\%cbar\n' "$c" "$c" \
+      | "$groff" -T ascii -a | sed '/^$/d')
+    echo "$output" | grep -Fqx "foo--bar" && wail
+done
+
 # Now test the context-dependent sets of delimiters of AT&T troff.
 
 # not tested: '_' (because it's part of our delimited expression)
