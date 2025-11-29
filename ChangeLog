@@ -10782,7 +10782,8 @@
 
 	Stop distributing pdfmark.  It is now separately maintained.
 	Please visit <https://osdn.net/users/keith/pf/groff-pdfmark/>
-	for the latest version.
+	for the latest version.  (Update: In April 2025, hosting moved
+	to <https://savannah.nongnu.org/projects/groff-pdfmark>.)
 
 	* contrib/pdfmark: Recursively delete.
 	* Makefile.am: Stop including its Automake file.

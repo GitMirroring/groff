@@ -172,6 +172,16 @@ Miscellaneous
 
     www.science.uva.nl/~bobd/useful/gpresent/
 
+* groff-pdfmark, written by Keith Marshall.
+
+  Its home page describes it as providing "a suite of GNU roff macro
+  packages, together with a Bourne shell driver script, designed to
+  facilitate the creation of PDF files, using GNU roff as the primary
+  typesetting engine."
+
+  It is available from
+
+    <https://savannah.nongnu.org/projects/groff-pdfmark>.
 
 Documentation
 -------------
