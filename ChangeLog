@@ -13,6 +13,7 @@
 	* src/roff/troff/env.cpp (configure_tab_stops_request):
 	* src/roff/troff/number.cpp (get_incr_number)
 	(is_valid_expression, is_valid_term):
+	* src/roff/troff/input.cpp (get_line_arg):
 	Construct integer from character literal.
 	* src/roff/troff/env.cpp (adjust):
 	* src/roff/troff/reg.cpp (assign_register_format_request):

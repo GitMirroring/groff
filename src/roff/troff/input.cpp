@@ -6016,31 +6016,31 @@ static bool get_line_arg(units *n, unsigned char si, charinfo **cip)
 static bool read_size(int *x) // \s
 {
   tok.next();
-  int c = tok.ch();
+  int c = tok.ch(); // safely compares to char literals; TODO: grochar
   int inc = 0;
-  if (c == '-') {
+  if (c == int('-')) { // TODO: grochar
     inc = -1;
     tok.next();
     c = tok.ch();
   }
-  else if (c == '+') {
+  else if (c == int('+')) { // TODO: grochar
     inc = 1;
     tok.next();
     c = tok.ch();
   }
   int val = 0;		// pacify compiler
   bool contains_invalid_digit = false;
-  if (c == '(') {
+  if (c == int('(')) { // TODO: grochar
     tok.next();
     c = tok.ch();
     if (!inc) {
       // allow an increment either before or after the left parenthesis
-      if (c == '-') {
+      if (c == int('-')) { // TODO: grochar
 	inc = -1;
 	tok.next();
 	c = tok.ch();
       }
-      else if (c == '+') {
+      else if (c == int('+')) { // TODO: grochar
 	inc = 1;
 	tok.next();
 	c = tok.ch();
