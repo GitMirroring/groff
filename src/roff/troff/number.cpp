@@ -103,7 +103,8 @@ bool read_integer(int *res)
   if (!is_valid_expression_start())
     return false;
   units x;
-  if (is_valid_expression(&x, 0, false /* is_parenthesized */)) {
+  if (is_valid_expression(&x, 0 /* dimensionless */,
+			  false /* is_parenthesized */)) {
     *res = x;
     return true;
   }
