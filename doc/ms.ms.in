@@ -2070,11 +2070,11 @@ register's value.
 In the glossary example,
 observe how the
 .CW IP
-macro places the definition on the same line as the term if it has
-enough space.
+macro places the definition on the same line as the term
+if it has enough space.
 .
 If this is not what you want,
-there are a few workarounds we will illustrate by modifying the example.
+there are a few workarounds we illustrate by modifying the example.
 .
 First,
 you can use a
@@ -2099,7 +2099,7 @@ Finally,
 you may append a horizontal motion to the mark with the
 .CW \[rs]h
 escape sequence;
-using the same amount as the indentation will ensure that the mark is
+using the same amount as the indentation ensures that the mark is
 too wide for
 .I groff
 to treat it as \[lq]fitting\[rq] on the same line as the paragraph text.
