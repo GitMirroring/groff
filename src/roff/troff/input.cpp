@@ -8335,7 +8335,8 @@ void warnscale_request()
     warn_scale = (double) units_per_inch / 6.0;
   else {
     warning(WARN_SCALE,
-	    "scaling unit '%1' invalid; using 'i' instead", c);
+	    "%1 is not a valid scaling unit; using 'i'",
+	    tok.description());
     c = 'i';
     warn_scale = (double) units_per_inch;
   }

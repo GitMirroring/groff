@@ -1,5 +1,16 @@
 2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (warnscale_request): In warning
+	diagnostic in category "syntax", accurately describe the
+	argument to the request even if it is something bizarre, instead
+	of presenting the user with an empty pair of quotation marks.
+
+	Fixes <https://savannah.gnu.org/bugs/?67747>.  Problem dates
+	back to intoduction of `warnscale` request in commit 9993a881c1,
+	5 May 2002.
+
+2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (warnscale_request): Actually reset
 	the computed `warn_scale` to `units_per_inch` when recovering
 	from an invalid argument and telling the user we're reverting to
