@@ -8337,6 +8337,7 @@ void warnscale_request()
     warning(WARN_SCALE,
 	    "scaling unit '%1' invalid; using 'i' instead", c);
     c = 'i';
+    warn_scale = (double) units_per_inch;
   }
   warn_scaling_unit = c;
   skip_line();
