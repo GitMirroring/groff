@@ -358,14 +358,14 @@ static bool is_valid_expression(units *u, int scaling_unit,
       }
       break;
     case '/':
-      if (u2 == 0) {
+      if (0 == u2) {
 	error("division by zero");
 	return false;
       }
       *u /= u2;
       break;
     case '%':
-      if (u2 == 0) {
+      if (0 == u2) {
 	error("modulus by zero");
 	return false;
       }
@@ -404,7 +404,7 @@ static bool is_valid_term(units *u, int scaling_unit,
     if (!is_valid_term(u, scaling_unit, is_parenthesized, is_mandatory))
       return false;
     int tmp, position;
-    position = ((scaling_unit == 'v')
+    position = (('v' == scaling_unit)
 		? curdiv->get_vertical_position().to_units()
 		: curenv->get_input_line_position().to_units());
     if (ckd_sub(&tmp, *u, position)) {
@@ -418,7 +418,7 @@ static bool is_valid_term(units *u, int scaling_unit,
   case '(':
     tok.next();
     c = tok.ch();
-    if (c == ')') { // TODO: grochar
+    if (')' == c) { // TODO: grochar
       if (is_mandatory)
 	return false;
       warning(WARN_SYNTAX, "empty parentheses");
@@ -438,7 +438,7 @@ static bool is_valid_term(units *u, int scaling_unit,
 	return false;
       }
     }
-    else if (c == ';') {
+    else if (';' == c) {
       scaling_unit = 0;
       tok.next();
     }
@@ -554,7 +554,7 @@ static bool is_valid_term(units *u, int scaling_unit,
       si = c;
       break;
     default:
-      if (c == 'z') {
+      if ('z' == c) {
 	warning(WARN_SCALE, "'z' scaling unit invalid in this context");
 	break;
       }
@@ -637,7 +637,7 @@ static bool is_valid_term(units *u, int scaling_unit,
 units scale(units n, units x, units y)
 {
   assert(x >= 0 && y > 0);
-  if (x == 0)
+  if (0 == x)
     return 0;
   if (n >= 0) {
     if (n <= INT_MAX / x)
@@ -663,7 +663,7 @@ units scale(units n, units x, units y)
 
 vunits::vunits(units x)
 {
-  if (vresolution == 1)
+  if (1 == vresolution)
     n = x;
   else {
     // Don't depend on rounding direction when dividing neg integers.
@@ -694,7 +694,7 @@ vunits::vunits(units x)
 
 hunits::hunits(units x)
 {
-  if (hresolution == 1)
+  if (1 == hresolution)
     n = x;
   else {
     // Don't depend on rounding direction when dividing neg integers.

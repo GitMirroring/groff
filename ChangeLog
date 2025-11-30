@@ -1,8 +1,9 @@
 2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/number.cpp (is_valid_expression)
-	(is_valid_term): Fix code style nit.  Parenthesize formally
-	complex expressions.
+	(is_valid_term): Fix code style nits.  Parenthesize formally
+	complex expressions.  Arrange equality comparisons to avoid
+	inadvertent lvalue assignment.
 
 2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
