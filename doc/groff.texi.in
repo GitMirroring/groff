@@ -14388,7 +14388,6 @@ requests test the truth values of numeric expressions.
 They also support several additional Boolean operators;
 the members of this expanded class are termed
 @dfn{conditional expressions};
-.IR "conditional expressions" ;
 their truth values are as shown below.
 
 @table @code
