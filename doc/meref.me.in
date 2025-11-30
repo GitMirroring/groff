@@ -2301,7 +2301,7 @@ and a square \(sq labels \*G extensions.
 \&.ar	M	use Arabic numerals for page numbers
 \&.as	M\(sc	append to string
 \&.b	M	embolden argument
-\&.ba	M	set base indentation
+\&.ba	M	set base indentation (cf.\& \fB.in\fP)
 \&.bc	M	begin new column
 \&.bi	M	embolden and italicize argument
 \en(bi	R	display (block) indentation
