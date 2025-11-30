@@ -1,5 +1,11 @@
 2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/number.cpp (is_valid_expression)
+	(is_valid_term): Fix code style nit.  Parenthesize formally
+	complex expressions.
+
+2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/number.cpp (is_valid_term): Adjust wording of
 	warnings in "syntax" category.
 

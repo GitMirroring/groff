@@ -331,13 +331,13 @@ static bool is_valid_expression(units *u, int scaling_unit,
 	*u = u2;
       break;
     case '=':
-      *u = *u == u2;
+      *u = (*u == u2);
       break;
     case '&':
-      *u = *u > 0 && u2 > 0;
+      *u = (*u > 0) && (u2 > 0);
       break;
     case ':':
-      *u = *u > 0 || u2 > 0;
+      *u = (*u > 0) || (u2 > 0);
       break;
     case '+':
       if (ckd_add(u, *u, u2)) {
@@ -404,7 +404,7 @@ static bool is_valid_term(units *u, int scaling_unit,
     if (!is_valid_term(u, scaling_unit, is_parenthesized, is_mandatory))
       return false;
     int tmp, position;
-    position = (scaling_unit == 'v'
+    position = ((scaling_unit == 'v')
 		? curdiv->get_vertical_position().to_units()
 		: curenv->get_input_line_position().to_units());
     if (ckd_sub(&tmp, *u, position)) {
