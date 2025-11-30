@@ -239,8 +239,7 @@ static incr_number_result get_incr_number(units *res, unsigned char si)
 
 static bool is_valid_expression_start()
 {
-  while (tok.is_space())
-    tok.next();
+  tok.skip_spaces();
   if (tok.is_newline()) {
     warning(WARN_MISSING, "numeric expression missing");
     return false;

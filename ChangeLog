@@ -1,5 +1,11 @@
 2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/number.cpp (is_valid_expression_start):
+	Slightly refactor.  Call `tok.skip_spaces()` instead of
+	open-coding exactly what it does.
+
+2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/column.cpp [COLUMN] (column_justify)
 	(column_start, column_output, column_trim, column_reset)
 	(no_vjustify, restore_vjustify):
