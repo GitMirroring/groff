@@ -8323,15 +8323,15 @@ void warnscale_request()
     return;
   }
   int c = tok.ch(); // safely compares to char literals; TODO: grochar
-  if (c == 'u')
+  if ('u' == c)
     warn_scale = 1.0;
-  else if (c == 'i')
+  else if ('i' == c)
     warn_scale = double(units_per_inch);
-  else if (c == 'c')
+  else if ('c' == c)
     warn_scale = double(units_per_inch / 2.54);
-  else if (c == 'p')
+  else if ('p' == c)
     warn_scale = double(units_per_inch / 72.0);
-  else if (c == 'P')
+  else if ('P' == c)
     warn_scale = double(units_per_inch / 6.0);
   else {
     warning(WARN_SCALE,
