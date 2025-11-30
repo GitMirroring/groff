@@ -5547,7 +5547,7 @@ the formatter treats several characters
 @emph{transparently}
 after the occurrence of an end-of-sentence character---it does not
 cancel end-of-sentence status upon encountering them.
-Such characters are often used as footnote markers
+Such characters are often used as footnote marks
 or to close quotations and parentheticals.
 The default set is @samp{"}, @samp{'}, @samp{)},
 @samp{]}, @samp{*}, @code{\[dg]}, @code{\[dd]}, @code{\[rq]}, and
@@ -5848,9 +5848,11 @@ Heywood Jabuzzoff
 .ENDNAME
 @endExample
 
-In fact, the ending marker is itself the name of a macro to be
-called, or a request to be invoked, if it is defined at the time its
-control line is read.
+In fact,
+the ending mark
+is itself the name of a macro to be called,
+or a request to be invoked,
+if it is defined at the time its control line is read.
 
 @Example
 .de END
@@ -15634,9 +15636,14 @@ measurement operator @samp{|}.  @xref{Numeric Expressions}.
 Text processing continues at the new drawing position; usually, vertical
 motions should be in balanced pairs to avoid a confusing page layout.
 
-@code{\v} will not spring a vertical position trap.  This can be useful;
-for example, consider a page bottom trap macro that prints a marker in
-the margin to indicate continuation of a footnote.  @xref{Traps}.
+@code{\v}
+will not spring a vertical position trap.
+This can be useful;
+for example,
+consider a page bottom trap macro
+that prints a mark in the margin
+to indicate continuation of a footnote.
+@xref{Traps}.
 @endDefesc
 
 A few escape sequences that produce vertical motion are unusual.  They
@@ -16241,9 +16248,9 @@ The author writes a pair of macros:@:
 one starts a footnote and the other ends it.
 They further set a trap a small distance above the page bottom,
 reserving a footnote area.
-The author calls the first macro where a footnote marker is desired.
+The author calls the first macro where a footnote mark is desired.
 The macro establishes a diversion so that the footnote text is collected
-at the place in the body text where its corresponding marker appears.
+at the place in the body text where its corresponding mark appears.
 It further creates an environment for the footnote so that it
 sets using a smaller typeface.
 The footnote text is formatted in the diversion using that environment

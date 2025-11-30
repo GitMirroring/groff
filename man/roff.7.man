@@ -205,7 +205,7 @@ the formatter treats several characters
 after the occurrence of an end-of-sentence character\[em]it does not
 cancel end-of-sentence status upon encountering them.
 .
-Such characters are often used as footnote markers
+Such characters are often used as footnote marks
 or to close quotations and parentheticals.
 .
 The default set is
@@ -844,10 +844,10 @@ one starts a footnote and the other ends it.
 They further set a trap a small distance above the page bottom,
 reserving a footnote area.
 .
-The author calls the first macro where a footnote marker is desired.
+The author calls the first macro where a footnote mark is desired.
 .
 The macro establishes a diversion so that the footnote text is collected
-at the place in the body text where its corresponding marker appears.
+at the place in the body text where its corresponding mark appears.
 .
 It further creates an environment for the footnote so that it sets
 at a smaller typeface.
