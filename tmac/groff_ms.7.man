@@ -1659,7 +1659,7 @@ or arbitrary user-specified text.
 .TP
 .B \[rs]**
 Place an
-.I automatic number,
+.I "automatic number,"
 an automatically generated numeric footnote mark,
 in the text.
 .
