@@ -1,5 +1,16 @@
 2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp: Trivially refactor.  Rename function
+	`read_delimited_number()` to `read_delimited_measurement()` to
+	reinforce the fact that it reads a measurement (which is, in
+	turn, numeric expression potentially including operators).
+	(read_delimited_number): Rename (overloaded) declarations and
+	definitions from these...
+	(read_delimited_measurement): ...to these.
+	(token::next): Update call sites.
+
+2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/number.cpp (is_valid_expression)
 	(is_valid_term): Fix code style nits.  Parenthesize formally
 	complex expressions.  Arrange equality comparisons to avoid

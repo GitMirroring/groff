@@ -173,8 +173,10 @@ static void interpolate_environment_variable(symbol);
 static symbol composite_glyph_name(symbol);
 static void interpolate_arg(symbol);
 static request_or_macro *lookup_request(symbol);
-static bool read_delimited_number(units *, unsigned char);
-static bool read_delimited_number(units *, unsigned char, units);
+static bool read_delimited_measurement(units *,
+	unsigned char /* scaling unit */);
+static bool read_delimited_measurement(units *,
+	unsigned char /* scaling unit */, units /* previous value */);
 static symbol do_get_long_name(bool, char);
 static bool get_line_arg(units *res, unsigned char si, charinfo **cp);
 static bool read_size(int *);
@@ -2474,7 +2476,7 @@ void token::next()
 	  break;
 	}
       case 'h':
-	if (!read_delimited_number(&x, 'm'))
+	if (!read_delimited_measurement(&x, 'm'))
 	  break;
 	type = TOKEN_HORIZONTAL_SPACE;
 	nd = new hmotion_node(x, curenv->get_fill_color());
@@ -2483,12 +2485,13 @@ void token::next()
 	// don't take height increments relative to previous height if
 	// in compatibility mode
 	if (!want_att_compat && curenv->get_char_height()) {
-	  if (read_delimited_number(&x, 'z', curenv->get_char_height()))
+	  if (read_delimited_measurement(&x, 'z',
+					 curenv->get_char_height()))
 	    curenv->set_char_height(x);
 	}
 	else {
-	  if (read_delimited_number(&x, 'z',
-	      curenv->get_requested_point_size()))
+	  if (read_delimited_measurement(&x, 'z',
+		curenv->get_requested_point_size()))
 	    curenv->set_char_height(x);
 	}
 	if (!want_att_compat)
@@ -2541,7 +2544,8 @@ void token::next()
 	  break;
 	}
       case 'N':
-	if (!read_delimited_number(&val, 0))
+	// The argument is a glyph index, which is dimensionless.
+	if (!read_delimited_measurement(&val, 0 /* dimensionless */))
 	  break;
 	type = TOKEN_INDEXED_CHAR;
 	return;
@@ -2582,7 +2586,8 @@ void token::next()
 	  have_formattable_input = true;
 	break;
       case 'S':
-	if (read_delimited_number(&x, 0))
+	// The argument is in degrees, which are dimensionless.
+	if (read_delimited_measurement(&x, 0 /* dimensionless */))
 	  curenv->set_char_slant(x);
 	if (!want_att_compat)
 	  have_formattable_input = true;
@@ -2597,7 +2602,7 @@ void token::next()
 			      curenv->get_fill_color());
 	return;
       case 'v':
-	if (!read_delimited_number(&x, 'v'))
+	if (!read_delimited_measurement(&x, 'v'))
 	  break;
 	type = TOKEN_NODE;
 	nd = new vmotion_node(x, curenv->get_fill_color());
@@ -2616,7 +2621,7 @@ void token::next()
 	do_width();
 	break;
       case 'x':
-	if (!read_delimited_number(&x, 'v'))
+	if (!read_delimited_measurement(&x, 'v'))
 	  break;
 	type = TOKEN_NODE;
 	nd = new extra_size_node(x);
@@ -5898,9 +5903,9 @@ static void interpolate_number_format(symbol nm)
     input_stack::push(make_temp_iterator(r->get_format()));
 }
 
-static bool read_delimited_number(units *n,
-				  unsigned char si,
-				  int prev_value)
+static bool read_delimited_measurement(units *n,
+				       unsigned char si,
+				       int prev_value)
 {
   token start_token;
   start_token.next();
@@ -5936,7 +5941,7 @@ static bool read_delimited_number(units *n,
   return false;
 }
 
-static bool read_delimited_number(units *n, unsigned char si)
+static bool read_delimited_measurement(units *n, unsigned char si)
 {
   token start_token;
   start_token.next();
