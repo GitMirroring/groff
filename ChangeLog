@@ -1,5 +1,12 @@
 2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp: Explicitly construct the global
+	constant `TAB_REPEAT_CHAR` as type `unsigned char`, because it
+	is destined for comparison to input characters, instead of
+	inheriting the type `char` from its literal initializer.
+
+2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Fix regression in syntax warning diagnostics introduced
 	in recent days' commits.  Now that we're scrupulous about the
 	data type of an input character to GNU troff, our diagnostic

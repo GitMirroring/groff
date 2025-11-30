@@ -2806,8 +2806,9 @@ void input_trap_continued()
 
 /* tabs */
 
-// must not be R or C or L or a legitimate part of a number expression
-const unsigned char TAB_REPEAT_CHAR = 'T';
+// must not be R or C or L or a legitimate part of a numeric expression
+// TODO: grochar
+const unsigned char TAB_REPEAT_CHAR = (unsigned char)('T');
 
 struct tab {
   tab *next;
