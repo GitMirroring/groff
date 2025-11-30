@@ -3194,8 +3194,11 @@ Default: 2@dmn{n}.
 
 @Defmpreg {FF, ms}
 Defines the format of automatically numbered footnotes,
-and those for which the @code{FS} request is given a marker argument, at
-the bottom of a column or page.  This is a Berkeley extension.
+and those for which the @code{FS} request is given a
+@var{mark}
+argument,
+at the bottom of a column or page.
+This is a Berkeley extension.
 @table @code
 @item 0
 Set an automatic number@footnote{defined in @ref{ms Footnotes}} as a
@@ -3205,15 +3208,28 @@ there is an @code{FS} argument or an automatic number, and as with
 @code{LP} otherwise.  This is the default.
 
 @item 1
-As @code{0}, but set the marker as regular text and follow an
-automatic number with a period.
+As
+@code{0},
+but set
+@var{mark}
+as regular text,
+and follow an automatic number with a period.
 
 @item 2
-As @code{1}, but without indentation (like @code{LP}).
+As
+@code{1},
+but without indentation
+(like
+@code{LP}).
 
 @item 3
-As @code{1}, but set the footnote paragraph with the marker hanging
-(like @code{IP}).
+As
+@code{1},
+but set the footnote paragraph with
+@var{mark}
+hanging
+(like
+@code{IP}).
 @end table
 
 Effective: next footnote.
@@ -3524,9 +3540,12 @@ Set a paragraph with a first-line left indentation in the amount stored
 in the @code{PI} register.
 @endDefmac
 
-@Defmac {IP, [@Var{marker} [@Var{width}]], ms}
-Set a paragraph with a left indentation.  The optional @var{marker} is
-not indented and is empty by default.  It has several applications;
+@Defmac {IP, [@Var{mark} [@Var{width}]], ms}
+Set a paragraph with a left indentation.
+The optional
+@var{mark}
+is not indented and is empty by default.
+It has several applications;
 see @ref{Lists in ms}.  @var{width} overrides the indentation amount
 stored in the @code{PI} register; its default unit is @samp{n}.  Once
 specified, @var{width} applies to further @code{IP} calls until
@@ -3884,11 +3903,20 @@ elements of @file{ms} and @code{groff}.
 @subsubsection Lists
 @cindex @file{ms} macros, lists
 
-The @var{marker} argument to the @code{IP} macro can be employed to
-present a variety of lists; for instance, you can use a bullet glyph
-(@code{\[bu]}) for unordered lists, a number (or auto-incrementing
-register) for numbered lists, or a word or phrase for glossary-style or
-definition lists.  If you set the paragraph indentation register
+The
+@var{mark}
+argument to the
+@code{IP}
+macro can be employed to present a variety of lists;
+for instance,
+you can use a bullet glyph
+(@code{\[bu]})
+for unordered lists,
+a number
+(or auto-incrementing register)
+for numbered lists,
+or a word or phrase for glossary-style or definition lists.
+If you set the paragraph indentation register
 @code{PI} before calling @code{IP}, you can later reorder the items in
 the list without having to ensure that a @var{width} argument remains
 affixed to the first call.
@@ -4004,10 +4032,14 @@ line as the term or label (if it fits) @emph{then} breaks the line.
 \p Firearms,
 @endExample
 
-Finally, you may append a horizontal motion to the marker with the
-@code{\h} escape sequence; using the same amount as the indentation will
-ensure that the marker is too wide for @code{groff} to treat it as
-``fitting'' on the same line as the paragraph text.
+Finally,
+you may append a horizontal motion to the mark with the
+@code{\h}
+escape sequence;
+using the same amount as the indentation will ensure that the mark is
+too wide for
+@code{groff}
+to treat it as ``fitting'' on the same line as the paragraph text.
 
 @Example
 .IP guns\h'0.4i'
@@ -4361,15 +4393,20 @@ for @command{geqn}, @option{-p} for @command{gpic}, @option{-R} for
 @cindex @file{ms} macros, footnotes
 @cindex footnotes [@file{ms}]
 
-@cindex footnote marker [@file{ms}]
-@cindex marker, footnote [@file{ms}]
+@cindex footnote mark [@file{ms}]
+@cindex mark, footnote [@file{ms}]
 A footnote is typically anchored to a place in the text with a
-@dfn{marker}, which is a small integer, a symbol such as a dagger, or
-arbitrary user-specified text.
+@dfn{mark},
+which is a small integer,
+a symbol such as a dagger,
+or arbitrary user-specified text.
 
 @Defmpstr {*, ms}
-Place an @dfn{automatic number}, an automatically generated numeric
-footnote marker, in the text.  Each time this string is interpolated,
+Place an
+@dfn{automatic number},
+an automatically generated numeric footnote mark,
+in the text.
+Each time this string is interpolated,
 the number it produces increments by one.  Automatic numbers start at 1.
 This is a Berkeley extension.
 @endDefesc
@@ -4378,25 +4415,50 @@ Enclose the footnote text in @code{FS} and @code{FE} macro calls to set
 it at the nearest available ``foot'', or bottom, of a text column or
 page.
 
-@DefmacList {FS, [@Var{marker}], ms}
+@DefmacList {FS, [@Var{mark}], ms}
 @DefmacListEndx {FE, , ms}
-Begin (@code{FS}) and end (@code{FE}) a footnote.  @code{FS} calls
-@code{FS-MARK} with any supplied @var{marker} argument, which is then
-also placed at the beginning of the footnote text.  If @var{marker} is
-omitted, the next pending automatic footnote number enqueued by
-interpolation of the @code{*} string is used, and if none exists,
+Begin
+(@code{FS})
+and end
+(@code{FE})
+a footnote.
+@code{FS}
+calls
+@code{FS-MARK}
+with any supplied
+@var{mark} argument,
+which is then also placed at the beginning of the footnote text.
+If
+@var{mark}
+is omitted,
+the next pending automatic number enqueued by interpolation of the
+@code{*}
+string is used,
+and if none exists,
 nothing is prefixed.
 @endDefmac
 
 You may not desire automatically numbered footnotes in spite of their
-convenience.  You can indicate a footnote with a symbol or other text by
-specifying its marker at the appropriate place (for example, by using
-@code{\[dg]} for the dagger glyph) @emph{and} as an argument to the
-@code{FS} macro.  Such manual marks should be repeated as arguments to
-@code{FS} or as part of the footnote text to disambiguate their
-correspondence.  You may wish to use @code{\*@{} and @code{\*@}} to
-superscript the marker at the anchor point, in the footnote text, or
-both.
+convenience.
+You can indicate a footnote with a symbol or other text by specifying
+its mark at the appropriate place
+(for example,
+by using
+@code{\[dg]}
+for the dagger glyph)
+@emph{and}
+as an argument to the
+@code{FS} macro.
+Such manual marks should be repeated as arguments to
+@code{FS}
+or as part of the footnote text to disambiguate their correspondence.
+You may wish to use
+@code{\*@{}
+and
+@code{\*@}}
+to superscript the mark at the anchor point,
+in the footnote text,
+or both.
 
 @code{groff} @file{ms} provides a hook macro, @code{FS-MARK}, for
 user-determined operations to be performed when the @code{FS} macro is
@@ -4423,9 +4485,15 @@ parameters.  The registers @code{FI}, @code{FPD}, @code{FPS}, and
 @code{FVS} correspond to @code{PI}, @code{PD}, @code{PS}, and @code{CS},
 respectively; @code{FPD}, @code{FPS}, and @code{FVS} are GNU extensions.
 
-The @code{FF} register controls the formatting of automatically numbered
-footnote paragraphs and those for which @code{FS} is given a marker
-argument.  @xref{ms Document Control Settings}.
+The
+@code{FF}
+register controls the formatting of automatically numbered footnote
+paragraphs,
+and those for which
+@code{FS} is given a
+@var{mark}
+argument,
+@xref{ms Document Control Settings}.
 
 The default footnote line length is 11/12ths of the normal line length
 for compatibility with the expectations of historical @file{ms}
