@@ -3046,7 +3046,9 @@ T}
 1	T{
 As
 .CW 0 ,
-but set the mark as regular text,
+but set
+.I mark
+as regular text,
 and follow an automatic number with a period.
 T}
 2	T{
@@ -3059,7 +3061,9 @@ T}
 3	T{
 As
 .CW 1 ,
-but set the footnote paragraph with the mark hanging
+but set the footnote paragraph with
+.I mark
+hanging
 (like
 .CW IP ).
 T}
