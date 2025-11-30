@@ -8326,19 +8326,19 @@ void warnscale_request()
   if (c == 'u')
     warn_scale = 1.0;
   else if (c == 'i')
-    warn_scale = (double) units_per_inch;
+    warn_scale = double(units_per_inch);
   else if (c == 'c')
-    warn_scale = (double) units_per_inch / 2.54;
+    warn_scale = double(units_per_inch / 2.54);
   else if (c == 'p')
-    warn_scale = (double) units_per_inch / 72.0;
+    warn_scale = double(units_per_inch / 72.0);
   else if (c == 'P')
-    warn_scale = (double) units_per_inch / 6.0;
+    warn_scale = double(units_per_inch / 6.0);
   else {
     warning(WARN_SCALE,
 	    "%1 is not a valid scaling unit; using 'i'",
 	    tok.description());
     c = 'i';
-    warn_scale = (double) units_per_inch;
+    warn_scale = double(units_per_inch);
   }
   warn_scaling_unit = c;
   skip_line();

@@ -1,5 +1,10 @@
 2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (warnscale_request): Fix code style
+	nit.  Favor value constructors over C-style type casts.
+
+2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (warnscale_request): In warning
 	diagnostic in category "syntax", accurately describe the
 	argument to the request even if it is something bizarre, instead
