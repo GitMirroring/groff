@@ -133,8 +133,8 @@
 2025-11-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (read_delimited_name): Stop accepting
-	horizontal motion tokens as escape sequence delimiters.  This to
-	prohibit use of the delimited `\h` escape sequence as a
+	horizontal motion tokens as escape sequence delimiters.  This is
+	to prohibit use of the delimited `\h` escape sequence as a
 	delimiter, but because of GNU troff's internal design, also
 	prohibits the parameterless `\0`, `\^`, and `\|` delimiters.
 
