@@ -1,5 +1,10 @@
 2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/div.h: Drop unnecessary declaration of
+	`begin_page()`.
+
+2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp: Trivially refactor.  Rename function
 	`read_delimited_number()` to `read_delimited_measurement()` to
 	reinforce the fact that it reads a measurement (which is, in
