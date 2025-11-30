@@ -1,3 +1,14 @@
+2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp (read_size): Clarify diagnostic when
+	an `\s` escape sequence that is bracketed or delimited (a GNU
+	extension) contains an invalid numeric expression.  Describe
+	what we were expecting and what we got instead.
+
+	Fixes <https://savannah.gnu.org/bugs/?67746>.  Problem
+	observable since groff 1.22.3 and appears to date back to
+	groff's birth.
+
 2025-11-26  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Perform more careful comparisons of the `unsigned char`

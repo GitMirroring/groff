@@ -6109,8 +6109,16 @@ static bool read_size(int *x) // \s
     if (!((s == int('[')) && (t == int(']'))) && (start != tok)) {
       if (s == int('['))
 	error("missing ']' in type size escape sequence");
-      else
-	error("missing closing delimiter in type size escape sequence");
+      else {
+	// token::description() writes to static, class-wide storage, so
+	// we must allocate a copy of it before issuing the next
+	// diagnostic.
+	char *delimdesc = strdup(start.description());
+	if (s != t)
+	  error("closing delimiter does not match; expected %1, got %2",
+		delimdesc, tok.description());
+	free(delimdesc);
+      }
       return false;
     }
   }
