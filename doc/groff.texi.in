@@ -15613,7 +15613,7 @@ macro.
     @result{} This is a small test that shows how the
     @result{} rt request works in combination with mk.
     @result{}
-    @result{} Starting  here,    isn't    robust
+    @result{} Starting  here,    isn@quoteright{}t    robust
     @result{} text is typeset    and   thus  not
     @result{} in two columns.    suited  for   a
     @result{} Note that  this    real two-column
