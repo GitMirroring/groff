@@ -1,5 +1,18 @@
 2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/column.cpp [COLUMN] (column_justify)
+	(column_start, column_output, column_trim, column_reset)
+	(no_vjustify, restore_vjustify):
+	* src/roff/troff/div.cpp (divert, divert_append, box)
+	(box_append, page_length, when_request, begin_page, no_space)
+	(restore_spacing, space_request, need_space, page_number)
+	(save_vertical_space, output_saved_vertical_space)
+	(diversion_trap, change_trap, print_traps, mark, return_request)
+	(vertical_position_traps): Mark functions `static` since they do
+	not require external linkage.
+
+2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/div.h: Drop unnecessary declaration of
 	`begin_page()`.
 
