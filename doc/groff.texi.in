@@ -9891,7 +9891,10 @@ The hyphenation language is available in the read-only string-valued
 register @samp{.hla}; it is associated with the environment
 (@pxref{Environments}).
 
-If no hyphenation language is set, automatic hyphenation will not occur.
+If no hyphenation language is set or no patterns are loaded,
+GNU
+@command{troff} @c GNU
+does not perform automatic hyphenation.
 @endDefreq
 
 @DefreqList {hlm, [@Var{n}]}
