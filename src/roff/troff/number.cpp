@@ -531,12 +531,12 @@ static bool is_valid_term(units *u, int scaling_unit,
     case 0:
       // We know it's a recognized scaling unit because it matched the
       // `strchr()` above, so we don't use `tok.description()`.
-      warning(WARN_SCALE, "scaling unit not valid in context"
+      warning(WARN_SCALE, "a scaling unit is not valid in this context"
 	      " (got '%1')", char(c));
       break;
     case 'f':
       if (c != 'f' && c != 'u') {
-	warning(WARN_SCALE, "'%1' scaling unit invalid in context;"
+	warning(WARN_SCALE, "'%1' scaling unit invalid in this context;"
 		" use 'f' or 'u'", char(c));
 	break;
       }
@@ -544,7 +544,7 @@ static bool is_valid_term(units *u, int scaling_unit,
       break;
     case 'z':
       if (c != 'u' && c != 'z' && c != 'p' && c != 's') {
-	warning(WARN_SCALE, "'%1' scaling unit invalid in context;"
+	warning(WARN_SCALE, "'%1' scaling unit invalid in this context;"
 		" use 'z', 'p', 's', or 'u'", char(c));
 	break;
       }
@@ -555,7 +555,7 @@ static bool is_valid_term(units *u, int scaling_unit,
       break;
     default:
       if (c == 'z') {
-	warning(WARN_SCALE, "'z' scaling unit invalid in context");
+	warning(WARN_SCALE, "'z' scaling unit invalid in this context");
 	break;
       }
       si = c;

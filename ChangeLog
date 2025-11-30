@@ -1,5 +1,10 @@
 2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/number.cpp (is_valid_term): Adjust wording of
+	warnings in "syntax" category.
+
+2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (warnscale_request): Fix code style
 	nit.  Favor value constructors over C-style type casts.  Arrange
 	equality comparisons to avoid inadvertent lvalue assignment.
