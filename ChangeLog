@@ -1,5 +1,17 @@
 2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Fix regression in syntax warning diagnostics introduced
+	in recent days' commits.  Now that we're scrupulous about the
+	data type of an input character to GNU troff, our diagnostic
+	apparatus takes us at our word when we pass it unsigned chars,
+	and it formats them as decimal integers instead of characters.
+	Use value constructors to pass C++ `char`s where appropriate.
+
+	* src/roff/troff/input.cpp (is_conditional_expression_true):
+	* src/roff/troff/number.cpp (is_valid_term): Do it.
+
+2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (read_size): Clarify diagnostic when
 	an `\s` escape sequence that is bracketed or delimited (a GNU
 	extension) contains an invalid numeric expression.  Describe

@@ -498,7 +498,8 @@ static bool is_valid_term(units *u, int scaling_unit,
   case '>':
   case '<':
   case '=':
-    warning(WARN_SYNTAX, "empty left operand to '%1' operator", c);
+    warning(WARN_SYNTAX, "empty left operand to '%1' operator",
+	    char(c));
     *u = 0;
     return !is_mandatory;
   default:
@@ -528,12 +529,15 @@ static bool is_valid_term(units *u, int scaling_unit,
       && (strchr(SCALING_UNITS, c) != 0 /* nullptr */)) {
     switch (scaling_unit) {
     case 0:
-      warning(WARN_SCALE, "scaling unit '%1' invalid in context", c);
+      // We know it's a recognized scaling unit because it matched the
+      // `strchr()` above, so we don't use `tok.description()`.
+      warning(WARN_SCALE, "scaling unit not valid in context"
+	      " (got '%1')", char(c));
       break;
     case 'f':
       if (c != 'f' && c != 'u') {
 	warning(WARN_SCALE, "'%1' scaling unit invalid in context;"
-		" use 'f' or 'u'", c);
+		" use 'f' or 'u'", char(c));
 	break;
       }
       si = c;
@@ -541,7 +545,7 @@ static bool is_valid_term(units *u, int scaling_unit,
     case 'z':
       if (c != 'u' && c != 'z' && c != 'p' && c != 's') {
 	warning(WARN_SCALE, "'%1' scaling unit invalid in context;"
-		" use 'z', 'p', 's', or 'u'", c);
+		" use 'z', 'p', 's', or 'u'", char(c));
 	break;
       }
       si = c;

@@ -7050,7 +7050,7 @@ static bool is_conditional_expression_true()
       warning(WARN_SYNTAX,
 	      "conditional expression operator '%1' is not portable to"
 	      " AT&T troff",
-	      c);
+	      char(c));
 	      // TODO: "; treating as output comparison delimiter", c);
       break;
     default:
