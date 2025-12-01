@@ -10731,7 +10731,7 @@ void charinfo::get_flags()
   // troff's dictionary types use a pre-STL approach to containers.
   while (iter.get(&s, reinterpret_cast<void **>(&ci))) {
     assert(!s.is_null());
-    if (ci->contains(get_unicode_mapping() >= 0)) {
+    if (ci->contains(get_unicode_mapping())) {
 #if defined(DEBUGGING)
       if (want_html_debugging)
 	fprintf(stderr, "charinfo::get_flags %p %s %d\n",

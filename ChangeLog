@@ -1,5 +1,17 @@
 2025-12-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (charinfo::get_flags): Fix
+	inadvertent regression caused by fumbled refactoring, wherein I
+	inexplicably mistook a Boolean-valued return type for an
+	`int`-valued one.  (`contains()` sounds Boolean to me now, in
+	the cold light of day.)
+
+	Fixes <https://savannah.gnu.org/bugs/?67570>.  Thanks to Dave
+	Kemper for the report.  Problem introduced by me in commit
+	77d8f728d, 4 September.
+
+2025-12-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[groff]: Regression-test Savannah #67570.
 
 	* src/roff/groff/tests/cflags-works-on-character-classes.sh: Do
