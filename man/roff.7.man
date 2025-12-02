@@ -1787,8 +1787,8 @@ An
 .I output driver
 is a program that parses the output of
 .I troff \" generic
-and produces instructions specific to the device or file format it
-supports.
+and produces instructions or markup
+specific to the device or file format it supports.
 .
 An output driver might support multiple devices,
 particularly if they are similar.
