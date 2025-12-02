@@ -159,18 +159,18 @@ Miscellaneous
 
     http://perso.libertysurf.fr/baruchel/
 
-* gpresent, written by Bob Diertens <bobd@science.uva.nl>.  From the
+* gpresent, written by Bob Diertens <B.Diertens@Uva.nl>.  From its
   README file:
 
-    gpresent is a package for making presentation with groff and
-    acroread.  It consist of a set of macros to be used with groff and a
-    post-processor for manipulating the PostScript output of groff.
-    Without the use of the PAUSE macro, it can also be used for making
-    slides.
+    gpresent is a package for making presentations with groff and
+    [a PDF viewer].  It consist[s] of a set of macros to be used with
+    groff and a post-processor for manipulating the PostScript output of
+    groff.  Without the use of the PAUSE macro, it can also be used for
+    making slides.
 
   It is available from
 
-    www.science.uva.nl/~bobd/useful/gpresent/
+    https://bob.diertens.org/corner/useful/gpresent/
 
 * groff-pdfmark, written by Keith Marshall.
 
