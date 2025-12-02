@@ -1467,22 +1467,29 @@ standard today.
 .
 In 2007, \" TODO: verify
 Caldera/SCO and Sun Microsystems,
-having acquired rights to AT&T Documenter's Workbench (DWB)
-.I troff
-(a descendant of Bell Labs device-independent
-.IR troff ),
-released it under a free but GPL-incompatible license.
-.
-.UR https://\:github\:.com/\:n\-t\-roff/\:DWB3.3
-This implementation
-.UE
-was made portable to modern POSIX systems.
+having acquired rights to AT&T Unix System\~V
+.IR troff ,
+which was based on Documenter's Workbench (\[lq]DWB\[rq]) 2.0,
+itself a a descendant of Bell Labs device-independent
+.IR troff ,
+released it under a free but GPL-incompatible license. \" CDDL
 .
 Gunnar Ritter and later Carsten Kunze then enhanced it to produce
 .UR https://github.com/n\-t\-roff/heirloom\-doctools
 Heirloom Doctools
 .I troff
 .UE .
+.
+Sometime later, \" TODO: when?
+AT&T Software Technology made available
+a subsequent revision of Documenter's Workbench
+.IR troff ,
+.UR https://\:github\:.com/\:n\-t\-roff/\:DWB3.3
+DWB 3.3
+.UE ,
+under yet another free but GPL-incompatible license. \" EPL
+.
+Kunze again ported the software to modern POSIX systems.
 .
 .
 .P
