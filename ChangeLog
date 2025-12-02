@@ -68,7 +68,7 @@
 	* src/roff/troff/input.cpp: Trivially refactor.  Rename function
 	`read_delimited_number()` to `read_delimited_measurement()` to
 	reinforce the fact that it reads a measurement (which is, in
-	turn, numeric expression potentially including operators).
+	turn, a numeric expression potentially including operators).
 	(read_delimited_number): Rename (overloaded) declarations and
 	definitions from these...
 	(read_delimited_measurement): ...to these.
@@ -828,7 +828,7 @@
 	argument types as above, and rename from the cryptic `tt` and
 	`ti` to `transparently` and `as_input`, respectively.
 	(charinfo::set_special_translation): Demote argument types as
-	above.  Rename `c` to `cc` ("character code", as abbreivated
+	above.  Rename `c` to `cc` ("character code", as abbreviated
 	elsewhere in this file), and `tt` to `transparently`.
 	(do_translate): Demote integer arguments `translate_transparent`
 	and `translate_input` from `int` to `bool`, and rename them to
@@ -6677,7 +6677,7 @@
 	[troff]: Favor C++-style `static_cast` over C-style omnipotent
 	casts.
 
-	* src/roff/troff/column.cpp (vjustify_node::same) [0]:
+	* src/roff/troff/column.cpp (vjustify_node::same) [COLUMN]:
 	* src/roff/troff/dictionary.cpp (object_dictionary::lookup)
 	(object_dictionary::rename, object_dictionary::remove)
 	(object_dictionary::alias):
