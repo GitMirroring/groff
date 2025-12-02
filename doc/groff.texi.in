@@ -18831,33 +18831,139 @@ command-line option.
 @cindex token
 @cindex output node
 @cindex node
-GNU @command{troff} processes input in three steps.  One or more input
-characters are gathered into a @dfn{token},@footnote{Except the
-escape sequences @code{\f}, @code{\F}, @code{\H}, @code{\m}, @code{\M},
-@code{\R}, @code{\s}, and @code{\S}, which are processed immediately,
-updating the environment, if not in copy mode.} the smallest meaningful
-unit of @command{troff} input.  Then, one or more tokens are converted
-to a @dfn{node}, a data structure representing any object that may
-ultimately appear in the output, like a glyph or motion on the page.
-Finally, nodes are converted to the device-independent output language
+@cindex flushing, of an output line
+GNU
+@command{troff}
+processes input in three steps.
+It gathers one or more input characters into a
+@dfn{token},@footnote{Except the escape sequences
+@code{\f},
+@code{\F},
+@code{\H},
+@code{\m},
+@code{\M},
+@code{\R},
+@code{\s},
+and
+@code{\S},
+which update the environment,
+if the formatter is not in copy mode.}
+the smallest meaningful unit of
+@command{troff} input.
+The process of formatting translates tokens into nodes
+that populate a pending output line
+(recall
+@ref{Manipulating Filling and Adjustment}).
+A
+@dfn{node}
+is a data structure representing any object
+that may ultimately appear in the output,
+like a glyph or motion on the page.
+When the pending output line breaks,
+the formatter applies any relevant adjustment,
+line number,
+and margin character,
+and finally appends it to the current diversion.
+Periodically,
+the formatter
+@dfn{flushes}
+accumulated output line(s) to the output device,
+a process that translates each node
+into a device-independent output language representation
 understood by all output drivers.
 
-Actually, before step one happens, @command{gtroff} converts certain
-escape sequences into reserved input characters (not accessible by the
-user); such reserved characters are used for other internal processing
-also -- this is the very reason why not all characters are valid input.
-@xref{Identifiers}, for more on this topic.
+For example,
+GNU
+@command{troff}
+converts the input
+@samp{Gi\[:u]\%seppe}
+into a
+character token for
+@samp{g},
+a character token for
+@samp{i},
+a special character token for
+@samp{:u}
+(representing
+@samp{u}
+with an umlaut),
+a token encoding a hyphenation break point,@footnote{GNU
+@command{troff}
+encodes tokens that aren't Unicode Basic Latin characters
+to code points in the C0 and C1 control ranges;
+we plan to move them to the Unicode Private Use Area (PUA)
+or to code points outside the Unicode encoding space
+in a future release.}
+and further character tokens.
+You can observe this process
+by storing the foregoing input into a string
+(which,
+because its contents are read in copy mode,
+is only tokenized,
+not formatted)
+and dumping it with the
+@code{pm} request.@footnote{Because
+GNU
+@command{troff}'s
+internals are subject to revision,
+we do not show the output of these examples.
+The names and structures of node types may change over time.
+The @acronym{JSON} interpreter
+@cite{jq@r{(1)}}
+is not essential,
+but can be helpful in understanding the structure of the node trees
+populating output lines and diversions in particular.}
 
-For example, the input string @samp{fi\[:u]} is converted into a
-character token @samp{f}, a character token @samp{i}, and a special
-token @samp{:u} (representing u@tie{}umlaut).  Later on, the character
-tokens @samp{f} and @samp{i} are merged into a single node representing
-the ligature glyph @samp{fi} (provided the current font has a glyph for
-this ligature); the same happens with @samp{:u}.  All output glyph nodes
-are `processed', which means that they are invariably associated with a
-given font, font size, advance width, etc.  During the formatting
-process, @command{gtroff} itself adds various nodes to control the data
-flow.
+@Example
+$ printf '.ds str Gi\\[:u]\\%%seppe\n.pm str\n' \
+    | groff 2>&1 | jq
+@endExample
+
+Similarly,
+we can observe the details of the formatting process
+by interpolating the string,
+or supplying its contents directly as input,
+and invoking the
+@code{pline}
+request.
+
+@Example
+$ printf 'Gi\\[:u]\\%%seppe\n.pline\n' | groff -z 2>&1 \
+    | jq
+@endExample
+
+We now see a list of nodes,
+including an output line start node,
+several glyph nodes,
+a discretionary break node
+containing a glyph node for the special character
+@samp{:u}
+@emph{and}
+a glyph node for the special character
+@samp{hy}
+(hyphen),
+and a word space node at the end
+corresponding to the newline at the end of input.
+
+If we change
+@samp{G}
+to
+@samp{f},
+we see that the first two glyph nodes,
+for
+@samp{f}
+and
+@samp{i},
+become contained by a ligature node
+(provided the current font has a glyph for this ligature).
+@c XXX: Are ligatures sought only in the current mounting position?  No
+@c font-specific fallbacks or special font search?
+All output glyph nodes are ``processed'',
+which means that they are associated
+with a given font,
+type size,
+advance width,
+and so forth.
 
 Macros, diversions, and strings collect elements in two chained lists: a
 list of tokens that have been passed unprocessed, and a list of nodes.
