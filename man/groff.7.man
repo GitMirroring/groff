@@ -4790,33 +4790,38 @@ does not exist.
 Break and move the next text baseline down by one vee,
 or until springing a page location trap.
 .
+If invoked with the no-break control character,
+.B sp
+moves the text baseline applicable to the entire pending output line.
+.
 .TPx
-.REQ .sp dist
-Break and move the next text baseline down by
-.IR dist ,
-or until springing a page location trap
-(default scaling unit\~\c
-.scaleindicator v ).
+.REQ .sp vertical-distance
+As
+.BR sp ,
+but move by
+.I vertical-distance
+instead of
+.BR 1v .
+.
+Inside a diversion,
+the formatter ignores any argument.
 .
 A negative
-.I dist
-will not reduce the position of the text baseline below zero.
+.I vertical-distance
+cannot reduce the position of the text baseline below zero.
 .
-Prefixing
-.I dist
-with the
+Applying the boundary-relative measurement operator
 .B \[or]
-operator moves to a position relative to the page top for positive
+operator to
+.I vertical-distance,
+as in
+.RB \[lq] \[or]\c
+.IR N \[rq],
+moves to a position relative to the page top for positive
 .IR N ,
 and the bottom if
 .I N
-is negative;
-in all cases,
-one line height (vee) is added
-.RI to\~ dist .
-.
-.I dist
-is ignored inside a diversion.
+is negative.
 .
 .TPx
 .REQ .special

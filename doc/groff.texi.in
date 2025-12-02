@@ -467,7 +467,7 @@ Documentation License''.
 @title groff
 @subtitle The GNU implementation of @code{troff}
 @subtitle version @VERSION@
-@subtitle November 2025
+@subtitle December 2025
 @author Trent@tie{}A.@: Fisher
 @author Werner Lemberg
 @author G.@tie{}Branden Robinson
@@ -9980,18 +9980,27 @@ The hyphenation space adjustment threshold is available in the
 A break causes the formatter to update the vertical drawing position at
 which the new text baseline is placed; you can alter this location.
 
-@Defreq {sp, [@Var{distance}]}
-Break and move the next text baseline down by @var{distance}, or until
-springing a page location trap.@footnote{@xref{Page Location Traps}.}
-If invoked with the no-break control character, @code{sp} moves the
-text baseline applied to the entire pending output line by
-@var{distance}.@footnote{To shift the text baseline for
+@Defreq {sp, [@Var{vertical-distance}]}
+Break and move the next text baseline down by
+@var{distance},
+or until springing a page location trap.@footnote{@xref{Page Location Traps}.}
+If invoked with the no-break control character,
+@code{sp}
+moves the text baseline applicable to the entire pending output line by
+@var{vertical-distance}.@footnote{To shift the text baseline for
 @emph{part} of an output line---to set super- or subscripts, for
-instance--use the @code{\v} escape sequence.  @xref{Page Motions}.}  A
-negative @var{distance} will not reduce the position of the text
-baseline below zero.  Inside a diversion, any @var{distance} argument is
-ignored.  The default scaling unit is @samp{v}.  If @var{distance} is
-not specified, @samp{1v} is assumed.
+instance--use the @code{\v} escape sequence.  @xref{Page Motions}.}
+A negative
+@var{vertical-distance}
+cannot reduce the position of the text baseline below zero.
+Inside a diversion,
+the formatter ignores any argument.
+The default scaling unit is
+@samp{v}.
+Omitting
+@var{vertical-distance}
+implies
+@samp{1v}.
 
 @Example
 .pl 5v \" Set page length to 5 vees.
@@ -10033,6 +10042,20 @@ baseline on the page (recall @ref{Numeric Expressions}).
 @noindent
 The input @samp{.y-from-bot-up 10c} sets the next text baseline
 10@tie{}cm from the bottom edge of the paper.
+
+@cindex boundary-relative measurement operator (@code{|}), use with @code{sp} request
+@cindex @code{|}) operator, use with @code{sp} request
+Applying the boundary-relative measurement operator
+@code{|}
+operator to
+@var{vertical-distance},
+as in
+@code{|}@var{N},
+moves to a position relative to the page top for positive
+@var{N},
+and the bottom if
+@var{N}
+is negative.
 @endDefreq
 
 @DefreqList {ls, [@Var{count}]}
