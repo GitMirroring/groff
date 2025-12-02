@@ -11245,11 +11245,32 @@ Spacing}).  While the @code{sv} request allows negative values for
 @cindex drawing position, vertical (@code{nl})
 @c TODO: We should talk somewhere prior to this point about how the
 @c formatter doesn't start a page until it has to.
-@code{nl} interpolates or sets the vertical drawing position.  When the
-formatter starts, the first page transition hasn't happened yet, and
-@code{nl} is negative.  If a header trap has been planted on the page
-(typically at vertical position @code{0}), you can assign a negative
-value to @code{nl} to spring it if that page has already started
+@code{nl}
+interpolates the vertical drawing position
+as of the most recently typeset output line.
+It does not necessarily
+(and often does not)
+represent that of the pending output line,
+because the formatter does not determine the position of its baseline
+until it is output;
+recall @ref{Manipulating Spacing}.
+Assigning a value to
+@code{nl}
+sets the vertical drawing position
+in advance of further modifications to baseline positioning
+arising from alterations to type size,
+changes to vertical spacing,
+or application of extra pre- or post-vertical spacing.
+
+When the formatter starts,
+the transition to the first page has not yet happened---@code{nl}
+is negative.
+If you plant a page location trap at vertical position
+@samp{0}
+(idiomatically to format a header),
+you can assign a negative value to
+@code{nl}
+to spring that trap even if the page has already started
 (@pxref{Page Location Traps}).
 
 @Example
