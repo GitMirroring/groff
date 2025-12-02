@@ -6548,7 +6548,8 @@ The escape sequences
 .BR \[rs]s ,
 and
 .B \[rs]S
-are transparent at the beginning of an input line,
+are transparent to control charcter recognition
+at the beginning of an input line,
 or after the conditional expression of an
 .RB \[lq] if \^\[rq]
 or

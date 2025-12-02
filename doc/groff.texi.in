@@ -20118,7 +20118,8 @@ The escape sequences
 @code{\s},
 and
 @code{\S}
-are transparent at the beginning of a line,
+are transparent to control charcter recognition
+at the beginning of a line,
 or after the conditional expression of an
 @code{if}
 or
