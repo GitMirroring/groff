@@ -536,15 +536,15 @@ and/or
 .
 .MR @g@tbl @MAN1EXT@
 tables are rendered as PNG images.
-.
-Paul DuBois's approach with
-.MR tblcvt 1 ,
-part of the
-.UR http://\:www\:.snake\:.net/\:software/\:troffcvt/
-.I troffcvt
-distribution
-.UE ,
-should be explored.
+.\"
+.\" Paul DuBois's approach with
+.\" .MR tblcvt 1 ,
+.\" part of the
+.\" .UR http://\:www\:.snake\:.net/\:software/\:troffcvt/
+.\" .I troffcvt
+.\" distribution
+.\" .UE ,
+.\" should be explored.
 .
 .
 .P
