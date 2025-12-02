@@ -20101,7 +20101,7 @@ it does not.
 @Example
 .ds xx '
 \w'abc\*(xxdef'
-    @result{} 168 @r{(normal mode on a terminal device)}
+    @result{} 168 @r{(not in compatibility mode on a terminal device)}
     @result{} 72def' @r{(compatibility mode on a terminal device)}
 @endExample
 
@@ -20141,8 +20141,8 @@ but the text differs.
 Hello!
 ..
 \fB.xx\fP
-    @result{} .xx @r{(normal mode)}
-    @result{} Hello! @r{(compatibility mode)}
+    @result{} .xx @r{(not in compatibility mode)}
+    @result{} Hello! @r{(in compatibility mode)}
 @endExample
 
 @cindex @code{\s}, incompatibilities with @acronym{AT&T} @code{troff}

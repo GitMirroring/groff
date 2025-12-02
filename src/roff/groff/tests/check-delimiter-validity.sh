@@ -32,8 +32,8 @@ for c in A B C D E F G H I J K L M N O P Q R S T U V W X Y Z \
          '!' '"' '#' '$' "'" ',' ';' '?' \
          '@' '[' ']' '^' '`' '{' '}' '~'
 do
-    echo "checking validity of '$c' as delimiter in normal mode" \
-         >&2
+    echo "checking validity of '$c' as delimiter when not in" \
+        "compatbility mode" >&2
     output=$(printf '\\l%c1n+2n\\&_%c\n' "$c" "$c" \
       | "$groff" -w delim -T ascii | sed '/^$/d')
     echo "$output" | grep -Fqx ___ || wail
@@ -42,7 +42,7 @@ done
 for octal in 001 002 003 004 005 006 007 010 011 014 177
 do
     echo "checking validity of control character $octal (octal)" \
-         "as delimiter in normal mode" >&2
+        "as delimiter when not in compatibility mode" >&2
     output=$(printf '\\l\'$octal'1n+2n\&_\'$octal'\n' \
       | "$groff" -w delim -T ascii | sed '/^$/d')
     echo "$output" | grep -Fqx ___ || wail
@@ -50,15 +50,16 @@ done
 
 for c in 0 1 2 3 4 5 6 7 8 9 + - '(' . '|'
 do
-    echo "checking invalidity of '$c' as delimiter in normal mode" \
-         >&2
+    echo "checking invalidity of '$c' as delimiter when not in" \
+        "compatbility mode" >&2
     output=$(printf '\\l%c1n+2n\\&_%c\n' "$c" "$c" \
       | "$groff" -w delim -T ascii | sed '/^$/d')
     echo "$output" | grep -qx 1n+2n_. || wail
 done
 
 # Regression-test Savannah #67744.
-echo "checking invalidity of \h as delimiter in normal mode" >&2
+echo "checking invalidity of \h as delimiter when not in" \
+        "compatibility mode" >&2
 output=$(printf 'foo\\C\\h"1m"em\\h"1m"bar\n' \ | "$groff" -T ascii -a)
 echo "$output" | grep -Fqx "foo--bar" && wail
 
