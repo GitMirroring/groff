@@ -1,3 +1,10 @@
+2025-12-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* mmroff.pl: Rename scalar `want_only_xref_update` to
+	`want_only_ref_update` for clarity; the script deals with
+	references internal to the document, not cross references to
+	others.
+
 2025-10-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m.tmac (debug@big-dump): Report value of `debug*m` since we go
