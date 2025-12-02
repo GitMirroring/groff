@@ -1,5 +1,26 @@
 2025-12-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/xditview/xditview.am
+	(src/devices/xditview/GXditview-ad.h): Add `$(MKDIR_P)` to
+	target rule to ensure the parent directory exists.  This problem
+	is hard to observe because it shows up only when our `configure`
+	script is run with the `--disable-dependency-tracking` option
+	and, apparently, stochastically with highly parallelized builds.
+	{A "stock" build never encounters it because with
+	"dependency tracking", Automake generates make(1) files that
+	create ".deps" files in the build tree, and a prerequisite to
+	doing so is to create the parents of the directories housing
+	them, a convenience that this target rule snuck through.}
+
+	Fixes <https://savannah.gnu.org/bugs/?67754> and
+	<https://bugs.debian.org/1121570>.  Problem dates back at least
+	to commit 62a22cb540, 22 August 2014 (but which did not appear
+	in the "master" branch until 27 January of the next year), when
+	groff's build system adopted Automake.  Thanks to Helmut Grohne
+	for the report and Colin Watson for assistance reproducing it.
+
+2025-12-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (charinfo::get_flags): Fix
 	inadvertent regression caused by fumbled refactoring, wherein I
 	inexplicably mistook a Boolean-valued return type for an
