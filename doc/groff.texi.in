@@ -15662,7 +15662,7 @@ Text processing continues at the new drawing position; usually, vertical
 motions should be in balanced pairs to avoid a confusing page layout.
 
 @code{\v}
-will not spring a vertical position trap.
+does not spring a vertical position trap.
 This can be useful;
 for example,
 consider a page bottom trap macro
@@ -16410,7 +16410,7 @@ is missing.
 
 A trap is sprung only if it is @dfn{visible}, meaning that its location
 is reachable on the page@footnote{A trap planted at @samp{20i} or
-@samp{-30i} will not be sprung on a page of length @samp{11i}.} and it
+@samp{-30i} cannot be sprung on a page of length @samp{11i}.} and it
 is not hidden by another trap at the same location already planted
 there.
 
@@ -16455,9 +16455,9 @@ when the @samp{hd} trap springs at vertical position @samp{0},
 invoking @samp{sp .5i}, we get the desired half-inch of top margin.
 With the @samp{ft} trap, we space after the body text by one half-inch
 @emph{minus one vee} to leave a half-inch bottom margin.  The footer
-title, if anything taller than a baseline rule, thus ``encroaches'' into
+title, if taller than a baseline rule, thus ``encroaches'' into
 the half-inch margin between the body text and the bottom margin, just
-as the header title symmetrically intruded into the half-inch of space
+as the header title symmetrically intrudes into the half-inch of space
 between its own cap-height and that of the top of the body text.
 
 To use these traps, copy the above (or load it from a file with the
@@ -20589,9 +20589,9 @@ Internals}.
 
 In the somewhat pathological case where a diversion exists containing a
 partially collected line and a partially collected line at the top-level
-diversion has never existed, @acronym{AT&T} @code{troff} will output a
+diversion has never existed, @acronym{AT&T} @code{troff} outputs a
 partially collected but otherwise empty line (as if @samp{\c} were in
-the top-level diversion) at the end of input; GNU @code{troff} will not.
+the top-level diversion) at the end of input; GNU @code{troff} does not.
 
 
 
