@@ -2033,6 +2033,76 @@ except that it does not cancel a pending end-of-sentence state.
 .\" END Keep (roughly) parallel with groff.texi node "Dummy Characters".
 .
 .
+.\" ====================================================================
+.SH "Page control"
+.\" ====================================================================
+.
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Page Control".
+Discretionary page breaks
+can prevent the unwanted separation of content.
+.
+A new page number takes effect during page ejection;
+see subsection \[lq]The implicit page trap\[rq] below.
+.
+The
+.B bp
+request breaks the page,
+incrementing the page number by one
+(or setting it per the supplied argument).
+.
+The
+.B ne
+request forces a page break if insufficient vertical space is available
+(it asserts \[lq]needed\[rq] space).
+.
+.B sv
+requires vertical space as
+.B ne
+does,
+but also
+.I saves
+it for later output by the
+.B os
+request.
+.
+.
+.P
+The
+.B nl
+register interpolates the vertical drawing position
+as of the most recently typeset output line.
+.
+It does not necessarily
+(and often does not)
+represent that of the pending output line,
+because the formatter does not determine the position of its baseline
+until it is output.
+.\" recall @ref{Manipulating Spacing}.
+.
+Assigning a value to
+.B nl
+sets the vertical drawing position
+in advance of further modifications to baseline positioning
+arising from alterations to type size,
+changes to vertical spacing,
+or application of extra pre- or post-vertical spacing.
+.
+.
+.P
+When the formatter starts,
+the transition to the first page
+.RB "has not yet happened\[em]" nl
+is negative.
+If you plant a page location trap at vertical position
+.RB \[lq] 0 \[rq]
+(idiomatically to format a header),
+you can assign a negative value to
+.B nl
+to spring that trap even if the page has already started
+(see subsection \[lq]Page location traps\[rq] below).
+.\" END Keep (roughly) parallel with groff.texi node "Page Control".
+.
+.
 .\" TODO: Add sections here about characters (including custom
 .\" defintions with the `char` request family) and fonts (including
 .\" special fonts and the character resolution process).

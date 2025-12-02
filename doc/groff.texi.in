@@ -11121,9 +11121,10 @@ We most often see titles used in page header and footer traps.
 @cindex break, page
 @cindex page ejection
 @cindex ejection, page
-Discretionary page breaks can prevent the unwanted separation of
-content.  A new page number takes effect during page ejection; see
-@ref{The Implicit Page Trap}.
+Discretionary page breaks
+can prevent the unwanted separation of content.
+A new page number takes effect during page ejection;
+see @ref{The Implicit Page Trap}.
 
 @DefreqList {bp, [@Var{page-number}]}
 @DefreqItem {bp, @t{+}@Var{page-number}}
@@ -11175,8 +11176,9 @@ output.
 @cindex conditional page break (@code{ne})
 @cindex page break, conditional (@code{ne})
 @cindex need vertical space request (@code{ne})
-Force a page break if insufficient vertical space is available (assert
-``needed'' space).  @code{ne} tests the distance to the next page
+Force a page break if insufficient vertical space is available
+(it asserts ``needed'' space).
+@code{ne} tests the distance to the next page
 location trap; see @ref{Page Location Traps}, and breaks the page if
 that amount is less than @var{space}.  The default scaling unit is
 @samp{v}.  If @var{space} is invalid, GNU @code{troff} emits a warning
@@ -11226,10 +11228,20 @@ parameters for widow and orphan management.
 @DefreqList {sv, [@Var{space}]}
 @DefreqListEndx {os, }
 @cindex @code{ne} request, comparison with @code{sv}
-@code{sv} requires vertical space as @code{ne} does, but also
-@slanted{saves} it for later output by the @code{os} request.  If
-@var{space} is available before the next page location trap, it is
-output immediately.  Both requests ignore a partially collected line,
+@code{sv}
+requires vertical space as
+@code{ne}
+does,
+but also
+@slanted{saves}
+it for later output by the
+@code{os}
+request.
+If
+@var{space}
+is available before the next page location trap,
+it is output immediately.
+Both requests ignore a partially collected line,
 taking effect at the next break.
 @cindex @code{sv} request, and no-space mode
 @cindex @code{os} request, and no-space mode
