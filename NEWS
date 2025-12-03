@@ -1208,10 +1208,10 @@ Macro packages
    the line length on nroff devices prior to processing a man page.
    This was deprecated in groff 1.18 (July 2002), and all known man
    program and macro package implementations either have set an LL
-   register since 2002 (man-db man), 2005 (Brouwer/Lucifredi man), or
+   register since 2002 (man-db man) or 2005 (Brouwer/Lucifredi man);
    don't let the user vary the line length freely (DWB troff, Solaris
-   troff, Plan 9 troff), don't permit its configuration via the `ll`
-   request (mandoc), or at all (Heirloom Doctools troff).
+   troff, Plan 9 troff); or don't permit its configuration via the `ll`
+   request (mandoc) or at all (Heirloom Doctools troff).
 
 *  The an (man) macro package now interprets the value of the `HY`
    register as a Boolean; using it to set a specific hyphenation mode is
