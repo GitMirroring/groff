@@ -2986,7 +2986,8 @@ const char *token::description()
       static char nodebuf[bufsz];
       (void) strcpy(nodebuf, "an undescribed node");
       describe_node(nodebuf, bufsz);
-      return nodebuf;
+      (void) snprintf(buf, bufsz, "%s token", nodebuf);
+      return buf;
     }
   case TOKEN_INDEXED_CHAR:
     (void) snprintf(buf, maxstr, "indexed character %d",

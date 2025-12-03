@@ -1,5 +1,10 @@
 2025-12-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (token::description): Describe a
+	`TOKEN_NODE` explicitly as a "token", because it still is one.
+
+2025-12-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (token::description): Return the node
 	token description using the correct buffer.
 
