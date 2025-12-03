@@ -1,5 +1,20 @@
 2025-12-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Refactor.  Bust character flag dumping (a report to the
+	standard error stream) into its own member function of the
+	`charinfo` class because (A) it's about 50 lines of code and (B)
+	we're about to need another call site, and there's no way
+	repeating 50 lines of code is a good idea.
+
+	* src/roff/troff/charinfo.h (class charinfo): Declare new
+	`dump_flags()` member function returning `void`.
+	* src/roff/troff/input.cpp (charinfo::dump_flags): Implement it,
+	moving code to here...
+	(charinfo::dump): ...from here, instead calling the new
+	function.
+
+2025-12-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (token::description): Describe a
 	`TOKEN_NODE` explicitly as a "token", because it still is one.
 
