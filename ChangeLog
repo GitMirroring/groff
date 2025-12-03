@@ -1,3 +1,11 @@
+2025-12-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp (token::description): Hedge against
+	programmer carelessness.  If someone creates a node type without
+	a human-readable descripion, pre-populate the buffer describing
+	it with a revealing description that is less frustrating than
+	nothing at all.
+
 2025-12-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/devices/xditview/xditview.am

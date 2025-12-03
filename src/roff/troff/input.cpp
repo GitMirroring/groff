@@ -2984,6 +2984,7 @@ const char *token::description()
   case TOKEN_NODE:
     {
       static char nodebuf[bufsz];
+      (void) strcpy(buf, "an undescribed node");
       describe_node(nodebuf, bufsz);
       return buf;
     }
