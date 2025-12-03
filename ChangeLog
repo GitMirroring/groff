@@ -10191,6 +10191,8 @@
 	* src/libs/libgroff/libgroff.am: Drop foregoing `.c` files from
 	`libgroff_a_SOURCES` macro.
 
+	Fixes <https://savannah.gnu.org/bugs/?64054>.
+
 2024-11-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[libgroff]: Improve header-file inclusion hygiene.
