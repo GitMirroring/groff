@@ -119,6 +119,7 @@ public:
   bool contains(int, bool = false);
   bool contains(symbol, bool = false);
   bool contains(charinfo *, bool = false);
+  void describe_flags();
   void dump_flags();
   void dump();
 };

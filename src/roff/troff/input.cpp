@@ -10850,15 +10850,15 @@ bool charinfo::contains(charinfo *, bool)
   return false;
 }
 
-void charinfo::dump_flags()
+void charinfo::describe_flags()
 {
-  errprint("  flags: %1 (", flags);
   if (0U == flags)
-    errprint("none)\n");
+    errprint("(none)\n");
   else {
     char none[] = { '\0' };
     char comma[] = { ',', ' ', '\0' };
     char *separator = none;
+    errprint("(");
     if (flags & ENDS_SENTENCE) {
       errprint("%1ends sentence", separator);
       separator = comma;
@@ -10900,6 +10900,22 @@ void charinfo::dump_flags()
       separator = comma;
     }
     errprint(")\n");
+  }
+}
+
+void charinfo::dump_flags()
+{
+  errprint("  %1flags: %2 ", (is_class() ? "" : "inherent "), flags);
+  describe_flags();
+  if (!is_class()) {
+    // Report influence of membership in character classes, if any.
+    unsigned int saved_flags = flags;
+    get_flags();
+    if (flags != saved_flags) {
+      errprint("  effective flags: %1 ", flags);
+      describe_flags();
+      flags = saved_flags;
+    }
   }
 }
 
@@ -10949,6 +10965,7 @@ void charinfo::dump()
     if (!has_nested_classes)
       errprint("(none)");
     errprint("\n");
+    dump_flags();
   }
   else {
     if (translation != 0 /* nullptr */)

@@ -1,5 +1,44 @@
 2025-12-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Describe character (classes) better.  Character classes
+	have one more property beyond their name, and lists of ranges
+	and nested classes: a set of character flags that the formatter
+	bitwise "or"s with any character members of the class
+	{recursively}.  However, the computation of flags applicable to
+	a character has been done lazily almost from the time the
+	character class feature was first implemented, presumably to
+	keep a `cflags` request on a highly populated character class
+	from taking a lot of time.  Improve the output of `pchar`
+	accordingly.  When reporting properties of a character class,
+	report the flags associated with it.  When reporting properties
+	of a character, if it is a member of any class, compute its
+	"effective" character flags and report them in distinction to
+	its "inherent" character flags if they differ.  Then, revert the
+	lazy computation of the effective character flags so that the
+	`pchar` request has no visible effect on formatter state; we
+	want this property for debugging documents, avoiding Heisenbugs.
+
+	* roff/troff/charinfo.h (class charinfo): Declare new
+	`describe_flags()` member function returning `void`.
+	* src/roff/troff/input.cpp (charinfo::describe_flags): Refactor
+	the tedious flags-to-English logic from `charinfo::dump_flags()`
+	into this new member function, since we might need to perform
+	this translation more than once when dumping a character's
+	properties.
+	(charinfo::describe_flags): Strip out flags-to-English
+	translation as above.  For a character per se (not a class),
+	report assigned character flags thereto as "inherent".  Then
+	save them, do the lazy computation that normally occurs when
+	formatting a character, report the combination as the "effective
+	flags" if they differ, and restore the saved flags.
+	(charinfo::dump): Call `dump_flags()` on character classes.
+
+	Fixes <https://savannah.gnu.org/bugs/?67711>.  Thanks to Dave
+	Kemper for prompting me to better understand this aspect of GNU
+	troff's design.
+
+2025-12-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Refactor.  Bust character flag dumping (a report to the
 	standard error stream) into its own member function of the
 	`charinfo` class because (A) it's about 50 lines of code and (B)
