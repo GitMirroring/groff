@@ -1470,7 +1470,7 @@ Caldera/SCO and Sun Microsystems,
 having acquired rights to AT&T Unix System\~V
 .IR troff ,
 which was based on Documenter's Workbench (\[lq]DWB\[rq]) 2.0,
-itself a a descendant of Bell Labs device-independent
+itself a descendant of Bell Labs device-independent
 .IR troff ,
 released it under a free but GPL-incompatible license. \" CDDL
 .
