@@ -1,5 +1,12 @@
 2025-12-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (token::description): Improve
+	descriptiveness of C string returned when preprocessor symbol
+	`NDEBUG` is defined and we're called upon to describe a
+	nonexistent special character or class.
+
+2025-12-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (print_character_request): Don't try
 	to describe a special character (or class) that doesn't exist;
 	say nothing, just as we do with `.pnr nonexistent` and `.pm

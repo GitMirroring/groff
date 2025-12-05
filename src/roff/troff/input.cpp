@@ -3019,7 +3019,7 @@ const char *token::description()
 				  true /* suppress creation */);
       if (0 /* nullptr */ == ci) {
 	assert(0 == "attempted to process token without charinfo");
-	return "impossible character";
+	return "nonexistent special character or class";
       }
       else if (ci->is_class())
 	ctype = character_class;
