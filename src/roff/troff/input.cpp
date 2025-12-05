@@ -3015,7 +3015,8 @@ const char *token::description()
       static const char special_character[] = "special character";
       static const char character_class[] = "character class";
       const char *ctype = special_character;
-      charinfo *ci = get_charinfo();
+      charinfo *ci = get_charinfo(false /* required */,
+				  true /* suppress creation */);
       if (0 /* nullptr */ == ci) {
 	assert(0 == "attempted to process token without charinfo");
 	return "impossible character";
