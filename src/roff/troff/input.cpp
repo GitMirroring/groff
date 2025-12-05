@@ -5092,6 +5092,8 @@ static void print_character_request()
   charinfo *ci;
   do {
     tok.skip_spaces();
+    if (tok.is_newline() || tok.is_eof())
+      break;
     if (!tok.is_any_character()) {
       error("character report request expects characters or character"
 	    " classes as arguments; got %1", tok.description());
@@ -5107,7 +5109,7 @@ static void print_character_request()
       ci->dump();
     }
     tok.next();
-  } while (!tok.is_newline() && !tok.is_eof());
+  } while (true);
   skip_line();
 }
 

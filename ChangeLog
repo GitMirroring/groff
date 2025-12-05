@@ -1,5 +1,15 @@
 2025-12-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (print_character_request): Fix
+	blunder in lexical analysis.  We were skipping over spaces
+	_prior_ to arguments, but not _after_ them, just before we hit
+	the end of the line, and issuing a spurious error diagnostic.
+	Fix it by moving the condition that terminates the input reading
+	loop, making it formally infinite (but with a conditional
+	`break` in the middle--we'll read a newline or EOF eventually).
+
+2025-12-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[groff]: Add unit test for new `pchar` request.
 
 	* src/roff/groff/tests/pchar-request-works.sh: Do it.
