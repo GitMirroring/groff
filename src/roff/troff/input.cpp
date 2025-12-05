@@ -5102,9 +5102,7 @@ static void print_character_request()
     }
     ci = tok.get_charinfo(false /* required */,
 			  true /* suppress creation */);
-    if (0 /* nullptr */ == ci)
-      warning(WARN_CHAR, "%1 is not defined", tok.description());
-    else {
+    if (ci != 0 /* nullptr */) {
       errprint("%1\n", tok.description());
       fflush(stderr);
       ci->dump();

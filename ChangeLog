@@ -1,5 +1,12 @@
 2025-12-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (print_character_request): Don't try
+	to describe a special character (or class) that doesn't exist;
+	say nothing, just as we do with `.pnr nonexistent` and `.pm
+	nonexistent`.
+
+2025-12-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (token::description): Don't create a
 	special character in the course of trying to describe it.
 
