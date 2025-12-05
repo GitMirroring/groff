@@ -8731,7 +8731,8 @@ static void define_class_request()
       }
       child1 = 0 /* nullptr */;
     }
-    child1 = tok.get_charinfo(true /* required */);
+    if (tok.is_any_character())
+      child1 = tok.get_charinfo(true /* required */);
     tok.next();
     if (0 /* nullptr */ == child1) {
       if (!tok.is_newline())
