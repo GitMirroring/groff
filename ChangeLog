@@ -1,5 +1,10 @@
 2025-12-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (define_class_request): Add assertion
+	to check (what I believe to be) an invariant.
+
+2025-12-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (define_class_request): Stop warning
 	on trailing space after arguments to `class` request.  Populate
 	local variable `child1` (which helps us keep track of range

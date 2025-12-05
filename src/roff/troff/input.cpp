@@ -8733,6 +8733,10 @@ static void define_class_request()
     }
     if (tok.is_any_character())
       child1 = tok.get_charinfo(true /* required */);
+    else
+      // If we encountered a space or nonsense, we cannot be
+      // interpreting a range expression; there should be no "child1".
+      assert(0 /* nullptr */ == child1);
     tok.next();
     if (0 /* nullptr */ == child1) {
       if (!tok.is_newline())
