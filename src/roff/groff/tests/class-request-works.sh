@@ -50,6 +50,13 @@ echo "$output"
 
 # We don't test class nesting.  It's never worked.  See Savannah #67770.
 
+# Regression-test a goof made during the request's development.
+
+echo "checking that 'class' request handles trailing space" >&2
+output=$(printf '.class [class1] A B \n' | "$groff" -w missing 2>&1)
+echo "$output"
+echo "$output" | grep 'warning' && wail
+
 test -z "$fail"
 
 # vim:set autoindent expandtab shiftwidth=4 tabstop=4 textwidth=72:
