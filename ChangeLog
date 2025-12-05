@@ -1,3 +1,10 @@
+2025-12-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[groff]: Add unit test for new `pchar` request.
+
+	* src/roff/groff/tests/pchar-request-works.sh: Do it.
+	* src/roff/groff/groff.am (groff_TESTS): Run test.
+
 2025-12-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Describe character (classes) better.  Character classes
