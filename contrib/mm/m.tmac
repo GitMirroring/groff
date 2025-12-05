@@ -2863,7 +2863,7 @@ exceeds depth of nested lists (\\n[li*lvl])
 .if \w@\\$3@>0 .nr toc*tlevel \\$3
 .if \w@\\$4@>0 .nr toc*tab \\$4
 .if \\n[pg*cols-per-page]>1 .1C
-.ds H1txt \\*[Licon]
+.ds H1txt \\*[Captc]
 .ds Tcstatus co
 .pg@clear-hd
 .EF ""
@@ -2895,7 +2895,7 @@ exceeds depth of nested lists (\\n[li*lvl])
 .ie d TY .if \\n[.$]<=4 .TY
 .el \{\
 .	ce
-\\*[Licon]
+\\*[Captc]
 .	br
 .	SP 3
 .\}
@@ -3023,13 +3023,13 @@ exceeds depth of nested lists (\\n[li*lvl])
 .ie !\\n[Of] .ds lix*ds-form .\ \ \"
 .el          .ds lix*ds-form "\ \[em]\ \"
 .nr lix*in \\n[.i]
-.ds lix*label \\*[Li\\$1]\ \\*[lix*numb]\\*[lix*ds-form]
-.if \\n[D]>=2 .tm \\*[Li\\$1] "\\$4"
+.ds lix*label \\*[Cap\\$1]\ \\*[lix*numb]\\*[lix*ds-form]
+.if \\n[D]>=2 .tm \\*[Cap\\$1] "\\$4"
 .if \\n[D]>=6 .tm \\$0: lix*label="\\*[lix*label]"
 .if !'\\$5'' \{\
-.	if !0\\$6 .ds lix*label \\*[Li\\$1]\ \\$5\\*[lix*numb]\\*[lix*ds-form]
-.	if 0\\$6=1 .ds lix*label \\*[Li\\$1]\ \\*[lix*numb]\\$5\\*[lix*ds-form]
-.	if 0\\$6=2 .ds lix*label \\*[Li\\$1]\ \\$5\\*[lix*ds-form]
+.	if !0\\$6 .ds lix*label \\*[Cap\\$1]\ \\$5\\*[lix*numb]\\*[lix*ds-form]
+.	if 0\\$6=1 .ds lix*label \\*[Cap\\$1]\ \\*[lix*numb]\\$5\\*[lix*ds-form]
+.	if 0\\$6=2 .ds lix*label \\*[Cap\\$1]\ \\$5\\*[lix*ds-form]
 .\}
 .\" print line if not between DS/DE
 .ie (\\n[ds*lvl]<1)&(\\n[df*float]=0) \{\

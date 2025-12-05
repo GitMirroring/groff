@@ -1,3 +1,11 @@
+2025-12-05  Alexis Hildebrandt <afh@surryhill.net>
+
+	* m.tmac (TC, lix*print-line): Use the new `Cap*` string names
+	instead of the old `Li*` ones.
+
+	[Continues (completes?) changes overlooked by me in November of
+	last year and again in August of this one. --GBR]
+
 2025-12-12  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m.tmac (B2): In nroff mode, space by one vee before and after
