@@ -12600,10 +12600,41 @@ font@tie{}@var{f}.
 @cindex character classes
 @cindex classes, character
 
-Classes are particularly useful for East Asian languages such as
-Chinese, Japanese, and Korean, where the number of needed characters is
-much larger than in European languages, and where large sets of
-characters share the same properties.
+GNU
+@command{troff} @c GNU
+can group characters into
+@dfn{classes},
+making manipulation of their breaking
+and/or sentential properties convenient;
+recall the
+@code{cflags}
+request in
+@ref{Using Symbols}.
+Classes are particularly useful
+for East Asian languages such as
+Chinese,
+Japanese,
+and
+Korean,
+which have much larger character repertoires than the
+Latin,
+Greek,
+Cyrillic,
+or
+Thai
+scripts.
+In such large character sets,
+many characters share the same properties.
+Only
+@code{class}
+and
+@code{cflags}
+requests
+can operate on character classes.
+@c TODO:
+@c any other use,
+@c including interpolation,
+@c is an error.
 
 @Defreq {class, name c1 c2 @dots{}}
 @cindex character class (@code{class})
