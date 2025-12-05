@@ -1,5 +1,12 @@
 2025-12-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[groff]: Add unit test for `class` request.
+
+	* src/roff/groff/tests/class-request-works.sh: Do it.
+	* src/roff/groff/groff.am (groff_TESTS): Run test.
+
+2025-12-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (print_character_request): Fix
 	blunder in lexical analysis.  We were skipping over spaces
 	_prior_ to arguments, but not _after_ them, just before we hit
