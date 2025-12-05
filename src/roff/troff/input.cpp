@@ -8771,7 +8771,8 @@ static void define_class_request()
     }
     child1 = 0 /* nullptr */;
   }
-  if (!ci->is_class()) {
+  assert(ci != 0 /* nullptr */);
+  if (ci != 0 /* nullptr */ && !ci->is_class()) {
     warning(WARN_SYNTAX,
 	    "empty class definition for '%1'",
 	    nm.contents());

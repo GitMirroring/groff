@@ -22,6 +22,12 @@
 2025-12-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (define_class_request): Add assertion
+	and, if preprocessor `NDEBUG` symbol is defined, guard against
+	null pointer derefrence.
+
+2025-12-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp (define_class_request): Add assertion
 	to check (what I believe to be) an invariant.
 
 2025-12-05  G. Branden Robinson <g.branden.robinson@gmail.com>
