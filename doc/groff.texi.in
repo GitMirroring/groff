@@ -12636,80 +12636,117 @@ can operate on character classes.
 @c including interpolation,
 @c is an error.
 
-@Defreq {class, name c1 c2 @dots{}}
+@Defreq {class, ident c @dots{}}
 @cindex character class (@code{class})
 @cindex defining character class (@code{class})
 @cindex class of characters (@code{class})
-Define a character class (or simply ``class'') @var{name} comprising
-the characters @var{c1}, @var{c2}, and so on.
-
-A class thus defined can then be referred to in lieu of listing all the
-characters within it.  Currently, only the @code{cflags} request can
-handle references to character classes.
-
-In the request's simplest form, each @var{cn} is a character (or special
-character).
+Define a character class
+(or simply ``class'')
+@var{ident}
+comprising the members
+@var{c}
+@dots{},
+where each
+@var{c}
+is an
+ordinary,
+special,
+or
+indexed
+character;
+or a
+@slanted{range expression}.
+A class thus defined can then be referred to
+in a
+@code{cflags}
+request in lieu of listing all the characters within it.
 
 @Example
 .class [quotes] ' \[aq] \[dq] \[oq] \[cq] \[lq] \[rq]
 @endExample
 
-Since class and glyph names share the same name space, it is recommended
-to start and end the class name with @code{[} and @code{]},
-respectively, to avoid collisions with existing character names defined
-by GNU @code{troff} or the user (with @code{char} and related requests).
-This practice applies the presence of @code{]} in the class name to
+Since class and special character names share the same name space,
+we recommend starting and ending the class name with
+@samp{[}
+and
+@samp{]},
+respectively,
+to avoid collisions with existing special character names defined by
+GNU
+@command{troff} @c GNU
+or the user
+(with
+@code{char}
+and related requests).
+This practice applies the presence of
+@samp{]}
+in the class name to
 prevent the use of the special character escape form
-@code{\[@r{@dots{}}]}, thus you must use the @code{\C} escape to access
-a class with such a name.
+@samp{\[@r{@dots{}}]},
+you must therefore access a class thus named via the
+@code{\C}
+escape sequence.
 
 @cindex GGL (@code{groff} glyph list)
 @cindex @code{groff} glyph list (GGL)
-You can also use a character range notation consisting of a
-start character followed by @samp{-} and then an end character.
-Internally, GNU @code{troff} converts these two symbol names to
-Unicode code points (according to the @code{groff} glyph list [GGL]),
-which then give the start and end value of the range.  If that fails,
-the class definition is skipped.
+An argument
+@var{c}
+can alternatively be a
+@dfn{range expression}
+consisting of a start character followed by
+@samp{-}
+and then an end character.
+Internally,
+GNU
+@command{troff} @c GNU
+converts these two symbol names to Unicode code points
+(according to the
+@code{groff}
+glyph list [GGL]),
+which determine the start and end values of the range.
+If that conversion fails,
+GNU
+@command{troff} @c GNU
+skips the range expression and any remaining arguments.
+@c 
+@c Furthermore, classes can be nested.
+@c 
+@c @Example
+@c .class [prepunct] , : ; > @}
+@c .class [prepunctx] \C'[prepunct]' \[u2013]-\[u2016]
+@c @endExample
+@c 
+@c @noindent
+@c The class @samp{[prepunctx]} thus contains the contents of the class
+@c @code{[prepunct]} as defined above (the set @samp{, : ; > @}}), and
+@c characters in the range between @code{U+2013} and @code{U+2016}.
 
-Furthermore, classes can be nested.
+If you want to include
+@samp{-}
+in a class,
+it must be the first character in a
+@var{c}
+argument;
+otherwise
+GNU
+@command{troff} @c GNU
+interprets the argument
+as a range expression.
 
-@Example
-.class [prepunct] , : ; > @}
-.class [prepunctx] \C'[prepunct]' \[u2013]-\[u2016]
-@endExample
-
-@noindent
-The class @samp{[prepunctx]} thus contains the contents of the class
-@code{[prepunct]} as defined above (the set @samp{, : ; > @}}), and
-characters in the range between @code{U+2013} and @code{U+2016}.
-
-If you want to include @samp{-} in a class, it must be the first
-character value in the argument list, otherwise it gets misinterpreted
-as part of the range syntax.
-
-It is not possible to use class names as end points of range
-definitions.
-
-Typically,
-one sets up a character class
-to then apply breaking and hyphenation properties
-to it with the
-@code{cflags}
-request.
-For example,
-to inhibit line breaks before the characters belonging
-to the
-@samp{prepunctx}
-class defined in the previous example,
-you can write the following.
-
-@Example
-.cflags 2 \C'[prepunctx]'
-@endExample
-
-@noindent
-See the @code{cflags} request in @ref{Using Symbols}, for more details.
+@c
+@c For example,
+@c to inhibit line breaks before the characters belonging
+@c to the
+@c @samp{prepunctx}
+@c class defined in the previous example,
+@c you can write the following.
+@c
+@c @Example
+@c .cflags 2 \C'[prepunctx]'
+@c @endExample
+@c
+@c @noindent
+@c See the @code{cflags} request in @ref{Using Symbols}, for more details.
 @endDefreq
 
 @c ---------------------------------------------------------------------

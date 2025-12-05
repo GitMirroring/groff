@@ -2553,21 +2553,23 @@ for discussion of nodes inserted by
 Define a character class
 (or simply \[lq]class\[rq])
 .I ident
-comprising the characters or range expressions
-.I c.
-.
-A class thus defined can then be referred to in lieu of listing all the
-characters within it.
-.
-Currently,
-only the
-.B cflags
-request can handle references to character classes.
-.
-In the request's simplest form,
-each
+comprising the members
+.IR c \&.\|.\|.,
+where each
 .I c
-is an ordinary or special character.
+is an
+ordinary,
+special,
+or
+indexed
+character;
+or a
+.I "range expression."
+.
+A class thus defined can then be referred to
+in a
+.B \%cflags
+request in lieu of listing all the characters within it.
 .
 .
 .IP
@@ -2577,8 +2579,9 @@ we recommend starting and ending the class name with
 and
 .RB \[lq] ] \[rq],
 respectively,
-to avoid collisions with existing character names defined by
-.I groff
+to avoid collisions with existing special character names defined by
+GNU
+.I troff \" GNU
 or the user
 (with
 .B char
@@ -2589,14 +2592,17 @@ This practice applies the presence of
 in the class name to prevent the usage of the special character escape
 form
 .RB \[lq] \[rs][ .\|.\|. ] \[rq],
-thus you must use the
+you must therefore access a class thus named via the
 .B \[rs]C
-escape sequence to access a class with such a name.
+escape sequence.
 .
 .
 .IP
-You can also use a character range expression consisting of a start
-character followed by
+An argument
+.I c
+can alternatively be a
+.I "range expression"
+consisting of a start character followed by
 .RB \[lq] \- \[rq]
 and then an end character.
 .
@@ -2609,33 +2615,13 @@ converts these two character names to Unicode code points
 glyph list [GGL]),
 which determine the start and end values of the range.
 .
-If that fails,
-the class definition is skipped.
-.
-Furthermore,
-classes can be nested.
-.
-.
-.IP
-If you want to include
-.RB \[lq] \- \[rq]
-in a class,
-it must be the first character value in the argument list,
-otherwise it gets misinterpreted as part of the range syntax.
-.
-.
-.IP
-It is not possible to use class names as end points of range
-definitions.
-.
-.
-.IP
-Typically,
-one sets up a character class
-to then apply breaking and hyphenation properties
-to it with the
-.B \%cflags
-request.
+If that conversion fails,
+GNU
+.I troff \" GNU
+skips the range expression and any remaining arguments.
+.\" .
+.\" Furthermore,
+.\" classes can be nested.
 .
 .
 .TP

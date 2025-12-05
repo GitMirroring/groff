@@ -3120,13 +3120,26 @@ or diversion
 .I name.
 .
 .TPx
-.REQ .class "ident c1 c2 \fR\&.\|.\|.\&\fP"
+.REQ .class "ident c \fR\&.\|.\|.\&\fP"
 Define a (character) class
 .I ident
 comprising the characters or range expressions
-.IR c1 ,
-.IR c2 ,
-and so on.
+.IR c ,
+where each
+.I c
+is an
+ordinary,
+special,
+or
+indexed
+character;
+or a
+.I "range expression."
+.
+A class thus defined can then be referred to
+in a
+.B \%cflags
+request in lieu of listing all the characters within it.
 .
 .TPx
 .REQ .close stream
