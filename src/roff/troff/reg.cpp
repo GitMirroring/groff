@@ -554,8 +554,9 @@ static void dump_register(symbol *id, reg *r)
   }
   else {
     const char *s = r->get_string();
-    assert(s != 0 /* nullptr */);
-    errprint("%1", s);
+    // Some string-valued registers, like `.z` and `.itm`, can be empty.
+    if (s != 0 /* nullptr */)
+      errprint("%1", s);
   }
   errprint("\n");
 }

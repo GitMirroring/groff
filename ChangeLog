@@ -1,5 +1,11 @@
 2025-12-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/reg.cpp (dump_register): Fix assertion failure.
+	Some string-valued registers, like `.z` and the new `.itm`, can
+	be empty.
+
+2025-12-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (print_stream_request): Tweak JSON
 	output, following model in "node.cpp"'s
 	`dump_node_list_in_reverse()` (but using `errprint()` instead of
