@@ -9843,7 +9843,11 @@ int main(int argc, char **argv)
       exit(EXIT_SUCCESS);
       break;
     case '?':
-      error("unrecognized command-line option '%1'", char(optopt));
+      if (optopt != 0)
+	error("unrecognized command-line option '%1'", char(optopt));
+      else
+	error("unrecognized command-line option '%1'",
+	      argv[(optind - 1)]);
       usage(stderr, argv[0]);
       exit(2);
       break;		// never reached

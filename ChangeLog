@@ -1,3 +1,31 @@
+2025-12-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	Handle unrecognized long option arguments better.
+
+	* src/devices/grodvi/dvi.cpp (main):
+	* src/devices/grohtml/post-html.cpp (main):
+	* src/devices/grolbp/lbp.cpp (main):
+	* src/devices/grolj4/lj4.cpp (main):
+	* src/devices/grops/ps.cpp (main):
+	* src/devices/grotty/tty.cpp (main):
+	* src/preproc/eqn/main.cpp (main):
+	* src/preproc/grn/main.cpp (main):
+	* src/preproc/html/pre-html.cpp (main):
+	* src/preproc/pic/main.cpp (main):
+	* src/preproc/preconv/main.cpp (main):
+	* src/preproc/soelim/main.cpp (main):
+	* src/preproc/tbl/main.cpp (main):
+	* src/roff/groff/groff.cpp (main):
+	* src/roff/troff/input.cpp (main):
+	* src/utils/hpftodit/hpftodit.cpp (main):
+	* src/utils/indxbib/indxbib.cpp (main):
+	* src/utils/lkbib/lkbib.cpp (main):
+	* src/utils/lookbib/lookbib.cpp (main):
+	* src/utils/pfbtops/pfbtops.c (main):
+	* src/utils/tfmtodit/tfmtodit.cpp (main):
+	* src/utils/xtotroff/xtotroff.c (main): When given an
+	unrecognized long option, report what it was.
+
 2025-12-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (token::description): Improve

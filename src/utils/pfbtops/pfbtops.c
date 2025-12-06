@@ -197,8 +197,12 @@ int main(int argc, char **argv)
       exit(EXIT_SUCCESS);
       break;
     case '?':
-      fprintf(stderr, "%s: error: unrecognized command-line option"
-	      " '%c'\n", program_name, (char) optopt);
+      if (optopt != 0)
+	fprintf(stderr, "%s: error: unrecognized command-line option"
+		" '%c'\n", program_name, (char) optopt);
+      else
+	fprintf(stderr, "unrecognized command-line option '%1'",
+		argv[(optind - 1)]);
       usage(stderr);
       exit(2);
       break;
