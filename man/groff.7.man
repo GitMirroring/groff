@@ -9229,20 +9229,26 @@ as output.
 .SH "Compatibility mode"
 .\" ====================================================================
 .
-The differences between the
+.MR groff_diff @MAN7EXT@
+documents differences between the
 .I roff
-language recognized by GNU
+language recognized by
+GNU
 .I troff \" GNU
-and that of AT&T
+and that of
+AT&T
 .IR troff , \" AT&T
 as well as the device,
 font,
 and device-independent page description formats described by
-CSTR\~#54 are documented in
-.MR groff_diff @MAN7EXT@ .
+CSTR\~#54.
 .
-.I groff
-provides an AT&T compatibility mode.
+GNU
+.I troff \" GNU
+provides an
+AT&T
+.I troff \" AT&T
+compatibility mode.
 .
 The
 .request cp
