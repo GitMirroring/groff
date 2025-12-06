@@ -3192,7 +3192,8 @@ see the
 .B hpf
 request below.
 .
-The hyphenation language is associated with the environment.
+.\" XXX: Not true today, but see Savannah #66387.
+.\" The hyphenation language is associated with the environment.
 .
 .
 .TP
