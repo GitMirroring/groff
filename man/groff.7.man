@@ -9019,7 +9019,7 @@ also permits the interpolation of macro or string contents
 as a device extension command.
 .
 The
-.B devicem
+.B \%devicem
 request and
 .B \[rs]Y
 escape sequence correspond to
@@ -9042,7 +9042,7 @@ further,
 may be a macro and thus contain newlines.
 .
 (There is no way to embed a newline in the arguments to
-.RB \[lq] device \[rq]
+.RB \%\[lq] device \[rq]
 or
 .BR \[rs]X .)
 .
