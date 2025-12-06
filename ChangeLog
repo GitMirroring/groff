@@ -1,5 +1,12 @@
 2025-12-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (print_stream_request): Tweak JSON
+	output, following model in "node.cpp"'s
+	`dump_node_list_in_reverse()` (but using `errprint()` instead of
+	fputc(3)).  Fixes extra spaces in list notation.
+
+2025-12-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/utils/xtotroff/xtotroff.c (MapFont, main): Tweak wording
 	of error diagnostics; favor "cannot" over "unable to" or
 	"can't".  Also quote name of environment variable.

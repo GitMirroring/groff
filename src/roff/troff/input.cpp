@@ -8082,7 +8082,7 @@ static void print_stream_request()
   object_dictionary_iterator iter(stream_dictionary);
   symbol stream_name;
   grostream *grost;
-  errprint("[ ");
+  errprint("[");
   bool need_comma = false;
   while (iter.get(&stream_name, (object **)&grost)) {
     assert(!stream_name.is_null());
@@ -8100,7 +8100,11 @@ static void print_stream_request()
       need_comma = true;
     }
   }
-  errprint(" ]\n");
+  // !need_comma implies that the list was empty.  JSON convention is to
+  // put a space between an empty pair of square brackets.
+  if (!need_comma)
+    errprint(" ");
+  errprint("]\n");
   fflush(stderr);
   skip_line();
 }
