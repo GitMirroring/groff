@@ -7956,7 +7956,7 @@ escape sequences may be used to control the hyphenation and breaking of
 individual words.
 .
 The
-.B .hw
+.B hw
 request sets user-defined hyphenation points for specified words at any
 subsequent occurrence.
 .
@@ -7970,7 +7970,7 @@ Several requests influence automatic hyphenation.
 .
 Because conventions vary,
 a variety of hyphenation modes is available to the
-.B .hy
+.B hy
 request;
 these determine whether hyphenation will apply to a word prior to
 breaking a line at the end of a page
@@ -8073,24 +8073,24 @@ it is superfluous to add\~1 to any non-zero even mode.
 .P
 The places within a word that are eligible for hyphenation are
 determined by language-specific data
-.RB ( .hla ,
-.BR .hpf ,
+.RB ( hla ,
+.BR hpf ,
 and
-.BR .hpfa )
+.BR hpfa )
 and lettercase relationships
-.RB ( .hcode
+.RB ( hcode
 and
-.BR .hpfcode ).
+.BR hpfcode ).
 .
 Furthermore,
 hyphenation of a word might be suppressed due to a limit on
 consecutive hyphenated lines
-.RB ( .hlm ),
+.RB ( hlm ),
 a minimum line length threshold
-.RB ( .hym ),
+.RB ( hym ),
 or because the line can instead be adjusted with additional inter-word
 space
-.RB ( .hys ).
+.RB ( hys ).
 .
 .
 .\" ====================================================================
@@ -8451,13 +8451,13 @@ body text in multiple columns,
 and footnotes.
 .
 These traps can occur at a given location on the page
-.RB ( .wh ,\~ .ch );
+.RB ( wh ,\~ ch );
 at a given location in the current diversion
-.RB ( .dt )\[em]together,
+.RB ( dt )\[em]together,
 these are known as
 vertical position traps,
 which can be disabled and re\[e ad]nabled
-.RB ( .vpt ).
+.RB ( vpt ).
 .
 Setting a trap is also called
 .I planting
@@ -8480,13 +8480,13 @@ There can exist at most one such vertical position trap per diversion.
 .P
 Other kinds of trap can be planted
 at a blank line
-.RB ( .blm );
+.RB ( blm );
 at a line with leading space characters
-.RB ( .lsm );
+.RB ( lsm );
 after a certain number of productive input lines
-.RB ( .it ,\~ .itc );
+.RB ( it ,\~ itc );
 or at the end of input
-.RB ( .em ).
+.RB ( em ).
 .
 Macros called by traps are passed no arguments.
 .\" END Keep (roughly) parallel with groff.texi node "Traps".
@@ -8559,7 +8559,7 @@ trap
 (see below)
 at the same location is removed;
 this is
-.BR .wh 's
+.BR wh 's
 sole function if its second argument is missing.
 .
 .
@@ -8584,7 +8584,7 @@ page length;
 they are not converted to an absolute vertical position.
 .
 Use
-.B .ptr
+.B ptr
 to dump page location traps to the standard error stream;
 their positions are reported in basic units.
 .
@@ -8612,7 +8612,7 @@ requests.
 .
 You cannot hide it by placing another trap at its location,
 and can move it only by redefining the page length with
-.BR .pl .
+.BR pl .
 .
 Its operation is suppressed when vertical page traps are disabled with
 the
@@ -9265,7 +9265,7 @@ set and test the enablement of this mode.
 .
 .\" BEGIN Keep (roughly) parallel with groff.texi node "Debugging".
 Preprocessors use the
-.B .lf
+.B lf
 request to preserve the identities of line numbers and names of input
 files.
 .
@@ -9273,7 +9273,7 @@ files.
 emits a variety of error diagnostics and supports several categories of
 warning;
 the output of these can be selectively suppressed with
-.B .warn
+.RB \[lq] warn \[rq]
 (and see the
 .BR \-E ,
 .BR \-w ,
