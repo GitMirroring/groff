@@ -94,8 +94,9 @@ troff
    "tmac.s" if "s.tmac" was specified as the argument and not found, nor
    vice versa.  This feature was a convenience for some old AT&T troff
    installations, but few of those remain in the field, and of those
-   that we know to survive, neither (DWB 3.3 and Solaris 10) uses a
-   macro file naming convention for which this feature is any help.
+   that we know to survive, few use a macro file naming convention for
+   which this feature is any help.  (DWB 3.3 and Solaris do not, and we
+   think other System V troffs don't, either.  Only Plan 9 troff does.)
    `mso` now simply processes the macro search path for a file name
    matching the request argument, and succeeds or fails depending on an
    exact match.
@@ -104,8 +105,11 @@ troff
    that `mso` is itself a groff extension), consider the following.
 
      .\" Load the ms package, whatever it might be named.
-     .msoquiet s.tmac\" If file present, defines `LP` macro.
-     .if !d LP .msoquiet tmac.s
+     .\" troffs without groff extensions must know its full path.
+     .if !\n(.g .so /path/to/tmac.s
+     .\" The following requests do nothing on non-GNU troffs.
+     .do msoquiet s.tmac\" If file present, defines `LP` macro.
+     .do if !d LP .msoquiet tmac.s
 
 *  GNU troff no longer accepts nonpositive page lengths.  Attempting to
    set one with the `pl` request clamps the page length to the vertical
