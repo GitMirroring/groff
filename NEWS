@@ -664,7 +664,7 @@ Macro packages
 
 *  The m (mm) macro package now supports the `E` register as DWB mm did.
 
-*  The m (mm) macro package now supports AT&T/DWB mm's `Rg` string.
+*  The m (mm) macro package now supports DWB mm's `Rg` string.
 
 *  The m (mm) macro package's `nP` macro now behaves more like DWB mm's.
    It applies a temporary indentation to the second output line of a
@@ -1329,7 +1329,7 @@ Macro packages
    correctly if suffixed with a scaling unit, instead of requiring an
    unscaled value assumed to be points.
 
-*  The m (mm) macro package now supports AT&T/DWB mm's `Sm` string.
+*  The m (mm) macro package now supports DWB mm's `Sm` string.
 
 *  The m (mm) macro package now requires a title to be declared when
    memorandum type 5 is used (".MT 5"), just as type 4 has since groff
