@@ -3066,13 +3066,16 @@ Unsafe request;
 disabled by default.
 .
 .TPx
-.REQ .cflags "n c1 c2 \fR\&.\|.\|.\&\fP"
-Assign properties encoded
-.RI by\~ n
-to characters
-.IR c1 ,
-.IR c2 ,
-and so on.
+.REQ .cflags "n c\fR\&.\|.\|.\&\fP"
+Assign properties encoded by non-negative integer
+.I n
+to each character or class
+.IR c .
+.
+Spaces need not separate
+.I c
+arguments.
+.\" TODO: Add subsection discussing character flags.
 .
 .TPx
 .REQ .ch mac

@@ -2246,39 +2246,20 @@ in request form.
 .
 .
 .TP
-.BI .cflags\~ "n c1 c2\~"\c
+.BI .cflags\~ "n c"\c
 \&.\|.\|.
-Assign properties encoded by the number
+Assign properties encoded by non-negative integer
 .I n
-to characters
-.IR c1 ,
-.IR c2 ,
-and so on.
+to each character or class
+.IR c .
 .
-Characters,
-whether
-ordinary,
-special,
-or
-indexed,
-have certain associated properties.
-.
-The first argument is the sum of the desired flags and the remaining
-arguments are the characters to be assigned those properties.
-.
-Spaces need not separate the
-.I cn
+Spaces need not separate
+.I c
 arguments.
 .
-Any argument
-.I cn
-can be a character class defined with the
-.B class
-request rather than an individual character.
 .
-.
+.\" TODO: Bust discussion of character flags into its own subsection?
 .IP
-The non-negative integer
 .I n
 is the sum of any of the following.
 .

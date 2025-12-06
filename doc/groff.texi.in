@@ -12235,18 +12235,20 @@ An escaped underscore (``low line'') is a synonym for @code{\[ul]}
 and drawn lower than the underscore @samp{_}.
 @endDefesc
 
-@Defreq {cflags, n c1 c2 @dots{}}
+@Defreq {cflags, n c@dots{}}
 @cindex glyph properties (@code{cflags}) @c obsolete terminology
 @cindex character properties (@code{cflags})
 @cindex properties of glyphs (@code{cflags}) @c obsolete terminology
 @cindex properties of characters (@code{cflags})
-Assign properties encoded by the number
+Assign properties encoded by non-negative integer
 @var{n}
-to characters
-@var{c1},
-@var{c2},
-and so on.
+to each character or class@footnote{@xref{Character Classes}.}.
+@var{c}.
+Spaces need not separate
+@var{c}
+arguments.
 
+@c TODO: Bust discussion of character flags into its own subsubsection?
 Characters,
 whether
 ordinary,
@@ -12256,15 +12258,7 @@ indexed,
 have certain associated properties.
 The first argument is the sum of the desired flags and the remaining
 arguments are the characters to be assigned those properties.
-Spaces need not separate the
-@var{cn}
 arguments.
-Any argument
-@var{cn}
-can be a character class defined with the
-@code{class}
-request rather than an individual character.
-@xref{Character Classes}.
 
 The non-negative integer
 @var{n}
