@@ -5335,6 +5335,7 @@ GNU
 .IR troff , \" GNU
 when not in compatibility mode,
 recognizes a single consistent set of delimiters.
+.
 Compatibility mode
 emulates
 AT&T
@@ -5351,7 +5352,9 @@ Control+H
 and
 Control+L
 (FF or form feed),
-all of which cause
+all of which,
+when used as delimiters,
+cause
 AT&T
 .I troff \" AT&T
 to behave in ways difficult to predict.

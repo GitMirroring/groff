@@ -20295,7 +20295,9 @@ as well as
 and
 @key{Control+L}
 (FF or form feed),
-all of which cause
+all of which,
+when used as delimiters,
+cause
 @acronym{AT&T}
 @code{troff} @c AT&T
 to behave in ways difficult to predict.
