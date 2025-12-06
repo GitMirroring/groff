@@ -1,5 +1,19 @@
 2025-12-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/utils/pfbtops/pfbtops.c: Refactor.
+	(error): Drop exit(3) call so that we can use this function for
+	nonfatal errors or fatal ones that need to exit with a status
+	other than `EXIT_FAILURE` (as with usage errors).
+	(die): New function wraps `error()` and exit(3)s.
+	(get_text, get_binary, main): Migrate callers from `error()` to
+	`die()`.
+	(error, usage): Explicitly cast unused return value of
+	fprintf(3) to `void`.
+	(main): Employ new strategies for construction of error
+	diagnostics reporting unrecognized options.
+
+2025-12-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Handle unrecognized long option arguments better.
 
 	* src/devices/grodvi/dvi.cpp (main):
