@@ -6665,7 +6665,9 @@ GNU
 .I troff \" GNU
 reports their lengths in characters or nodes if given no arguments,
 and otherwise dumps
-the JSON-encoded name and contents of each named argument.
+the JSON-encoded name,
+contents,
+and other properties of each named argument.
 .
 .
 .P

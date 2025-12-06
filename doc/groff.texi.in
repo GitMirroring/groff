@@ -20652,7 +20652,9 @@ GNU
 @command{troff} @c GNU
 reports ther lengths in characters or nodes if given no arguments,
 and otherwise dumps
-the @acronym{JSON}-encoded name and contents of each named argument.
+the @acronym{JSON}-encoded name,
+contents,
+and other properties of each named argument.
 
 @cindex @code{ss} request, incompatibilities with @acronym{AT&T} @code{troff}
 AT&T
