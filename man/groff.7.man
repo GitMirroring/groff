@@ -4680,6 +4680,7 @@ to standard error stream as prompt.
 .
 .TPx
 .REQ .return
+.\" XXX: useless request warning if not interpreting a macro?
 Stop interpreting an interpolated macro,
 skipping the remainder of its definition.
 .
