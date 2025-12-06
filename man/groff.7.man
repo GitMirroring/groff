@@ -3626,30 +3626,27 @@ are searched and before those named as arguments to the
 request.
 .
 .TPx
-.REQ .fspecial font
+.REQ .fspecial f
 Empty the list of fonts treated as special when
-.I font
+.I f
 is selected.
 .
 .TPx
-.REQ .fspecial "fnt sfnt \fR\&.\|.\|.\&\fP"
-When
-.RI font\~ fnt
-is selected,
-treat each font
-.I sfnt
-as
-.I special;
-that is,
-search it for any glyph not found in
-.IR f .
+.REQ .fspecial "f s \fR\&.\|.\|.\&\fP"
+Declare each font
+.I s
+as special only when
+.RB font\~ f
+is selected.
 .
+.\" TODO: Move this sentence to a new (sub)section describing the glyph
+.\" resolution procedure.
 GNU
 .I troff \" GNU
 searches fonts specified as arguments to the
 .RB \%\[lq] special \[rq]
 request after those given as arguments to the
-.B fspecial
+.B \%fspecial
 request.
 .
 .TPx
@@ -4915,9 +4912,24 @@ when given arguments.
 .REQ .special "s \fR\&.\|.\|.\&\fP"
 Declare each font
 .I s
-as
-.I special,
-searching it for glyphs not found in the selected font.
+as special,
+irrespective of its description file,
+populating a list that
+GNU
+.I troff \" GNU
+searches,
+in order,
+to find the glyph demanded.
+.
+.\" TODO: Move this sentence to a new (sub)section describing the glyph
+.\" resolution procedure.
+GNU
+.I troff \" GNU
+searches fonts specified as arguments to the
+.RB \%\[lq] special \[rq]
+request after those given as arguments to the
+.B \%fspecial
+request.
 .
 .TPx
 .REQ .spreadwarn

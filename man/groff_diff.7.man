@@ -3050,37 +3050,32 @@ are searched and before those named as arguments to the
 request.
 .
 .TP
-.BI .fspecial\~ fnt\~\c
-.RI [ sfnt\~ .\|.\|.]
-When
-.RI font\~ fnt
-is selected,
-treat each font
-.I sfnt
-as
-.I special;
-that is,
-search it for any glyph not found in
-.IR f .
+.BI .fspecial\~ f\~\c
+.RI [ s\~ .\|.\|.]
+Declare each font
+.I s
+as special only when
+.RB font\~ f
+is selected.
 .
+Initially,
+a font
+.IR f 's
+list of associated special fonts is empty for all
+.I f.
+.
+.\" TODO: Move this sentence to a new (sub)section describing the glyph
+.\" resolution procedure.
 GNU
 .I troff \" GNU
 searches fonts specified as arguments to the
 .RB \%\[lq] special \[rq]
 request after those given as arguments to the
-.B fspecial
+.B \%fspecial
 request.
 .
-Without
-.I sfnt
-arguments,
-.B \%fspecial
-empties the list of fonts treated as special when
-.RI font\~ fnt
-is selected.
-.
-Initially,
-this list is empty for all fonts.
+See
+.RB \%\[lq] special \[rq].
 .
 .
 .TP
@@ -4229,16 +4224,41 @@ does not exist.
 .IR s\~ .\|.\|.]
 Declare each font
 .I s
-as
-.I special,
-searching it for glyphs not found in the selected font.
+as special,
+irrespective of its description file,
+populating a list that
+GNU
+.I troff \" GNU
+searches,
+in order,
+to find the glyph demanded.
 .
-Without arguments,
-.RB \[lq] \%special \[rq]
-empties this list of special fonts.
+GNU
+.I troff \" GNU
+mounts each font
+.I s.
+.
+Invoking
+.B \%special
+without arguments empties the list.
+.
+A font is not automatically unmounted
+if a subsequent
+.B \%special
+request removes it from the list.
 .
 Initially,
-this list is empty.
+the list is empty.
+.
+.\" TODO: Move this sentence to a new section description the glyph
+.\" resolution procedure.
+GNU
+.I troff \" GNU
+searches fonts specified as arguments to the
+.RB \%\[lq] special \[rq]
+request after those given as arguments to the
+.B \%fspecial
+request.
 .
 .
 .TP

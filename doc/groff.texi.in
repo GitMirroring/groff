@@ -12795,25 +12795,58 @@ when using the
 @code{ps}
 device.
 
-@DefreqList {special, [@Var{s1} @Var{s2} @dots{}]}
-@DefreqListEndx {fspecial, f [@Var{s1} @Var{s2} @dots{}]}
+@DefreqList {special, [@Var{s} @dots{}]}
+@DefreqListEndx {fspecial, f [@Var{s} @dots{}]}
 @kindex fonts
 @pindex DESC
-@code{special} designates each font @var{s}n as special.
+@code{special}
+declares each font
+@var{s}
+as special,
+irrespective of its description file,
+populating a list that
+GNU
+@command{troff} @c GNU
+searches,
+in order,
+to find the glyph demanded.
+GNU
+@command{troff} @c GNU
+mounts each font
+@var{s}.
+Invoking
+@code{special}
+without arguments empties the list.
+A font is not automatically unmounted
+if a subsequent
+@code{special}
+request removes it from the list.
 Initially,
-this list is empty.
+the list is empty.
 
-@code{fspecial} designates each font as special only when
+@code{fspecial}
+is similar;
+it designates each font
+@var{s}
+as special only when
 font@tie{}@var{f} is selected.
 Initially,
-this list is empty for all fonts.
+a font
+@var{f}'s
+list of associated special fonts is empty for all
+@var{f}.
 
 @c TODO: Add requests `pspecial`, `pfspecial`?
-Invoking @code{special} or @code{fspecial} again overwrites the previous
-list; without arguments, the relevant list is made empty.  Special fonts
-are searched in the order they appear as arguments.  Each font @var{s}n
-is mounted, and not automatically unmounted if superseded by a
-subsequent @code{special} or @code{fspecial} request.
+Invoking
+@code{special}
+or
+@code{fspecial}
+again overwrites the previous list;
+if you invoke them
+without arguments,
+GNU
+@command{troff} @c GNU
+deletes the corresponding list.
 @endDefreq
 
 @c ---------------------------------------------------------------------
