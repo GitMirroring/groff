@@ -543,6 +543,34 @@ For example,
 .
 .
 .\" ====================================================================
+.SS "Special fonts"
+.\" ====================================================================
+.
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Special Fonts".
+.\" (the second paragraph thereof; the first covers "portable" concepts)
+GNU
+.IR troff 's \" GNU
+.B \%special
+and
+.B \%fspecial
+requests permit a document
+to supplement the set of fonts the device configures
+for glyph search
+without having to use
+the
+.B fp
+request to manipulate the list of mounting positions,
+which can be tedious\[em]by default,
+GNU
+.I troff \" GNU
+mounts 40 fonts at startup
+when using the
+.B ps
+device.
+.\" END Keep (roughly) parallel with groff.texi node "Special Fonts".
+.
+.
+.\" ====================================================================
 .SS "Numeric expressions"
 .\" ====================================================================
 .
