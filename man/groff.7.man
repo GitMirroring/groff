@@ -8825,7 +8825,7 @@ requests reprocess diversions.
 .SH "Punning names"
 .\" ====================================================================
 .
-.\" BEGIN Keep (roughly) parallel with groff.texi node "Punning names".
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Punning Names".
 Macros,
 strings,
 and diversions share a name space;
@@ -8839,13 +8839,13 @@ versa.
 .
 Interpolating a string does not hide existing macro arguments.
 .
-The sequence
+Place the sequence
 .B \[rs]\[rs]
-can be placed at the end of a line in a macro definition or,
+at the end of a line in a macro definition or,
 within a macro definition,
-immediately after the interpolation of a macro as a string to suppress
-the effect of a newline.
-.\" END Keep (roughly) parallel with groff.texi node "Punning names".
+immediately after the interpolation of a macro as a string,
+to suppress the effect of a newline.
+.\" END Keep (roughly) parallel with groff.texi node "Punning Names".
 .
 .
 .\" ====================================================================
