@@ -18910,7 +18910,7 @@ GNU
 @command{troff}
 processes input in three steps.
 It gathers one or more input characters into a
-@dfn{token},@footnote{Except the escape sequences
+@dfn{token},@footnote{The escape sequences
 @code{\f},
 @code{\F},
 @code{\H},
@@ -18919,8 +18919,8 @@ It gathers one or more input characters into a
 @code{\R},
 @code{\s},
 and
-@code{\S},
-which update the environment,
+@code{\S}
+instead update the environment,
 if the formatter is not in copy mode.}
 the smallest meaningful unit of
 @command{troff} input.
@@ -18964,7 +18964,7 @@ with an umlaut),
 a token encoding a hyphenation break point,@footnote{GNU
 @command{troff}
 encodes tokens that aren't Unicode Basic Latin characters
-to code points in the C0 and C1 control ranges;
+as code points in the C0 and C1 control ranges;
 we plan to move them to the Unicode Private Use Area (PUA)
 or to code points outside the Unicode encoding space
 in a future release.}
