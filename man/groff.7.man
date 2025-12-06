@@ -4635,7 +4635,7 @@ Change post-vertical line spacing according to
 .scaleindicator p ).
 .
 .TPx
-.REQ .rchar "c1 c2 \fR.\|.\|.\&\fP"
+.REQ .rchar "c\fR.\|.\|.\&\fP"
 Remove definition of each
 ordinary,
 special,
@@ -4650,6 +4650,11 @@ or
 .B \%schar
 request.
 .
+Spaces need not separate
+.I c
+arguments.
+.\" XXX: Removal of a class is unspecified.
+.
 The character definition removed
 (if any)
 is the first encountered in the resolution process documented
@@ -4660,8 +4665,6 @@ in section \[lq]Using Symbols\[rq] of
 Glyphs,
 which are defined by font description files,
 cannot be removed.
-.
-Spaces need not separate the arguments.
 .
 .TPx
 .REQ .rd

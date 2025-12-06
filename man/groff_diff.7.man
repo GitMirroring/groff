@@ -3996,7 +3996,7 @@ and the post-vertical line spacing set by this request.
 .
 .
 .TP
-.BI .rchar\~ c\~\c
+.BI .rchar\~ c\c
 \&.\|.\|.
 Remove definition of each
 ordinary,
@@ -4011,6 +4011,12 @@ undoing the effect of a
 or
 .B \%schar
 request.
+.
+Spaces need not separate
+.I c
+arguments.
+.\" XXX: Removal of a class is unspecified.
+.
 The character definition removed
 (if any)
 is the first encountered in the resolution process documented
@@ -4021,10 +4027,6 @@ in section \[lq]Using Symbols\[rq] of
 Glyphs,
 which are defined by font description files,
 cannot be removed.
-.
-Spaces need not separate the
-.I cn
-arguments.
 .
 .
 .TP
