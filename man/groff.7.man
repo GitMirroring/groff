@@ -4806,15 +4806,26 @@ Set the soft hyphen character
 .
 .TPx
 .REQ .shift
-In a macro definition,
-left-shift arguments by one position.
+Shift macro or string parameters one place
+.I n
+places:
+.RI argument\~ i
+becomes argument
+.IR i \|\-\| 1 ;
+argument 1
+becomes unavailable.
 .
 .TPx
 .REQ .shift n
-In a macro definition,
-left-shift arguments by
-.IR n \~\c
-positions.
+Shift macro or string parameters
+.I n
+places:
+.RI argument\~ i
+becomes argument
+.IR i \|\-\| n ;
+arguments 1
+.RI to\~ n
+become unavailable.
 .
 .TPx
 .REQ .sizes "s1 s2 \f[R].\|.\|.\&\f[] sn \f[R][\f[B]0\f[]]"

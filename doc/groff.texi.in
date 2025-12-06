@@ -15365,12 +15365,25 @@ number of parameters.
 @endDefesc
 
 @Defreq {shift, [@Var{n}]}
-Shift the parameters @var{n} places (1@tie{}by default).  This is a
-``left shift'': what was parameter@tie{}@var{i} becomes parameter
-@math{@var{i}-@var{n}}.  The parameters formerly in positions 1
-to@tie{}@var{n} are no longer available.  Shifting by a non-positive
-amount performs no operation.  The register @code{.$} is adjusted
-accordingly.
+@c XXX: useless request warning if not interpreting a macro or string?
+Shift macro or string parameters
+@var{n}
+places
+(by@tie{}1 if
+@var{n}
+omitted):
+argument@tie{}@var{i}
+becomes argument
+@var{i}-@var{n};
+arguments 1
+to@tie{}@var{n}
+become unavailable.
+Shifting by a non-positive amount,
+or outside of a macro or string definition,
+performs no operation.
+The register
+@code{.$}
+adjusts its value accordingly.
 @endDefreq
 @c END Keep (roughly) parallel with subsection "Parameters" of
 @c groff(7).

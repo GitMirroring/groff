@@ -4166,22 +4166,28 @@ are considered when assigning the soft hyphen character.
 .
 .TP
 .BR .shift\~ [\c
-.\" XXX: useless request warning if not interpreting a macro?
 .IR n ]
-In a macro definition,
-shift arguments by
+.\" XXX: useless request warning if not interpreting a macro or string?
+Shift macro or string parameters
 .I n
-positions:
+places
+(by\~1 if
+.I n
+omitted):
 .RI argument\~ i
 becomes argument
 .IR i \|\-\| n ;
 arguments 1
 .RI to\~ n
-are no longer available.
+become unavailable.
 .
-.RI If\~ n
-is missing,
-arguments are shifted by\~1.
+Shifting by a non-positive amount,
+or outside of a macro or string definition,
+performs no operation.
+.
+The register
+.B .$
+adjusts its value accordingly.
 .
 .
 .TP
