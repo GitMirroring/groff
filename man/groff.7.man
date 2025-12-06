@@ -7857,6 +7857,52 @@ associate abstract styles and font names with mounting positions.
 .
 .
 .\" ====================================================================
+.SS "Special fonts"
+.\" ====================================================================
+.
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Special Fonts".
+Special fonts are those that the formatter searches,
+in mounting position order,
+when it cannot find a requested glyph in the selected font.
+.
+Typically,
+they are declared as such in their description files
+.\" @footnote{@xref{Font Description File Format}.}
+(see
+.MR groff_font @MAN5EXT@ ),
+and
+contain unstyled glyphs.
+.
+The \[lq]Symbol\[rq] and \[lq]Zapf Dingbats\[rq] fonts
+of the PostScript and PDF standards are examples.
+.
+Ordinarily,
+only typesetters have special fonts.
+.
+.
+.P
+GNU
+.IR troff 's \" GNU
+.B \%special
+and
+.B \%fspecial
+requests permit a document
+to supplement the set of fonts the device configures
+for glyph search
+without having to use
+the
+.B fp
+request to manipulate the list of mounting positions,
+which can be tedious\[em]by default,
+GNU
+.I troff \" GNU
+mounts 40 fonts at startup
+when using the
+.B ps
+device.
+.\" END Keep (roughly) parallel with groff.texi node "Special Fonts".
+.
+.\" ====================================================================
 .SH Hyphenation
 .\" ====================================================================
 .
