@@ -3108,7 +3108,7 @@ Set zoom factor
 for font\~\c
 .IR f .
 .I zoom
-must a non-negative integer;
+must be a non-negative integer;
 it scales the magnification by thousandths with 1000 as a basis.
 If
 .I zoom
