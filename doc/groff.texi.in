@@ -1050,8 +1050,14 @@ between @command{groff} and @acronym{AT&T} @command{troff}.
 
 @item -d @var{c}@var{text}
 @itemx -d @var{string}=@var{text}
-Define @code{roff} string @var{c} or @var{string} as@tie{}@var{t} or
-@var{text}.  @var{c}@tie{}must be one character; @var{string} can be
+Define
+@code{roff}
+string@tie{}@var{c}
+or
+@var{string}
+as
+@var{text}.
+@var{c}@tie{}must be one character; @var{string} can be
 of arbitrary length.  Such assignments happen before any macro file is
 loaded, including the startup file.  Due to @cite{getopt_long@r{(3)}}
 limitations, @var{c}@tie{}cannot be, and @var{string} cannot contain, an
