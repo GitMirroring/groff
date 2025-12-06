@@ -3501,13 +3501,13 @@ emitting a warning in category
 .
 .
 .TP
-.BR .itc\~ n\~\c
-.RI [ name ]
+.BR .itc\~ n\~\c\" TODO: borrow "npl" notation from groff(7)?
+.RI [ mac ]
 As
 .RB \[lq] it \[rq],
 but lines interrupted with the
 .B \[rs]c
-escape sequence are not applied to the line count.
+escape sequence do not apply to the line count.
 .
 .
 .TP

@@ -3975,9 +3975,9 @@ Cancel any pending input line trap.
 .REQ .itc "npl mac"
 As
 .RB \[rq] it \[rq],
-except that input lines interrupted with the
+but lines interrupted with the
 .B \[rs]c
-escape sequence are not counted.
+escape sequence do not apply to the line count.
 .
 .TPx
 .REQ .kern
