@@ -1,5 +1,11 @@
 2025-12-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (charinfo::dump): Use preprocessor to
+	disable reporting of nested class information.  The feature
+	doesn't work.
+
+2025-12-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (charinfo::dump): Use more
 	user-intelligible language when dumping character classes; refer
 	to "code points" instead of "ranges", since the notation is

@@ -10968,6 +10968,8 @@ void charinfo::dump()
     if (!has_ranges)
       errprint("(none)");
     errprint("\n");
+#if 0
+    // Nested classes don't work.  See Savannah #67770.
     errprint("  contains nested classes: ");
     std::vector<charinfo *>::const_iterator nested_iter;
     nested_iter = nested_classes.begin();
@@ -10980,6 +10982,7 @@ void charinfo::dump()
     if (!has_nested_classes)
       errprint("(none)");
     errprint("\n");
+#endif
     dump_flags();
   }
   else {
