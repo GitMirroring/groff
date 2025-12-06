@@ -8960,7 +8960,12 @@ stroke and fill colors
 .P
 The
 .B ev
-request pushes to and pops from the environment stack,
+request
+(with an argument)
+pushes to
+and
+(without)
+pops from the environment stack,
 while
 .B evc
 copies a named environment's parameters to the current one.
