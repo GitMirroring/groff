@@ -1,5 +1,12 @@
 2025-12-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (charinfo::dump): Use more
+	user-intelligible language when dumping character classes; refer
+	to "code points" instead of "ranges", since the notation is
+	conventional (e.g., "U+002C U+003A" or "U+4E00-U+9FFF").
+
+2025-12-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/reg.cpp (dump_register): Fix assertion failure.
 	Some string-valued registers, like `.z` and the new `.itm`, can
 	be empty.

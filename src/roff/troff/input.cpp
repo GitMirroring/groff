@@ -10943,7 +10943,7 @@ void charinfo::dump()
     errprint("  defined at: ");
     mac->dump();
     fflush(stderr);
-    errprint("  contains ranges: ");
+    errprint("  contains code points: ");
     const size_t buflen = sizeof "U+10FFFF";
     int range_begin = 0;
     int range_end = 0;
