@@ -223,8 +223,8 @@ troff
    line continuation (cf. the `it` and `itc` requests), and the name of
    the macro associated with the pending input trap, respectively.
 
-*  A new request, `pchar`, reports to the standard error stream data
-   about any ordinary, special, or indexed character arguments.
+*  A new request, `pchar`, reports to the standard error stream details
+   of any class or ordinary, special, or indexed character arguments.
 
 *  A new request, `pcolor`, reports to the standard error stream details
    of each color name specified as an argument, including its color
