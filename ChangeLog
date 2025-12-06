@@ -2595,7 +2595,8 @@
 	[groff]: Regression-test Savannah #67532.
 
 	* src/roff/groff/tests/trf-request-works.sh: Add unit tests of
-	`trf` request functionality in undiverted and diverted cases.
+	`trf` request functionality when used inside and outside of a
+	diversion.
 
 2025-09-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -2823,8 +2824,8 @@
 
 	* src/roff/groff/tests/asciify-request-works.sh: Add test case
 	for transformation of nodes produced by `\?` (uninterpreted
-	character sequence escape sequence).  Check both diverted and
-	undiverted scenarios.
+	character sequence escape sequence).  Check functionality when
+	used inside and outside of a diversion.
 
 2025-09-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
