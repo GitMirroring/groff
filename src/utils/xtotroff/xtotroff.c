@@ -201,7 +201,7 @@ static bool MapFont(char *font_name, const char *troff_name)
     file_name = malloc(dirlen + baselen + 2 /* '/' and '\0' */);
     if (NULL == file_name) {
       (void) fprintf(stderr, "%s: fatal error:"
-		     " unable to allocate memory\n", program_name);
+		     " cannot allocate memory\n", program_name);
       xtotroff_exit(EXIT_FAILURE);
     }
     (void) strcpy(file_name, destdir);
@@ -217,7 +217,7 @@ static bool MapFont(char *font_name, const char *troff_name)
   }
 
   if (NULL == out) {
-    (void) fprintf(stderr, "%s: unable to create '%s': %s\n",
+    (void) fprintf(stderr, "%s: cannot create '%s': %s\n",
 		   program_name, file_name, strerror(errno));
     free(file_name);
     return false;
@@ -347,18 +347,17 @@ int main(int argc, char **argv)
   dpy = XOpenDisplay(0);
   if (!dpy) {
     (void) fprintf(stderr,
-		   "%s: fatal error: can't connect to the X server;"
-		   " make sure the DISPLAY environment variable is set"
-		   " correctly\n", program_name);
+		   "%s: fatal error: cannot connect to the X server;"
+		   " make sure the \"DISPLAY\" environment variable is"
+		   " set correctly\n", program_name);
     xtotroff_exit(EXIT_FAILURE);
   }
 
   map = fopen(argv[optind], "r");
   if (NULL == map) {
     (void) fprintf(stderr,
-		   "%s: fatal error: unable to open map file '%s':"
-		   " %s\n", program_name, argv[optind],
-		   strerror(errno));
+		   "%s: fatal error: cannot map file '%s': %s\n",
+		   program_name, argv[optind], strerror(errno));
     xtotroff_exit(EXIT_FAILURE);
   }
 
