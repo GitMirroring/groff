@@ -1,5 +1,15 @@
 2025-12-07  Alejandro Colomar <alx@kernel.org>
 
+	* src/utils/hpftodit/hpftodit.cpp: Include "stdcountof.h" header
+	file.  Drop `SIZEOF()` function-like preprocessor macro.
+	(output_ligatures): Use `countof()` instead of `SIZEOF()`.
+
+	countof() is [expected to be --GBR] standard (ISO C2y).
+
+	Continues the long process of fixing Savannah #66518.
+
+2025-12-07  Alejandro Colomar <alx@kernel.org>
+
 	* src/devices/grolbp/lbp.cpp:
 	* src/devices/grolj4/lj4.cpp:
 	* src/devices/grops/ps.cpp:
