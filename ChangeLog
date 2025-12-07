@@ -1,3 +1,9 @@
+2025-12-07  Alejandro Colomar <alx@kernel.org>
+
+	* bootstrap.conf (gnulib_modules): Add stdcountof-h.
+
+	Continues the long process of fixing Savannah #66518.
+
 2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Trivially refactor.  Rename `get_long_name()` to
