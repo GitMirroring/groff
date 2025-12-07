@@ -20,6 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <config.h>
 #endif
 
+#include <stdcountof.h>
+
 #include "refer.h"
 #include "refid.h"
 #include "search.h"
@@ -758,8 +760,7 @@ static int check_args(const char *types, const char *name,
 
 static void execute_command(const char *name, int argc, argument *argv)
 {
-  for (unsigned int i = 0;
-       i < sizeof(command_table)/sizeof(command_table[0]); i++)
+  for (unsigned int i = 0; i < countof(command_table); i++)
     if (strcmp(name, command_table[i].name) == 0) {
       if (check_args(command_table[i].arg_types, name, argc, argv))
 	(*command_table[i].func)(argc, argv);

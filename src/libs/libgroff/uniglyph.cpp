@@ -20,6 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <config.h>
 #endif
 
+#include <stdcountof.h>
+
 #include "lib.h"
 
 #include "stringclass.h"
@@ -431,9 +433,7 @@ static struct unicode_to_glyph_init {
 
 unicode_to_glyph_init::unicode_to_glyph_init()
 {
-  for (unsigned int i = 0;
-       i < sizeof(unicode_to_glyph_list)/sizeof(unicode_to_glyph_list[0]);
-       i++) {
+  for (unsigned int i = 0; i < countof(unicode_to_glyph_list); i++) {
     unicode_to_glyph *utg = new unicode_to_glyph[1];
     utg->value = (char *)unicode_to_glyph_list[i].value;
     unicode_to_glyph_table.define(unicode_to_glyph_list[i].key, utg);

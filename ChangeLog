@@ -1,5 +1,36 @@
 2025-12-07  Alejandro Colomar <alx@kernel.org>
 
+	* src/libs/libgroff/uniglyph.cpp:
+	* src/preproc/eqn/delim.cpp:
+	* src/preproc/eqn/text.cpp:
+	* src/preproc/pic/lex.cpp:
+	* src/preproc/refer/command.cpp:
+	* src/preproc/refer/ref.cpp:
+	* src/utils/hpftodit/hpuni.cpp:
+	* src/utils/tfmtodit/tfmtodit.cpp: Include "stdcountof.h" header
+	file.
+
+	* src/preproc/eqn/delim.cpp: Initialize global constant
+	`DELIM_TABLE_SIZE` using `countof()` instead of `sizeof` and
+	division.
+
+	* src/libs/libgroff/uniglyph.cpp
+	(unicode_to_glyph_init::unicode_decompose_init):
+	* src/preproc/eqn/text.cpp (special_to_entity):
+	* src/preproc/pic/lex.cpp (lookup_keyword):
+	* src/preproc/refer/command.cpp (execute_command):
+	* src/preproc/refer/ref.cpp (find_month):
+	* src/utils/hpftodit/hpuni.cpp
+	(hp_msl_to_unicode_init::hp_msl_to_unicode_init):
+	* src/utils/tfmtodit/tfmtodit.cpp (main): Use `countof()`
+	instead of `sizeof` and division.
+
+	countof() is [expected to be --GBR] standard (ISO C2y).
+
+	Continues the long process of fixing Savannah #66518.
+
+2025-12-07  Alejandro Colomar <alx@kernel.org>
+
 	* src/utils/hpftodit/hpftodit.cpp: Include "stdcountof.h" header
 	file.  Drop `SIZEOF()` function-like preprocessor macro.
 	(output_ligatures): Use `countof()` instead of `SIZEOF()`.

@@ -20,6 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <config.h>
 #endif
 
+#include <stdcountof.h>
+
 #include <assert.h>
 
 #include "eqn.h"
@@ -162,7 +164,7 @@ struct delimiter {
   },
 };
 
-const int DELIM_TABLE_SIZE = int(sizeof(delim_table)/sizeof(delim_table[0]));
+const int DELIM_TABLE_SIZE = int(countof(delim_table));
 
 class delim_box : public box {
 private:

@@ -20,6 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <config.h>
 #endif
 
+#include <stdcountof.h>
+
 #include "refer.h"
 #include "refid.h"
 #include "ref.h"
@@ -955,7 +957,7 @@ static int find_month(const char *start, const char *end)
     while (ptr < end && csalpha(*ptr))
       ptr++;
     if (ptr - start >= 3) {
-      for (unsigned int i = 0; i < sizeof(months)/sizeof(months[0]); i++) {
+      for (unsigned int i = 0; i < countof(months); i++) {
 	const char *q = months[i];
 	const char *p = start;
 	for (; p < ptr; p++, q++)

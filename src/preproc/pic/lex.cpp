@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <assert.h>
 #include <errno.h>
 #include <math.h> // pow()
+#include <stdcountof.h>
 #include <stdio.h> // EOF, FILE, fclose(), fopen(), getc(), ungetc()
 #include <string.h> // strerror()
 
@@ -571,7 +572,7 @@ int lookup_keyword(const char *str, int len)
   };
   
   const keyword *start = table;
-  const keyword *end = table + sizeof(table)/sizeof(table[0]);
+  const keyword *end = table + countof(table);
   while (start < end) {
     // start <= target < end
     const keyword *mid = start + (end - start)/2;
