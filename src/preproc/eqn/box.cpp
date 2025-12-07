@@ -20,6 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <config.h>
 #endif
 
+#include <stdcountof.h>
+
 #include <assert.h>
 
 #include "eqn.h"
@@ -139,7 +141,7 @@ struct param *param_table = 0 /* nullptr */;
 
 void set_param(const char *name, int value)
 {
-  for (size_t i = 0; i <= array_length(default_param_table); i++)
+  for (size_t i = 0; i <= countof(default_param_table); i++)
     if (strcmp(param_table[i].name, name) == 0) {
       *(param_table[i].ptr) = value;
       return;
@@ -149,7 +151,7 @@ void set_param(const char *name, int value)
 
 void reset_param(const char *name)
 {
-  for (size_t i = 0; i < array_length(default_param_table); i++)
+  for (size_t i = 0; i < countof(default_param_table); i++)
     if (strcmp(param_table[i].name, name) == 0) {
       *param_table[i].ptr = *(default_param_table[i].ptr);
       return;
@@ -160,7 +162,7 @@ void reset_param(const char *name)
 
 int get_param(const char *name)
 {
-  for (size_t i = 0; i < array_length(default_param_table); i++)
+  for (size_t i = 0; i < countof(default_param_table); i++)
     if (strcmp(param_table[i].name, name) == 0)
       return *(param_table[i].ptr);
   assert(0 == "attempted to access parameter not in table");
@@ -169,8 +171,8 @@ int get_param(const char *name)
 
 void init_param_table()
 {
-  param_table = new param[array_length(default_param_table)];
-  for (size_t i = 0; i < array_length(default_param_table); i++) {
+  param_table = new param[countof(default_param_table)];
+  for (size_t i = 0; i < countof(default_param_table); i++) {
     param_table[i].name = default_param_table[i].name;
     param_table[i].ptr = new int(*(default_param_table[i].ptr));
   }
@@ -179,7 +181,7 @@ void init_param_table()
 void free_param_table()
 {
   if (param_table != 0 /* nullptr */) {
-    for (size_t i = 0; i < array_length(default_param_table); i++)
+    for (size_t i = 0; i < countof(default_param_table); i++)
       delete param_table[i].ptr;
     delete[] param_table;
     param_table = 0 /* nullptr */;

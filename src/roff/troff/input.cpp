@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <assert.h>
 #include <errno.h> // ENOENT, errno
 #include <locale.h> // setlocale()
+#include <stdcountof.h>
 #include <stdio.h> // EOF, FILE, clearerr(), fclose(), fflush(),
 		   // fileno(), fopen(), fprintf(), fseek(), getc(),
 		   // pclose(), popen(), printf(), SEEK_SET, snprintf(),
@@ -39,7 +40,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <stack>
 
 #include "json-encode.h" // json_encode_char()
-#include "lib.h" // array_length()
 
 #include "troff.h"
 #include "dictionary.h"
@@ -10508,7 +10508,7 @@ static struct warning_category {
 
 static unsigned int lookup_warning(const char *name)
 {
-  for (unsigned int i = 0U; i < array_length(warning_table); i++)
+  for (unsigned int i = 0U; i < countof(warning_table); i++)
     if (strcmp(name, warning_table[i].name) == 0)
       return warning_table[i].mask;
   return 0U;

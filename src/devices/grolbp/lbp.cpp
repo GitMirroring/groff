@@ -31,6 +31,7 @@ TODO
 #include <errno.h>
 #include <limits.h> // INT_MAX
 #include <math.h> // fabs(), sqrt()
+#include <stdcountof.h>
 #include <stdlib.h> // abs(), EXIT_SUCCESS, exit(), strtol()
 #include <string.h> // strcmp(), strcpy(), strlen(), strncpy()
 #include <strings.h> // strcasecmp()
@@ -42,7 +43,7 @@ TODO
 #include "charset.h"
 #include "driver.h"
 #include "lbp.h"
-#include "lib.h" // array_length(), strsave()
+#include "lib.h" // strsave()
 #include "paper.h"
 
 extern "C" const char *Version_string;
@@ -599,7 +600,7 @@ static int set_papersize(const char *paperformat)
   unsigned int i;
   // First, test for a standard (i.e. supported directly by the printer)
   // paper format.
-  for (i = 0 ; i < array_length(lbp_papersizes); i++)
+  for (i = 0 ; i < countof(lbp_papersizes); i++)
   {
     if (strcasecmp(lbp_papersizes[i].name,paperformat) == 0)
       return lbp_papersizes[i].code;

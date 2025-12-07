@@ -1,5 +1,51 @@
 2025-12-07  Alejandro Colomar <alx@kernel.org>
 
+	* src/devices/grolbp/lbp.cpp:
+	* src/devices/grolj4/lj4.cpp:
+	* src/devices/grops/ps.cpp:
+	* src/devices/grops/psrm.cpp:
+	* src/libs/libgroff/font.cpp:
+	* src/libs/libgroff/glyphuni.cpp:
+	* src/libs/libgroff/make-uniuni:
+	* src/libs/libgroff/uniuni.cpp:
+	* src/preproc/eqn/box.cpp:
+	* src/preproc/eqn/lex.cpp:
+	* src/preproc/pic/pic.ypp:
+	* src/preproc/preconv/preconv.cpp:
+	* src/roff/troff/input.cpp:
+	* src/utils/addftinfo/addftinfo.cpp: Include "stdcountof.h"
+	header file.
+
+	* src/devices/grolbp/lbp.cpp (set_papersize):
+	* src/devices/grolj4/lj4.cpp
+	(lj4_font::handle_unknown_font_command, lookup_paper_size):
+	* src/devices/grops/ps.cpp (ps_printer::special):
+	* src/devices/grops/psrm.cpp (resource_manager::process_file):
+	* src/libs/libgroff/font.cpp (font::load_desc):
+	* src/libs/libgroff/glyphuni.cpp
+	(glyph_to_unicode_init::glyph_to_unicode_init):
+	* src/libs/libgroff/make-uniuni
+	(unicode_decompose_init::unicode_decompose_init):
+	* src/libs/libgroff/uniuni.cpp
+	(unicode_decompose_init::unicode_decompose_init):
+	* src/preproc/eqn/box.cpp (set_param, reset_param, get_param)
+	(init_param_table, free_param_table):
+	* src/preproc/eqn/lex.cpp (init_table):
+	* src/preproc/pic/pic.ypp (define_variable, reset, reset_all):
+	* src/preproc/preconv/preconv.cpp (get_BOM):
+	* src/roff/troff/input.cpp (lookup_warning):
+	* src/utils/addftinfo/addftinfo.cpp (main, usage): Use countof()
+	instead of [groff's template function --GBR] array_length().
+
+	* src/devices/grops/psrm.cpp: Initialize constant globals with
+	`countof()` instead of `array_length()`.
+
+	countof() is [expected to be --GBR] standard (ISO C2y).
+
+	Continues the long process of fixing Savannah #66518.
+
+2025-12-07  Alejandro Colomar <alx@kernel.org>
+
 	* bootstrap.conf (gnulib_modules): Add stdcountof-h.
 
 	Continues the long process of fixing Savannah #66518.
