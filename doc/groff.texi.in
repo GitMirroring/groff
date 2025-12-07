@@ -14648,7 +14648,7 @@ request begins with a non-alphanumeric character apart from
 @code{!}
 (see below)
 and is not a numeric expression,
-it performs an
+the formatter performs an
 @slanted{output comparison test}.
 @footnote{Strictly,
 letters not otherwise recognized

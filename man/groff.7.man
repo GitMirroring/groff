@@ -2313,7 +2313,7 @@ request begins with a non-alphanumeric character apart from
 .RB \[lq] !\& \[rq]
 (see below)
 and is not a numeric expression,
-it performs an
+the formatter performs an
 .I output comparison test.
 .
 Shown first in the table above,
