@@ -16650,9 +16650,17 @@ Implicit Page Trap}.
 @cindex page location traps
 @cindex traps, page location
 
-A @dfn{page location trap} is a vertical position trap that applies to
-the page; that is, to undiverted output.  Many can be present; manage
-them with the @code{wh} and @code{ch} requests.
+A
+@dfn{page location trap}
+is a vertical position trap that applies to the page;
+that is,
+to the top-level diversion.
+Many can be present;
+manage them with the
+@code{wh}
+and
+@code{ch}
+requests.
 
 @Defreq {wh, dist [@Var{name}]}
 Plant macro @var{name} as page location trap at @var{dist}.  The default

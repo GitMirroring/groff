@@ -8559,14 +8559,12 @@ with its corresponding amount of motion
 .
 A
 .I "page location trap"
-is a vertical position trap that applies to
-the page;
+is a vertical position trap that applies to the page;
 that is,
-to undiverted output.
+to the top-level diversion.
 .
 Many can be present;
-manage them with
-the
+manage them with the
 .B wh
 and
 .B ch
