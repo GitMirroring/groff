@@ -8452,22 +8452,14 @@ Its applications include setting page headers and footers,
 body text in multiple columns,
 and footnotes.
 .
-These traps can occur at a given location on the page
-.RB ( wh ,\~ ch );
-at a given location in the current diversion
+These traps can occur at a given location either on the page
+.RB ( wh ,\~ ch )
+or in the current diversion
 .RB ( dt )\[em]together,
 these are known as
 vertical position traps,
 which can be disabled and re\[e ad]nabled
 .RB ( vpt ).
-.
-Setting a trap is also called
-.I planting
-one.
-.
-It is said that a trap is
-.I sprung
-if its condition is fulfilled.
 .
 .
 .P
@@ -8490,7 +8482,19 @@ after a certain number of productive input lines
 or at the end of input
 .RB ( em ).
 .
-Macros called by traps are passed no arguments.
+.
+.P
+Setting a trap is also called
+.I planting
+one.
+.
+It is said that a trap is
+.I sprung
+if its condition is fulfilled.
+.
+.
+.P
+The formatter passes no arguments to macros called by traps.
 .\" END Keep (roughly) parallel with groff.texi node "Traps".
 .
 .

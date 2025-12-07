@@ -16493,19 +16493,27 @@ Environments save us considerable effort.
 @section Traps
 @cindex traps
 
-@dfn{Traps} are locations in the output or conditions on the input that,
-when reached or fulfilled, call a specified macro.  These traps can
-occur at a given location on the page, at a given location in the
-current diversion (together, these are known as @slanted{vertical
-position traps}), at a blank line, at a line with leading space
-characters, after a quantity of input lines, or at the end of input.
-Macros called by traps are passed no arguments.
+@dfn{Traps}
+are locations in the output,
+or conditions on the input that,
+when reached or fulfilled,
+call a specified macro.
+These traps can occur at a given location either on the page
+or in the current diversion
+(together,
+these are known as
+@slanted{vertical position traps}),
+at a blank line,
+at a line with leading space characters,
+after a quantity of input lines,
+or at the end of input.
 @cindex planting a trap
 @cindex trap, planting
 Setting a trap is also called @dfn{planting} one.
 @cindex trap, springing
 @cindex springing a trap
 It is said that a trap is @dfn{sprung} if its condition is fulfilled.
+The formatter passes no arguments to macros called by traps.
 @c END Keep (roughly) parallel with subsection "Traps" of groff(7).
 
 @menu
