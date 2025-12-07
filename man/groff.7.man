@@ -2458,8 +2458,10 @@ others false.
 .
 .TPx
 .I c
-denotes a single input character,
-ordinary or special.
+denotes a single character\[em]\c
+ordinary,
+special,
+or indexed.
 .
 .TPx
 .I command
