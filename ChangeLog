@@ -1,5 +1,12 @@
 2025-12-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/utils/xtotroff/xtotroff.c: Fix code style nit.
+	(CanonicalizeFontName, FontNamesAmbiguous, MapFont, main):
+	Explicitly cast unused return values of printf(3)-family
+	functions to `void`.
+
+2025-12-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/utils/pfbtops/pfbtops.c: Refactor.
 	(error): Drop exit(3) call so that we can use this function for
 	nonfatal errors or fatal ones that need to exit with a status
