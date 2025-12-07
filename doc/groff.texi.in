@@ -15558,12 +15558,28 @@ processed immediately upon recognition, can be termed
 
 @Defesc {\\\\, , , }
 @cindex @code{\\}, interpretation in copy mode
-The escape character, @code{\} by default, can escape itself.  This
-enables you to control whether a given @code{\n}, @code{\g}, @code{\$},
-@code{\*}, @code{\V}, or @code{\?} escape sequence is interpreted at the
-time the macro containing it is defined, or later when the macro is
-called.@footnote{Compare this to the @code{\def} and @code{\edef}
-commands in @TeX{}.}
+@cindex @code{\\}, as quotation character
+@cindex quoting the escape character with @code{\\}
+@cindex quoting the control character with @code{\\}
+The escape character
+(@code{\}
+by default)
+when used before itself
+@dfn{quotes}
+an escape character for later interpreation
+in an enclosing context.
+Escape character quotation enables you to control
+whether the formatter interprets a given
+@code{\n},
+@code{\g},
+@code{\$},
+@code{\*},
+@code{\V},
+or
+@code{\?}
+escape sequence at the time the macro containing it is defined,
+or later when the macro is called.@footnote{Compare this to the
+@code{\def} and @code{\edef} commands in @TeX{}.}
 
 @Example
 .nr x 20
@@ -15576,22 +15592,42 @@ commands in @TeX{}.}
     @result{} 20 10
 @endExample
 
-You can think of @code{\\} as a ``delayed'' backslash; it is the escape
-character followed by a backslash from which the escape character has
-removed its special meaning.  Consequently, @samp{\\} is not an escape
-sequence in the usual sense.  In any escape sequence @samp{\@var{X}}
-that GNU @code{troff} does not recognize, the escape character is
-ignored and @var{X} is output.  An unrecognized escape sequence causes
-a warning in category @samp{escape}, with two exceptions---@samp{\\} is
-the first.
+You can think of
+@code{\\}
+as a ``delayed'' backslash;
+it is the escape character
+followed by a backslash
+from which the escape character
+has removed its special meaning.
+Consequently,
+@samp{\\}
+is not best considered an escape sequence,
+but a quoted escape character.
+In any escape sequence
+@samp{\@var{X}}
+that
+GNU
+@code{troff} @c GNU
+does not recognize,
+the formatter discards the escape character and outputs
+@var{X}.
+An unrecognized escape sequence causes a warning in category
+@samp{escape},
+with two exceptions---@samp{\\}
+is the first.
 @endDefesc
 
 @cindex @code{\.}, interpretation in copy mode
 @Defesc {\\., , , }
-@code{\.} escapes the control character.  It is similar to @code{\\} in
-that it isn't a true escape sequence.  It is used to permit nested macro
-definitions to end without a named macro call to conclude them.  Without
-a syntax for escaping the control character, this would not be possible.
+@code{\.}
+quotes the control character.
+It is similar to
+@code{\\}
+in that it isn't a true escape sequence.
+It is used to permit nested macro definitions to end
+without a named macro call to conclude them.
+Without a syntax for quoting the control character,
+this would not be possible.
 
 @Example
 .de m1
@@ -15612,11 +15648,29 @@ The first backslash is consumed while the macro is read, and the second
 is interpreted when macro @code{m1} is called.
 @endDefesc
 
-@code{roff} documents should not use the @code{\\} or @code{\.}
-character sequences outside of copy mode; they serve only to obfuscate
-the input.  Use @code{\e} to represent the escape character,
-@code{\[rs]} to obtain a backslash glyph, and @code{\&} before @samp{.}
-and @samp{'} where GNU @code{troff} expects them as control characters
+Outside of copy mode,
+@code{roff}
+documents should not use the
+@code{\\}
+or
+@code{\.}
+character sequences;
+they serve only to obfuscate the input.
+Use
+@code{\e}
+to represent the escape character,
+@code{\[rs]}
+to obtain a backslash glyph,
+and
+@code{\&}
+before
+@samp{.}
+and
+@samp{'}
+where
+GNU
+@code{troff} @c GNU
+expects them as control characters
 if you mean to use them literally (recall @ref{Requests and Macros}).
 
 @cindex nesting depth, of escape sequences in macro definitions
@@ -15642,13 +15696,39 @@ This understeer is getting
     @result{} This understeer is getting out of hand.
 @endExample
 
-Each escape character is interpreted twice---once in copy mode, when the
-macro is defined, and once in interpretation mode, when the macro is
-called.  As seen above, this fact leads to exponential growth in the
-quantity of escape characters required to delay interpolation of
-@code{\n}, @code{\g}, @code{\$}, @code{\*}, @code{\V}, and @code{\?} at
-each nesting level, which can be daunting.  GNU @code{troff} offers a
-solution.
+As seen above,
+the formatter interpets each escape character in multiple contexts;
+once,
+when populating the macro or string,
+where the first
+@samp{\}
+serves its quotation function\[em]thus
+only one
+@samp{\}
+is stored in the definition.
+(Verify this fact with the
+@code{pm}
+request.)
+The formatter interprets the second
+@samp{\}
+as an escape character
+(assuming the escape character hasn't been changed in the meantime)
+each time it interpolates the macro or string definition.
+This fact leads to exponential growth
+in the quantity of escape characters
+required to quote and thereby delay interpolation of
+@code{\n},
+@code{\g},
+@code{\$},
+@code{\*},
+@code{\V},
+and
+@code{\?}
+at each nesting level,
+which can be daunting.
+GNU
+@code{troff} @c GNU
+offers a solution.
 
 @Defesc {\\E, , , }
 @code{\E} represents an escape character that is not interpreted in copy

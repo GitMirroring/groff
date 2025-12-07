@@ -8311,12 +8311,16 @@ can be termed
 .
 .
 .P
-The escape character,
-.B \[rs]
-by default,
-can escape itself.
+The escape character
+.RB ( \[rs]
+by default)
+when used before itself
+.I quotes
+an escape character for later interpreation
+in an enclosing context.
 .
-This enables you to control whether a given
+Escape character quotation enables you to control
+whether the formatter interprets a given
 .BR \[rs]n ,
 .BR \[rs]g ,
 .BR \[rs]$ ,
@@ -8324,8 +8328,7 @@ This enables you to control whether a given
 .BR \[rs]V ,
 or
 .B \[rs]?\&
-escape sequence is interpreted at the time the macro containing it is
-defined,
+escape sequence at the time the macro containing it is defined,
 or later when the macro is called.
 .
 .
@@ -8338,16 +8341,16 @@ character has removed its special meaning.
 .
 Consequently,
 .B \[rs]\[rs]
-is not an escape sequence in the usual sense.
+is not best considered an escape sequence,
+but a quoted escape character.
 .
 In any escape sequence
 .BI \[rs] X
 that
 .I @g@troff
 does not recognize,
-the escape character is ignored and
-.IR X \~is
-output.
+the formatter discards the escape character and outputs
+.I X.
 .
 An unrecognized escape sequence causes a warning in category
 .RB \%\[lq] escape \[rq],
@@ -8357,20 +8360,21 @@ being one.
 .
 The other is
 .BR \[rs]. ,
-which escapes the control character.
+which quotes the control character.
 .
-It is used to permit nested macro definitions to end without a named
-macro call to conclude them.
+It is used to permit nested macro definitions to end
+without a named macro call to conclude them.
 .
-Without a syntax for escaping the control character,
+Without a syntax for quoting the control character,
 this would not be possible.
 .
+Outside of copy mode,
 .I roff
 documents should not use the
 .B \[rs]\[rs]
 or
 .B \[rs].\&
-character sequences outside of copy mode;
+character sequences;
 they serve only to obfuscate the input.
 .
 Use
@@ -8386,7 +8390,8 @@ and
 .B \[aq]
 where
 .I @g@troff
-expects them as control characters if you mean to use them literally.
+expects them as control characters
+if you mean to use them literally.
 .
 .
 .br
@@ -8394,15 +8399,32 @@ expects them as control characters if you mean to use them literally.
 .P
 Macro definitions can be nested to arbitrary depth.
 .
-In
-.RB \[lq] \|\[rs]\[rs] \[rq],
-each escape character is interpreted twice\[em]once in copy mode,
-when the macro is defined,
-and once in interpretation mode,
-when the macro is called.
+Given the input character sequence
+.RB \[lq] \|\[rs]\[rs] \[rq]
+in a macro or string definition,
+the formatter interpets each escape character in multiple contexts;
+once,
+when populating the macro or string,
+where the first
+.RB \[lq] \[rs] \[rq]
+serves its quotation function\[em]thus
+only one
+.RB \[lq] \[rs] \[rq]
+is stored in the definition.
 .
-This fact leads to exponential growth in the quantity of escape
-characters required to delay interpolation of
+(Verify this fact with the
+.B pm
+request.)
+.
+The formatter interprets the second
+.RB \[lq] \[rs] \[rq]
+as an escape character
+(assuming the escape character hasn't been changed in the meantime)
+each time it interpolates the macro or string definition.
+.
+This fact leads to exponential growth
+in the quantity of escape characters
+required to quote and thereby delay interpolation of
 .BR \[rs]n ,
 .BR \[rs]g ,
 .BR \[rs]$ ,
