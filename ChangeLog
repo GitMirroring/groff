@@ -1,3 +1,13 @@
+2025-12-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/ja.tmac: Correct apparently mistaken character flags for
+	`[CJKpostpunct]` class from "266" to "256".  A typo introduced
+	two spurious flags (2 and 8).
+
+	Fixes <https://savannah.gnu.org/bugs/?67757>.  Problem appears
+	to date back to commit 1cb8dd7bde, 13 December 2010.  Thanks to
+	Colin Watson for suggesting a regression test procedure.
+
 2025-12-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (charinfo::dump): Use preprocessor to
