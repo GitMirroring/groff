@@ -1483,11 +1483,11 @@ Similarly,
 if the identifier is interpreted as a register name,
 the formatter initializes it to zero
 and interpolates that value.
-.I @g@troff
+GNU
+.I troff \" GNU
 emits a warning in category
-.RB \[lq] reg \[rq],
-.
-See section \[lq]Warnings\[rq] in
+.RB \[lq] reg \[rq];
+see section \[lq]Warnings\[rq] in
 .MR @g@troff @MAN1EXT@ ,
 and subsection \[lq]Interpolating registers\[rq] and section
 \[lq]Strings\[rq] below.
