@@ -1,5 +1,19 @@
 2025-12-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp: Trivially refactor.  Rename
+	`do_get_long_name()` to `read_input_until_terminator()` because
+	{A} that's more descriptive of its function, and {B} it's used
+	for more than just reading "long names" (GNU troff-style
+	identifiers); in fact 4 out of its 5 call sites read things that
+	aren't identifiers.
+	(do_get_long_name): Rename declaration and definition from
+	this...
+	(read_input_until_terminator): ...to this.
+	(read_rgb, read_cmy, read_cmyk, read_gray, do_get_long_name):
+	Update call sites.
+
+2025-12-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp: Migrate more input character reading
 	functions to deal in the type `unsigned char` rather than
 	`char`.

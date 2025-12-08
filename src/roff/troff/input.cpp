@@ -177,8 +177,8 @@ static bool read_delimited_measurement(units *,
 	unsigned char /* scaling unit */);
 static bool read_delimited_measurement(units *,
 	unsigned char /* scaling unit */, units /* previous value */);
-static symbol do_get_long_name(bool /* required */,
-			       unsigned char /* end char */);
+static symbol read_input_until_terminator(bool /* required */,
+					  unsigned char /* end char */);
 static bool get_line_arg(units *res, unsigned char si, charinfo **cp);
 static bool read_size(int *);
 static symbol read_delimited_identifier();
@@ -1419,7 +1419,8 @@ static unsigned int get_color_element(const char *scheme, const char *col)
 
 static color *read_rgb(unsigned char end = 0U)
 {
-  symbol component = do_get_long_name(false /* required */, end);
+  symbol component = read_input_until_terminator(false /* required */,
+						 end);
   if (component.is_null()) {
     warning(WARN_COLOR, "missing rgb color values");
     return 0 /* nullptr */;
@@ -1449,7 +1450,8 @@ static color *read_rgb(unsigned char end = 0U)
 
 static color *read_cmy(unsigned char end = 0U)
 {
-  symbol component = do_get_long_name(false /* required */, end);
+  symbol component = read_input_until_terminator(false /* required */,
+						 end);
   if (component.is_null()) {
     warning(WARN_COLOR, "missing cmy color values");
     return 0 /* nullptr */;
@@ -1479,7 +1481,8 @@ static color *read_cmy(unsigned char end = 0U)
 
 static color *read_cmyk(unsigned char end = 0U)
 {
-  symbol component = do_get_long_name(false /* required */, end);
+  symbol component = read_input_until_terminator(false /* required */,
+						 end);
   if (component.is_null()) {
     warning(WARN_COLOR, "missing cmyk color values");
     return 0 /* nullptr */;
@@ -1510,7 +1513,8 @@ static color *read_cmyk(unsigned char end = 0U)
 
 static color *read_gray(unsigned char end = 0U)
 {
-  symbol component = do_get_long_name(false /* required */, end);
+  symbol component = read_input_until_terminator(false /* required */,
+						 end);
   if (component.is_null()) {
     warning(WARN_COLOR, "missing gray value");
     return 0 /* nullptr */;
@@ -3133,12 +3137,13 @@ symbol read_identifier(bool required)
 
 symbol get_long_name(bool required)
 {
-  return do_get_long_name(required, 0U);
+  return read_input_until_terminator(required, 0U);
 }
 
 // Read bytes from input until reaching a null byte or the specified
 // `end_char`; construct and return a `symbol` object therefrom.
-static symbol do_get_long_name(bool required, unsigned char end_char)
+static symbol read_input_until_terminator(bool required,
+					  unsigned char end_char)
 {
   tok.skip_spaces();
   int buf_size = default_buffer_size;
