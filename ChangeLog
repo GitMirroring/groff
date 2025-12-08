@@ -1,5 +1,11 @@
 2025-12-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (read_identifier): Fix code style
+	nit.  Populate array of type `char` with char-valued, not
+	integer-valued, literal.
+
+2025-12-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (read_rgb, read_cmy, read_cmyk)
 	(read_gray): Fix code style nit.  Call `do_get_long_name()`,
 	which takes a `bool` as its first parameter, using Boolean, not

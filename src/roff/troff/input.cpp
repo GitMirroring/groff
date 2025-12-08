@@ -3114,7 +3114,7 @@ symbol read_identifier(bool required)
     if ((buf[0] = tok.ch()) != 0U) {
       tok.next();
       if ((buf[1] = tok.ch()) != 0U) {
-	buf[2] = 0;
+	buf[2] = '\0';
 	tok.make_space();
       }
       else
