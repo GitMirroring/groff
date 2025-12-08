@@ -346,6 +346,8 @@
 	is destined for comparison to input characters, instead of
 	inheriting the type `char` from its literal initializer.
 
+	Continues the long process of fixing Savannah #67735.
+
 2025-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Fix regression in syntax warning diagnostics introduced
@@ -402,6 +404,8 @@
 	avoid repeated member function calls.  (Presumably a smart
 	optimizer would do the equivalent on its own, but this change
 	also makes a lengthy compound conditional expression shorter.)
+
+	Begins a long long process of fixing Savannah #67735.
 
 2025-11-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
