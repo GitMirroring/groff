@@ -690,7 +690,7 @@
 	human-readable names.  That is, use English noun phrases for
 	them instead of C++ identifiers.
 
-	* src/roff/troff/column.cpp (vjustify_node::type) [0]:
+	* src/roff/troff/column.cpp (vjustify_node::type) [COLUMN]:
 	* src/roff/troff/input.cpp (non_interpreted_char_node)
 	(token_node, non_interpreted_node):
 	* src/roff/troff/node.cpp (hyphen_inhibitor_node)
@@ -7936,17 +7936,17 @@
 	control-structure requests, where ordinary and no-break control
 	characters are recognized).
 
-	* src/roff/troff/column.cpp (class vjustify_node) [0]:
+	* src/roff/troff/column.cpp (class vjustify_node) [COLUMN]:
 	* src/roff/troff/node.h (struct node, class word_space_node)
 	(class unbreakable_space_node, class diverted_space_node)
 	(class diverted_copy_file_node, hmotion_node): Rename `reread()`
 	member function to `need_reread()` and demote its argument and
 	return value to `bool` and pointer to `bool`, respectively.
 
-	* src/roff/troff/column.cpp (vjustify_node::reread) [0]: Rename
-	this...
-	(vjustify_node::need_reread) [0]: ...to this, and update return
-	and argument types.
+	* src/roff/troff/column.cpp (vjustify_node::reread) [COLUMN]:
+	Rename this...
+	(vjustify_node::need_reread) [COLUMN]: ...to this, and update
+	return and argument types.
 
 	* src/roff/troff/input.cpp (bool::reread)
 	(diverted_space_node::reread, diverted_copy_file_node::reread)
