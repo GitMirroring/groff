@@ -7169,10 +7169,62 @@ not qualify, so our first attempt elicited an error diagnostic.
 @section Identifiers
 @cindex identifiers
 
-An @dfn{identifier} labels a GNU @code{troff} datum such as a register,
-name (macro, string, or diversion), typeface, color, special character
-or character class, hyphenation language code, environment, or stream.
-Valid identifiers consist of one or more ordinary characters.
+An
+@dfn{identifier}
+labels a
+GNU
+@command{troff} @c GNU
+datum such as a register,
+name
+(macro,
+string,
+or diversion),
+typeface,
+color,
+special character or character class,
+hyphenation language code,
+environment,
+or stream.
+Valid identifiers consist of one or more ordinary
+characters.@footnote{Use of escape sequences in identifiers
+is not portable.
+For example,
+DWB 3.3
+@command{troff} @c DWB
+accepts
+@code{\_}.
+Plan@tie{}9
+@command{troff} @c Plan 9
+does too,
+along with
+@code{\'},
+@code{\`},
+and
+@code{\-}.
+Solaris
+@command{troff} @c Solaris
+rejects all of these except
+@code{\_},
+but accepts
+@code{\&},
+@code{\@{},
+@code{\@}},
+@code{\SPC},
+@code{\%},
+and
+@code{\c}.
+Heirloom Doctools
+@command{troff} @c Heirloom Doctools
+rejects all of these,
+including
+@code{\_},
+but accepts
+@code{\!},
+which the others reject.
+GNU
+@command{troff} @c GNU
+rejects all of the foregoing.
+}
 @cindex ordinary character
 @cindex character, ordinary
 An
@@ -20515,47 +20567,6 @@ GNU
 features sometimes cause incompatibilities with documents written
 assuming old implementations of
 @code{troff}. @c generic
-
-@cindex @code{\A}, incompatibilities with @acronym{AT&T} @code{troff}
-@cindex @code{\|}, incompatibilities with @acronym{AT&T} @code{troff}
-@cindex @code{\^}, incompatibilities with @acronym{AT&T} @code{troff}
-@cindex @code{\&}, incompatibilities with @acronym{AT&T} @code{troff}
-@cindex @code{\@{}, incompatibilities with @acronym{AT&T} @code{troff}
-@cindex @code{\@}}, incompatibilities with @acronym{AT&T} @code{troff}
-@cindex @code{\@key{SPC}}, incompatibilities with @acronym{AT&T} @code{troff}
-@cindex @code{\'}, incompatibilities with @acronym{AT&T} @code{troff}
-@cindex @code{\`}, incompatibilities with @acronym{AT&T} @code{troff}
-@cindex @code{\-}, incompatibilities with @acronym{AT&T} @code{troff}
-@cindex @code{\_}, incompatibilities with @acronym{AT&T} @code{troff}
-@cindex @code{\!}, incompatibilities with @acronym{AT&T} @code{troff}
-@cindex @code{\%}, incompatibilities with @acronym{AT&T} @code{troff}
-@cindex @code{\c}, incompatibilities with @acronym{AT&T} @code{troff}
-GNU
-@command{troff} @c GNU
-does not allow the use of the escape sequences
-@code{\|},
-@code{\^},
-@code{\&},
-@code{\@{},
-@code{\@}},
-@code{\@key{SPC}},
-@code{\'},
-@code{\`},
-@code{\-},
-@code{\_},
-@code{\!},
-@code{\%},
-or
-@code{\c}
-in identifiers;
-@acronym{AT&T}
-@command{troff} @c AT&T
-does.
-The
-@code{\A}
-escape sequence
-(@pxref{Identifiers})
-may be helpful in avoiding their use.
 
 @cindex trailing space, on input lines, difference from @acronym{AT&T} @code{troff}
 @cindex space, trailing, on input lines, difference from @acronym{AT&T} @code{troff}

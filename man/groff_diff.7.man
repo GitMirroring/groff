@@ -6304,31 +6304,6 @@ which both render it as
 .\" END Keep in sync with groff.texi node "Other Differences" and
 .\" groff_man_style(7).
 .
-.
-.P
-GNU
-.I troff \" GNU
-does not allow the use of the escape sequences
-.BR \[rs]| ,
-.BR \[rs]\[ha] ,
-.BR \[rs]& ,
-.BR \[rs]{ ,
-.BR \[rs]} ,
-.BI \[rs] space\c
-,
-.BR \[rs]\[aq] ,
-.BR \[rs]\[ga] ,
-.BR \[rs]\- ,
-.BR \[rs]_ ,
-.BR \[rs]! ,
-.BR \[rs]% ,
-or
-.B \[rs]c
-in identifiers;
-AT&T
-.I troff \" AT&T
-does.
-.
 The
 .B \[rs]A
 escape sequence
