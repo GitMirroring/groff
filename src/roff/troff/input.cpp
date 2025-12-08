@@ -180,7 +180,7 @@ static bool read_delimited_measurement(units *,
 static symbol do_get_long_name(bool, char);
 static bool get_line_arg(units *res, unsigned char si, charinfo **cp);
 static bool read_size(int *);
-static symbol read_delimited_name();
+static symbol read_delimited_identifier();
 static void init_registers();
 static void trapping_blank_line();
 
@@ -2429,7 +2429,7 @@ void token::next()
       case 'c':
 	goto ESCAPE_c;
       case 'C':
-	nm = read_delimited_name();
+	nm = read_delimited_identifier();
 	if (nm.is_null())
 	  break;
 	type = TOKEN_SPECIAL_CHAR;
@@ -6167,7 +6167,7 @@ static bool read_size(int *x) // \s
   }
 }
 
-static symbol read_delimited_name()
+static symbol read_delimited_identifier()
 {
   token start_token;
   start_token.next();

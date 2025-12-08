@@ -1,5 +1,18 @@
 2025-12-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp: Trivially refactor.  Rename
+	`read_delimited_name()` to `read_delimited_identifier()`.  This
+	function isn't actually used for "names" (identifiers of macros,
+	strings, and diversions), but, at present, only for special
+	character or class identifiers.  But its operation is
+	sufficiently general to handle any GNU troff identifier.
+	(read_delimited_name): Rename declaration and definition from
+	this...
+	(read_delimited_identifier): ...to this.
+	(token::next): Update call site.
+
+2025-12-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/ja.tmac:
 	* tmac/zh.tmac: Correct apparently mistaken character flags for
 	`[CJKpostpunct]` class from "266" to "256".  A typo introduced
