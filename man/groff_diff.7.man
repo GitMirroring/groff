@@ -5904,10 +5904,22 @@ registers after using such a drawing command in a
 .B \[rs]w
 escape sequence).
 .
+Thus after executing a
+.BR D \~command
+of the form
+.BI D z
+$x sub 1 ~ y sub 1 ~ ldots ~ x sub n ~ y sub n$,
+the drawing position increases by
+.
+$( sum from { i = 1 } to n x sub i , sum from { i = 1 } to n y sub i )$.
+.EQ
+delim off
+.EN
+.
 For the sake of compatibility,
 GNU
 .I troff \" GNU
-also follows this rule,
+follows this rule,
 even though it frustrates extensions to the
 .B D
 command that set drawing parameters rather than rendering objects,
@@ -5921,18 +5933,6 @@ GNU
 .IR troff 's \" GNU
 filled ellipse,
 .BR DE .
-.
-Thus after executing a
-.BR D \~command
-of the form
-.BI D z
-$x sub 1 ~ y sub 1 ~ ldots ~ x sub n ~ y sub n$,
-the drawing position should be increased by
-.
-$( sum from { i = 1 } to n x sub i , sum from { i = 1 } to n y sub i )$.
-.EQ
-delim off
-.EN
 .
 In a future release,
 GNU
