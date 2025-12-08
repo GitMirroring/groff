@@ -9368,7 +9368,7 @@ page location traps
 Requests can also disclose
 to the standard error stream
 the internal properties and representations of
-characters
+characters and classes
 .RB ( pchar ),
 macros
 (and strings and diversions)

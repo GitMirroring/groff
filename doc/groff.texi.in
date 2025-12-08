@@ -19361,7 +19361,7 @@ and page location traps.
 Requests can also disclose
 to the standard error stream
 the internal properties and representations of
-characters,
+characters and classes,
 macros
 (and strings and diversions),
 and the list of output nodes corresponding to the pending input line.
