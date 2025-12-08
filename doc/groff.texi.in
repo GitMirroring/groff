@@ -12834,14 +12834,16 @@ list of associated special fonts is empty for all
 @c TODO: Add requests `pspecial`, `pfspecial`?
 Invoking
 @code{special}
-or
-@code{fspecial}
+(or
+@code{fspecial},
+for a given font
+@var{f})
 again overwrites the previous list;
 if you invoke them
 without arguments,
 GNU
 @command{troff} @c GNU
-deletes the corresponding list.
+empties the corresponding list.
 @endDefreq
 
 @c ---------------------------------------------------------------------
