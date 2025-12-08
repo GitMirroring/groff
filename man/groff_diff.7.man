@@ -6135,7 +6135,7 @@ rendering well.
 .
 .
 .P
-Identifier names of arbitrary length may be
+Identifiers of arbitrary length may be
 GNU
 .IR troff 's \" GNU
 most obvious innovation.

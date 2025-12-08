@@ -20143,7 +20143,7 @@ rendering well.
 @cindex names, long
 @cindex @code{\*}, incompatibilities with @acronym{AT&T} @code{troff}
 @cindex @code{\n}, incompatibilities with @acronym{AT&T} @code{troff}
-Identifier names of arbitrary length may be
+Identifiers of arbitrary length may be
 GNU
 @command{troff}'s @c GNU
 most obvious innovation.
