@@ -6183,7 +6183,7 @@ static symbol read_delimited_identifier()
 		  DELIMITER_ATT_STRING_EXPRESSION))
     is_valid = true;
   if (!is_valid) {
-    warning(WARN_DELIM, "cannot use %1 to delimit a name",
+    warning(WARN_DELIM, "cannot use %1 to delimit an identifier",
 	    start_token.description());
     return NULL_SYMBOL;
   }

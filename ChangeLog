@@ -1,5 +1,11 @@
 2025-12-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (read_delimited_identifier): Update
+	diagnostic wording to reflect function's generality, making its
+	issue in the case of, say, `\C\h'1m'foobar\h'1m'` more truthful.
+
+2025-12-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp: Trivially refactor.  Rename
 	`read_delimited_name()` to `read_delimited_identifier()`.  This
 	function isn't actually used for "names" (identifiers of macros,
