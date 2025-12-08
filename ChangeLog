@@ -1,5 +1,37 @@
 2025-12-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp: Migrate more input character reading
+	functions to deal in the type `unsigned char` rather than
+	`char`.
+	(do_get_long_name): Update declaration.
+	(read_rgb, read_cmy, read_cmyk, read_gray, do_get_long_name):
+	Update definitions.
+	(get_long_name): Update `do_get_long_name()` call site to use
+	literal of `unsigned char` rathern than `char` type.
+	(do_get_long_name): Change type of local variable `buf` from
+	`char` to `unsigned char`, since it is directly populated by
+	reads of bytes from the input stream.  This function converts
+	said input into an object of the groff class `symbol` and
+	returns it, but `symbol` has no constructor accepting a pointer
+	to `const unsigned char`.  Consequently, once we have
+	successfuly populated `buf`, create a new buffer `chbuf`, a
+	heap-allocated array of `char` type.  Free this array after
+	constructing a `symbol` on the stack.  (If all this seems like
+	rigmarole, consider that it's going to be necessary anyway when
+	we read bytes from the input stream, confirm that they're valid
+	UTF-8 sequences, apply Normalization Form D decomposition, and
+	then store them as one or more 32-bit code points in GNU troff's
+	planned future internal character data type.  See Savannah
+	#40720.)
+	(read_drawing_command_color_arguments): Change type of `end`
+	local variable from `int` to `unsigned char`, since that is what
+	the `read_{rgb,cmy,cmyk,gray}()` functions now expect as
+	arguments.
+
+	Continues the long process of fixing Savannah #67735.
+
+2025-12-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (read_identifier): Fix code style
 	nit.  Populate array of type `char` with char-valued, not
 	integer-valued, literal.

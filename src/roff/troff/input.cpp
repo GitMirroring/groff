@@ -177,7 +177,8 @@ static bool read_delimited_measurement(units *,
 	unsigned char /* scaling unit */);
 static bool read_delimited_measurement(units *,
 	unsigned char /* scaling unit */, units /* previous value */);
-static symbol do_get_long_name(bool, char);
+static symbol do_get_long_name(bool /* required */,
+			       unsigned char /* end char */);
 static bool get_line_arg(units *res, unsigned char si, charinfo **cp);
 static bool read_size(int *);
 static symbol read_delimited_identifier();
@@ -1416,7 +1417,7 @@ static unsigned int get_color_element(const char *scheme, const char *col)
   return (unsigned int) val;
 }
 
-static color *read_rgb(char end = 0)
+static color *read_rgb(unsigned char end = 0U)
 {
   symbol component = do_get_long_name(false /* required */, end);
   if (component.is_null()) {
@@ -1446,7 +1447,7 @@ static color *read_rgb(char end = 0)
   return col;
 }
 
-static color *read_cmy(char end = 0)
+static color *read_cmy(unsigned char end = 0U)
 {
   symbol component = do_get_long_name(false /* required */, end);
   if (component.is_null()) {
@@ -1476,7 +1477,7 @@ static color *read_cmy(char end = 0)
   return col;
 }
 
-static color *read_cmyk(char end = 0)
+static color *read_cmyk(unsigned char end = 0U)
 {
   symbol component = do_get_long_name(false /* required */, end);
   if (component.is_null()) {
@@ -1507,7 +1508,7 @@ static color *read_cmyk(char end = 0)
   return col;
 }
 
-static color *read_gray(char end = 0)
+static color *read_gray(unsigned char end = 0U)
 {
   symbol component = do_get_long_name(false /* required */, end);
   if (component.is_null()) {
@@ -3132,37 +3133,41 @@ symbol read_identifier(bool required)
 
 symbol get_long_name(bool required)
 {
-  return do_get_long_name(required, '\0');
+  return do_get_long_name(required, 0U);
 }
 
-static symbol do_get_long_name(bool required, char end_char)
+// Read bytes from input until reaching a null byte or the specified
+// `end_char`; construct and return a `symbol` object therefrom.
+static symbol do_get_long_name(bool required, unsigned char end_char)
 {
   tok.skip_spaces();
   int buf_size = default_buffer_size;
-  char *buf = 0 /* nullptr */;
+  // TODO: grochar
+  unsigned char *buf = 0 /* nullptr */;
   try {
     // C++03: new char[buf_size]();
-    buf = new char[buf_size];
+    buf = new unsigned char[buf_size];
   }
   catch (const std::bad_alloc &e) {
     fatal("cannot allocate %1 bytes to read input line", buf_size);
   }
-  (void) memset(buf, 0, (buf_size * sizeof(char)));
+  (void) memset(buf, 0, (buf_size * sizeof(unsigned char)));
   int i = 0;
   for (;;) {
-    // If `end_char` != `\0` we normally have to append a null byte.
+    // If `end_char` != U0 we normally have to append a null byte.
     if ((i + 2) > buf_size) {
-      char *old_buf = buf;
+      // TODO: grochar
+      unsigned char *old_buf = buf;
       int new_buf_size = buf_size * 2;
       // C++03: new char[new_buf_size]();
       try {
-	buf = new char[new_buf_size];
+	buf = new unsigned char[new_buf_size];
       }
       catch (const std::bad_alloc &e) {
 	fatal("cannot allocate %1 bytes to read input line", buf_size);
       }
-      (void) memset(buf, 0, (new_buf_size * sizeof(char)));
-      (void) memcpy(buf, old_buf, (buf_size * sizeof(char)));
+      (void) memset(buf, 0, (new_buf_size * sizeof(unsigned char)));
+      (void) memcpy(buf, old_buf, (buf_size * sizeof(unsigned char)));
       buf_size = new_buf_size;
       delete[] old_buf;
     }
@@ -3175,12 +3180,23 @@ static symbol do_get_long_name(bool required, char end_char)
     diagnose_missing_identifier(required);
     return NULL_SYMBOL;
   }
-  if ((end_char != '\0') && (buf[i] == end_char))
+  if ((end_char != 0U) && (buf[i] == end_char))
     buf[i + 1] = '\0';
   else
     diagnose_invalid_identifier();
-  symbol s(buf);
+  char *chbuf = 0 /* nullptr */;
+  try {
+    // C++03: new char[buf_size]();
+    chbuf = new char[buf_size];
+  }
+  catch (const std::bad_alloc &e) {
+    fatal("cannot allocate %1 bytes to copy identifier", buf_size);
+  }
+  for (int j = 0; j < buf_size; j++)
+    chbuf[j] = static_cast<char>(buf[j]);
   delete[] buf;
+  symbol s(chbuf);
+  delete[] chbuf;
   return s;
 }
 
@@ -10372,7 +10388,7 @@ static void read_drawing_command_color_arguments(token &start)
   tok.next();
   color *col = 0 /* nullptr */;
   // TODO: grochar
-  int end = start.ch();
+  unsigned char end = start.ch();
   switch (scheme) {
   case 'c':
     col = read_cmy(end);
