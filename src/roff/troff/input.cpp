@@ -1418,7 +1418,7 @@ static unsigned int get_color_element(const char *scheme, const char *col)
 
 static color *read_rgb(char end = 0)
 {
-  symbol component = do_get_long_name(0, end);
+  symbol component = do_get_long_name(false /* required */, end);
   if (component.is_null()) {
     warning(WARN_COLOR, "missing rgb color values");
     return 0 /* nullptr */;
@@ -1448,7 +1448,7 @@ static color *read_rgb(char end = 0)
 
 static color *read_cmy(char end = 0)
 {
-  symbol component = do_get_long_name(0, end);
+  symbol component = do_get_long_name(false /* required */, end);
   if (component.is_null()) {
     warning(WARN_COLOR, "missing cmy color values");
     return 0 /* nullptr */;
@@ -1478,7 +1478,7 @@ static color *read_cmy(char end = 0)
 
 static color *read_cmyk(char end = 0)
 {
-  symbol component = do_get_long_name(0, end);
+  symbol component = do_get_long_name(false /* required */, end);
   if (component.is_null()) {
     warning(WARN_COLOR, "missing cmyk color values");
     return 0 /* nullptr */;
@@ -1509,7 +1509,7 @@ static color *read_cmyk(char end = 0)
 
 static color *read_gray(char end = 0)
 {
-  symbol component = do_get_long_name(0, end);
+  symbol component = do_get_long_name(false /* required */, end);
   if (component.is_null()) {
     warning(WARN_COLOR, "missing gray value");
     return 0 /* nullptr */;
