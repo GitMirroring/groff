@@ -223,7 +223,8 @@ http://savannah.gnu.org/bugs/?group=groff.
 .sp |\\n[cov*top1]u
 .nr cov*saved-adjustment \\n[.j]
 .ad l
-.nop \l'\\n[.l]u\[em]'
+.ie t .nop \l'\\n[.l]u'
+.el   .nop \l'\\n[.l]u\[em]'
 .\" DWB 3.3 mm set the firm name in bold on nroff devices, and
 .\" Helvetica roman on troff devices.  Register `E` had no effect on it.
 .ie t .if F HR .fam H
