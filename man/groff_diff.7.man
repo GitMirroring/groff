@@ -6384,7 +6384,7 @@ including English.
 .P
 Unlike
 GNU
-.I troff \" GNU
+.IR troff , \" GNU
 AT&T
 .I troff \" AT&T
 does not recognize an occurrence of
