@@ -1168,11 +1168,21 @@ it is termed a
 .IR "macro package" .
 .
 .
+.br
+.ne 2v
 .P
-Macro packages can be loaded prior to any
+The
+.BR \-m \~option
+loads a macro package
+prior to any
 .I roff
-input documents with the
-.BR \-m \~option.
+input documents,
+and after performing any string and register assignments
+directed by
+.B \-d
+and
+.B \-r
+options.
 .
 The GNU
 .I roff
