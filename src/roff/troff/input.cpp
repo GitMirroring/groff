@@ -3183,6 +3183,7 @@ static symbol read_input_until_terminator(bool required,
   }
   if (0 == i) {
     diagnose_missing_identifier(required);
+    delete[] buf;
     return NULL_SYMBOL;
   }
   if ((end_char != 0U) && (buf[i] == end_char))
