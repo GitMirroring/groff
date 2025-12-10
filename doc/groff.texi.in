@@ -20416,10 +20416,11 @@ That is,
 upon interpreting them,
 GNU
 @command{troff} @c GNU
-no longer recognizes a control character on the input line;
-AT&T
-@command{troff} @c AT&T
-does.
+normally no longer recognizes a control character on the input line;
+but in compatibility mode,
+it does,
+just like AT&T
+@command{troff}. @c AT&T
 Thus the next example produces bold output in both modes,
 but the text differs.
 

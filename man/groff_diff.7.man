@@ -6294,10 +6294,11 @@ That is,
 upon interpreting them,
 GNU
 .I troff \" GNU
-no longer recognizes a control character on the input line;
-AT&T
-.I troff \" AT&T
-does.
+normally no longer recognizes a control character on the input line;
+but in compatibility mode,
+it does,
+just like AT&T
+.I troff. \" AT&T
 .
 .
 .P
