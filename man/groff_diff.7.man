@@ -6261,6 +6261,88 @@ turns compatibility mode
 while it interprets its argument list.
 .
 .
+.P
+GNU
+.I troff \" GNU
+normally tracks the interpolation depth of escape sequence parameters
+and other delimited structures,
+but not in compatibility mode.
+.
+See section \[lq]Miscellaneous\[rq] above.
+.
+.
+.P
+The escape sequences
+.BR \[rs]f ,
+.BR \[rs]H ,
+.BR \[rs]m ,
+.BR \[rs]M ,
+.BR \[rs]R ,
+.BR \[rs]s ,
+and
+.B \[rs]S
+are transparent to control character recognition
+at the beginning of an input line,
+or after the conditional expression of an
+.RB \[lq] if \^\[rq]
+or
+.B ie
+request,
+only in compatibility mode.
+.
+That is,
+upon interpreting them,
+GNU
+.I troff \" GNU
+no longer recognizes a control character on the input line;
+AT&T
+.I troff \" AT&T
+does.
+.
+.
+.P
+Normally,
+the syntax form
+.BI \[rs]s n
+accepts only a single character
+(a digit)
+for
+.IR n ,
+consistently with other forms that originated in AT&T
+.IR troff , \" AT&T
+like
+.BR \[rs]* ,
+.BR \[rs]$ ,
+.BR \[rs]f ,
+.BR \[rs]g ,
+.BR \[rs]k ,
+.BR \[rs]n ,
+and
+.BR \[rs]z .
+.
+In compatibility mode only,
+a
+.RI non-zero\~ n
+must be in the range 4\[en]39.
+.
+Legacy documents relying upon this quirk of parsing should migrate
+to another
+.B \[rs]s
+form.
+.
+[Background:
+The Graphic Systems C/A/T phototypesetter
+(the original device target for AT&T
+.IR troff ) \" AT&T
+supported only a few discrete type sizes in the range 6\[en]36 points,
+so Ossanna contrived a special case in the parser to do what the user
+must have meant.
+.
+Kernighan warned of this in the 1992 revision of CSTR\~#54 (\[sc]2.3),
+and more recently,
+McIlroy referred to it as a \[lq]living fossil\[rq].]
+.
+.
 .\" ====================================================================
 .SH "Other differences"
 .\" ====================================================================
@@ -6528,89 +6610,6 @@ In GNU
 .IR troff ,
 any number of environments may exist,
 using any valid identifiers for their names.
-.
-.
-.\" TODO: Resume Texinfo "Other Differences" synchronization work here.
-.P
-GNU
-.I troff \" GNU
-normally tracks the interpolation depth of escape sequence parameters
-and other delimited structures,
-but not in compatibility mode.
-.
-See section \[lq]Miscellaneous\[rq] above.
-.
-.
-.P
-The escape sequences
-.BR \[rs]f ,
-.BR \[rs]H ,
-.BR \[rs]m ,
-.BR \[rs]M ,
-.BR \[rs]R ,
-.BR \[rs]s ,
-and
-.B \[rs]S
-are transparent to control charcter recognition
-at the beginning of an input line,
-or after the conditional expression of an
-.RB \[lq] if \^\[rq]
-or
-.B ie
-request,
-only in compatibility mode.
-.
-That is,
-upon interpreting them,
-GNU
-.I troff \" GNU
-no longer recognizes a control character on the input line;
-AT&T
-.I troff \" AT&T
-does.
-.
-.
-.P
-Normally,
-the syntax form
-.BI \[rs]s n
-accepts only a single character
-(a digit)
-for
-.IR n ,
-consistently with other forms that originated in AT&T
-.IR troff , \" AT&T
-like
-.BR \[rs]* ,
-.BR \[rs]$ ,
-.BR \[rs]f ,
-.BR \[rs]g ,
-.BR \[rs]k ,
-.BR \[rs]n ,
-and
-.BR \[rs]z .
-.
-In compatibility mode only,
-a
-.RI non-zero\~ n
-must be in the range 4\[en]39.
-.
-Legacy documents relying upon this quirk of parsing should migrate
-to another
-.B \[rs]s
-form.
-.
-[Background:
-The Graphic Systems C/A/T phototypesetter
-(the original device target for AT&T
-.IR troff ) \" AT&T
-supported only a few discrete type sizes in the range 6\[en]36 points,
-so Ossanna contrived a special case in the parser to do what the user
-must have meant.
-.
-Kernighan warned of this in the 1992 revision of CSTR\~#54 (\[sc]2.3),
-and more recently,
-McIlroy referred to it as a \[lq]living fossil\[rq].]
 .
 .
 .P
