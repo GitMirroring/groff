@@ -6613,12 +6613,11 @@ using any valid identifiers for their names.
 .
 .
 .P
-Fractional type size support causes an incompatibility.
-.
-In AT&T
-.IR troff , \" AT&T
+As noted above in \[lq]Fractional type sizes and new scaling units\[rq],
+AT&T
+.IR troff 's \" AT&T
 .B ps
-ignores scaling units
+request ignores scaling units
 and thus
 .RB \[lq] .ps\~10u \[rq]
 sets the type size to 10\~points,
@@ -6634,9 +6633,6 @@ AT&T's behavior also means that
 and
 .RB \[lq] .ps\~10z \[rq]
 are portable.
-.
-See subsection \[lq]Fractional type sizes and new scaling units\[rq]
-above.
 .
 .
 .P

@@ -20776,11 +20776,11 @@ using any valid identifiers for their names
 @cindex type sizes, fractional
 @cindex sizes, fractional
 @cindex @code{ps} request, incompatibilities with @acronym{AT&T} @code{troff}
-Fractional type size support causes an incompatibility.
-In @acronym{AT&T}
-@command{troff}, @c AT&T
+As noted in @ref{Using Fractional Type Sizes},
+@acronym{AT&T}
+@command{troff}'s @c AT&T
 @code{ps}
-ignores scaling units
+request ignores scaling units
 and thus
 @samp{.ps 10u}
 sets the type size to 10@tie{}points,
@@ -20795,7 +20795,6 @@ possibly a much smaller measurement.
 and
 @samp{.ps 10z}
 are portable.
-@xref{Using Fractional Type Sizes}.
 
 @cindex @code{ab} request, incompatibilities with @acronym{AT&T} @code{troff}
 The @code{ab} request differs from @acronym{AT&T} @code{troff}: GNU
