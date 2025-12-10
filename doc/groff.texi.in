@@ -20434,19 +20434,43 @@ Hello!
 @endExample
 
 @cindex @code{\s}, incompatibilities with @acronym{AT&T} @code{troff}
-Normally, the syntax form @code{\s}@var{n} accepts only a single
-character (a digit) for @var{n}, consistently with other forms that
-originated in @acronym{AT&T} @code{troff}, like @code{\*}, @code{\$},
-@code{\f}, @code{\g}, @code{\k}, @code{\n}, and @code{\z}.  In
-compatibility mode only, a non-zero@tie{}@var{n} must be in the range
-4--39.  Legacy documents relying upon this quirk of parsing@footnote{The
-Graphic Systems C/A/T phototypesetter (the original device target for
-@acronym{AT&T} @code{troff}) supported only a few discrete type sizes
-in the range 6--36 points, so Ossanna contrived a special case in the
-parser to do what the user must have meant.  Kernighan warned of this in
-the 1992 revision of CSTR@tie{}#54 (§2.3), and more recently, McIlroy
-referred to it as a ``living fossil''.} should migrate to another
-@code{\s} form.
+Normally,
+the syntax form
+@code{\s}@var{n}
+accepts only a single character
+(a digit)
+for
+@var{n},
+consistently with other forms that originated in
+@acronym{AT&T}
+@code{troff}, @c AT&T
+like
+@code{\*},
+@code{\f},
+@code{\g},
+@code{\k},
+@code{\n},
+and
+@code{\z}.
+In compatibility mode only,
+a non-zero@tie{}@var{n}
+must be in the range 4--39.
+Legacy documents relying upon this quirk of parsing@footnote{The
+Graphic Systems C/A/T phototypesetter
+(the original device target for
+@acronym{AT&T}
+@code{troff})
+supported only a few discrete type sizes
+in the range 6--36 points,
+so Ossanna contrived a special case in the parser
+to do what the user must have meant.
+Kernighan warned of this in the 1992 revision
+of CSTR@tie{}#54 (§2.3),
+and more recently,
+McIlroy referred to it as a ``living fossil''.}
+should migrate to another
+@code{\s}
+form.
 
 @c BEGIN Keep in sync with groff_diff(7), subsection "Altered requests".
 In compatibility mode,
