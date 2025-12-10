@@ -6295,9 +6295,9 @@ and Plan\~9 from User Space
 .I troff \" Plan 9
 (commit 93f8143600,
 2022-08-12),
-but not by Solaris\~10
+but not by Solaris
 or Documenter's Workbench
-.IR troff s, \" DWB, Solaris 10
+.IR troff s, \" DWB, Solaris
 which both render it as
 .RB \[lq] \[ti] \[rq].
 .\" as of this writing, 2022-08-13
@@ -6465,7 +6465,7 @@ The existence of the
 .B .T
 string is a common feature of device-independent
 .IR troff s\[em]DWB\~3.3, \" others
-Solaris\~10,
+Solaris,
 Heirloom Doctools,
 and Plan\~9
 .I troff \" foreign
