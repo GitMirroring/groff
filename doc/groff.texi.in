@@ -2843,6 +2843,10 @@ Begin comment; ignore remainder of line.
 @item \n[@var{reg}]
 Interpolate value of register @var{reg}.
 
+@item \n@var{r}
+abbreviation of @code{\n[@var{r}]};
+the name @var{r} must be only one character
+
 @item \*[@var{str}]
 Interpolate contents of string @var{str}.
 
