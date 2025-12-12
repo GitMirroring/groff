@@ -2341,11 +2341,18 @@ groff -m man -m ms foo.man bar.doc
 @cindex auxiliary macro package
 @cindex package, macro, auxiliary
 @cindex macro package, auxiliary
-Many auxiliary, or ``minor'', macro packages are also available.  They
-may in general be used with any full-service macro package and handle a
-variety of tasks from character encoding selection, to language
-localization, to inlining of raster images.  See
-@cite{groff_tmac@r{(5)}} for a list.
+Many auxiliary,
+or supplemental,
+macro packages are also available.
+They may in general be used
+with any full-service macro package
+and handle a variety of tasks
+from character encoding selection,
+to language localization,
+to inlining of raster images.
+See
+@cite{groff_tmac@r{(5)}}
+for a list.
 
 @menu
 * man::
