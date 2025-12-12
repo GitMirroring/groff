@@ -1964,7 +1964,7 @@ lines without counting them, try the following technique.
 
 @Example
 .ce 1000
-@slanted{many lines of input}
+@slanted{up to one thousand lines of input}
 .ce 0
 @endExample
 
