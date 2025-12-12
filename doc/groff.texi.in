@@ -2003,11 +2003,13 @@ are then collected into a @slanted{macro package}.
 
 @c BEGIN Keep roughly parallel with groff_tmac(5) section "Macro
 @c packages".
-Some macro packages assume responsibility for page layout
-and other critical functions
-(``major'' or ``full-service'');
-others do not
-(``supplemental'' or ``auxiliary'').
+Some macro packages
+(``major'' or ``full-service'')
+assume responsibility for page layout
+and other critical functions;
+others
+(``supplemental'' or ``auxiliary'')
+do not.
 @c END Keep roughly parallel with groff_tmac(5) section "Macro
 @c packages".
 

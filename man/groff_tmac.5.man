@@ -148,11 +148,13 @@ and the encodings used by documents employing a macro file can vary.
 .SH "Macro packages"
 .\" ====================================================================
 .
-Some macro packages assume responsibility for page layout
-and other critical functions
-(\[lq]major\[rq] or \[lq]full-service\[rq]);
-others do not
-(\[lq]supplemental\[rq] or \[lq]auxiliary\[rq]).
+Some macro packages
+(\[lq]major\[rq] or \[lq]full-service\[rq])
+assume responsibility for page layout
+and other critical functions;
+others
+(\[lq]supplemental\[rq] or \[lq]auxiliary\[rq])
+do not.
 .
 GNU
 .I roff
