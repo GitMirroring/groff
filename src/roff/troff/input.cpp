@@ -1328,7 +1328,7 @@ bool non_interpreted_char_node::is_tag()
 
 non_interpreted_char_node::non_interpreted_char_node(unsigned char cc) : c(cc)
 {
-  assert(cc != 0);
+  assert(cc != 0U);
 }
 
 void non_interpreted_char_node::asciify(macro *)
