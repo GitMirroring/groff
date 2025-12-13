@@ -2587,6 +2587,12 @@ void token::next()
 	  have_formattable_input = true;
 	break;
       case 's':
+	if (curenv->get_was_line_interrupted()) {
+	  warning(WARN_SYNTAX, "ignoring escaped '%1' on input line"
+		  " after output line continuation escape sequence",
+		  char(cc));
+	  break;
+	}
 	if (read_size(&x))
 	  curenv->set_size(x);
 	if (!want_att_compat)
