@@ -1,5 +1,12 @@
 2025-12-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (process_input_stack): Emit warning
+	in category "syntax", and otherwise ignore, horizontal space
+	tokens (including `\h`, `\0`, `\|`, and `\^) after `\c` on an
+	input line.
+
+2025-12-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (token::next): Reject `\s` escape
 	sequence after `\c` on an input line.  Throw warning in category
 	"syntax" and don't interpret it at all.

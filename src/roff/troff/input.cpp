@@ -3608,7 +3608,16 @@ void process_input_stack()
       return;
     case token::TOKEN_NODE:
     case token::TOKEN_HORIZONTAL_SPACE:
-      if (possibly_handle_first_page_transition())
+      if (curenv->get_was_line_interrupted()) {
+	// We don't want to warn about node types.  They might have been
+	// interpolated into the input by the formatter itself, as with
+	// the extra vertical space nodes appended to diversions.
+	if (token::TOKEN_HORIZONTAL_SPACE == tok.type)
+	  warning(WARN_SYNTAX, "ignoring %1 on input line after"
+		  " output line continuation escape sequence",
+		  tok.description());
+      }
+      else if (possibly_handle_first_page_transition())
 	;
       else if (tok.nd->need_reread(&reading_beginning_of_input_line)) {
 	delete tok.nd;
