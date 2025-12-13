@@ -1741,7 +1741,7 @@ If you want
 to contain space,
 use unbreakable space or horizontal motion escape sequences
 .CW \[rs]\[ti] , (
-.CW \[rs]\c
+.CW \[rs] \c
 .I space ,
 .CW \[rs]\[ha] ,
 .CW \[rs]| ,
