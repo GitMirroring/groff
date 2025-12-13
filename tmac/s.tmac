@@ -1490,6 +1490,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .de B2
 .ie '\\n(.z'par*box-div' \{\
 .	br
+.	\" In nroff mode, make room for the horizontal rules taking up
+.	\" 1v each.  (Why aren't we actually testing nroff mode? --GBR)
 .	if \n[.V]>.25m .sp
 .	di
 .	if \n[.V]>.25m .sp
