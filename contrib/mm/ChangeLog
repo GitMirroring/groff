@@ -1,5 +1,12 @@
 2025-12-12  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (B1): In the environment we set up for boxed text,
+	shorten the line length of title lines.  This (a) makes sense
+	and (b) parallelizes more closely with the `B1` and `B2` macros
+	in the ms(7) package.
+
+2025-12-12  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (B1, B2): Break on all calls, even erroneous ones.
 
 2025-12-09  Alexis Hildebrandt <afh@surryhill.net>
