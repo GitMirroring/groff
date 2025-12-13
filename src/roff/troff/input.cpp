@@ -2458,6 +2458,12 @@ void token::next()
 		  " AT&T troff", char(cc));
 	goto handle_escape_char;
       case 'f':
+	if (curenv->get_was_line_interrupted()) {
+	  warning(WARN_SYNTAX, "ignoring escaped '%1' on input line"
+		  " after output line continuation escape sequence",
+		  char(cc));
+	  break;
+	}
 	select_font(read_escape_parameter(ALLOW_EMPTY));
 	if (!want_att_compat)
 	  have_formattable_input = true;

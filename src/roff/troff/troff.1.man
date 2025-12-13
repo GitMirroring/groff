@@ -693,10 +693,7 @@ T}
 .
 .sp \n[PD]u
 font	131072	T{
-A non-existent font was selected,
-or the selection was ignored because a font selection escape sequence
-was used after the output line continuation escape sequence on an input
-line.
+A non-existent font was selected.
 .
 This category is enabled by default.
 T}

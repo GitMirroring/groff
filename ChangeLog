@@ -1,3 +1,15 @@
+2025-12-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/env.cpp (environment::set_font): Move warning
+	thrown (and recast it, and change its category from "font" to
+	"syntax") when font selection attempted on the ignored part of
+	an input line interrupted/continued with `\c` from here...
+	* src/roff/troff/input.cpp (token::next): ...to here.
+
+	* doc/groff.texi.in (Warnings):
+	* man/groff_diff.7.man (Warnings): Simplify description of
+	warning category "font" accordingly.
+
 2025-12-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/env.cpp
