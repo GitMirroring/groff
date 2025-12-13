@@ -1,5 +1,11 @@
 2025-12-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (process_input_stack): Fix code style
+	nit.  Eliminate unnecessary brace scopes that introduces no new
+	local variables in switch `case`s.
+
+2025-12-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp (environment::set_size): Fix code style
 	nit.  Arrange equality comparison to avoid inadvertent lvalue
 	assignment.

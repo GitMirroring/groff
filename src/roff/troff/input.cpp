@@ -2458,21 +2458,17 @@ void token::next()
 		  " AT&T troff", char(cc));
 	goto handle_escape_char;
       case 'f':
-	{
-	  select_font(read_escape_parameter(ALLOW_EMPTY));
-	  if (!want_att_compat)
-	    have_formattable_input = true;
-	  break;
-	}
+	select_font(read_escape_parameter(ALLOW_EMPTY));
+	if (!want_att_compat)
+	  have_formattable_input = true;
+	break;
       case 'F':
 	if (want_att_compat)
 	  warning(WARN_SYNTAX, "an escaped '%1' is not portable to"
 		  " AT&T troff", char(cc));
-	{
-	  curenv->set_family(read_escape_parameter(ALLOW_EMPTY));
-	  have_formattable_input = true;
-	  break;
-	}
+	curenv->set_family(read_escape_parameter(ALLOW_EMPTY));
+	have_formattable_input = true;
+	break;
       case 'g':
 	{
 	  symbol s = read_escape_parameter();
@@ -2658,30 +2654,28 @@ void token::next()
 	  return;
 	}
       case 'z':
-	{
-	  next();
-	  if (type == TOKEN_NODE || type == TOKEN_HORIZONTAL_SPACE)
-	    nd = new zero_width_node(nd);
-	  else {
-	    // TODO: In theory, we could accept spaces and horizontal
-	    // motions.
-	    charinfo *ci = get_charinfo(true /* required */);
-	    if (0 /* nullptr */ == ci) {
-	      error("%1 is not supported in a zero-width character"
-		    " escape sequence argument", tok.description());
-	      break;
-	    }
-	    node *gn = curenv->make_char_node(ci);
-	    if (0 /* nullptr */ == gn) {
-	      assert("make_char_node failed to create a character"
-		     " node");
-	      break;
-	    }
-	    nd = new zero_width_node(gn);
-	    type = TOKEN_NODE;
+	next();
+	if (type == TOKEN_NODE || type == TOKEN_HORIZONTAL_SPACE)
+	  nd = new zero_width_node(nd);
+	else {
+	  // TODO: In theory, we could accept spaces and horizontal
+	  // motions.
+	  charinfo *ci = get_charinfo(true /* required */);
+	  if (0 /* nullptr */ == ci) {
+	    error("%1 is not supported in a zero-width character"
+		  " escape sequence argument", tok.description());
+	    break;
 	  }
-	  return;
+	  node *gn = curenv->make_char_node(ci);
+	  if (0 /* nullptr */ == gn) {
+	    assert("make_char_node failed to create a character"
+		   " node");
+	    break;
+	  }
+	  nd = new zero_width_node(gn);
+	  type = TOKEN_NODE;
 	}
+	return;
       case 'Z':
 	if (want_att_compat)
 	  warning(WARN_SYNTAX, "an escaped '%1' is not portable to"
@@ -3602,21 +3596,19 @@ void process_input_stack()
       return;
     case token::TOKEN_NODE:
     case token::TOKEN_HORIZONTAL_SPACE:
-      {
-	if (possibly_handle_first_page_transition())
-	  ;
-	else if (tok.nd->need_reread(&reading_beginning_of_input_line)) {
-	  delete tok.nd;
-	  tok.nd = 0;
-	}
-	else {
-	  curenv->add_node(tok.nd);
-	  tok.nd = 0;
-	  reading_beginning_of_input_line = false;
-	  curenv->possibly_break_line(true /* must break here */);
-	}
-	break;
+      if (possibly_handle_first_page_transition())
+	;
+      else if (tok.nd->need_reread(&reading_beginning_of_input_line)) {
+	delete tok.nd;
+	tok.nd = 0;
       }
+      else {
+	curenv->add_node(tok.nd);
+	tok.nd = 0;
+	reading_beginning_of_input_line = false;
+	curenv->possibly_break_line(true /* must break here */);
+      }
+      break;
     case token::TOKEN_PAGE_EJECTOR:
       {
 	continue_page_eject();
