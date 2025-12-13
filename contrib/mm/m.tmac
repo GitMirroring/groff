@@ -3191,6 +3191,7 @@ exceeds depth of nested lists (\\n[li*lvl])
 .nr box*ll 0
 .\" .B1 and .B2 works like .DS
 .de B1
+.br
 .if \\n[box*ll] .@error \\$0: cannot nest; missing B2?
 .nr box*ll \\n[.l]
 .nr box*ind \\n[.i]
@@ -3207,8 +3208,8 @@ exceeds depth of nested lists (\\n[li*lvl])
 .@enable-hyphenation
 ..
 .de B2
-.if !\\n[box*ll] .@error \\$0: no corresponding B1
 .br
+.if !\\n[box*ll] .@error \\$0: no corresponding B1
 .debug@di
 .nr box*height \\n[dn]
 .ne \\n[dn]u+1v
