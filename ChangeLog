@@ -1,3 +1,12 @@
+2025-12-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* README.git: Delete file not distributed in archives.
+	* bootstrap.conf (checkout_only_file): Identify "FOR-RELEASE"
+	instead of "README.git" as the indicator of a Git checkout.
+
+	Fixes <https://savannah.gnu.org/bugs/?67787>.  Thanks to Dave
+	Kemper for the report.
+
 2025-12-12  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/utils/grog/grog.pl: Improve heuristics for distinguishing
