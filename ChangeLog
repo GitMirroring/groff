@@ -1,3 +1,15 @@
+2025-12-12  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/utils/xtotroff/xtotroff.c (MapFont): Make fatal error
+	diagnostic on memory allocation failure disclose how many bytes
+	we attempted to grab from the heap.  This way the user can
+	better distinguish system starvation scenarios from attempted
+	denial-of-service attacks (or worse).  (Admittedly, few people
+	ever run xtotroff at all, let alone in scenarios where a busy
+	system is so pinned that `malloc(PATH_MAX)` is likely to fail.
+	But I feel that since we have this information, we should
+	disclose it.)
+
 2025-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* doc/groff.texi.in (Other Differences):

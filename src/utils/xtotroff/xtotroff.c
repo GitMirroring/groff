@@ -198,10 +198,12 @@ static bool MapFont(char *font_name, const char *troff_name)
 
   if (dirlen > 0) {
     size_t baselen = strlen(troff_name);
-    file_name = malloc(dirlen + baselen + 2 /* '/' and '\0' */);
+    size_t bufsz = dirlen + baselen + 2 /* '/' and '\0' */;
+    file_name = malloc(bufsz);
     if (NULL == file_name) {
       (void) fprintf(stderr, "%s: fatal error:"
-		     " cannot allocate memory\n", program_name);
+		     " cannot allocate %ld bytes for font description"
+		     " file name\n", program_name, bufsz);
       xtotroff_exit(EXIT_FAILURE);
     }
     (void) strcpy(file_name, destdir);
