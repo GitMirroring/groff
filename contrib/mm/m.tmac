@@ -3211,7 +3211,10 @@ exceeds depth of nested lists (\\n[li*lvl])
 .de B2
 .br
 .if !\\n[box*ll] .@error \\$0: no corresponding B1
+.\" In nroff mode, make room for the horizontal rules taking up 1v each.
+.if n .sp
 .debug@di
+.if n .sp
 .nr box*height \\n[dn]
 .ne \\n[dn]u+1v
 .ll \\n[box*ll]u
