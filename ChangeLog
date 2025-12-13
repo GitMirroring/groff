@@ -7,6 +7,13 @@
 
 2025-12-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp (environment::possibly_break_line): Fix
+	code style nits.  Parenthesize formally complex expressions.
+	Arrange equality comparisons to avoid inadvertent lvalue
+	assignment.
+
+2025-12-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp
 	(non_interpreted_char_node::non_interpreted_char_node): Fix code
 	style nit.  Migrate input character handling constructor to deal

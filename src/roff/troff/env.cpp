@@ -2277,18 +2277,18 @@ extern char warn_scaling_unit;
 void environment::possibly_break_line(bool must_break_here,
 				      bool must_adjust)
 {
-  bool was_centered = centered_line_count > 0;
+  bool was_centered = (centered_line_count > 0);
   if (!is_filling || (current_tab != TAB_NONE) || has_current_field
       || is_dummy_env)
     return;
-  while (line != 0 /* nullptr */
+  while ((line != 0 /* nullptr */)
 	 && (must_adjust
 	     // When a macro follows a paragraph in fill mode, the
 	     // current line should not be empty.
-	     || (width_total - line->width()) > target_text_length)) {
+	     || ((width_total - line->width()) > target_text_length))) {
     possibly_hyphenate_line(must_break_here);
     breakpoint *bp = choose_breakpoint();
-    if (bp == 0 /* nullptr */)
+    if (0 /* nullptr */ == bp)
       // we'll find one eventually
       return;
     node *pre, *post;
@@ -2300,7 +2300,7 @@ void environment::possibly_break_line(bool must_break_here,
     // The space deficit tells us how much the line is overset if
     // negative, or underset if positive, relative to the configured
     // line length.
-    hunits space_deficit = target_text_length - bp->width;
+    hunits space_deficit = (target_text_length - bp->width);
     // An overset line always gets a warning.
     if (space_deficit < H0) {
       double dsd = static_cast<double>(space_deficit.to_units());
