@@ -1,5 +1,11 @@
 2025-12-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp (environment::set_size): Fix code style
+	nit.  Arrange equality comparison to avoid inadvertent lvalue
+	assignment.
+
+2025-12-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* README.git: Delete file not distributed in archives.
 	* bootstrap.conf (checkout_only_file): Identify "FOR-RELEASE"
 	instead of "README.git" as the indicator of a Git checkout.

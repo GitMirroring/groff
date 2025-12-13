@@ -689,7 +689,7 @@ void environment::set_size(int n)
 {
   if (was_line_interrupted)
     return;
-  if (n == 0) {
+  if (0 == n) {
     font_size temp = prev_size;
     prev_size = size;
     size = temp;
