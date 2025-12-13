@@ -69,10 +69,19 @@ echo "testing grn(1)- and eqn(1)-using me(7) document $doc" >&2
 "$grog" "$doc" | \
     grep -Fqx 'groff -e -g -me '"$doc"
 
-doc=$src/contrib/mm/examples/letter.mm
-echo "testing mm(7) document $doc" >&2
+for f in APP COVER IND LT ML MOVE MUL NCOL ND References SETR \
+         letter.mm memorandum.mm
+do
+    doc=$src/contrib/mm/examples/$f
+    echo "testing mm(7) document $doc" >&2
+    "$grog" "$doc" | \
+        grep -Fqx 'groff -mm '"$doc"
+done
+
+doc=$src/contrib/mm/examples/LT.se
+echo "testing mmse(7) document $doc" >&2
 "$grog" "$doc" | \
-    grep -Fqx 'groff -mm '"$doc"
+    grep -Fqx 'groff -mmse '"$doc"
 
 doc=$src/contrib/mom/examples/copyright-chapter.mom
 echo "testing mom(7) document $doc" >&2

@@ -1,5 +1,25 @@
 2025-12-12  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/utils/grog/grog.pl: Improve heuristics for distinguishing
+	mm(7) documents from those for other packages.
+	(interpret_line): Recognize `APP`, `APPSK`, `AF`, `AS`,
+	`COVEND`, `INITI`, `IND`, `INDP`, `INITR`, `SETR`, `GETHN`,
+	`GETPN`, `ISODATE`, `MULB`, `MULN`, and `MULE` as unique to mm.
+	(infer_man_or_ms_package): Stop recognizing `RP`, `TL`, `AU`,
+	`ND`, `AE`, `B1`, `B2`, `DS`, `DE`, `1C`, `2C`, and `MC` as
+	unique to ms, since mm also defines them.  Stop recognizing `P`
+	and `EX` as unique to man, since mm also defines them.
+	* src/utils/grog/tests/smoke-test.sh: Add most mm examples as
+	test cases.  A couple are deeply ambiguous, like "B1B2", which
+	is so limited that it is valid (and renders sensibly) with
+	either the mm(7) _or_ ms(7) packages, and "story.mm" which uses
+	only macro names that are shared variously among man(7), mm(7),
+	mom(7), and ms(7).
+
+	Fixes <https://savannah.gnu.org/bugs/?67802>.
+
+2025-12-12  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/utils/xtotroff/xtotroff.c (MapFont): Make fatal error
 	diagnostic on memory allocation failure disclose how many bytes
 	we attempted to grab from the heap.  This way the user can
