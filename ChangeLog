@@ -1,5 +1,17 @@
 2025-12-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/groff/groff.cpp (main): Initialize `want_unsafe_mode`
+	to `false`, not `true`.  When flipping the semantics of this
+	variable name in commit 3a1b01474d (to make it easier to
+	implement "locking" `-S` option behavior), I neglected to flip
+	its default value.
+
+	Fixes <https://savannah.gnu.org/bugs/?67815>.  Thanks to Dave
+	Kemper for the report and root-cause analysis.  Problem
+	introduced by me in commit 3a1b01474d, 7 October.
+
+2025-12-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[groff]: Regression-test Savannah #67815.
 
 	* src/roff/groff/tests/safer-mode-works.sh: Do it.

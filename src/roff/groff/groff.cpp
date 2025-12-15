@@ -162,7 +162,7 @@ int main(int argc, char **argv)
   int Xflag = 0;
   int oflag = 0;
   bool is_safer_mode_locked = false; // made true if `-S` explicit
-  bool want_unsafe_mode = true;
+  bool want_unsafe_mode = false;
   int is_xhtml = 0;
   int eflag = 0;
   int need_pic = 0;
