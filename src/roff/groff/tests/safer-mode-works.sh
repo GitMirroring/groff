@@ -31,6 +31,11 @@ error=$(echo .sy true | "$groff" 2>&1)
 echo "$error" | grep error || wail
 echo "$output"
 
+echo "checking that safer mode stays on after '-S -U' options given" >&2
+error=$(echo .sy true | "$groff" 2>&1)
+echo "$error" | grep error || wail
+echo "$output"
+
 test -z "$fail"
 
 # vim:set autoindent expandtab shiftwidth=4 tabstop=4 textwidth=72:
