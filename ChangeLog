@@ -1,3 +1,10 @@
+2025-12-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/env.cpp
+	(override_available_type_sizes_request): Fix code style nits.
+	Arrange equality comparisons to avoid inadvertent lvalue
+	assignment.  Parenthesize formally complex expressions.
+
 2025-12-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp

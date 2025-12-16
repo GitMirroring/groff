@@ -1374,11 +1374,11 @@ static void override_available_type_sizes_request()
   (void) memset(sizes, 0, (n * sizeof(int)));
   int i = 0;
   char *buf = read_rest_of_line_as_argument();
-  if (!buf)
+  if (0 /* nullptr */ == buf)
     return;
   char *p = strtok(buf, " \t");
   for (;;) {
-    if (!p)
+    if (0 /* nullptr */ == p)
       break;
     int lower, upper;
     switch (sscanf(p, "%d-%d", &lower, &upper)) {
@@ -1386,14 +1386,14 @@ static void override_available_type_sizes_request()
       upper = lower;
       // fall through
     case 2:
-      if (lower <= upper && lower >= 0)
+      if ((lower <= upper) && (lower >= 0))
 	break;
       // fall through
     default:
       warning(WARN_RANGE, "invalid size range '%1'", p);
       return;
     }
-    if (i + 2 > n) {
+    if ((i + 2) > n) {
       int *old_sizes = sizes;
       sizes = new int[n * 2]; // C++03: new int[n * 2]();
       (void) memset(sizes, 0, (n * 2 * sizeof(int)));
@@ -1402,10 +1402,10 @@ static void override_available_type_sizes_request()
       delete[] old_sizes;
     }
     sizes[i++] = lower;
-    if (lower == 0)
+    if (0 == lower)
       break;
     sizes[i++] = upper;
-    p = strtok(0, " \t");
+    p = strtok(0 /* nullptr */, " \t");
   }
   font_size::init_size_list(sizes);
   tok.next();
