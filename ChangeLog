@@ -1024,7 +1024,7 @@
 
 	* doc/groff.texi.in (Manipulating Hyphenation):
 	* man/groff.7.man (Request short reference): Fix error that
-	crept into groff 1.23.0 documentation; hypenation exception
+	crept into groff 1.23.0 documentation; hyphenation exception
 	words have no association with formatter environments (though
 	that is a contemplated change; see Savannah #66387).
 
