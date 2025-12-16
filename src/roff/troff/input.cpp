@@ -9187,14 +9187,15 @@ void abort_request()
   cleanup_and_exit(EXIT_FAILURE);
 }
 
-// Consume the rest of the input line in copy mode; if, after spaces,
-// the argument starts with a `"`, discard it, letting any immediately
-// subsequent spaces populate the returned string.
+// Consume the rest of the input line in copy mode and return it as a C
+// string; if, after spaces, the argument starts with a `"`, discard it,
+// letting any immediately subsequent spaces populate the returned
+// string.
 //
 // The caller must subsequently call `tok.next()` to advance the input
 // stream pointer.
 //
-// The caller has responsibility for `delete`ing the returned array.
+// The caller has responsibility for `delete`ing the returned buffer.
 char *read_rest_of_line_as_argument()
 {
   int buf_size = 256;
