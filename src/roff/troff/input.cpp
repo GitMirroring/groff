@@ -2790,6 +2790,7 @@ bool token::operator!=(const token &t)
 // doesn't tokenize it) and accepts a user-specified delimiter.
 static bool is_char_usable_as_delimiter(int c)
 {
+  // Reject all characters that can validly begin a numeric expression.
   switch (c) {
   case '0':
   case '1':
