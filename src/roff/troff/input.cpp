@@ -193,7 +193,7 @@ void chop_macro();	// declare to avoid friend name injection
 static const unsigned char default_escape_char = (unsigned char)('\\');
 static unsigned char escape_char = default_escape_char;
 
-static void assign_escape_character()
+static void assign_escape_character_request()
 {
   unsigned char ec = 0U;
   bool is_invalid = false;
@@ -232,7 +232,7 @@ static void assign_escape_character()
   skip_line();
 }
 
-void escape_off()
+void escape_off_request()
 {
   escape_char = 0U;
   skip_line();
@@ -240,13 +240,13 @@ void escape_off()
 
 static unsigned char saved_escape_char = '\\';
 
-void save_escape_char()
+void save_escape_char_request()
 {
   saved_escape_char = escape_char;
   skip_line();
 }
 
-void restore_escape_char()
+void restore_escape_char_request()
 {
   escape_char = saved_escape_char;
   skip_line();
@@ -8841,7 +8841,7 @@ charinfo *token::get_charinfo(bool required, bool suppress_creation)
       // XXX: Is this possible?  token::add_to_zero_width_node_list()
       // and token::process() don't add this token type if the escape
       // character is null.  If not, this should be an assert().  Also
-      // see escape_off().
+      // see escape_off_request().
       error("escaped 'e' used while escape sequences disabled");
       return 0 /* nullptr */;
     }
@@ -10084,12 +10084,12 @@ void init_input_requests()
   init_request("do", do_request);
   init_request("ds", define_string);
   init_request("ds1", define_nocomp_string);
-  init_request("ec", assign_escape_character);
-  init_request("ecr", restore_escape_char);
-  init_request("ecs", save_escape_char);
+  init_request("ec", assign_escape_character_request);
+  init_request("ecr", restore_escape_char_request);
+  init_request("ecs", save_escape_char_request);
   init_request("el", else_request);
   init_request("em", eoi_macro);
-  init_request("eo", escape_off);
+  init_request("eo", escape_off_request);
   init_request("ex", exit_request);
   init_request("fchar", define_fallback_character_request);
 #ifdef WIDOW_CONTROL
