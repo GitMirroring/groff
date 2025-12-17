@@ -3725,12 +3725,9 @@ and
 .I file
 As
 .RB \[lq] open \[rq],
-but if
+but appends to
 .I file
-already exists,
-GNU
-.I troff \" GNU
-appends to it instead of overwriting it.
+if it already exists instead of overwriting it.
 .
 .
 .TP

@@ -18668,10 +18668,9 @@ The
 @code{opena}
 request is like
 @code{open},
-but if
+but appends to
 @var{file}
-already exists,
-appends to it instead of overwriting it.
+if it already exists instead of overwriting it.
 
 @cindex safer mode
 @cindex mode, safer
