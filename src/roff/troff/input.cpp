@@ -192,6 +192,9 @@ void chop_macro();	// declare to avoid friend name injection
 
 static const unsigned char default_escape_char = (unsigned char)('\\');
 static unsigned char escape_char = default_escape_char;
+static const unsigned char default_control_char = (unsigned char)('.');
+static const unsigned char default_no_break_control_char
+  = (unsigned char)('\'');
 
 static void assign_escape_character_request()
 {
@@ -263,7 +266,7 @@ void assign_control_character()
       cc = tok.ch();
   }
   else
-    cc = '.';
+    cc = default_control_char;
   bool do_nothing = false;
   char already_ec[] = "the escape character is already";
   char already_nbcc[] = "the no-break control character is already";
@@ -282,9 +285,10 @@ void assign_control_character()
 	  is_invalid ? "cannot select invalid control character, and"
 	  : "", already_message, input_char_description(cc));
   else if (is_invalid) {
-    error("cannot select %1 as control character; using '.'",
-	  tok.description());
-    assignment_worked = curenv->set_control_character('.');
+    error("cannot select %1 as control character; using '%2'",
+	  tok.description(), char(default_control_char));
+    assignment_worked
+      = curenv->set_control_character(default_control_char);
   }
   else
     assignment_worked = curenv->set_control_character(cc);
@@ -303,7 +307,7 @@ void assign_no_break_control_character()
       nbcc = tok.ch();
   }
   else
-    nbcc = '\'';
+    nbcc = default_no_break_control_char;
   bool do_nothing = false;
   char already_ec[] = "the escape character is already";
   char already_cc[] = "the (breaking) control character is already";
@@ -324,8 +328,10 @@ void assign_no_break_control_character()
 	  : "", already_message, input_char_description(nbcc));
   else if (is_invalid) {
     error("cannot select %1 as no-break control character;"
-	  " using \"\'\"", tok.description());
-    assignment_worked = curenv->set_no_break_control_character('\'');
+	  " using \"%2\"", tok.description(),
+	  default_no_break_control_char);
+    assignment_worked
+      = curenv->set_no_break_control_character(default_no_break_control_char);
   }
   else
     assignment_worked = curenv->set_no_break_control_character(nbcc);

@@ -1,5 +1,15 @@
 2025-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp: Add new `const` globals
+	`default_control_char` and `default_no_break_control_char`.
+	(assign_control_character): Use `default_control_char` instead of
+	a `.` character literal.
+	(assign_no_break_control_character): Use
+	`default_no_break_control_char` instead of a `'` character
+	literal.
+
+2025-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (assign_escape_character): Rename
 	this...
 	(assign_escape_character_request): ...to this.
