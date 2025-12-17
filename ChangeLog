@@ -1,3 +1,10 @@
+2025-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp: Add new `const` global
+	`default_escape_char`.  Initialize `escape_char` using it.
+	(assign_escape_character): Use `default_escape_char` instead of
+	a `\\` character literal.
+
 2025-12-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (process_input_stack): Emit warning

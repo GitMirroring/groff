@@ -113,8 +113,6 @@ static bool want_input_ignored = false;
 static void enable_warning(const char *);
 static void disable_warning(const char *);
 
-static unsigned char escape_char = (unsigned char)('\\');
-
 static symbol end_of_input_macro_name;
 static symbol blank_line_macro_name;
 static symbol leading_spaces_macro_name;
@@ -192,6 +190,8 @@ const char *input_char_description(int);
 void process_input_stack();
 void chop_macro();	// declare to avoid friend name injection
 
+static const unsigned char default_escape_char = (unsigned char)('\\');
+static unsigned char escape_char = default_escape_char;
 
 static void assign_escape_character()
 {
@@ -204,7 +204,7 @@ static void assign_escape_character()
       ec = tok.ch();
   }
   else
-    ec = '\\';
+    ec = default_escape_char;
   bool do_nothing = false;
   static const char already_cc[] = "the control character is already";
   static const char already_nbcc[] = "the no-break control character is"
@@ -223,9 +223,9 @@ static void assign_escape_character()
 	  is_invalid ? "cannot select invalid escape character, and"
 	  : "", already_message, input_char_description(ec));
   else if (is_invalid) {
-    error("cannot select %1 as escape character; using '\\'",
-	  tok.description());
-    escape_char = '\\';
+    error("cannot select %1 as escape character; using '%2'",
+	  tok.description(), char(default_escape_char));
+    escape_char = default_escape_char;
   }
   else
     escape_char = ec;
