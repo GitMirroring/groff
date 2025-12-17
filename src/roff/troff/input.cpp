@@ -497,7 +497,7 @@ int file_iterator::fill(node **)
 	seen_newline = true;
 	break;
       }
-      seen_escape = ('\\' == c);
+      seen_escape = ('\\' == c); // XXX: should be (escape_char == c)?
     }
   }
   if (p > buf) {
