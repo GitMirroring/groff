@@ -16184,7 +16184,7 @@
 
 	* src/roff/nroff/nroff.sh: Support argument clustering by
 	iterating over the argument list and declustering options that
-	can be clustered (`-abCEikpRStUzZ`).
+	can be clustered (`-bCEikpRStUzZ`).
 
 	* src/roff/nroff/tests/verbose_option_works.sh: Test it.
 
