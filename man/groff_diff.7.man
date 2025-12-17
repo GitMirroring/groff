@@ -6833,6 +6833,25 @@ Texinfo manual.
 .
 .
 .P
+Like
+AT&T
+.I troff, \" AT&T
+GNU
+.I troff \" GNU
+maintains a buffer of device-independent output commands,
+populating the buffer as input accumulates.
+GNU
+.I troff \" GNU
+always flushes this buffer when processing a break;
+AT&T
+.I troff \" AT&T
+does so according to no obvious schedule
+(perhaps,
+if the buffer is of fixed size,
+the formatter performs the flush when the buffer runs out of room).
+.
+.
+.P
 In the somewhat pathological case where a diversion exists containing a
 partially collected line and a partially collected line at the top-level
 diversion has never existed,

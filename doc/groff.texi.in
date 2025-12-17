@@ -21013,6 +21013,29 @@ transparent output facility, or, if this is unsuitable,
 the new @code{\?} escape sequence.  @xref{Diversions} and @ref{Gtroff
 Internals}.
 
+@cindex timing of output flushes, incompatibilities with @acronym{AT&T} @command{troff}
+@cindex output flushes, timing of, incompatibilities with @acronym{AT&T} @command{troff}
+@cindex flushing of output, timing of, incompatibilities with @acronym{AT&T} @command{troff}
+Like @acronym{AT&T}
+@command{troff}, @c AT&T
+GNU
+@command{troff} @c GNU
+maintains a buffer of device-independent output commands,@footnote{In
+GNU
+@command{troff}, @c GNU
+node objects produce these commands;
+recall @ref{Gtroff Internals}.}
+populating the buffer as input accumulates.
+GNU
+@command{troff} @c GNU
+always flushes this buffer when processing a break;
+@acronym{AT&T}
+@command{troff} @c AT&T
+does so according to no obvious schedule
+(perhaps,
+if the buffer is of fixed size,
+the formatter performs the flush when the buffer runs out of room).
+
 In the somewhat pathological case where a diversion exists containing a
 partially collected line and a partially collected line at the top-level
 diversion has never existed, @acronym{AT&T} @code{troff} outputs a
