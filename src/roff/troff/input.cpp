@@ -177,7 +177,8 @@ static bool read_delimited_measurement(units *,
 	unsigned char /* scaling unit */, units /* previous value */);
 static symbol read_input_until_terminator(bool /* required */,
 					  unsigned char /* end char */);
-static bool get_line_arg(units *res, unsigned char si, charinfo **cp);
+static bool read_line_rule_expression(units *res, unsigned char si,
+				      charinfo **cp);
 static bool read_size(int *);
 static symbol read_delimited_identifier();
 static void init_registers();
@@ -2520,7 +2521,8 @@ void token::next()
       case 'L':
 	{
 	  charinfo *s = 0 /* nullptr */;
-	  if (!get_line_arg(&x, (cc == 'l' ? 'm': 'v'), &s))
+	  if (!read_line_rule_expression(&x, (cc == 'l' ? 'm': 'v'),
+					 &s))
 	    break;
 	  if (0 /* nullptr */ == s)
 	    s = lookup_charinfo(cc == 'l' ? "ru" : "br");
@@ -6022,7 +6024,11 @@ static bool read_delimited_measurement(units *n, unsigned char si)
 }
 
 // \l, \L
-static bool get_line_arg(units *n, unsigned char si, charinfo **cip)
+//
+// Here's some syntax unique to these escape sequences: a horizontal
+// measurment followed immediately by a character.
+static bool read_line_rule_expression(units *n, unsigned char si,
+				      charinfo **cip)
 {
   assert(cip != 0 /* nullptr */);
   token start_token;

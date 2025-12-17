@@ -1,5 +1,12 @@
 2025-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (get_line_arg): Rename this...
+	(read_line_rule_expression): ...to this.  Update forward
+	declaration.
+	(token:next): Update call site.
+
+2025-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (token::is_usable_as_delimiter):
 	Explicitly clear stack-allocated buffer before otherwise writing
 	to it, for paranoia's sake.
