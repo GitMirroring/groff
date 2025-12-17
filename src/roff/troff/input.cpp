@@ -2928,7 +2928,9 @@ bool token::is_usable_as_delimiter(bool report_error,
       const size_t maxstr
 	= sizeof "space character horizontal motion node token";
       const size_t bufsz = maxstr + 1; // for trailing '\0'
+      // C++03: char[bufsz]();
       static char buf[bufsz];
+      (void) memset(buf, 0, bufsz);
       describe_node(buf, bufsz);
       error("%1 is not allowed as a delimiter", buf);
     }
@@ -2959,6 +2961,7 @@ const char *token::description()
   const size_t maxstr
     = sizeof "space character horizontal motion node token";
   const size_t bufsz = maxstr + 2; // for trailing '"' and '\0'
+  // C++03: char[bufsz]();
   static char buf[bufsz];
   (void) memset(buf, 0, bufsz);
   switch (type) {
