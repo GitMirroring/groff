@@ -1406,7 +1406,8 @@ void do_fill_color(symbol nm) // \M
   }
 }
 
-static unsigned int get_color_element(const char *scheme, const char *col)
+static unsigned int read_color_channel_value(const char *scheme,
+					     const char *col)
 {
   units val;
   if (!read_measurement(&val, 'f')) {
@@ -1449,9 +1450,12 @@ static color *read_rgb(unsigned char end = 0U)
       input_stack::push(make_temp_iterator(" "));
     input_stack::push(make_temp_iterator(s));
     tok.next();
-    unsigned int r = get_color_element("rgb color", "red component");
-    unsigned int g = get_color_element("rgb color", "green component");
-    unsigned int b = get_color_element("rgb color", "blue component");
+    unsigned int r = read_color_channel_value("rgb color",
+					      "red component");
+    unsigned int g = read_color_channel_value("rgb color",
+					      "green component");
+    unsigned int b = read_color_channel_value("rgb color",
+					      "blue component");
     col->set_rgb(r, g, b);
   }
   return col;
@@ -1480,9 +1484,12 @@ static color *read_cmy(unsigned char end = 0U)
       input_stack::push(make_temp_iterator(" "));
     input_stack::push(make_temp_iterator(s));
     tok.next();
-    unsigned int c = get_color_element("cmy color", "cyan component");
-    unsigned int m = get_color_element("cmy color", "magenta component");
-    unsigned int y = get_color_element("cmy color", "yellow component");
+    unsigned int c = read_color_channel_value("cmy color",
+					      "cyan component");
+    unsigned int m = read_color_channel_value("cmy color",
+					      "magenta component");
+    unsigned int y = read_color_channel_value("cmy color",
+					      "yellow component");
     col->set_cmy(c, m, y);
   }
   return col;
@@ -1511,10 +1518,14 @@ static color *read_cmyk(unsigned char end = 0U)
       input_stack::push(make_temp_iterator(" "));
     input_stack::push(make_temp_iterator(s));
     tok.next();
-    unsigned int c = get_color_element("cmyk color", "cyan component");
-    unsigned int m = get_color_element("cmyk color", "magenta component");
-    unsigned int y = get_color_element("cmyk color", "yellow component");
-    unsigned int k = get_color_element("cmyk color", "black component");
+    unsigned int c = read_color_channel_value("cmyk color",
+					      "cyan component");
+    unsigned int m = read_color_channel_value("cmyk color",
+					      "magenta component");
+    unsigned int y = read_color_channel_value("cmyk color",
+					      "yellow component");
+    unsigned int k = read_color_channel_value("cmyk color",
+					      "black component");
     col->set_cmyk(c, m, y, k);
   }
   return col;
@@ -1543,7 +1554,7 @@ static color *read_gray(unsigned char end = 0U)
       input_stack::push(make_temp_iterator("\n"));
     input_stack::push(make_temp_iterator(s));
     tok.next();
-    unsigned int g = get_color_element("gray", "gray value");
+    unsigned int g = read_color_channel_value("gray", "gray value");
     col->set_gray(g);
   }
   return col;
