@@ -1420,7 +1420,7 @@ static unsigned int get_color_element(const char *scheme, const char *col)
     // we change 0x10000 to 0xffff
     return color::MAX_COLOR_VAL;
   }
-  return (unsigned int) val;
+  return (unsigned int)(val);
 }
 
 static color *read_rgb(unsigned char end = 0U)
@@ -1433,7 +1433,7 @@ static color *read_rgb(unsigned char end = 0U)
   }
   const char *s = component.contents();
   color *col = new color;
-  if (*s == '#') {
+  if ('#' == *s) {
     if (!col->read_rgb(s)) {
       warning(WARN_COLOR, "expecting rgb color definition,"
 	      " not '%1'", s);
@@ -1464,7 +1464,7 @@ static color *read_cmy(unsigned char end = 0U)
   }
   const char *s = component.contents();
   color *col = new color;
-  if (*s == '#') {
+  if ('#' == *s) {
     if (!col->read_cmy(s)) {
       warning(WARN_COLOR, "expecting cmy color definition,"
 	      " not '%1'", s);
@@ -1495,7 +1495,7 @@ static color *read_cmyk(unsigned char end = 0U)
   }
   const char *s = component.contents();
   color *col = new color;
-  if (*s == '#') {
+  if ('#' == *s) {
     if (!col->read_cmyk(s)) {
       warning(WARN_COLOR, "expecting cmyk color definition,"
 	      " not '%1'", s);
@@ -1527,7 +1527,7 @@ static color *read_gray(unsigned char end = 0U)
   }
   const char *s = component.contents();
   color *col = new color;
-  if (*s == '#') {
+  if ('#' == *s) {
     if (!col->read_gray(s)) {
       warning(WARN_COLOR, "expecting gray definition,"
 	      " not '%1'", s);
@@ -2519,10 +2519,10 @@ void token::next()
       case 'l':
       case 'L':
 	{
-	  charinfo *s = 0;
+	  charinfo *s = 0 /* nullptr */;
 	  if (!get_line_arg(&x, (cc == 'l' ? 'm': 'v'), &s))
 	    break;
-	  if (s == 0)
+	  if (0 /* nullptr */ == s)
 	    s = lookup_charinfo(cc == 'l' ? "ru" : "br");
 	  type = TOKEN_NODE;
 	  node *char_node = curenv->make_char_node(s);
@@ -2661,7 +2661,7 @@ void token::next()
 	    break;
 	  request_or_macro *p = lookup_request(s);
 	  macro *m = p->to_macro();
-	  if (!m) {
+	  if (0 /* nullptr */ == m) {
 	    error("cannot interpolate '%1' to device-independent"
 		  " output; it is a request, not a macro",
 		  s.contents());
@@ -5189,7 +5189,7 @@ static void interpolate_string(symbol nm)
 {
   request_or_macro *p = lookup_request(nm);
   macro *m = p->to_macro();
-  if (!m)
+  if (0 /* nullptr */ == m)
     error("cannot interpolate request '%1'", nm.contents());
   else {
     if (m->is_string()) {
@@ -5209,7 +5209,7 @@ static void interpolate_string_with_args(symbol nm)
 {
   request_or_macro *p = lookup_request(nm);
   macro *m = p->to_macro();
-  if (!m)
+  if (0 /* nullptr */ == m)
     error("cannot interpolate request '%1'", nm.contents());
   else {
     macro_iterator *mi = new macro_iterator(nm, *m);
@@ -5221,7 +5221,7 @@ static void interpolate_string_with_args(symbol nm)
 static void interpolate_arg(symbol nm)
 {
   const char *s = nm.contents();
-  if (!s || *s == '\0')
+  if (0 /* nullptr */ == s || '\0' == *s)
     copy_mode_error("missing positional argument number in copy mode");
   else if (s[1] == 0 && csdigit(s[0]))
     input_stack::push(input_stack::get_arg(s[0] - '0'));
@@ -5612,7 +5612,7 @@ void chop_macro()
   if (!s.is_null()) {
     request_or_macro *p = lookup_request(s);
     macro *m = p->to_macro();
-    if (!m)
+    if (0 /* nullptr */ == m)
       error("cannot chop request '%1'", s.contents());
     else if (m->is_empty())
       error("cannot chop empty %1 '%2'",
@@ -5662,7 +5662,7 @@ void do_string_case_transform(case_xform_mode mode)
   }
   request_or_macro *p = lookup_request(s);
   macro *m = p->to_macro();
-  if (!m) {
+  if (0 /* nullptr */ == m) {
     error("cannot apply string case transformation to request '%1'",
 	  s.contents());
     skip_line();
@@ -5725,7 +5725,7 @@ void substring_request()
   if (!s.is_null() && read_integer(&start)) {
     request_or_macro *p = lookup_request(s);
     macro *m = p->to_macro();
-    if (!m)
+    if (0 /* nullptr */ == m)
       error("cannot extract substring of request '%1'", s.contents());
     else {
       int end = -1;
@@ -5899,7 +5899,7 @@ void unformat_macro()
   if (!s.is_null()) {
     request_or_macro *p = lookup_request(s);
     macro *m = p->to_macro();
-    if (!m)
+    if (0 /* nullptr */ == m)
       error("cannot unformat request '%1'", s.contents());
     else {
       macro am;
@@ -8352,7 +8352,7 @@ void write_macro_request()
   }
   request_or_macro *p = lookup_request(s);
   macro *m = p->to_macro();
-  if (!m)
+  if (0 /* nullptr */ == m)
     error("cannot write request '%1' to a stream", s.contents());
   else {
     string_iterator iter(*m);
