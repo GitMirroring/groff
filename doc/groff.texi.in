@@ -8925,6 +8925,22 @@ This document was formatted in \n(y4.
 @endExample
 @end table
 
+If you wish to embed the date and/or time of a document's formatting
+into its output,
+interpolate these registers into its text.
+Use the @code{af} request to format their values for output.
+
+@Example
+.af year 0000
+.af mo 00
+.af dy 00
+.af hours 00
+.af minutes 00
+.af seconds 00
+ISO 8601 date stamp:
+\n[year]-\n[mo]-\n[dy]T\n[hours]:\n[minutes]:\n[seconds]
+    @result{} ISO 8601 date stamp: 2025-12-07T02:17:54
+@endExample
 
 @c =====================================================================
 
@@ -18604,38 +18620,32 @@ The writable register @code{systat} contains the return value of the
 @cite{system@r{(3)}} function executed by the most recent @code{sy}
 request.
 
-@c XXX: This is a really lame example because we already have built-in
-@c registers for this.  Come up with something better.
-The following code fragment introduces the current time into a document.
-
-@pindex perl
-@Example
-.sy perl -e 'printf ".nr H %d\\n.nr M %d\\n.nr S %d\\n",\
-             (localtime(time))[2,1,0]' > /tmp/x\n[$$]
-.so /tmp/x\n[$$]
-.sy rm /tmp/x\n[$$]
-\nH:\nM:\nS
-@endExample
-
-@noindent
-This works by having the Perl script (run by @code{sy}) write
-@code{nr} requests that set the registers @code{H}, @code{M}, and
-@code{S} to a temporary file.  The @code{roff} document then reads the
-temporary file using the @code{so} request.
-
-@cindex time, formatting
-@cindex formatting the time
-The registers @code{seconds}, @code{minutes}, and @code{hours},
-initialized at startup of GNU @code{troff}, should satisfy most
-requirements.  Use the @code{af} request to format their values for
-output.
+Real-world
+(and non-malicious)
+applications of
+@code{sy}
+are esoteric;
+the request interpolates
+neither the standard output nor the standard error streams of
+@var{command}
+into the document.
+We therefore offer a silly example of its use,
+to make a document refuse to format if the system user name
+running the formatter is
+@samp{branden}.@footnote{@acronym{POSIX}
+command environments
+and @code{roff} formatters employ different integer-to-Boolean
+interpretation conventions;
+a @acronym{POSIX} command exits with a positive status
+if it
+@emph{fails},
+whereas a @code{roff} register
+tests ``true'' if it has a positive value.}
 
 @Example
-.af hours 00
-.af minutes 00
-.af seconds 00
-\n[hours]:\n[minutes]:\n[seconds]
-    @result{} 02:17:54
+.sy test "$(id -un)" != branden
+.if \n[systat] .ab formatting refused
+Hello, world!
 @endExample
 @endDefreq
 
