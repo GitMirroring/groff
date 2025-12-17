@@ -2958,7 +2958,7 @@ const char *token::description()
   //   "character code XXX (U+XXXX)" or similar
   const size_t maxstr
     = sizeof "space character horizontal motion node token";
-  const size_t bufsz = maxstr + 2; // for trailing '"' and null
+  const size_t bufsz = maxstr + 2; // for trailing '"' and '\0'
   static char buf[bufsz];
   (void) memset(buf, 0, bufsz);
   switch (type) {
