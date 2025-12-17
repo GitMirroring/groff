@@ -1,5 +1,15 @@
 2025-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (assign_control_character): Rename
+	this...
+	(assign_control_character_request): ...to this.
+	(assign_no_break_control_character): Rename this...
+	(assign_no_break_control_character_request): ...to this.
+	(init_input_requests): Update wire-uppery of request names to
+	their handlers.
+
+2025-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp: Add new `const` globals
 	`default_control_char` and `default_no_break_control_char`.
 	(assign_control_character): Use `default_control_char` instead of

@@ -255,7 +255,7 @@ void restore_escape_char_request()
   skip_line();
 }
 
-void assign_control_character()
+void assign_control_character_request()
 {
   unsigned char cc = 0U;
   bool is_invalid = false;
@@ -296,7 +296,7 @@ void assign_control_character()
   skip_line();
 }
 
-void assign_no_break_control_character()
+void assign_no_break_control_character_request()
 {
   unsigned char nbcc = 0U;
   bool is_invalid = false;
@@ -10068,8 +10068,8 @@ void init_input_requests()
   init_request("backtrace", backtrace_request);
   init_request("blm", blank_line_macro);
   init_request("break", while_break_request);
-  init_request("cc", assign_control_character);
-  init_request("c2", assign_no_break_control_character);
+  init_request("cc", assign_control_character_request);
+  init_request("c2", assign_no_break_control_character_request);
   init_request("cf", unsafe_transparent_throughput_file_request);
   init_request("cflags", set_character_flags_request);
   init_request("char", define_character_request);
