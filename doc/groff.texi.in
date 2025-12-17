@@ -20115,8 +20115,9 @@ color.
 
 @item file
 @itemx 1048576
-An attempt was made to load a file that does not exist.  This category
-is enabled by default.
+An attempt was made to read a file that does not exist,
+or a stream remained open at formatter exit.
+This category is enabled by default.
 @end table
 
 Two warning names group other warning categories for convenience.
