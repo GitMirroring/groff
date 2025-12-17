@@ -1,5 +1,11 @@
 2025-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (interpolate_rg): Rename this...
+	(interpolate_positional_parameter): ...to this.
+	(get_copy, token::next): Update call sites.
+
+2025-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (get_color_element): Rename this...
 	(read_color_channel_value): ...to this.
 	(read_rgb, read_cmy, read_cmyk, read_gray): Update call sites.

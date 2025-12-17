@@ -169,7 +169,7 @@ static void interpolate_number_format(symbol);
 static void interpolate_environment_variable(symbol);
 
 static symbol composite_glyph_name(symbol);
-static void interpolate_arg(symbol);
+static void interpolate_positional_parameter(symbol);
 static request_or_macro *lookup_request(symbol);
 static bool read_delimited_measurement(units *,
 	unsigned char /* scaling unit */);
@@ -1175,7 +1175,7 @@ static int get_copy(node **nd, bool is_defining, bool handle_escape_E)
 	(void) input_stack::get(0 /* nullptr */);
 	symbol s = read_escape_parameter();
 	if (!(s.is_null() || s.is_empty()))
-	  interpolate_arg(s);
+	  interpolate_positional_parameter(s);
 	break;
       }
     case '*':
@@ -2401,7 +2401,7 @@ void token::next()
 	{
 	  symbol s = read_escape_parameter();
 	  if (!(s.is_null() || s.is_empty()))
-	    interpolate_arg(s);
+	    interpolate_positional_parameter(s);
 	  break;
 	}
       case '*':
@@ -5237,7 +5237,7 @@ static void interpolate_string_with_args(symbol nm)
   }
 }
 
-static void interpolate_arg(symbol nm)
+static void interpolate_positional_parameter(symbol nm)
 {
   const char *s = nm.contents();
   if (0 /* nullptr */ == s || '\0' == *s)
