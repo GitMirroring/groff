@@ -1,5 +1,13 @@
 2025-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (get_char_for_escape_parameter):
+	Rename this...
+	(read_char_in_escape_sequence_parameter): ...to this.
+	(read_long_escape_parameters, read_escape_parameter)
+	(read_increment_and_escape_parameter): Update call sites.
+
+2025-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (get_line_arg): Rename this...
 	(read_line_rule_expression): ...to this.  Update forward
 	declaration.

@@ -963,7 +963,8 @@ void shift()
   skip_line();
 }
 
-static char get_char_for_escape_parameter(bool allow_space = false)
+static char read_char_in_escape_sequence_parameter(bool allow_space
+						   = false)
 {
   int c = get_copy(0 /* nullptr */,
 		   false /* is defining */,
@@ -997,9 +998,9 @@ static char get_char_for_escape_parameter(bool allow_space = false)
 static symbol read_two_char_escape_parameter()
 {
   char buf[3];
-  buf[0] = get_char_for_escape_parameter();
+  buf[0] = read_char_in_escape_sequence_parameter();
   if (buf[0] != '\0') {
-    buf[1] = get_char_for_escape_parameter();
+    buf[1] = read_char_in_escape_sequence_parameter();
     if (buf[1] == '\0')
       buf[0] = '\0';
     else
@@ -1025,7 +1026,8 @@ static symbol read_long_escape_parameters(read_mode mode)
   char c;
   bool have_char = false;
   for (;;) {
-    c = get_char_for_escape_parameter(have_char && (WITH_ARGS == mode));
+    c = read_char_in_escape_sequence_parameter(have_char
+					       && (WITH_ARGS == mode));
     if ('\0' == c) {
       delete[] buf;
       return NULL_SYMBOL;
@@ -1069,7 +1071,7 @@ static symbol read_long_escape_parameters(read_mode mode)
 
 static symbol read_escape_parameter(read_mode mode)
 {
-  char c = get_char_for_escape_parameter();
+  char c = read_char_in_escape_sequence_parameter();
   if ('\0' == c)
     return NULL_SYMBOL;
   if ('(' == c)
@@ -1084,7 +1086,7 @@ static symbol read_escape_parameter(read_mode mode)
 
 static symbol read_increment_and_escape_parameter(int *incp)
 {
-  char c = get_char_for_escape_parameter();
+  char c = read_char_in_escape_sequence_parameter();
   switch (c) {
   case 0:
     *incp = 0;
