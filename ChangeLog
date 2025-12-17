@@ -126,6 +126,8 @@
 	of error diagnostics; favor "cannot" over "unable to" or
 	"can't".  Also quote name of environment variable.
 
+	Continues fixing Savannah #66519.
+
 2025-12-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/utils/xtotroff/xtotroff.c: Fix code style nit.
