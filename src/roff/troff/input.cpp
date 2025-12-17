@@ -486,18 +486,18 @@ int file_iterator::fill(node **)
   unsigned char *e = p + BUF_SIZE;
   while (p < e) {
     int c = getc(fp);
-    if (c == EOF)
+    if (EOF == c)
       break;
     if (is_invalid_input_char(c))
-      warning(WARN_INPUT, "invalid input character code %1", int(c));
+      warning(WARN_INPUT, "invalid input character code %1", c);
     else {
       *p++ = c;
-      if (c == '\n') {
+      if ('\n' == c) {
 	seen_escape = false;
 	seen_newline = true;
 	break;
       }
-      seen_escape = (c == '\\');
+      seen_escape = ('\\' == c);
     }
   }
   if (p > buf) {
@@ -514,7 +514,7 @@ int file_iterator::peek()
 {
   int c = getc(fp);
   while (is_invalid_input_char(c)) {
-    warning(WARN_INPUT, "invalid input character code %1", int(c));
+    warning(WARN_INPUT, "invalid input character code %1", c);
     c = getc(fp);
   }
   if (c != EOF)

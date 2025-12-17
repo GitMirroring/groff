@@ -1,5 +1,13 @@
 2025-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp: Fix code style nits.
+	(file_iterator::fill, file_iterator::peek): Stop pointlessly
+	constructing a new `int` from an existing one.
+	(file_iterator::fill): Arrange equality comparisons to avoid
+	inadvertent lvalue assignment.
+
+2025-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (assign_control_character): Rename
 	this...
 	(assign_control_character_request): ...to this.
