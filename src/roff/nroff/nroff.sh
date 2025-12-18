@@ -252,7 +252,7 @@ groff=${GROFF_TEST_GROFF-groff}
 # If POSIX adopts Bash's ${var@Q} or an equivalent, this issue can be
 # revisited.
 #
-# Note 2: The construction '${1+"@$"}' preserves the absence of
+# Note 2: The construction '${1+"$@"}' preserves the absence of
 # arguments in old shells; see "Shell Substitutions" in the GNU Autoconf
 # manual.  We don't want 'nroff' to become 'groff ... ""' if $# equals
 # zero.
