@@ -1,17 +1,17 @@
-'chem' is a 'roff' language to generate chemical structure diagrams.
+chem is a roff language to generate chemical structure diagrams.
 '@g@chem' is a 'groff' preprocessor that produces output suitable for
 the '@g@pic' preprocessor.
 
-The original version of 'chem' is an 'awk' script written by Brian
+The original version of chem is an awk script written by Brian
 Kernighan <http://cm.bell-labs.com/cm/cs/who/bwk/index.html>.  The
-source files of the 'awk' version of 'chem' are available at
+source files of the awk version of chem are available at
 <http://cm.bell-labs.com/netlib/typesetting/chem.gz>.
 
-This project is a rewrite of 'chem' in Perl for the GNU 'roff' project
+This project is a rewrite of chem in Perl for the GNU roff project
 'groff'.  It was written under Perl v5.8.8, but at least Perl v5.6 is
-needed to run the Perl version of 'chem'.
+needed to run the Perl version of chem.
 
-In comparison to the original 'awk' version of 'chem', the Perl
+In comparison to the original awk version of chem, the Perl
 version does the following changements:
 - the options -h, --help, -v, --version to output usage and version
 information are added.
@@ -19,7 +19,7 @@ information are added.
 variables that are used only once.
 
 The subdirectory 'examples/' contains example files for chem.  They
-are written in the 'chem' language.  The file names end with .chem.
+are written in the chem language.  The file names end with .chem.
 
 
 ####### License

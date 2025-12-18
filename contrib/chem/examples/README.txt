@@ -1,4 +1,4 @@
-This directory contains examples for the 'chem' language.
+This directory contains examples for the chem language.
 
 You can view the graphical display of the examples by calling
 
