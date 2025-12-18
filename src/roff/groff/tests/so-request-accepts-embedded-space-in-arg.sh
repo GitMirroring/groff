@@ -34,7 +34,7 @@ cleanup () {
 }
 
 # A process handling a fatal signal should:
-#   1.  Mask _all_ fatal signals.
+#   1.  Mask all fatal signals of interest.  (GBR often excludes ABRT.)
 #   2.  Perform cleanup operations.
 #   3.  Unmask the signal (removing the handler).
 #   4.  Signal its own process group with the signal caught so that the
