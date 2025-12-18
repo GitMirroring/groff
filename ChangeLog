@@ -198,6 +198,18 @@
 
 2025-12-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* font/devpdf/devpdf.am: Fix "BuildFoundries" failure if the URW
+	fonts can't be found in its built-in search path.  If the macro
+	`HAVE_URW_FONTS` is defined, define new macro
+	`buildfoundries_extra_arg` so as to construct a `--dirURW=`
+	argument; otherwise, make `buildfoundries_extra_arg` empty.
+	(font/devpdf/download): Interpolate `buildfoundries_extra_arg`
+	macro when running "BuildFoundries" command.
+
+	Fixes <https://savannah.gnu.org/bugs/?67683>.
+
+2025-12-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (token::description): Size the buffer
 	housing the node description more scrupulously, avoiding
 	potential string truncation.
