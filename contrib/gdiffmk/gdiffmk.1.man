@@ -9,7 +9,7 @@ files
 .\" Legal Terms
 .\" ====================================================================
 .\"
-.\" Copyright (C) 2004-2025 Free Software Foundation, Inc.
+.\" Copyright 2004-2025 Free Software Foundation, Inc.
 .\"
 .\" This file is part of gdiffmk, which is part of groff, the GNU roff
 .\" typesetting system.

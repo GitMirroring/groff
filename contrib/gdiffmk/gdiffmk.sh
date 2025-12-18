@@ -1,6 +1,7 @@
 #!@POSIX_SHELL_PROG@
-# Copyright (C) 2004-2015 Free Software Foundation, Inc.
-#               2023-2024 G. Branden Robinson
+# Copyright 2004-2015 Free Software Foundation, Inc.
+#           2023-2024 G. Branden Robinson
+#
 # Written by Mike Bianchi <MBianchi@Foveal.com>
 # Changes from May 2015 onward by the groff development team
 
