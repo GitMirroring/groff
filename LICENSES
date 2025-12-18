@@ -21,9 +21,10 @@ any subsequent version of the GPL.  Some are distributed under
 alternative terms as well.
 
 groff is an effort of the GNU Project of the Free Software Foundation
-(FSF); with the exceptions noted below, the copyrights of all files
-comprising it have been assigned to the FSF.  Information on GNU and the
-FSF may be found at <https://www.fsf.org/>.
+(FSF); with the exceptions noted below, the copyrights of files
+comprising it have largely been assigned to the FSF.  (Some contributors
+have not assigned copyright.)  Information on GNU and the FSF may be
+found at <https://www.fsf.org/>.
 
 The GNU troff manual, doc/groff.texi, written in Texinfo, is
 dual-licensed under the GNU Free Documentation License (FDL) _and_ the
@@ -33,7 +34,7 @@ groff's man pages, which are under the GPL as noted above.
 
 Files in the contrib/ subdirectory of the source distribution are not
 strictly part of groff.  That is, they are distributed with it and are
-Free Software <https://www.gnu.org/philosophy/free-sw.en.html>, but they
+free software <https://www.gnu.org/philosophy/free-sw.en.html>, but they
 are not considered essential parts of the distribution.  Further, they
 may bear licenses in addition to the GPL, or the FSF does not administer
 their copyrights.  For convenience, a "COPYRIGHT" file in the
