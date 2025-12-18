@@ -127,8 +127,8 @@ This file summarizes the structure of the groff source distribution.
 ./tmac          Macro files.
   mdoc          Modules for the mdoc package.
 
-Various directories contain a "tests" subdirectory.  These are automated
-tests performed when groff's Makefile is run with the "check" target.
+Many directories contain a "tests" subdirectory.  These contain
+self-tests performed by running the "check" target of groff's Makefile.
 
 
 3) Documentation
