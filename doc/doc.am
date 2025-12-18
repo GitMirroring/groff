@@ -24,13 +24,13 @@ doc_srcdir = $(abs_top_srcdir)/doc
 doc_builddir = $(abs_top_builddir)/doc
 
 # Some document sources are parameterized in configuration options like
-# the groff version number and the command prefix.  Use this in target
-# rules to prepare formattable versions of them from .in files.
+# the groff version number and the command prefix.  Use this in rules to
+# prepare formattable versions of them from .in files.
 DOC_SED = $(SED) \
   -e "s;[@]VERSION[@];$(VERSION);" \
   -e "s;[@]g[@];$(g);g;"
 
-# Use this in target rules to run the build tree's groff.
+# Use this in rules to run the build tree's groff.
 #
 # It includes flags to locate its tmac and device/font description
 # directories and to produce verbose diagnostics in the event of syntax
