@@ -2,7 +2,8 @@
 #
 # Emulate nroff with groff.
 #
-# Copyright 1992-2025 Free Software Foundation, Inc.
+# Copyright 1992-2021 Free Software Foundation, Inc.
+#           2019-2024 G. Branden Robinson
 #
 # Written by James Clark, Werner Lemberg, and G. Branden Robinson.
 #
