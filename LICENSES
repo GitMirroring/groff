@@ -30,7 +30,8 @@ The GNU troff manual, doc/groff.texi, written in Texinfo, is
 dual-licensed under the GNU Free Documentation License (FDL) _and_ the
 GNU GPL.  This status is to honor the intentions of its authors and to
 permit frictionless migration of material between that manual and
-groff's man pages, which are under the GPL as noted above.
+groff's man pages, which are under the GPL as noted above.  Find a copy
+of the FDL license in the file "FDL".
 
 Files in the contrib/ subdirectory of the source distribution are not
 strictly part of groff.  That is, they are distributed with it and are
@@ -47,6 +48,16 @@ elsewhere; often, the groff project has modified them, sometimes
 extensively.  These multi-licensed groff components are as follows.
 Their file names are not always identical to those in their original
 distributions, but we have kept them similar.
+
+libgroff static library
+=======================
+
+Two files in libgroff, a utility library statically linked into most
+executables that groff provides, are licensed under the LGPLv3.  Find a
+copy of the license in the file "LGPLv3".
+
+	src/include/relocate.h
+	src/libs/libgroff/relocate.cpp
 
 grn preprocessor
 ================

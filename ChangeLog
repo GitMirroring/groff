@@ -1,5 +1,20 @@
 2025-12-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	Recognize materials licensed under LGPLv3.
+
+	* LGPLv3: New file, retrieved from gnu.org on this date.
+	* LICENSES: Discuss materials distributed under LGPLv3.  State
+	where to find texts of FDL and LGPLv3 licenses.  (It's not a big
+	mystery.)
+	* MANIFEST: Document presence of "LGPLv3" file.
+	* Makefile.am (EXTRA_DIST): Ship "LGPLv3" file.
+	* src/include/relocate.h:
+	* src/libs/libgroff/relocate.cpp: Cosmetically reindent and
+	reflow copyright and license notices.  Reflect renaming of LGPL
+	from "Library" to "Lesser" General Public License.
+
+2025-12-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Retire our hypot(3) replacement in favor of gnulib's.  Werner
 	Lemberg borrowed ours from glibc in 2005 to work around a
 	problem with its Interix implementation.  Interix has been dead
