@@ -1,25 +1,25 @@
-chem is a roff language to generate chemical structure diagrams.
-'@g@chem' is a 'groff' preprocessor that produces output suitable for
-the '@g@pic' preprocessor.
+chem is a preprocessor for *roff formatters that generates chemical
+structure diagrams in the pic language.
 
-The original version of chem is an awk script written by Brian
-Kernighan <http://cm.bell-labs.com/cm/cs/who/bwk/index.html>.  The
-source files of the awk version of chem are available at
-<http://cm.bell-labs.com/netlib/typesetting/chem.gz>.
+The original version of chem is an AWK script written by Brian
+Kernighan, formerly sited at <http://cm.bell-labs.com/cm/cs/who/bwk/
+ndex.html>.  Historically, the source files of the AWK version of chem
+are available at <http://cm.bell-labs.com/netlib/typesetting/chem.gz>.
 
-This project is a rewrite of chem in Perl for the GNU roff project
-'groff'.  It was written under Perl v5.8.8, but at least Perl v5.6 is
-needed to run the Perl version of chem.
+This project is a rewrite in Perl of the AWK version of chem for groff,
+the GNU roff project.  It was written using Perl v5.8.8, but at least
+Perl v5.6 is needed to run this Perl version of chem.
 
-In comparison to the original awk version of chem, the Perl
-version does the following changements:
-- the options -h, --help, -v, --version to output usage and version
-information are added.
-- remove some functions 'inline', 'shiftfields', and 'set' and some
-variables that are used only once.
+In comparison to the original AWK version of chem, this Perl version
+makes the following changes.
 
-The subdirectory 'examples/' contains example files for chem.  They
-are written in the chem language.  The file names end with .chem.
+- Adds options -h, --help, -v, and --version to output usage and version
+  information.
+- Removes some functions "inline", "shiftfields", and "set", and some
+  variables that are used only once.
+
+The subdirectory "examples/" contains example files for chem.  They are
+written in the chem language.  The file names end with .chem.
 
 
 ####### License
