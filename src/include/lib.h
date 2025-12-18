@@ -47,7 +47,6 @@ extern "C" {
 
 char *strsave(const char *s);
 unsigned ceil_prime(unsigned);
-double groff_hypot(double, double);
 
 #include <stdio.h>
 #include <string.h>

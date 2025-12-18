@@ -207,7 +207,7 @@ double operator*(const position &a, const position &b)
 
 double hypot(const position &a)
 {
-  return groff_hypot(a.x, a.y);
+  return hypot(a.x, a.y);
 }
 
 struct arrow_head_type {

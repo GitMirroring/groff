@@ -1,3 +1,24 @@
+2025-12-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	Retire our hypot(3) replacement in favor of gnulib's.  Werner
+	Lemberg borrowed ours from glibc in 2005 to work around a
+	problem with its Interix implementation.  Interix has been dead
+	a long time.  We still want a replacement, though, as gnulib
+	documents hypot(3) as broken on mingw and MSVC 2014.  We
+	certainly wish to keep working on the former.
+
+	* bootstrap.conf: Add "hypot" to "gnulib_modules".
+	* src/include/lib.h: Drop declaration of `groff_hypot()`.
+	* src/libs/libgroff/hypot.cpp: Delete.
+	* src/libs/libgroff/libgroff.am (libgroff_a_SOURCES): Drop
+	foregoing file.
+	* src/preproc/grn/hgraph.cpp (len, HGArc, picurve)
+	(Parameterize):
+	* src/preproc/pic/object.cpp (hypot): Migrate `groff_hypot()`
+	calls to `hypot()`.
+
+	Continues the long process of fixing Savannah #66518.
+
 2025-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/ps.tmac: Delete internal macros after we're done using
