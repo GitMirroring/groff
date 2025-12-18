@@ -325,7 +325,7 @@ int main(int argc, char **argv)
 		       "%s: error: unrecognized command-line option"
 		       " '%c'\n", program_name, (char) optopt);
       else
-	(void) fprintf(stderr, "unrecognized command-line option '%1'",
+	(void) fprintf(stderr, "unrecognized command-line option '%s'",
 		argv[(optind - 1)]);
       usage(stderr);
       xtotroff_exit(2);

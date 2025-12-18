@@ -1,5 +1,13 @@
 2025-12-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/utils/xtotroff/xtotroff.c (main): Fix thinko in fprintf(3)
+	call; that's not one of groff's diagnostic functions, so we must
+	use `%s` in its format string, not `%1`.
+
+	Fixes problem introduced by me in commit 4b7a0fe5ab, 6 December.
+
+2025-12-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Recognize materials licensed under LGPLv3.
 
 	* LGPLv3: New file, retrieved from gnu.org on this date.
