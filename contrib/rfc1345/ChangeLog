@@ -1,3 +1,10 @@
+2025-12-18  Alexis Hildebrandt <afh@surryhill.net>
+
+	* rfc1345.tmac: Strip undesired spaces from ends of character
+	definitions {`sed -i -Ee 's@( +)\\"@\\"\1@'`}.
+
+	Fixes <https://savannah.gnu.org/bugs/?67827>.
+
 2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	Regression-test Savannah #67827.
