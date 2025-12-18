@@ -1,5 +1,13 @@
 2025-12-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (token::description): Size the buffer
+	housing the node description more scrupulously, avoiding
+	potential string truncation.
+
+	Fixes problem introduced by me in commit 1fb72c15e6, 3 December.
+
+2025-12-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/utils/xtotroff/xtotroff.c (main): Fix thinko in fprintf(3)
 	call; that's not one of groff's diagnostic functions, so we must
 	use `%s` in its format string, not `%1`.

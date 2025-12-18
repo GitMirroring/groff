@@ -3019,7 +3019,7 @@ const char *token::description()
     return "a newline";
   case TOKEN_NODE:
     {
-      static char nodebuf[bufsz];
+      static char nodebuf[bufsz - (sizeof " token")];
       (void) strcpy(nodebuf, "an undescribed node");
       describe_node(nodebuf, bufsz);
       (void) snprintf(buf, bufsz, "%s token", nodebuf);
