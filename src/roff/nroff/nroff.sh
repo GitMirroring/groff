@@ -22,7 +22,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# Screen for shells non-conforming with POSIX Issue 4 (1994).
+# Screen out shells non-conforming with POSIX Issue 4 (1994).
 badshell=yes
 # Solaris 10 /bin/sh is so wretched that it not only doesn't support
 # standard parameter expansion, but it also writes diagnostic messages
