@@ -20,7 +20,8 @@ chemically.
 
 ####### License
 
-Copyright (C) 2006-2020 Free Software Foundation, Inc.
+Copyright 2006-2020 Free Software Foundation, Inc.
+
 Written by Bernd Warken <groff-bernd.warken-72@web.de>.
 
 This file is part of chem.
