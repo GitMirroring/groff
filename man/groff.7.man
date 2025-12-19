@@ -1872,13 +1872,9 @@ and thus are allowed as delimiters:
 .\" and eqn) also allows the delimited `\C`, which is a wart that makes
 .\" the foregoing "thus" a lie.  But expecting the reader to have a
 .\" command of GNU troff's token types, which _should_ be a mere
-.\" implementation detail, is a tall order.  When we make GNU troff
-.\" handle UTF-8/Unicode internally we'll have a practically unlimited
-.\" space for token types (because the internal character type will go
-.\" from 8 to 32 bits wide), and can distinguish some that have been
-.\" collapsed to date.  That would in turn allow us to make
-.\" "unformatting" and "asciification" more representative of the
-.\" original input.
+.\" implementation detail, is a tall order.  We can fix this by
+.\" introducing separate token types for _delimited_ special characters
+.\" and _delimited_ horizontal motions.
 .BI \[rs] space\c
 ,
 .BR \[rs]% ,

@@ -7971,13 +7971,9 @@ and thus are allowed as delimiters:
 @c and eqn) also allows the delimited `\C`, which is a wart that makes
 @c the foregoing "thus" a lie.  But expecting the reader to have a
 @c command of GNU troff's token types, which _should_ be a mere
-@c implementation detail, is a tall order.  When we make GNU troff
-@c handle UTF-8/Unicode internally we'll have a practically unlimited
-@c space for token types (because the internal character type will go
-@c from 8 to 32 bits wide), and can distinguish some that have been
-@c collapsed to date.  That would in turn allow us to make
-@c "unformatting" and "asciification" more representative of the
-@c original input.
+@c implementation detail, is a tall order.  We can fix this by
+@c introducing separate token types for _delimited_ special characters
+@c and _delimited_ horizontal motions.
 @code{\@key{SPC}},
 @code{\%},
 @code{\@{},
