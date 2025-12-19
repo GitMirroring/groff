@@ -37,7 +37,7 @@ const hunits H0; // zero in horizontal units
 int hresolution = 1;
 int vresolution = 1;
 int units_per_inch;
-int sizescale;
+int sizescale; // subdivisions per point
 
 static bool is_valid_expression(units *u, int scaling_unit,
 				bool is_parenthesized,
