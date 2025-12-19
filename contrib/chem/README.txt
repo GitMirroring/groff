@@ -22,29 +22,6 @@ The subdirectory "examples/" contains example files for chem.  They are
 written in the chem language.  The file names end with .chem.
 
 
-####### License
-
-Copyright 2006-2020 Free Software Foundation, Inc.
-
-Written by Bernd Warken <groff-bernd.warken-72@web.de>.
-
-This file is part of chem.
-
-chem is distributed with groff, the GNU roff typesetting system.
-
-groff is free software; you can redistribute it and/or modify it
-under the terms of the GNU General Public License (GPL) version 2 as
-published by the Free Software Foundation.
-
-groff is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
-for more details.
-
-The GPL2 license text is available in the internet at
-<http://www.gnu.org/licenses/gpl-2.0.html>.
-
-
 ##### Editor settings
 Local Variables:
 fill-column: 72
