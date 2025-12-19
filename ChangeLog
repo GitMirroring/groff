@@ -1,3 +1,21 @@
+2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Further conceal broken nested class feature.
+
+	* src/roff/troff/charinfo.h (class charinfo): Annotate
+	nonfunctional member variable.
+	* src/roff/troff/input.cpp (define_class_request)
+	(charinfo::get_number, charinfo::contains): Drop word "cyclic"
+	from warning diagnostics in category "syntax"; we don't
+	implemented nested classes _at all_; lack of support is not
+	limited to non-cyclic ones.
+	(charinfo::contains): `#if 0`-disable code that searches
+	`nested_classes` member variable for matching `charinfo`
+	objects.
+
+	Fixes <https://savannah.gnu.org/bugs/?67770>.  Continues commit
+	d330127900, 6 December.
+
 2025-12-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (token::description): Size the buffer

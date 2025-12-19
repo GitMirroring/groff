@@ -8779,7 +8779,7 @@ static void define_class_request()
     else if (child1 != 0 /* nullptr */) {
       if (child1->is_class()) {
 	if (ci == child1) {
-	  warning(WARN_SYNTAX, "invalid cyclic class nesting");
+	  warning(WARN_SYNTAX, "cannot nest character classes");
 	  skip_line();
 	  return;
 	}
@@ -8820,7 +8820,7 @@ static void define_class_request()
   if (child1 != 0 /* nullptr */) {
     if (child1->is_class()) {
       if (ci == child1) {
-	warning(WARN_SYNTAX, "invalid cyclic class nesting");
+	warning(WARN_SYNTAX, "cannot nest character classes");
 	skip_line();
 	return;
       }
@@ -10877,7 +10877,7 @@ int charinfo::get_number()
 bool charinfo::contains(int c, bool already_called)
 {
   if (already_called) {
-    warning(WARN_SYNTAX, "cyclic nested class detected while processing"
+    warning(WARN_SYNTAX, "nested class detected while processing"
 	    " character code %1", c);
     return false;
   }
@@ -10894,6 +10894,8 @@ bool charinfo::contains(int c, bool already_called)
     ++ranges_iter;
   }
 
+  // Nested classes don't work.  See Savannah #67770.
+#if 0
   std::vector<charinfo *>::const_iterator nested_iter;
   nested_iter = nested_classes.begin();
   while (nested_iter != nested_classes.end()) {
@@ -10901,6 +10903,7 @@ bool charinfo::contains(int c, bool already_called)
       return true;
     ++nested_iter;
   }
+#endif
 
   return false;
 }
@@ -10908,9 +10911,8 @@ bool charinfo::contains(int c, bool already_called)
 bool charinfo::contains(symbol s, bool already_called)
 {
   if (already_called) {
-    warning(WARN_SYNTAX,
-	    "cyclic nested class detected while processing symbol %1",
-	    s.contents());
+    warning(WARN_SYNTAX, "nested class detected while processing symbol"
+	    " %1", s.contents());
     return false;
   }
   const char *unicode = glyph_name_to_unicode(s.contents());

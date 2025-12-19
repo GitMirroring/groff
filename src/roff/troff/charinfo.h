@@ -41,7 +41,7 @@ class charinfo : glyph {
   char_mode mode;
   // Unicode character classes
   std::vector<std::pair<int, int> > ranges;
-  std::vector<charinfo *> nested_classes;
+  std::vector<charinfo *> nested_classes; // XXX: see Savannah #67770
 public:
   // Values for the flags bitmask.  See groff manual, description of the
   // '.cflags' request.
