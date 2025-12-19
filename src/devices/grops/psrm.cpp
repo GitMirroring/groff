@@ -67,6 +67,7 @@ const char *extension_table[] = {
   "FileSystem",
 };
 
+// C++11: constexpr
 const size_t NEXTENSIONS = countof(extension_table);
 
 // this must stay in sync with 'resource_type' in 'ps.h'
@@ -80,6 +81,7 @@ const char *resource_table[] = {
   "pattern",
 };
 
+// C++11: constexpr
 const size_t NRESOURCES = countof(resource_table);
 
 static bool read_uint_arg(const char **pp, unsigned *res)
@@ -947,6 +949,7 @@ void resource_manager::process_file(int rank, FILE *fp,
     "DocumentSuppliedFiles:",
   };
 
+  // C++11: constexpr
   const size_t NHEADER_COMMENTS = countof(header_comment_table);
 
   static const comment_info comment_table[] = {
@@ -968,6 +971,7 @@ void resource_manager::process_file(int rank, FILE *fp,
     { "BeginBinary:", &resource_manager::do_begin_binary },
   };
 
+  // C++11: constexpr
   const size_t NCOMMENTS = countof(comment_table);
   string buf;
   int saved_lineno = current_lineno;
