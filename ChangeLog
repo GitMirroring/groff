@@ -1,5 +1,25 @@
 2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Trivially refactor for conceptual clarity.  In *roff,
+	spaces and horizontal motions are distinct kinds of thing.
+	Spaces are potentially breakable, discardable (at the distal
+	ends of text lines), and adjustable.  Horizontal motions are
+	none of these.
+
+	* src/roff/troff/token.h (class token): Rename enumeration
+	constant from `TOKEN_HORIZONTAL_SPACE` to
+	`TOKEN_HORIZONTAL_MOTION`.  Rename member function declaration
+	from `is_horizontal_space()` to `is_horizontal_motion()`.
+	(token::is_horizontal_space): Rename this...
+	(token::is_horizontal_motion): ...to this.
+	* src/roff/troff/input.cpp (do_overstrike): Update lone call
+	site of `is_horizontal_space()`.
+	* src/roff/troff/token.h (token::is_horizontal_motion):
+	* src/roff/troff/input.cpp (token::next): Update sites of
+	comparisons to `TOKEN_HORIZONTAL_SPACE`.
+
+2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/token.h (class token): Rename member function
 	{declared} from `is_white_space()` to
 	`is_horizontal_whitespace()`.  Whitespace isn't "white" in the

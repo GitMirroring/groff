@@ -65,7 +65,7 @@ class token {
     TOKEN_SPREAD,		// \p -- break and spread output line
     TOKEN_STRETCHABLE_SPACE,	// \~
     TOKEN_UNSTRETCHABLE_SPACE,	// '\ '
-    TOKEN_HORIZONTAL_SPACE,	// horizontal motion: \|, \^, \0, \h
+    TOKEN_HORIZONTAL_MOTION,	// horizontal motion: \|, \^, \0, \h
     TOKEN_TAB,			// ^I
     TOKEN_TRANSPARENT,		// \!
     TOKEN_TRANSPARENT_DUMMY,	// \)
@@ -87,7 +87,7 @@ public:
   bool is_space();
   bool is_stretchable_space();
   bool is_unstretchable_space();
-  bool is_horizontal_space();
+  bool is_horizontal_motion();
   bool is_horizontal_whitespace();
   bool is_any_character();
   // XXX: Do we need a `is_ordinary_character()`?
@@ -178,9 +178,9 @@ inline bool token::is_unstretchable_space()
   return (TOKEN_UNSTRETCHABLE_SPACE == type);
 }
 
-inline bool token::is_horizontal_space()
+inline bool token::is_horizontal_motion()
 {
-  return (TOKEN_HORIZONTAL_SPACE == type);
+  return (TOKEN_HORIZONTAL_MOTION == type);
 }
 
 inline bool token::is_special_character()

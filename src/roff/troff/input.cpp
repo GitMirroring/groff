@@ -1690,7 +1690,7 @@ node *do_overstrike() // \o
     if (tok == start_token
 	&& (want_att_compat || input_stack::get_level() == start_level))
       break;
-    if (tok.is_horizontal_space())
+    if (tok.is_horizontal_motion())
       osnode->overstrike(tok.nd->copy());
     else if (tok.is_unstretchable_space()) {
       node *n = new hmotion_node(curenv->get_space_width(),
@@ -2066,7 +2066,7 @@ void token::diagnose_non_character()
   //   is_space()
   //   is_stretchable_space()
   //   is_unstrechable_space()
-  //   is_horizontal_space()
+  //   is_horizontal_motion()
   //   is_horizontal_whitespace()
   //   is_leader()
   //   is_backspace()
@@ -2210,13 +2210,13 @@ void token::next()
 	goto handle_escape_char;
       case ESCAPE_BAR:
       ESCAPE_BAR:
-	type = TOKEN_HORIZONTAL_SPACE;
+	type = TOKEN_HORIZONTAL_MOTION;
 	nd = new hmotion_node(curenv->get_narrow_space_width(),
 			      curenv->get_fill_color());
 	return;
       case ESCAPE_CIRCUMFLEX:
       ESCAPE_CIRCUMFLEX:
-	type = TOKEN_HORIZONTAL_SPACE;
+	type = TOKEN_HORIZONTAL_MOTION;
 	nd = new hmotion_node(curenv->get_half_narrow_space_width(),
 			      curenv->get_fill_color());
 	return;
@@ -2337,7 +2337,7 @@ void token::next()
       case '0':
 	nd = new hmotion_node(curenv->get_digit_width(),
 			      curenv->get_fill_color());
-	type = TOKEN_HORIZONTAL_SPACE;
+	type = TOKEN_HORIZONTAL_MOTION;
 	return;
       case '|':
 	goto ESCAPE_BAR;
@@ -2507,7 +2507,7 @@ void token::next()
       case 'h':
 	if (!read_delimited_measurement(&x, 'm'))
 	  break;
-	type = TOKEN_HORIZONTAL_SPACE;
+	type = TOKEN_HORIZONTAL_MOTION;
 	nd = new hmotion_node(x, curenv->get_fill_color());
 	return;
       case 'H':
@@ -2690,7 +2690,7 @@ void token::next()
 	}
       case 'z':
 	next();
-	if ((TOKEN_NODE == type) || (TOKEN_HORIZONTAL_SPACE == type))
+	if ((TOKEN_NODE == type) || (TOKEN_HORIZONTAL_MOTION == type))
 	  nd = new zero_width_node(nd);
 	else {
 	  // TODO: In theory, we could accept spaces and horizontal
@@ -2955,7 +2955,7 @@ bool token::is_usable_as_delimiter(bool report_error,
   case TOKEN_SPACE:
   case TOKEN_STRETCHABLE_SPACE:
   case TOKEN_UNSTRETCHABLE_SPACE:
-  case TOKEN_HORIZONTAL_SPACE:
+  case TOKEN_HORIZONTAL_MOTION:
   case TOKEN_NEWLINE:
   case TOKEN_EOF:
     if (report_error)
@@ -3070,7 +3070,7 @@ const char *token::description()
     return "an escaped '~'";
   case TOKEN_UNSTRETCHABLE_SPACE:
     return "an escaped ' '";
-  case TOKEN_HORIZONTAL_SPACE:
+  case TOKEN_HORIZONTAL_MOTION:
     return "a horizontal motion";
   case TOKEN_TAB:
     return "a tab character";
@@ -3634,12 +3634,12 @@ void process_input_stack()
     case token::TOKEN_EOF:
       return;
     case token::TOKEN_NODE:
-    case token::TOKEN_HORIZONTAL_SPACE:
+    case token::TOKEN_HORIZONTAL_MOTION:
       if (curenv->get_was_line_interrupted()) {
 	// We don't want to warn about node types.  They might have been
 	// interpolated into the input by the formatter itself, as with
 	// the extra vertical space nodes appended to diversions.
-	if (token::TOKEN_HORIZONTAL_SPACE == tok.type)
+	if (token::TOKEN_HORIZONTAL_MOTION == tok.type)
 	  warning(WARN_SYNTAX, "ignoring %1 on input line after"
 		  " output line continuation escape sequence",
 		  tok.description());
@@ -8931,7 +8931,7 @@ bool token::add_to_zero_width_node_list(node **pp)
     set_register(nm, curenv->get_input_line_position().to_units());
     break;
   case TOKEN_NODE:
-  case TOKEN_HORIZONTAL_SPACE:
+  case TOKEN_HORIZONTAL_MOTION:
     n = nd;
     nd = 0 /* nullptr */;
     break;
@@ -9025,7 +9025,7 @@ void token::process()
     curenv->newline();
     break;
   case TOKEN_NODE:
-  case TOKEN_HORIZONTAL_SPACE:
+  case TOKEN_HORIZONTAL_MOTION:
     curenv->add_node(nd);
     nd = 0 /* nullptr */;
     break;
