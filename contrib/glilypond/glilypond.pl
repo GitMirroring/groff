@@ -30,7 +30,7 @@ our $Legalese;
   use constant LICENSE => q*
 glilypond - integrate 'lilypond' into 'groff' files
 
-Copyright (C) 2013-2020 Free Software Foundation, Inc.
+Copyright 2013-2020 Free Software Foundation, Inc.
   Written by Bernd Warken <groff-bernd.warken-72@web.de>
 
 This file is part of glilypond.
