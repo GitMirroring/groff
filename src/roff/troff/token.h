@@ -26,7 +26,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class charinfo;
 struct node;
-class vunits;
 
 enum delimiter_context {
   DELIMITER_GROFF_EXPRESSION,
