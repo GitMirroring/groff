@@ -682,7 +682,6 @@ public:
   void dump_properties();
 };
 
-class charinfo;
 node *make_node(charinfo *, environment *);
 bool character_exists(charinfo *, environment *);
 

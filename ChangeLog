@@ -1,5 +1,10 @@
 2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.h: Drop duplicate incomplete type
+	declaration.
+
+2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/token.h (token::ch): Compare member variable
 	`c` to literal of `unsigned char` type, not a character literal
 	of undefined signedness.
