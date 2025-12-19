@@ -24,13 +24,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <stdckdint.h>
 
-#include "troff.h"
-#include "hvunits.h"
-#include "stringclass.h"
-#include "mtsm.h"
-#include "env.h"
-#include "token.h"
-#include "div.h"
+#include "troff.h" // units
+#include "hvunits.h" // hunits, vunits
+#include "mtsm.h" // state_set
+#include "env.h" // curenv
+#include "token.h" // tok
+#include "div.h" // curdiv
 
 const vunits V0; // zero in vertical units
 const hunits H0; // zero in horizontal units

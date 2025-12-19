@@ -1,5 +1,10 @@
 2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/number.cpp: Drop unnecessary header file
+	inclusion.
+
+2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Further conceal broken nested class feature.
 
 	* src/roff/troff/charinfo.h (class charinfo): Annotate
