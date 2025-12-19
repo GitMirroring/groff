@@ -1,5 +1,29 @@
 2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/number.cpp: Fix code style nits.  Replace
+	preprocessor macro `SCALING_UNITS` with `static const char`
+	array `valid_scaling_units`.
+	(is_valid_term): Use the array instead of the string literal
+	macro as the haystack in strchr(3) call; explicitly construct a
+	`char`-typed needle from an `int`-typed argument.
+	(is_valid_term, scale): Parenthesize formally complex
+	expressions.
+	(scale): Split one `&&`-using assert(3)ion into two.  Construct
+	temporary `unsigned int` objects using the syntax C++ seems to
+	support for this.  Return object of type `units` rather than
+	`int`.  (They're type-aliased with `typedef`, but scrupulous
+	type correctness is more conceptually coherent and forecloses an
+	avenue of future error.)
+	(is_valid_expression, is_valid_term): Prepare (I think) all
+	comparisons of C++ character literals to the input read by our
+	numeric expression parser for groff's planned wider fundamental
+	character type.  Construct `int`s from character literals, and
+	annotate their need to be constructed as that future type.
+
+	Continues the long process of fixing Savannah #67735.
+
+2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Trivially refactor.
 
 	* src/roff/troff/hvunits.h (get_vunits, get_hunits): Rename (in

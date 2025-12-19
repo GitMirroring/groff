@@ -251,7 +251,7 @@ static bool is_valid_expression_start()
 
 enum { OP_LEQ = 'L', OP_GEQ = 'G', OP_MAX = 'X', OP_MIN = 'N' };
 
-#define SCALING_UNITS "icfPmnpuvMsz"
+static const char valid_scaling_units[] = "icfPmnpuvMsz";
 
 static bool is_valid_term(units *u, int scaling_unit,
 			  bool is_parenthesized, bool is_mandatory);
@@ -267,16 +267,16 @@ static bool is_valid_expression(units *u, int scaling_unit,
       tok.skip_spaces();
     int op = tok.ch();// safely compares to char literals; TODO: grochar
     switch (op) {
-    case '+':
-    case '-':
-    case '/':
-    case '*':
-    case '%':
-    case ':':
-    case '&':
+    case int('+'): // TODO: grochar
+    case int('-'): // TODO: grochar
+    case int('/'): // TODO: grochar
+    case int('*'): // TODO: grochar
+    case int('%'): // TODO: grochar
+    case int(':'): // TODO: grochar
+    case int('&'): // TODO: grochar
       tok.next();
       break;
-    case '>':
+    case int('>'): // TODO: grochar
       tok.next();
       if (tok.ch() == int('=')) { // TODO: grochar
 	tok.next();
@@ -287,7 +287,7 @@ static bool is_valid_expression(units *u, int scaling_unit,
 	op = OP_MAX;
       }
       break;
-    case '<':
+    case int('<'): // TODO: grochar
       tok.next();
       if (tok.ch() == int('=')) { // TODO: grochar
 	tok.next();
@@ -298,7 +298,7 @@ static bool is_valid_expression(units *u, int scaling_unit,
 	op = OP_MIN;
       }
       break;
-    case '=':
+    case int('='): // TODO: grochar
       tok.next();
       if (tok.ch() == int('=')) // TODO: grochar
 	tok.next();
@@ -311,10 +311,10 @@ static bool is_valid_expression(units *u, int scaling_unit,
 		       is_mandatory))
       return false;
     switch (op) {
-    case '<':
+    case int('<'): // TODO: grochar
       *u = *u < u2;
       break;
-    case '>':
+    case int('>'): // TODO: grochar
       *u = *u > u2;
       break;
     case OP_LEQ:
@@ -331,41 +331,41 @@ static bool is_valid_expression(units *u, int scaling_unit,
       if (*u < u2)
 	*u = u2;
       break;
-    case '=':
+    case int('='): // TODO: grochar
       *u = (*u == u2);
       break;
-    case '&':
+    case int('&'): // TODO: grochar
       *u = (*u > 0) && (u2 > 0);
       break;
-    case ':':
+    case int(':'): // TODO: grochar
       *u = (*u > 0) || (u2 > 0);
       break;
-    case '+':
+    case int('+'): // TODO: grochar
       if (ckd_add(u, *u, u2)) {
 	warning(WARN_RANGE, "integer addition saturated");
 	return false;
       }
       break;
-    case '-':
+    case int('-'): // TODO: grochar
       if (ckd_sub(u, *u, u2)) {
 	warning(WARN_RANGE, "integer subtraction saturated");
 	return false;
       }
       break;
-    case '*':
+    case int('*'): // TODO: grochar
       if (ckd_mul(u, *u, u2)) {
 	warning(WARN_RANGE, "integer multiplication saturated");
 	return false;
       }
       break;
-    case '/':
+    case int('/'): // TODO: grochar
       if (0 == u2) {
 	error("division by zero");
 	return false;
       }
       *u /= u2;
       break;
-    case '%':
+    case int('%'): // TODO: grochar
       if (0 == u2) {
 	error("modulus by zero");
 	return false;
@@ -398,7 +398,7 @@ static bool is_valid_term(units *u, int scaling_unit,
       break;
   int c = tok.ch(); // safely compares to char literals; TODO: grochar
   switch (c) {
-  case '|':
+  case int('|'): // TODO: grochar
     // | is not restricted to the outermost level
     // tbl uses this
     tok.next();
@@ -416,10 +416,10 @@ static bool is_valid_term(units *u, int scaling_unit,
     if (is_negative)
       *u = -*u;
     return true;
-  case '(':
+  case int('('): // TODO: grochar
     tok.next();
     c = tok.ch();
-    if (')' == c) { // TODO: grochar
+    if (int(')') == c) { // TODO: grochar
       if (is_mandatory)
 	return false;
       warning(WARN_SYNTAX, "empty parentheses");
@@ -427,9 +427,9 @@ static bool is_valid_term(units *u, int scaling_unit,
       *u = 0;
       return true;
     }
-    else if (c != 0 && strchr(SCALING_UNITS, c) != 0) {
+    else if ((c != 0) && (strchr(valid_scaling_units, char(c)) != 0)) {
       tok.next();
-      if (tok.ch() == ';') { // TODO: grochar
+      if (tok.ch() == int(';')) { // TODO: grochar
 	tok.next();
 	scaling_unit = c;
       }
@@ -447,7 +447,7 @@ static bool is_valid_term(units *u, int scaling_unit,
 			     true /* is_parenthesized */, is_mandatory))
       return false;
     tok.skip_spaces();
-    if (tok.ch() != ')') { // TODO: grochar
+    if (tok.ch() != int(')')) { // TODO: grochar
       if (is_mandatory)
 	return false;
       warning(WARN_SYNTAX, "expected ')', got %1", tok.description());
@@ -460,19 +460,19 @@ static bool is_valid_term(units *u, int scaling_unit,
 	warning(WARN_RANGE, "integer multiplication saturated");
     }
     return true;
-  case '.':
+  case int('.'): // TODO: grochar
     *u = 0;
     break;
-  case '0':
-  case '1':
-  case '2':
-  case '3':
-  case '4':
-  case '5':
-  case '6':
-  case '7':
-  case '8':
-  case '9':
+  case int('0'): // TODO: grochar
+  case int('1'): // TODO: grochar
+  case int('2'): // TODO: grochar
+  case int('3'): // TODO: grochar
+  case int('4'): // TODO: grochar
+  case int('5'): // TODO: grochar
+  case int('6'): // TODO: grochar
+  case int('7'): // TODO: grochar
+  case int('8'): // TODO: grochar
+  case int('9'): // TODO: grochar
     *u = 0;
     do {
       if (!is_overflowing) {
@@ -491,14 +491,14 @@ static bool is_valid_term(units *u, int scaling_unit,
     if (is_overflowing)
       warning(WARN_RANGE, "integer value saturated");
     break;
-  case '/':
-  case '*':
-  case '%':
-  case ':':
-  case '&':
-  case '>':
-  case '<':
-  case '=':
+  case int('/'): // TODO: grochar
+  case int('*'): // TODO: grochar
+  case int('%'): // TODO: grochar
+  case int(':'): // TODO: grochar
+  case int('&'): // TODO: grochar
+  case int('>'): // TODO: grochar
+  case int('<'): // TODO: grochar
+  case int('='): // TODO: grochar
     warning(WARN_SYNTAX, "empty left operand to '%1' operator",
 	    char(c));
     *u = 0;
@@ -516,7 +516,8 @@ static bool is_valid_term(units *u, int scaling_unit,
       if (!csdigit(c))
 	break;
       // we may multiply the divisor by 254 later on
-      if (divisor <= INT_MAX / 2540 && *u <= (INT_MAX - 9) / 10) {
+      if ((divisor <= (INT_MAX / 2540)) && (*u <= ((INT_MAX - 9) / 10)))
+      {
 	*u *= 10;
 	*u += c - '0';
 	divisor *= 10;
@@ -527,35 +528,38 @@ static bool is_valid_term(units *u, int scaling_unit,
   int si = scaling_unit;
   bool do_next = false;
   if (((c = tok.ch()) != 0)
-      && (strchr(SCALING_UNITS, c) != 0 /* nullptr */)) {
+      && (strchr(valid_scaling_units, c) != 0 /* nullptr */)) {
     switch (scaling_unit) {
-    case 0:
+    case int(0): // TODO: grochar; null character, not digit zero
       // We know it's a recognized scaling unit because it matched the
       // `strchr()` above, so we don't use `tok.description()`.
       warning(WARN_SCALE, "a scaling unit is not valid in this context"
 	      " (got '%1')", char(c));
       break;
-    case 'f':
-      if (c != 'f' && c != 'u') {
+    case int('f'): // TODO: grochar
+      if (c != int('f') && c != int('u')) { // TODO: grochar
 	warning(WARN_SCALE, "'%1' scaling unit invalid in this context;"
 		" use 'f' or 'u'", char(c));
 	break;
       }
       si = c;
       break;
-    case 'z':
-      if (c != 'u' && c != 'z' && c != 'p' && c != 's') {
+    case int('z'): // TODO: grochar
+      if (c != int('u')
+	  && c != int('z')
+	  && c != int('p')
+	  && c != int('s')) { // TODO: grochar
 	warning(WARN_SCALE, "'%1' scaling unit invalid in this context;"
 		" use 'z', 'p', 's', or 'u'", char(c));
 	break;
       }
       si = c;
       break;
-    case 'u':
+    case int('u'): // TODO: grochar
       si = c;
       break;
     default:
-      if ('z' == c) {
+      if (int('z') == c) { // TODO: grochar
 	warning(WARN_SCALE, "'z' scaling unit invalid in this context");
 	break;
       }
@@ -567,27 +571,27 @@ static bool is_valid_term(units *u, int scaling_unit,
     do_next = true;
   }
   switch (si) {
-  case 'i':
+  case int('i'): // TODO: grochar
     *u = scale(*u, units_per_inch, divisor);
     break;
-  case 'c':
-    *u = scale(*u, units_per_inch * 100, divisor * 254);
+  case int('c'): // TODO: grochar
+    *u = scale(*u, (units_per_inch * 100), (divisor * 254));
     break;
-  case 0:
-  case 'u':
+  case int(0): // TODO: grochar; null character, not digit zero
+  case int('u'): // TODO: grochar
     if (divisor != 1)
       *u /= divisor;
     break;
-  case 'f':
+  case int('f'): // TODO: grochar
     *u = scale(*u, 65536, divisor);
     break;
-  case 'p':
+  case int('p'): // TODO: grochar
     *u = scale(*u, units_per_inch, divisor * 72);
     break;
-  case 'P':
+  case int('P'): // TODO: grochar
     *u = scale(*u, units_per_inch, divisor * 6);
     break;
-  case 'm':
+  case int('m'): // TODO: grochar
     {
       // Convert to hunits so that with -Tascii 'm' behaves as in nroff.
       hunits em = curenv->get_size();
@@ -595,14 +599,14 @@ static bool is_valid_term(units *u, int scaling_unit,
 		 divisor);
     }
     break;
-  case 'M':
+  case int('M'): // TODO: grochar
     {
       hunits em = curenv->get_size();
       *u = scale(*u, em.is_zero() ? hresolution : em.to_units(),
 		 (divisor * 100));
     }
     break;
-  case 'n':
+  case int('n'): // TODO: grochar
     {
       // Convert to hunits so that with -Tascii 'n' behaves as in nroff.
       hunits en = curenv->get_size() / 2;
@@ -610,17 +614,17 @@ static bool is_valid_term(units *u, int scaling_unit,
 		 divisor);
     }
     break;
-  case 'v':
+  case int('v'): // TODO: grochar
     *u = scale(*u, curenv->get_vertical_spacing().to_units(), divisor);
     break;
-  case 's':
+  case int('s'): // TODO: grochar
     while (divisor > INT_MAX / (sizescale * 72)) {
       divisor /= 10;
       *u /= 10;
     }
     *u = scale(*u, units_per_inch, divisor * sizescale * 72);
     break;
-  case 'z':
+  case int('z'): // TODO: grochar
     *u = scale(*u, sizescale, divisor);
     break;
   default:
@@ -637,18 +641,17 @@ static bool is_valid_term(units *u, int scaling_unit,
 
 units scale(units n, units x, units y)
 {
-  assert(x >= 0 && y > 0);
+  assert(x >= 0);
+  assert(y > 0);
   if (0 == x)
     return 0;
   if (n >= 0) {
-    if (n <= INT_MAX / x)
-      return (n * x) / y;
+    if (n <= (INT_MAX / x))
+      return ((n * x) / y);
   }
   else {
-    // I'd prefer to say "(unsigned int(n))", but C++ doesn't seem to
-    // permit function-style construction with a type qualifier.  --GBR
-    if (-(unsigned(n)) <= -(unsigned(INT_MIN)) / x)
-      return (n * x) / y;
+    if ((-(unsigned int)(n)) <= ((-(unsigned int)(INT_MIN)) / x))
+      return ((n * x) / y);
   }
   double res = n * double(x) / double(y);
   if (res > INT_MAX) {
@@ -659,7 +662,7 @@ units scale(units n, units x, units y)
     warning(WARN_RANGE, "integer value saturated");
     return INT_MIN;
   }
-  return int(res);
+  return units(res);
 }
 
 vunits::vunits(units x)
