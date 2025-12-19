@@ -551,12 +551,12 @@ static void column_justify()
   vunits height;
   if (!the_column->is_active())
     error("can't justify column - column not active");
-  else if (get_vunits(&height, 'v')) {
+  else if (read_vunits(&height, 'v')) {
     justification_spec js(height);
     symbol nm = get_long_name(true /* required */);
     if (!nm.is_null()) {
       vunits v;
-      if (get_vunits(&v, 'v')) {
+      if (read_vunits(&v, 'v')) {
 	js.append(nm, v);
 	int err = 0;
 	while (has_arg()) {
@@ -565,7 +565,7 @@ static void column_justify()
 	    err = 1;
 	    break;
 	  }
-	  if (!get_vunits(&v, 'v')) {
+	  if (!read_vunits(&v, 'v')) {
 	    err = 1;
 	    break;
 	  }

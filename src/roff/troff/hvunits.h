@@ -76,10 +76,10 @@ public:
 
 extern const hunits H0;
 
-extern bool get_vunits(vunits *, unsigned char si);
-extern bool get_hunits(hunits *, unsigned char si);
-extern bool get_vunits(vunits *, unsigned char si, vunits prev_value);
-extern bool get_hunits(hunits *, unsigned char si, hunits prev_value);
+extern bool read_vunits(vunits *, unsigned char si);
+extern bool read_hunits(hunits *, unsigned char si);
+extern bool read_vunits(vunits *, unsigned char si, vunits prev_value);
+extern bool read_hunits(hunits *, unsigned char si, hunits prev_value);
 
 inline vunits:: vunits() : n(0)
 {

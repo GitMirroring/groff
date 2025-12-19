@@ -1493,7 +1493,7 @@ void right_justify()
 void line_length()
 {
   hunits temp;
-  if (has_arg() && get_hunits(&temp, 'm', curenv->line_length)) {
+  if (has_arg() && read_hunits(&temp, 'm', curenv->line_length)) {
     if (temp < hresolution) {
       warning(WARN_RANGE, "setting computed line length %1u to device"
 			  " horizontal motion quantum",
@@ -1512,7 +1512,7 @@ void line_length()
 void title_length()
 {
   hunits temp;
-  if (has_arg() && get_hunits(&temp, 'm', curenv->title_length)) {
+  if (has_arg() && read_hunits(&temp, 'm', curenv->title_length)) {
     if (temp < hresolution) {
       warning(WARN_RANGE, "setting computed title length %1u to device"
 			  " horizontal motion quantum",
@@ -1530,7 +1530,7 @@ void title_length()
 void vertical_spacing()
 {
   vunits temp;
-  if (has_arg() && get_vunits(&temp, 'p', curenv->vertical_spacing)) {
+  if (has_arg() && read_vunits(&temp, 'p', curenv->vertical_spacing)) {
     if (temp < V0) {
       warning(WARN_RANGE, "vertical spacing must be nonnegative");
       temp = vresolution;
@@ -1546,7 +1546,7 @@ void vertical_spacing()
 void post_vertical_spacing()
 {
   vunits temp;
-  if (has_arg() && get_vunits(&temp, 'p',
+  if (has_arg() && read_vunits(&temp, 'p',
 			      curenv->post_vertical_spacing)) {
     if (temp < V0) {
       warning(WARN_RANGE, "post-vertical spacing must be nonnegative");
@@ -1580,7 +1580,7 @@ void line_spacing()
 void indent()
 {
   hunits temp;
-  if (has_arg() && get_hunits(&temp, 'm', curenv->indent)) {
+  if (has_arg() && read_hunits(&temp, 'm', curenv->indent)) {
     if (temp < H0) {
       warning(WARN_RANGE, "treating %1u indentation as zero",
 	      temp.to_units());
@@ -1612,7 +1612,7 @@ void temporary_indent()
     // character this request still breaks the line.
   }
   else {
-    if (!get_hunits(&temp, 'm', curenv->get_indent()))
+    if (!read_hunits(&temp, 'm', curenv->get_indent()))
       is_valid = false;
     while (!tok.is_newline() && !tok.is_eof())
       tok.next();
@@ -1693,7 +1693,7 @@ void margin_character()
       curenv->margin_character_flags = environment::MC_ON
 				       | environment::MC_NEXT;
       hunits d;
-      if (has_arg() && get_hunits(&d, 'm'))
+      if (has_arg() && read_hunits(&d, 'm'))
 	curenv->margin_character_distance = d;
     }
   }
@@ -2020,7 +2020,7 @@ hunits environment::get_hyphenation_space()
 void hyphenation_space_request()
 {
   hunits n;
-  if (get_hunits(&n, 'm')) {
+  if (read_hunits(&n, 'm')) {
     if (n < H0) {
       warning(WARN_RANGE, "hyphenation space cannot be negative");
       n = H0;
@@ -2038,7 +2038,7 @@ hunits environment::get_hyphenation_margin()
 void hyphenation_margin_request()
 {
   hunits n;
-  if (get_hunits(&n, 'm')) {
+  if (read_hunits(&n, 'm')) {
     if (n < H0) {
       warning(WARN_RANGE, "hyphenation margin cannot be negative");
       n = H0;
@@ -3013,7 +3013,7 @@ static void configure_tab_stops_request()
       is_repeating_stop = true;
       prev_pos = 0;
     }
-    if (!get_hunits(&pos, 'm', prev_pos))
+    if (!read_hunits(&pos, 'm', prev_pos))
       break;
     tab_type type = TAB_LEFT;
     if (tok.ch() == int('C')) { // TODO: grochar

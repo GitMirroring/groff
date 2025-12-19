@@ -44,7 +44,7 @@ static bool is_valid_expression(units *u, int scaling_unit,
 				bool is_mandatory = false);
 static bool is_valid_expression_start();
 
-bool get_vunits(vunits *res, unsigned char si)
+bool read_vunits(vunits *res, unsigned char si)
 {
   if (!is_valid_expression_start())
     return false;
@@ -57,7 +57,7 @@ bool get_vunits(vunits *res, unsigned char si)
     return false;
 }
 
-bool get_hunits(hunits *res, unsigned char si)
+bool read_hunits(hunits *res, unsigned char si)
 {
   if (!is_valid_expression_start())
     return false;
@@ -117,7 +117,7 @@ enum incr_number_result { INVALID, ASSIGN, INCREMENT, DECREMENT };
 
 static incr_number_result get_incr_number(units *res, unsigned char);
 
-bool get_vunits(vunits *res, unsigned char si, vunits prev_value)
+bool read_vunits(vunits *res, unsigned char si, vunits prev_value)
 {
   units v;
   // Use a primitive temporary because having the ckd macros store to
@@ -140,12 +140,12 @@ bool get_vunits(vunits *res, unsigned char si, vunits prev_value)
     *res = i;
     break;
   default:
-    assert(0 == "unhandled case in get_vunits()");
+    assert(0 == "unhandled case in read_vunits()");
   }
   return true;
 }
 
-bool get_hunits(hunits *res, unsigned char si, hunits prev_value)
+bool read_hunits(hunits *res, unsigned char si, hunits prev_value)
 {
   units h;
   // Use a primitive temporary because having the ckd macros store to
@@ -168,7 +168,7 @@ bool get_hunits(hunits *res, unsigned char si, hunits prev_value)
     *res = i;
     break;
   default:
-    assert(0 == "unhandled case in get_hunits()");
+    assert(0 == "unhandled case in read_hunits()");
   }
   return true;
 }

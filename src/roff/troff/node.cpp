@@ -7430,9 +7430,9 @@ static void configure_track_kerning()
     hunits min_a, max_a;
     if (has_arg()
 	&& read_measurement(&min_s, 'z')
-	&& get_hunits(&min_a, 'p')
+	&& read_hunits(&min_a, 'p')
 	&& read_measurement(&max_s, 'z')
-	&& get_hunits(&max_a, 'p')) {
+	&& read_hunits(&max_a, 'p')) {
       track_kerning_function tk(min_s, min_a, max_s, max_a);
       font_table[n]->set_track_kern(tk);
     }

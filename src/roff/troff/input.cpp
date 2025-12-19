@@ -8423,7 +8423,7 @@ void warnscale_request()
 void spreadwarn_request()
 {
   hunits n;
-  if (has_arg() && get_hunits(&n, 'm')) {
+  if (has_arg() && read_hunits(&n, 'm')) {
     if (n < 0)
       n = 0;
     hunits em = curenv->get_size();
@@ -10349,7 +10349,7 @@ static node *read_drawing_command() // \D
 	  had_error = true;
 	  break;
 	}
-	if (!get_hunits(&point[i].h,
+	if (!read_hunits(&point[i].h,
 			type == 'f' || type == 't' ? 'u' : 'm')) {
 	  had_error = true;
 	  break;
@@ -10361,7 +10361,7 @@ static node *read_drawing_command() // \D
 	  no_last_v = true;
 	  break;
 	}
-	if (!get_vunits(&point[i].v, 'v')) {
+	if (!read_vunits(&point[i].v, 'v')) {
 	  had_error = false;
 	  break;
 	}

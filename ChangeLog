@@ -1,5 +1,27 @@
 2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Trivially refactor.
+
+	* src/roff/troff/hvunits.h (get_vunits, get_hunits): Rename (in
+	declarations) these...
+	(read_vunits, read_hunits): ...to these, because they advance
+	the input stream pointer.
+	* src/roff/troff/number.cpp (get_vunits, get_hunits): Rename (in
+	definitions) these...
+	(read_vunits, read_hunits): ...to these.  Update literals in
+	assertions.
+	* src/roff/troff/column.cpp (column_justify) [COLUMN]:
+	* src/roff/troff/div.cpp (page_offset, when_request)
+	(space_request, need_space, save_vertical_space, diversion_trap)
+	(change_trap, return_request):
+	* src/roff/troff/env.cpp (line_length, title_length)
+	(vertical_spacing, post_vertical_spacing, indent)
+	(temporary_indent, margin_character, hyphenation_space_request)
+	(hyphenation_margin_request, configure_tab_stops_request):
+	Update call sites.
+
+2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/number.cpp: Drop unnecessary header file
 	inclusion.
 
