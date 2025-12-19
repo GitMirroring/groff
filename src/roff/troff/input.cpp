@@ -1583,7 +1583,7 @@ static void define_color()
     skip_line();
     return;
   }
-  symbol color_name = get_long_name();
+  symbol color_name = read_long_identifier();
   // Testing has_arg() should have ensured this.
   assert(color_name != 0 /* nullptr */);
   if (color_name == default_symbol) {
@@ -1591,7 +1591,7 @@ static void define_color()
     skip_line();
     return;
   }
-  symbol color_space = get_long_name();
+  symbol color_space = read_long_identifier();
   if (color_space.is_null()) {
     warning(WARN_MISSING, "missing color space in color definition"
 	    " request");
@@ -3165,10 +3165,10 @@ symbol read_identifier(bool required)
     }
   }
   else
-    return get_long_name(required);
+    return read_long_identifier(required);
 }
 
-symbol get_long_name(bool required)
+symbol read_long_identifier(bool required)
 {
   return read_input_until_terminator(required, 0U);
 }
@@ -6331,7 +6331,7 @@ static void do_register() // \R
     return;
 #endif
   tok.next();
-  symbol nm = get_long_name(true /* required */);
+  symbol nm = read_long_identifier(true /* required */);
   if (nm.is_null())
     return;
   tok.skip_spaces();
@@ -7162,7 +7162,7 @@ static bool is_conditional_expression_true()
   }
   else if (c == 'm') {
     tok.next();
-    symbol nm = get_long_name(true /* required */);
+    symbol nm = read_long_identifier(true /* required */);
     if (nm.is_null()) {
       skip_branch();
       return false;
@@ -7187,7 +7187,7 @@ static bool is_conditional_expression_true()
   }
   else if (c == 'F') {
     tok.next();
-    symbol nm = get_long_name(true /* required */);
+    symbol nm = read_long_identifier(true /* required */);
     if (nm.is_null()) {
       skip_branch();
       return false;
@@ -7196,7 +7196,7 @@ static bool is_conditional_expression_true()
   }
   else if (c == 'S') {
     tok.next();
-    symbol nm = get_long_name(true /* required */);
+    symbol nm = read_long_identifier(true /* required */);
     if (nm.is_null()) {
       skip_branch();
       return false;
@@ -7889,7 +7889,7 @@ void ps_bbox_request() // .psbb
   }
   // Parse input line, to extract file name.
   //
-  symbol nm = get_long_name(true /* required */);
+  symbol nm = read_long_identifier(true /* required */);
   if (nm.is_null())
     //
     // No file name specified: ignore the entire request.
@@ -9392,7 +9392,7 @@ void vjustify()
     handle_initial_request(VJUSTIFY_REQUEST);
     return;
   }
-  symbol type = get_long_name(true /* required */);
+  symbol type = read_long_identifier(true /* required */);
   if (!type.is_null())
     curdiv->vjustify(type);
   skip_line();

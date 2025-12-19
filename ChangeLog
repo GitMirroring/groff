@@ -1,5 +1,27 @@
 2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Trivially refactor.  Rename `get_long_name()` to
+	`read_long_identifier()`, because it's used for more than just
+	reading "names" (request, macro, string, or diversion
+	identifiers), but also identifiers of environments, colors,
+	registers, fonts, styles, and file names.  (The last occurs only
+	in `ps_bbox_request()` and might be inapposite; GNU troff now
+	handles file names with spaces in thim, and that might not work
+	because the `psbb` request is not parsing its arguments
+	appropriately.)
+	* src/roff/troff/token.h: Rename in declaration.
+	* src/roff/troff/input.cpp (get_long_name): Rename this...
+	(read_long_identifier): ...to this.
+	* src/roff/troff/column.cpp (column_justify) [COLUMN]:
+	* src/roff/troff/env.cpp (environment_copy, environment_switch):
+	* src/roff/troff/input.cpp (define_color, read_identifier)
+	(do_register, is_conditional_expression_true, ps_bbox_request)
+	(vjustify) [COLUMN]:
+	* src/roff/troff/node.cpp (mount_font_at_position): Update call
+	sites.
+
+2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/token.h: Relocate declaration of "input.cpp"
 	function `has_arg()` to sit alongside others for the same file,
 	and mark it `extern`.  Arrange nearby declarations to match the

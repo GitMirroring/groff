@@ -128,7 +128,7 @@ extern token tok;		// the current token
 extern bool has_arg(bool /* want_peek */ = false);
 extern void skip_line();
 extern symbol read_identifier(bool /* required */ = false);
-extern symbol get_long_name(bool /* required */ = false);
+extern symbol read_long_identifier(bool /* required */ = false);
 extern void handle_initial_title();
 extern charinfo *read_character(); // TODO?: bool /* required */ = false
 extern char *read_rest_of_line_as_argument();

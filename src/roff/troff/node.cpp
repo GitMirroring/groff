@@ -6808,7 +6808,7 @@ static void mount_font_at_position()
     else {
       symbol internal_name = read_identifier(true /* required */);
       if (!internal_name.is_null()) {
-	symbol filename = get_long_name();
+	symbol filename = read_long_identifier();
 	if (!mount_font(n, internal_name, filename)) {
 	  string msg;
 	  if (filename != 0 /* nullptr */)

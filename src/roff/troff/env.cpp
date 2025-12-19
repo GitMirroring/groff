@@ -3775,7 +3775,7 @@ void environment_copy()
   }
   environment *e = 0 /* nullptr */;
   tok.skip_spaces();
-  symbol nm = get_long_name();
+  symbol nm = read_long_identifier();
   assert(nm != 0 /* nullptr */);
   e = static_cast<environment *>(env_dictionary.lookup(nm));
   if (e != 0 /* nullptr */)
@@ -3792,7 +3792,7 @@ void environment_switch()
     error("cannot switch out of dummy environment");
   }
   else {
-    symbol nm = get_long_name();
+    symbol nm = read_long_identifier();
     if (nm.is_null()) {
       if (env_stack == 0 /* nullptr */)
 	error("environment stack underflow");
