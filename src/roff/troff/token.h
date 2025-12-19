@@ -146,9 +146,9 @@ extern void define_character(char_mode,
 class hunits;
 extern void read_title_parts(node **part, hunits *part_width);
 
-extern bool get_number_rigidly(units *result, unsigned char si);
-
-extern bool read_measurement(units *result, unsigned char si);
+extern bool read_measurement(units * /* result */,
+			     unsigned char /* scale indicator */,
+			     bool /* is_mandatory */ = false);
 extern bool read_integer(int *result);
 
 extern bool read_measurement(units *result, unsigned char si,

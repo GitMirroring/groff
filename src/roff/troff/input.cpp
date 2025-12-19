@@ -1410,7 +1410,7 @@ static unsigned int read_color_channel_value(const char *scheme,
 					     const char *col)
 {
   units val;
-  if (!read_measurement(&val, 'f')) {
+  if (!read_measurement(&val, (unsigned char)('f'))) { // TODO: grochar
     warning(WARN_COLOR, "%1 in %2 definition set to 0", col, scheme);
     tok.next();
     return 0;
@@ -1843,11 +1843,13 @@ static const char *do_expr_test() // \B
   warning_mask = 0;
   want_errors_inhibited = true;
   int dummy;
-  bool result = get_number_rigidly(&dummy, 'u');
+  // TODO: grochar
+  bool result = read_measurement(&dummy, (unsigned char)('u'),
+				 true /* is_mandatory */);
   warning_mask = saved_warning_mask;
   want_errors_inhibited = saved_want_errors_inhibited;
-  // get_number_rigidly() has left `token` pointing at the input
-  // character after the end of the expression.
+  // read_measurement() has left `token` pointing at the input character
+  // after the end of the expression.
   if (tok == start_token && input_stack::get_level() == start_level)
     return (result ? "1" : "0");
   // There may be garbage after the expression but before the closing
@@ -6173,7 +6175,7 @@ static bool read_size(int *x) // \s
       inc = (c == '+') ? 1 : -1;
       tok.next();
     }
-    if (!read_measurement(&val, 'z'))
+    if (!read_measurement(&val, (unsigned char)('z'))) // TODO: grochar
       return false;
     // safely compares to char literals; TODO: grochar
     int s = start.ch();
@@ -6338,7 +6340,8 @@ static void do_register() // \R
   if ((0 /* nullptr */ == r) || !r->get_value(&prev_value))
     prev_value = 0;
   int val;
-  if (!read_measurement(&val, 'u', prev_value))
+  // TODO: grochar
+  if (!read_measurement(&val, (unsigned char)('u'), prev_value))
     return;
   // token::description() writes to static, class-wide storage, so we
   // must allocate a copy of it before issuing the next diagnostic.
@@ -7217,7 +7220,7 @@ static bool is_conditional_expression_true()
   else {
     // Evaluate numeric expression.
     units n;
-    if (!read_measurement(&n, 'u')) {
+    if (!read_measurement(&n, (unsigned char)('u'))) { // TODO: grochar
       skip_branch();
       return false;
     }
@@ -9647,7 +9650,8 @@ static int evaluate_expression(const char *expr, units *res)
 {
   input_stack::push(make_temp_iterator(expr));
   tok.next();
-  int success = read_measurement(res, 'u');
+  // TODO: grochar
+  int success = read_measurement(res, (unsigned char)('u'));
   while (input_stack::get(0 /* nullptr */) != EOF)
     ;
   return success;

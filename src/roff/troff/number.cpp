@@ -86,12 +86,13 @@ bool get_number_rigidly(units *res, unsigned char si)
     return false;
 }
 
-bool read_measurement(units *res, unsigned char si)
+bool read_measurement(units *res, unsigned char si, bool is_mandatory)
 {
   if (!is_valid_expression_start())
     return false;
   units x;
-  if (is_valid_expression(&x, si, false /* is_parenthesized */)) {
+  if (is_valid_expression(&x, si, false /* is_parenthesized */,
+			  is_mandatory)) {
     *res = x;
     return true;
   }

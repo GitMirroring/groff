@@ -1,5 +1,37 @@
 2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Refactor to use the C++ default argument force.  Merge
+	function `get_number_rigidly()` into `read_measurement(), which
+	differed by one line out of a dozen, by extending the latter's
+	signature with a default argument `is_mandatory` of type `bool`.
+	This coincidentally made GCC's overload resolver more sensitive
+	to arguments of ambiguous integral type, so take this
+	opportunity to stop punning between character literals and
+	`unsigned char`, in favor of the explicitness we'll need anyway
+	for GNU troff's planned wider fundamental character type.
+
+	* src/roff/troff/token.h: Drop declaration of
+	`get_number_rigidly()`.  Update declaration of
+	`read_measurement()` with `bool`-valued 3rd argument defaulting
+	`false`.
+	* src/roff/troff/input.cpp (read_color_channel_value)
+	(do_expr_test, read_size, do_register)
+	(is_conditional_expression_true, evaluate_expression):
+	* src/roff/troff/reg.cpp (define_register_request):
+	Explicitly construct literal of `unsigned char` type as argument
+	to `read_measurement()`.
+	* src/roff/troff/input.cpp (do_expr_test): Migrate only call
+	site of `get_number_rigidly()` to `read_measurement()` with an
+	explicit `true` 3rd argument.
+	* src/roff/troff/number.cpp (get_number_rigidly): Delete.
+	(read_measurement): Accept third argument, `is_mandatory`, of
+	type `bool`.  Pass it to `is_valid_expression()`, which is
+	already prepared for same.
+
+	Continues the long process of fixing Savannah #67735.
+
+2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/number.cpp: Fix code style nits.  Replace
 	preprocessor macro `SCALING_UNITS` with `static const char`
 	array `valid_scaling_units`.
