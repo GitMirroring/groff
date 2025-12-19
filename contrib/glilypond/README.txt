@@ -6,14 +6,10 @@
     are permitted in any medium without royalty provided the copyright
     notice and this notice are preserved.
 
-    This file is part of 'glilypond', which is part of 'groff'.
-
-
 ########################################################################
 
 In order to run 'glilypond', your system must have installed Perl of at
 least version 'v5.6'.
-
 
 ########################################################################
 
