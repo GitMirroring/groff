@@ -34,10 +34,11 @@ glilyponddir = $(glilypond_dir)
 EXTRA_DIST += \
   contrib/glilypond/ChangeLog \
   contrib/glilypond/ChangeLog.0x \
-  contrib/glilypond/glilypond.1.man \
-  contrib/glilypond/glilypond.pl \
+  contrib/glilypond/GPLv2 \
   contrib/glilypond/README.txt \
-  contrib/glilypond/examples/example.groff
+  contrib/glilypond/examples/example.groff \
+  contrib/glilypond/glilypond.1.man \
+  contrib/glilypond/glilypond.pl
 
 # create perl executable 'glilypond', being stored into 'bindir'
 glilypond: $(glilypond_srcdir)/glilypond.pl $(SH_DEPS_SED_SCRIPT)
