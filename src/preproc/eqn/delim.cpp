@@ -164,6 +164,7 @@ struct delimiter {
   },
 };
 
+// C++11: constexpr
 const int DELIM_TABLE_SIZE = int(countof(delim_table));
 
 class delim_box : public box {
