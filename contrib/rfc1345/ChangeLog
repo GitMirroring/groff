@@ -1,3 +1,10 @@
+2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	Regression-test Savannah #67827.
+
+	* tests/character-definitions-lack-space.sh: Do it.
+	* rfc1345.am (rfc1345_TESTS): Run test.
+
 2025-04-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* rfc1345.tmac: Add Vim 9.1.1065 digraph `.=` for U+2250
