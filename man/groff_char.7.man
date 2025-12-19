@@ -12,8 +12,7 @@ special character and glyph repertoire
 .\"
 .\" Copyright 1989-2025 Free Software Foundation, Inc.
 .\"
-.\" This file is part of groff (GNU roff), which is a free software
-.\" project.
+.\" This file is part of groff, the GNU roff typesetting system.
 .\"
 .\" You can redistribute it and/or modify it under the terms of the GNU
 .\" General Public License as published by the Free Software Foundation,
