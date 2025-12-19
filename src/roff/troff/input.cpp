@@ -2067,7 +2067,7 @@ void token::diagnose_non_character()
   //   is_stretchable_space()
   //   is_unstrechable_space()
   //   is_horizontal_space()
-  //   is_white_space()
+  //   is_horizontal_whitespace()
   //   is_leader()
   //   is_backspace()
   //   is_dummy()
@@ -3472,7 +3472,7 @@ void process_input_stack()
 	  // skip tabs as well as spaces here
 	  do {
 	    tok.next();
-	  } while (tok.is_white_space());
+	  } while (tok.is_horizontal_whitespace());
 	  symbol nm = read_identifier();
 #if defined(DEBUGGING)
 	  if (want_html_debugging) {

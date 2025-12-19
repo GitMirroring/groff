@@ -1,5 +1,19 @@
 2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/token.h (class token): Rename member function
+	{declared} from `is_white_space()` to
+	`is_horizontal_whitespace()`.  Whitespace isn't "white" in the
+	chromatic sense (cf. "red" or "black") but in an abstract one;
+	further, this member function does not test for form feeds or
+	any other conceivable "vertical whitespace".
+	(token::is_white_space): Rename {definition} from this...
+	(token::is_horizontal_whitespace): ...to this.
+	* src/roff/troff/input.cpp (process_input_stack): Update lone
+	call site.  (So why have `is_horizontal_whitespace()` in the
+	`token` class at all?)
+
+2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.h: Drop duplicate incomplete type
 	declaration.
 	* src/roff/troff/token.h: Drop unneeded incomplete type

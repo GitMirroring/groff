@@ -88,7 +88,7 @@ public:
   bool is_stretchable_space();
   bool is_unstretchable_space();
   bool is_horizontal_space();
-  bool is_white_space();
+  bool is_horizontal_whitespace();
   bool is_any_character();
   // XXX: Do we need a `is_ordinary_character()`?
   bool is_special_character();
@@ -193,7 +193,7 @@ inline int token::nspaces()
   return int(TOKEN_SPACE == type);
 }
 
-inline bool token::is_white_space()
+inline bool token::is_horizontal_whitespace()
 {
   return (TOKEN_SPACE == type || TOKEN_TAB == type);
 }
