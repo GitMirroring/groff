@@ -1,3 +1,8 @@
+2025-12-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* GPLv2: New file.
+	* chem.am (EXTRA_DIST): Ship it.
+
 2025-12-09  Norwid Behrnd <nbehrnd@yahoo.com>
 
 	* examples/atp.chem: The previous depiction of the ATP molecule

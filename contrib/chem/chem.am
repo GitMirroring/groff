@@ -47,12 +47,13 @@ chemexample122dir = $(chemexampledir)/122
 nodist_chemexample122_DATA = contrib/chem/examples/122/README
 EXTRA_DIST += \
   contrib/chem/ChangeLog \
+  contrib/chem/GPLv2 \
+  contrib/chem/README.txt \
   contrib/chem/chem.1.man \
   contrib/chem/chem.pic \
   contrib/chem/chem.pl \
-  contrib/chem/README.txt \
-  contrib/chem/examples/README.txt \
-  contrib/chem/examples/122/README.txt
+  contrib/chem/examples/122/README.txt \
+  contrib/chem/examples/README.txt
 
 man1_MANS += contrib/chem/chem.1
 MOSTLYCLEANFILES += $(CHEM_GENEXAMPLES) $(nodist_chemexample122_DATA) \
