@@ -16120,7 +16120,7 @@
 	will prompt warnings if GNU troff is given the `-wmac` option
 	{or equivalent}.
 
-2024-03-19  Alexis <surryhill@gmail.com>
+2024-03-19  Alexis Hildebrandt <afh@surryhill.net>
 
 	[grohtml]: Migrate from psselect(1) to ps2ps(1).
 
