@@ -125,12 +125,13 @@ public:
 
 extern token tok;		// the current token
 
+extern bool has_arg(bool /* want_peek */ = false);
+extern void skip_line();
 extern symbol read_identifier(bool /* required */ = false);
 extern symbol get_long_name(bool /* required */ = false);
+extern void handle_initial_title();
 extern charinfo *read_character(); // TODO?: bool /* required */ = false
 extern char *read_rest_of_line_as_argument();
-extern void skip_line();
-extern void handle_initial_title();
 
 enum char_mode {
   CHAR_NORMAL,
@@ -284,8 +285,6 @@ inline bool token::is_zero_width_break()
 {
   return (TOKEN_ZERO_WIDTH_BREAK == type);
 }
-
-bool has_arg(bool /* want_peek */ = false);
 
 // Local Variables:
 // fill-column: 72

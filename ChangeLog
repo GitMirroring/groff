@@ -1,5 +1,13 @@
 2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/token.h: Relocate declaration of "input.cpp"
+	function `has_arg()` to sit alongside others for the same file,
+	and mark it `extern`.  Arrange nearby declarations to match the
+	order of their definition in "input.cpp", in case any deep
+	meaning is thereby revealed (perhaps not).
+
+2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Trivially refactor for conceptual clarity.  In *roff,
 	spaces and horizontal motions are distinct kinds of thing.
 	Spaces are potentially breakable, discardable (at the distal
