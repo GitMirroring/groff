@@ -1,5 +1,23 @@
 2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (token::next, token::get_charinfo)
+	(is_conditional_expression_true):
+	* src/roff/troff/token.h (token::is_newline, token::is_space)
+	(token::is_stretchable_space, token::is_unstretchable_space)
+	(token::is_horizontal_space, token::is_special_character)
+	(token::nspaces, token::is_white_space, token::is_transparent)
+	(token::is_page_ejector, token::ch, token::is_any_character)
+	(token::is_indexed_character, token::is_node, token::is_eof)
+	(token::is_dummy, token::is_transparent_dummy)
+	(token::is_left_brace, token::is_right_brace, token::is_tab)
+	(token::is_leader, token::is_backspace)
+	(token::is_hyphen_indicator, token::is_zero_width_break): Fix
+	code style nits.  Parenthesize formally complex expressions.
+	Arrange equality comparisons to avoid inadvertent lvalue
+	assignment.
+
+2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Refactor to use the C++ default argument force.  Merge
 	function `get_number_rigidly()` into `read_measurement(), which
 	differed by one line out of a dozen, by extending the latter's

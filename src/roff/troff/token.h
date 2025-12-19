@@ -161,68 +161,68 @@ const char *asciify(int c);
 
 inline bool token::is_newline()
 {
-  return type == TOKEN_NEWLINE;
+  return (TOKEN_NEWLINE == type);
 }
 
 inline bool token::is_space()
 {
-  return type == TOKEN_SPACE;
+  return (TOKEN_SPACE == type);
 }
 
 inline bool token::is_stretchable_space()
 {
-  return type == TOKEN_STRETCHABLE_SPACE;
+  return (TOKEN_STRETCHABLE_SPACE == type);
 }
 
 inline bool token::is_unstretchable_space()
 {
-  return type == TOKEN_UNSTRETCHABLE_SPACE;
+  return (TOKEN_UNSTRETCHABLE_SPACE == type);
 }
 
 inline bool token::is_horizontal_space()
 {
-  return type == TOKEN_HORIZONTAL_SPACE;
+  return (TOKEN_HORIZONTAL_SPACE == type);
 }
 
 inline bool token::is_special_character()
 {
-  return type == TOKEN_SPECIAL_CHAR;
+  return (TOKEN_SPECIAL_CHAR == type);
 }
 
 inline int token::nspaces()
 {
-  return int(type == TOKEN_SPACE);
+  return int(TOKEN_SPACE == type);
 }
 
 inline bool token::is_white_space()
 {
-  return type == TOKEN_SPACE || type == TOKEN_TAB;
+  return (TOKEN_SPACE == type || TOKEN_TAB == type);
 }
 
 inline bool token::is_transparent()
 {
-  return type == TOKEN_TRANSPARENT;
+  return (TOKEN_TRANSPARENT == type);
 }
 
 inline bool token::is_page_ejector()
 {
-  return type == TOKEN_PAGE_EJECTOR;
+  return (TOKEN_PAGE_EJECTOR == type);
 }
 
 inline unsigned char token::ch()
 {
-  return type == TOKEN_CHAR ? c : '\0';
+  return ((TOKEN_CHAR == type) ? c : '\0');
 }
 
 inline bool token::is_any_character()
 {
-  return (TOKEN_CHAR == type) || (TOKEN_SPECIAL_CHAR == type)
-	  || (TOKEN_INDEXED_CHAR == type);
+  return ((TOKEN_CHAR == type) || (TOKEN_SPECIAL_CHAR == type)
+	  || (TOKEN_INDEXED_CHAR == type));
 }
 
 inline bool token::is_indexed_character()
 {
-  return TOKEN_INDEXED_CHAR == type;
+  return (TOKEN_INDEXED_CHAR == type);
 }
 
 inline int token::character_index()
@@ -233,57 +233,57 @@ inline int token::character_index()
 
 inline bool token::is_node()
 {
-  return type == TOKEN_NODE;
+  return (TOKEN_NODE == type);
 }
 
 inline bool token::is_eof()
 {
-  return type == TOKEN_EOF;
+  return (TOKEN_EOF == type);
 }
 
 inline bool token::is_dummy()
 {
-  return type == TOKEN_DUMMY;
+  return (TOKEN_DUMMY == type);
 }
 
 inline bool token::is_transparent_dummy()
 {
-  return type == TOKEN_TRANSPARENT_DUMMY;
+  return (TOKEN_TRANSPARENT_DUMMY == type);
 }
 
 inline bool token::is_left_brace()
 {
-  return type == TOKEN_LEFT_BRACE;
+  return (TOKEN_LEFT_BRACE == type);
 }
 
 inline bool token::is_right_brace()
 {
-  return type == TOKEN_RIGHT_BRACE;
+  return (TOKEN_RIGHT_BRACE == type);
 }
 
 inline bool token::is_tab()
 {
-  return type == TOKEN_TAB;
+  return (TOKEN_TAB == type);
 }
 
 inline bool token::is_leader()
 {
-  return type == TOKEN_LEADER;
+  return (TOKEN_LEADER == type);
 }
 
 inline bool token::is_backspace()
 {
-  return type == TOKEN_BACKSPACE;
+  return (TOKEN_BACKSPACE == type);
 }
 
 inline bool token::is_hyphen_indicator()
 {
-  return type == TOKEN_HYPHEN_INDICATOR;
+  return (TOKEN_HYPHEN_INDICATOR == type);
 }
 
 inline bool token::is_zero_width_break()
 {
-  return type == TOKEN_ZERO_WIDTH_BREAK;
+  return (TOKEN_ZERO_WIDTH_BREAK == type);
 }
 
 bool has_arg(bool /* want_peek */ = false);

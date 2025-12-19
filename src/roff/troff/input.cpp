@@ -2690,7 +2690,7 @@ void token::next()
 	}
       case 'z':
 	next();
-	if (type == TOKEN_NODE || type == TOKEN_HORIZONTAL_SPACE)
+	if ((TOKEN_NODE == type) || (TOKEN_HORIZONTAL_SPACE == type))
 	  nd = new zero_width_node(nd);
 	else {
 	  // TODO: In theory, we could accept spaces and horizontal
@@ -7225,7 +7225,7 @@ static bool is_conditional_expression_true()
       return false;
     }
     else
-      result = n > 0;
+      result = (n > 0);
   }
   if (perform_output_comparison)
     result = are_comparands_equal();
@@ -8860,13 +8860,13 @@ static charinfo *get_charinfo_by_index(int n,
 
 charinfo *token::get_charinfo(bool required, bool suppress_creation)
 {
-  if (type == TOKEN_CHAR)
+  if (TOKEN_CHAR == type)
     return charset_table[c];
-  if (type == TOKEN_SPECIAL_CHAR)
+  if (TOKEN_SPECIAL_CHAR == type)
     return lookup_charinfo(nm, suppress_creation);
-  if (type == TOKEN_INDEXED_CHAR)
+  if (TOKEN_INDEXED_CHAR == type)
     return get_charinfo_by_index(val, suppress_creation);
-  if (type == TOKEN_ESCAPE) {
+  if (TOKEN_ESCAPE == type) {
     if (escape_char != 0U)
       return charset_table[escape_char];
     else {
@@ -8879,7 +8879,7 @@ charinfo *token::get_charinfo(bool required, bool suppress_creation)
     }
   }
   if (required) {
-    if (type == TOKEN_EOF || type == TOKEN_NEWLINE)
+    if (TOKEN_EOF == type || TOKEN_NEWLINE == type)
       warning(WARN_MISSING, "missing ordinary, special, or indexed"
 			    " character");
     else
