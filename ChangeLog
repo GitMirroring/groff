@@ -1,5 +1,13 @@
 2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/token.h (token::ch): Compare member variable
+	`c` to literal of `unsigned char` type, not a character literal
+	of undefined signedness.
+
+	Continues the long process of fixing Savannah #67735.
+
+2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (token::next, token::get_charinfo)
 	(is_conditional_expression_true):
 	* src/roff/troff/token.h (token::is_newline, token::is_space)

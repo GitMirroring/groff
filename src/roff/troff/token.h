@@ -211,7 +211,7 @@ inline bool token::is_page_ejector()
 
 inline unsigned char token::ch()
 {
-  return ((TOKEN_CHAR == type) ? c : '\0');
+  return ((TOKEN_CHAR == type) ? c : 0U); // TODO: grochar
 }
 
 inline bool token::is_any_character()
