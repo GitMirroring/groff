@@ -6428,6 +6428,9 @@ void read_title_parts(node **part, hunits *part_width)
   if (!has_arg())
     return;
   token start(tok);
+  if (!want_att_compat && !tok.is_usable_as_delimiter())
+    warning(WARN_DELIM, "using %1 as a title request delimiter"
+			" is deprecated", tok.description());
   int start_level = input_stack::get_level();
   tok.next();
   for (int i = 0; i < 3; i++) {

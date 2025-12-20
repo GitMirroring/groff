@@ -1,5 +1,12 @@
 2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (read_title_parts): Throw deprecation
+	warning in category "delim" if the delimiter is invalid and
+	we're not in compatibility mode.  This is a training wheel to
+	get people off of ambiguous delimiters.  See Savannah #66009.
+
+2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/groff/tests/check-delimiter-validity.sh: Improve
 	tests.  Clarify progress messages to distinguish escape
 	sequence, title request, and output comparison contexts.  Test
