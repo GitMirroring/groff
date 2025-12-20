@@ -1,3 +1,15 @@
+2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/groff/tests/check-delimiter-validity.sh: Improve
+	tests.  Clarify progress messages to distinguish escape
+	sequence, title request, and output comparison contexts.  Test
+	two characters ('@', '_') that weren't tested before because I
+	ran out of steam.  Test delimiters used with title requests and
+	output comparisons even when not in compatibility mode.  Also
+	cosmetically sort big lists to vertically align punctuation
+	characters that aren't significant in numeric expressions,
+	pairing them up by low-order bits of their ISO 646 code points.
+
 2025-12-07  Alejandro Colomar <alx@kernel.org>
 
 	* src/libs/libgroff/uniglyph.cpp:
