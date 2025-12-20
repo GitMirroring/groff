@@ -1,3 +1,9 @@
+2025-12-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/groff/tests/check-delimiter-validity.sh: Check
+	unparameterized and invalid escape sequences for usability as
+	escape sequence delimiters.  See Savannah #67375.
+
 2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (read_title_parts): Throw deprecation

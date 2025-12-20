@@ -81,6 +81,23 @@ do
     echo "$output" | grep -Eqx '1 +2 +3' || wail
 done
 
+# Test unparameterized and invalid escape sequences.  The latter degrade
+# to ordinary characters.  See below regarding `\0`, `\^`, and `\|`.
+for c in         E   G   I J K         P       T U   W       \
+         a   c d e       i j           p q r   t u       y   \
+                                 /     % '<' '>' = '&' :     ')' \
+                         "'" ',' ';'     \
+         '@'     ']' '^' '_' \
+         '`' '{' '}' '~'
+do
+    echo 'checking validity of backslash-"'$c'"' \
+        "as escape sequence delimiter when not in compatibility mode" \
+        >&2
+    output=$(printf '\\l%c1n+2n\\&0%c\n' "$c" "$c" \
+      | "$groff" -w delim -T ascii | sed '/^$/d')
+    echo "$output" | grep -Fqx 000 || wail
+done
+
 for c in 0 1 2 3 4 5 6 7 8 9 + - '(' . '|'
 do
     echo "checking invalidity of '$c' as escape sequence delimiter" \
