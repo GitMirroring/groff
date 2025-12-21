@@ -3,6 +3,10 @@
 	* GPLv2: New file.
 	* chem.am (EXTRA_DIST): Ship it.
 
+	The GNU GPLv2 covers Bernd Warken's work on chem through 27
+	August 2015.  Copyrightable changes to chem since September 2017
+	are licensed under the GNU GPLv3, not GPLv2.
+
 2025-12-09  Norwid Behrnd <nbehrnd@yahoo.com>
 
 	* examples/atp.chem: The previous depiction of the ATP molecule
