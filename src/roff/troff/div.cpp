@@ -743,8 +743,7 @@ void page_offset()
   // oriented request.
   if (!has_arg() || !read_hunits(&n, 'm', topdiv->page_offset))
     n = topdiv->prev_page_offset;
-  topdiv->prev_page_offset = topdiv->page_offset;
-  topdiv->page_offset = n;
+  topdiv->set_page_offset(n);
   topdiv->modified_tag.incl(MTSM_PO);
   skip_line();
 }

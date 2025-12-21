@@ -125,6 +125,7 @@ public:
   void vjustify(symbol);
 #endif /* COLUMN */
   hunits get_page_offset() { return page_offset; }
+  void set_page_offset(hunits /* h */);
   vunits get_page_length() { return page_length; }
   vunits distance_to_next_trap();
   const char *get_next_trap_name();
@@ -149,6 +150,12 @@ public:
   void set_last_page() { last_page_count = page_count; }
   bool is_diversion() { return false; }
 };
+
+inline void top_level_diversion::set_page_offset(hunits h)
+{
+  prev_page_offset = page_offset;
+  page_offset = h;
+}
 
 extern top_level_diversion *topdiv;
 extern diversion *curdiv;

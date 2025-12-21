@@ -1,5 +1,19 @@
 2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Refactor.  Move page offset updates from language
+	parser logic into "engine" logic.
+
+	* src/roff/troff/div.h (class top_level_diversion): Declare new
+	member function `set_page_offset()`.
+	(top_level_diversion::set_page_offset): Define it, and make it
+	responsible for updating both `page_offset` and
+	`prev_page_offset` private member variables.
+	* src/roff/troff/div.cpp (page_offset): Make request handler
+	call this new mutator member function instead of manipulating
+	the diversion's properties directly.
+
+2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[grohtml,grotty]: Fix Savannah #67843.
 
 	* tmac/html-end.tmac:
