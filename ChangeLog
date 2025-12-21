@@ -1,5 +1,14 @@
 2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[grohtml,grotty]: Fix Savannah #67843.
+
+	* tmac/html-end.tmac:
+	* tmac/tty.tmac: Set the page offset to zero _twice_, to better
+	simulate AT&T nroff behavior.  (Do it for the "html" device too;
+	it better resembles an nroff-mode device than a troff-mode one.)
+
+2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Regression-test Savannah #67843.
 
 	* src/roff/groff/tests/po-request-works: New file.
