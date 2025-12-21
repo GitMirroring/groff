@@ -3058,7 +3058,7 @@ const char *token::description()
       charinfo *ci = get_charinfo(false /* required */,
 				  true /* suppress creation */);
       if (0 /* nullptr */ == ci) {
-	assert(0 == "attempted to process token without charinfo");
+	// We can get here via, e.g., `.pl \(nlu` (likely a typo).
 	return "nonexistent special character or class";
       }
       else if (ci->is_class())
