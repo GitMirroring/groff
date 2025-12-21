@@ -1,8 +1,6 @@
 This directory contains examples for the chem language.
 
-You can view the graphical display of the examples by calling
-
-    @g@chem <file> | groff -p ...
+Render the examples with "groff -j".
 
 On the displays, you can see rings consisting of several lines and
 bonds (lines).  All points on rings and bonds that do not have a
