@@ -1,5 +1,15 @@
 2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Trivially refactor.
+
+	* src/roff/troff/div.cpp (page_offset, page_length): Rename
+	these...
+	(configure_page_offset_request, configure_page_length_request):
+	...to these.
+	(init_div_requests): Update wire-uppery.
+
+2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Refactor.  Move page offset access from language
 	parser logic into "engine" logic.
 

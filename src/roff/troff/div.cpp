@@ -735,7 +735,7 @@ diversion::~diversion()
 {
 }
 
-void page_offset()
+void configure_page_offset_request()
 {
   hunits n;
   // The troff manual says that the default scaling indicator is v,
@@ -748,7 +748,7 @@ void page_offset()
   skip_line();
 }
 
-static void page_length()
+static void configure_page_length_request()
 {
   vunits temp;
   if (has_arg() && read_vunits(&temp, 'v', topdiv->get_page_length())) {
@@ -1276,9 +1276,9 @@ void init_div_requests()
   init_request("ne", need_space);
   init_request("ns", no_space);
   init_request("os", output_saved_vertical_space);
-  init_request("pl", page_length);
+  init_request("pl", configure_page_length_request);
   init_request("pn", page_number);
-  init_request("po", page_offset);
+  init_request("po", configure_page_offset_request);
   init_request("ptr", print_traps);
   init_request("rs", restore_spacing);
   init_request("rt", return_request);
