@@ -10,6 +10,15 @@
 	`TOKEN_DELIMITED_HORIZONTAL_MOTION` enumeration constant.
 	(token::is_horizontal_motion): Return `true` for both new and
 	old token types.
+	* src/roff/troff/input.cpp (token::next) <h>: Tokenize `h`
+	escape sequence as `TOKEN_DELIMITED_HORIZONTAL_MOTION`.
+	(token::is_usable_as_delimiter): Reject
+	`TOKEN_DELIMITED_HORIZONTAL_MOTION` instead of
+	`TOKEN_HORIZONTAL_MOTION` as a delimiter.
+	(token::next <z>, process_input_stack)
+	(token::add_to_zero_width_node_list, token::process): Treat new
+	token type the same as the old one.
+	(token::description): Describe new token type distinctly.
 
 2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 

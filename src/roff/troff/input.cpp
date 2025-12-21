@@ -2507,7 +2507,7 @@ void token::next()
       case 'h':
 	if (!read_delimited_measurement(&x, 'm'))
 	  break;
-	type = TOKEN_HORIZONTAL_MOTION;
+	type = TOKEN_DELIMITED_HORIZONTAL_MOTION;
 	nd = new hmotion_node(x, curenv->get_fill_color());
 	return;
       case 'H':
@@ -2690,7 +2690,9 @@ void token::next()
 	}
       case 'z':
 	next();
-	if ((TOKEN_NODE == type) || (TOKEN_HORIZONTAL_MOTION == type))
+	if ((TOKEN_NODE == type)
+	    || (TOKEN_HORIZONTAL_MOTION == type)
+	    || (TOKEN_DELIMITED_HORIZONTAL_MOTION == type))
 	  nd = new zero_width_node(nd);
 	else {
 	  // TODO: In theory, we could accept spaces and horizontal
@@ -2955,7 +2957,7 @@ bool token::is_usable_as_delimiter(bool report_error,
   case TOKEN_SPACE:
   case TOKEN_STRETCHABLE_SPACE:
   case TOKEN_UNSTRETCHABLE_SPACE:
-  case TOKEN_HORIZONTAL_MOTION:
+  case TOKEN_DELIMITED_HORIZONTAL_MOTION:
   case TOKEN_NEWLINE:
   case TOKEN_EOF:
     if (report_error)
@@ -3070,6 +3072,8 @@ const char *token::description()
     return "an escaped '~'";
   case TOKEN_UNSTRETCHABLE_SPACE:
     return "an escaped ' '";
+  case TOKEN_DELIMITED_HORIZONTAL_MOTION:
+    return "a parameterized horizontal motion";
   case TOKEN_HORIZONTAL_MOTION:
     return "a horizontal motion";
   case TOKEN_TAB:
@@ -3634,12 +3638,14 @@ void process_input_stack()
     case token::TOKEN_EOF:
       return;
     case token::TOKEN_NODE:
+    case token::TOKEN_DELIMITED_HORIZONTAL_MOTION:
     case token::TOKEN_HORIZONTAL_MOTION:
       if (curenv->get_was_line_interrupted()) {
 	// We don't want to warn about node types.  They might have been
 	// interpolated into the input by the formatter itself, as with
 	// the extra vertical space nodes appended to diversions.
-	if (token::TOKEN_HORIZONTAL_MOTION == tok.type)
+	if ((token::TOKEN_HORIZONTAL_MOTION == tok.type)
+	    || (token::TOKEN_DELIMITED_HORIZONTAL_MOTION == tok.type))
 	  warning(WARN_SYNTAX, "ignoring %1 on input line after"
 		  " output line continuation escape sequence",
 		  tok.description());
@@ -8934,6 +8940,7 @@ bool token::add_to_zero_width_node_list(node **pp)
     set_register(nm, curenv->get_input_line_position().to_units());
     break;
   case TOKEN_NODE:
+  case TOKEN_DELIMITED_HORIZONTAL_MOTION:
   case TOKEN_HORIZONTAL_MOTION:
     n = nd;
     nd = 0 /* nullptr */;
@@ -9028,6 +9035,7 @@ void token::process()
     curenv->newline();
     break;
   case TOKEN_NODE:
+  case TOKEN_DELIMITED_HORIZONTAL_MOTION:
   case TOKEN_HORIZONTAL_MOTION:
     curenv->add_node(nd);
     nd = 0 /* nullptr */;
