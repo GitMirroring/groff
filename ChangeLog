@@ -1,5 +1,18 @@
 2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Refactor.  Split `TOKEN_HORIZONTAL_MOTION` token type
+	into two, leaving the existing one for `\0`, `\^`, and `\|`
+	escape sequences, and creating a new
+	`TOKEN_DELIMITED_HORIZONTAL_MOTION` for the parameterized `\h`
+	escape sequence.
+
+	* src/roff/troff/token.h (class token): Add new
+	`TOKEN_DELIMITED_HORIZONTAL_MOTION` enumeration constant.
+	(token::is_horizontal_motion): Return `true` for both new and
+	old token types.
+
+2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/token.h (class token): Trivially refactor.
 	Sort enumeration constants lexicographically by their symbol
 	names.  It seems that they once were thus sorted (except for

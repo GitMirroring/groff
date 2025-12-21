@@ -44,12 +44,13 @@ class token {
     TOKEN_BACKSPACE,		// ^H
     TOKEN_BEGIN_TRAP,
     TOKEN_CHAR,			// ordinary character
+    TOKEN_DELIMITED_HORIZONTAL_MOTION,	// \h
     TOKEN_DUMMY,		// dummy character: \&
     TOKEN_EMPTY,		// this is the initial value
     TOKEN_END_TRAP,
     TOKEN_EOF,			// end of file
     TOKEN_ESCAPE,		// \e
-    TOKEN_HORIZONTAL_MOTION,	// horizontal motion: \|, \^, \0, \h
+    TOKEN_HORIZONTAL_MOTION,	// fixed horizontal motion: \|, \^, \0
     TOKEN_HYPHEN_INDICATOR,	// \%
     TOKEN_INDEXED_CHAR,		// \N
     TOKEN_INTERRUPT,		// \c
@@ -181,7 +182,8 @@ inline bool token::is_unstretchable_space()
 
 inline bool token::is_horizontal_motion()
 {
-  return (TOKEN_HORIZONTAL_MOTION == type);
+  return ((TOKEN_HORIZONTAL_MOTION == type)
+	  || (TOKEN_DELIMITED_HORIZONTAL_MOTION == type));
 }
 
 inline bool token::is_special_character()
