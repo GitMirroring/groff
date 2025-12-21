@@ -3,7 +3,7 @@
 # Inspired by doctype script in Kernighan & Pike, Unix Programming
 # Environment, pp 306-8.
 
-# Copyright (C) 1993-2024 Free Software Foundation, Inc.
+# Copyright 1993-2024 Free Software Foundation, Inc.
 # Written by James Clark.
 # Rewritten in Perl by Bernd Warken <groff-bernd.warken-72@web.de>.
 # Hacked up by G. Branden Robinson, 2021.

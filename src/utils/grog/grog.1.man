@@ -9,7 +9,7 @@ command a document requires
 .\" Legal Terms
 .\" ====================================================================
 .\"
-.\" Copyright (C) 1989-2021 Free Software Foundation, Inc.
+.\" Copyright 1989-2021 Free Software Foundation, Inc.
 .\"
 .\" This file is part of grog, which is part of groff, a free software
 .\" project.  You can redistribute it and/or modify it under the terms
