@@ -16,16 +16,15 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
 
 groff="${abs_top_builddir:-.}/test-groff"
 
 # Smoke-test rfc1345.tmac.
 
-DOC='\[,.]'
+doc='\[,.]'
 
-OUTPUT=$(echo "$DOC" | "$groff" -T utf8 -m rfc1345 -P-cbou -Z)
+output=$(echo "$doc" | "$groff" -T utf8 -m rfc1345 -P-cbou -Z)
 
-echo "$OUTPUT" | grep -Fqx 'Cu2026'
+echo "$output" | grep -Fqx 'Cu2026'
 
-# vim:set ai et sw=4 ts=4 tw=72:
+# vim:set autoindent expandtab shiftwidth=4 tabstop=4 textwidth=72:
