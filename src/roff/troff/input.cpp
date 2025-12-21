@@ -2459,7 +2459,7 @@ void token::next()
 	nm = read_delimited_identifier();
 	if (nm.is_null())
 	  break;
-	type = TOKEN_SPECIAL_CHAR;
+	type = TOKEN_DELIMITED_SPECIAL_CHAR;
 	return;
       case 'd':
 	type = TOKEN_NODE;
@@ -2789,6 +2789,7 @@ bool token::operator==(const token &t)
   case TOKEN_CHAR:
     return c == t.c;
   case TOKEN_SPECIAL_CHAR:
+  case TOKEN_DELIMITED_SPECIAL_CHAR:
     return nm == t.nm;
   case TOKEN_INDEXED_CHAR:
     return val == t.val;
@@ -2958,6 +2959,7 @@ bool token::is_usable_as_delimiter(bool report_error,
   case TOKEN_STRETCHABLE_SPACE:
   case TOKEN_UNSTRETCHABLE_SPACE:
   case TOKEN_DELIMITED_HORIZONTAL_MOTION:
+  case TOKEN_DELIMITED_SPECIAL_CHAR:
   case TOKEN_NEWLINE:
   case TOKEN_EOF:
     if (report_error)
@@ -3038,6 +3040,7 @@ const char *token::description()
   case TOKEN_SPACE:
     return "a space";
   case TOKEN_SPECIAL_CHAR:
+  case TOKEN_DELIMITED_SPECIAL_CHAR:
     // We normally use apostrophes for quotation in diagnostic messages,
     // but many special character names contain them.  Fall back to
     // double quotes if this one does.  A user-defined special character
@@ -3713,6 +3716,7 @@ void process_input_stack()
       }
     case token::TOKEN_INDEXED_CHAR:
     case token::TOKEN_SPECIAL_CHAR:
+    case token::TOKEN_DELIMITED_SPECIAL_CHAR:
       if (curenv->get_was_line_interrupted())
 	warning(WARN_SYNTAX, "ignoring %1 on input line after output"
 		" line continuation escape sequence",
@@ -8871,7 +8875,8 @@ charinfo *token::get_charinfo(bool required, bool suppress_creation)
 {
   if (TOKEN_CHAR == type)
     return charset_table[c];
-  if (TOKEN_SPECIAL_CHAR == type)
+  if ((TOKEN_SPECIAL_CHAR == type)
+      || (TOKEN_DELIMITED_SPECIAL_CHAR == type))
     return lookup_charinfo(nm, suppress_creation);
   if (TOKEN_INDEXED_CHAR == type)
     return get_charinfo_by_index(val, suppress_creation);
@@ -8955,6 +8960,7 @@ bool token::add_to_zero_width_node_list(node **pp)
 			 curenv->get_fill_color());
     break;
   case TOKEN_SPECIAL_CHAR:
+  case TOKEN_DELIMITED_SPECIAL_CHAR:
     *pp = (*pp)->add_char(lookup_charinfo(nm), curenv, &w, &s);
     break;
   case TOKEN_STRETCHABLE_SPACE:
@@ -9053,6 +9059,7 @@ void token::process()
     curenv->space();
     break;
   case TOKEN_SPECIAL_CHAR:
+  case TOKEN_DELIMITED_SPECIAL_CHAR:
     // Optimize `curenv->add_char(get_charinfo())` for token type.
     curenv->add_char(lookup_charinfo(nm));
     break;

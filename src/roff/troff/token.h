@@ -45,6 +45,7 @@ class token {
     TOKEN_BEGIN_TRAP,
     TOKEN_CHAR,			// ordinary character
     TOKEN_DELIMITED_HORIZONTAL_MOTION,	// \h
+    TOKEN_DELIMITED_SPECIAL_CHAR,	// \C
     TOKEN_DUMMY,		// dummy character: \&
     TOKEN_EMPTY,		// this is the initial value
     TOKEN_END_TRAP,
@@ -64,7 +65,7 @@ class token {
     TOKEN_REQUEST,
     TOKEN_RIGHT_BRACE,		// \}
     TOKEN_SPACE,		// ' ' -- ordinary space
-    TOKEN_SPECIAL_CHAR,		// \(, \[, \C
+    TOKEN_SPECIAL_CHAR,		// \(, \[
     TOKEN_SPREAD,		// \p -- break and spread output line
     TOKEN_STRETCHABLE_SPACE,	// \~
     TOKEN_TAB,			// ^I
@@ -188,7 +189,8 @@ inline bool token::is_horizontal_motion()
 
 inline bool token::is_special_character()
 {
-  return (TOKEN_SPECIAL_CHAR == type);
+  return ((TOKEN_SPECIAL_CHAR == type)
+	  || (TOKEN_DELIMITED_SPECIAL_CHAR == type));
 }
 
 inline int token::nspaces()
@@ -218,7 +220,9 @@ inline unsigned char token::ch()
 
 inline bool token::is_any_character()
 {
-  return ((TOKEN_CHAR == type) || (TOKEN_SPECIAL_CHAR == type)
+  return ((TOKEN_CHAR == type)
+	  || (TOKEN_SPECIAL_CHAR == type)
+	  || (TOKEN_DELIMITED_SPECIAL_CHAR == type)
 	  || (TOKEN_INDEXED_CHAR == type));
 }
 

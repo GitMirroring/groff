@@ -1,5 +1,27 @@
 2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Split `TOKEN_SPECIAL_CHAR` token type into two, leaving
+	the existing one for `\(` and `\[` escape sequences, and
+	creating a new `TOKEN_DELIMITED_SPECIAL_CHAR` for the delimited
+	`\C` escape sequence.
+
+	* src/roff/troff/token.h (class token): Add new
+	`TOKEN_DELIMITED_SPECIAL_CHAR` enumeration constant.
+	(token::is_special_character, token::is_any_character): Return
+	`true` for both new and old token types.
+	* src/roff/troff/input.cpp (token::next) <C>: Tokenize `C`
+	escape sequence as `TOKEN_DELIMITED_SPECIAL_CHAR`.
+	(token::is_usable_as_delimiter): Reject
+	`TOKEN_DELIMITED_SPECIAL_CHAR` as a delimiter.
+	(token::operator==, token::description, process_input_stack)
+	(token::get_charinfo, token::add_to_zero_width_node_list)
+	(token::process): Treat new token type the same as the old one.
+
+	Fixes <https://savannah.gnu.org/bugs/?67842>.  Problem appears
+	to date back to groff's birth.
+
+2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/groff/tests/check-delimiter-validity.sh: Add
 	regression test for Savannah #67842.
 
