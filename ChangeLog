@@ -1,5 +1,12 @@
 2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Regression-test Savannah #67843.
+
+	* src/roff/groff/tests/po-request-works: New file.
+	* src/roff/groff/groff.am (groff_TESTS): Run test.
+
+2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Refactor.  Split `TOKEN_HORIZONTAL_MOTION` token type
 	into two, leaving the existing one for `\0`, `\^`, and `\|`
 	escape sequences, and creating a new
