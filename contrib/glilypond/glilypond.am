@@ -35,7 +35,7 @@ EXTRA_DIST += \
   contrib/glilypond/ChangeLog \
   contrib/glilypond/ChangeLog.0x \
   contrib/glilypond/GPLv2 \
-  contrib/glilypond/README.txt \
+  contrib/glilypond/README \
   contrib/glilypond/examples/example.groff \
   contrib/glilypond/glilypond.1.man \
   contrib/glilypond/glilypond.pl
