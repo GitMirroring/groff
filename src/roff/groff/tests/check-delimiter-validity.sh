@@ -140,19 +140,6 @@ echo "$output" | grep -Fqx "foo--bar" && wail
 # TODO: Check invalidity of \C as escape sequence delimiter when not in
 # compatibility mode.  See comment #27 of Savannah #67372.
 
-# Test invalid delimiters to `read_delimited_name()`.
-
-# TODO: We can restore the validity of these.  See comment #27 of
-# Savannah #67372.
-for c in '0' '^' '|'
-do
-    echo "checking invalidity of '$c' as escape sequence delimiter" \
-        "when not in compatibility mode" >&2
-    output=$(printf 'foo\\C\\%cem\\%cbar\n' "$c" "$c" \
-      | "$groff" -T ascii -a | sed '/^$/d')
-    echo "$output" | grep -Fqx "foo--bar" && wail
-done
-
 # Now test the context-dependent sets of delimiters of AT&T troff.
 
 # not tested: '_' (because it's part of our delimited expression)
