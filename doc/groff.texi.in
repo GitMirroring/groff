@@ -8179,7 +8179,9 @@ Another commenting scheme sometimes seen
 is three consecutive neutral apostrophes
 (@code{'''})
 at the beginning of an input line.
-This works, but GNU
+This works,@footnote{except in copy mode on Plan 9
+@command{troff}} @c Plan 9
+but GNU
 @command{troff} @c GNU
 emits a warning diagnostic
 (if enabled)
