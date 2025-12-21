@@ -2,7 +2,7 @@
 
 # gperl - preprocess troff(1) input to execute embedded Perl code
 #
-# Copyright (C) 2014-2020 Free Software Foundation, Inc.
+# Copyright 2014-2020 Free Software Foundation, Inc.
 #                    2025 G. Branden Robinson
 #
 # Written by Bernd Warken <groff-bernd.warken-72@web.de>.
