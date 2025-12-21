@@ -3,6 +3,8 @@
 # Written by Bernd Warken <groff-bernd.warken-72@web.de>.
 # Automake migration by Bertrand Garrigues
 #
+# This file is part of chem.
+#
 # chem is distributed with groff, the GNU roff typesetting system.
 #
 # groff is free software; you can redistribute it and/or modify it under
