@@ -2440,7 +2440,10 @@ Defining
 a
 .RI character\~ c
 creates a formatter object
-that is recognized like any other ordinary,
+that
+GNU
+.I troff \" GNU
+recognizes like any other ordinary,
 special,
 or indexed character on input,
 and produces
