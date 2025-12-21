@@ -8490,7 +8490,9 @@ names.
 @cindex interpolating registers (@code{\n})
 @cindex registers, interpolating (@code{\n})
 
-Register contents are interpolated with the @code{\n} escape sequence.
+The
+@code{\n}
+escape sequence interpolates register contents.
 
 @DefescList {\\n, , i, }
 @DefescItem {\\n, (, id, }
@@ -8499,11 +8501,20 @@ Register contents are interpolated with the @code{\n} escape sequence.
 @cindex assignments, nested
 @cindex indirect assignments
 @cindex assignments, indirect
-Interpolate register with name @var{ident} (one-character
-name@tie{}@var{i}, two-character name @var{id}).  If the register is
-undefined, it is created and assigned a value of@tie{}@samp{0}, that
-value is interpolated, and a warning in category @samp{reg} is emitted.
-@xref{Warnings}, regarding the enablement and suppression of warnings.
+Interpolate register with name
+@var{ident}
+(one-character
+name@tie{}@var{i},
+two-character name
+@var{id}).
+If the register is undefined,
+the formatter creates it and assigns it a value
+of@tie{}@samp{0},
+and interpolates that value.@footnote{GNU
+@command{troff} @c GNU
+emits a warning in category
+@samp{reg}.
+@xref{Warnings}.}
 @cindex @code{\n}, interpretation in copy mode
 @code{\n} is interpreted even in copy mode (@pxref{Copy Mode}).
 
@@ -9151,21 +9162,29 @@ right
 @endDefreq
 
 @Defreq {na, }
-Disable output line adjustment.  This produces the same output as
-left-alignment, but the value of the adjustment mode register @code{.j}
-is altered differently.  The adjustment mode and enablement status are
-associated with the environment (@pxref{Environments}).
+Disable output line adjustment,
+produciing the same output as left-alignment,
+but altering the value of the adjustment mode register
+@code{.j}
+differently.
+The adjustment mode
+and enablement status
+are associated with the environment.@footnote{@xref{Environments}.}
 @endDefreq
 
 @DefreqList {brp, }
 @DefescListEndx {\\p, , , }
-Break, adjusting the line per the current adjustment mode.  @code{\p}
-schedules a break with adjustment at the next word boundary.  The escape
-sequence is itself neither a break nor a space of any kind; it can thus
-be placed in the middle of a word to cause a break at the end of that
-word.
+Break,
+adjusting the line per the current adjustment mode.
+@code{\p}
+schedules a break with adjustment at the next word boundary.
+The escape sequence
+is itself neither a break nor a space of any kind;
+it can thus be placed in the middle of a word
+to cause a break at the end of that word.
 
-@code{\p} is typically used for fine-tuning of typeset output
+@code{\p}
+is typically used for fine-tuning of typeset output
 late in the document revision process.
 One of its applications is prevention of a break
 after an explicit hyphen when this occurs in an undesired place,
@@ -9175,8 +9194,7 @@ The hyphenation mode can be configured to prevent breaks
 after
 @emph{automatically}
 placed hyphens,
-but not explicit ones
-(@pxref{Manipulating Hyphenation}).
+but not explicit ones.@footnote{@xref{Manipulating Hyphenation}).}
 What one can do in this scenario
 is place @code{\p} at the end of the word
 @emph{before}
@@ -9297,13 +9315,20 @@ between the `.ce' and the `.ad c' requests.
     @result{}         the @quoteleft{}.ad c@quoteright{} requests.
 @endExample
 
-The previous example illustrates a common idiom of turning centering on
+The previous example
+illustrates a common idiom
+of turning centering on
 for a quantity of lines far in excess of what is required,@footnote{The
-@code{.R} register interpolates the largest value that GNU
-@command{troff} can work with.  @xref{Built-in Registers}.} and off
-again after the text to be centered.  This technique relieves humans of
-counting lines for requests that take a count of input lines as an
-argument.
+@code{.R}
+register interpolates the largest value that
+GNU
+@command{troff} @c GNU
+can work with.
+Recall
+@ref{Built-in Registers}.}
+and off again after the text to be centered.
+This technique relieves humans of counting lines
+for requests that take a count of input lines as an argument.
 @endDefreq
 
 @DefreqList {rj, [@Var{n}]}
@@ -9629,13 +9654,21 @@ mind, not a scrupulous enumeration of conceivable parameters.  GNU
 possible, favoring compatibility with older implementations over a more
 intuitive arrangement.  The means of hyphenation mode control is a set
 of numbers that can be added up to encode the behavior
-sought.@footnote{The mode is a vector of Booleans encoded as an integer.
-To a programmer, this fact is easily deduced from the exclusive use of
-powers of two for the configuration parameters; they are computationally
-easy to ``mask off'' and compare to zero.  To almost everyone else, the
-arrangement seems recondite and unfriendly.}  The entries in the
-following table are termed @dfn{values}; the sum of the desired
-values is the @dfn{mode}.
+sought.@footnote{The mode is a vector
+of Boolean values encoded as an integer.
+To a programmer,
+this fact is easily deduced
+from the exclusive use of powers of two
+for the configuration parameters;
+they are computationally easy to ``mask off''
+and compare to zero.
+To almost everyone else,
+the arrangement seems recondite and unfriendly.}
+The entries in the following table
+are termed
+@dfn{values};
+the sum of the desired values is the
+@dfn{mode}.
 
 @table @code
 @item 0
@@ -11242,16 +11275,27 @@ The register @code{%} interpolates the page number.
 @endExample
 
 @strong{Caution:@:} Interpolations occur before formatting operations.
-The act of filling, breaking, and adjusting a line can change the page
-number.  @code{%} is a register like any other, not a placeholder that
-is populated after the line it appears on is formatted.  Consider, for
-example, an extremely long page number at the end of the last line on
-the page; numbers aren't hyphenated, so the word containing the page
-number might break the line and the page, causing the reported page
-number to lag by one.  This sequencing also means that interpolating the
-@code{%} register inside a diversion (such as a footnote) records the
-page number at the time the diversion is populated, not when it is
-output.
+The process of filling,
+breaking,
+and adjusting a line can change the page number.
+@code{%}
+is a register like any other,
+not a placeholder
+that is rewritten after the line it appears on is formatted.
+Consider,
+for example,
+an extremely long page number
+at the end of the last line on the page;
+numbers aren't hyphenated,
+so the word containing the page number
+might break the line and the page,
+causing the reported page number to lag by one.
+This sequencing also means that interpolating the
+@code{%}
+register inside a diversion
+(such as a footnote)
+records the page number at the time the diversion is populated,
+not when it is output.
 @endDefreq
 
 @Defreq {ne, [@Var{space}]}
