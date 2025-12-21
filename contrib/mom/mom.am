@@ -141,7 +141,6 @@ MOSTLYCLEANFILES += \
   penguin.ps \
   penguin.pdf
 
-# rule to generate .pdf files from .mom files
 SUFFIXES += .mom .pdf
 .mom.pdf:
 	$(GROFF_V)$(MKDIR_P) `dirname $@` \
