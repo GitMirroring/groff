@@ -8463,13 +8463,11 @@ causing the names to refer to the same stored object.
 If
 @var{existing-register}
 is undefined,
-GNU
+the formatter ignores the request.@footnote{GNU
 @command{troff} @c GNU
-produces a warning in category
-@samp{reg}
-and ignores the request.
-@xref{Warnings},
-regarding the enablement and suppression of warnings.
+emits a warning in category
+@samp{reg}.
+@xref{Warnings}.}
 
 @cindex alias, register, removing (@code{rr})
 @cindex removing alias of register (@code{rr})
@@ -14582,17 +14580,15 @@ causing the names to refer to the same stored object.
 If
 @var{existing-name}
 is undefined,
-GNU
+the formatter ignores the request.@footnote{GNU
 @command{troff} @c GNU
-produces a warning in category
-@samp{mac}
-and ignores the request.
+emits a warning in category
+@samp{mac}.
+@xref{Warnings}.}
 If
 @var{new-name}
 already exists,
 its contents are lost unless already aliased.
-@xref{Warnings},
-regarding the enablement and suppression of warnings.
 
 To understand how the @code{als} request works, consider two different
 storage pools:@: one for objects (macros, strings, etc.), and another

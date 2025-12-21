@@ -1948,19 +1948,20 @@ Create alias
 (additional name)
 .I new-register
 of
-.IR existing-register .
+.IR existing-register ,
+causing the names to refer to the same stored object.
 .
 If
 .I existing-register
 is undefined,
+the formatter ignores the request.
 GNU
 .I troff \" GNU
 produces a warning in category
-.RB \[lq] reg \[rq]
-and ignores the request.
+.RB \[lq] reg \[rq].
 .
 See section \[lq]Warnings\[rq] of
-.MR @g@groff 1
+.MR @g@troff 1
 regarding the enablement and suppression of warnings.
 .
 To remove a register alias,
@@ -1987,11 +1988,11 @@ causing the names to refer to the same stored object.
 If
 .I existing-name
 is undefined,
+the formatter ignores the request.
 GNU
 .I troff \" GNU
 produces a warning in category
-.RB \[lq] mac \[rq]
-and ignores the request.
+.RB \[lq] mac \[rq].
 .
 If
 .I new-name
@@ -1999,7 +2000,7 @@ already exists,
 its contents are lost unless already aliased.
 .
 See section \[lq]Warnings\[rq] of
-.MR @g@groff 1
+.MR @g@troff 1
 regarding the enablement and suppression of warnings.
 .
 To remove an alias,

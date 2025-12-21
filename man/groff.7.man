@@ -2748,7 +2748,17 @@ Create alias
 (additional name)
 .I new-register
 of
-.IR existing-register .
+.IR existing-register ,
+causing the names to refer to the same stored object.
+.
+If
+.I existing-register
+is undefined,
+the formatter ignores the request.
+GNU
+.I troff \" GNU
+emits a warning in category
+.RB \[lq] reg \[rq].
 .
 .TPx
 .REQ .als "new-name existing-name"
@@ -2759,16 +2769,17 @@ of request,
 string,
 macro,
 or diversion
-.IR existing-name .
+.IR existing-name ,
+causing the names to refer to the same stored object.
 .
 If
 .I existing-name
 is undefined,
+the formatter ignores the request.
 GNU
 .I troff \" GNU
-produces a warning in category
-.RB \[lq] mac \[rq]
-and ignores the request.
+emits a warning in category
+.RB \[lq] mac \[rq].
 .
 If
 .I new-name
