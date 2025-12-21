@@ -134,7 +134,7 @@ done
 # Regression-test Savannah #67744.
 echo "checking invalidity of \h as escape sequence delimiter" \
     "when not in compatibility mode" >&2
-output=$(printf 'foo\\C\\h"1m"em\\h"1m"bar\n' \ | "$groff" -T ascii -a)
+output=$(printf 'foo\\C\\h"1m"em\\h"1m"bar\n' | "$groff" -T ascii -a)
 echo "$output" | grep -Fqx "foo--bar" && wail
 
 # TODO: Check invalidity of \C as escape sequence delimiter when not in
