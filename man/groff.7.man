@@ -1909,6 +1909,9 @@ and
 .B \[rs][
 to bracket portions of their output.)
 .
+An invalid escape sequence is valid as a delimiter
+if the character after the escape character would be valid.
+.
 .
 .br
 .ne 3v

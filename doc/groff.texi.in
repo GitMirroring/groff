@@ -8012,6 +8012,8 @@ escape sequences
 and
 @code{\[}
 to bracket portions of their output.}
+An invalid escape sequence is valid as a delimiter
+if the character after the escape character would be valid.
 
 @cindex @code{\D}, delimiters allowed by
 @cindex @code{\h}, delimiters allowed by
