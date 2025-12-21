@@ -24,6 +24,10 @@
 	for invalidity of `\0`, `\^`, and `\|` as delimiters--they're
 	valid again now.
 
+	* doc/groff.texi.in (Delimiters):
+	* man/groff.7.man (Delimiters): Re-document `\0`, `\^`, and `\|`
+	as valid delimiters.
+
 2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/token.h (class token): Trivially refactor.

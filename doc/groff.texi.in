@@ -7983,6 +7983,8 @@ and thus are allowed as delimiters:
 @c and _delimited_ horizontal motions.
 @code{\@key{SPC}},
 @code{\%},
+@code{\|},
+@code{\^},
 @code{\@{},
 @code{\@}},
 @code{\'},
@@ -7997,6 +7999,7 @@ and thus are allowed as delimiters:
 @code{\&},
 @code{\:},
 @code{\~},
+@code{\0},
 @code{\a},
 @code{\c},
 @code{\d},
