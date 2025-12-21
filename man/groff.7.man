@@ -1861,19 +1861,8 @@ see below.
 .br
 .ne 3v
 .P
-The following escape sequences don't take arguments
+The following escape sequences are not themselves delimited,
 and thus are allowed as delimiters:
-.\" That explanation is kind of BS; it's actually because their token
-.\" types aren't shared with ones that are parameterized in input.
-.\" Allowing `\0`, `\^`, and `\|` also allows the delimited `\h`, which
-.\" presumably was not intentional.  Allowing special characters as
-.\" delimiters, which very much _was_ deliberate (see their use in tbl
-.\" and eqn) also allows the delimited `\C`, which is a wart that makes
-.\" the foregoing "thus" a lie.  But expecting the reader to have a
-.\" command of GNU troff's token types, which _should_ be a mere
-.\" implementation detail, is a tall order.  We can fix this by
-.\" introducing separate token types for _delimited_ special characters
-.\" and _delimited_ horizontal motions.
 .BI \[rs] space\c
 ,
 .BR \[rs]% ,
@@ -1908,6 +1897,17 @@ and
 However,
 we discourage using them this way;
 they can make the input confusing to read.
+.
+(The
+.MR @g@eqn @MAN1EXT@
+and
+.MR @g@tbl @MAN1EXT@
+preprocessors use parameterized but non-delimited special characters
+escape sequences
+.B \[rs](
+and
+.B \[rs][
+to bracket portions of their output.)
 .
 .
 .br

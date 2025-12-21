@@ -1,5 +1,17 @@
 2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* doc/groff.texi.in (Delimiters):
+	* man/groff.7.man (Delimiters): Clarify what makes an escape
+	sequence ineligible for use as a delimiter--not its
+	parameterization, but its own use of delimiters.  Relatedly,
+	document the clever hack (dirty trick?) GNU eqn and tbl use to
+	surround arbitrary user input with delimiters that are nigh upon
+	guaranteed not to collide with that input.
+
+	Fixes <https://savannah.gnu.org/bugs/?67372>.  I hope.
+
+2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Split `TOKEN_SPECIAL_CHAR` token type into two, leaving
 	the existing one for `\(` and `\[` escape sequences, and
 	creating a new `TOKEN_DELIMITED_SPECIAL_CHAR` for the delimited

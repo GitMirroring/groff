@@ -7968,19 +7968,8 @@ see below.
 @cindex @code{\r}, as delimiter
 @cindex @code{\t}, as delimiter
 @cindex @code{\u}, as delimiter
-The following escape sequences don't take arguments
+The following escape sequences are not themselves delimited,
 and thus are allowed as delimiters:
-@c That explanation is kind of BS; it's actually because their token
-@c types aren't shared with ones that are parameterized in input.
-@c Allowing `\0`, `\^`, and `\|` also allows the delimited `\h`, which
-@c presumably was not intentional.  Allowing special characters as
-@c delimiters, which very much _was_ deliberate (see their use in tbl
-@c and eqn) also allows the delimited `\C`, which is a wart that makes
-@c the foregoing "thus" a lie.  But expecting the reader to have a
-@c command of GNU troff's token types, which _should_ be a mere
-@c implementation detail, is a tall order.  We can fix this by
-@c introducing separate token types for _delimited_ special characters
-@c and _delimited_ horizontal motions.
 @code{\@key{SPC}},
 @code{\%},
 @code{\|},
@@ -8012,7 +8001,17 @@ and
 @code{\u}.
 However,
 we discourage using them this way;
-they can make the input confusing to read.
+they can make the input confusing to read.@footnote{The
+GNU
+@cite{eqn@r{(1)}}
+and
+@cite{tbl@r{(1)}}
+preprocessors use parameterized but non-delimited special characters
+escape sequences
+@code{\(}
+and
+@code{\[}
+to bracket portions of their output.}
 
 @cindex @code{\D}, delimiters allowed by
 @cindex @code{\h}, delimiters allowed by
