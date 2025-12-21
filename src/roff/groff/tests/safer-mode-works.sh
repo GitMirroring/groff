@@ -32,7 +32,7 @@ echo "$error" | grep error || wail
 echo "$output"
 
 echo "checking that safer mode stays on after '-S -U' options given" >&2
-error=$(echo .sy true | "$groff" 2>&1)
+error=$(echo .sy true | "$groff" -S -U 2>&1)
 echo "$error" | grep error || wail
 echo "$output"
 

@@ -1,5 +1,11 @@
 2025-12-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/groff/tests/safer-mode-works.sh: Fix newly added test
+	to actually test what it means to test.  Continues commit
+	49cbc926cf, 15 December.
+
+2025-12-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/groff/tests/check-delimiter-validity.sh: Check
 	unparameterized and invalid escape sequences for usability as
 	escape sequence delimiters.  See Savannah #67375.
