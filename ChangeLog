@@ -1,3 +1,12 @@
+2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/token.h (class token): Trivially refactor.
+	Sort enumeration constants lexicographically by their symbol
+	names.  It seems that they once were thus sorted (except for
+	`TOKEN_EOF`), but my renaming activities have effaced that.
+	Restore that ordering, but stop treating `TOKEN_EOF` specially.
+	Its magnitude is never compared to anything (and shouldn't be).
+
 2025-12-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/groff/tests/pdf-device-smoke-test.sh: New file.

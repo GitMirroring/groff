@@ -47,8 +47,11 @@ class token {
     TOKEN_DUMMY,		// dummy character: \&
     TOKEN_EMPTY,		// this is the initial value
     TOKEN_END_TRAP,
+    TOKEN_EOF,			// end of file
     TOKEN_ESCAPE,		// \e
+    TOKEN_HORIZONTAL_MOTION,	// horizontal motion: \|, \^, \0, \h
     TOKEN_HYPHEN_INDICATOR,	// \%
+    TOKEN_INDEXED_CHAR,		// \N
     TOKEN_INTERRUPT,		// \c
     TOKEN_ITALIC_CORRECTION,	// \/
     TOKEN_LEADER,		// ^A
@@ -56,21 +59,18 @@ class token {
     TOKEN_MARK_INPUT,		// \k
     TOKEN_NEWLINE,		// ^J
     TOKEN_NODE,
-    TOKEN_INDEXED_CHAR,		// \N
     TOKEN_PAGE_EJECTOR,
     TOKEN_REQUEST,
     TOKEN_RIGHT_BRACE,		// \}
     TOKEN_SPACE,		// ' ' -- ordinary space
-    TOKEN_SPECIAL_CHAR,	// \(, \[
+    TOKEN_SPECIAL_CHAR,		// \(, \[, \C
     TOKEN_SPREAD,		// \p -- break and spread output line
     TOKEN_STRETCHABLE_SPACE,	// \~
-    TOKEN_UNSTRETCHABLE_SPACE,	// '\ '
-    TOKEN_HORIZONTAL_MOTION,	// horizontal motion: \|, \^, \0, \h
     TOKEN_TAB,			// ^I
     TOKEN_TRANSPARENT,		// \!
     TOKEN_TRANSPARENT_DUMMY,	// \)
-    TOKEN_ZERO_WIDTH_BREAK,	// \:
-    TOKEN_EOF			// end of file
+    TOKEN_UNSTRETCHABLE_SPACE,	// '\ '
+    TOKEN_ZERO_WIDTH_BREAK	// \:
   } type;
 public:
   token();
