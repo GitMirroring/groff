@@ -18,7 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 void do_divert(bool /* appending */, bool /* boxing */);
 void end_diversions();
-void page_offset();
 
 class diversion {
   friend void do_divert(bool /* appending */, bool /* boxing */);
@@ -125,6 +124,7 @@ public:
   void vjustify(symbol);
 #endif /* COLUMN */
   hunits get_page_offset() { return page_offset; }
+  hunits get_previous_page_offset() { return prev_page_offset; }
   void set_page_offset(hunits /* h */);
   vunits get_page_length() { return page_length; }
   vunits distance_to_next_trap();

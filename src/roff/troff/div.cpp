@@ -741,8 +741,8 @@ void page_offset()
   // The troff manual says that the default scaling indicator is v,
   // but it is in fact m: v wouldn't make sense for a horizontally
   // oriented request.
-  if (!has_arg() || !read_hunits(&n, 'm', topdiv->page_offset))
-    n = topdiv->prev_page_offset;
+  if (!has_arg() || !read_hunits(&n, 'm', topdiv->get_page_offset()))
+    n = topdiv->get_previous_page_offset();
   topdiv->set_page_offset(n);
   topdiv->modified_tag.incl(MTSM_PO);
   skip_line();

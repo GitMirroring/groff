@@ -1,5 +1,20 @@
 2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Refactor.  Move page offset access from language
+	parser logic into "engine" logic.
+
+	* src/roff/troff/div.h: Drop unnecessary declaration of
+	`page_offset()` returning `void`.  This concealed a latent
+	symbol visibility problem.
+	(class top_level_diversion): Declare new member function
+	`get_previous_page_offset()`, giving it a simple inline
+	definition akin to the existing `get_page_offset()`.
+	* src/roff/troff/div.cpp (page_offset): Make request handler
+	use accessor member functions instead of retrieving the
+	diversion's properties directly.
+
+2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Refactor.  Move page offset updates from language
 	parser logic into "engine" logic.
 
