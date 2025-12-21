@@ -47,3 +47,16 @@
 	* rfc1345.tmac: Add new macro package.
 
 	Fixes <https://savannah.gnu.org/bugs/?59839>.
+
+________________________________________________________________________
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+Local Variables:
+fill-column: 72
+mode: change-log
+version-control: never
+End:
+vim:set autoindent textwidth=72:
