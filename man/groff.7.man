@@ -5927,15 +5927,17 @@ Positive motion is rightward.
 .
 .TP
 .ESCq H N
-Set height of current font to
-.IR N \~scaled
-points
-(or specified units).
+Set
+(increment, decrement)
+the height of the current font,
+but not its width.
 .
 If
 .I N
 is zero,
-set the font height to the selected type size.
+the formatter uses the font's inherent height for its type size
+default scaling unit\~\c
+.scaleindicator z ).
 .
 .TP
 .ESC k r
@@ -6216,10 +6218,13 @@ request.
 .
 .TP
 .ESCq S N
-Slant output glyphs by
-.I N
-degrees;
-the direction of text flow is positive.
+Slant the glyphs of the currently selected font by
+@var{N}
+degrees.
+.
+Positive values slant in the direction of text flow.
+.
+Only integer values are possible.
 .
 .
 .TP

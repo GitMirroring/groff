@@ -12994,46 +12994,56 @@ necessary in GNU @code{troff}.  Nevertheless, they are supported.
 @cindex changing the font height (@code{\H})
 @cindex font height, changing (@code{\H})
 @cindex height, font, changing (@code{\H})
-Change (increment, decrement) the height of the current font,
-but not the width.
+Set
+(increment, decrement)
+the height of the current font,
+but not its width.
 If
 @var{height}
 is zero,
-set the font height to the selected type size.
-The default scaling unit is @samp{z}.
+the formatter uses the font's inherent height for its type size.
+The default scaling unit is
+@samp{z}.
 
 Changing the font height does not affect vertical spacing;
 dramatic changes may be better accompanied by an
 @code{\x}
 escape sequence to add extra pre-vertical space to the output line.
-@xref{Manipulating Spacing}.
+Recall @ref{Manipulating Spacing}.
 
-The read-only register @code{.height} contains the font height as set by
-@code{\H}.
+The read-only register
+@code{.height}
+interpolates the font height.
 
-Currently, only the @option{-T ps} and @option{-T pdf} devices support
-this feature.
+As of this writing,
+only the
+@option{ps}
+and
+@option{pdf}
+output devices support this feature.
 
 @cindex @code{\H} escape sequence, untokenized on input
 @cindex untokenized escape sequence, @code{\H}
-GNU
-@command{troff} @c GNU
-does not tokenize
+The formatter does not tokenize
 @code{\H}
 when reading it;
-the escape sequence updates the environment.
+the escape sequence
+updates the environment.@footnote{@xref{Environments}.}
 It thus can be used in requests that expect a single-character argument.
-We can alter the font height of a margin character as follows
-(@pxref{Miscellaneous}).
+We can alter the font height
+of a margin character@footnote{@xref{Miscellaneous}.}
+as follows.
 
 @Example
 .mc \H'+5z'x\H'0'
 @endExample
 
-In compatibility mode, @command{gtroff} behaves differently: If an
-increment or decrement is used, it is always taken relative to the
-current type size and not relative to the previously selected font
-height.  Thus,
+In compatibility mode,
+GNU
+@command{troff}
+behaves differently:
+it applies an increment or decrement to the current type size
+and not to the previously selected font height.
 
 @Example
 .cp 1
@@ -13041,8 +13051,10 @@ height.  Thus,
 @endExample
 
 @noindent
-prints the word @samp{test} twice with the same font height (five points
-larger than the current font size).
+prints the word
+@samp{test}
+twice with the same font height---five points larger
+than the current font size.
 @endDefesc
 
 @DefescList {\\S, @code{'}, slant, @code{'}}
@@ -13050,26 +13062,34 @@ larger than the current font size).
 @cindex changing the font slant (@code{\S})
 @cindex font slant, changing (@code{\S})
 @cindex slant, font, changing (@code{\S})
-Slant the current font by @var{slant} degrees.  Positive values slant to
-the right.  Only integer values are possible.
+Slant the glyphs of the currently selected font by
+@var{slant}
+degrees.
+Positive values slant in the direction of text flow.
+Only integer values are possible.
 
-The read-only register @code{.slant} contains the font slant as set by
-@code{\S}.
+The read-only register
+@code{.slant}
+interpolates the font slant.
 
-Currently, only the @option{-T ps} and @option{-T pdf} devices support
-this feature.
+As of this writing,
+only the
+@option{ps}
+and
+@option{pdf}
+output devices support this feature.
 
 @cindex @code{\S} escape sequence, untokenized on input
 @cindex untokenized escape sequence, @code{\S}
-GNU
-@command{troff} @c GNU
-does not tokenize
+The formatter does not tokenize
 @code{\S}
 when reading it;
-the escape sequence updates the environment.
+the escape sequence
+updates the environment.@footnote{@xref{Environments}.}
 It thus can be used in requests that expect a single-character argument.
-We can apply a slant to a margin character as follows
-(@pxref{Miscellaneous}).
+We can apply a slant
+to a margin character@footnote{@xref{Miscellaneous}.}
+as follows.
 
 @Example
 .mc \S'20'x\S'0'
@@ -13077,8 +13097,12 @@ We can apply a slant to a margin character as follows
 
 @cindex CSTR@tie{}#54 errata
 @cindex CSTR@tie{}#54 erratum, @code{\S} escape
-This escape is incorrectly documented in the @acronym{AT&T}
-@code{troff} manual; the slant is always set to an absolute value.
+This escape sequence is incorrectly documented in the
+@acronym{AT&T}
+@code{troff} @c AT&T
+manual:
+the slant is only assigned,
+never incremented or decremented.
 @endDefesc
 
 @Defreq {ul, [@Var{lines}]}
