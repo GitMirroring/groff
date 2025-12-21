@@ -7922,12 +7922,19 @@ macro is called, its contents are interpreted literally.
 
 @cindex @code{'}, as delimiter
 @cindex @code{"}, as delimiter
-Some escape sequences that require parameters use delimiters.  The
-neutral apostrophe @code{'} is a popular choice and shown in this
-document.  The neutral double quote @code{"} is also commonly seen.
-Letters, numerals, and leaders can be used.  Punctuation characters
-are likely better choices, except for those meaningful in numeric
-expressions; see below.
+Some escape sequences that require parameters delimit them.
+The neutral apostrophe
+@code{'}
+is a popular delimiter choice and shown in this document.
+The neutral double quote
+@code{"}
+is also commonly seen.
+Punctuation characters are the best choice
+(and most portable to other
+@command{troff}s), @c generic
+except for those meaningful in numeric expressions;
+see below.
+@c GNU troff happily accepts tabs and leaders; AT&T troff doesn't.
 
 @Example
 \l'1.5i\[bu]' \" draw 1.5 inches of bullet glyphs

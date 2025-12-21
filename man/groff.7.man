@@ -1850,13 +1850,12 @@ The neutral double quote
 .B \[dq]
 is also commonly seen.
 .
-Letters,
-numerals,
-and leaders can be used.
-.
-Punctuation characters are likely better choices,
+Punctuation characters are the best choice
+(and most portable to other
+.IR troff s, \" generic
 except for those meaningful in numeric expressions;
 see below.
+.\" GNU troff happily accepts tabs and leaders; AT&T troff doesn't.
 .
 .
 .br
