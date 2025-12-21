@@ -111,7 +111,7 @@ non-integral type sizes,
 user-defined characters,
 and automatic hyphenation of languages other than English;
 adds more conditional expression operators;
-recognizes additional scaling units and numeric operators;
+recognizes additional scaling units and arithmetic operators;
 enables general file I/O
 (in \[lq]unsafe mode\[rq] only);
 and exposes more formatter state.
@@ -492,14 +492,16 @@ and
 registers represent the type size selected by the formatter
 as it understands a device's capability.
 .
-The last
-.I requested
-type size is interpolated in scaled points
-by the read-only register
+the read-only registers
 .B .psr
-and in points as a decimal fraction by the read-only string-valued
-register
-.BR .sr .
+and
+(string-valued)
+.B .sr
+interpolate the last
+.I requested
+in scaled points
+and in points as a decimal fraction,
+respectively.
 .
 Like the actual current and previous type size,
 the requested ones are properties of an environment.
@@ -551,7 +553,7 @@ For example,
 .\" (the second paragraph thereof; the first covers "portable" concepts)
 GNU
 .IR troff 's \" GNU
-.B \%special
+.RB \%\[lq] special \[rq]
 and
 .B \%fspecial
 requests permit a document
