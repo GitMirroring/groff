@@ -1,5 +1,10 @@
 # Copyright 2021 Free Software Foundation, Inc.
-#      Written by Bertrand Garrigues <bertrand.garrigues@laposte.net>
+#           2021 G. Branden Robinson
+#
+#      Written by Deri James <deri@chuzzlewit.myzen.co.uk>
+#
+#      adapted from groff *.am files by
+#          Bertrand Garrigues <bertrand.garrigues@laposte.net>
 #
 # This file is part of groff, the GNU roff typesetting system.
 #
