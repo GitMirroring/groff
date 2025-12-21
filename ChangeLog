@@ -1,5 +1,11 @@
 2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/preconv/preconv.cpp (do_file): Say "non-portable"
+	instead of "unportable" in diagnostic message.  Prompted by a
+	similar change to the tzdata project by Paul Eggert.
+
+2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* doc/groff.texi.in (Delimiters):
 	* man/groff.7.man (Delimiters): Clarify that an invalid escape
 	sequence is valid as a delimiter if the character after the
