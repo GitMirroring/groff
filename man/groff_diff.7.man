@@ -750,6 +750,44 @@ set with another new drawing command.
 .
 .
 .\" ====================================================================
+.SS "Notational conventions"
+.\" ====================================================================
+.
+In the request and escape sequence descriptions below,
+GNU
+.I troff \" GNU
+reads arguments named
+.I character-sequence,
+.I command,
+.I contents,
+.I file,
+and
+.I message
+in copy mode
+until the end of the input line.
+.
+A
+.I character-sequence
+comprises one or more ordinary,
+special,
+or indexed characters;
+spaces;
+or escape sequences that interpolate only these.
+.\" XXX: or tabs, leaders, backspace, and delete characters
+.
+We name the remaining arguments for clarity;
+they are also
+.I character-sequences.
+.
+A neutral double quote
+.RB \[oq] \[dq] \[cq] \" single quotes around double quote
+can optionally prefix a
+.I character-sequence;
+the formatter discards one if present,
+permitting initial embedded spaces in the argument.
+.
+.
+.\" ====================================================================
 .SS "Escape sequences"
 .\" ====================================================================
 .
