@@ -137,8 +137,13 @@ echo "checking invalidity of \h as escape sequence delimiter" \
 output=$(printf 'foo\\C\\h"1m"em\\h"1m"bar\n' | "$groff" -T ascii -a)
 echo "$output" | grep -Fqx "foo--bar" && wail
 
-# TODO: Check invalidity of \C as escape sequence delimiter when not in
-# compatibility mode.  See comment #27 of Savannah #67372.
+# Check invalidity of \C as escape sequence delimiter when not in
+# compatibility mode.  See Savannah #67842.
+echo "checking invalidity of \C as escape sequence delimiter" \
+    "to delimited escape sequence" >&2
+output=$(printf 'foo\\h\\C"em"2m\\C"em"bar\n.pl \\(nlu' \
+    | "$groff" -T ascii)
+echo "$output" | grep -Fqx "foo  bar" && wail # 2 spaces
 
 # Now test the context-dependent sets of delimiters of AT&T troff.
 

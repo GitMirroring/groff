@@ -1,5 +1,10 @@
 2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/groff/tests/check-delimiter-validity.sh: Add
+	regression test for Savannah #67842.
+
+2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (token::description): Drop
 	`assert()`-ion that is reachable with invalid input.
 
