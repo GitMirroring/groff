@@ -12632,7 +12632,7 @@ in kerning adjustments or italic corrections.
 The formatter prevents infinite recursion
 by treating an occurrence
 of a character in its own definition
-as if were undefined;
+as if it were undefined;
 when interpolating such a character,
 GNU
 @command{troff} @c GNU
