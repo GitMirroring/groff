@@ -4,7 +4,8 @@
 # Inspired by "doctype" script in Kernighan & Pike, _The Unix
 # Programming Environment_, pp. 306-8.
 #
-# Copyright 1993-2024 Free Software Foundation, Inc.
+# Copyright 1991-2014 Free Software Foundation, Inc.
+#                2021 G. Branden Robinson
 #
 # Written in Bourne shell in groff 1.01 (ca. May 1991) by James Clark.
 # Rewritten in Perl by James Clark in groff 1.02 (ca. June 1991).
