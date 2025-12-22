@@ -1902,7 +1902,7 @@ they can make the input confusing to read.
 .MR @g@eqn @MAN1EXT@
 and
 .MR @g@tbl @MAN1EXT@
-preprocessors use parameterized but non-delimited special characters
+preprocessors use parameterized but non-delimited special character
 escape sequences
 .B \[rs](
 and
