@@ -1,3 +1,27 @@
+2025-12-23  Alexis Hildebrandt <afh@surryhill.net>
+
+	[mm]: Fix Savannah #67857.
+
+	Reading through mse.tmac and LT.se as a preparation to take on
+	bug #65861 I noticed that the layout does not seem right (see
+	attachment LT.se-before.pdf).  The main issues I notice are as
+	follows.
+	-  The main body text is offset very far to the right and
+	   overflows the right paper edge.
+	-  The lines of the main body text are not filled, i.e., line
+	   breaks in the source are present in the rendered output.
+	-  Once the first item is fixed, the `SVH` letter type main body
+	   line length also overflows the right paper edge.
+
+	* mse.tmac (let@init_SVH): Drop spurious `in` and `ll` requests.
+	(let@print_SV): Set indentation to zero and enable filling.
+	* examples/LT.se: Make both the `SVH` and `SVH` letter types
+	demonstrable by adding a `lT` string to select between them
+	{much the way "memorandum.mm" works}.  Update introductory
+	comments.
+
+	Fixes <https://savannah.gnu.org/bugs/?67857>.
+
 2026-01-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	Add tests of footnote area layout and vertical margins.
