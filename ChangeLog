@@ -1,5 +1,11 @@
 2025-12-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/number.cpp (get_number_rigidly): Delete.  It no
+	longer has a caller; that has migrated to `read_measurement(...,
+	..., true)`.  Continues commit 6dcbaa0a7a, 19 December.
+
+2025-12-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp (glyph_node::add_self): Initialize
 	local pointer variable `nn` to `0`.  Before returning,
 	`assert(3)` that it is no longer a null pointer.
