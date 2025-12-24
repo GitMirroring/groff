@@ -2945,9 +2945,11 @@ bool token::is_usable_as_delimiter(bool report_error,
   case TOKEN_NODE:
     if (report_error) {
       // Reserve a buffer large enough to handle the lengthiest case.
-      const size_t maxstr
-	= sizeof "space character horizontal motion node token";
-      const size_t bufsz = maxstr + 1; // for trailing '\0'
+      // See `token::description()`.
+      const size_t bufsz
+	= sizeof "space character horizontal motion node token"
+	  + sizeof "bracketrighttp"
+	  + 2 /* for trailing '"' and '\0' */;
       // C++03: char[bufsz]();
       static char buf[bufsz];
       (void) memset(buf, 0, bufsz);
@@ -2972,17 +2974,20 @@ bool token::is_usable_as_delimiter(bool report_error,
 
 const char *token::description()
 {
-  // Reserve a buffer large enough to handle the lengthiest cases.
+  // Reserve a buffer large enough to handle the lengthiest cases.  The
+  // user can still contrive, by accident or otherwise, an arbitrarily
+  // long identifier.
   //   "character code XXX"
   //   "special character 'bracketrighttp'"
   //   "indexed character -2147483648"
   //   "space character horizontal motion node token"
+  //   "nonexistent special character or class"
   // Future:
   //   "character code XXX (U+XXXX)" or similar
-  const size_t maxstr
-    = sizeof "space character horizontal motion node token";
-  const size_t bufsz = maxstr + 2; // for trailing '"' and '\0'
-  // C++03: char[bufsz]();
+  const size_t bufsz
+    = sizeof "space character horizontal motion node token"
+      + sizeof "bracketrighttp"
+      + 2 /* for trailing '"' and '\0' */;
   static char buf[bufsz];
   (void) memset(buf, 0, bufsz);
   switch (type) {
@@ -3032,7 +3037,7 @@ const char *token::description()
       return buf;
     }
   case TOKEN_INDEXED_CHAR:
-    (void) snprintf(buf, maxstr, "indexed character %d",
+    (void) snprintf(buf, bufsz, "indexed character %d",
 		    character_index());
     return buf;
   case TOKEN_RIGHT_BRACE:

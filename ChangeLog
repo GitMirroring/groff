@@ -1,5 +1,18 @@
 2025-12-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (token::is_usable_as_delimiter)
+	(token::description): Double the size of the stack-allocated
+	buffer we use to populate diagnostic messages about characters
+	being unsuitable for use as delimiter, or unsuitable for use at
+	all, respectively.  I'm thrilled about neither potentially
+	truncating identifiers nor about grabbing a potentially
+	unbounded amount of space from the stack, nor about leaking
+	memory on the heap--there's no good place to free this memory
+	because we return a `char` pointer to our caller.  Risking
+	truncation seems the best of a bad set of choices.
+
+2025-12-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (token::description): Improve
 	diagnostic when describing a nonexistent special character or
 	class by reporting its identifier, at least up to the point
