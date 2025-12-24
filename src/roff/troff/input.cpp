@@ -3057,16 +3057,16 @@ const char *token::description()
       // closing quotation mark.)
       static const char special_character[] = "special character";
       static const char character_class[] = "character class";
+      static const char nonexistent[] = "nonexistent special character"
+					" or class";
       const char *ctype = special_character;
       charinfo *ci = get_charinfo(false /* required */,
 				  true /* suppress creation */);
-      if (0 /* nullptr */ == ci) {
-	// We can get here via, e.g., `.pl \(nlu` (likely a typo).
-	return "nonexistent special character or class";
-      }
+      if (0 /* nullptr */ == ci)
+	ctype = nonexistent;
       else if (ci->is_class())
 	ctype = character_class;
-      (void) snprintf(buf, maxstr, "%s %c%s%c", ctype, qc, sc, qc);
+      (void) snprintf(buf, bufsz, "%s %c%s%c", ctype, qc, sc, qc);
       return buf;
     }
   case TOKEN_SPREAD:
