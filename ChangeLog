@@ -1,5 +1,11 @@
 2025-12-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (glyph_node::add_self): Initialize
+	local pointer variable `nn` to `0`.  Before returning,
+	`assert(3)` that it is no longer a null pointer.
+
+2025-12-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (token::is_usable_as_delimiter)
 	(token::description): Double the size of the stack-allocated
 	buffer we use to populate diagnostic messages about characters
