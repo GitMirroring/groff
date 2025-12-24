@@ -807,10 +807,9 @@ permitting initial embedded spaces in the argument.
 .\" eliminating its need to groff before you groff.
 .I groff
 introduces several new escape sequences,
-extends the syntax of a few AT&T
+extends the syntax of the AT&T
 .I troff \" AT&T
 escape sequences
-(namely,
 .BR \[rs]D ,
 .BR \[rs]f ,
 .BR \[rs]k ,
@@ -818,7 +817,7 @@ escape sequences
 .BR \[rs]s ,
 .BR \[rs]$ ,
 and
-.BR \[rs]* ),
+.BR \[rs]* ,
 and alters the behavior of
 .BR \[rs]X .
 .
