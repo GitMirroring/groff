@@ -1,3 +1,37 @@
+2025-12-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp: Trivially refactor.  Rename
+	`get_copy()` to `read_char_in_copy_mode()`, because this
+	function advances the input stream pointer and because it
+	changes the formatter's lexing and parsing rules from the
+	default to "copy mode", a fundamental *roff concept since J. F.
+	Ossanna transformed roff(1) into the macro language nroff(1)
+	with the introduction of macro definitions circa 1972.
+	(get_copy): Rename this...
+	(read_char_in_copy_mode): ...to this (decl and defn).
+	(read_char_in_copy_mode): Rename Boolean-valued argument
+	`handle_escape_E` to `handle_escaped_E`, to appease the ruthless
+	grammarian in my head.
+	(read_char_in_escape_sequence_parameter)
+	(has_arg)
+	(process_input_stack)
+	(decode_macro_call_arguments)
+	(decode_escape_sequence_arguments)
+	(read_request)
+	(do_define_string)
+	(define_character)
+	(do_define_macro)
+	(length_request)
+	(do_non_interpreted)
+	(device_request)
+	(output_request)
+	(tag)
+	(taga)
+	(do_terminal)
+	(do_write_request)
+	(abort_request)
+	(read_rest_of_line_as_argument): Update call sites.
+
 2025-12-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/number.cpp (get_number_rigidly): Delete.  It no
