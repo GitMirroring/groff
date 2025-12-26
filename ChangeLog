@@ -1,3 +1,25 @@
+2025-12-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp: Add new Boolean-valued parameter to
+	`read_input_until_terminator()`, `want_identifier`, defaulting
+	to false, so that we can distinguish callers that want a GNU
+	troff identifier from those gathering some other kind of input.
+	This is so that can we can reject (all) C0 control and Latin-1
+	Supplement characters in identifiers.  (C1 controls are already
+	rejected on input.)  The prohibition against C0 controls is to
+	make the language less tolerant of unreadable input, and the
+	latter is to enable us to pivot to reading UTF-8-encoded input
+	in a future release.
+	(read_input_until_terminator): Update declaration to add new
+	parameter with default value.  Update definition to reject, with
+	error diagnostic, character codes less than 32 and greater than
+	159.  Add assertion that the putative identifier character is
+	not a space (character code 32); these have never been valid in
+	*roff identifiers.  This function's callers must ensure that the
+	terminator precedes any space in the input.
+
+	Fixes <https://savannah.gnu.org/bugs/?67734>.
+
 2025-12-26  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (read_delimited_measurement): Make

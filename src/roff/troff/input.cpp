@@ -178,7 +178,7 @@ static bool read_delimited_measurement(units * /* n */,
 static bool read_delimited_measurement(units * /* n */,
     unsigned char /* si */, units /* prev_value */);
 static symbol read_input_until_terminator(bool /* required */,
-    unsigned char /* end_char */);
+    unsigned char /* end_char */, bool /* want_identifier */ = false);
 static bool read_line_rule_expression(units * /* res */,
     unsigned char /* si */, charinfo ** /* cp */);
 static bool read_size(int *);
@@ -3191,13 +3191,15 @@ symbol read_identifier(bool required)
 
 symbol read_long_identifier(bool required)
 {
-  return read_input_until_terminator(required, 0U);
+  return read_input_until_terminator(required, 0U,
+				     true /* want identifier */);
 }
 
 // Read bytes from input until reaching a null byte or the specified
 // `end_char`; construct and return a `symbol` object therefrom.
 static symbol read_input_until_terminator(bool required,
-					  unsigned char end_char)
+					  unsigned char end_char,
+					  bool want_identifier)
 {
   tok.skip_spaces();
   int buf_size = default_buffer_size;
@@ -3233,6 +3235,15 @@ static symbol read_input_until_terminator(bool required,
     buf[i] = tok.ch();
     if ((0U == buf[i]) || (terminator == buf[i]))
       break;
+    else if (want_identifier && ((buf[i] < ' ') || (buf[i] > 159))) {
+      // Of C0 controls, Solaris, Heirloom, and Plan 9 troff support
+      // ^[BCEFG] (only) in identifiers.  DWB 3.3 supports none.
+      assert(buf[i] != ' '); // ensure caller handled spaces
+      error("character code %1 is not allowed in an identifier",
+	    static_cast<int>(buf[i]));
+      delete[] buf;
+      return NULL_SYMBOL;
+    }
     i++;
     tok.next();
   }
