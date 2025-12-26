@@ -1,6 +1,12 @@
 2025-12-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (read_input_until_terminator):
+	Slightly refactor.  Introduce `const`-qualified local variable
+	to defeat inadvertent lvalue assignment.
+
+2025-12-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp (read_input_until_terminator):
 	Trivially refactor.  Split assignment-within-comparison into its
 	own statement.  Arrange equality comparisons to (prepare to)
 	avoid inadvertent lvalue assignment.

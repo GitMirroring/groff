@@ -3212,11 +3212,11 @@ static symbol read_input_until_terminator(bool required,
   }
   (void) memset(buf, 0, (buf_size * sizeof(unsigned char)));
   int i = 0;
+  const unsigned char terminator = end_char; // TODO: grochar
   for (;;) {
-    // If `end_char` != U0 we normally have to append a null byte.
+    // If `terminator` != 0U we normally have to append a null byte.
     if ((i + 2) > buf_size) {
-      // TODO: grochar
-      unsigned char *old_buf = buf;
+      unsigned char *old_buf = buf; // TODO: grochar
       int new_buf_size = buf_size * 2;
       // C++03: new char[new_buf_size]();
       try {
@@ -3231,7 +3231,7 @@ static symbol read_input_until_terminator(bool required,
       delete[] old_buf;
     }
     buf[i] = tok.ch();
-    if ((0U == buf[i]) || (end_char == buf[i]))
+    if ((0U == buf[i]) || (terminator == buf[i]))
       break;
     i++;
     tok.next();
@@ -3241,7 +3241,7 @@ static symbol read_input_until_terminator(bool required,
     delete[] buf;
     return NULL_SYMBOL;
   }
-  if ((end_char != 0U) && (end_char == buf[i]))
+  if ((terminator != 0U) && (terminator == buf[i]))
     buf[i + 1] = '\0';
   else
     diagnose_invalid_identifier();
