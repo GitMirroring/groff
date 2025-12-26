@@ -1151,7 +1151,7 @@ static int read_char_in_copy_mode(node **nd,
     }
     if (c == DOUBLE_QUOTE)
       continue;
-    if (c == ESCAPE_E && handle_escaped_E)
+    if ((c == ESCAPE_E) && handle_escaped_E)
       c = escape_char;
     if (c == ESCAPE_NEWLINE) {
       if (is_defining)
@@ -5453,10 +5453,11 @@ void do_define_macro(define_mode mode, calling_mode calling, comp_mode comp)
       mac.clear_string_flag();
     while (c == ESCAPE_NEWLINE) {
       if (mode == DEFINE_NORMAL || mode == DEFINE_APPEND)
+	// TODO: convert to unsigned char (future: grochar)?
 	mac.append(c);
       c = read_char_in_copy_mode(&n, true /* is_defining */);
     }
-    if (reading_beginning_of_input_line && c == '.') {
+    if (reading_beginning_of_input_line && (c == '.')) {
       const char *s = term.contents();
       int d = 0;
       // see if it matches term
@@ -5473,7 +5474,7 @@ void do_define_macro(define_mode mode, calling_mode calling, comp_mode comp)
 	}
       }
       if (s[i] == 0
-	  && ((i == 2 && want_att_compat)
+	  && (((i == 2) && want_att_compat)
 	      || ((d = read_char_in_copy_mode(&n)) == ' ')
 	      || d == '\n')) {	// we found it
 	if (d == '\n')
@@ -5497,7 +5498,8 @@ void do_define_macro(define_mode mode, calling_mode calling, comp_mode comp)
 	  skip_line();
 	return;
       }
-      if (mode == DEFINE_APPEND || mode == DEFINE_NORMAL) {
+      if ((mode == DEFINE_APPEND) || (mode == DEFINE_NORMAL)) {
+	// TODO: convert to unsigned char (future: grochar)?
 	mac.append(c);
 	for (int j = 0; j < i; j++)
 	  mac.append(s[j]);
@@ -5505,7 +5507,7 @@ void do_define_macro(define_mode mode, calling_mode calling, comp_mode comp)
       c = d;
     }
     if (c == EOF) {
-      if (mode == DEFINE_NORMAL || mode == DEFINE_APPEND) {
+      if ((mode == DEFINE_APPEND) || (mode == DEFINE_NORMAL)) {
 	if (have_start_location)
 	  error_with_file_and_line(start_filename, start_lineno,
 				   "end of file while defining macro '%1'",
@@ -5523,10 +5525,11 @@ void do_define_macro(define_mode mode, calling_mode calling, comp_mode comp)
       tok.next();
       return;
     }
-    if (mode == DEFINE_NORMAL || mode == DEFINE_APPEND) {
+    if ((mode == DEFINE_NORMAL) || (mode == DEFINE_APPEND)) {
       if (c == 0)
 	mac.append(n);
       else
+	// TODO: convert to unsigned char (future: grochar)?
 	mac.append(c);
     }
     reading_beginning_of_input_line = (c == '\n');

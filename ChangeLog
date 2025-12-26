@@ -1,5 +1,11 @@
 2025-12-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp: Trivially refactor.
+	(read_char_in_copy_mode, do_define_macro): Parenthesize formally
+	complex expressions.
+
+2025-12-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp: Trivially refactor.  Rename
 	`get_copy()` to `read_char_in_copy_mode()`, because this
 	function advances the input stream pointer and because it
