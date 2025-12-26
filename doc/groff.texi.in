@@ -20657,6 +20657,7 @@ to behave in ways difficult to predict.
 @node Other Differences, , Compatibility Mode, Implementation Differences
 @subsection Other Differences
 
+@c BEGIN Keep in sync with groff_diff(7).
 Other
 @command{troff} @c generic
 formatters that don't implement request names that are
@@ -20670,10 +20671,10 @@ extension escape sequence,
 they are liable to format its function selector character as text.
 @cindex @code{\~}, incompatibilities with @acronym{AT&T} @code{troff}
 For example,
+@c NESTED BEGIN Keep in sync with groff_man_style(7).
 the adjustable,
 non-breaking space escape sequence
 @code{\~}
-@c BEGIN Keep in sync with groff_diff(7) and groff_man_style(7).
 is also supported by Heirloom Doctools
 @command{troff} @c Heirloom
 050915 (September 2005),
@@ -20691,7 +20692,7 @@ or Documenter's Workbench
 which both render it as
 @samp{~}.
 @c as of this writing, 2022-08-13
-@c END Keep in sync with groff_diff(7) and groff_man_style(7).
+@c NESTED END Keep in sync with groff_man_style(7).
 @xref{Manipulating Filling and Adjustment}.
 GNU
 @command{troff}'s @c GNU
@@ -21129,11 +21130,21 @@ does so according to no obvious schedule
 if the buffer is of fixed size,
 the formatter performs the flush when the buffer runs out of room).
 
-In the somewhat pathological case where a diversion exists containing a
-partially collected line and a partially collected line at the top-level
-diversion has never existed, @acronym{AT&T} @code{troff} outputs a
-partially collected but otherwise empty line (as if @samp{\c} were in
-the top-level diversion) at the end of input; GNU @code{troff} does not.
+In the somewhat pathological case where a diversion exists
+containing a partially collected line
+and a partially collected line at the top-level diversion
+has never existed,
+@acronym{AT&T}
+@command{troff} @c AT&T
+outputs a partially collected but otherwise empty line
+(as if
+@samp{\c}
+were in the top-level diversion)
+at the end of input;
+GNU
+@command{troff} @c GNU
+does not.
+@c END Keep in sync with groff_diff(7).
 
 
 

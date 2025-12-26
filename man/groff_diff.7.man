@@ -6388,6 +6388,7 @@ McIlroy referred to it as a \[lq]living fossil\[rq].]
 .SH "Other differences"
 .\" ====================================================================
 .
+.\" BEGIN Keep in sync with groff.texi node "Other Differences".
 Other
 .I troff \" generic
 formatters that don't implement request names that are
@@ -6401,11 +6402,10 @@ extension escape sequence,
 they are liable to format its function selector character as text.
 .
 For example,
+.\" NESTED BEGIN Keep in sync with groff_man_style(7).
 the adjustable,
 non-breaking space escape sequence
 .B \[rs]\[ti]
-.\" BEGIN Keep in sync with groff.texi node "Other Differences" and
-.\" groff_man_style(7).
 is also supported by Heirloom Doctools
 .I troff \" Heirloom
 050915 (September 2005),
@@ -6424,8 +6424,7 @@ or Documenter's Workbench
 which both render it as
 .RB \[lq] \[ti] \[rq].
 .\" as of this writing, 2022-08-13
-.\" END Keep in sync with groff.texi node "Other Differences" and
-.\" groff_man_style(7).
+.\" NESTED END Keep in sync with groff_man_style(7).
 .
 The
 .B \[rs]A
@@ -6892,19 +6891,21 @@ the formatter performs the flush when the buffer runs out of room).
 .
 .
 .P
-In the somewhat pathological case where a diversion exists containing a
-partially collected line and a partially collected line at the top-level
-diversion has never existed,
+In the somewhat pathological case where a diversion exists
+containing a partially collected line
+and a partially collected line at the top-level diversion
+has never existed,
 AT&T
-.I troff
-will output a partially collected but otherwise empty line
+.I troff \" AT&T
+outputs a partially collected but otherwise empty line
 (as if
 .RB \[lq] \[rs]c \[rq]
 were in the top-level diversion)
 at the end of input;
 GNU
 .I troff \" GNU
-will not.
+does not.
+.\" END Keep in sync with groff.texi node "Other Differences".
 .
 .
 .\" ====================================================================
