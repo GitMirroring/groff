@@ -1,5 +1,15 @@
 2025-12-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (do_define_string, define_string)
+	(define_nocomp_string, append_string, append_nocomp_macro)
+	(do_define_macro, define_macro, define_nocomp_string)
+	(define_indirect_macro, define_indirect_nocomp_macro)
+	(append_macro, append_nocomp_macro, append_indirect_macro)
+	(append_indirect_nocomp_macro): Fix code style nit.  Mark
+	functions `static` since they do not require external linkage.
+
+2025-12-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (do_define_macro): Work on Savannah
 	#67735.  Assign `char`-valued literals to temporary `int`
 	storing value we got from `read_char_in_copy_mode()` (which

@@ -4982,7 +4982,7 @@ enum define_mode { DEFINE_NORMAL, DEFINE_APPEND, DEFINE_IGNORE };
 enum calling_mode { CALLING_NORMAL, CALLING_INDIRECT };
 enum comp_mode { COMP_IGNORE, COMP_DISABLE, COMP_ENABLE };
 
-void do_define_string(define_mode mode, comp_mode comp)
+static void do_define_string(define_mode mode, comp_mode comp)
 {
   symbol nm;
   node *n = 0 /* nullptr */;
@@ -5033,24 +5033,24 @@ void do_define_string(define_mode mode, comp_mode comp)
   tok.next();
 }
 
-void define_string()
+static void define_string()
 {
   do_define_string(DEFINE_NORMAL,
 		   want_att_compat ? COMP_ENABLE : COMP_IGNORE);
 }
 
-void define_nocomp_string()
+static void define_nocomp_string()
 {
   do_define_string(DEFINE_NORMAL, COMP_DISABLE);
 }
 
-void append_string()
+static void append_string()
 {
   do_define_string(DEFINE_APPEND,
 		   want_att_compat ? COMP_ENABLE : COMP_IGNORE);
 }
 
-void append_nocomp_string()
+static void append_nocomp_string()
 {
   do_define_string(DEFINE_APPEND, COMP_DISABLE);
 }
@@ -5393,7 +5393,8 @@ void handle_initial_title()
   handle_initial_request(TITLE_REQUEST);
 }
 
-void do_define_macro(define_mode mode, calling_mode calling, comp_mode comp)
+static void do_define_macro(define_mode mode, calling_mode calling,
+			    comp_mode comp)
 {
   symbol nm, term, dot_symbol(".");
   if (calling == CALLING_INDIRECT) {
@@ -5540,46 +5541,46 @@ void do_define_macro(define_mode mode, calling_mode calling, comp_mode comp)
   }
 }
 
-void define_macro()
+static void define_macro()
 {
   do_define_macro(DEFINE_NORMAL, CALLING_NORMAL,
 		  want_att_compat ? COMP_ENABLE : COMP_IGNORE);
 }
 
-void define_nocomp_macro()
+static void define_nocomp_macro()
 {
   do_define_macro(DEFINE_NORMAL, CALLING_NORMAL, COMP_DISABLE);
 }
 
-void define_indirect_macro()
+static void define_indirect_macro()
 {
   do_define_macro(DEFINE_NORMAL, CALLING_INDIRECT,
 		  want_att_compat ? COMP_ENABLE : COMP_IGNORE);
 }
 
-void define_indirect_nocomp_macro()
+static void define_indirect_nocomp_macro()
 {
   do_define_macro(DEFINE_NORMAL, CALLING_INDIRECT, COMP_DISABLE);
 }
 
-void append_macro()
+static void append_macro()
 {
   do_define_macro(DEFINE_APPEND, CALLING_NORMAL,
 		  want_att_compat ? COMP_ENABLE : COMP_IGNORE);
 }
 
-void append_nocomp_macro()
+static void append_nocomp_macro()
 {
   do_define_macro(DEFINE_APPEND, CALLING_NORMAL, COMP_DISABLE);
 }
 
-void append_indirect_macro()
+static void append_indirect_macro()
 {
   do_define_macro(DEFINE_APPEND, CALLING_INDIRECT,
 		  want_att_compat ? COMP_ENABLE : COMP_IGNORE);
 }
 
-void append_indirect_nocomp_macro()
+static void append_indirect_nocomp_macro()
 {
   do_define_macro(DEFINE_APPEND, CALLING_INDIRECT, COMP_DISABLE);
 }
