@@ -1,5 +1,12 @@
 2025-12-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (read_input_until_terminator):
+	Trivially refactor.  Split assignment-within-comparison into its
+	own statement.  Arrange equality comparisons to (prepare to)
+	avoid inadvertent lvalue assignment.
+
+2025-12-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (do_define_string, define_string)
 	(define_nocomp_string, append_string, append_nocomp_macro)
 	(do_define_macro, define_macro, define_nocomp_string)

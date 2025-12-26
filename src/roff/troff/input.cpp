@@ -3230,7 +3230,8 @@ static symbol read_input_until_terminator(bool required,
       buf_size = new_buf_size;
       delete[] old_buf;
     }
-    if (((buf[i] = tok.ch()) == 0U) || (buf[i] == end_char))
+    buf[i] = tok.ch();
+    if ((0U == buf[i]) || (end_char == buf[i]))
       break;
     i++;
     tok.next();
@@ -3240,7 +3241,7 @@ static symbol read_input_until_terminator(bool required,
     delete[] buf;
     return NULL_SYMBOL;
   }
-  if ((end_char != 0U) && (buf[i] == end_char))
+  if ((end_char != 0U) && (end_char == buf[i]))
     buf[i + 1] = '\0';
   else
     diagnose_invalid_identifier();
