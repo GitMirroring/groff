@@ -6002,7 +6002,7 @@ static void interpolate_number_format(symbol nm)
 
 static bool read_delimited_measurement(units *n,
 				       unsigned char si,
-				       int prev_value)
+				       units prev_value)
 {
   token start_token;
   start_token.next();
@@ -6038,6 +6038,8 @@ static bool read_delimited_measurement(units *n,
   return false;
 }
 
+// TODO: Merge into other `read_delimited_measurement()`, using default
+// argument of 0 for `prev_value`.
 static bool read_delimited_measurement(units *n, unsigned char si)
 {
   token start_token;

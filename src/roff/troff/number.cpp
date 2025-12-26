@@ -158,6 +158,7 @@ bool read_hunits(hunits *res, unsigned char si, hunits prev_value)
   return true;
 }
 
+// TODO: Default `prev_value` to 0.
 bool read_measurement(units *res, unsigned char si, units prev_value)
 {
   units u;
