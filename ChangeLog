@@ -1,5 +1,12 @@
 2025-12-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (do_define_macro): Slightly refactor.
+	Parallelize wording of error diagnostic when encountering EOF
+	inside `ig`nored input, pull it into a local `static const`
+	character array, and pass that to our diagnostic functions.
+
+2025-12-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp: Trivially refactor.
 	(read_char_in_copy_mode, do_define_macro): Parenthesize formally
 	complex expressions.

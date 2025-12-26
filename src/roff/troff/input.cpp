@@ -5516,11 +5516,11 @@ void do_define_macro(define_mode mode, calling_mode calling, comp_mode comp)
 	  error("end of file while defining macro '%1'", nm.contents());
       }
       else {
+	static const char msg[] = "end of file while ignoring input";
 	if (have_start_location)
-	  error_with_file_and_line(start_filename, start_lineno,
-				   "end of file while ignoring input lines");
+	  error_with_file_and_line(start_filename, start_lineno, msg);
 	else
-	  error("end of file while ignoring input lines");
+	  error(msg);
       }
       tok.next();
       return;
