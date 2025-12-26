@@ -1,5 +1,17 @@
 2025-12-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (do_define_macro): Work on Savannah
+	#67735.  Assign `char`-valued literals to temporary `int`
+	storing value we got from `read_char_in_copy_mode()` (which
+	calls `input_iterator::fill()`, which in turn calls getc(3)),
+	since it is destined to become an input character--if we don't
+	have to handle EOF.  Since we must, drop C-style type casts to
+	`unsigned char` while still scanning input.  Absence of a
+	premature EOF established, use `static_cast` operator to demote
+	this `int` to `unsigned char` before appending it to a macro.
+
+2025-12-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (do_define_macro): Improve
 	diagnostic.  Communicate error to the user by _describing what
 	happened_, rather than just throwing a noun phrase at them.

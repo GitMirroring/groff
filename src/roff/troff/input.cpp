@@ -5453,30 +5453,30 @@ void do_define_macro(define_mode mode, calling_mode calling, comp_mode comp)
       mac.clear_string_flag();
     while (c == ESCAPE_NEWLINE) {
       if (mode == DEFINE_NORMAL || mode == DEFINE_APPEND)
-	// TODO: convert to unsigned char (future: grochar)?
-	mac.append(c);
+	// TODO: grochar; may need NFD decomposition and UTF-8 encoding
+	mac.append(static_cast<unsigned char>(c));
       c = read_char_in_copy_mode(&n, true /* is_defining */);
     }
     if (reading_beginning_of_input_line && (c == '.')) {
       const char *s = term.contents();
-      int d = 0;
+      int d = '\0';
       // see if it matches term
       int i = 0;
-      if (s[0] != 0) {
+      if (s[0] != '\0') {
 	while (((d = read_char_in_copy_mode(&n)) == ' ') || (d == '\t'))
 	  ;
-	if ((unsigned char) s[0] == d) {
-	  for (i = 1; s[i] != 0; i++) {
+	if (s[0] == d) {
+	  for (i = 1; s[i] != '\0'; i++) {
 	    d = read_char_in_copy_mode(&n);
-	    if ((unsigned char) s[i] != d)
+	    if (s[i] != d)
 	      break;
 	  }
 	}
       }
-      if (s[i] == 0
+      if (s[i] == '\0'
 	  && (((i == 2) && want_att_compat)
 	      || ((d = read_char_in_copy_mode(&n)) == ' ')
-	      || d == '\n')) {	// we found it
+	      || (d == '\n'))) { // we found it
 	if (d == '\n')
 	  tok.make_newline();
 	else
@@ -5499,10 +5499,11 @@ void do_define_macro(define_mode mode, calling_mode calling, comp_mode comp)
 	return;
       }
       if ((mode == DEFINE_APPEND) || (mode == DEFINE_NORMAL)) {
-	// TODO: convert to unsigned char (future: grochar)?
-	mac.append(c);
+	// TODO: grochar; may need NFD decomposition and UTF-8 encoding
+	mac.append(static_cast<unsigned char>(c));
 	for (int j = 0; j < i; j++)
-	  mac.append(s[j]);
+	  // TODO: grochar; may need NFD decomposition & UTF-8 encoding
+	  mac.append(static_cast<unsigned char>(s[j]));
       }
       c = d;
     }
@@ -5528,11 +5529,11 @@ void do_define_macro(define_mode mode, calling_mode calling, comp_mode comp)
       return;
     }
     if ((mode == DEFINE_NORMAL) || (mode == DEFINE_APPEND)) {
-      if (c == 0)
+      if (c == '\0')
 	mac.append(n);
       else
-	// TODO: convert to unsigned char (future: grochar)?
-	mac.append(c);
+	// TODO: grochar; may need NFD decomposition and UTF-8 encoding
+	mac.append(static_cast<unsigned char>(c));
     }
     reading_beginning_of_input_line = (c == '\n');
     c = read_char_in_copy_mode(&n, true /* is_defining */);
