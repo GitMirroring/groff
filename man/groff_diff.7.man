@@ -6389,9 +6389,7 @@ McIlroy referred to it as a \[lq]living fossil\[rq].]
 .\" ====================================================================
 .
 .\" BEGIN Keep in sync with groff.texi node "Other Differences".
-Other
-.I troff \" generic
-formatters that don't implement request names that are
+Formatters that don't implement request names that are
 GNU
 .I troff \" GNU
 extensions tend to ignore them,

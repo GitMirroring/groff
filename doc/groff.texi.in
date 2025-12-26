@@ -20658,9 +20658,7 @@ to behave in ways difficult to predict.
 @subsection Other Differences
 
 @c BEGIN Keep in sync with groff_diff(7).
-Other
-@command{troff} @c generic
-formatters that don't implement request names that are
+Formatters that don't implement request names that are
 GNU
 @command{troff} @c GNU
 extensions tend to ignore them,
