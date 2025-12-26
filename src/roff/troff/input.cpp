@@ -173,14 +173,14 @@ static void interpolate_environment_variable(symbol);
 static symbol composite_glyph_name(symbol);
 static void interpolate_positional_parameter(symbol);
 static request_or_macro *lookup_request(symbol);
-static bool read_delimited_measurement(units *,
-	unsigned char /* scaling unit */);
-static bool read_delimited_measurement(units *,
-	unsigned char /* scaling unit */, units /* previous value */);
+static bool read_delimited_measurement(units * /* n */,
+    unsigned char /* si */);
+static bool read_delimited_measurement(units * /* n */,
+    unsigned char /* si */, units /* prev_value */);
 static symbol read_input_until_terminator(bool /* required */,
-					  unsigned char /* end char */);
-static bool read_line_rule_expression(units *res, unsigned char si,
-				      charinfo **cp);
+    unsigned char /* end_char */);
+static bool read_line_rule_expression(units * /* res */,
+    unsigned char /* si */, charinfo ** /* cp */);
 static bool read_size(int *);
 static symbol read_delimited_identifier();
 static void init_registers();
