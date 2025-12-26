@@ -6389,6 +6389,28 @@ McIlroy referred to it as a \[lq]living fossil\[rq].]
 .\" ====================================================================
 .
 .\" BEGIN Keep in sync with groff.texi node "Other Differences".
+Use of C0 control characters in identifiers is not portable;
+Solaris,
+Plan\~9,
+and Heirloom Doctools
+.IR troff s \" Solaris, Plan 9, Heirloom
+accept
+Control+B,
+Control+C,
+Control+E,
+Control+F,
+and
+Control+G (only),
+DWB\~3.3
+.I troff \" DWB
+does not.
+.
+GNU
+.I troff \" GNU
+rejects C0 controls in identifiers with an error diagnostic.
+.
+.
+.P
 Formatters that don't implement request names that are
 GNU
 .I troff \" GNU
@@ -6462,6 +6484,8 @@ in this adjustment mode
 to prevent \[lq]rivers\[rq] in the text.
 .
 .
+.br
+.ne 2v
 .P
 GNU
 .I troff \" GNU

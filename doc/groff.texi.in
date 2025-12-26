@@ -20658,6 +20658,25 @@ to behave in ways difficult to predict.
 @subsection Other Differences
 
 @c BEGIN Keep in sync with groff_diff(7).
+Use of C0 control characters in identifiers is not portable;
+Solaris,
+Plan@tie{}9,
+and Heirloom Doctools
+@command{troff}s @c Solaris, Plan 9, Heirloom
+accept
+@key{Control+B},
+@key{Control+C},
+@key{Control+E},
+@key{Control+F},
+and
+@key{Control+G} (only),
+DWB@tie{}3.3
+@command{troff} @c DWB
+does not.
+GNU
+@command{troff} @c GNU
+rejects C0 controls in identifiers with an error diagnostic.
+
 Formatters that don't implement request names that are
 GNU
 @command{troff} @c GNU
