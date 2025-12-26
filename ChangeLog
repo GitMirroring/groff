@@ -1,5 +1,11 @@
 2025-12-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (do_define_macro): Improve
+	diagnostic.  Communicate error to the user by _describing what
+	happened_, rather than just throwing a noun phrase at them.
+
+2025-12-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (do_define_macro): Slightly refactor.
 	Parallelize wording of error diagnostic when encountering EOF
 	inside `ig`nored input, pull it into a local `static const`

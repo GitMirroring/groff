@@ -5510,13 +5510,15 @@ void do_define_macro(define_mode mode, calling_mode calling, comp_mode comp)
       if ((mode == DEFINE_APPEND) || (mode == DEFINE_NORMAL)) {
 	if (have_start_location)
 	  error_with_file_and_line(start_filename, start_lineno,
-				   "end of file while defining macro '%1'",
+				   "encountered end of file"
+				   " while defining macro '%1'",
 				   nm.contents());
 	else
 	  error("end of file while defining macro '%1'", nm.contents());
       }
       else {
-	static const char msg[] = "end of file while ignoring input";
+	static const char msg[] = "encountered end of file while"
+				  " ignoring input";
 	if (have_start_location)
 	  error_with_file_and_line(start_filename, start_lineno, msg);
 	else
