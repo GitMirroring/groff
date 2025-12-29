@@ -1,5 +1,11 @@
 2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp: Refactor.
+	(abort_request): Replace open-coded logic duplicating an
+	existing function with a call of `terminal_write()`.
+
+2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp: Trivially refactor.
 	(do_terminal)
 	(terminal)

@@ -9307,23 +9307,8 @@ const char *readonly_mask_register::get_string()
 
 void abort_request()
 {
-  int c;
-  if (tok.is_eof())
-    c = EOF;
-  else if (tok.is_newline())
-    c = '\n';
-  else {
-    while ((c = read_char_in_copy_mode(0 /* nullptr */)) == ' ')
-      ;
-  }
-  if (!(c == EOF || c == '\n')) {
-    for (;
-	 (c != '\n') && (c != EOF);
-	 (c = read_char_in_copy_mode(0 /* nullptr */)))
-      fputs(encode_for_stream_output(c), stderr);
-    fputc('\n', stderr);
-  }
-  fflush(stderr);
+  terminal_write(true /* do append newline */ ,
+		 false /* interpret leading spaces */);
   cleanup_and_exit(EXIT_FAILURE);
 }
 
