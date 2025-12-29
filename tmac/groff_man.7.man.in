@@ -4680,7 +4680,11 @@ Historically,
 man pages used
 .B \[ga]
 and
-.B \[aq]
+.B \[aq],
+which
+.I troff \" generic
+rendered on typesetters
+as \[oq] and \[cq],
 exclusively for them.
 .
 However,
