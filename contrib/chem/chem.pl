@@ -2,7 +2,7 @@
 
 # chem - a groff preprocessor for producing chemical structure diagrams
 #
-# Copyright 2006-2014, 2022 Free Software Foundation, Inc.
+# Copyright 2006 Free Software Foundation, Inc.
 #
 # Written by Bernd Warken <groff-bernd.warken-72@web.de>.
 #
