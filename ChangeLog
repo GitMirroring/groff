@@ -1,5 +1,12 @@
 2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[groff]: Unit-test `br` and `brp` requests.
+
+	* src/roff/groff/tests/br-and-brp-requests-work.sh: Do it.
+	* src/roff/groff/groff.am (groff_TESTS): Run test.
+
+2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp: Trivially refactor.
 	(break_output_line): Rename argument from `want_adjustment` to
 	`want_forced_adjustment` for clarity.
