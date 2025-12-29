@@ -1439,7 +1439,7 @@ void fill()
 {
   while (!tok.is_newline() && !tok.is_eof())
     tok.next();
-  if (want_break)
+  if (was_invoked_with_regular_control_character)
     curenv->do_break();
   curenv->is_filling = true;
   tok.next();
@@ -1449,7 +1449,7 @@ void no_fill()
 {
   while (!tok.is_newline() && !tok.is_eof())
     tok.next();
-  if (want_break)
+  if (was_invoked_with_regular_control_character)
     curenv->do_break();
   curenv->is_filling = false;
   curenv->suppress_next_eol = true;
@@ -1465,7 +1465,7 @@ void center()
     n = 0;
   while (!tok.is_newline() && !tok.is_eof())
     tok.next();
-  if (want_break)
+  if (was_invoked_with_regular_control_character)
     curenv->do_break();
   curenv->right_aligned_line_count = 0;
   curenv->centered_line_count = n;
@@ -1482,7 +1482,7 @@ void right_justify()
     n = 0;
   while (!tok.is_newline() && !tok.is_eof())
     tok.next();
-  if (want_break)
+  if (was_invoked_with_regular_control_character)
     curenv->do_break();
   curenv->centered_line_count = 0;
   curenv->right_aligned_line_count = n;
@@ -1591,7 +1591,7 @@ void indent()
     temp = curenv->prev_indent;
   while (!tok.is_newline() && !tok.is_eof())
     tok.next();
-  if (want_break)
+  if (was_invoked_with_regular_control_character)
     curenv->do_break();
   curenv->have_temporary_indent = false;
   curenv->prev_indent = curenv->indent;
@@ -1617,7 +1617,7 @@ void temporary_indent()
     while (!tok.is_newline() && !tok.is_eof())
       tok.next();
   }
-  if (want_break)
+  if (was_invoked_with_regular_control_character)
     curenv->do_break();
   if (temp < H0) {
     warning(WARN_RANGE, "treating total indentation %1u as zero",
@@ -2647,14 +2647,14 @@ bool environment::is_empty()
 
 static void break_without_forced_adjustment_request()
 {
-  if (want_break)
+  if (was_invoked_with_regular_control_character)
     curenv->do_break(false /* want forced adjustment */);
   skip_line();
 }
 
 static void break_with_forced_adjustment_request()
 {
-  if (want_break)
+  if (was_invoked_with_regular_control_character)
     curenv->do_break(true /* want forced adjustment */);
   skip_line();
 }

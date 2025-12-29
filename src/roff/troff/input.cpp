@@ -97,7 +97,7 @@ void vjustify();
 static void transparent_throughput_file_request();
 
 token tok;
-bool want_break = false;
+bool was_invoked_with_regular_control_character = false;
 bool using_character_classes = false;
 static bool permit_color_output = true;
 bool want_color_output = true;
@@ -3501,7 +3501,8 @@ void process_input_stack()
 	if (reading_beginning_of_input_line && !have_formattable_input
 	    && (curenv->get_control_character() == ch
 		|| curenv->get_no_break_control_character() == ch)) {
-	  want_break = (curenv->get_control_character() == ch);
+	  was_invoked_with_regular_control_character
+	    = (curenv->get_control_character() == ch);
 	  // skip tabs as well as spaces here
 	  do {
 	    tok.next();
@@ -4748,7 +4749,7 @@ macro_iterator::macro_iterator(symbol s, macro &m,
 			       const char *how_called,
 			       bool want_arguments_initialized)
 : string_iterator(m, how_called, s), args(0 /* nullptr */), argc(0),
-  with_break(want_break)
+  with_break(was_invoked_with_regular_control_character)
 {
   if (want_arguments_initialized) {
     arg_list *al = input_stack::get_arg_list();
@@ -4760,7 +4761,8 @@ macro_iterator::macro_iterator(symbol s, macro &m,
 }
 
 macro_iterator::macro_iterator()
-: args(0 /* nullptr */), argc(0), with_break(want_break)
+: args(0 /* nullptr */), argc(0),
+  with_break(was_invoked_with_regular_control_character)
 {
 }
 
@@ -9435,7 +9437,7 @@ static void unsafe_transparent_throughput_file_request()
     return;
   }
   char *filename = read_rest_of_line_as_argument();
-  if (want_break)
+  if (was_invoked_with_regular_control_character)
     curenv->do_break();
   if (filename != 0 /* nullptr */)
     curdiv->copy_file(filename);
@@ -9478,7 +9480,7 @@ static void transparent_throughput_file_request()
     return;
   }
   char *filename = read_rest_of_line_as_argument();
-  if (want_break)
+  if (was_invoked_with_regular_control_character)
     curenv->do_break();
   if (filename != 0 /* nullptr */) {
     errno = 0;

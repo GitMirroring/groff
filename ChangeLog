@@ -1,5 +1,31 @@
 2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Slightly refactor.
+
+	* src/roff/troff/env.h: Rename `want_break` global Boolean,
+	relocating its declaration from here...
+	* src/roff/troff/input.h: ...to here, as
+	`was_invoked_with_regular_control_character`.  Yes, it's a
+	mouthful, but it is the task of the request handlers, which are
+	input processing functions, to interpret *roff's two distinct
+	control characters, giving them one of them break suppression
+	semantics.
+	* src/roff/troff/div.cpp (begin_page, space_request)
+	(flush_request):
+	* src/roff/troff/env.cpp (fill, no_fill, center, right_justify)
+	(indent, temporary_indent)
+	(break_without_forced_adjustment_request)
+	(break_with_forced_adjustment_request):
+	* src/roff/troff/input.cpp (process_input_stack)
+	(macro_iterator::macro_iterator)
+	(unsafe_transparent_throughput_file_request)
+	(transparent_throughput_file_request): Update dereference sites.
+	* src/roff/troff/input.cpp: Update definition.
+	* src/roff/troff/div.cpp: Include local "input.h" header file to
+	get at the symbol's relocated declaration.
+
+2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp: Refactor.  Further separate input
 	processing logic from engine logic.
 	(environment::do_break): Rename argument from `want_adjustment`
