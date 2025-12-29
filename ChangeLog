@@ -149,9 +149,9 @@
 	where the size of our buffer truncates it.  (How do you get a
 	"nonexistent special character or class" that nevertheless has
 	an identifier?  It's part of the input syntax.  What you do is
-	attempt to interpolate a special character (or class--an invalid
-	operation anyway, but stay with me) in a context where character
-	interpolation makes no sense, as in a numeric expression.
+	attempt to interpolate a special character [or class--an invalid
+	operation anyway, but stay with me] in a context where character
+	interpolation makes no sense, as in a numeric expression.)
 
 2025-12-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -451,11 +451,11 @@
 	`read_long_identifier()`, because it's used for more than just
 	reading "names" (request, macro, string, or diversion
 	identifiers), but also identifiers of environments, colors,
-	registers, fonts, styles, and file names.  (The last occurs only
-	in `ps_bbox_request()` and might be inapposite; GNU troff now
-	handles file names with spaces in thim, and that might not work
-	because the `psbb` request is not parsing its arguments
-	appropriately.)
+	registers, typefaces (fonts, famililies, and styles), and file
+	names.  (The last occurs only in `ps_bbox_request()` and might
+	be inapposite; GNU troff now handles file names with spaces in
+	them, and that might not work because the `psbb` request is not
+	parsing its arguments appropriately.)
 	* src/roff/troff/token.h: Rename in declaration.
 	* src/roff/troff/input.cpp (get_long_name): Rename this...
 	(read_long_identifier): ...to this.
@@ -544,13 +544,13 @@
 
 2025-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	[troff]: Refactor to use the C++ default argument force.  Merge
-	function `get_number_rigidly()` into `read_measurement(), which
-	differed by one line out of a dozen, by extending the latter's
-	signature with a default argument `is_mandatory` of type `bool`.
-	This coincidentally made GCC's overload resolver more sensitive
-	to arguments of ambiguous integral type, so take this
-	opportunity to stop punning between character literals and
+	[troff]: Refactor to use the force--C++ default argument force.
+	Merge function `get_number_rigidly()` into `read_measurement(),
+	which differed by one line out of a dozen, by extending the
+	latter's signature with a default argument `is_mandatory` of
+	type `bool`.  This coincidentally made GCC's overload resolver
+	more sensitive to arguments of ambiguous integral type, so take
+	this opportunity to stop punning between character literals and
 	`unsigned char`, in favor of the explicitness we'll need anyway
 	for GNU troff's planned wider fundamental character type.
 
@@ -635,7 +635,7 @@
 	(charinfo::get_number, charinfo::contains): Drop word "cyclic"
 	from warning diagnostics in category "syntax"; we don't
 	implemented nested classes _at all_; lack of support is not
-	limited to non-cyclic ones.
+	limited to cyclic ones.
 	(charinfo::contains): `#if 0`-disable code that searches
 	`nested_classes` member variable for matching `charinfo`
 	objects.
@@ -886,7 +886,7 @@
 2025-12-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (process_input_stack): Fix code style
-	nit.  Eliminate unnecessary brace scopes that introduces no new
+	nit.  Eliminate unnecessary brace scopes that introduce no new
 	local variables in switch `case`s.
 
 2025-12-13  G. Branden Robinson <g.branden.robinson@gmail.com>
