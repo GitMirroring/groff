@@ -1,5 +1,20 @@
 2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp: Refactor.  Further separate input
+	processing logic from engine logic.
+	(environment::do_break): Rename argument from `want_adjustment`
+	to `want_forced_adjustment` for clarity.
+	(break_output_line): Stop checking value of `want_break` global
+	here, as that's determined by the input control character used
+	to invoke the request, a front-end rather than an engine concern
+	{albeit brearing an engine-oriented name}.  However, removing
+	that conditional leaves this function as a one-liner with two
+	call sites differing only by a Boolean literal argument, so drop
+	the function altogether, instead open-coding it...
+	(break_without_adjustment, break_without_adjustment): ...here.
+
+2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[groff]: Unit-test `br` and `brp` requests.
 
 	* src/roff/groff/tests/br-and-brp-requests-work.sh: Do it.

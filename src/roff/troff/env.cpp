@@ -2578,7 +2578,11 @@ void environment::construct_new_line_state(node *nd)
 
 extern int global_diverted_space;
 
-void environment::do_break(bool want_adjustment)
+// "Forced adjustment" refers to spreading of adjustable spaces (and
+// perhaps only that, even if in the future we implement "squeezing"),
+// when it is not normally called for, as at the end of a paragraph.
+
+void environment::do_break(bool want_forced_adjustment)
 {
   bool was_centered = false;
   if ((curdiv == topdiv) && (topdiv->before_first_page_status > 0)) {
@@ -2593,7 +2597,8 @@ void environment::do_break(bool want_adjustment)
       line = new space_node(H0, get_fill_color(), line);
       space_total++;
     }
-    possibly_break_line(false /* must break here */, want_adjustment);
+    possibly_break_line(false /* must break here */,
+			want_forced_adjustment);
   }
   while (line != 0 /* nullptr */ && line->discardable()) {
     width_total -= line->width();
@@ -2640,24 +2645,17 @@ bool environment::is_empty()
 	  && pending_lines == 0 /* nullptr */;
 }
 
-// "Forced adjustment" refers to spreading of adjustable spaces (and
-// perhaps only that, even if in the future we implement "squeezing"),
-// when it is not normally called for, as at the end of a paragraph.
-static void break_output_line(bool want_forced_adjustment)
-{
-  if (want_break)
-    curenv->do_break(want_forced_adjustment);
-}
-
 static void break_without_forced_adjustment_request()
 {
-  break_output_line(false /* want forced adjustment */);
+  if (want_break)
+    curenv->do_break(false /* want forced adjustment */);
   skip_line();
 }
 
 static void break_with_forced_adjustment_request()
 {
-  break_output_line(true /* want forced adjustment */);
+  if (want_break)
+    curenv->do_break(true /* want forced adjustment */);
   skip_line();
 }
 
