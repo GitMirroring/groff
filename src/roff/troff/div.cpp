@@ -497,7 +497,7 @@ void top_level_diversion::transparent_output(unsigned char c)
     fatal("attempting transparent output from top-level diversion"
 	  " before first page has started, when a top-of-page trap is"
 	  " defined; invoke break or flush request beforehand");
-  const char *s = asciify(c);
+  const char *s = encode_for_stream_output(c);
   while (*s)
     the_output->transparent_char(*s++);
 }

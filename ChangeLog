@@ -1,5 +1,29 @@
 2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Trivially refactor for clarity.  "asciify" is one of
+	the code base's more overloaded terms.  Rename one application
+	of it.
+
+	* src/roff/troff/token.h: Rename `asciify()` and relocate its
+	declaration from here...
+	* src/roff/troff/input.h: ...to here, as
+	`encode_for_stream_output()`.
+
+	* src/roff/troff/input.cpp (asciify): Rename this definition...
+	(encode_for_stream_output): ...to this.
+
+	* src/roff/troff/div.cpp
+	(top_level_diversion::transparent_output):
+	* src/roff/troff/input.cpp:
+	(device_extension_node::tprint)
+	(input_char_description)
+	(do_terminal)
+	(do_write_request)
+	(stream_write_macro_request)
+	(abort_request): Update call sites.
+
+2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp: Trivially refactor.
 	(write_request)
 	(write_request_continue)

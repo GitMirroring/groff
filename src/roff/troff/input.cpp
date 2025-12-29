@@ -7006,7 +7006,9 @@ void device_extension_node::tprint(troff_output_file *out)
   for (;;) {
     int c = iter.get(0 /* nullptr */);
     if (c != EOF)
-      for (const char *s = ::asciify(c); *s != 0 /* nullptr */; s++)
+      for (const char *s = encode_for_stream_output(c);
+	   *s != 0 /* nullptr */;
+	   s++)
 	tprint_char(out, *s);
     else
       break;
@@ -7969,7 +7971,9 @@ void ps_bbox_request() // .psbb
   }
 }
 
-const char *asciify(int c)
+// Encode a token for output to an operating system file stream.
+// Express unencodable tokens as null characters.
+const char *encode_for_stream_output(int c)
 {
   static char buf[3];
   buf[0] = (0U == escape_char) ? '\\' : escape_char;
@@ -8067,7 +8071,7 @@ const char *input_char_description(int c)
   static char buf[bufsz];
   (void) memset(buf, 0, bufsz);
   if (is_invalid_input_char(c)) {
-    const char *s = asciify(c);
+    const char *s = encode_for_stream_output(c);
     if (*s) {
       buf[0] = '\'';
       strcpy(buf + 1, s);
@@ -8173,7 +8177,7 @@ static void do_terminal(bool do_append_newline,
     for (;
 	 (c != '\n') && (c != EOF);
 	 (c = read_char_in_copy_mode(0 /* nullptr */)))
-      fputs(asciify(c), stderr);
+      fputs(encode_for_stream_output(c), stderr);
   }
   if (do_append_newline)
     fputc('\n', stderr);
@@ -8410,7 +8414,7 @@ static void do_write_request(bool do_append_newline)
     if ('"' == c)
       c = read_char_in_copy_mode(0 /* nullptr */);
     while (c != '\n' && c != EOF) {
-      fputs(asciify(c), fp);
+      fputs(encode_for_stream_output(c), fp);
       c = read_char_in_copy_mode(0 /* nullptr */);
     }
   }
@@ -8460,7 +8464,7 @@ static void stream_write_macro_request() // .writem
       int c = iter.get(0 /* nullptr */);
       if (c == EOF)
 	break;
-      fputs(asciify(c), fp);
+      fputs(encode_for_stream_output(c), fp);
     }
     fflush(fp);
   }
@@ -9314,7 +9318,7 @@ void abort_request()
     for (;
 	 (c != '\n') && (c != EOF);
 	 (c = read_char_in_copy_mode(0 /* nullptr */)))
-      fputs(asciify(c), stderr);
+      fputs(encode_for_stream_output(c), stderr);
     fputc('\n', stderr);
   }
   fflush(stderr);
