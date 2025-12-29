@@ -8160,8 +8160,8 @@ void taga()
 // interpretation only in compatibility mode.  We still wouldn't need
 // `tm1` because a compatibility mode document could say ".do tm foo".
 
-static void do_terminal(bool do_append_newline,
-			bool interpret_leading_spaces)
+static void terminal_write(bool do_append_newline,
+			   bool interpret_leading_spaces)
 {
   if (has_arg(true /* peek */)) {
     int c;
@@ -8185,22 +8185,24 @@ static void do_terminal(bool do_append_newline,
   tok.next();
 }
 
-static void terminal()
+// old and busted
+static void terminal_message_request() // .tm
 {
-  do_terminal(true /* do append newline */ ,
-	      false /* interpret leading spaces */);
+  terminal_write(true /* do append newline */ ,
+		 false /* interpret leading spaces */);
 }
 
-static void terminal1()
+// the new hotness
+static void terminal_message1_request() // .tm1
 {
-  do_terminal(true /* do append newline */ ,
-	      true /* interpret leading spaces */);
+  terminal_write(true /* do append newline */ ,
+		 true /* interpret leading spaces */);
 }
 
-static void terminal_continue()
+static void terminal_message_continuation_request() // .tmc
 {
-  do_terminal(false /* do append newline */ ,
-	      true /* interpret leading spaces */);
+  terminal_write(false /* do append newline */ ,
+		 true /* interpret leading spaces */);
 }
 
 struct grostream : object {
@@ -10254,9 +10256,9 @@ void init_input_requests()
   init_request("sy", system_request);
   init_request("tag", tag);
   init_request("taga", taga);
-  init_request("tm", terminal);
-  init_request("tm1", terminal1);
-  init_request("tmc", terminal_continue);
+  init_request("tm", terminal_message_request);
+  init_request("tm1", terminal_message1_request);
+  init_request("tmc", terminal_message_continuation_request);
   init_request("tr", translate);
   init_request("trf", transparent_throughput_file_request);
   init_request("trin", translate_input);
