@@ -2640,21 +2640,24 @@ bool environment::is_empty()
 	  && pending_lines == 0 /* nullptr */;
 }
 
-static void break_output_line(bool want_adjustment)
+// "Forced adjustment" refers to spreading of adjustable spaces (and
+// perhaps only that, even if in the future we implement "squeezing"),
+// when it is not normally called for, as at the end of a paragraph.
+static void break_output_line(bool want_forced_adjustment)
 {
   if (want_break)
-    curenv->do_break(want_adjustment);
+    curenv->do_break(want_forced_adjustment);
 }
 
-static void break_without_adjustment()
+static void break_without_forced_adjustment_request()
 {
-  break_output_line(false);
+  break_output_line(false /* want forced adjustment */);
   skip_line();
 }
 
-static void break_with_adjustment()
+static void break_with_forced_adjustment_request()
 {
-  break_output_line(true);
+  break_output_line(true /* want forced adjustment */);
   skip_line();
 }
 
@@ -4332,8 +4335,8 @@ const char *hyphenation_default_mode_reg::get_string()
 void init_env_requests()
 {
   init_request("ad", adjust);
-  init_request("br", break_without_adjustment);
-  init_request("brp", break_with_adjustment);
+  init_request("br", break_without_forced_adjustment_request);
+  init_request("brp", break_with_forced_adjustment_request);
   init_request("ce", center);
   init_request("cu", continuous_underline);
   init_request("ev", environment_switch);

@@ -1,5 +1,16 @@
 2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp: Trivially refactor.
+	(break_output_line): Rename argument from `want_adjustment` to
+	`want_forced_adjustment` for clarity.
+	(break_without_adjustment): Rename this request handler...
+	(break_without_forced_adjustment_request): ...to this.
+	(break_with_adjustment): Rename this request handler...
+	(break_with_forced_adjustment_request): ...to this.
+	(init_env_requests): Update wire-uppery.
+
+2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp: Refactor.  More cleanly separate input
 	processing logic from engine logic.
 	(do_break_request): Rename this...
