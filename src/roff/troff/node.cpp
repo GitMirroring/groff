@@ -1745,7 +1745,8 @@ real_output_file::~real_output_file()
 {
   if (!fp)
     return;
-  // Prevent destructor from recursing; see div.cpp:cleanup_and_exit().
+  // Prevent destructor from recursing; see
+  // div.cpp:write_any_trailer_and_exit().
   is_dying = true;
   // To avoid looping, set fp to 0 before calling fatal().
   if (ferror(fp)) {

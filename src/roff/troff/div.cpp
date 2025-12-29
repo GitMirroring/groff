@@ -636,10 +636,10 @@ void end_diversions()
   }
 }
 
-// TODO: This might be better named `write_trailer_and_exit()`.  Most
-// formatter state is "cleaned up" in input.cpp:exit_troff().
-void cleanup_and_exit(int exit_code)
+// input.cpp:exit_troff() cleans up most formatter state.
+void write_any_trailer_and_exit(int exit_code)
 {
+  // If output was never initialized, there is no trailer to write.
   if (the_output != 0 /* nullptr */) {
     the_output->trailer(topdiv->get_page_length());
     // If we're already dying, don't call the_output's destructor.  See
@@ -660,12 +660,12 @@ bool top_level_diversion::begin_page(vunits n)
 	? curenv->is_empty()
 	: (is_eoi_macro_finished && (seen_last_page_ejector
 				      || began_page_in_eoi_macro)))
-      cleanup_and_exit(EXIT_SUCCESS);
+      write_any_trailer_and_exit(EXIT_SUCCESS);
     if (!is_eoi_macro_finished)
       began_page_in_eoi_macro = true;
   }
   if (last_page_number > 0 && page_number == last_page_number)
-    cleanup_and_exit(EXIT_SUCCESS);
+    write_any_trailer_and_exit(EXIT_SUCCESS);
   if (0 /* nullptr */ == the_output)
     init_output();
   ++page_count;

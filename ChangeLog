@@ -1,5 +1,19 @@
 2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Trivially refactor.
+
+	* src/roff/troff/div.h: Rename declaration `cleanup_and_exit()`
+	to `write_any_trailer_and_exit()`.  Comment formal argument
+	name as a compromise with the Stroustrup-style C++ used in most
+	of groff.
+	* src/roff/troff/div.cpp (cleanup_and_exit): Rename this...
+	(write_any_trailer_and_exit): ...to this.
+	* src/roff/troff/div.cpp (top_level_diversion::begin_page):
+	* src/roff/troff/input.cpp (exit_troff, abort_request, do_error)
+	(fatal_with_file_and_line): Migrate call sites.
+
+2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp: Refactor.
 	(abort_request): Replace open-coded logic duplicating an
 	existing function with a call of `terminal_write()`.

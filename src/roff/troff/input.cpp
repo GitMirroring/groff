@@ -3319,7 +3319,7 @@ void exit_troff()
     process_input_stack();
   }
   // TODO: delete pointers in file name set.
-  cleanup_and_exit(EXIT_SUCCESS);
+  write_any_trailer_and_exit(EXIT_SUCCESS);
 }
 
 // This implements .ex.  The input stack must be cleared before calling
@@ -9309,7 +9309,7 @@ void abort_request()
 {
   terminal_write(true /* do append newline */ ,
 		 false /* interpret leading spaces */);
-  cleanup_and_exit(EXIT_FAILURE);
+  write_any_trailer_and_exit(EXIT_FAILURE);
 }
 
 // Consume the rest of the input line in copy mode and return it as a C
@@ -10695,7 +10695,7 @@ static void do_error(error_type type,
   fputc('\n', stderr);
   fflush(stderr);
   if (type == FATAL)
-    cleanup_and_exit(EXIT_FAILURE);
+    write_any_trailer_and_exit(EXIT_FAILURE);
 }
 
 // This function should have no callers in production builds.
@@ -10766,7 +10766,7 @@ void fatal_with_file_and_line(const char *filename, int lineno,
   errprint(format, arg1, arg2, arg3);
   fputc('\n', stderr);
   fflush(stderr);
-  cleanup_and_exit(EXIT_FAILURE);
+  write_any_trailer_and_exit(EXIT_FAILURE);
 }
 
 void error_with_file_and_line(const char *filename, int lineno,
