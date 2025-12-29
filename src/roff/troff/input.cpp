@@ -8146,13 +8146,24 @@ void taga()
 
 // .tm, .tm1, and .tmc
 
-void do_terminal(int newline, int string_like)
+// TODO: Migrate `tm` (and `ab`) to work like `tm1`, interpreting a
+// leading `"` as `ds` does (and a bunch of other requests do).
+//
+// This would leave `tm1` without a distinct function, so we could
+// retire it.
+//
+// Separately, we could make `tm` (and/or `ab`) do old-style argument
+// interpretation only in compatibility mode.  We still wouldn't need
+// `tm1` because a compatibility mode document could say ".do tm foo".
+
+static void do_terminal(bool do_append_newline,
+			bool interpret_leading_spaces)
 {
   if (has_arg(true /* peek */)) {
     int c;
     for (;;) {
       c = read_char_in_copy_mode(0 /* nullptr */);
-      if (string_like && c == '"') {
+      if (interpret_leading_spaces && c == '"') {
 	c = read_char_in_copy_mode(0 /* nullptr */);
 	break;
       }
@@ -8164,25 +8175,28 @@ void do_terminal(int newline, int string_like)
 	 (c = read_char_in_copy_mode(0 /* nullptr */)))
       fputs(asciify(c), stderr);
   }
-  if (newline)
+  if (do_append_newline)
     fputc('\n', stderr);
   fflush(stderr);
   tok.next();
 }
 
-void terminal()
+static void terminal()
 {
-  do_terminal(1, 0);
+  do_terminal(true /* do append newline */ ,
+	      false /* interpret leading spaces */);
 }
 
-void terminal1()
+static void terminal1()
 {
-  do_terminal(1, 1);
+  do_terminal(true /* do append newline */ ,
+	      true /* interpret leading spaces */);
 }
 
-void terminal_continue()
+static void terminal_continue()
 {
-  do_terminal(0, 1);
+  do_terminal(false /* do append newline */ ,
+	      true /* interpret leading spaces */);
 }
 
 struct grostream : object {
@@ -8367,7 +8381,7 @@ static void close_request() // .close
 
 // .write and .writec
 
-void do_write_request(int newline)
+static void do_write_request(bool do_append_newline)
 {
   symbol stream = read_identifier(true /* required */);
   if (stream.is_null()) {
@@ -8400,23 +8414,23 @@ void do_write_request(int newline)
       c = read_char_in_copy_mode(0 /* nullptr */);
     }
   }
-  if (newline)
+  if (do_append_newline)
     fputc('\n', fp);
   fflush(fp);
   tok.next();
 }
 
-void write_request()
+static void write_request()
 {
-  do_write_request(1);
+  do_write_request(true /* do append newline */);
 }
 
-void write_request_continue()
+static void write_request_continue()
 {
-  do_write_request(0);
+  do_write_request(false /* do append newline */);
 }
 
-void write_macro_request()
+static void write_macro_request()
 {
   symbol stream = read_identifier(true /* required */);
   if (stream.is_null()) {

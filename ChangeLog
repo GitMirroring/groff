@@ -1,5 +1,22 @@
 2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp: Fix code style nits.
+	(do_terminal, terminal, terminal1, terminal_continue)
+	(do_write_request, write_request, write_request_continue)
+	(write_macro_request): Mark functions `static` since they do not
+	require external linkage.
+	(do_terminal): Demote argument types from `int` to `bool`.
+	Rename them from `newline` and `string_like` to
+	`do_append_newline` and `interpret_leading_spaces`.
+	(terminal, terminal1, terminal_continue): Update call sites to
+	use Boolean rather than integer literals.
+	(do_write_request): Demote argument type from `int` to `bool`.
+	Rename it from `newline` to `do_append_newline`.
+	(write_request, write_request_continue): Update call sites to
+	use Boolean rather than integer literals.
+
+2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (process_macro_package_argument):
 	Clarify fatal diagnostic message.
 
