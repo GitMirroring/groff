@@ -8218,7 +8218,7 @@ grostream::~grostream()
 
 object_dictionary stream_dictionary(20);
 
-static void print_stream_request()
+static void print_stream_request() // .pstream
 {
   object_dictionary_iterator iter(stream_dictionary);
   symbol stream_name;
@@ -8420,17 +8420,17 @@ static void do_write_request(bool do_append_newline)
   tok.next();
 }
 
-static void write_request()
+static void write_request() // .write
 {
   do_write_request(true /* do append newline */);
 }
 
-static void write_request_continue()
+static void write_request_continue() // .writec
 {
   do_write_request(false /* do append newline */);
 }
 
-static void write_macro_request()
+static void write_macro_request() // .writem
 {
   symbol stream = read_identifier(true /* required */);
   if (stream.is_null()) {
@@ -8467,7 +8467,7 @@ static void write_macro_request()
   skip_line();
 }
 
-void warnscale_request()
+void warnscale_request() // .warnscale
 {
   if (!has_arg()) {
     warning(WARN_MISSING, "warning scaling unit configuration request"
@@ -8497,7 +8497,7 @@ void warnscale_request()
   skip_line();
 }
 
-void spreadwarn_request()
+void spreadwarn_request() // .spreadwarn
 {
   hunits n;
   if (has_arg() && read_hunits(&n, 'm')) {
@@ -8616,7 +8616,7 @@ static void do_translate(bool transparently, bool as_input)
   skip_line();
 }
 
-void translate()
+void translate() // .tr
 {
   if (!has_arg()) {
     warning(WARN_MISSING, "character translation request expects"
@@ -8627,7 +8627,7 @@ void translate()
   do_translate(true /* transparently */, false /* as_input */);
 }
 
-void translate_no_transparent()
+void translate_no_transparent() // .trnt
 {
   if (!has_arg()) {
     warning(WARN_MISSING, "character non-diversion translation request"
@@ -8638,7 +8638,7 @@ void translate_no_transparent()
   do_translate(false /* transparently */, false /* as_input */);
 }
 
-void translate_input()
+void translate_input() // .trin
 {
   if (!has_arg()) {
     warning(WARN_MISSING, "character non-asciification translation"
@@ -8649,7 +8649,7 @@ void translate_input()
   do_translate(true /* transparently */, true /* as_input */);
 }
 
-static void set_character_flags_request()
+static void set_character_flags_request() // .cflags
 {
   if (!has_arg()) {
     warning(WARN_MISSING, "character flags configuration request"
@@ -8699,7 +8699,7 @@ static void set_character_flags_request()
   skip_line();
 }
 
-static void set_hyphenation_codes()
+static void set_hyphenation_codes() // .hcode
 {
   if (!has_arg()) {
     warning(WARN_MISSING, "hyphenation code assignment request expects"
@@ -8761,7 +8761,7 @@ static void set_hyphenation_codes()
   skip_line();
 }
 
-void hyphenation_patterns_file_code()
+void hyphenation_patterns_file_code() // .hpfcode
 {
   error("hyphenation pattern file code assignment request will be"
 	" withdrawn in a future groff release; migrate to 'hcode'");
@@ -8797,7 +8797,7 @@ void hyphenation_patterns_file_code()
 
 dictionary char_class_dictionary(501);
 
-static void define_class_request()
+static void define_class_request() // .class
 {
   tok.skip_spaces();
   symbol nm = read_identifier(true /* required */);
