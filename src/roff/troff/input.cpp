@@ -8420,17 +8420,17 @@ static void do_write_request(bool do_append_newline)
   tok.next();
 }
 
-static void write_request() // .write
+static void stream_write_request() // .write
 {
   do_write_request(true /* do append newline */);
 }
 
-static void write_request_continue() // .writec
+static void stream_write_continuation_request() // .writec
 {
   do_write_request(false /* do append newline */);
 }
 
-static void write_macro_request() // .writem
+static void stream_write_macro_request() // .writem
 {
   symbol stream = read_identifier(true /* required */);
   if (stream.is_null()) {
@@ -10265,9 +10265,9 @@ void init_input_requests()
   init_request("warn", set_warning_mask_request);
   init_request("warnscale", warnscale_request);
   init_request("while", while_request);
-  init_request("write", write_request);
-  init_request("writec", write_request_continue);
-  init_request("writem", write_macro_request);
+  init_request("write", stream_write_request);
+  init_request("writec", stream_write_continuation_request);
+  init_request("writem", stream_write_macro_request);
   register_dictionary.define(".$", new nargs_reg);
   register_dictionary.define(".br", new break_flag_reg);
   register_dictionary.define(".C", new readonly_boolean_register(&want_att_compat));

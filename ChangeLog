@@ -1,5 +1,16 @@
 2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp: Trivially refactor.
+	(write_request)
+	(write_request_continue)
+	(write_macro_request): Rename these...
+	(stream_write_request)
+	(stream_write_continuation_request):
+	(stream_write_macro_request): ...to these.
+	(init_input_requests): Update wire-uppery.
+
+2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (do_terminal): Fix code style nits.
 	Parenthesize formally complex expressions.  Arrange equality
 	comparisons to avoid inadvertent lvalue assignment.
