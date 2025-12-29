@@ -8995,13 +8995,35 @@ ISO 8601 date stamp:
 @cindex @code{trf} request, causing implicit break
 When an output line is pending (see below), a break moves the drawing
 position to the beginning of the next text baseline, interrupting
-filling.  Various ways of causing breaks were shown in @ref{Breaking}.
-The @code{br} request likewise causes a break.  Several other requests
-imply breaks:@: @code{bp}, @code{ce}, @code{cf}, @code{fi}, @code{fl},
-@code{in}, @code{nf}, @code{rj}, @code{sp}, @code{ti}, and @code{trf}.
+filling.
+Recall @ref{Breaking}.
+The
+@code{br}
+request likewise causes a break.
+Several other requests imply breaks:@:
+@code{bp},
+@code{brp},
+@code{ce},
+@code{cf},
+@code{fi},
+@code{fl},
+@code{in},
+@code{nf},
+@code{rj},
+@code{sp},
+@code{ti},
+and @code{trf}.
 If the no-break control character is used with any of these requests,
-GNU @code{troff} suppresses the break; instead the requested operation
-takes effect at the next break.  @samp{'br} does nothing.
+GNU
+@command{troff} @c GNU
+suppresses the break;
+instead the requested operation takes effect at the next break.
+@cindex @code{br} request, nilpotence with no-break control character
+@cindex @code{brp} request, nilpotence with no-break control character
+@samp{'br}
+and
+@samp{'brp}
+do nothing.
 
 @Example
 .ll 55n
@@ -9192,10 +9214,23 @@ and enablement status
 are associated with the environment.@footnote{@xref{Environments}.}
 @endDefreq
 
+Normally,
+an explicit break implies non-adjustment of the pending output line,
+as at the end of a paragraph.
+
 @DefreqList {brp, }
 @DefescListEndx {\\p, , , }
-Break,
-adjusting the line per the current adjustment mode.
+The
+@code{brp}
+request commands a break as
+@code{br}
+does,
+but also forces adjustment of the output line
+per the current adjustment mode.
+Like
+@code{br},
+it does nothing if invoked with the no-break control character.
+
 @code{\p}
 schedules a break with adjustment at the next word boundary.
 The escape sequence

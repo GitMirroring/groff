@@ -2277,12 +2277,12 @@ See
 .
 .TP
 .B .brp
-Break and adjust line;
-this is the AT&T
-.I troff \" AT&T
-escape sequence
-.B \[rs]p
-in request form.
+Break and force adjustment of the output line
+per the current adjustment mode.
+.
+Like
+.BR br ,
+it does nothing if invoked with the no-break control character.
 .
 .
 .TP

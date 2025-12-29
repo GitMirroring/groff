@@ -490,6 +490,8 @@ The requested operation takes effect at the next break.
 .
 It makes
 .request br
+and
+.request brp
 nilpotent.
 .
 The no-break control character can be changed with the
@@ -3004,8 +3006,8 @@ Break output line.
 .
 .TPx
 .REQ .brp
-Break output line;
-adjust if applicable.
+Break and force adjustment of the output line
+per the current adjustment mode.
 .
 .TPx
 .REQ .break
