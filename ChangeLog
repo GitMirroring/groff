@@ -1,5 +1,17 @@
 2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Improve type-correctness (slightly).
+
+	* src/roff/troff/number.cpp: Define globals `hresolution`,
+	`vresolution`, and `units_per_inch` as having `units` type
+	rather than `int`.  This is merely _documentary_
+	type-correctness, however, as `units` isn't strongly typed, but
+	merely a slovenly `typedef` alias of `int`.
+	* src/roff/troff/troff.h: Align declarations with foregoing
+	definitions.
+
+2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp: Fix code style nits.
 	(font_info::set_bold)
 	(troff_output_file::fill_color): Parenthesize formally complex
