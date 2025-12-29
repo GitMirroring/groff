@@ -6400,7 +6400,7 @@ Control+C,
 Control+E,
 Control+F,
 and
-Control+G (only),
+Control+G (only);
 DWB\~3.3
 .I troff \" DWB
 does not.

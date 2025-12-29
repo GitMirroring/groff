@@ -9214,7 +9214,7 @@ The hyphenation mode can be configured to prevent breaks
 after
 @emph{automatically}
 placed hyphens,
-but not explicit ones.@footnote{@xref{Manipulating Hyphenation}).}
+but not explicit ones.@footnote{@xref{Manipulating Hyphenation}.}
 What one can do in this scenario
 is place @code{\p} at the end of the word
 @emph{before}
@@ -20669,7 +20669,7 @@ accept
 @key{Control+E},
 @key{Control+F},
 and
-@key{Control+G} (only),
+@key{Control+G} (only);
 DWB@tie{}3.3
 @command{troff} @c DWB
 does not.
@@ -20705,7 +20705,7 @@ and Plan@tie{}9 from User Space
 (commit 93f8143600, 2022-08-12),
 but not by Solaris
 or Documenter's Workbench
-@code{troff}s. @c DWB, Solaris
+@code{troff}s, @c DWB, Solaris
 which both render it as
 @samp{~}.
 @c as of this writing, 2022-08-13
