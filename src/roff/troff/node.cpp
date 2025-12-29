@@ -385,7 +385,7 @@ void font_info::unbold()
 
 void font_info::set_bold(hunits offset)
 {
-  if (!has_emboldening || offset != bold_offset) {
+  if (!has_emboldening || (offset != bold_offset)) {
     has_emboldening = true;
     bold_offset = offset;
     flush();
@@ -746,7 +746,7 @@ tfont::tfont(tfont_spec &spec) : tfont_spec(spec)
       plain_version = p;
       break;
     }
-  if (!p)
+  if (0 /* nullptr */ == p)
     plain_version = new tfont(plain_spec);
 }
 
@@ -1363,7 +1363,7 @@ void troff_output_file::fill_color(color *col)
 
 void troff_output_file::stroke_color(color *col)
 {
-  if (!col || current_stroke_color == col)
+  if (!col || (current_stroke_color == col))
     return;
   current_stroke_color = col;
   if (!want_color_output)
@@ -1743,7 +1743,7 @@ real_output_file::real_output_file()
 
 real_output_file::~real_output_file()
 {
-  if (!fp)
+  if (0 /* nullptr */ == fp)
     return;
   // Prevent destructor from recursing; see
   // div.cpp:write_any_trailer_and_exit().
@@ -5362,9 +5362,9 @@ void vline_node::tprint(troff_output_file *out)
 
 void zero_width_node::tprint(troff_output_file *out)
 {
-  if (!nodes)
+  if (0 /* nullptr */ == nodes)
     return;
-  if (!nodes->next) {
+  if (0 /* nullptr */ == nodes->next) {
     nodes->zero_width_tprint(out);
     return;
   }
@@ -6755,7 +6755,7 @@ static bool is_nonnegative_integer(const char *str)
 
 static void translate_font()
 {
-  if (!(has_arg())) {
+  if (!has_arg()) {
     warning(WARN_MISSING, "font translation request expects one or two"
 	    " font name arguments");
     skip_line();
@@ -6893,7 +6893,7 @@ font_family *lookup_family(symbol nm)
 {
   font_family *f
     = static_cast<font_family *>(family_dictionary.lookup(nm));
-  if (!f) {
+  if (0 /* nullptr */ == f) {
     f = new font_family(nm);
     (void) family_dictionary.lookup(nm, f);
   }
@@ -7419,7 +7419,7 @@ hunits track_kerning_function::compute(int size)
 
 static void configure_track_kerning()
 {
-  if (!(has_arg())) {
+  if (!has_arg()) {
     warning(WARN_MISSING, "track kerning request expects arguments");
     skip_line();
     return;
@@ -7448,7 +7448,7 @@ static void configure_track_kerning()
 
 static void constantly_space_font()
 {
-  if (!(has_arg())) {
+  if (!has_arg()) {
     warning(WARN_MISSING, "constant spacing request expects arguments");
     skip_line();
     return;

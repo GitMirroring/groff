@@ -1,5 +1,22 @@
 2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp: Fix code style nits.
+	(font_info::set_bold)
+	(troff_output_file::fill_color): Parenthesize formally complex
+	expressions.
+	(tfont::tfont)
+	(real_output_file::~real_output_file)
+	(zero_width_node::tprint)
+	(translate_font): Explicitly compare value of pointer type to
+	null pointer literal instead of letting it pun down to a
+	Boolean.
+	(translate_font)
+	(configure_track_kerning)
+	(constantly_space_font): Drop unnecessary parentheses from
+	expression.
+
+2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Trivially refactor.
 
 	* src/roff/troff/div.h: Rename declaration `cleanup_and_exit()`
