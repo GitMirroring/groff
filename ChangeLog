@@ -1,3 +1,15 @@
+2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/env.cpp: Refactor.  More cleanly separate input
+	processing logic from engine logic.
+	(do_break_request): Rename this...
+	(break_output_line): ...to this.  Mark it `static` since it does
+	not require external linkage.  Drop its manipulation of the
+	input stream via the global `tok` object...
+	(break_without_adjustment, break_without_adjustment): ...in
+	favor of simply calling `skip_line()` from these handlers for
+	the `br` and `brp` requests, which take no arguments.
+
 2025-12-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp: Add new Boolean-valued parameter to

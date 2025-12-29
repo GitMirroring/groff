@@ -2640,23 +2640,22 @@ bool environment::is_empty()
 	  && pending_lines == 0 /* nullptr */;
 }
 
-void do_break_request(bool want_adjustment)
+static void break_output_line(bool want_adjustment)
 {
-  while (!tok.is_newline() && !tok.is_eof())
-    tok.next();
   if (want_break)
     curenv->do_break(want_adjustment);
-  tok.next();
 }
 
 static void break_without_adjustment()
 {
-  do_break_request(false);
+  break_output_line(false);
+  skip_line();
 }
 
 static void break_with_adjustment()
 {
-  do_break_request(true);
+  break_output_line(true);
+  skip_line();
 }
 
 void title()
