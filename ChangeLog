@@ -1,5 +1,11 @@
 2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (do_terminal): Fix code style nits.
+	Parenthesize formally complex expressions.  Arrange equality
+	comparisons to avoid inadvertent lvalue assignment.
+
+2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp: Fix code style nits.
 	(do_terminal, terminal, terminal1, terminal_continue)
 	(do_write_request, write_request, write_request_continue)

@@ -8163,11 +8163,11 @@ static void do_terminal(bool do_append_newline,
     int c;
     for (;;) {
       c = read_char_in_copy_mode(0 /* nullptr */);
-      if (interpret_leading_spaces && c == '"') {
+      if (interpret_leading_spaces && ('"' == c)) {
 	c = read_char_in_copy_mode(0 /* nullptr */);
 	break;
       }
-      if (c != ' ' && c != '\t')
+      if ((c != ' ') && (c != '\t'))
 	break;
     }
     for (;
