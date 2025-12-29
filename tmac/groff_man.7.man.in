@@ -830,16 +830,17 @@ leading tags followed by a paragraph that has an additional indentation.
 .
 The indented paragraph
 .RB ( IP )
-macro is useful to continue the indented content of a narrative started
+macro
+can continue the indented content of a narrative started
 with
 .BR TP ,
-or to present an itemized or ordered list.
+or present an itemized or ordered list.
 .
-If paragraph macro has been called since
+If a paragraphing macro has been called since
 .B SH
 or
 .BR SS ,
-all except for
+all except
 .B TQ
 follow the break with vertical space
 (in an amount configured by the deprecated
@@ -1073,7 +1074,7 @@ and
 support these GNU extensions;
 DWB,
 Plan\~9,
-or
+and
 Solaris
 .IR troff s \" DWB, Plan 9, Solaris
 do not.
@@ -1100,7 +1101,7 @@ are set in bold.
 When
 .I suffix
 is present,
-.I "groff man"
+the package
 sets the next word after it without intervening space.
 .
 If a break is required in subsequent text
