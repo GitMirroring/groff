@@ -864,8 +864,9 @@ Only non-zero values are output.
 If
 .I depth
 is omitted,
-it is taken to be
-.BR 1 .
+.I ms
+assumes
+.RB \[lq] 1 \[rq].
 .
 If you specify
 .I depth
