@@ -12324,13 +12324,23 @@ instead, you have to define @code{u0041_0328}.
 @Defesc {\\C, @code{'}, xxx, @code{'}}
 @cindex named character (@code{\C})
 @cindex character, named (@code{\C})
-Typeset the glyph of the special character @var{xxx}.  Normally, it is
-more convenient to use @code{\[@var{xxx}]}, but @code{\C} has some
-advantages: it is compatible with @acronym{AT&T} device-independent
-@code{troff} (and therefore available in compatibility
-mode@footnote{@xref{Compatibility Mode}.}) and can interpolate special
-characters with @samp{]} in their names.  The delimiter need not be
-a neutral apostrophe; see @ref{Delimiters}.
+Typeset the special character
+@var{xxx}.
+Normally,
+it is more convenient to use
+@samp{\[@var{xxx}]},
+but
+@code{\C}
+has some advantages:@:
+it is compatible with @acronym{AT&T} device-independent
+@command{troff}
+(and therefore available in compatibility
+mode@footnote{@xref{Compatibility Mode}.})
+and can interpolate special characters with
+@samp{]}
+in their names.
+The delimiter need not be a neutral apostrophe;
+recall @ref{Delimiters}.
 @endDefesc
 
 @Defreq {composite, c1 c2}
