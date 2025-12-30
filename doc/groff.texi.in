@@ -21491,7 +21491,7 @@ In GNU
 the device extension (sub)command
 @samp{@w{x X}}
 uniquely supports a line continuation syntax;
-all other commands occupy one input line.
+a single input line contains any other.
 
 @node Argument Units, Document Parts, Syntax, Language Concepts
 @subsubsection Argument Units
@@ -22354,8 +22354,9 @@ corresponding position.
 @cindex quantum, horizontal motion
 @cindex horizontal resolution
 @cindex resolution, horizontal
-The horizontal motion quantum is @var{n}@tie{}basic units.  All
-horizontal quantities are rounded to multiples of@tie{}@var{n}.
+The horizontal motion quantum is @var{n}@tie{}basic
+units.
+Horizontal measurements round to multiples of@tie{}@var{n}.
 
 @item image_generator @var{program}
 @kindex image_generator
@@ -22492,8 +22493,9 @@ driver uses this directive.
 @cindex quantum, vertical motion
 @cindex vertical resolution
 @cindex resolution, vertical
-The vertical motion quantum is @var{n}@tie{}basic units.  All vertical
-quantities are rounded to multiples of@tie{}@var{n}.
+The vertical motion quantum is @var{n}@tie{}basic
+units.
+Vertical measurements round to multiples of@tie{}@var{n}.
 
 @item charset
 @kindex charset
