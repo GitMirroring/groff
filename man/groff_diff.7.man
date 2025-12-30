@@ -5406,7 +5406,10 @@ escape sequence),
 string expressions
 (as with the
 .B \[rs]w
-escape sequence),
+escape sequence
+and
+.B tl
+request),
 and output comparisons
 (as in
 .RB \[lq] ".if #foo#bar# .tm match" \[rq]).

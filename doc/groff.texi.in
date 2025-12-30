@@ -8040,12 +8040,39 @@ if the character after the escape character would be valid.
 @cindex @code{\S}, delimiters allowed by
 @cindex @code{\v}, delimiters allowed by
 @cindex @code{\x}, delimiters allowed by
-Conditional expressions@footnote{@xref{Operators in Conditionals}.}
-prohibit delimiters that are meaningful in numeric expressions, because
-the latter are a subset of the former.  The escape sequences @code{\D},
-@code{\h}, @code{\H}, @code{\l}, @code{\L}, @code{\N}, @code{\R},
-@code{\s}, @code{\S}, @code{\v}, and @code{\x} similarly prohibit them
-because they accept numeric expressions as (or within) their arguments.
+The escape sequences
+@code{\D},
+@code{\h},
+@code{\H},
+@code{\l},
+@code{\L},
+@code{\N},
+@code{\R},
+@code{\s},
+@code{\S},
+@code{\v},
+and
+@code{\x}
+prohibit delimiters that are meaningful in numeric expressions,
+because they accept numeric expressions as
+(or within)
+their arguments.
+For consistency,
+GNU
+@command{troff} @c GNU
+prohibits the same delimiters in the argument to the
+@code{tl}
+request.
+The
+@code{if},
+@code{ie},
+and
+@code{while}
+requests each interpret their first argument
+as a conditional expression@footnote{@xref{Operators in Conditionals}.};
+only characters that are not meaningful as operators
+in that context
+can be used as output comparison delimiters.
 
 @itemize @bullet
 @item
@@ -8108,9 +8135,14 @@ any escape sequences other than @code{\%}, @code{\:}, @code{\@{},
 @cindex depth, interpolation
 @cindex nesting depth, of interpolations
 @cindex depth, nesting, of interpolations
-Delimiter syntax is complex and flexible primarily for historical
-reasons; the foregoing restrictions need be kept in mind mainly when
-using @code{groff} in @acronym{AT&T} compatibility mode.
+Delimiter syntax is flexible
+(and laborious to describe)
+primarily for historical reasons;
+the foregoing restrictions need be kept in mind mainly when using
+GNU
+@command{troff} @c GNU
+in @acronym{AT&T} compatibility mode.
+Normally,
 GNU
 @command{troff}
 keeps track of the nesting depth of escape sequence interpolations,
@@ -8140,10 +8172,16 @@ $ groff -T ps
     @error{} "Wet'+200i" is 14415860 units wide.
 @endExample
 
-We see here that in compatibility mode, the part of the argument after
-the @code{'} delimiter escapes from its context and, if nefariously
-crafted, influences the computation of the @var{wd} register's value in
-a surprising way.
+We see here that in compatibility mode,
+the part of the argument after the
+@code{'}
+delimiter escapes,
+if you will,
+from its context and,
+if nefariously crafted,
+influences the computation of the
+@var{wd}
+register's value in a surprising way.
 @c END Keep (roughly) parallel with subsection "Delimiters" of groff(7).
 
 @node Comments, Registers, Formatter Instructions, GNU troff Reference
@@ -20670,7 +20708,10 @@ escape sequence),
 string expressions
 (as with the
 @code{\w}
-escape sequence),
+escape sequence
+and
+@code{tl}
+request),
 and output comparisons
 (as in
 @samp{.if #foo#bar# .tm match}).
