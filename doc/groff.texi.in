@@ -20250,11 +20250,13 @@ created if it does not exist.
 @cindex @code{nr} request, and warnings
 @cindex @code{\R}, and warnings
 @cindex @code{\n}, and warnings
-An undefined register was used.  When an undefined register is
-dereferenced, it is automatically defined with a value of@tie{}0.
+An undefined register was used.
+When an undefined register is dereferenced,
+the formatter automatically defines it with a value of@tie{}0.
 So,
 unless it is later deleted,
-GNU @command{troff}
+GNU
+@command{troff} @c GNU
 issues at most one warning for each.
 
 @item tab
@@ -20306,10 +20308,10 @@ when it occurs in non-ignored input.
 
 @item color
 @itemx 524288
-An undefined color was selected, an attempt was made to define a color
-using an unrecognized color space, an invalid component in a color
-definition was encountered, or an attempt was made to redefine a default
-color.
+An undefined color was selected,
+an attempt was made to define a color using an unrecognized color space,
+an invalid channel value in a color definition was encountered,
+or an attempt was made to redefine a default color.
 
 @item file
 @itemx 1048576
