@@ -1,7 +1,10 @@
 #!@PERL@
 # Copyright 1989-2025 Free Software Foundation, Inc.
 #
-# This file is part of groff, the GNU roff typesetting system.
+# This file is part of mm, a reimplementation of the Documenter's
+# Workbench (DWB) troff memorandum macro package for use with GNU troff.
+#
+# mm is distributed with groff, the GNU roff typesetting system.
 #
 # groff is free software; you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
