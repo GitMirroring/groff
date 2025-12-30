@@ -20069,11 +20069,6 @@ causes a warning if @code{break} warnings are not suppressed and
 in a line.  @xref{Warnings}.
 @endDefreq
 
-@cindex warnings
-GNU @code{troff} has command-line options for reporting warnings
-(@option{-w}) and backtraces (@option{-b}) when a warning or an error
-occurs.
-
 @DefreqList {warn, [@Var{n}]}
 @DefregListEndx {.warn}
 @cindex warning level (@code{warn})
@@ -20088,6 +20083,15 @@ If no argument is given, all warning categories are enabled.
 The read-only register @code{.warn} contains the sum of the numeric
 codes of enabled warning categories.
 @endDefreq
+
+@cindex warnings
+GNU
+@command{troff} @c GNU
+has command-line options for reporting warnings
+(@option{-w})
+and for issuing backtraces
+(@option{-b})
+when a warning or an error occurs.
 
 @menu
 * Warnings::
