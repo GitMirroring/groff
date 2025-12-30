@@ -20788,10 +20788,11 @@ GNU
 @command{troff} @c GNU
 rejects C0 controls in identifiers with an error diagnostic.
 
-Formatters that don't implement request names that are
+Formatters that don't implement request names
 GNU
 @command{troff} @c GNU
-extensions tend to ignore them,
+extension request names
+tend to ignore them,
 and if they don't support a
 GNU
 @command{troff} @c GNU

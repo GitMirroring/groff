@@ -6414,10 +6414,11 @@ rejects C0 controls in identifiers with an error diagnostic.
 .
 .
 .P
-Formatters that don't implement request names that are
+Formatters that don't implement
 GNU
 .I troff \" GNU
-extensions tend to ignore them,
+extension request names
+tend to ignore them,
 and if they don't support a
 GNU
 .I troff \" GNU
