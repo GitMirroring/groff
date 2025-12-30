@@ -20901,14 +20901,27 @@ as a potential hyphenation point,
 permitting output lines to end with hyphens
 that are not interior to a word.
 
-GNU @command{troff} handles the dummy character @code{\&} differently
-from @acronym{AT&T} @command{troff} when it is followed by the
-hyphenation control escape sequence @code{\%} at the beginning of a
-word.  GNU @command{troff} does not regard the dummy character as
-``starting'' the word; @acronym{AT&T} @command{troff}
-does.  Further, Heirloom Doctools @command{troff} does not honor an
-explicit hyphenation point marked with @code{\%} after a word-initial
-one.@footnote{Thus,
+GNU
+@command{troff} @c GNU
+handles the dummy character
+@code{\&}
+differently from @acronym{AT&T}
+@command{troff} @c AT&T
+when it is followed by the hyphenation control escape sequence
+@code{\%}
+at the beginning of a word.
+GNU
+@command{troff} @c GNU
+does not regard the dummy character as ``starting'' the word;
+@acronym{AT&T}
+@command{troff} @c AT&T
+does.
+Further,
+Heirloom Doctools
+@command{troff} @c Heirloom
+does not honor an explicit hyphenation point marked with
+@code{\%}
+after a word-initial one.@footnote{Thus,
 @Example
 .ll 10n
 \%antidisestablishmen\%tarianism
@@ -20917,6 +20930,7 @@ one.@footnote{Thus,
 .pl \n(nlu
 @endExample
 produces different results with each of the three formatters.}
+@c The foregoing observations may have the same cause.
 
 @cindex file name arguments to requests, in other implementations
 @cindex arguments, file name, to requests, in other implementations
@@ -21002,7 +21016,7 @@ ignored attempts to remove read-only registers;
 GNU
 @command{troff} @c GNU
 honors such requests.
-@xref{Built-in Registers}.
+Recall @ref{Built-in Registers}.
 
 @cindex @code{lf} request, incompatibilities with @acronym{AT&T} @code{troff}
 The
@@ -21028,7 +21042,7 @@ In GNU
 @command{troff},
 any number of environments may exist,
 using any valid identifiers for their names
-(@pxref{Identifiers}.)
+Recall @ref{Identifiers}.
 
 @c TODO: Resume groff_diff(7) synchronization work here.
 @cindex fractional point sizes
@@ -21248,7 +21262,7 @@ GNU
 @command{troff}, @c GNU
 node objects produce these commands;
 recall @ref{GNU @command{troff} Internals}.}
-populating the buffer as input accumulates.
+populating the buffer as formatted output accumulates.
 GNU
 @command{troff} @c GNU
 always flushes this buffer when processing a break;

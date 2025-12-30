@@ -6569,6 +6569,7 @@ Heirloom Doctools
 does not honor an explicit hyphenation point marked with
 .B \[rs]%
 after a word-initial one.
+.\" The foregoing observations may have the same cause.
 .
 .
 .P
@@ -6904,7 +6905,7 @@ AT&T
 GNU
 .I troff \" GNU
 maintains a buffer of device-independent output commands,
-populating the buffer as input accumulates.
+populating the buffer as formatted output accumulates.
 GNU
 .I troff \" GNU
 always flushes this buffer when processing a break;
