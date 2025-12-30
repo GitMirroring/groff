@@ -26,6 +26,7 @@ gpinyindir = $(gpinyin_dir)
 man1_MANS += contrib/gpinyin/gpinyin.1
 EXTRA_DIST += \
   contrib/gpinyin/ChangeLog \
+  contrib/gpinyin/GPLv2 \
   contrib/gpinyin/gpinyin.1.man \
   contrib/gpinyin/gpinyin.pl
 
