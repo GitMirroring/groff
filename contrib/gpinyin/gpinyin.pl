@@ -8,9 +8,11 @@
 # Written by Bernd Warken <groff-bernd.warken-72@web.de>.
 # Enhanced by: G. Branden Robinson <g.branden.robinson@gmail.com>
 #
-# This file is part of 'gpinyin'.
+# This file is part of gpinyin.
 #
-# 'gpinyin' is free software; you can redistribute it and/or modify it
+# gpinyin is distributed with groff, the GNU roff typesetting system.
+#
+# gpinyin is free software; you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 2 of the License, or
 # (at your option) any later version.
