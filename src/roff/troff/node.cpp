@@ -2714,9 +2714,12 @@ bool node::is_tag()
   return false;
 }
 
-int node::get_break_code()
+// TODO: Figure out what a hyphenation code means in the UTF-8 future,
+// where a "grochar" is a vector of NFD decomposed code points.  Can it
+// be a scalar--a 32-bit int?
+unsigned char node::get_break_code()
 {
-  return 0;
+  return 0U;
 }
 
 hunits hmotion_node::width()
@@ -3022,8 +3025,11 @@ int italic_corrected_node::character_type()
 }
 
 class break_char_node : public container_node {
-  char break_code;
-  char prev_break_code;
+  // TODO: Figure out what a hyphenation code means in the UTF-8 future,
+  // where a "grochar" is a vector of NFD decomposed code points.  Can
+  // it be a scalar--a 32-bit int?
+  unsigned char break_code;
+  unsigned char prev_break_code;
   color *col;
 public:
   break_char_node(node *, int, int, color *, node * = 0 /* nullptr */);
@@ -3050,7 +3056,7 @@ public:
   const char *type();
   bool causes_tprint();
   bool is_tag();
-  int get_break_code();
+  unsigned char get_break_code();
   void dump_properties();
 };
 
@@ -6470,7 +6476,7 @@ bool break_char_node::is_tag()
   return false;
 }
 
-int break_char_node::get_break_code()
+unsigned char break_char_node::get_break_code()
 {
   return break_code;
 }

@@ -1,3 +1,16 @@
+2025-12-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Work on Savannah #67735.
+
+	* src/roff/troff/node.h (struct node):
+	* src/roff/troff/node.cpp (class break_char_node)
+	(node::get_break_code): Demote type of hyphenation codes from
+	`int` to `unsigned char`, since the range of the latter is as
+	much as has ever been stored in them anyway.  (This was
+	discovered the hard way in Savannah #66919.)  Retype
+	`break_code` and `prev_break_code` private member variables and
+	`get_break_code()` public member function accordingly.
+
 2025-12-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Improve type-correctness (slightly).

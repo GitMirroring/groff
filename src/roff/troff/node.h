@@ -66,7 +66,10 @@ struct node {
   virtual bool set_unformat_flag();
   virtual bool causes_tprint() = 0;
   virtual bool is_tag() = 0;
-  virtual int get_break_code();
+  // TODO: Figure out what a hyphenation code means in the UTF-8 future,
+  // where a "grochar" is a vector of NFD decomposed code points.  Can
+  // it be a scalar--a 32-bit int?
+  virtual unsigned char get_break_code();
   virtual hunits width();
   virtual hunits subscript_correction();
   virtual hunits italic_correction();
