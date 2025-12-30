@@ -2,8 +2,8 @@
 
 # gpinyin - use Hanyu Pinyin romanization of Chinese in groff(1) input
 #
-# Copyright (C) 2014-2020 Free Software Foundation, Inc.
-#               2022-2025 G. Branden Robinson
+# Copyright 2014-2020 Free Software Foundation, Inc.
+#           2022-2025 G. Branden Robinson
 #
 # Written by Bernd Warken <groff-bernd.warken-72@web.de>.
 # Enhanced by: G. Branden Robinson <g.branden.robinson@gmail.com>
