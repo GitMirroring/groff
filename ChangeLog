@@ -1,3 +1,12 @@
+2025-12-31  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/div.cpp (do_divert): Shift checks resulting in
+	error diagnostics, including a fatal one, later in the logic.
+	It's not a problem to close a diversion of mismatched "boxing"
+	{see Savannah #67139} when the diversion stack is empty.  We can
+	simply emit a warning as groff 1.23.0 and earlier did.
+	Continues commit 251115ed5a, 19 May.
+
 2025-12-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Work on Savannah #67735.
