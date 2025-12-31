@@ -8692,56 +8692,62 @@ the formatted text into a named storage area.
 .
 It is retrieved later by specifying its name after a control character.
 .
-The same name space is used for such
+The formatter uses the same name space for such
 .I diversions
 as for strings and macros;
 see section \[lq]Identifiers\[rq] above.
 .
 Such text is sometimes said to be \[lq]stored in a macro\[rq],
-but this coinage obscures the important distinction between macros and
-strings on one hand and diversions on the other;
+but this coinage obscures the important distinction
+between macros and strings on one hand
+and diversions on the other;
 the former store
 .I unformatted
 input text,
 and the latter capture
 .I formatted
 output.
+.\" TODO: Add forward reference when we add a "GNU troff internals"
+.\" subsection to this page.
 .
 Diversions also do not interpret arguments.
 .
-Applications of diversions include \[lq]keeps\[rq]
-(preventing a page break from occurring at an inconvenient place by
-forcing a set of output lines to be set as a group),
+Applications of diversions include
 footnotes,
 tables of contents,
-and indices.
+indices,
+and \[lq]keeps\[rq]
+(preventing a page break from occurring at an inconvenient place
+by forcing a set of output lines to be set as a group).
 .
 For orthogonality it is said that GNU
 .I troff \" GNU
-is in the
+populates the
 .I top-level diversion
 if no diversion is active
 (that is,
-formatted output is being \[lq]diverted\[rq] immediately to the output
-device).
+formatted output is being \[lq]diverted\[rq] directly
+to the output device).
 .
 The top-level diversion has no name.
 .
 .
 .P
-Dereferencing an undefined diversion creates an empty one of that name
-and emits a warning in category
-.BR mac .
+Dereferencing an undefined diversion creates an empty one of that name.
 .
-See section \[lq]Warnings\[rq] in
-.MR @g@troff @MAN1EXT@
-regarding the enablement and suppression of warnings.
+(GNU
+.I troff \" GNU
+also emits a warning in category
+\[lq]mac\[rq];
+see section \[lq]Warnings\[rq] of
+.MR @g@troff @MAN1EXT@ .)
 .
 A diversion does not exist for the purpose of testing with the
 .B d
-conditional expression operator until its initial definition ends
-(see subsection \[lq]Conditional expressions\[rq] above).
-.\" The following requests are used to create and alter diversions.
+conditional expression operator
+until its initial definition ends;
+see subsection \[lq]Conditional expressions\[rq] above.
+.\" The following requests create and alter diversions.
 .
 .
 .P
@@ -8758,6 +8764,44 @@ If the diversion's name already exists as an alias,
 the target of the alias is replaced or appended to;
 see section \[lq]Strings\[rq] above.
 .
+The pending output line is diverted as well.
+.
+Switching to another environment
+(with the
+.B ev
+request)
+before invoking
+.B di
+or
+.B da
+avoids including any pending output line in the diversion.
+(See section \[lq]Environments[\[rq] below.)
+.
+.
+.P
+Invoking
+.B di
+or
+.B da
+without an argument stops diverting output
+to the diversion named by the most recent corresponding request.
+.
+Invoking
+.B di
+or
+.B da
+without an argument
+when no diversion is being populated does nothing.
+.
+(GNU
+.I troff \" GNU
+emits a warning in category
+\[lq]di\[rq];
+see section \[lq]Warnings\[rq] of
+.MR @g@troff @MAN1EXT@ .)
+.
+.
+.P
 .B box
 and
 .B boxa
@@ -8789,12 +8833,12 @@ including the top-level one.
 .
 .
 .P
-After completing a diversion,
-the writable registers
+After output to a (named) diversion stops,
+the formatter stores its vertical and horizontal sizes,
+to the writable registers
 .B dn
 and
-.B dl
-contain its vertical and horizontal sizes,
+.BR dl ,
 respectively.
 .\" XXX Do these measure:
 .\"  net motion of the drawing position,

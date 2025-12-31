@@ -17602,35 +17602,61 @@ end-of-input macro using the @code{am} request.
 @section Diversions
 @cindex diversions
 
-In @code{roff} systems it is possible to format text as if for output,
-but instead of writing it immediately, one can @dfn{divert} the
-formatted text into a named storage area.  It is retrieved later by
-specifying its name after a control character.   The same name space is
-used for such @slanted{diversions} as for strings and macros; see
-@ref{Identifiers}.  Such text is sometimes said to be ``stored in a
-macro'', but this coinage obscures the important distinction between
-macros and strings on one hand and diversions on the other; the former
-store @emph{unformatted} input text, and the latter capture
-@emph{formatted} output.  Diversions also do not interpret arguments.
-Applications of diversions include ``keeps'' (preventing a page break
-from occurring at an inconvenient place by forcing a set of output lines
-to be set as a group), footnotes, tables of contents, and indices.
+In
+@code{roff}
+systems it is possible to format text as if for output,
+but instead of writing it immediately,
+one can
+@dfn{divert}
+the formatted text into a named storage area.
+It is retrieved later by specifying its name after a control character.
+The formatter uses the same name space for such
+@slanted{diversions}
+as for strings and macros;
+recall @ref{Identifiers}.
+Such text is sometimes said to be ``stored in a macro'',
+but this coinage obscures the important distinction
+between macros and strings on one hand
+and diversions on the other;
+the former store
+@emph{unformatted}
+input text,
+and the latter capture
+@emph{formatted}
+output.@footnote{@xref{GNU @command{troff} Internals}.}
+Diversions also do not interpret arguments.
+Applications of diversions include
+footnotes,
+tables of contents,
+indices,
+and ``keeps''
+(preventing a page break from occurring at an inconvenient place
+by forcing a set of output lines to be set as a group).
 @cindex top-level diversion
 @cindex diversion, top-level
-For orthogonality it is said that GNU @command{troff} is in the
-@dfn{top-level diversion} if no diversion is active (that is, formatted
-output is being ``diverted'' immediately to the output device).  The
-top-level diversion has no name.
+For orthogonality it is said that
+GNU
+@command{troff} @c GNU
+populates the
+@dfn{top-level diversion}
+if no diversion is active
+(that is,
+formatted output is being ``diverted'' directly
+to the output device).
+The top-level diversion has no name.
 
-Dereferencing an undefined diversion creates an empty one of that
-name and emits a warning in category @samp{mac}.
-@xref{Warnings}, regarding the enablement and suppression of warnings.
+Dereferencing an undefined diversion creates an empty one
+of that name.@footnote{GNU
+@command{troff} @c GNU
+emits a warning in category
+@samp{mac}.
+@xref{Warnings}.}
 A diversion does not exist for the purpose of testing with the
 @code{d}
 conditional expression operator
-until its initial definition ends
-(@pxref{Operators in Conditionals}).
-The following requests are used to create and alter diversions.
+until its initial definition ends;
+recall @ref{Operators in Conditionals}.
+The following requests create and alter diversions.
 
 @DefreqList {di, [@Var{name}]}
 @DefreqListEndx {da, [@Var{name}]}
@@ -17640,20 +17666,45 @@ The following requests are used to create and alter diversions.
 @cindex diversion, ending (@code{di}, @code{box})
 @cindex appending to a diversion (@code{da}, @code{boxa})
 @cindex diversion, appending to (@code{da}, @code{boxa})
-Start collecting formatted output in a diversion called @var{name}.  The
-@code{da} request appends to a diversion called @var{name}, creating it
-if necessary.  If @var{name} already exists as an alias, the target of
-the alias is replaced or appended to; recall @ref{Strings}.  The pending
-output line is diverted as well.  Switching to another environment (with
-the @code{ev} request) before invoking @code{di} or @code{da} avoids
-including any pending output line in the diversion; see
-@ref{Environments}.
+Start collecting formatted output in a diversion called
+@var{name}.
+The
+@code{da}
+request appends to a diversion called
+@var{name},
+creating it if necessary.
+If
+@var{name}
+already exists as an alias,
+the target of the alias is replaced or appended to;
+recall @ref{Strings}.
+The pending output line is diverted as well.
+Switching to another environment
+(with the
+@code{ev}
+request)
+before invoking
+@code{di}
+or
+@code{da}
+avoids including any pending output line in the diversion.@footnote{@xref{Environments}.}
 
-Invoking @code{di} or @code{da} without an argument stops diverting
-output to the diversion named by the most recent corresponding request.
-If @code{di} or @code{da} is invoked without an argument when there is
-no current diversion, a warning in category @samp{di} is produced.
-@xref{Warnings}, regarding the enablement and suppression of warnings.
+Invoking
+@code{di}
+or
+@code{da}
+without an argument stops diverting output
+to the diversion named by the most recent corresponding request.
+Invoking
+@code{di}
+or
+@code{da}
+without an argument
+when no diversion is being populated does nothing.@footnote{GNU
+@command{troff} @c GNU
+emits a warning in category
+@samp{di}.
+@xref{Warnings}.}
 
 @Example
 .ll 56n
@@ -17780,8 +17831,13 @@ baselines and thus does not increase the value interpolated by
 @cindex @code{dl} register, and @code{da} (@code{boxa})
 @cindex @code{da} request, and @code{dn} (@code{dl})
 @cindex @code{boxa} request, and @code{dn} (@code{dl})
-After completing a diversion, the writable registers @code{dn} and
-@code{dl} contain its vertical and horizontal sizes, respectively.
+After output to a (named) diversion stops,
+the formatter stores its vertical and horizontal sizes,
+to the writable registers
+@code{dn}
+and
+@code{dl},
+respectively.
 @c XXX Do these measure:
 @c  net motion of the drawing position,
 @c  maximal motion of the drawing position relative to that where the
