@@ -31,7 +31,7 @@ dist_chemtmac_DATA = $(CHEMTMACFILES)
 CHEM_EXAMPLES =  \
   contrib/chem/examples/README \
   contrib/chem/examples/atp.chem \
-  contrib/chem/examples/cholesterin.chem \
+  contrib/chem/examples/cholesterol.chem \
   contrib/chem/examples/ethamivan.chem \
   contrib/chem/examples/lsd.chem \
   contrib/chem/examples/morphine.chem \
