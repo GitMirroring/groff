@@ -18092,10 +18092,13 @@ Truly.
 @endExample
 
 @noindent
-By ending each text line of the macros with an escaped @key{RET}, we get
-the desired effect (recall @pxref{Line Continuation}).@footnote{We must
-double the backslash.  @xref{Copy Mode}.}  What would have happened if
-we had used only one backslash in each case?
+By ending each text line of the macros with an escaped
+@key{RET},
+we get the desired effect
+(recall @pxref{Line Continuation}).@footnote{We must
+double the backslash.
+Recall @ref{Copy Mode}.}
+What would have happened if we had used only one backslash in each case?
 
 Interpolating a string does not hide existing macro arguments.  We can
 also place the escaped newline outside the string interpolation instead
