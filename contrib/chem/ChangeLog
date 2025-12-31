@@ -1,5 +1,22 @@
 2025-12-31  Norwid Behrnd <nbehrnd@yahoo.com>
 
+	* examples/cholesterol.chem: Add stereochemistry.
+	- The previous depiction was incomplete and did not explicitly
+	  described the stereogenic centres as such.  This information
+	  was added with `front bond` and `back bond` as available with
+	  groff 1.23.0.  If possible, future versions should use a wedge
+	  shaped version of `back bond`.
+	- Particular about steroids: among chemists, it is more common
+	  to name the four rings by A, B, C, and D.  To use these labels
+	  instead of R1, R2, etc. equally displays chem's flexibility
+	  here.
+	- The orientation of cycles allowed simplifying the definition
+	  of their mutual attachment.
+
+	Fixes <https://savannah.gnu.org/bugs/?67873>.
+
+2025-12-31  Norwid Behrnd <nbehrnd@yahoo.com>
+
 	* examples/cholesterin.chem: Rename this...
 	* examples/cholesterol.chem: ...to this.
 	* chem.am (EXTRA_DIST): Reflect rename.
