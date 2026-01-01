@@ -1,5 +1,10 @@
 2026-01-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tests/PH-PF-OH-OF-EH-EF-work.sh: Unit-test the named macros.
+	* mm.am (mm_TESTS): Run test.
+
+2026-01-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (ft@init-footnote): Draw footnote separator with
 	em dash `\[em]` in nroff mode, for better cosmetics.
 	(let*mt-sign): Annotate why we don't do the same here.

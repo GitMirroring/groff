@@ -77,6 +77,7 @@ mm_TESTS = \
   contrib/mm/tests/MT-5-includes-AT-in-SG.sh \
   contrib/mm/tests/Np-register-works.sh \
   contrib/mm/tests/P-indentation-works.sh \
+  contrib/mm/tests/PH-PF-OH-OF-EH-EF-work.sh \
   contrib/mm/tests/VL-accommodates-overlong-mark.sh \
   contrib/mm/tests/date-localization-works.sh \
   contrib/mm/tests/flush-long-displays-at-end-of-input.sh \
