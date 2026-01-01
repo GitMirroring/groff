@@ -1,3 +1,9 @@
+2026-01-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m.tmac (ft@init-footnote): Draw footnote separator with
+	em dash `\[em]` in nroff mode, for better cosmetics.
+	(let*mt-sign): Annotate why we don't do the same here.
+
 2025-12-31  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* mm.am (EXTRA_DIST): Ship "COPYRIGHT" file in distribution

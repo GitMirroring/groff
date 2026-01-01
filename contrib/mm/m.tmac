@@ -2060,7 +2060,13 @@ breaking page
 .\" init footnote diversion
 .de ft@init-footnote
 .debug@di ft*div
-\l'20n'
+.\" Use the em dash to draw the rule in nroff mode, since terminal
+.\" devices generally don't have a baseline rule glyph.  The "low line"
+.\" descends below the baseline and terminal fonts generally don't have
+.\" it span the character cell completely.  (A Unicode font might do so
+.\" for the em dash; we make a best-effort attempt to look pleasant.)
+.ie t .nop \l'20n'
+.el   .nop \l'20n\[em]'
 .br
 .debug@di
 .nr ft*note-size \\n[dn]
@@ -3926,6 +3932,10 @@ undefined
 .\" Approval signature
 .nr let*name-line-length 40n
 .nr let*date-line-length 15n
+.\" We _don't_ use em dashes instead of low lines in nroff mode here
+.\" (see ft@init-footnote).  The low line better approximates a baseline
+.\" rule to indicate where a human should apply a stylus to paper, and
+.\" a broken rather than a solid rule is not a defect for this purpose.
 .ds let*name-line \l'\n[let*name-line-length]u'
 .ds let*date-line \l'\n[let*date-line-length]u'
 .nr let*approval-gap 5m
