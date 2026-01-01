@@ -54,6 +54,7 @@ dist_mmexample_DATA = $(MMEXAMPLEFILES)
 # $(MMEXAMPLEFILES): $(TMAC_PACKAGE_MM)
 
 EXTRA_DIST += \
+  contrib/mm/COPYRIGHT \
   contrib/mm/ChangeLog \
   contrib/mm/examples \
   contrib/mm/Makefile.sim \
