@@ -1,5 +1,17 @@
 2026-01-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac: Put a two-vee margin between the footnote area and
+	page footers.  New register `ft*margin-below` stores this
+	measurement, which initalizes to zero because a page does not
+	always bear footnotes.
+	(hd@set-page): Compute `pg*foot-trap` using it, and report this
+	computation at appropriate debugging level.
+	(FE): Set `ft*margin-below` to 2v.
+
+	Fixes <https://savannah.gnu.org/bugs/?67875>.
+
+2026-01-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (pg@header): Drop spurious quotation marks from
 	argument to `tl` request.
 

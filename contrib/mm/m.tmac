@@ -1383,6 +1383,7 @@ numeric; got '\\$1'
 .nr pg*extra-footer-size 0
 .nr pg*extra-header-size 0
 .nr ft*note-size 0
+.nr ft*margin-below 0
 .nr pg*cur-column 0
 .nr pg*cols-per-page 1
 .nr pg*cur-po \n[@po]
@@ -1395,11 +1396,13 @@ numeric; got '\\$1'
 .\" footer TRAPS: set, enable and disable
 .de pg@set-new-trap
 .nr pg*foot-trap \\n[@pl]u-(\\n[pg*block-size]u+\
-\\n[ft*note-size]u+\\n[pg*foot-margin]u+\\n[pg*footer-size]u+\
+\\n[ft*note-size]u+\\n[ft*margin-below]u+\
+\\n[pg*foot-margin]u+\\n[pg*footer-size]u+\
 \\n[pg*extra-footer-size]u)
 .\"
 .if \\n[D]>=6 .tm \\$0: pg*foot-trap=\\n[@pl]u-(\\n[pg*block-size]u+\
-\\n[ft*note-size]u+\\n[pg*foot-margin]u+\\n[pg*footer-size]u+\
+\\n[ft*note-size]u+\\n[ft*margin-below]u+\
+\\n[pg*foot-margin]u+\\n[pg*footer-size]u+\
 \\n[pg*extra-footer-size]u)=\\n[pg*foot-trap]u
 .\"
 .\" last-pos points to the position of the footer and bottom
@@ -1740,6 +1743,7 @@ numeric; got '\\$1'
 .if \\n[D]>=5 .tm \\$0: end-of-input macro: shutting down
 .if \\n[D]>=4 .tm End of document text
 .nr pg*at-end-of-input 1
+.\" XXX: What about spilled footnotes?
 .df@eot-print
 .ref@eot-print
 ..
@@ -2098,6 +2102,7 @@ dn=\\n[dn]
 .	debug@emit ft*tmp-div
 .	debug@di
 .	nr ft*note-size +\\n[dn]
+.	nr ft*margin-below 2v
 .\}
 .rm ft*tmp-div
 .ev
