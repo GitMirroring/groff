@@ -1,5 +1,13 @@
 2026-01-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (pg@header): Drop spurious quotation marks from
+	argument to `tl` request.
+
+	Fixes <https://savannah.gnu.org/bugs/?67874>.  Problem
+	introduced by me in commit 88cd50aa3c, 27 October 2024.
+
+2026-01-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tests/PH-PF-OH-OF-EH-EF-work.sh: Unit-test the named macros.
 	* mm.am (mm_TESTS): Run test.
 
