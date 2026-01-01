@@ -1,3 +1,26 @@
+2026-01-01  Norwid Behrnd <nbehrnd@yahoo.com>
+
+	* examples/ethamivan.chem: Improve visual representation.
+	Reorganize representation of the structure.
+	- Contract the hydroxyl group, both simplifying the definition
+	  of the substituent and correcting the unusual dihedral angle
+	  of 180 degrees about C-O-H previously used.
+	- Adjust orientations of the drawing overall and substituents
+	  (e.g., rules GR-3.1.2, GR-3.1.3; 3.2.1 in [1]), especially
+	  alkyl chains around N (GR-4.1.1, ibid.).
+
+	...as one would "clean" the structure drawing in a GUI-based
+	editor, and indeed with a result very similar to the current
+	depiction on Wikipedia.[2]
+
+	Fixes <https://savannah.gnu.org/bugs/?67876>.
+
+	[1] Brecher, J. Graphical Representation Standards for Chemical
+	Structure Diagrams (IUPAC Recommendations 2008). Pure Appl.
+	Chem.  2008, 80 (2), 277-410.
+	https://doi.org/10.1351/pac200880020277.
+	[2] https://en.wikipedia.org/wiki/Etamivan
+
 2025-12-31  Norwid Behrnd <nbehrnd@yahoo.com>
 
 	* examples/cholesterol.chem: Add stereochemistry.
