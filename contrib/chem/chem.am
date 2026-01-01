@@ -46,6 +46,7 @@ dist_chemexample_DATA = $(CHEM_EXAMPLES)
 # in that directory are lazily installed by the local install target.
 chemexample122dir = $(chemexampledir)/cstr-122
 EXTRA_DIST += \
+  contrib/chem/COPYRIGHT \
   contrib/chem/ChangeLog \
   contrib/chem/GPLv2 \
   contrib/chem/README \
