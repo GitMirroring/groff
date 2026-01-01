@@ -1,5 +1,13 @@
 2026-01-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* gnulib: Refresh stable/2025-07 branch.  We need some
+	recent fixes that have landed there.  See
+	<https://lists.gnu.org/archive/html/bug-gnulib/2025-12/msg00158.html>
+	and
+	<https://lists.gnu.org/archive/html/bug-gnulib/2026-01/msg00000.html>.
+
+2026-01-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/preconv/preconv.cpp (conversion_iconv): Use
 	`const_cast<>` to cast away `const`, not `static_cast<>`.  Fixes
 	build on Solaris 11/sparc64/GCC 5.5.  Problem introduced by me
