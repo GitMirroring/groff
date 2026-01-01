@@ -1,5 +1,22 @@
 2026-01-01  Norwid Behrnd <nbehrnd@yahoo.com>
 
+	* examples/penicillin.chem: Reorganize file.
+	- Improve use of the ring templates.
+	- Prevent partial overwrite of N in lactam moiety and alkyl
+	  amide.
+	- Explicitly designate stereochemistry.  If available, future
+	  versions of chem should replace `backbond` by a wegde shaped
+	  variant of this bond.
+
+	...for better visual representation similar to the one currently
+	used on Wikipedia.[1]
+
+	Fixes <https://savannah.gnu.org/bugs/?67877>.
+
+	[1] https://en.wikipedia.org/wiki/Benzylpenicillin
+
+2026-01-01  Norwid Behrnd <nbehrnd@yahoo.com>
+
 	* examples/ethamivan.chem: Improve visual representation.
 	Reorganize representation of the structure.
 	- Contract the hydroxyl group, both simplifying the definition
