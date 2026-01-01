@@ -4,7 +4,7 @@
 #	Deri James	: Friday 16 Mar 2012
 #
 
-# Copyright (C) 2012-2024 Free Software Foundation, Inc.
+# Copyright 2012-2024 Free Software Foundation, Inc.
 #      Written by Deri James <deri@chuzzlewit.myzen.co.uk>
 #
 # This file is part of groff, the GNU roff typesetting system.
