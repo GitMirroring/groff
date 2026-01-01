@@ -1,5 +1,13 @@
 2026-01-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	Add tests of footnote area layout and vertical margins.
+
+	* tests/footnote-area-layout-is-correct.sh:
+	* tests/vertical-margins-are-correct.sh: Do it.
+	* mm.am (mm_TESTS): Run tests.
+
+2026-01-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Revise page layout computations.
 
 	* m.tmac: Add new register `pg*below-text-gap` to track the size
