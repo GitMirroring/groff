@@ -1,3 +1,8 @@
+2026-01-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m.tmac: (PGFORM, pg@enable-trap): Invoke page location trap
+	dumping request under its new name, `pwh`, not `ptr`.
+
 2026-01-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	Regression-test (the defect reported in) Savannah #67830.  The
