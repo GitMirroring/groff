@@ -115,6 +115,33 @@ and recommend further reading materials.
 .
 .\" BEGIN Keep roughly parallel with groff.texi nodes "Text" through
 .\" "Tabs and Leaders".
+AT&T
+.I troff \" AT&T
+was designed to take input as it would be composed on a typewriter,
+including the teletypewriters used as early computer terminals,
+and relieve the user drafting a document of concern with details like
+line length maintenance,
+hyphenation breaking,
+and consistent paragraph indentation.
+.
+Early in its development,
+the program gained the ability to prepare output for a phototypesetter;
+a document could then be prepared for output to a teletypewriter,
+a phototypesetter,
+or both.
+.
+GNU
+.I troff \" GNU
+continues this tradition of permitting an author
+to compose a single master version of a document
+which can then be rendered upon a variety of output formats or devices,
+including PDF,
+HTML,
+laser printers,
+and terminal displays.
+.
+.
+.P
 .I roff
 input contains text interspersed with instructions to control the
 formatter.
