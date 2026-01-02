@@ -9286,7 +9286,7 @@ is typically used for fine-tuning of typeset output
 late in the document revision process.
 One of its applications is prevention of a break
 after an explicit hyphen when this occurs in an undesired place,
-such as at the end of a verso page,
+such as at the end of a recto page,
 or before a displayed figure.
 The hyphenation mode can be configured to prevent breaks
 after
