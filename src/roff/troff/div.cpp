@@ -1280,7 +1280,7 @@ void init_div_requests()
   init_request("pl", configure_page_length_request);
   init_request("pn", page_number);
   init_request("po", configure_page_offset_request);
-  init_request("ptr", print_traps);
+  init_request("pwh", print_traps);
   init_request("rs", restore_spacing);
   init_request("rt", return_request);
   init_request("sp", space_request);

@@ -4018,7 +4018,7 @@ and its mode
 .
 .
 .TP
-.B .ptr
+.B .pwh
 Report the names and vertical positions,
 in basic units,
 of all page location traps
@@ -6182,7 +6182,7 @@ open streams
 .RB ( pstream ),
 and
 page location traps
-.RB ( ptr ).
+.RB ( pwh ).
 .
 Requests can also disclose
 to the standard error stream

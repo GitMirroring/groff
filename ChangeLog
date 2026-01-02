@@ -1,3 +1,20 @@
+2026-01-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Rename `ptr` request to `pwh`.
+
+	* src/roff/troff/div.cpp (init_div_requests): Do it.
+	* tmac/troffrc (ptr): Define macro advising user to migrate.
+	Invoke `pwh`.
+
+	* doc/groff.texi.in (Page Location Traps, The Implicit Page
+	Trap, Debugging):
+	* man/groff.7.man (Request short reference, Page location traps,
+	Debugging):
+	* man/groff_diff.7.man (New requests, Debugging): Update
+	documentation.
+
+	Fixes <https://savannah.gnu.org/bugs/?67880>.
+
 2026-01-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[pic]: Fix Savannah #67899.

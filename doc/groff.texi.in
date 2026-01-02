@@ -17530,7 +17530,7 @@ the formatter does not convert it to an absolute vertical position.
 @cindex page location traps, debugging
 @cindex debugging page location traps
 We can use the
-@code{ptr}
+@code{pwh}
 request to dump page location traps to the standard error stream
 (@pxref{Debugging}).
 GNU
@@ -17547,10 +17547,10 @@ device example follows.
 @Example
 .pl 5i
 .wh -1i xx
-.ptr
+.pwh
     @error{} xx      -240
 .pl 100i
-.ptr
+.pwh
     @error{} xx      -240
 @endExample
 
@@ -17749,7 +17749,7 @@ not the expected behaviour.
 @cindex page ejection
 @cindex ejection, page
 If, after starting GNU @code{troff} without loading a macro package, you
-use the @code{ptr} request to dump a list of the active traps to the
+use the @code{pwh} request to dump a list of the active traps to the
 standard error stream,@footnote{@xref{Debugging}.} nothing is reported.
 Yet the @code{.t} register will report a steadily decreasing value with
 every output line your document produces, and once the value of
@@ -20567,11 +20567,11 @@ a pair of empty brackets
 represents an empty list.
 @endDefreq
 
-@Defreq {ptr, }
-@cindex dumping page location traps (@code{ptr})
-@cindex listing page location traps (@code{ptr})
-@cindex traps, page location, dumping (@code{ptr})
-@cindex traps, page location, listing (@code{ptr})
+@Defreq {pwh, }
+@cindex dumping page location traps (@code{pwh})
+@cindex listing page location traps (@code{pwh})
+@cindex traps, page location, dumping (@code{pwh})
+@cindex traps, page location, listing (@code{pwh})
 Report the names and positions of all page location traps to the
 standard error stream.  GNU @command{troff} reports empty slots in the
 list, where a trap had been planted but subsequently (re)moved, because

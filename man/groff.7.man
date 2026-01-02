@@ -4710,7 +4710,7 @@ and its mode
 (writing or appending).
 .
 .TPx
-.REQ .ptr
+.REQ .pwh
 Report names and positions of all page location traps to the standard
 error stream.
 .
@@ -8736,7 +8736,7 @@ page length;
 the formatter does not convert it to an absolute vertical position.
 .
 We can use the
-.B ptr
+.B pwh
 request to dump page location traps to the standard error stream;
 see section \[lq]Debugging\[rq] below.
 .
@@ -9542,7 +9542,7 @@ open streams
 .RB ( pstream );
 and
 page location traps
-.RB ( ptr ).
+.RB ( pwh ).
 .
 Requests can also disclose
 to the standard error stream
