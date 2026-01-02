@@ -1,3 +1,12 @@
+2026-01-02  Helmut Grohne <helmut@subdivi.de>
+
+	* src/libs/libgroff/libgroff.am (install_charset_data): Don't
+	ship a "charset.alias" file if it's empty or contains nothing
+	but comments.  Such files, a common product of certain gnulib
+	internals, aggrieve a Debian's packaging assistance tool.
+
+	Fixes <https://savannah.gnu.org/bugs/?67886>.
+
 2026-01-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/groff_mdoc.7.man (Other possible pitfalls): Advise
