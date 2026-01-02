@@ -8631,19 +8631,28 @@ on a page of length \[lq]11i\[rq].)
 .
 .
 .P
-A trap above the top or at or below the bottom of the page can be made
-visible by either moving it into the page area or increasing the page
-length so that the trap is on the page.
+A trap above the top or at or below the bottom of the page
+can be made visible
+by either moving it into the page area
+or increasing the page length so that the trap is on the page.
 .
-Negative trap values always use the
+A negative trap value always uses the
 .I current
 page length;
-they are not converted to an absolute vertical position.
+the formatter does not convert it to an absolute vertical position.
 .
-Use
+We can use the
 .B ptr
-to dump page location traps to the standard error stream;
-their positions are reported in basic units.
+request to dump page location traps to the standard error stream;
+see section \[lq]Debugging\[rq] below.
+.
+GNU
+.I troff \" GNU
+reports their positions in basic units,
+and includes empty slots in the list,
+where a trap had been planted
+but subsequently (re)moved,
+because they can affect the visibility of subsequently planted traps.
 .
 .
 .br

@@ -467,7 +467,7 @@ Documentation License''.
 @title groff
 @subtitle The GNU implementation of @code{troff}
 @subtitle version @VERSION@
-@subtitle December 2025
+@subtitle January 2026
 @author Trent@tie{}A.@: Fisher
 @author Werner Lemberg
 @author G.@tie{}Branden Robinson
@@ -16998,16 +16998,30 @@ CFIT (controlled flight into terrain) incident of
 .\" @i{...and so on...}
 @endExample
 
-A trap above the top or at or below the bottom of the page can be made
-visible by either moving it into the page area or increasing the page
-length so that the trap is on the page.  Negative trap values always use
-the @emph{current} page length; they are not converted to an absolute
-vertical position.
+A trap above the top or at or below the bottom of the page
+can be made visible
+by either moving it into the page area
+or increasing the page length so that the trap is on the page.
+A negative trap value always uses the
+@emph{current}
+page length;
+the formatter does not convert it to an absolute vertical position.
 @cindex page location traps, debugging
 @cindex debugging page location traps
-We can use the @code{ptr} request to dump our page location traps to the
-standard error stream (@pxref{Debugging}).  Their positions are reported
-in basic units; an @code{nroff} device example follows.
+We can use the
+@code{ptr}
+request to dump page location traps to the standard error stream
+(@pxref{Debugging}).
+GNU
+@command{troff} @c GNU
+reports their positions in basic units,
+and includes empty slots in the list,
+where a trap had been planted
+but subsequently (re)moved,
+because they can affect the visibility of subsequently planted traps.
+An
+@code{nroff}
+device example follows.
 
 @Example
 .pl 5i

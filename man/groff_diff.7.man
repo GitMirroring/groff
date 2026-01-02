@@ -3999,7 +3999,9 @@ and its mode
 .
 .TP
 .B .ptr
-Report the names and vertical positions of all page location traps
+Report the names and vertical positions,
+in basic units,
+of all page location traps
 to the standard error stream.
 .
 GNU
