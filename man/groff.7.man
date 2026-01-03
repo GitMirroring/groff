@@ -298,20 +298,30 @@ may be available in
 .IR @DOCDIR@ .
 .
 .
+.\" BEGIN Keep parallel with groff.texi node "Conventions Used in This
+.\" Manual", first paragraph.
 .P
-.I groff
-is also a name for an extended dialect of the
-.I roff
-language.
-.
-We use \[lq]roff\[rq] to denote features that are universal,
-or nearly so,
-among implementations of this family.
-.
 We apply the term \[lq]groff\[rq] to the language documented here,
 the GNU implementation of the overall system,
 the project that develops that system,
 and the command of that name.
+.
+In the first sense,
+.I groff
+is an extended dialect of the
+.I roff
+language,
+for which many
+similar implementations exist.
+.
+When say \[lq]the formatter\[rq] when speaking of behavior
+that is generally true of
+.I troff \" generic
+and
+.I nroff \" generic
+programs.
+.\" END Keep parallel with groff.texi node "Conventions Used in This
+.\" Manual", first paragraph.
 .
 .
 .P

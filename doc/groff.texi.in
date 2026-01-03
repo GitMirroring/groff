@@ -603,6 +603,16 @@ Unix manuals, including man pages.  It and its predecessor have produced
 several best-selling software engineering texts.  @code{groff} can
 create typographically sophisticated documents while consuming minimal
 system resources.
+
+Like its predecessor ``troff'',
+the term ``groff'' affords two pronunciations:
+as one syllable
+(like the surname),
+rhyming with ``trough'',
+or as ``jee-roff'',
+in analogy to the Bell Labs pronunciation ``tee-roff''.
+Little risk of confusion exists;
+use whichever suits you.
 @c END Keep parallel with groff(1), section "Description" (after the
 @c first sentence).
 
@@ -762,11 +772,27 @@ distribution.  Being a GNU project, @code{groff} supports the familiar
 @node Conventions Used in This Manual, Credits, Installation, Introduction
 @section Conventions Used in This Manual
 
-We apply the term ``groff'' to the language documented here, the GNU
-implementation of the overall system, the project that develops that
-system, and the command of that name.  In the first sense, @code{groff}
-is an extended dialect of the @code{roff} language, for which many
+@c BEGIN Keep parallel with groff(7), portion of "Description"
+@c (introduction).
+We apply the term ``groff'' to the language documented here,
+the GNU implementation of the overall system,
+the project that develops that system,
+and the command of that name.
+In the first sense,
+@code{groff}
+is an extended dialect of the
+@code{roff}
+language,
+for which many
 similar implementations exist.
+When say ``the formatter'' when speaking of behavior
+that is generally true of
+@command{troff} @c generic
+and
+@command{nroff} @c generic
+programs.
+@c END Keep parallel with groff(7), portion of "Description"
+@c (introduction).
 
 A tradition has arisen that GNU programs' names bear a prefix @samp{g}
 where necessary to distinguish them from other implementations on the
