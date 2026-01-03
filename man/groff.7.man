@@ -2448,6 +2448,41 @@ escape sequences do.
 In the following request and escape sequence specifications,
 most argument names were chosen to be descriptive.
 .
+GNU
+.I troff \" GNU
+reads arguments named
+.I character-sequence,
+.I command,
+.I contents,
+.I file,
+and
+.I message
+in copy mode
+(see section \[lq]Copy Mode\[rq] below)
+until the end of the input line.
+.
+A
+.I character-sequence
+comprises one or more ordinary,
+special,
+or indexed characters;
+spaces;
+or escape sequences that interpolate only these.
+.\" XXX: or tabs, leaders, backspace, and delete characters
+.
+We name the remaining arguments for clarity;
+they are also
+.I character-sequences.
+.
+A neutral double quote
+.RB \[oq] \[dq] \[cq] \" single quotes around double quote
+can optionally prefix a
+.I character-sequence;
+the formatter discards one if present,
+permitting initial embedded spaces in the argument.
+.
+.
+.P
 A few denotations may require introduction.
 .
 .
@@ -2666,41 +2701,6 @@ an increment or decrement applies as if to\~0.
 .SH "Request short reference"
 .\" ====================================================================
 .
-GNU
-.I troff \" GNU
-reads arguments named
-.I character-sequence,
-.I command,
-.I contents,
-.I file,
-and
-.I message
-in copy mode
-(see section \[lq]Copy Mode\[rq] below)
-until the end of the input line.
-.
-A
-.I character-sequence
-comprises one or more ordinary,
-special,
-or indexed characters;
-spaces;
-or escape sequences that interpolate only these.
-.\" XXX: or tabs, leaders, backspace, and delete characters
-.
-We name the remaining arguments for clarity;
-they are also
-.I character-sequences.
-.
-A neutral double quote
-.RB \[oq] \[dq] \[cq] \" single quotes around double quote
-can optionally prefix a
-.I character-sequence;
-the formatter discards one if present,
-permitting initial embedded spaces in the argument.
-.
-.
-.P
 Not all details of request behavior are outlined here.
 .
 See the
