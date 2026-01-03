@@ -44,7 +44,7 @@
 	`vresolution`, and `units_per_inch` as having `units` type
 	rather than `int`.  This is merely _documentary_
 	type-correctness, however, as `units` isn't strongly typed, but
-	merely a slovenly `typedef` alias of `int`.
+	only a slovenly `typedef` alias of `int`.
 	* src/roff/troff/troff.h: Align declarations with foregoing
 	definitions.
 
