@@ -28,7 +28,7 @@ This manual documents GNU @command{troff} version @VERSION@.
 
 @display
 Copyright @copyright{} 1994--2018 Free Software Foundation, Inc.
-Copyright @copyright{} 2018--2025 G. Branden Robinson
+Copyright @copyright{} 2018--2026 G. Branden Robinson
 @end display
 
 @quotation
@@ -19858,7 +19858,7 @@ command-line option.
 @c =====================================================================
 
 @node GNU @command{troff} Internals, Debugging, Miscellaneous, GNU troff Reference
-@anchor{gtroff Internals} @c 1.22.4
+@anchor{gtroff Internals} @c 1.23.0
 @section GNU @command{troff} Internals
 
 @cindex input token
@@ -19867,7 +19867,7 @@ command-line option.
 @cindex node
 @cindex flushing, of an output line
 GNU
-@command{troff}
+@command{troff} @c GNU
 processes input in three steps.
 It gathers one or more input characters into a
 @dfn{token},@footnote{The escape sequences
@@ -19906,8 +19906,7 @@ accumulated output line(s) to the output device,
 a process that translates each node
 into a device-independent output language representation
 understood by all output drivers.
-To summarize,
-copy mode tokenizes but does not format;
+Copy mode tokenizes but does not format;
 diversions
 (apart from that at the top level)
 format but do not write output.
@@ -19936,15 +19935,14 @@ or to code points outside the Unicode encoding space
 in a future release.}
 and further character tokens.
 You can observe this process
-by storing the foregoing input into a string
-(which,
+by storing the foregoing input into a string---which,
 because its contents are read in copy mode,
 is only tokenized,
-not formatted)
-and dumping it with the
+not formatted---and
+dumping it with the
 @code{pm} request.@footnote{Because
 GNU
-@command{troff}'s
+@command{troff}'s @c GNU
 internals are subject to revision,
 we do not show the output of these examples.
 The names and structures of node types may change over time.
@@ -19953,6 +19951,8 @@ The @acronym{JSON} interpreter
 is not essential,
 but can be helpful in understanding the topology of the node trees
 populating output lines and diversions in particular.}
+(Using @cite{printf@r{(1)}} requires us to double the @samp{\}
+and @samp{%} characters.)
 
 @Example
 $ printf '.ds str Gi\\[:u]\\%%seppe\n.pm str\n' \
@@ -19968,8 +19968,7 @@ and invoking the
 request.
 
 @Example
-$ printf 'Gi\\[:u]\\%%seppe\n.pline\n' | groff -z 2>&1 \
-    | jq
+$ printf 'Gi\\[:u]\\%%seppe\n.pline\n' | groff -z 2>&1 | jq
 @endExample
 
 We now see a list of nodes,
@@ -19983,7 +19982,24 @@ a glyph node for the special character
 @samp{hy}
 (hyphen),
 and a word space node at the end
-corresponding to the newline at the end of input.
+corresponding to the newline at the end of input.@footnote{You may
+wonder why a glyph node for
+@samp{hy}
+exists when this example
+doesn't produce one on the output.
+That's because the break is @emph{discretionary};
+at the time a word is formatted into nodes,
+GNU
+@command{troff} @c GNU
+doesn't know where the output line will break.
+Later,
+when processesing a pending output line,
+GNU
+@command{troff} @c GNU
+has that knowledge,
+and iterates through the output line's node list,
+using its discretion to discard these hyphen glyph nodes
+everywhere except when hyphenating a word at the end of the line.}
 
 If we change
 @samp{G}
