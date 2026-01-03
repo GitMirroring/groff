@@ -8527,8 +8527,9 @@ or subtract the expression of interest from zero.
     @result{} -3
 @endExample
 
-If a register's prior value does not exist (the register was undefined),
-an increment or decrement is applied as if to@tie{}0.
+If a register's prior value does not exist---the
+register was undefined---an increment or decrement is applied as if
+to@tie{}0.
 @endDefreq
 
 @cindex CSTR@tie{}#54 errata

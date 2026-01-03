@@ -2699,7 +2699,7 @@ with its operand in parentheses
 or subtract the expression of interest from zero.
 .
 If a prior value does not exist\c
-\[em](the register was undefined\[em]\c
+\[em]the register was undefined\[em]\c
 an increment or decrement applies as if to\~0.
 .
 .
