@@ -5884,9 +5884,9 @@ vertically,
 and center it vertically on the output line.
 .
 .TP
-.ESCq B anything
+.ESCq B input
 Interpolate 1 if
-.I anything
+.I input
 is a valid numeric expression,
 and\~0 otherwise.
 .

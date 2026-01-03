@@ -7169,11 +7169,14 @@ In the foregoing example, we've used the @code{\Z} escape sequence
 (@pxref{Page Motions}) to restore the drawing position after formatting
 @samp{C}, then moved vertically to the first text baseline on the page.
 
-@Defesc {\\B, @code{'}, anything, @code{'}}
+@Defesc {\\B, @code{'}, input, @code{'}}
 @cindex numeric expression, valid
 @cindex valid numeric expression
-Interpolate@tie{}1 if @var{anything} is a valid numeric expression,
-and@tie{}0 otherwise.  The delimiter need not be a neutral apostrophe;
+Interpolate@tie{}1 if
+@var{input}
+is a valid numeric expression,
+and@tie{}0 otherwise.
+The delimiter need not be a neutral apostrophe;
 see @ref{Delimiters}.
 @endDefesc
 

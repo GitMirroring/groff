@@ -870,9 +870,9 @@ to validate a macro argument before using it to construct another escape
 sequence or identifier.
 .
 .TP
-.BI \[rs]B\[aq] anything \[aq]
+.BI \[rs]B\[aq] input \[aq]
 Interpolate 1 if
-.I anything
+.I input
 is a valid numeric expression,
 and\~0 otherwise.
 .
