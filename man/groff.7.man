@@ -2532,7 +2532,9 @@ to be passed to the system as a command
 (potentially with arguments).
 .\" ...limiting the file names you can express; see Savannah #64071.
 .
-A leading neutral double quote is stripped,
+GNU
+.I troff \" GNU
+strips a leading neutral double quote,
 allowing embedded leading spaces.
 .
 .TPx
@@ -2561,7 +2563,9 @@ is an instance of
 naming a file on the system.
 .\" ...limiting the file names you can express; see Savannah #65108.
 .
-A leading neutral double quote is stripped,
+GNU
+.I troff \" GNU
+strips a leading neutral double quote,
 allowing embedded leading spaces.
 .
 GNU
@@ -2599,7 +2603,9 @@ is an instance of
 to emit on the standard error stream.
 .\" ...limiting the messages you can express; see Savannah #62787.
 .
-A leading neutral double quote is stripped,
+GNU
+.I troff \" GNU
+strips a leading neutral double quote,
 allowing embedded leading spaces.
 .
 .TPx
