@@ -2481,15 +2481,25 @@ can optionally prefix a
 the formatter discards one if present,
 permitting initial embedded spaces in the argument.
 .
+.I input
+refers to arbitrary character sequences
+(up to a newline or delimiter)
+that
+GNU
+.I troff \" GNU
+fully interprets,
+in contrast to copy mode.
+.
 .
 .P
-A few denotations may require introduction.
+A few denotations are more specific.
 .
 .
 .P
 .LS
 .RS
 .
+.\" XXX: BEGIN Kill this when migration to "input" is complete.
 .TPx
 .I anything
 includes all characters up to the end of the input line
@@ -2509,6 +2519,7 @@ as when read in copy mode.
 .
 Comments are ignored;
 trailing whitespace generally is not.
+.\" XXX: END Kill this when migration to "input" is complete.
 .
 .TPx
 .I b

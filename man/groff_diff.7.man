@@ -789,6 +789,17 @@ the formatter discards one if present,
 permitting initial embedded spaces in the argument.
 .
 .
+.P
+.I input
+refers to arbitrary character sequences
+(up to a newline or delimiter)
+that
+GNU
+.I troff \" GNU
+fully interprets,
+in contrast to copy mode.
+.
+.
 .\" ====================================================================
 .SS "Escape sequences"
 .\" ====================================================================
