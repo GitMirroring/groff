@@ -7356,13 +7356,23 @@ and
 @samp{.]}
 as bibliographic reference delimiters.
 
-@Defesc {\\A, @code{'}, anything, @code{'}}
-Interpolate@tie{}1 if @var{anything} is a valid identifier, and@tie{}0
-otherwise.  The delimiter need not be a neutral apostrophe; see
-@ref{Delimiters}.  Because GNU @command{troff} ignores any input
-character with an invalid code when reading it, invalid identifiers are
-empty or contain spaces, tabs, newlines, or escape sequences that
-interpolate something other than a sequence of ordinary characters.
+@Defesc {\\A, @code{'}, input, @code{'}}
+Interpolate@tie{}1 if
+@var{input}
+is a valid identifier,
+and@tie{}0 otherwise.
+The delimiter need not be a neutral apostrophe; see
+@ref{Delimiters}.
+Because GNU
+@command{troff} @c GNU
+ignores any input character with an invalid code when reading it,
+invalid identifiers are empty or contain
+spaces,
+tabs,
+newlines,
+or
+escape sequences
+that interpolate something other than a sequence of ordinary characters.
 
 You can employ @code{\A} to validate a macro argument before using it to
 construct another escape sequence or identifier.

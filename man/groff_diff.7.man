@@ -849,9 +849,9 @@ and section \[lq]Compatibility Mode\[rq] below.
 .
 .\"TP 10n \" "\D'E h v'" + 2n + hand-tuned for PDF
 .TP 14n \" "\A'anything'" + 2n
-.BI \[rs]A\[aq] anything \[aq]
+.BI \[rs]A\[aq] input \[aq]
 Interpolate 1 if
-.I anything
+.I input
 is a valid identifier,
 and\~0 otherwise.
 .

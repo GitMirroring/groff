@@ -5869,11 +5869,22 @@ and
 Interpolate a leader in copy mode.
 .
 .TP
-.ESCq A anything
+.ESCq A input
 Interpolate 1 if
-.I anything
+.I input
 is a valid identifier,
 and\~0 otherwise.
+.
+Because GNU
+.I troff \" GNU
+ignores any input character with an invalid code when reading it,
+invalid identifiers are empty or contain
+spaces,
+tabs,
+newlines,
+or
+escape sequences
+that interpolate something other than a sequence of ordinary characters.
 .
 .TP
 .ESCq b string
