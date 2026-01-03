@@ -1,3 +1,11 @@
+2026-01-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/groff/tests/\
+	double-do-request-does-not-raise-assertion.sh: Rename this...
+	* src/roff/groff/tests/\
+	double-do-request-does-not-fail-assertion.sh: ...to this.
+	* src/roff/groff/groff.am (groff_TESTS): Track rename.
+
 2026-01-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* gnulib: Refresh stable/2025-07 branch.  We need some
