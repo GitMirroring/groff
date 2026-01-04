@@ -18970,8 +18970,13 @@ Read the standard output from the specified @var{command} when passed to
 @cindex mode, safer
 @cindex unsafe mode
 @cindex mode, unsafe
-It is an error to use this request in safer mode, which is the
-default.  Invoke GNU @code{troff} or a front end with the @option{-U}
+It is an error to use this request in safer mode,
+which is the default.
+Invoke
+GNU
+@command{troff} @c GNU
+or a front end with the
+@option{-U}
 option to enable unsafe mode.
 
 The cautionary note regarding a final newline in the stream read by the
@@ -18991,7 +18996,7 @@ except that GNU
 searches for the specified
 @var{file}
 in the same directories as macro files;
-see
+recall
 @env{GROFF_TMAC_PATH}
 in
 @ref{Environment}
@@ -19079,15 +19084,17 @@ file@tie{}@file{f}, use
 
 @noindent
 The calls to @code{ev} prevent the partially collected output line
-from becoming part of the diversion (@pxref{Diversions}).
+from becoming part of the diversion; recall @ref{Diversions}.
 
 @cindex AT&T troff bugs
 @cindex AT&T troff bug, in @code{cf} request
 @cindex bug, in AT&T troff @code{cf} request
-In @acronym{AT&T} @code{troff},
+In @acronym{AT&T}
+@code{troff}, @c AT&T
 @code{cf}
-copies the contents of @var{file} to the output immediately
-even if a diversion is active;
+copies the contents of
+@var{file}
+to the output immediately even if a diversion is active;
 this behavior is so anomalous that it must be considered a bug.
 @endDefreq
 
@@ -19095,8 +19102,13 @@ this behavior is so anomalous that it must be considered a bug.
 @cindex read next file (@code{nx})
 @cindex file, next, read (@code{nx})
 @cindex next file, read (@code{nx})
-Stop processing the input file.  If @var{file} is specified, read it;
-otherwise, read the next pending input file, if any.
+Stop processing the input file.
+If
+@var{file} is specified,
+read it;
+otherwise,
+read the next pending input file,
+if any.
 @endDefreq
 
 @Defreq {rd, [@Var{prompt} [@Var{arg1} @Var{arg2} @dots{}]]}
@@ -19169,46 +19181,76 @@ Dear Mr. Adollar,
 @endExample
 
 @Defreq {pi, [@code{"}]@Var{command}}
-Use GNU @command{troff}'s device-independent output as the input to the
-commands specified in @var{pipe} and emit their output to the standard
-output stream instead of GNU @command{troff}'s usual output.
-@cindex @code{groff}, and @code{pi} request
-@cindex @code{pi} request, and @code{groff}
-Since that output is in a page description
-language,@footnote{@xref{gtroff Output}.} using this request without
-specifying the @option{-Z} option to @command{groff} is likely to
-provoke fatal errors from an output driver.
+Use
+the formatter's device-independent output
+as the input to the commands specified in
+@var{pipe}
+and emit their output to the standard output stream
+instead of the formatter's usual output.
+The formatter reads the remainder of the input line into
+@var{command}
+and passes it to
+@cite{popen@r{(3)}}.
+The formatter does not capture output produced by the command(s).
 
-The formatter reads the remainder of the input line into @var{command}
-and passes it to @cite{popen@r{(3)}}.  Output produced by the
-command(s) is not captured by GNU @command{troff}.
+Multiple
+@code{pi}
+requests construct a multi-stage pipeline
+in the same order as the formatter encounters the requests.
 
-Multiple @code{pi} requests construct a multi-stage pipeline in the same
-order as the formatter encounters the requests.
-
-@code{pi} must be invoked before GNU @command{troff} writes any nodes
-to its output.@footnote{@xref{GNU @command{troff} Internals}.}
+@code{pi}
+must be invoked before
+GNU
+@command{troff} @c GNU
+writes any nodes to its output.@footnote{@xref{GNU
+@command{troff}
+Internals}.} @c GNU
 The formatter reports an error and ignores the request if
 @code{pi}
 is invoked ``too late''.
-Roughly, this means you should set up your @code{pi} pipeline early in a
-document, before anything but register, string, and macro definitions
+Roughly,
+this means you should set up your
+@code{pi}
+pipeline early in a document,
+before anything but register,
+string,
+and macro definitions
 (and/or sourcing of files that comprise these exclusively).
 
 @cindex safer mode
 @cindex mode, safer
 @cindex unsafe mode
 @cindex mode, unsafe
-Use of this request in safer mode (GNU @command{troff}'s default) is
-erroneous.  Invoke GNU @command{troff} or a front end with the
-@option{-U} option to enable unsafe mode.
+Use of this request in safer mode
+(GNU
+@command{troff}'s @c GNU
+default)
+is erroneous.
+Invoke
+GNU
+@command{troff} @c GNU
+or a front end with the
+@option{-U}
+option to enable unsafe mode.
+
+@strong{Caution:@:}
+Use of the
+@code{pi}
+request can put syntactically invalid content
+into the formatter's output,
+which
+@code{groff}'s
+output drivers then fail to process.
+The pipeline you construct is responsible
+for maintaining the validity of the input to the output driver.
 
 @Example
 .pi foo
 .pi bar
 @endExample
 
-is the same as @w{@samp{.pi foo | bar}}.
+is the same as
+@w{@samp{.pi foo | bar}}.
 @endDefreq
 
 @cindex system commands, running
@@ -19365,7 +19407,8 @@ two-character
 name @var{ev})
 as returned by @cite{getenv@r{(3)}}.
 @cindex @code{\V}, interpretation in copy mode
-@code{\V} is interpreted even in copy mode (@pxref{Copy Mode}).
+@code{\V} is interpreted even in copy mode;
+recall @ref{Copy Mode}.
 @endDefesc
 
 
