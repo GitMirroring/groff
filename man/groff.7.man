@@ -4790,7 +4790,7 @@ Stop interpreting an interpolated macro,
 skipping the remainder of its definition.
 .
 .TPx
-.REQ .return anything
+.REQ .return input
 As
 .BR return ,
 but perform the skip twice\[em]once within the macro being interpreted

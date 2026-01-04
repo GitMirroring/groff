@@ -15700,12 +15700,22 @@ normally, they modify the value of an existing object.  @xref{als,,the
 description of the @code{als} request}, for pitfalls when redefining a
 macro that is aliased.
 
-@Defreq {return, [@Var{anything}]}
-Stop interpreting a macro, skipping to the end of its definition.  Do
-not confuse @code{return} with @code{rt}.  If called with an argument
-@var{anything}, the skip is performed twice---once within the macro
-being interpreted and once in an enclosing macro.  @file{trace.tmac}
-uses this feature to define a wrapper macro for @code{return}.
+@Defreq {return, [@Var{input}]}
+Stop interpreting an interpolated macro,
+skipping to the end of its definition.
+Do not confuse
+@code{return}
+with
+@code{rt}.
+If called with an argument
+@var{input},
+GNU
+@command{troff} @c GNU
+performs the skip twice---once within the macro being interpreted
+and once in an enclosing macro,
+permitting a macro to wrap the request.@footnote{as
+@file{trace.tmac}
+does}
 @endDefreq
 
 @menu

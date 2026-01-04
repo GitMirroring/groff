@@ -4085,11 +4085,10 @@ cannot be removed.
 .
 .TP
 .BR .return\~ [\c
-.IR anything ]
+.IR input ]
 .\" XXX: useless request warning if not interpreting a macro?
-In a macro definition,
-stop interpretation,
-skipping to its end.
+Stop interpreting an interpolated macro,
+skipping to the end of its definition.
 .
 Do not confuse
 .RB \[lq] return \[rq]
@@ -4097,10 +4096,16 @@ with
 .BR rt .
 .
 If called with an argument
-.I anything,
-the skip is performed twice\[em]once within the macro being interpreted
+.I input,
+GNU
+.I troff \" GNU
+performs the skip twice\[em]once within the macro being interpreted
 and once in an enclosing macro,
-permitting a macro to wrap the request.
+permitting a macro to wrap the request
+(as
+.I trace\:.tmac
+does).
+.
 .
 .
 .TP
