@@ -20796,17 +20796,27 @@ without an argument when there was no current diversion.
 @cindex @code{da} request, and warnings
 @cindex @code{box}, @code{boxa} requests, and warnings
 @cindex @code{\*}, and warnings
-An undefined string, macro, or diversion was used.  When such an object
-is dereferenced, an empty one of that name is automatically created.
+An undefined string,
+macro,
+or diversion was used.
+When such an object is dereferenced,
+an empty one of that name is automatically created.
 So,
 unless it is later deleted,
-GNU @command{troff}
+GNU
+@command{troff} @c GNU
 issues at most one warning for each.
 
-GNU @command{troff} also uses this category to warn of an attempt to
-move an unplanted trap macro (@pxref{Page Location Traps}).  In such
-cases, the unplanted macro is @emph{not} dereferenced, so it is not
-created if it does not exist.
+GNU
+@command{troff} @c GNU
+also uses this category to warn of an attempt to move an unplanted trap
+macro;
+recall @ref{Page Location Traps}.
+In such cases,
+the unplanted macro is
+@emph{not}
+dereferenced,
+so it is not created if it does not exist.
 
 @item reg
 @itemx 1024
