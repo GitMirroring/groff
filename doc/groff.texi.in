@@ -20186,7 +20186,8 @@ the internal properties and representations of
 characters and classes,
 macros
 (and strings and diversions),
-and the list of output nodes corresponding to the pending input line.
+and the list of output nodes corresponding to the pending output line.
+Recall @ref{GNU @command{troff} Internals}.
 @c END Keep parallel with section "Debugging" of groff(7).
 
 @Defreq {lf, input-line-number [[@code{"}]@Var{file-identifier}]}
