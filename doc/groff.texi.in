@@ -15115,16 +15115,32 @@ interpolations with @code{\n} and @code{\*} escape sequences do.
 @subsection if-then
 @cindex if-then
 
-@Defreq {if, cond-expr anything}
-Evaluate the conditional expression @var{cond-expr}, and if it evaluates
-true (or to a positive value), interpret the remainder of the line
-@var{anything} as if it were an input line.  Recall from @ref{Invoking
-Requests} that any quantity of spaces between arguments to requests
-serves only to separate them; leading spaces in @var{anything} are thus
-not seen.  @var{anything} effectively @emph{cannot} be omitted; if
-@var{cond-expr} is true and @var{anything} is empty, the newline at the
-end of the control line is interpreted as a blank input line (and
-therefore a blank text line).
+@Defreq {if, cond-expr input}
+Evaluate the conditional expression
+@var{cond-expr},
+and if it evaluates true
+(or to a positive value),
+interpret the remainder of the line
+@var{input}
+as if it were an input line.
+Recall from @ref{Invoking Requests}
+that any quantity of spaces between arguments to requests
+serves only to separate them;
+leading spaces in
+@var{input}
+are thus not seen.
+@var{input}
+effectively
+@emph{cannot}
+be omitted;
+if
+@var{cond-expr}
+is true and
+@var{input}
+is empty,
+the formatter interprets the newline at the end of the control line
+as a blank input line
+(and therefore a blank text line).
 
 @Example
 super\c
@@ -15166,13 +15182,22 @@ a macro as a string to interpose a wrapper around the macro @samp{MAC}
 @subsection if-else
 @cindex if-else
 
-@DefreqList {ie, cond-expr anything}
-@DefreqListEndx {el, anything}
-Use the @code{ie} and @code{el} requests to write an if-then-else.  The
-first request is the ``if'' part and the latter is the ``else'' part.
-Unusually among programming languages, any number of non-conditional
-requests may be interposed between the @code{ie} branch and the
-@code{el} branch.
+@DefreqList {ie, cond-expr input}
+@DefreqListEndx {el, input}
+Use the
+@code{ie}
+and
+@code{el}
+requests to write an if-then-else.
+The first request is the ``if'' part
+and the latter is the ``else'' part.
+Unusually among programming languages,
+any number of non-conditional
+requests may be interposed between the
+@code{ie}
+branch and the
+@code{el}
+branch.
 
 @Example
 .nr a 0
