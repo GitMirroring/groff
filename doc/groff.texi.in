@@ -5428,6 +5428,7 @@ Users of macro packages may skip it if not interested in details.
 * Conditionals and Loops::
 * Writing Macros::
 * Page Motions::
+* Output Line Annotation::
 * Drawing Geometric Objects::
 * Deferring Output::
 * Traps::
@@ -16267,7 +16268,7 @@ sequence for the minus sign glyph.
 
 @c =====================================================================
 
-@node Page Motions, Drawing Geometric Objects, Writing Macros, GNU troff Reference
+@node Page Motions, Output Line Annotation, Writing Macros, GNU troff Reference
 @section Page Motions
 @cindex page motions
 @cindex motions, page
@@ -16672,7 +16673,209 @@ an actual emergency!
 
 @c =====================================================================
 
-@node Drawing Geometric Objects, Deferring Output, Page Motions, GNU troff Reference
+@node Output Line Annotation, Drawing Geometric Objects, Page Motions, GNU troff Reference
+@section Output Line Annotation
+@cindex output line annotation
+@cindex line annotation, output
+@cindex annotation, output line
+
+@DefreqList {nm, [@Var{start} [@Var{increment} [@Var{space} [@Var{indentation}]]]]}
+@DefregItemx {ln}
+@DefregListEndx {.nm}
+@cindex printing line numbers (@code{nm})
+@cindex line numbers, printing (@code{nm})
+@cindex numbers, line, printing (@code{nm})
+Begin (or, with no arguments, cease) numbering output lines.
+@var{start} assigns the number of the @emph{next} output line.  Only
+line numbers divisible by @var{increment} are marked (default:
+@samp{1}).  @var{space} configures the horizontal spacing between the
+number and the text (default: @samp{1}).  Any given @var{indentation} is
+applied to the numbers (default: @samp{0}).  The third and fourth
+arguments are reckoned in numeral widths (@code{\0}).  @var{start} must
+be non-negative and @var{increment} positive.
+
+The formatter aligns the number to the right in a width of three numeral
+spaces plus @var{indentation}, then catenates @var{space} and the output
+line.  The line length is @emph{not} reduced.  Depending on the value of
+the page offset,@footnote{Recall @ref{Line Layout}.} numbers wider than
+the allocated space protrude into the left margin, or shift the output
+line to the right.
+
+Line numbering parameters corresponding to missing arguments are not
+altered.  After numbering is disabled, @samp{.nm +0} resumes it using
+the previously active parameters.
+
+The parameters of @code{nm} are associated with the environment
+(@pxref{Environments}).
+
+@cindex output line number register (@code{ln})
+@cindex line number, output, register (@code{ln})
+While numbering is enabled, the output line number register @code{ln} is
+updated as each line is output, even if no line number is formatted with
+it because it is being skipped (it is not a multiple of @var{increment})
+or because numbering is suppressed (see the @code{nn} request below).
+
+The @code{.nm} register tracks the enablement status of numbering.
+Temporary suspension of numbering with the @code{nn} request does
+@emph{not} alter its value.
+
+@Example
+.po 5n
+.ll 44n
+Programming,
+when stripped of all its circumstantial irrelevancies,
+.nm 999 1 1 -4
+boils down to no more and no less than
+.nm +0 3
+very effective thinking so as to avoid unmastered
+.nn 2
+complexity,
+to very vigorous separation of your many
+different concerns.
+.br
+\(em Edsger Dijkstra
+.sp
+.nm 1 1 1
+This guy's arrogance takes your breath away.
+.br
+\(em John Backus
+    @result{}      Programming,  when  stripped of all its cir-
+    @result{}  999 cumstantial irrelevancies, boils down to  no
+    @result{}      more  and no less than very effective think-
+    @result{}      ing so as to avoid unmastered complexity, to
+    @result{}      very vigorous separation of your  many  dif-
+    @result{}      ferent concerns.
+    @result{} 1002 -- Edsger Dijkstra
+    @result{}
+    @result{}    1 This guy@quoteright{}s arrogance takes your breath away.
+    @result{}    2 -- John Backus
+@endExample
+@endDefreq
+
+@DefreqList {nn, [@Var{skip}]}
+@DefregListEndx {.nn}
+Suppress numbering of the next
+@var{skip}
+output lines counted by the
+@code{nm}
+request.
+If
+@var{skip} is@tie{}@samp{0},
+@c XXX: negative values accepted; check AT&T troff
+cancel suppression.
+The default is@tie{}1.
+@code{nn}
+can be invoked when line numbering is not active;
+suppression of numbering takes effect for
+@var{skip}
+lines once
+@code{nm}
+enables it.
+
+The @code{.nn} register stores the
+count of lines remaining in the environment
+for which numbering is suppressed
+while output line numbering is enabled.
+
+This count is associated with the environment (@pxref{Environments}).
+@endDefreq
+
+@need 1000
+To test whether the current output line will be numbered, you must check
+both the @code{.nm} and @code{.nn} registers.
+
+@Example
+  .de is-numbered
+  .  nop This line
+  .  ie (\\n[.nm] & (1-\\n[.nn])) IS
+  .  el                           ISN'T
+  .  nop numbered.
+  .  br
+  ..
+  Test line numbering.
+  .is-numbered
+  .nm 1
+  .nn 1
+  .is-numbered
+  .is-numbered
+  .nm
+  .is-numbered
+    @result{} Test line numbering.  This line ISN@quoteright{}T numbered.
+    @result{} This line ISN@quoteright{}T numbered.
+    @result{}   1 This line IS numbered.
+    @result{} This line ISN@quoteright{}T numbered.
+@endExample
+
+@Defreq {mc, [@Var{margin-character} [@Var{distance}]]}
+@cindex margin character (@code{mc})
+@cindex character, margins (@code{mc})
+Begin (or, with no arguments, cease) writing a @dfn{margin-character} to
+the right of each output line.  The @var{distance} argument separates
+@var{margin-character} from the right margin.  If absent, the most
+recent value is used; the default is 10@tie{}points.  If an output line
+exceeds the line length, the margin character is appended to it.
+@cindex @code{tl} request, and @code{mc}
+No margin character is written on lines produced by the @code{tl}
+request.
+
+The margin character is a property of the output line.  Only one margin
+character is in effect at one time; the most recent @code{mc} call
+determines its value.  If the margin character is disabled before an
+output line breaks, none is output (but see below).
+
+The margin character is associated with the environment
+(@pxref{Environments}).
+
+@Example
+.ll 5i
+.nf
+.mc \[br]
+This paragraph is marked with a margin character.
+.sp
+As seen above, vertical space isn't thus marked.
+\&
+An output line that is present, but empty, is.
+@c We deliberately overset these lines to mimic `mc`'s behavior.
+    @result{} This paragraph is marked with a margin character.  |
+    @result{}
+    @result{} As seen above, vertical space isn@quoteright{}t thus marked.   |
+    @result{}                                                    |
+    @result{} An output line that is present, but empty, is.     |
+@endExample
+@endDefreq
+
+For compatibility with @acronym{AT&T} @code{troff}, a call to @code{mc}
+to set the margin character can't be undone immediately; at least one
+line gets a margin character.
+
+@Example
+.ll 10n
+.nf
+.mc |
+.mc *
+.mc
+foo
+bar
+    @result{} foo        *
+    @result{} bar
+@endExample
+
+@pindex gdiffmk
+@pindex nrchbar
+@pindex changebar
+@pindex diffmk
+The margin character mechanism is commonly used to annotate changes in
+documents.  The @code{groff} distribution ships a program,
+@command{gdiffmk}, to assist with this task.@footnote{Historically,
+tools named @command{nrchbar} and @command{changebar} were developed for
+marking changes with margin characters and could be found in archives of
+the @code{comp.sources.unix} @acronym{USENET} group.  Some proprietary
+Unices also offer(ed) a @command{diffmk} program.}
+
+
+@c =====================================================================
+
+@node Drawing Geometric Objects, Deferring Output, Output Line Annotation, GNU troff Reference
 @anchor{Drawing Requests} @c 1.22.4
 @section Drawing Geometric Objects
 @cindex drawing requests
@@ -19597,200 +19800,10 @@ Reserved for internal use.
 @node Miscellaneous, GNU @command{troff} Internals, Postprocessor Access, GNU troff Reference
 @section Miscellaneous
 
-We document here GNU @code{troff} features that fit poorly elsewhere.
-
-@DefreqList {nm, [@Var{start} [@Var{increment} [@Var{space} [@Var{indentation}]]]]}
-@DefregItemx {ln}
-@DefregListEndx {.nm}
-@cindex printing line numbers (@code{nm})
-@cindex line numbers, printing (@code{nm})
-@cindex numbers, line, printing (@code{nm})
-Begin (or, with no arguments, cease) numbering output lines.
-@var{start} assigns the number of the @emph{next} output line.  Only
-line numbers divisible by @var{increment} are marked (default:
-@samp{1}).  @var{space} configures the horizontal spacing between the
-number and the text (default: @samp{1}).  Any given @var{indentation} is
-applied to the numbers (default: @samp{0}).  The third and fourth
-arguments are reckoned in numeral widths (@code{\0}).  @var{start} must
-be non-negative and @var{increment} positive.
-
-The formatter aligns the number to the right in a width of three numeral
-spaces plus @var{indentation}, then catenates @var{space} and the output
-line.  The line length is @emph{not} reduced.  Depending on the value of
-the page offset,@footnote{Recall @ref{Line Layout}.} numbers wider than
-the allocated space protrude into the left margin, or shift the output
-line to the right.
-
-Line numbering parameters corresponding to missing arguments are not
-altered.  After numbering is disabled, @samp{.nm +0} resumes it using
-the previously active parameters.
-
-The parameters of @code{nm} are associated with the environment
-(@pxref{Environments}).
-
-@cindex output line number register (@code{ln})
-@cindex line number, output, register (@code{ln})
-While numbering is enabled, the output line number register @code{ln} is
-updated as each line is output, even if no line number is formatted with
-it because it is being skipped (it is not a multiple of @var{increment})
-or because numbering is suppressed (see the @code{nn} request below).
-
-The @code{.nm} register tracks the enablement status of numbering.
-Temporary suspension of numbering with the @code{nn} request does
-@emph{not} alter its value.
-
-@Example
-.po 5n
-.ll 44n
-Programming,
-when stripped of all its circumstantial irrelevancies,
-.nm 999 1 1 -4
-boils down to no more and no less than
-.nm +0 3
-very effective thinking so as to avoid unmastered
-.nn 2
-complexity,
-to very vigorous separation of your many
-different concerns.
-.br
-\(em Edsger Dijkstra
-.sp
-.nm 1 1 1
-This guy's arrogance takes your breath away.
-.br
-\(em John Backus
-    @result{}      Programming,  when  stripped of all its cir-
-    @result{}  999 cumstantial irrelevancies, boils down to  no
-    @result{}      more  and no less than very effective think-
-    @result{}      ing so as to avoid unmastered complexity, to
-    @result{}      very vigorous separation of your  many  dif-
-    @result{}      ferent concerns.
-    @result{} 1002 -- Edsger Dijkstra
-    @result{}
-    @result{}    1 This guy@quoteright{}s arrogance takes your breath away.
-    @result{}    2 -- John Backus
-@endExample
-@endDefreq
-
-@DefreqList {nn, [@Var{skip}]}
-@DefregListEndx {.nn}
-Suppress numbering of the next
-@var{skip}
-output lines counted by the
-@code{nm}
-request.
-If
-@var{skip} is@tie{}@samp{0},
-@c XXX: negative values accepted; check AT&T troff
-cancel suppression.
-The default is@tie{}1.
-@code{nn}
-can be invoked when line numbering is not active;
-suppression of numbering takes effect for
-@var{skip}
-lines once
-@code{nm}
-enables it.
-
-The @code{.nn} register stores the
-count of lines remaining in the environment
-for which numbering is suppressed
-while output line numbering is enabled.
-
-This count is associated with the environment (@pxref{Environments}).
-@endDefreq
-
-@need 1000
-To test whether the current output line will be numbered, you must check
-both the @code{.nm} and @code{.nn} registers.
-
-@Example
-  .de is-numbered
-  .  nop This line
-  .  ie (\\n[.nm] & (1-\\n[.nn])) IS
-  .  el                           ISN'T
-  .  nop numbered.
-  .  br
-  ..
-  Test line numbering.
-  .is-numbered
-  .nm 1
-  .nn 1
-  .is-numbered
-  .is-numbered
-  .nm
-  .is-numbered
-    @result{} Test line numbering.  This line ISN@quoteright{}T numbered.
-    @result{} This line ISN@quoteright{}T numbered.
-    @result{}   1 This line IS numbered.
-    @result{} This line ISN@quoteright{}T numbered.
-@endExample
-
-@Defreq {mc, [@Var{margin-character} [@Var{distance}]]}
-@cindex margin character (@code{mc})
-@cindex character, margins (@code{mc})
-Begin (or, with no arguments, cease) writing a @dfn{margin-character} to
-the right of each output line.  The @var{distance} argument separates
-@var{margin-character} from the right margin.  If absent, the most
-recent value is used; the default is 10@tie{}points.  If an output line
-exceeds the line length, the margin character is appended to it.
-@cindex @code{tl} request, and @code{mc}
-No margin character is written on lines produced by the @code{tl}
-request.
-
-The margin character is a property of the output line.  Only one margin
-character is in effect at one time; the most recent @code{mc} call
-determines its value.  If the margin character is disabled before an
-output line breaks, none is output (but see below).
-
-The margin character is associated with the environment
-(@pxref{Environments}).
-
-@Example
-.ll 5i
-.nf
-.mc \[br]
-This paragraph is marked with a margin character.
-.sp
-As seen above, vertical space isn't thus marked.
-\&
-An output line that is present, but empty, is.
-@c We deliberately overset these lines to mimic `mc`'s behavior.
-    @result{} This paragraph is marked with a margin character.  |
-    @result{}
-    @result{} As seen above, vertical space isn@quoteright{}t thus marked.   |
-    @result{}                                                    |
-    @result{} An output line that is present, but empty, is.     |
-@endExample
-@endDefreq
-
-For compatibility with @acronym{AT&T} @code{troff}, a call to @code{mc}
-to set the margin character can't be undone immediately; at least one
-line gets a margin character.
-
-@Example
-.ll 10n
-.nf
-.mc |
-.mc *
-.mc
-foo
-bar
-    @result{} foo        *
-    @result{} bar
-@endExample
-
-@pindex gdiffmk
-@pindex nrchbar
-@pindex changebar
-@pindex diffmk
-The margin character mechanism is commonly used to annotate changes in
-documents.  The @code{groff} distribution ships a program,
-@command{gdiffmk}, to assist with this task.@footnote{Historically,
-tools named @command{nrchbar} and @command{changebar} were developed for
-marking changes with margin characters and could be found in archives of
-the @code{comp.sources.unix} @acronym{USENET} group.  Some proprietary
-Unices also offer(ed) a @command{diffmk} program.}
+We document here
+GNU
+@command{troff} @c GNU
+features that fit poorly elsewhere.
 
 @DefreqList {psbb, file}
 @DefregItemx {llx}
