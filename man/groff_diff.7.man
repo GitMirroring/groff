@@ -2872,13 +2872,20 @@ above.
 .BR .device\~ [\c
 .RB [ \[dq] ]\c
 .IR character-sequence ]
-Write
-.IR character-sequence ,
-a sequence of ordinary or special characters and spaces
-read in copy mode,
-to
-.I @g@troff
-output as the argument to a device extension command.
+Embed
+.I character-sequence
+into
+GNU
+.I troff \" GNU
+output as parameters to an
+.RB \[lq]x X\[rq]
+device extension command;
+see
+.MR groff_out @MAN5EXT@ .
+.
+The output driver or other postprocessor interprets
+.I character-sequence
+as it sees fit.
 .
 .
 .TP

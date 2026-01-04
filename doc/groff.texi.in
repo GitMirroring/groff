@@ -19241,12 +19241,19 @@ such as
 or
 @cite{grotty@r{(1)}}.
 
-@DefreqList {device, [@code{"}]@Var{contents}}
+@DefreqList {device, [@code{"}]@Var{character-sequence}}
 @DefescListEndx {\\X, @code{'}, contents @r{@dots{}}, @code{'}}
-Embed @var{contents} into GNU @command{troff} output as parameters to an
-@w{@samp{x X}} device extension command.@footnote{@xref{gtroff Output}.}
-The interpretation of such parameters is determined by the output driver
-or other postprocessor.
+Embed
+@var{character-sequence}
+into
+GNU
+@command{troff}
+output as parameters to an
+@w{@samp{x X}}
+device extension command.@footnote{@xref{gtroff Output}.}
+The output driver or other postprocessor interprets
+@var{character-sequence}
+as it sees fit.
 
 @cindex @code{device} request, and copy mode
 @cindex copy mode, and @code{device} request
