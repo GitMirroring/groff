@@ -297,17 +297,15 @@ this is called a
 In this document and in
 .I roff
 discussions generally,
-a \[lq]break\[rq] if not further qualified always refers to the
-termination of an output line.
+a \[lq]break\[rq] if not further qualified
+always refers to the termination of an output line.
 .
 When the formatter is filling text,
 it introduces breaks automatically to keep output lines from exceeding
 the configured line length.
 .
 After an automatic break,
-a
-.I roff
-formatter
+the formatter
 .I adjusts
 the line if applicable
 (see below),

@@ -5683,11 +5683,12 @@ editing activities.  Further advice along these lines will follow in
 @cindex characters, special
 Normally, the occurrence of a visible non-end-of-sentence character (as
 opposed to a space or tab) immediately after an end-of-sentence
-character cancels detection of the end of a sentence.  For example, it
-would be incorrect for GNU @code{troff} to infer the end of a sentence
+character cancels detection of the end of a sentence.
+For example,
+it would be incorrect for the formatter to infer the end of a sentence
 after the dot in @samp{3.14159}.
 However,
-the formatter treats several characters
+it treats several characters
 @emph{transparently}
 after the occurrence of an end-of-sentence character---it does not
 cancel end-of-sentence status upon encountering them.
@@ -5695,12 +5696,16 @@ Such characters are often used as footnote marks
 or to close quotations and parentheticals.
 The default set is @samp{"}, @samp{'}, @samp{)},
 @samp{]}, @samp{*}, @code{\[dg]}, @code{\[dd]}, @code{\[rq]}, and
-@code{\[cq]}.  The last four are examples of @dfn{special characters},
-escape sequences whose purpose is to obtain glyphs that are not easily
-typed at the keyboard, or which have special meaning to GNU @code{troff}
+@code{\[cq]}.
+The last four are examples of
+@dfn{special characters},
+escape sequences whose purpose is to obtain glyphs
+that are not easily typed at the keyboard,
+or which have special meaning to the formatter
 (like @code{\} itself).@footnote{The mnemonics for the special
 characters shown here are ``dagger'', ``double dagger'', ``right
-(double) quote'', and ``closing (single) quote''.  See
+(double) quote'', and ``closing (single) quote''.
+See
 @cite{groff_char@r{(7)}}.}
 
 @Example
@@ -5776,30 +5781,46 @@ Once an output line is full,
 the formatter places the next word
 (or remainder of a hyphenated one)
 on a different output line;
-this is called a @dfn{break}.
-In this manual and in @code{roff} discussions generally, a ``break'' if
-not further qualified always refers to the termination of an output
-line.  When the formatter is filling text, it introduces breaks
-automatically to keep output lines from exceeding the configured line
-length.  After an automatic break, GNU @code{troff} adjusts the line if
-applicable (see below), and then resumes collecting and filling text on
-the next output line.
+this is called a
+@dfn{break}.
+In this manual and in
+@code{roff}
+discussions generally,
+a ``break'' if not further qualified
+always refers to the termination of an output line.
+When the formatter is filling text,
+it introduces breaks automatically to keep output lines from exceeding
+the configured line length.
+After an automatic break,
+the formatter adjusts the line if applicable
+(see below),
+and then resumes collecting and filling text on the next output line.
 
-Sometimes, a line cannot be broken automatically.  This usually does
-not happen with natural language text unless the output line length has
-been manipulated to be extremely short, but it can with specialized
-text like program source code.  We can use @code{perl} at the shell
-prompt to contrive an example of failure to break the line.  We also
-employ the @option{-z} option to suppress normal output.
+Sometimes,
+a line cannot be broken automatically.
+This usually does not happen with natural language text
+unless the output line length
+has been manipulated to be extremely short,
+but it can with specialized text like program source code.
+We can use
+@command{perl}
+at the shell prompt to contrive an example of failure to break the line.
+We also employ the
+@option{-z}
+option to suppress normal output.
 
 @Example
 $ perl -e 'print "#" x 80, "\n";' | gnroff -z
     @error{} cannot adjust line; overset by 15n
 @endExample
 
-The remedy for these cases is to tell GNU @code{troff} where the line
-may be broken without hyphens.  This is done with the non-printing break
-point escape sequence @samp{\:}; see @ref{Manipulating Hyphenation}.
+The remedy for these cases is to tell
+GNU
+@command{troff}
+where the line may be broken without hyphens.
+This is done with the non-printing break point escape sequence
+@samp{\:};
+see @ref{Manipulating Hyphenation}.
 
 @cindex blank line
 @cindex empty line
