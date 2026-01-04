@@ -15153,12 +15153,21 @@ tanker
 @endExample
 @endDefreq
 
-@Defreq {nop, [@Var{anything}]}
-Interpret @var{anything} as if it were an input line.  @code{nop}
-resembles @samp{.if 1}; it puts a break on the output if @code{anything}
-is empty.  Unlike @code{if}, it cannot govern conditional blocks.  Its
-application is to maintain consistent indentation within macro
-definitions even when formatting output.
+@Defreq {nop, [@Var{input}]}
+Interpret
+@var{input}
+as if it were an input line.
+@code{nop}
+resembles
+@samp{.if 1};
+it puts a break on the output if
+@var{input}
+is empty.
+Unlike
+@code{if},
+it cannot govern conditional blocks.
+Its application is to maintain consistent indentation
+within macro definitions even when formatting output.
 
 @Example
 .als real-MAC MAC
@@ -15171,8 +15180,12 @@ definitions even when formatting output.
 .als MAC real-MAC
 @endExample
 
-In the above, we've used aliasing, @code{nop}, and the interpolation of
-a macro as a string to interpose a wrapper around the macro @samp{MAC}
+In the above,
+we've used aliasing,
+@code{nop},
+and the interpolation of a macro as a string
+to interpose a wrapper around the macro
+@samp{MAC}
 (perhaps to debug it).
 @endDefreq
 

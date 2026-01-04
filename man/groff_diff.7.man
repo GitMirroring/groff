@@ -3720,16 +3720,16 @@ does not exist.
 .
 .TP
 .BR .nop \~[\c
-.IR anything ]
+.IR input ]
 Interpret
-.I anything
+.I input
 as if it were an input line.
 .
 .B nop
 resembles
 .RB \[lq] ".if 1" \[rq];
 it puts a break on the output if
-.I anything
+.I input
 is empty.
 .
 Unlike

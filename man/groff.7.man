@@ -4355,9 +4355,9 @@ cancel suppression.
 Interpolate a newline.
 .
 .TPx
-.REQ .nop anything
+.REQ .nop input
 Interpret
-.I anything
+.I input
 as if it were an input line.
 .
 .TPx
