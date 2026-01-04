@@ -1,3 +1,12 @@
+2026-01-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/groff_mdoc.7.man (Other possible pitfalls): Advise
+	composers of mdoc(7) documents to use `\-` for copy-and-pastable
+	hyphen-minus characters.
+
+	Fixes <https://savannah.gnu.org/bugs/?67881>.  Thanks to Bjarni
+	Ingi Gislason for pointing out incorrect usage in sudo(8).
+
 2026-01-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/groff/tests/\
