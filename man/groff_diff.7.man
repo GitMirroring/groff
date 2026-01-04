@@ -1577,9 +1577,9 @@ The remainder of the word is subject to hyphenation as normal.
 .
 .
 .TP
-.BI \[rs]? anything \[rs]?
+.BI \[rs]? character-sequence \[rs]?
 Suppress formatting of
-.I anything.
+.I character-sequence.
 .
 This feature has two applications.
 .
@@ -1621,8 +1621,8 @@ Unlike
 .BR \[rs]! ,
 .B \[rs]?\&
 is interpreted even in copy mode,
-and
-.I anything
+and a
+.I character-sequence
 in the top-level diversion
 is not sent to device-independent output.
 .

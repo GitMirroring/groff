@@ -18068,28 +18068,52 @@ respectively---lines that have been already stored in the diversion
 @endExample
 @endDefreg
 
-@DefescList {\\!, , anything, }
-@DefescListEndx {\\?, , anything, \\?}
+@DefescList {\\!, , character-sequence, }
+@DefescListEndx {\\?, , character-sequence, \\?}
 @cindex transparent output (@code{\!}, @code{\?})
 @cindex output, transparent (@code{\!}, @code{\?})
-@dfn{Transparently} embed @var{anything} into the current diversion,
-preventing requests, macro calls, and escape sequences from being
-interpreted when read into a diversion.  This is useful for preventing
-them from taking effect until the diverted text is actually output.  The
-@code{\!} escape sequence transparently embeds input up to and including
-the end of the line.  The @code{\?} escape sequence transparently embeds
-input, read in copy mode, until its own next occurrence on the input
-line.
+@dfn{Transparently}
+embed
+@var{character-sequence}
+into the current diversion,
+preventing the formatter from interpreting
+requests,
+macro calls,
+and escape sequences
+when reading them into a diversion.
+Doing so prevents them from taking effect
+until the diverted text is actually output.
+The
+@code{\!}
+escape sequence transparently embeds input
+up to and including the end of the line.
+The
+@code{\?}
+escape sequence transparently embeds input,
+read in copy mode,
+up to its own next occurrence on the input line.
 @cindex @code{\?}, and copy mode
 @cindex copy mode, and @code{\?}
 @cindex mode, copy, and @code{\?}
 @cindex @code{\!}, and copy mode
 @cindex copy mode, and @code{\!}
 @cindex mode, copy, and @code{\!}
-Use @code{\!} by itself to embed newlines in a diversion.
+Use
+@code{\!}
+by itself to embed newlines in a diversion.
 @cindex @code{\?}, interpretation in copy mode
-Unlike @code{\!}, @code{\?} is interpreted even in copy mode
-(@pxref{Copy Mode}).
+Unlike
+@code{\!},
+@code{\?}
+is interpreted even in copy mode
+(@pxref{Copy Mode});
+consequently,
+comparands protected with
+@code{\?}
+need not even be valid
+GNU
+@command{troff} @c GNU
+syntax.
 
 @Example
 .nr x 1
@@ -18115,16 +18139,23 @@ Both escape sequences read the data in copy mode.
 @cindex @code{\!}, in top-level diversion
 @cindex top-level diversion, and @code{\!}
 @cindex diversion, top-level, and @code{\!}
-If @code{\!} is used in the top-level diversion, its argument is
-embedded into GNU @command{troff}'s device-independent output.  One of
-its applications is control of a postprocessor that transforms the data
-that are subsequently read by an output driver.
+If
+@code{\!}
+is used in the top-level diversion,
+its argument is embedded into
+GNU
+@command{troff}'s @c GNU
+device-independent output.
+One of its applications is control of a postprocessor
+that transforms the data that are subsequently read by an output driver.
 
 @cindex @code{\?}, in top-level diversion
 @cindex top-level diversion, and @code{\?}
 @cindex diversion, top-level, and @code{\?}
-Using the @code{\?} escape sequence in the top-level diversion produces
-no output at all; its argument is simply ignored.
+Using the
+@code{\?}
+escape sequence in the top-level diversion produces no output at all;
+its argument is simply ignored.
 @endDefesc
 
 @cindex @code{\!}, and @code{output} request

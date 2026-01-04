@@ -5713,25 +5713,27 @@ prevent it from being otherwise hyphenated.
 .
 .
 .TP
-.ESC !
-Transparent throughput.
+.ESC ! character-sequence
+.I Transparently
+embed
+.IR character-sequence ,
+up to and including the end of the line,
+into the current diversion,
+requests,
+macro calls,
+and escape sequences
+when reading them into a diversion.
 .
-Read everything up to the next newline in copy mode and ignore it,
-but pass it through to
-(1) an enclosing diversion,
-or
-(2) if appearing in the top-level diversion,
-GNU
-.I troff \" GNU
-output.
+Doing so prevents them from taking effect
+until the diverted text is actually output.
 .
 .
 .TP
-.ESC? anything
+.ESC? character-sequence
 Transparently embed
-.IR anything ,
-read in copy mode,
-in a diversion,
+.IR character-sequence ,
+up to its own next occurrence on the input line,
+into a diversion,
 or unformatted as an output comparand in a conditional expression.
 .
 Ignored in the top-level diversion.
