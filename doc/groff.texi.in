@@ -1544,7 +1544,8 @@ human-readable form using UTC.
 A macro file must have a name in the form @code{@var{name}.tmac} or
 @code{tmac.@var{name}} and be placed in a @dfn{tmac directory} to be
 found by the @option{-m @var{mac}} command-line option.@footnote{The
-@code{mso} request loads a macro file of any name.  @xref{I/O}.}
+@code{mso} request loads a macro file of any name.
+@xref{Host System Service Access}.}
 @cindex tmac, directory
 @cindex directory, for tmac files
 @cindex tmac, path
@@ -5434,7 +5435,7 @@ Users of macro packages may skip it if not interested in details.
 * Punning Names::
 * Environments::
 * Suppressing Output::
-* I/O::
+* Host System Service Access::
 * Postprocessor Access::
 * Miscellaneous::
 * GNU @command{troff} Internals::
@@ -18754,7 +18755,7 @@ line emitted in the environment.
 
 @c =====================================================================
 
-@node Suppressing Output, I/O, Environments, GNU troff Reference
+@node Suppressing Output, Host System Service Access, Environments, GNU troff Reference
 @anchor{Suppressing output} @c 1.22.4
 @section Suppressing Output
 
@@ -18836,11 +18837,11 @@ escape sequences.
 @codequotebacktick on
 @codequoteundirected on
 
-@c TODO: Rename this node to "Operating Environment Access" or similar,
-@c and move the date/time, process ID, etc., read-only registers here.
-@node I/O, Postprocessor Access, Suppressing Output, GNU troff Reference
-@section I/O
-@cindex i/o
+@c TODO: Move the date/time, process ID, etc., read-only registers here.
+@node Host System Service Access, Postprocessor Access, Suppressing Output, GNU troff Reference
+@anchor{I/O} @c 1.23.0
+@section Host System Service Access
+@cindex Host System Service Access
 @cindex input and output requests
 @cindex requests for input and output
 @cindex output and input requests
@@ -19362,7 +19363,7 @@ as returned by @cite{getenv@r{(3)}}.
 
 @c BEGIN Keep (roughly) parallel with section "Postprocessor access" of
 @c groff(7).
-@node Postprocessor Access, Miscellaneous, I/O, GNU troff Reference
+@node Postprocessor Access, Miscellaneous, Host System Service Access, GNU troff Reference
 @section Postprocessor Access
 @cindex postprocessor access
 @cindex access to postprocessor
@@ -19373,7 +19374,7 @@ and
 @code{trf}
 requests
 (recall
-@ref{I/O}),
+@ref{Host System Service Access}),
 two escape sequences and two requests enable documents
 to pass information directly to a postprocessor.
 These are useful for exercising device-specific capabilities that the
@@ -20154,7 +20155,8 @@ request below.
 @cindex exiting (@code{ex})
 Exit GNU @code{troff}; that is, stop processing and terminate
 successfully.  To stop processing only the current file, use the
-@code{nx} request; see @ref{I/O}.
+@code{nx} request;
+see @ref{Host System Service Access}.
 @endDefreq
 
 When doing something complicated, it is useful to leave the debugging
@@ -20815,7 +20817,7 @@ extension requests,
 @code{open},
 @code{opena},
 and @code{pso}.
-@xref{I/O}.
+@xref{Host System Service Access}.
 
 @c ---------------------------------------------------------------------
 
@@ -21741,7 +21743,7 @@ those lacking a final newline character---and the
 @code{cf}
 and
 @code{trf} requests read arbitrary files.
-Recall @ref{I/O}.}
+Recall @ref{Host System Service Access}.}
 The next two sections describe their format.
 
 @menu
