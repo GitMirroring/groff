@@ -5388,14 +5388,17 @@ Names constructed to implement arrays are of the form
 
 @node GNU troff Reference, File Formats, Major Macro Packages, Top
 @anchor{gtroff Reference} @c 1.22.4
-@chapter GNU @code{troff} Reference
+@chapter GNU @command{troff} Reference
 @cindex reference, @command{gtroff}
 @cindex @command{gtroff}, reference
 @cindex @command{troff}, GNU, reference
 
-This chapter covers @emph{all} of the facilities of the GNU
-@code{troff} formatting engine.  Users of macro packages may skip it if
-not interested in details.
+This chapter covers
+@emph{all}
+of the facilities of the GNU
+@command{troff}
+formatting program.
+Users of macro packages may skip it if not interested in details.
 
 
 @menu
@@ -5445,7 +5448,7 @@ not interested in details.
 @c BEGIN Keep roughly parallel with roff(7) section "Concepts".
 @node Text, Measurements, GNU troff Reference, GNU troff Reference
 @section Text
-@cindex text, GNU @code{troff} processing
+@cindex text, GNU @command{troff} processing of
 
 @acronym{AT&T}
 @command{troff} @c AT&T
@@ -5470,11 +5473,19 @@ HTML,
 laser printers,
 and terminal displays.
 
-@code{roff} input contains text interspersed with instructions to
-control the formatter.  Even in the absence of such instructions, GNU
-@code{troff} still processes its input in several ways, by filling,
-hyphenating, breaking, and adjusting it, and supplementing it with
-inter-sentence space.
+@code{roff}
+input contains text interspersed with instructions
+to control the formatter.
+Even in the absence of such instructions,
+GNU
+@command{troff} @c GNU
+still processes its input in several ways,
+by filling,
+hyphenating,
+breaking,
+and
+adjusting it,
+and supplementing it with inter-sentence space.
 
 @menu
 * Filling::
@@ -5496,24 +5507,43 @@ inter-sentence space.
 @anchor{Filling and Adjusting} @c 1.22.4
 @subsection Filling
 
-When GNU @code{troff} starts up, it obtains information about the device
+When
+GNU
+@command{troff} @c GNU
+starts up,
+it obtains information about the device
 for which it is preparing output.@footnote{@xref{Device and Font
 Description Files}.}  An essential property is the length of the output
 line, such as ``6.5 inches''.
 
 @cindex word, definition of
 @cindex filling
-GNU @code{troff} interprets plain text files employing the Unix
-line-ending convention.  It reads input a character at a time,
-collecting words as it goes, and fits as many words together on an
-output line as it can---this is known as @dfn{filling}.  To GNU
-@code{troff}, a @dfn{word} is any sequence of one or more characters
-that aren't spaces or newlines.  The exceptions separate
-words.@footnote{@slanted{Tabs} and @slanted{leaders} also separate
-words.  @slanted{Escape sequences} can function as word characters, word
-separators, or neither---the last simply have no effect on GNU
-@code{troff}'s idea of whether an input character is within a word.
-We'll discuss all of these in due course.}  To disable filling, see
+GNU
+@command{troff}
+interprets plain text files employing the Unix line-ending convention.
+It reads input a character at a time,
+collecting words as it goes,
+and fits as many words together on an output line
+as it can---this is known as
+@dfn{filling}.
+To
+GNU
+@command{troff}, @c GNU
+a
+@dfn{word}
+is any sequence of one or more characters
+that aren't spaces or newlines.
+The exceptions separate words.@footnote{@slanted{Tabs}
+and @slanted{leaders} also separate words.
+@slanted{Escape sequences} can function as word characters,
+word separators,
+or neither---the last simply have no effect on
+GNU
+@command{troff}'s @c GNU
+idea of whether an input character is within a word.
+We'll discuss all of these in due course.}
+To disable filling,
+see
 @ref{Manipulating Filling and Adjustment}.
 
 @Example
@@ -5538,7 +5568,10 @@ what other circumstances should influence this spacing.@footnote{A
 well-researched jeremiad appreciated by @code{groff} contributors on
 both sides of the sentence-spacing debate can be found at
 @uref{https://web.archive.org@//web@//20171217060354@//http://www.heracliteanriver.com@//?p=324}.}
-GNU @code{troff} follows the example of @acronym{AT&T} @code{troff};
+GNU
+@command{troff} @c GNU
+follows the example of @acronym{AT&T}
+@command{troff}; @c AT&T
 it attempts to detect the boundaries between sentences, and supplements
 them with inter-sentence space.
 
@@ -5553,12 +5586,26 @@ Welcome to groff.
 @cindex inter-sentence space
 @cindex space between sentences
 @cindex French spacing
-GNU @code{troff} flags certain characters (normally @samp{!}, @samp{?},
-and @samp{.}) as potentially ending a sentence.  When GNU @code{troff}
-encounters one of these @dfn{end-of-sentence characters} at the end of
-an input line, or one of them is followed by two (unescaped) spaces on
-the same input line, it appends an inter-word space followed by an
-inter-sentence space in the output.
+GNU
+@command{troff} @c GNU
+flags certain characters
+(normally
+@samp{!},
+@samp{?},
+and
+@samp{.})
+as potentially ending a sentence.
+When
+GNU
+@command{troff} @c GNU
+encounters one of these
+@dfn{end-of-sentence characters}
+at the end of an input line,
+or one of them is followed by two
+(unescaped)
+spaces on the same input line,
+it appends an inter-word space
+followed by an inter-sentence space in the output.
 
 @Example
 R. Harper subscribes to a maxim of P. T. Barnum.
@@ -5578,17 +5625,29 @@ Barnum.
     @result{} P. T.  Barnum.
 @endExample
 
-``Barnum'' doesn't begin a sentence!  What to do?  Let us meet our first
-@dfn{escape sequence}, a series of input characters that give
-instructions to GNU @code{troff} instead of being used to construct
-output device glyphs.@footnote{This statement oversimplifies; there are
-escape sequences whose purpose is precisely to produce glyphs on the
-output device, and input characters that @emph{aren't} part of escape
-sequences can undergo a great deal of processing before getting to the
-output.} An escape sequence begins with the backslash character @code{\}
-by default, an uncommon character in natural language text, and is
-@emph{always} followed by at least one other character, hence the term
-``sequence''.
+``Barnum'' doesn't begin a sentence!
+What to do?
+Let us meet our first
+@dfn{escape sequence},
+a series of input characters that give instructions to
+GNU
+@command{troff} @c GNU
+instead of being used to construct output device glyphs.@footnote{This
+statement oversimplifies;
+there are escape sequences
+whose purpose is precisely to produce glyphs on the output device,
+and input characters that
+@emph{aren't}
+part of escape sequences
+can undergo a great deal of processing before getting to the output.}
+An escape sequence begins with the backslash character
+@code{\}
+by default,
+an uncommon character in natural language text,
+and is
+@emph{always}
+followed by at least one other character,
+hence the term ``sequence''.
 
 @cindex @code{\&}, at end of sentence
 The dummy character escape sequence @code{\&} can be used after an
