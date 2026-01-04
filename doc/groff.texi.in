@@ -15368,11 +15368,20 @@ Its syntax matches the
 request.
 
 @cindex body, of a while request
-@Defreq {while, cond-expr anything}
-Evaluate the conditional expression @var{cond-expr}, and repeatedly
-execute @var{anything} unless and until @var{cond-expr} evaluates false.
-@var{anything}, which is often a conditional block, is referred to as
-the @code{while} request's @dfn{body}.
+@Defreq {while, cond-expr input}
+Evaluate the conditional expression
+@var{cond-expr},
+and repeatedly execute
+@var{input}
+unless and until
+@var{cond-expr}
+evaluates false.
+@var{input},
+which is often a conditional block,
+is referred to as the
+@code{while}
+request's
+@dfn{body}.
 
 @Example
 .nr a 0 1

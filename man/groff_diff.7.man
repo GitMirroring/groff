@@ -4598,16 +4598,16 @@ and the horizontal page location in ens.
 .
 .
 .TP
-.BI .while \~cond-expr\~anything
+.BI .while \~cond-expr\~input
 Evaluate the conditional expression
 .IR cond-expr ,
 and repeatedly execute
-.I anything
+.I input
 unless and until
 .I cond-expr
 evaluates false.
 .
-.I anything,
+.I input,
 which is often a conditional block,
 is referred to as the
 .RB \[lq] while \[rq]

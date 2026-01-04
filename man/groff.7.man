@@ -5474,9 +5474,9 @@ Interpolate newlines unless and until
 evaluates false.
 .
 .TPx
-.REQ .while "cond-expr anything"
+.REQ .while "cond-expr input"
 Repeatedly execute
-.I anything
+.I input
 unless and until
 .I cond-expr
 evaluates false.
