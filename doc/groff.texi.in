@@ -4351,7 +4351,7 @@ and @code{refer} preprocessors.
 Mark text meant for preprocessors by enclosing it in pairs of tokens
 as follows, with nothing between the dot and the macro name.
 Preprocessors match these tokens only at the start of an input line.
-@code{troff} interprets them as macro calls.
+The formatter interprets them as macro calls.
 
 @DefmacList {TS, [@code{H}], ms}
 @DefmacListEndx {TE, , ms}
@@ -4942,12 +4942,21 @@ spread the dots.  The width of the page number field is stored in the
 @cindex @file{ms} macros, @code{groff} differences from @acronym{AT&T}
 @cindex @acronym{AT&T} @file{ms}, macro package differences
 
-The @code{groff} @file{ms} macros are an independent reimplementation,
-using no @acronym{AT&T} code.  Since they take advantage of the extended
-features of @code{groff}, they cannot be used with @acronym{AT&T}
-@code{troff}.  @code{groff} @file{ms} supports features described above
-as Berkeley and Research Tenth Edition Unix extensions, and adds several
-of its own.
+The
+@code{groff}
+@file{ms}
+macros are an independent reimplementation,
+using no @acronym{AT&T} code.
+Since they take advantage of the extended features of
+GNU
+@command{troff}, @c GNU
+they cannot be used with @acronym{AT&T}
+@command{troff}. @c AT&T
+@code{groff}
+@file{ms}
+supports features described above
+as Berkeley and Research Tenth Edition Unix extensions,
+and adds several of its own.
 
 @itemize @bullet
 @item
@@ -4982,8 +4991,13 @@ Unix supported @code{P1}/@code{P2} macros to bracket code
 examples; @code{groff} @file{ms} does not.
 
 @item
-@code{groff} @file{ms} does not work in GNU @code{troff}'s
-@acronym{AT&T} compatibility mode.  If loaded when that mode is enabled,
+@code{groff}
+@file{ms}
+does not work in
+GNU
+@code{troff}'s @c GNU
+@acronym{AT&T} compatibility mode.
+If loaded when that mode is enabled,
 it aborts processing with a diagnostic message.
 
 @item
