@@ -16679,6 +16679,13 @@ an actual emergency!
 @cindex line annotation, output
 @cindex annotation, output line
 
+After an output line is broken
+(and adjusted,
+if applicable),
+it can be annotated in the margins.
+You can indicate line numbers on the left,
+and apply a margin character on the right.
+
 @DefreqList {nm, [@Var{start} [@Var{increment} [@Var{space} [@Var{indentation}]]]]}
 @DefregItemx {ln}
 @DefregListEndx {.nm}
