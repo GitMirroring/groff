@@ -447,10 +447,9 @@ natural languages to begin with them.
 If you require a formatted period or apostrophe
 (closing single quotation mark)
 where
-.\" GNU @code{troff}
-the formatter is expecting a control character,
-prefix the dot or neutral apostrophe with the dummy character escape
-sequence,
+the formatter expects a control character,
+prefix the dot or neutral apostrophe
+with the dummy character escape sequence,
 .RB \[lq] \[rs]& \[rq].
 .
 .
@@ -467,23 +466,22 @@ Requests often take
 .I arguments,
 words
 (separated from the request name and each other by spaces)
-that specify details of the action
-.\" GNU @code{troff}
-the formatter is expected to perform.
+that specify details of the action you expect the formatter to perform.
 .
 If a request is meaningless without arguments,
 it is typically ignored.
 .
-.\" TODO: roff(7): We haven't introduced escape sequences yet.
-.\" GNU @code{troff}'s requests and escape sequences comprise the
-.\" control language of the formatter.
+.\" TODO: We haven't introduced escape sequences yet.
+Requests and escape sequences comprise the control language
+of the formatter.
 .
 Of key importance are the requests that define macros.
 .
 Macros are invoked like requests,
 enabling the request repertoire to be extended or overridden.
-.\" @footnote{Argument handling in macros is more flexible but also more
-.\" complex.  @xref{Calling Macros}.}
+.
+(Argument handling in macros is more flexible but also more complex.)
+.\" @xref{Calling Macros}.
 .
 .
 .P
@@ -2120,12 +2118,11 @@ suffix.
 .SH "Input conventions"
 .\" ====================================================================
 .
-Since
-.I @g@troff
-fills text automatically,
-it is common practice in the
+Since a
 .I roff
-language to avoid visual composition of text in input files:
+formatter fills text automatically,
+its experienced users tend to avoid visual composition
+of text in input files:
 the esthetic appeal of the formatted output is what matters.
 .
 Therefore,
@@ -2137,8 +2134,7 @@ understand the syntax of
 requests,
 macro calls,
 and preprocessor languages used,
-and predict the behavior of the
-formatter.
+and predict the behavior of the formatter.
 .
 Several traditions have accrued in service of these goals.
 .
@@ -2221,16 +2217,14 @@ causes the program to ignore spaces at the boundaries of table cells.)
 .IP \[bu]
 Comment your document.
 .
-It is never too soon to apply comments to record information of use to
-future document maintainers
+It is never too soon to apply comments
+to record information of use to future document maintainers
 (including your future self).
 .\" Texinfo: We thus introduce another escape sequence, @code{\"}, which
 The
 .B \[rs]\[dq]
 escape sequence
-causes
-.I @g@troff
-to ignore the remainder of the input line.
+causes the formatter to ignore the remainder of the input line.
 .
 .
 .IP \[bu]

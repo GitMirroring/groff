@@ -5887,7 +5887,7 @@ see @ref{Manipulating Filling and Adjustment}.
 @cindex character, leader
 @cindex tab stops
 @cindex stops, tab
-GNU @code{troff} translates input horizontal tab characters (``tabs'')
+The formatter translates input horizontal tab characters (``tabs'')
 and @key{Control+A} characters (``leaders'') into movements to the next
 tab stop.  Tabs simply move to the next tab stop; leaders place enough
 periods to fill the space.  Tab stops are by default located every half
@@ -5943,30 +5943,39 @@ These characters were chosen because it is uncommon for lines of text in
 natural languages to begin with them.
 @cindex dummy character (@code{\&}), as control character suppressor
 @cindex character, dummy (@code{\&}), as control character suppressor
-If you require a formatted period or apostrophe (closing single
-quotation mark) where GNU @code{troff} is expecting a control character,
-prefix the dot or neutral apostrophe with the dummy character escape
-sequence, @samp{\&}.
+If you require a formatted period or apostrophe
+(closing single quotation mark)
+where the formatter expects a control character,
+prefix the dot or neutral apostrophe
+with the dummy character escape sequence,
+@samp{\&}.
 
 @cindex control line
 An input line beginning with a control character is called a
 @dfn{control line}.
 @cindex text line
-Every line of input that is not a control line is a @dfn{text
-line}.@footnote{The @code{\@key{RET}} escape sequence can alter how an
-input line is classified; see @ref{Line Continuation}.}
+Every line of input that is not a control line is a
+@dfn{text line}.@footnote{The @code{\@key{RET}} escape sequence
+can alter how an input line is classified;
+see @ref{Line Continuation}.}
 
 @cindex argument
-Requests often take @dfn{arguments}, words (separated from the request
-name and each other by spaces) that specify details of the action GNU
-@code{troff} is expected to perform.  If a request is meaningless
-without arguments, it is typically ignored.
+Requests often take
+@dfn{arguments},
+words
+(separated from the request name and each other by spaces)
+that specify details of the action you expect the formatter to perform.
+If a request is meaningless without arguments,
+it is typically ignored.
 
-GNU @code{troff}'s requests and escape sequences comprise the control
-language of the formatter.  Of key importance are the requests that
-define macros.  Macros are invoked like requests, enabling the request
-repertoire to be extended or overridden.@footnote{Argument handling in
-macros is more flexible but also more complex.  @xref{Calling Macros}.}
+Requests and escape sequences comprise the control language
+of the formatter.
+Of key importance are the requests that define macros.
+Macros are invoked like requests,
+enabling the request repertoire
+to be extended or overridden.@footnote{Argument handling in macros
+is more flexible but also more complex.
+@xref{Calling Macros}.}
 
 @anchor{Macros} @c 1.22.4
 @cindex macro
@@ -5990,9 +5999,15 @@ the formatter scans the replacement for further requests,
 macro calls,
 and escape sequences.
 
-In @code{roff} systems, the @code{de} request defines a
-macro.@footnote{GNU @code{troff} offers additional ones.  @xref{Writing
-Macros}.}
+In
+@code{roff}
+systems,
+the
+@code{de}
+request defines a macro.@footnote{GNU
+@command{troff}
+offers additional ones.
+@xref{Writing Macros}.}
 
 @Example
 .de DATE
@@ -6404,14 +6419,24 @@ Euro @samp{\[Eu]} and per mille @samp{\[%0]} glyphs.}
 @cindex input conventions
 @cindex conventions for input
 
-Since GNU @code{troff} fills text automatically, it is common practice
-in the @code{roff} language to avoid visual composition of text in input
-files: the esthetic appeal of the formatted output is what matters.
-Therefore, @code{roff} input should be arranged such that it is easy for
-authors and maintainers to compose and develop the document, understand
-the syntax of @code{roff} requests, macro calls, and preprocessor
-languages used, and predict the behavior of the formatter.  Several
-traditions have accrued in service of these goals.
+Since a
+@code{roff}
+formatter fills text automatically,
+its experienced users tend to avoid visual composition
+of text in input files:
+the esthetic appeal of the formatted output is what matters.
+Therefore,
+@code{roff}
+input should be arranged
+such that it is easy for authors and maintainers
+to compose and develop the document,
+understand the syntax of
+@code{roff}
+requests,
+macro calls,
+and preprocessor languages used,
+and predict the behavior of the formatter.
+Several traditions have accrued in service of these goals.
 
 @itemize @bullet
 @item
@@ -6463,10 +6488,13 @@ region option
 causes the program to ignore spaces at the boundaries of table cells.)
 
 @item
-Comment your document.  It is never too soon to apply comments to
-record information of use to future document maintainers (including your
-future self).  We thus introduce another escape sequence, @code{\"},
-which causes GNU @code{troff} to ignore the remainder of the input line.
+Comment your document.
+It is never too soon to apply comments
+to record information of use to future document maintainers
+(including your future self).
+We thus introduce another escape sequence,
+@code{\"},
+which causes the formatter to ignore the remainder of the input line.
 
 @item
 Use the empty request---a control character followed immediately by a
