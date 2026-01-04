@@ -18163,16 +18163,23 @@ its argument is simply ignored.
 @cindex @code{output} request, and copy mode
 @cindex copy mode, and @code{output} request
 @cindex mode, copy, and @code{output} request
-@Defreq {output, [@code{"}]@Var{contents}}
-Emit @var{contents} directly to GNU @command{troff}'s output; this usage
-is similar to that of @code{\!} in the top-level diversion.
+@Defreq {output, [@code{"}]@Var{character-sequence}}
+Emit
+@var{character-sequence}
+directly to
+GNU
+@command{troff}'s @c GNU
+output;
+this usage is similar to that of
+@code{\!}
+when it occurs in the top-level diversion.
 
 GNU
 @command{troff} @c GNU
 removes a leading neutral double quote
 @samp{"}
 from
-@var{anything}, @c TODO: -> character-sequence
+@var{character-sequence},
 permitting initial embedded spaces in it,
 and reads it to the end of the input line in copy mode.
 Recall @ref{Copy Mode}.
@@ -18189,7 +18196,7 @@ and of
 @code{\!}
 from the top-level diversion is to pass instructions
 to a postprocessor that interprets
-@var{anything}
+@var{character-sequence}
 and filters it out
 before sending it to the output device.
 @c TODO: Once the dust settles from Savannah #63074, document how these

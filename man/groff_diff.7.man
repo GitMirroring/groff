@@ -3794,15 +3794,13 @@ if it already exists instead of overwriting it.
 .I character-sequence
 Emit
 .IR character-sequence ,
-a sequence of ordinary characters and spaces read in copy mode,
-\[lq]transparently\[rq]
-(directly) to
-.IR @g@troff 's
-output.
-.
-This usage is similar to that of
+transparently to
+GNU
+.I troff \" GNU
+output;
+this usage is similar to that of
 .B \[rs]!\&
-in the top-level diversion.
+when it occurs in the top-level diversion.
 .
 .
 .TP
