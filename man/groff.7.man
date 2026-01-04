@@ -2223,6 +2223,56 @@ closing the body of a
 request must be the last such escape sequence on an input line.
 .
 .
+.P
+GNU
+.I troff \" GNU
+treats the body of a
+.RB \[lq] while \[rq]
+request similarly to that of a
+.B de
+request
+(albeit one not read in copy mode),
+but stores it under an internal name
+and deletes it when the loop finishes.
+.
+The operation of a macro containing a
+.RB \[lq] while \[rq]
+request can slow significantly if its
+body is large.
+.
+Each time
+GNU
+.I troff \" GNU
+interpolates the macro,
+it parses and stores the
+.RB \[lq] while \[rq]
+body again.
+.
+An often better solution\[em]and one that is more portable,
+since AT&T
+.I troff \" AT&T
+lacked the
+.RB \[lq] while \[rq]
+request\[em]is to instead write a recursive macro,
+which is parsed only once
+(unless you redefine it).
+.
+To prevent infinite loops,
+GNU
+.I troff \" GNU
+limits the default number of available recursion levels
+to 1,000 or somewhat less
+(because things other than macro calls can be on the input stack).
+.
+You can disable this protective measure,
+or alter the limit,
+by setting the
+.B slimit
+register.
+.
+See section \[lq]Debugging\[rq] below.
+.
+.
 .\" ====================================================================
 .SS "Conditional expressions"
 .\" ====================================================================

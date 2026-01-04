@@ -15306,8 +15306,15 @@ package.  Indentation is used to clarify the logic.
 @subsection while
 @cindex @code{while} request
 
-@code{groff} provides a looping construct:@: the @code{while} request.
-Its syntax matches the @code{if} request.
+GNU
+@command{troff} @c GNU
+provides a looping construct:@:
+the
+@code{while}
+request.
+Its syntax matches the
+@code{if}
+request.
 
 @cindex body, of a while request
 @Defreq {while, cond-expr anything}
@@ -15326,13 +15333,26 @@ the @code{while} request's @dfn{body}.
 @endExample
 
 @cindex @code{de} request, and @code{while}
-GNU @code{troff} treats the body of a @code{while} request similarly to
-that of a @code{de} request (albeit one not read in copy
-mode@footnote{@xref{Copy Mode}.}), but stores it under an internal name
-and deletes it when the loop finishes.  The operation of a macro
-containing a @code{while} request can slow significantly if the
-@code{while} body is large.  Each time the macro is executed, the
-@code{while} body is parsed and stored again.
+GNU
+@command{troff} @c GNU
+treats the body of a
+@code{while}
+request similarly to that of a
+@code{de}
+request
+(albeit one not read in copy mode@footnote{@xref{Copy Mode}.}),
+but stores it under an internal name
+and deletes it when the loop finishes.
+The operation of a macro containing a
+@code{while}
+request can slow significantly if its body is large.
+Each time
+GNU
+@command{troff} @c GNU
+interpolates the macro,
+it parses and stores the
+@code{while}
+body again.
 
 @Example
 .de xxx
@@ -15347,10 +15367,13 @@ containing a @code{while} request can slow significantly if the
 @cindex recursive macros
 @cindex macros, recursive
 @noindent
-An often better solution---and one that is more portable, since
-@acronym{AT&T} @code{troff} lacked the @code{while} request---is to
-instead write a recursive macro.  It will be parsed only
-once.@footnote{unless you redefine it}
+An often better solution---and one that is more portable,
+since @acronym{AT&T}
+@command{troff} @c AT&T
+lacked the
+@code{while}
+request---is to instead write a recursive macro,
+which is parsed only once.@footnote{unless you redefine it}
 
 @Example
 .de yy
@@ -15368,13 +15391,23 @@ once.@footnote{unless you redefine it}
 @endExample
 
 @noindent
-To prevent infinite loops, the default number of available recursion
-levels is 1,000 or somewhat less.@footnote{``somewhat less'' because
-things other than macro calls can be on the input stack}  You can
-disable this protective measure, or alter the limit, by setting the
-@code{slimit} register.  @xref{Debugging}.
+To prevent infinite loops,
+GNU
+@command{troff} @c GNU
+limits the default number of available recursion levels
+to 1,000 or somewhat less.@footnote{``somewhat less'' because
+things other than macro calls can be on the input stack}
+You can disable this protective measure,
+or alter the limit,
+by setting the
+@code{slimit}
+register.
+@xref{Debugging}.
 
-As noted above, if a @code{while} body begins with a conditional block,
+As noted above,
+if a
+@code{while}
+body begins with a conditional block,
 its closing brace must end an input line.
 
 @Example
