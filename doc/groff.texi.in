@@ -5862,12 +5862,16 @@ This is discussed in @ref{Manipulating Filling and Adjustment}.
 @subsection Adjustment
 
 @cindex extra spaces between words
-After GNU @code{troff} performs an automatic break, it may then
-@dfn{adjust} the line, widening inter-word spaces until the text reaches
-the right margin.  Extra spaces between words are preserved.  Leading
-and trailing spaces are handled as noted above.  Text can be aligned to
-the left or right margin only, or centered; see @ref{Manipulating
-Filling and Adjustment}.
+After performing an automatic break,
+the formatter may then
+@dfn{adjust}
+the line,
+widening inter-word spaces until the text reaches the right margin.
+Extra spaces between words are preserved.
+Leading and trailing spaces are handled as noted above.
+You can align text to the left or right margin only,
+or center it;
+see @ref{Manipulating Filling and Adjustment}.
 @c END Keep roughly parallel with roff(7) section "Concepts".
 
 @c ---------------------------------------------------------------------
