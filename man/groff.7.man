@@ -1035,8 +1035,8 @@ already present.
 .
 GNU
 .IR troff 's \" GNU
-use of integer arithmetic should also be kept in mind;
-see below.
+use of integer arithmetic in numeric expressions
+should also be kept in mind.
 .\" END Keep (roughly) parallel with groff.texi node "Default Units".
 .
 .
