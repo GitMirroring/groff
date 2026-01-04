@@ -16430,7 +16430,7 @@ Move right by the width of a numeral in the current font.
 Horizontal motions are not discarded at the end of an output line as
 word spaces are.  @xref{Breaking}.
 
-@DefescList {\\w, @code{'}, anything, @code{'}}
+@DefescList {\\w, @code{'}, input, @code{'}}
 @DefregItemx {st}
 @DefregItemx {sb}
 @DefregItemx {rst}
@@ -16439,8 +16439,12 @@ word spaces are.  @xref{Breaking}.
 @DefregItemx {ssc}
 @DefregListEndx {skw}
 @cindex width computation escape sequence (@code{\w})
-Interpolate the width of @var{anything} in basic units.  This escape
-sequence allows several properties of formatted output to be measured
+Interpolate the width of
+@var{input},
+as interpreted,
+in basic units.
+This escape sequence
+allows several properties of formatted output to be measured
 without writing it out.
 
 @Example
@@ -16451,7 +16455,7 @@ The length of the string 'abc' is \w'abc'u.
 @cindex dummy environment, used by @code{\w} escape sequence
 @cindex environment, dummy, used by @code{\w} escape sequence
 The formatter processes
-@var{anything}
+@var{input}
 in a dummy environment:@:
 this means that font and type size changes,
 for example,
@@ -16475,13 +16479,26 @@ to @code{\w}] relative to the baseline''.
 
 @item rst
 @itemx rsb
-Like @code{st} and @code{sb}, but taking account of the heights and
-depths of glyphs.  In other words, these registers store the highest and
-lowest vertical positions attained by @var{anything}, doing what
-@acronym{AT&T} @code{troff} documented @code{st} and @code{sb} as doing.
+Like
+@code{st}
+and
+@code{sb},
+but taking account of the heights and depths of glyphs.
+In other words,
+these registers store
+the highest and lowest vertical positions attained by
+@var{input},
+doing what
+@acronym{AT&T}
+@code{troff} @c AT&T
+documented
+@code{st}
+and
+@code{sb} as doing.
 
 @item ct
-Characterizes the geometry of glyphs occurring in @var{anything}.
+Characterizes the geometry of glyphs occurring in
+@var{input}.
 
 @table @asis
 @item 0

@@ -6387,10 +6387,22 @@ as returned by
 .
 .
 .TP
-.ESCq w anything
-Interpolate width of
-.IR anything ,
-formatted in a dummy environment.
+.ESCq w input
+Interpolate the width of
+.IR input ,
+as interpreted,
+in basic units.
+.
+This escape sequence
+allows several properties of formatted output to be measured
+without writing it out.
+.
+The formatter processes
+.I input
+in a dummy environment:
+this means that font and type size changes,
+for example,
+may occur within it without affecting subsequent output.
 .
 .
 .TP
