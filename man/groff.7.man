@@ -987,14 +987,14 @@ Hundredth of an em.
 .\" ====================================================================
 .
 .\" BEGIN Keep (roughly) parallel with groff.texi node "Motion Quanta".
-An output device's basic unit
+The basic unit
 .B u
-is not necessarily its smallest addressable length;
+is not necessarily an output device's smallest addressable length;
 .B u
-can be smaller to avoid problems with integer roundoff.
+can be smaller to avoid integer rounding errors.
 .
-The minimum distances that a device can work with in the horizontal and
-vertical directions are termed its
+The minimum distances that a device can work with
+in the horizontal and vertical directions are termed its
 .I "motion quanta,"
 stored in the
 .B .H
