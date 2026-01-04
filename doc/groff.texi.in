@@ -21361,7 +21361,7 @@ GNU
 @command{troff} @c GNU
 rejects C0 controls in identifiers with an error diagnostic.
 
-Formatters that don't implement request names
+Formatters that don't implement
 GNU
 @command{troff} @c GNU
 extension request names
@@ -21614,7 +21614,7 @@ and
 In GNU
 @command{troff},
 any number of environments may exist,
-using any valid identifiers for their names
+using any valid identifiers for their names.
 Recall @ref{Identifiers}.
 
 @c TODO: Resume groff_diff(7) synchronization work here.
