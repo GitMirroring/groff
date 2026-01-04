@@ -2549,28 +2549,6 @@ A few denotations are more specific.
 .LS
 .RS
 .
-.\" XXX: BEGIN Kill this when migration to "input" is complete.
-.TPx
-.I anything
-includes all characters up to the end of the input line
-(which may be continued with
-.BI \[rs] newline\c
-),
-to the closing delimiter for the escape sequence,
-or within
-.esc {
-and
-.esc } .
-.
-Escape sequences in
-.I anything
-are interpreted normally except where otherwise stated,
-as when read in copy mode.
-.
-Comments are ignored;
-trailing whitespace generally is not.
-.\" XXX: END Kill this when migration to "input" is complete.
-.
 .TPx
 .I b
 is a numerical expression evaluated as a Boolean;
