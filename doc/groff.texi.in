@@ -17684,14 +17684,26 @@ every output line your document produces, and once the value of
 something trap-like happens---the page is ejected, a new one begins, and
 the value of @code{.t} becomes large once more.
 
-This @dfn{implicit page trap} always exists in the top-level
-diversion;@footnote{@xref{Diversions}.} it works like a trap in some
-ways but not others.  Its purpose is to eject the current page and start
-the next one.  It has no name, so it cannot be moved or deleted with
-@code{wh} or @code{ch} requests.  You cannot hide it by placing another
-trap at its location, and can move it only by redefining the page length
-with @code{pl}.  Its operation is suppressed when vertical page traps
-are disabled with GNU @code{troff}'s @code{vpt} request.
+This
+@dfn{implicit page trap}
+always exists in the top-level diversion;@footnote{@xref{Diversions}.}
+its purpose is to eject the current page and start the next one.
+It works like a trap in some ways but not others.
+It has no name,
+so it cannot be moved or deleted with
+@code{wh}
+or
+@code{ch}
+requests.
+You cannot hide it by placing another trap at its location,
+and can move it only by redefining the page length with
+@code{pl}.
+Its operation is suppressed when vertical page traps are disabled
+with
+GNU
+@code{troff}'s @c GNU
+@code{vpt}
+request.
 @c END Keep (roughly) parallel with subsection "The implicit trap" of
 @c groff(7).
 
