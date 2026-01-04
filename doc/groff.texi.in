@@ -20939,25 +20939,25 @@ implementations.
 @cindex @code{sy} request, disabled by default
 GNU
 @command{troff} @c GNU
-operates in ``safer'' mode by default;
+operates in
+@dfn{safer mode}
+by default;
 to mitigate risks from untrusted input documents,
-the
+it disables the
 @code{cf},
 @code{pi},
 and
 @code{sy}
-requests are disabled.
+requests.
 GNU
 @command{troff}'s
 @option{-U}
 option enables ``unsafe mode'',
-restoring their function and enabling additional
-@code{groff}
-extension requests,
+restoring their function and enabling additional extension requests,
 @code{open},
 @code{opena},
 and @code{pso}.
-@xref{Host System Service Access}.
+Recall @ref{Host System Service Access}.
 
 @c ---------------------------------------------------------------------
 
