@@ -847,8 +847,7 @@ see subsection \[lq]Miscellaneous\[rq]
 and section \[lq]Compatibility Mode\[rq] below.
 .
 .
-.\"TP 10n \" "\D'E h v'" + 2n + hand-tuned for PDF
-.TP 14n \" "\A'anything'" + 2n
+.TP 10n \" "\D'E h v'" + 2n + hand-tuned for PDF
 .BI \[rs]A\[aq] input \[aq]
 Interpolate 1 if
 .I input
@@ -4792,7 +4791,7 @@ exposes more formatter state via many new read-only registers.
 Their names often correspond to the requests that affect them.
 .
 .
-.TP 13n \" "\n[.height]" + 2n
+.TP 14n \" "\n[.hydefault]" + 2n
 .B \[rs]n[.br]
 Within a macro definition,
 interpolate\~1
@@ -5668,6 +5667,8 @@ see
 .\"names of fonts and special characters.
 .
 .
+.br
+.ne 3v
 .P
 Glyph and font names can be of arbitrary length;
 postprocessors should not assume that they are at most two characters.
@@ -6148,6 +6149,8 @@ request.
 .\" node "Debugging".
 .
 .
+.br
+.ne 2v
 .P
 .I groff
 also adds more flexible diagnostic output requests
