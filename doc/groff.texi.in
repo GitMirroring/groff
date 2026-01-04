@@ -21395,7 +21395,7 @@ which both render it as
 @samp{~}.
 @c as of this writing, 2022-08-13
 @c NESTED END Keep in sync with groff_man_style(7).
-@xref{Manipulating Filling and Adjustment}.
+Recall @ref{Manipulating Filling and Adjustment}.
 GNU
 @command{troff}'s @c GNU
 features sometimes cause incompatibilities with documents written
@@ -21816,12 +21816,18 @@ as of its 060716 release (July 2006).}
 @c resemblance between Research Unix troff--the version maintained by
 @c Kernighan--and DWB troff, of which 3.4 was the final release.)
 
-To store an escape sequence in a diversion that is interpreted when the
-diversion is interpolated, either use the traditional @code{\!}
-transparent output facility, or, if this is unsuitable,
+To store in a diversion an escape sequence
+that is interpreted when the diversion is interpolated,
+either use the traditional
+@code{\!}
+transparent output facility,
+or,
+if this is unsuitable,
 @c XXX: Why would it be unsuitable?  Line breaking behavior?
-the new @code{\?} escape sequence.  @xref{Diversions} and
-@ref{GNU @command{troff} Internals}.
+the new
+@code{\?}
+escape sequence.
+Recall @ref{Diversions} and @ref{GNU @command{troff} Internals}.
 
 @cindex timing of output flushes, incompatibilities with @acronym{AT&T} @command{troff}
 @cindex output flushes, timing of, incompatibilities with @acronym{AT&T} @command{troff}
@@ -21841,10 +21847,10 @@ GNU
 always flushes this buffer when processing a break;
 @acronym{AT&T}
 @command{troff} @c AT&T
-does so according to no obvious schedule
-(perhaps,
+does so according to no obvious schedule.
+(Perhaps,
 if the buffer is of fixed size,
-the formatter performs the flush when the buffer runs out of room).
+the formatter performs the flush when the buffer runs out of room.)
 
 In the somewhat pathological case where a diversion exists
 containing a partially collected line
