@@ -16581,11 +16581,18 @@ the drawing position.  Use @code{\z} to overstrike glyphs aligned to
 their left edges, in contrast to @code{\o}'s centering.
 @endDefesc
 
-@Defesc {\\Z, @code{'}, anything, @code{'}}
+@Defesc {\\Z, @code{'}, input}}
 @cindex zero-width printing (@code{\z}, @code{\Z})
 @cindex printing, zero-width (@code{\z}, @code{\Z})
-Save the drawing position, format @var{anything}, then restore it.  Tabs
-and leaders in the argument are ignored with an error diagnostic.
+Save the drawing position,
+format
+@var{input},
+then restore it.
+GNU
+@command{troff} @c GNU
+ignores tabs and leaders in
+@var{input}
+with an error diagnostic.
 
 We might implement a strike-through macro thus.
 

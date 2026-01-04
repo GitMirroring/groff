@@ -1379,12 +1379,17 @@ and their presence confuses drivers that do not know about it
 .
 .
 .TP
-.BI \[rs]Z\[aq] anything \[aq]
+.BI \[rs]Z\[aq] input \[aq]
 Save the drawing position,
 format
-.I anything
-(except tabs and leaders),
+.IR input ,
 then restore it.
+.
+GNU
+.I troff \" GNU
+ignores tabs and leaders in
+.I input
+with an error diagnostic.
 .
 .
 .TP

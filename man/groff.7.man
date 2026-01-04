@@ -6530,11 +6530,17 @@ Format character
 with zero width\[em]without advancing the drawing position.
 .
 .TP
-.ESCq Z anything
+.ESCq Z input
 Save the drawing position,
 format
-.IR anything ,
-then restore the saved drawing position.
+.IR input ,
+then restore it.
+.
+GNU
+.I troff \" GNU
+ignores tabs and leaders in
+.I input
+with an error diagnostic.
 .LE
 .
 .
