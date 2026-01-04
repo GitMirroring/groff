@@ -9017,9 +9017,12 @@ A register name is often associated with a request of the same name
 found in @ref{Register Index}.
 
 We present here a few built-in registers that are not described
-elsewhere in this manual; they have to do with invariant properties of
-GNU @code{troff}, or obtain information about the formatter's
-command-line options, processing progress, or the operating environment.
+elsewhere in this manual;
+they have to do with invariant properties of
+GNU
+@command{troff}, @c GNU
+or obtain information about the formatter's command-line options
+or processing progress.
 
 @table @code
 @item \n[.A]
@@ -9103,96 +9106,6 @@ contains@tie{}@samp{23}.
 @cindex revision number register (@code{.Y})
 Revision number of the running GNU @code{troff} formatter.  For example,
 if the version number is 1.23.0, then @code{.Y} contains@tie{}@samp{0}.
-
-@item \n[$$]
-@vindex $$
-@cindex process ID of GNU @code{troff} register (@code{$$})
-@cindex PID of GNU @code{troff} register (@code{$$})
-@cindex GNU @code{troff}, process ID register (@code{$$})
-@cindex GNU @code{troff}, PID register (@code{$$})
-Process identifier (PID) of the GNU @code{troff} program in its
-operating environment.
-@end table
-
-Date- and time-related registers are set per the local time as
-determined by @cite{localtime@r{(3)}} when the formatter launches.  This
-initialization can be influenced by the environment variable @env{TZ} or
-overridden by @env{SOURCE_DATE_EPOCH}; see @ref{Environment}.
-
-@table @code
-@item \n[seconds]
-@cindex seconds, current time (@code{seconds})
-@cindex time, current, seconds (@code{seconds})
-@cindex current time, seconds (@code{seconds})
-@vindex seconds
-Count of seconds elapsed in the minute (0--60). @c not 59; see POSIX
-
-@item \n[minutes]
-@cindex minutes, current time (@code{minutes})
-@cindex time, current, minutes (@code{minutes})
-@cindex current time, minutes (@code{minutes})
-@vindex minutes
-Count of minutes elapsed in the hour (0--59).
-
-@item \n[hours]
-@cindex hours, current time (@code{hours})
-@cindex time, current, hours (@code{hours})
-@cindex current time, hours (@code{hours})
-@vindex hours
-Count of hours elapsed since midnight (0--23).
-
-@item \n[dw]
-@cindex day of the week register (@code{dw})
-@cindex date, day of the week register (@code{dw})
-@vindex dw
-Day of the week (1--7; 1 is Sunday).
-
-@item \n[dy]
-@cindex day of the month register (@code{dy})
-@cindex date, day of the month register (@code{dy})
-@vindex dy
-Day of the month (1--31).
-
-@item \n[mo]
-@cindex month of the year register (@code{mo})
-@cindex date, month of the year register (@code{mo})
-@vindex mo
-Month of the year (1--12).
-
-@item \n[year]
-@cindex date, year register (@code{year}, @code{yr})
-@cindex year, current, register (@code{year}, @code{yr})
-@vindex year
-Gregorian year.
-
-@cindex CSTR@tie{}#54 errata
-@cindex CSTR@tie{}#54 erratum, @code{yr} register
-@item \n[yr]
-@vindex yr
-Gregorian year minus@tie{}1900.  This register is incorrectly documented
-in the @acronym{AT&T} @code{troff} manual as storing the last two digits
-of the current year.  That claim stopped being true in 2000.  Old
-@code{troff} input that looks like:
-
-@Example
-'\" The year number is a surprise after 1999.
-This document was formatted in 19\n(yr.
-@endExample
-
-@noindent
-can be corrected to:
-
-@Example
-This document was formatted in \n[year].
-@endExample
-
-@noindent
-or, for portability across many @code{roff} programs, to the following.
-
-@Example
-.nr y4 1900+\n(yr
-This document was formatted in \n(y4.
-@endExample
 @end table
 
 If you wish to embed the date and/or time of a document's formatting
@@ -18837,7 +18750,6 @@ escape sequences.
 @codequotebacktick on
 @codequoteundirected on
 
-@c TODO: Move the date/time, process ID, etc., read-only registers here.
 @node Host System Service Access, Postprocessor Access, Suppressing Output, GNU troff Reference
 @anchor{I/O} @c 1.23.0
 @section Host System Service Access
@@ -18846,14 +18758,112 @@ escape sequences.
 @cindex requests for input and output
 @cindex output and input requests
 
-Occasionally a document wants to access the file system
+Occasionally a document wants to access the system clock,
+file storage,
 or other services provided by the operating environment.
+
+@Defreg {$$}
+@cindex process ID of GNU @command{troff} register (@code{$$})
+@cindex PID of GNU @command{troff} register (@code{$$})
+@cindex GNU @command{troff}, process ID register (@code{$$})
+@cindex GNU @command{troff}, PID register (@code{$$})
+@vindex $$
+Process identifier (PID) of the
+GNU
+@command{troff}
+program in its operating environment.
+@endDefreq
+
+Date- and time-related registers are set per the local time as
+determined by @cite{localtime@r{(3)}} when the formatter launches.  This
+initialization can be influenced by the environment variable @env{TZ} or
+overridden by @env{SOURCE_DATE_EPOCH}; see @ref{Environment}.
+
+@table @code
+@item \n[seconds]
+@cindex seconds, current time (@code{seconds})
+@cindex time, current, seconds (@code{seconds})
+@cindex current time, seconds (@code{seconds})
+@vindex seconds
+Count of seconds elapsed in the minute (0--60). @c not 59; see POSIX
+
+@item \n[minutes]
+@cindex minutes, current time (@code{minutes})
+@cindex time, current, minutes (@code{minutes})
+@cindex current time, minutes (@code{minutes})
+@vindex minutes
+Count of minutes elapsed in the hour (0--59).
+
+@item \n[hours]
+@cindex hours, current time (@code{hours})
+@cindex time, current, hours (@code{hours})
+@cindex current time, hours (@code{hours})
+@vindex hours
+Count of hours elapsed since midnight (0--23).
+
+@item \n[dw]
+@cindex day of the week register (@code{dw})
+@cindex date, day of the week register (@code{dw})
+@vindex dw
+Day of the week (1--7; 1 is Sunday).
+
+@item \n[dy]
+@cindex day of the month register (@code{dy})
+@cindex date, day of the month register (@code{dy})
+@vindex dy
+Day of the month (1--31).
+
+@item \n[mo]
+@cindex month of the year register (@code{mo})
+@cindex date, month of the year register (@code{mo})
+@vindex mo
+Month of the year (1--12).
+
+@item \n[year]
+@cindex date, year register (@code{year}, @code{yr})
+@cindex year, current, register (@code{year}, @code{yr})
+@vindex year
+Gregorian year.
+
+@cindex CSTR@tie{}#54 errata
+@cindex CSTR@tie{}#54 erratum, @code{yr} register
+@item \n[yr]
+@vindex yr
+Gregorian year minus@tie{}1900.
+This register is incorrectly documented in the @acronym{AT&T}
+@command{troff} @c AT&T
+manual as storing the last two digits of the current year.
+That claim stopped being true in 2000.
+Old
+@code{troff} @c generic
+input that looks like:
+
+@Example
+'\" The year number is a surprise after 1999.
+This document was formatted in 19\n(yr.
+@endExample
+
+@noindent
+can be corrected to:
+
+@Example
+This document was formatted in \n[year].
+@endExample
+
+@noindent
+or, for portability across many @code{roff} programs, to the following.
+
+@Example
+.nr y4 1900+\n(yr
+This document was formatted in \n(y4.
+@endExample
 GNU
 @command{troff} @c GNU
 permits the reading of files into the input stream.
 Enabling unsafe mode at the command line permits
 the writing of files and execution of external commands,
 with or without inclusion of their output in the document.
+@end table
 
 @cindex spaces in file name or system command arguments
 @cindex comments, after file name or system command arguments
