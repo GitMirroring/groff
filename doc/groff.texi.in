@@ -16871,13 +16871,24 @@ bar
 @pindex nrchbar
 @pindex changebar
 @pindex diffmk
-The margin character mechanism is commonly used to annotate changes in
-documents.  The @code{groff} distribution ships a program,
-@command{gdiffmk}, to assist with this task.@footnote{Historically,
-tools named @command{nrchbar} and @command{changebar} were developed for
-marking changes with margin characters and could be found in archives of
-the @code{comp.sources.unix} @acronym{USENET} group.  Some proprietary
-Unices also offer(ed) a @command{diffmk} program.}
+The margin character mechanism
+is commonly used to annotate changes in documents.
+The
+@code{groff}
+distribution ships a program,
+@command{gdiffmk},
+to assist with this task.@footnote{Historically,
+tools named
+@command{nrchbar}
+and
+@command{changebar}
+were developed for marking changes with margin characters
+and could be found in archives of the
+@code{comp.sources.unix}
+Usenet group.
+Some proprietary Unices also offer(ed) a
+@command{diffmk}
+program.}
 
 
 @c =====================================================================
