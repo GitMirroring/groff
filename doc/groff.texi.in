@@ -19481,13 +19481,20 @@ Recall @ref{Copy Mode}.
 @ifinfo
 @cindex @code{\@r{<colon>}}, in device extension commands
 @end ifinfo
-The @code{groff} special character repertoire is unknown to output
-drivers outside of glyphs named in a device's fonts, and even then they
-may not possess complete coverage of the names documented in the
-@cite{groff_char@r{(7)}} man page.  Further, escape sequences that
-produce horizontal or vertical motions, hyphenation breaks, or that are
-dummy characters may appear in strings or be converted to nodes,
-particularly in diversions (@pxref{GNU @command{troff} Internals}).
+The
+@code{groff}
+special character repertoire is unknown to output drivers
+outside of glyphs named in a device's fonts,
+and even then they may not possess complete coverage
+of the names documented in the
+@cite{groff_char@r{(7)}} man page.
+Further,
+escape sequences that produce horizontal or vertical motions,
+hyphenation breaks,
+or that are dummy characters
+may appear in strings or be converted to nodes,
+particularly in diversions.@footnote{@xref{GNU @command{troff}
+Internals}.}
 These are not representable
 when interpolated directly into device-independent output,
 as might be done when writing out tag names for PDF bookmarks,
@@ -19495,24 +19502,34 @@ which can appear in a viewer's navigation pane.
 
 So that documents or macro packages do not have to laboriously
 ``sanitize'' strings destined for interpolation in device extension
-commands, the @code{\X} escape sequence
+commands,
+the
+@code{\X}
+escape sequence
 @c XXX: and soon other things
-performs certain transformations on its argument.  For these
-transformations, character translations and definitions are ignored.
+performs certain transformations on its argument.
+For these transformations,
+character translations and definitions are ignored.
 
-GNU @command{troff} converts several ordinary characters that typeset as
+GNU
+@command{troff} @c GNU
+converts several ordinary characters that typeset as
 non-basic Latin code points to code points outside that range so that
 they are used consistently whether they are formatted as glyphs or used
 in a device extension command argument.  These ordinary characters are
 @samp{'}, @samp{-}, @samp{^}, @samp{`}, and @samp{~}; others are written
 as-is.
 
-Special characters that typeset as Unicode basic Latin characters are
-translated to basic Latin characters accordingly.  So that any Unicode
-code point can be represented in device extension commands, for example
-in an author's name in document metadata or as a usefully named bookmark
-or hyperlink anchor, GNU @command{troff} maps other special characters
-to Unicode special character notation.  @xref{Using Symbols}.
+Special characters that typeset as Unicode basic Latin characters
+are translated to basic Latin characters accordingly.
+So that any Unicode code point can be represented
+in device extension commands,
+for example in an author's name in document metadata
+or as a usefully named bookmark or hyperlink anchor,
+GNU
+@command{troff} @c GNU
+maps other special characters to Unicode special character notation.
+Recall @ref{Using Symbols}.
 
 GNU
 @command{troff} @c GNU
@@ -19520,10 +19537,10 @@ does not write special characters
 without a Unicode representation
 and escape sequences that do not interpolate
 a sequence of ordinary and/or special characters
-as arguments to device extension commands;
-when encountered,
-these produce warnings in category @samp{char}.
-@xref{Warnings}.
+as arguments to device extension commands.@footnote{When encountered,
+these produce warnings in category
+@samp{char}.
+@xref{Warnings}.}
 @endDefesc
 
 GNU
@@ -19563,8 +19580,8 @@ or
 The inclusion of newlines requires an extension to the @acronym{AT&T}
 @command{troff} @c AT&T
 device-independent page description language,
-and their presence confuses drivers that do not know about it
-(@pxref{Device Control Commands}).
+and their presence confuses drivers
+that do not know about it.@footnote{@xref{Device Control Commands}.}
 @endDefesc
 
 @DefreqList {tag, name}
