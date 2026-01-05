@@ -1,5 +1,10 @@
 2026-01-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* chem.pl (version): Restore here-document marker that I
+	thoughtlessly discarded in commit 5d777599d5, 29 December.
+
+2026-01-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tests/smoke-test.sh: Add (directory and) test script.
 	* chem.am: Add script to new `chem_TESTS` macro and append that
 	macro to `TESTS` macro, so that "make check" runs the test.
