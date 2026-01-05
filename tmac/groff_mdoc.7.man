@@ -594,7 +594,7 @@ As a typesetting system,
 .Xr roff
 distinguishes hyphens,
 minus signs,
-and various sorts of dashes.
+and dashes of various widths.
 .
 When inputting a hyphen or dash
 .Pq Dq hyphen-minus
