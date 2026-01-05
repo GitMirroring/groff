@@ -56,6 +56,10 @@ EXTRA_DIST += \
   contrib/chem/examples/cstr-122/README \
   contrib/chem/examples/README
 
+chem_TESTS = contrib/chem/tests/smoke-test.sh
+TESTS += $(chem_TESTS)
+EXTRA_DIST += $(chem_TESTS)
+
 man1_MANS += contrib/chem/chem.1
 
 chem: $(chem_srcdir)/chem.pl $(SH_DEPS_SED_SCRIPT)
