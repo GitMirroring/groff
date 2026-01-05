@@ -1,3 +1,9 @@
+2026-01-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/groff/tests/using-diversion-as-character-works.sh:
+	Fail hard (with status 99) if our test artifact isn't present.
+	Continues commit 3f783091f0, 19 December 2024.
+
 2026-01-02  Helmut Grohne <helmut@subdivi.de>
 
 	* src/libs/libgroff/libgroff.am (install_charset_data): Don't
