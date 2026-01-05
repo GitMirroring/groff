@@ -1,5 +1,10 @@
 2026-01-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/groff/groff.am (EXTRA_DIST): Ship
+	"small-gnu-head.png" test artifact in distribution archive.
+
+2026-01-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/groff/tests/using-diversion-as-character-works.sh:
 	Fail hard (with status 99) if our test artifact isn't present.
 	Continues commit 3f783091f0, 19 December 2024.
