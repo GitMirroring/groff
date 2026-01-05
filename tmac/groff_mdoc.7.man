@@ -619,9 +619,10 @@ and dashes of various widths.
 .
 When inputting a hyphen or dash
 .Pq Dq hyphen-minus
-that is intended for copy-and-paste to shell prompts,
-program code,
-or URLs,
+(Unicode U+002D)
+that should be usable
+in URLs
+or copy-and-paste operations to shell prompts or program code,
 prefix it with the escape character:
 .Ql \[rs]\- .
 .
