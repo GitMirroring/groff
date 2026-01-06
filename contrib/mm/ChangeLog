@@ -1,5 +1,15 @@
 2026-01-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (SP, SA, TAB, MOVE, SM, HC, VERBOFF, PIC, EPIC, HM)
+	(PGNH, BS, BE, VM, 1C, 2C, MC, NCOL, SK, MULB, MULN, MULE, OP)
+	(FD, DE, DF, DS, TS, TH, TE, T&, PS, PY, EQ, EN, TC, FG, TB, EC)
+	(EX, B, I, R, IB, BI, IR, RI, RB, BR, B1, B2, RF, APP, APPSK)
+	(AU, AST, ISODATE, MT, COVER, GETST, GETHN, GETPN, GETR, IND)
+	(INDP, FC, AV, AVL, IE, WE): Enable diagnostic argument dumping
+	at appropriately high debugging levels (`-rD5` or greater).
+
+2026-01-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (H): Throw error diagnostic if not given mandatory
 	argument, or the first argument ("level") is not an arithmetic
 	expression.
