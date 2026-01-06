@@ -1,3 +1,17 @@
+2025-12-21  Alexis Hildebrandt <afh@surryhill.net>
+
+	* tmac/trans.tmac [PH]: Expose mm package's `Captc` string to
+	translation.
+	* tmac/cs.tmac:
+	* tmac/de.tmac:
+	* tmac/es.tmac:
+	* tmac/fr.tmac:
+	* tmac/it.tmac:
+	* tmac/ru.tmac:
+	* tmac/sv.tmac: Update string name and lexicographic sort.
+
+	Begins fixing Savannah #67830.
+
 2026-01-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/groff/groff.am (EXTRA_DIST): Ship
