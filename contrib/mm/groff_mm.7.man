@@ -3156,7 +3156,11 @@ and
 .BR EOP .
 .
 .TP
-.BI PGFORM\  "\fR[\fPlinelength \fR[\fPpagelength \fR[\fPpageoffset\ " \fR[\fP1\fR]]]]\fP
+.BR PGFORM \~\c
+.RI [ line-length \~\c
+.RI [ page-length \~\c
+.RI [ page-offset \~\c
+.RB [ 1 ]]]]
 Set line length, page length, and/or page offset.
 .
 This macro can be used for letterheads and similar.
