@@ -1179,6 +1179,8 @@ numeric; got '\\$1'
 ..
 .\"-------------
 .de H
+.if \\n[.$]=0 .@error \\$0: expected 1 to 3 arguments, got \\n[.$]
+.if !\B'\\$1' .@error \\$0: level argument is not numeric: '\\$1'
 \\*[debug@dump-args]\\
 .if !r hd*cur-bline .nr hd*cur-bline \\n[nl]
 .br
