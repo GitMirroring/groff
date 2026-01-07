@@ -5710,7 +5710,7 @@ T.\& Barnum.
 Adding text caused our input to wrap; now, we don't need @code{\&} after
 @samp{T.} but we do after @samp{P.}.  Consistent use of the escape
 sequence ensures that potential sentence boundaries are robust to
-editing activities.  Further advice along these lines will follow in
+editing activities.  Further advice along these lines follows in
 @ref{Input Conventions}.
 
 @cindex end-of-sentence transparent characters
@@ -5888,8 +5888,7 @@ are output at the beginning of the next line without being
 @emph{adjusted} (see below); however, this behavior can be modified
 (@pxref{Leading Space Traps}).  Again, macro packages may provide other
 methods of producing indented paragraphs.  Trailing spaces on text lines
-are discarded.@footnote{``Text lines'' are defined in @ref{Requests and
-Macros}.}
+are discarded.@footnote{@xref{text lines}.}
 
 What if the file ends before enough words have been collected
 to fill an output line?
@@ -5997,6 +5996,9 @@ with the dummy character escape sequence,
 
 @cindex control line
 An input line beginning with a control character is called a
+@c XXX: We place the anchor a little early because otherwise the PDF
+@c Texinfo generates navigates to a position _past_ that of interest.
+@anchor{text lines}
 @dfn{control line}.
 @cindex text line
 Every line of input that is not a control line is a
