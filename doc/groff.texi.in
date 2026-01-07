@@ -717,20 +717,43 @@ translates relevant portions of it into GNU @command{troff} input.
 Command-line options to @command{groff} tell it which preprocessors to
 use.
 
-@code{groff} provides preprocessors for laying out tables
-(@command{gtbl}), typesetting equations (@command{geqn}), drawing
-diagrams (@command{gpic} and @command{ggrn}), inserting bibliographic
-references (@command{grefer}), and drawing chemical structures
-(@command{gchem}).  An associated program that is useful when dealing
-with preprocessors is @command{gsoelim}.@footnote{The @samp{g} prefix is
+@code{groff}
+provides preprocessors for laying out tables
+(@command{gtbl}),
+typesetting equations
+(@command{geqn}),
+drawing diagrams
+(@command{gpic}
+and
+@command{ggrn}),
+inserting bibliographic references
+(@command{grefer}),
+and drawing chemical structures
+(@command{gchem}).
+An associated program that is useful when dealing with preprocessors is
+@command{gsoelim}.@footnote{The @samp{g} prefix is
 not used on all systems; see @ref{Invoking groff}.}
 
-@code{groff} also supports @code{grap}, a preprocessor for drawing
-graphs.  A free implementation of it can be obtained
+@code{groff}
+also supports
+@command{grap},
+a preprocessor for drawing graphs.
+A free implementation of it can be obtained
 separately.@footnote{@uref{https://www.lunabase.org/~faber/Vault/software/grap/}}
 
-Unique to @code{groff} is the @code{preconv} preprocessor that enables
-GNU @command{troff} to handle documents in a variety of input encodings.
+Unique to
+@code{groff}
+is the
+@command{preconv}
+preprocessor that enables
+GNU
+@command{troff} @c GNU
+to handle documents in a variety of input encodings,
+including UTF-8.
+Unlike most preprocessors,
+@code{preconv}
+operates on its entire enput
+rather than transforming specially marked regions of a document.
 
 Other preprocessors exist, but no free implementations
 are known.  An example is @command{ideal}, which draws diagrams using a
