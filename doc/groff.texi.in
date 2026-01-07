@@ -4572,12 +4572,19 @@ register at document initialization time had no effect on the footnote
 line length in multi-column arrangements.@footnote{You could reset it
 after each call to @code{1C}, @code{2C}, or @code{MC}.}
 
-@code{FR} should be used in preference to the old @code{FL} register in
-contemporary documents.  The footnote line length is effectively
-computed as @samp{@slanted{column-width} * \*[FR]}.  If an absolute
-footnote line length is required, recall that arithmetic expressions in
-@code{roff} input are evaluated strictly from left to right, with no
-operator precedence (parentheses are honored).
+Prefer the
+@code{FR}
+string over the
+@code{FL}
+register in contemporary documents.
+The footnote line length is effectively computed as
+@samp{@slanted{column-width} * \*[FR]}.
+If you require an absolute footnote line length,
+recall that
+@code{roff}
+formatters evaluate numeric expressions strictly from left to right,
+without operator precedence
+(parentheses are honored).
 
 @Example
 .ds FR 0+3i \" Set footnote line length to 3 inches.
@@ -4704,8 +4711,10 @@ that you should call it early, before @code{TL} or any heading or
 paragraphing macro.  This is a Berkeley extension.
 @endDefmac
 
-For even greater flexibility, @file{ms} is designed to permit the
-redefinition of the macros that are called when the @code{groff} traps
+For even greater flexibility,
+@file{ms}
+is designed to permit the redefinition of the macros that are called
+when formatter traps
 that ordinarily cause the headers and footers to be output are sprung.
 @code{PT} (``page trap'') is called by @file{ms} when the header is to
 be written, and @code{BT} (``bottom trap'') when the footer is to be.
@@ -5078,8 +5087,10 @@ to it if desired.@footnote{If you redefine the @file{ms} @code{PT} macro
 @c I wouldn't mention that, but Lesk 1978 encourages doing so.  :-/
 and desire special treatment of certain page numbers (like @samp{1}),
 you may need to handle a non-Arabic page number format, as @code{groff}
-@file{ms}'s @code{PT} does; see the macro package source.  @code{groff}
-@file{ms} aliases the @code{PN} register to @code{%}.}
+@file{ms}'s @code{PT} does; see the macro package source.
+In
+@code{groff} @file{ms},
+the @code{PN} and @code{%} registers are aliases.}
 
 @item
 The @acronym{AT&T} @file{ms} manual documents registers @code{CW} and
@@ -5111,7 +5122,7 @@ or another implementation.
 @c ---------------------------------------------------------------------
 
 @node Missing Unix Version 7 ms Macros, ms Legacy Features, Differences from AT&T ms, Differences from AT&T ms
-@subsubsection Unix Version 7 @file{ms} macros not implemented by @code{groff} @file{ms}
+@subsubsection Unix Version 7 @file{ms} macros unimplemented by @code{groff} @file{ms}
 
 Several macros described in the Unix Version@tie{}7 @file{ms}
 documentation are unimplemented by @code{groff} @file{ms} because they
@@ -5143,11 +5154,16 @@ or lacked a stable definition over time
 To compatibly render historical @file{ms} documents using these macros,
 we advise your documents to invoke the @code{rm} request to remove any
 such macros it uses and then define replacements with an authentically
-typeset original at hand.@footnote{The removal beforehand is necessary
-because @code{groff} @file{ms} aliases these macros to a diagnostic
-macro, and you want to redefine the aliased name, not its target.}  For
-informal purposes, a simple definition of @code{UX} should maintain the
-readability of the document's substance.
+typeset original at hand.@footnote{Removal beforehand is necessary
+because
+@code{groff} @file{ms}
+aliases these macros with a diagnostic one;
+you want to reorient the aliased name
+before (re-)populating the macro.}
+For informal purposes,
+a simple definition of
+@code{UX}
+should maintain the readability of the document's substance.
 
 @Example
 .rm UX
@@ -5317,10 +5333,13 @@ Interpolate capital OE ligature.
 @cindex @file{ms} macros, naming conventions
 @cindex naming conventions, @file{ms} macros
 
-The following conventions are used for names of macros, strings, and
+@code{groff} @file{ms}
+uses the following conventions
+for names of macros,
+strings,
+and
 registers.
 External names available to documents that use the
-@code{groff} @file{ms}
 macros contain only uppercase letters and digits.
 The package reserves the following identifiers for internal use.
 
@@ -5337,21 +5356,22 @@ those containing only uppercase letters and digits.
 @end itemize
 
 When selecting a name for your document's own macros,
-strings,
-and
 registers,
+macros,
+and
+strings,
 avoid those reserved by
 @code{groff} @file{ms}
 and those defined by
 GNU
-@command{troff} @c GNU
-see
-@ref{Macro Index},
-@ref{String Index},
-and
+@command{troff}. @c GNU
+See
 @ref{Register Index},
+@ref{Macro Index},
+and
+@ref{String Index},
 or
-@cite{groff_char@r{(7)}}
+@cite{groff@r{(7)}}
 for complete lists thereof.
 
 @code{groff} @file{ms}
