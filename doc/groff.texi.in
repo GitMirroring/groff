@@ -16737,25 +16737,53 @@ and apply a margin character on the right.
 @cindex printing line numbers (@code{nm})
 @cindex line numbers, printing (@code{nm})
 @cindex numbers, line, printing (@code{nm})
-Begin (or, with no arguments, cease) numbering output lines.
-@var{start} assigns the number of the @emph{next} output line.  Only
-line numbers divisible by @var{increment} are marked (default:
-@samp{1}).  @var{space} configures the horizontal spacing between the
-number and the text (default: @samp{1}).  Any given @var{indentation} is
-applied to the numbers (default: @samp{0}).  The third and fourth
-arguments are reckoned in numeral widths (@code{\0}).  @var{start} must
-be non-negative and @var{increment} positive.
+Begin
+(or,
+with no arguments,
+cease)
+numbering output lines.
+@var{start}
+assigns the number of the
+@emph{next}
+output line.
+Only line numbers divisible by
+@var{increment}
+(default:
+@samp{1})
+bear marks.
+The formatter reckons the third and fourth arguments in numeral widths
+(@code{\0}):@:
+@var{space}
+configures the horizontal spacing between the number and the text
+(default:
+@samp{1}).
+Any given
+@var{indentation} applies
+applied to the numbers (default: @samp{0}).
+@var{start}
+must be non-negative and
+@var{increment}
+positive.
 
-The formatter aligns the number to the right in a width of three numeral
-spaces plus @var{indentation}, then catenates @var{space} and the output
-line.  The line length is @emph{not} reduced.  Depending on the value of
-the page offset,@footnote{Recall @ref{Line Layout}.} numbers wider than
-the allocated space protrude into the left margin, or shift the output
-line to the right.
+The formatter aligns the number to the right
+in a space of three numeral widths plus
+@var{indentation},
+then catenates
+@var{space}
+and the output line.
+The line length is
+@emph{not}
+reduced.
+Depending on the value of the page offset
+(recall @ref{Line Layout})
+numbers wider than the allocated space protrude into the left margin,
+or shift the output line to the right.
 
 Line numbering parameters corresponding to missing arguments are not
-altered.  After numbering is disabled, @samp{.nm +0} resumes it using
-the previously active parameters.
+altered.
+After numbering is disabled,
+@samp{.nm +0}
+resumes it using the previously active parameters.
 
 The parameters of @code{nm} are associated with the environment
 (@pxref{Environments}).
