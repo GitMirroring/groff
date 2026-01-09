@@ -269,6 +269,13 @@ troff
    name of each stream opened with the `open` or `opena` requests, the
    name of the file backing it, and its mode (writing or appending).
 
+*  The `ptr` request has been renamed to `pwh` (mnemonic: "Print WHen
+   traps will spring").  As a rule, debugging requests starting with `p`
+   correspond to a request name that manipulates the objects reports on
+   when the `p` is removed.  However, `ptr` had nothing to do with the
+   `tr` request.  The only exceptions to the stated rule of `p`-removal
+   are now `line`, `m`, and `stream`, none of which are request names.
+
 *  The `hla` request, when invoked with no arguments, now clears the
    hyphenation language, disabling automatic hyphenation.
 
