@@ -1,3 +1,11 @@
+2026-01-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[pic]: Regression-test Savannah #67899.
+
+	* src/preproc/pic/tests/\
+	do-not-crash-when-reading-macro-arguments.sh: New file.
+	* src/preproc/pic/pic.am (pic_TESTS): Run test.
+
 2025-12-21  Alexis Hildebrandt <afh@surryhill.net>
 
 	* tmac/trans.tmac [PH]: Expose mm package's `Captc` string to
