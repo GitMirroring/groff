@@ -1,5 +1,21 @@
 2026-01-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[pic]: Fix Savannah #67899.
+
+	* src/preproc/pic/lex.cpp (interpolate_macro_with_args): Shift
+	test of argument count so that it is performed for empty
+	arguments as well as populated ones.  The misplacement of the
+	test made it possible to defeat that test by supplying an empty
+	32nd argument to a macro, consequently overrunning stack storage
+	allocated for this function's local `argv` array.
+
+	Fixes <https://savannah.gnu.org/bugs/?67899>.  Thanks to John de
+	Armas for the report and a reproducer, based on the
+	"jumperblock" example from our "doc/pic.ms" file.  Problem
+	appears to date back to groff's birth.
+
+2026-01-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[pic]: Regression-test Savannah #67899.
 
 	* src/preproc/pic/tests/\
