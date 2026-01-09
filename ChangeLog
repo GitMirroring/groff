@@ -1,3 +1,10 @@
+2026-01-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/groff/groff.cpp (main): Bump ending year of copyright
+	notice to 2026 to reflect (presumably) copyrightable changes in
+	the source tree as a whole since December 31.  See "Updating
+	Copyright Notices" in our "HACKING" file.
+
 2026-01-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Rename `ptr` request to `pwh`.
