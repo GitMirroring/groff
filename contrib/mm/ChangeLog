@@ -1,3 +1,10 @@
+2026-01-10  Alexis Hildebrandt <afh@surryhill.net>
+
+	* m.tmac (lix@print-ds): If indentation is greater than zero at
+	the time we start setting the table of contents, reset it.
+
+	Fixes <https://savannah.gnu.org/bugs/?67903>.
+
 2026-01-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	Regression-test for Savannah #67903.  Indentation of the caption

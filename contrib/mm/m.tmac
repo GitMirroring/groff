@@ -3172,6 +3172,7 @@ exceeds depth of nested lists (\\n[li*lvl])
 .ds H1txt \\$3
 .ds Tcstatus \\$1
 .if !\\n[Cp] .pg@next-page
+.if \\n[.in]>0 .in
 .\" print LIST OF XXXX
 .\" execute user-defined macros
 .if \\$4<=4 .if d TX\\$2 .TX\\$2
