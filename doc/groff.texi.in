@@ -10152,15 +10152,25 @@ request in @ref{Strings}.
 
 @c BEGIN Keep (roughly) parallel with (parts of) section "Hyphenation"
 @c of groff_diff(7).
-For automatic hyphenation to work, the formatter must know which letters
-are equivalent; for example, the letter @samp{E} behaves like @samp{e};
-only the latter typically appears in hyphenation pattern files.  GNU
-@command{troff} expects characters that participate in automatic
-hyphenation to be assigned @dfn{hyphenation codes} that define these
-equivalence classes.  At startup, GNU @command{troff} assigns
-hyphenation codes to the letters @samp{a}--@samp{z}, applies the same
-codes to @samp{A}--@samp{Z} in one-to-one correspondence, and assigns a
-code of zero to all other characters.
+For automatic hyphenation to work,
+the formatter must know which letters are equivalent.
+For example,
+the letter @samp{E} behaves like @samp{e};
+only the latter typically appears in hyphenation pattern files.
+GNU
+@command{troff} @c GNU
+expects characters
+that participate in automatic hyphenation
+to be assigned
+@dfn{hyphenation codes}
+that define these equivalence classes.
+At startup,
+GNU
+@command{troff} @c GNU
+assigns hyphenation codes to the letters @samp{a}--@samp{z},
+applies the same codes to @samp{A}--@samp{Z}
+in one-to-one correspondence,
+and assigns a code of zero to all other characters.
 
 The
 @code{hcode}

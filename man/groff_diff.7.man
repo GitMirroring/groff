@@ -303,15 +303,17 @@ does not perform automatic hyphenation.
 .\" Hyphenation".
 .P
 For automatic hyphenation to work,
-the formatter must know which letters are equivalent;
-for example,
+the formatter must know which letters are equivalent.
+.
+For example,
 the letter \[lq]E\[rq] behaves like \[lq]e\[rq];
 only the latter typically appears in hyphenation pattern files.
 .
 GNU
 .I troff \" GNU
-expects characters that participate in automatic hyphenation to be
-assigned
+expects characters
+that participate in automatic hyphenation
+to be assigned
 .I "hyphenation codes"
 that define these equivalence classes.
 .
