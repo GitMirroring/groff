@@ -10019,9 +10019,12 @@ values@tie{}16 and@tie{}32 should be avoided, as should mode@tie{}1.
 Modes@tie{}4 and@tie{}6 are typical.
 
 A table of left and right minimum character counts for hyphenation as
-needed by the patterns distributed with GNU @code{troff} follows; see
-the @cite{groff_tmac@r{(5)}} man page for more information on GNU
-@code{troff}'s language macro files.
+needed by the patterns distributed with
+GNU
+@command{troff} @c GNU
+follows.@footnote{See
+subsection ``Localization packages'' of
+@cite{groff_tmac@r{(5)}}.}
 
 @multitable {German traditional}    {pattern name}    {left min}    {right min}
 @headitem    language           @tab pattern name @tab left min @tab right min
@@ -10036,9 +10039,13 @@ the @cite{groff_tmac@r{(5)}} man page for more information on GNU
 @item        Swedish            @tab sv           @tab 1        @tab 2
 @end multitable
 
-Hyphenation exceptions within pattern files (i.e., the words within a
-@TeX{} @code{\hyphenation} group) obey the hyphenation restrictions
-given by @code{hy}.
+Hyphenation exceptions within pattern files
+(that is,
+the words within a
+@TeX{}
+@code{\hyphenation}
+group)
+obey hyphenation restrictions imposed by @code{hy}.
 @endDefreq
 
 @Defreq {nh, }
@@ -10052,11 +10059,14 @@ for the languages listed above.
 @cindex hyphenation mode default register (@code{.hydefault})
 @DefreqList {hydefault, [@Var{mode}]}
 @DefregListEndx {.hydefault}
-Set hyphenation mode default to @var{mode}, configuring the value the
-automatic hyphenation mode takes if @code{hy} is invoked without an
-argument.  The hyphenation mode default is available in the read-only
-register @samp{.hydefault}; it is associated with the environment
-(@pxref{Environments}).
+Set hyphenation mode default to
+@var{mode},
+configuring the value the automatic hyphenation mode takes if
+@code{hy}
+is invoked without an argument.
+The hyphenation mode default is available in the read-only register
+@samp{.hydefault};
+it is associated with the environment.@footnote{@xref{Environments}.}
 @endDefreq
 
 @need 200
