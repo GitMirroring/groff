@@ -8224,24 +8224,33 @@ space
 .SH Localization
 .\" ====================================================================
 .
-The set of hyphenation patterns is associated with the hyphenation
-language set by the
-.B .hla
+GNU
+.I troff \" GNU
+ties the set of hyphenation patterns
+to the hyphenation language code
+selected by the
+.B hla
 request.
 .
 The
-.B .hpf
+.B hpf
 request is usually invoked by a localization file loaded by the
 .I troffrc
 file.
 .
 .I groff
 provides localization files for several languages;
-see
+See subsection \[lq]Localization packages\[rq] of
 .MR groff_tmac @MAN5EXT@ .
 .
-These also set the default automatic hyphenation mode with
-.BR \%.hydefault .
+For Western languages,
+the localization file
+sets the default hyphenation mode
+and loads hyphenation patterns and exceptions.
+.
+By default,
+.I troffrc
+loads the localization file for English.
 .
 .
 .\" ====================================================================

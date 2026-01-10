@@ -3387,8 +3387,11 @@ input encoding.
 .
 .
 .IP
-The set of hyphenation patterns is associated with the hyphenation
-language set by the
+GNU
+.I troff \" GNU
+ties the set of hyphenation patterns
+to the hyphenation language code
+selected by the
 .B hla
 request.
 .
@@ -3398,17 +3401,19 @@ request is usually invoked by a localization file loaded by the
 .I troffrc
 file.
 .
+.I groff
+provides localization files for several languages;
+See subsection \[lq]Localization packages\[rq] of
+.MR groff_tmac @MAN5EXT@ .
+.
+For Western languages,
+the localization file
+sets the default hyphenation mode
+and loads hyphenation patterns and exceptions.
+.
 By default,
 .I troffrc
 loads the localization file for English.
-.
-See subsection \[lq]Localization packages\[rq] of
-.MR groff_tmac @MAN5EXT@
-for a list of available localization files.
-.
-For Western languages,
-the localization file sets the hyphenation mode and loads hyphenation
-patterns and exceptions.
 .
 .
 .IP

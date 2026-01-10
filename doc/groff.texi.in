@@ -10120,11 +10120,21 @@ The @code{hpfa} request appends a file of patterns to the current list.
 @pindex ru.tmac
 @pindex sv.tmac
 @pindex zh.tmac
-The set of hyphenation patterns is associated with the language set by
-the @code{hla} request (see below).  The @code{hpf} request is usually
-invoked by a localization file loaded by the @file{troffrc}
-file.@footnote{For more on localization, see the
-@cite{groff_tmac@r{(5)}} man page.}
+GNU
+@command{troff} @c GNU
+ties the set of hyphenation patterns
+to the hyphenation language code
+selected by the
+@code{hla}
+request
+(see below).
+The
+@code{hpf}
+request is usually invoked
+by a localization file loaded by the
+@file{troffrc}
+file.@footnote{For more detail on localization,
+see @cite{groff_tmac@r{(5)}}.}
 
 A second call to @code{hpf} (for the same language) replaces the
 hyphenation patterns with the new ones.  Invoking @code{hpf} or
