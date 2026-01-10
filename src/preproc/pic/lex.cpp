@@ -414,10 +414,10 @@ void interpolate_macro_with_args(const char *body)
 		MAX_ARG);
 	    ignore = 1;
 	  }
-	}
-	if (token_buffer.length() > 0) {
-	  token_buffer += '\0';
-	  argv[argc] = strsave(token_buffer.contents());
+	  else if (token_buffer.length() > 0) {
+	    token_buffer += '\0';
+	    argv[argc] = strsave(token_buffer.contents());
+	  }
 	}
 	// for 'foo()', argc = 0
 	if (argc > 0 || c != ')' || i > 0)

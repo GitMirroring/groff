@@ -1,3 +1,17 @@
+2026-01-10  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[pic]: Improve fix for Savannah #67899.
+
+	* src/preproc/pic/lex.cpp (interpolate_macro_with_args): Shift
+	more logic inside the `!ignore` conditional; this way we
+	correctly handle the case of a non-empty 33rd macro argument.
+	We were no longer smashing the stack with a list of pointers of
+	user-controlled length, but we were permitting the stack memory
+	at a location one past the end of the `argv` array to be
+	written to.
+
+	Continues fixing <https://savannah.gnu.org/bugs/?67899>.
+
 2026-01-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/groff/groff.cpp (main): Bump ending year of copyright
