@@ -10144,10 +10144,9 @@ up to a newline or comment escape sequence.
 Suffixing the file name with a comment,
 even an empty one,
 prevents unwanted space from creeping into it during source document
-maintenance.
-See the discussion of the
+maintenance.@footnote{See the discussion of the
 @code{ds}
-request in @ref{Strings}.
+request in @ref{Strings}.}
 @endDefreq
 
 @c BEGIN Keep (roughly) parallel with (parts of) section "Hyphenation"
