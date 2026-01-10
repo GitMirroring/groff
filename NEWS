@@ -79,7 +79,7 @@ troff
    an error diagnostic.
 
 *  The `cf` request is now disabled in safer mode; as with `pi` and
-   `sy`, you must specify the "unsafe mode" option `-U` to use it.
+   `sy`, you must specify troff's "unsafe mode" option `-U` to use it.
    Alternatively, use the `trf` request, available since groff 0.6
    (circa 1990), to embed a file in GNU troff's output while discarding
    characters (most C0 and C1 controls) that are invalid as GNU troff
@@ -287,8 +287,8 @@ troff
    units, such as the `ps` request and `\s` escape sequence, now also
    accept `p` and `s`.
 
-*  The `-c` command-line option now also removes the `color` request's
-   ability to enable multi-color output.
+*  troff's `-c` command-line option now also removes the `color`
+   request's ability to enable multi-color output.
 
 eqn
 ---
@@ -337,7 +337,7 @@ pic
    object identifier, analogously to the existing compass point and
    `.c[enter]` feature.  Thanks to Duncan Losin.
 
-*  The -S option now "locks" safer mode, rejecting any subsequent
+*  pic's -S option now "locks" safer mode, rejecting any subsequent
    specification of -U on the command line with an error diagnostic.
 
 soelim
