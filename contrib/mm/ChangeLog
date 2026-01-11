@@ -1,3 +1,14 @@
+2026-01-11  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m.tmac: (LT): Define `@cover` string as `\\$0`, not "LT"
+	literally.  Conceivably, a document could rename or alias the
+	`LT` macro; in a diagnostic prompted by an invalid attempt to
+	combine multiple cover page schemes, we want to report the name
+	that had actual effect.
+
+	Fixes <https://savannah.gnu.org/bugs/?67889>.  Thanks to Alexis
+	Hildebrandt for the report.
+
 2026-01-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m.tmac: (PGFORM, pg@enable-trap): Invoke page location trap
