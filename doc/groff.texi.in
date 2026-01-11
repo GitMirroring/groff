@@ -20076,7 +20076,8 @@ GNU
 @command{troff} @c GNU
 processes input in three steps.
 It gathers one or more input characters into a
-@dfn{token},@footnote{The escape sequences
+@dfn{token},@footnote{When not in copy mode,
+the formatter does not tokenize the escape sequences
 @code{\f},
 @code{\F},
 @code{\H},
@@ -20085,9 +20086,8 @@ It gathers one or more input characters into a
 @code{\R},
 @code{\s},
 and
-@code{\S}
-instead update the environment,
-if the formatter is not in copy mode.}
+@code{\S},
+but instead updates the environment.}
 the smallest meaningful unit of
 @command{troff} @c generic
 input.
