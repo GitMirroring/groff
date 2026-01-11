@@ -9049,9 +9049,8 @@ Environments store most of the parameters that control text processing.
 A default environment named
 .RB \[lq] 0 \[rq]
 exists when
-.I @g@troff
-starts up;
-it is modified by formatting-related requests and escape sequences.
+exists when the formatter starts up;
+formatting-related requests and escape sequences modify its properties.
 .
 .
 .P
@@ -9069,8 +9068,8 @@ The same environment name can be pushed onto the stack multiple times,
 possibly interleaved with others.
 .
 Popping the environment stack does not destroy the current environment;
-it remains accessible by name and can be made current again by pushing
-it at any time.
+it remains accessible by name and can be made current again
+by pushing it at any time.
 .
 Environments cannot be renamed or deleted,
 and can only be modified when current.

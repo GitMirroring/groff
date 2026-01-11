@@ -18854,23 +18854,32 @@ This is \*[xxx].
 @section Environments
 @cindex environments
 
-As discussed in @ref{Deferring Output}, environments store most of the
-parameters that determine the appearance of text.  A default environment
-named @samp{0} exists when GNU @code{troff} starts up; it is modified by
-formatting-related requests and escape sequences.
+As discussed in @ref{Deferring Output},
+environments store most of the parameters
+that determine the appearance of text.
+A default environment named
+@samp{0}
+exists when the formatter starts up;
+formatting-related requests and escape sequences modify its properties.
 
 @cindex stack
-You can create new environments and switch among them.  Only one is
-current at any given time.  Active environments are managed using a
-@dfn{stack}, a data structure supporting ``push'' and ``pop''
-operations.  The current environment is at the top of the stack.
+You can create new environments and switch among them.
+Only one is current at any given time.
+Active environments are managed using a
+@dfn{stack},
+a data structure supporting ``push'' and ``pop'' operations.
+The current environment is at the top of the stack.
 The same environment name can be pushed onto the stack multiple times,
-possibly interleaved with others.  Popping the environment stack does
-not destroy the current environment; it remains accessible by name and
-can be made current again by pushing it at any time.  Environments
-cannot be renamed or deleted, and can only be modified when current.  To
-inspect the environment stack, use the @code{pev} request; see
-@ref{Debugging}.
+possibly interleaved with others.
+Popping the environment stack does not destroy the current environment;
+it remains accessible by name and can be made current again
+by pushing it at any time.
+Environments cannot be renamed or deleted,
+and can only be modified when current.
+To inspect the environment stack,
+use the
+@code{pev}
+request.@footnote{@xref{Debugging}.}
 
 Environments store the following information.
 
