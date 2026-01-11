@@ -20347,10 +20347,14 @@ front of it until it works and if you still have problems add a \c.}
 @c https://www.tuhs.org/pipermail/tuhs/2021-February/023137.html
 @end flushright
 
-GNU @code{troff} is not the easiest language to debug, in part thanks to
-its design features of recursive interpolation and the use of
-multi-stage pipeline processing in the surrounding system.  Nevertheless
-there exist several features useful for troubleshooting.
+GNU
+@command{troff} @c GNU
+is not the easiest language to debug,
+in part thanks to its design features
+of recursive interpolation
+and the use of multi-stage pipeline processing
+in the surrounding system.
+Nevertheless there exist several features useful for troubleshooting.
 
 Preprocessors use the @code{lf} request to preserve the identity of the
 line numbers and names of input files.
@@ -20408,9 +20412,7 @@ Set the input line number
 (and,
 optionally,
 the file name)
-GNU
-@command{troff} @c GNU
-uses when reporting diagnostics.
+the formatter uses when reporting diagnostics.
 The argument becomes the input line number of the
 @emph{next}
 line the formatter reads.
@@ -20447,10 +20449,10 @@ Send
 to the standard error stream.
 The formatter reads the argument
 to the end of the input line in copy mode
-(@pxref{Copy Mode}),
+(recall @ref{Copy Mode}),
 but does
 @emph{not}
-removing a leading double quote;
+remove a leading double quote;
 contrast
 @code{tm1}.
 
@@ -20473,8 +20475,7 @@ Write any
 to the standard error stream
 (like
 @code{tm})
-and then abort GNU
-@command{troff}; @c GNU
+and then abort the formatter;
 that is,
 stop processing and terminate with a failure status.
 Aborting does not flush a partially collected line,
@@ -20489,10 +20490,14 @@ request below.
 @Defreq {ex, }
 @cindex @code{ex} request, use in debugging
 @cindex exiting (@code{ex})
-Exit GNU @code{troff}; that is, stop processing and terminate
-successfully.  To stop processing only the current file, use the
-@code{nx} request;
-see @ref{Host System Service Access}.
+Exit the formatter;
+that is,
+stop processing and terminate successfully.
+To stop processing only the current file,
+use the
+@code{nx}
+request;
+recall @ref{Host System Service Access}.
 @endDefreq
 
 When doing something complicated, it is useful to leave the debugging
@@ -20611,7 +20616,8 @@ the list of hyphenation exception words
 associated with the hyphenation language
 selected by the
 @code{hla}
-request.
+request;
+recall @ref{Manipulating Hyphenation}.
 A
 @samp{-}
 marks each hyphenation point.
