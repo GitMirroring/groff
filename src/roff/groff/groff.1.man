@@ -175,7 +175,7 @@ while consuming minimal system resources.
 .
 .P
 Like its predecessor \[lq]troff\[rq],
-the term \[lq]groff\[rq] affords two pronunciations:
+the term \[lq]groff\[rq] affords two popular pronunciations:
 as one syllable
 (like the surname),
 rhyming with \[lq]trough\[rq],
