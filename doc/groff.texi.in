@@ -15072,11 +15072,11 @@ Always false.
 This condition exists for compatibility with certain other
 @code{troff}
 implementations.@footnote{We refer to
-@code{vtroff},
-a translator that converted the C/A/T command stream
-produced by from early-vintage @acronym{AT&T}
+@command{vtroff},
+which converted the C/A/T command stream
+produced by early-vintage @acronym{AT&T}
 @command{troff}
-to a form suitable for Versatec and Benson-Varian plotters.}
+to input suitable for Versatec and Benson-Varian plotters.}
 @end table
 
 If the first argument to an
@@ -15156,8 +15156,11 @@ vertical motion quanta of the device, after rounding.  @samp{.if
 "\u\d"\v'0'"} is false even though both comparands result in zero net
 motion, because motions are not interpreted or optimized but sent as-is
 to the output.@footnote{Because formatting of the comparands takes place
-in a dummy environment, vertical motions within them cannot spring
-traps.}  On the other hand, @samp{.if "\d"\v'0.5m'"} is true, because
+in a dummy environment,
+vertical motions within them cannot spring traps.
+@xref{Traps}.}
+On the other hand,
+@samp{.if "\d"\v'0.5m'"} is true, because
 @code{\d} is defined as a downward motion of one-half em.@footnote{All
 of this is to say that the lists of nodes created by formatting
 @var{xxx} and @var{yyy} must be identical.
@@ -15184,13 +15187,12 @@ GNU
 @command{troff} @c GNU
 reads comparands protected with
 @code{\?}
-in copy mode (@pxref{Copy Mode}),
-they need not even be valid
-@code{groff}
-syntax.
+in copy mode,@footnote{@xref{Copy Mode}.}
+they need not even be syntactically valid.
 The escape character is still lexically recognized,
 however,
 and consumes the next character.
+@c but see Savannah #67329
 
 @Example
 .ds a \[

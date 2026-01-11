@@ -2447,16 +2447,18 @@ to avoid formatting them;
 this causes them to be compared character by character,
 as with string comparisons in other programming languages.
 .
-Since comparands protected with
+Since
+GNU
+.I troff \" GNU
+reads comparands protected with
 .B \[rs]?\&
-are read in copy mode,
-they need not even be valid
-.I groff
-syntax.
+in copy mode,
+they need not be syntactically valid.
 .
 The escape character is still lexically recognized,
 however,
 and consumes the next character.
+.\" but see Savannah #67329
 .
 .
 .P
