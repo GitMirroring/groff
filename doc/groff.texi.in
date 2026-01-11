@@ -623,10 +623,14 @@ preprocessors, macro packages, output drivers (or ``postprocessors''),
 and a suite of utilities, with the formatter program @command{troff} at
 its heart.
 
-The @command{groff} front end program makes the GNU @code{roff} system
-easier to use than traditional @code{roff}s that required the
-construction of pipelines or use of temporary files to carry a source
-document from maintainable form to device-ready output.
+The front end programs available in the
+GNU
+@code{roff}
+system easier to use than traditional
+@code{roff}s
+that required the construction of pipelines
+or use of temporary files to carry a source document
+from maintainable form to device-ready output.
 @c END Keep parallel with groff(1), section "Usage" (introduction).
 
 

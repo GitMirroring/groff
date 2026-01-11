@@ -740,12 +740,14 @@ system works.
 .
 .
 .P
-The front end programs available in the GNU
+The front end programs available in the
+GNU
 .I roff
 system make it easier to use than traditional
 .IR roff s
-that required the construction of pipelines or use of temporary files to
-carry a source document from maintainable form to device-ready output.
+that required the construction of pipelines
+or use of temporary files to carry a source document
+from maintainable form to device-ready output.
 .
 The discussion below summarizes the constituent parts of the GNU
 .I roff
