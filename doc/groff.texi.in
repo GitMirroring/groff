@@ -17450,8 +17450,8 @@ global.  Its status is stored in the @code{.vpt} read-only register.
 @cindex break, page, prevented by @code{vpt}
 @cindex page ejection, prevented by @code{vpt}
 @cindex ejection, page, prevented by @code{vpt}
-A page can't be ejected if @code{vpt} is set to zero; see @ref{The
-Implicit Page Trap}.
+A page can't be ejected if vertical position traps
+are disabled.@footnote{@xref{The Implicit Page Trap}.}
 @endDefreq
 
 @menu
@@ -17480,21 +17480,46 @@ and
 requests.
 
 @Defreq {wh, dist [@Var{name}]}
-Plant macro @var{name} as page location trap at @var{dist}.  The default
-scaling unit is @samp{v}.  Non-negative values for @var{dist} set the
-trap relative to the top of the page; negative values set the trap
-relative to the bottom of the page.  It is not possible to plant a trap
-less than one basic unit from the page bottom: a @var{dist} of @code{-0}
-is interpreted as @code{0}, the top of the page.@footnote{@xref{The
-Implicit Page Trap}.}  An existing @emph{visible} trap (see below) at
-@var{dist} is removed; this is @code{wh}'s sole function if @var{name}
+Plant macro
+@var{name}
+as page location trap at
+@var{dist}.
+The default scaling unit is
+@samp{v}.
+Non-negative values for
+@var{dist}
+set the trap relative to the top of the page;
+negative values set the trap relative to the bottom of the page.
+It is not possible to plant a trap
+less than one basic unit from the page bottom:@:
+the formatter interprets a
+@var{dist}
+of @code{-0}
+as @code{0},
+the top of the page.
+@code{wh}
+removes any existing
+@emph{visible}
+trap
+(see below)
+at
+@var{dist}
+is removed;
+this is its sole function if
+@var{name}
 is missing.
 
-A trap is sprung only if it is @dfn{visible}, meaning that its location
-is reachable on the page@footnote{A trap planted at @samp{20i} or
-@samp{-30i} cannot be sprung on a page of length @samp{11i}.} and it
-is not hidden by another trap at the same location already planted
-there.
+A trap springs only if it is
+@dfn{visible},
+meaning that its location is reachable on the page@footnote{A trap
+planted at
+@samp{20i}
+or
+@samp{-30i}
+cannot spring on a page of length
+@samp{11i}.}
+and it is not hidden by another trap
+at the same location already planted there.
 
 @need 1000
 @cindex page headers
