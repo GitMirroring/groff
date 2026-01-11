@@ -812,7 +812,7 @@ is an extended dialect of the
 language,
 for which many
 similar implementations exist.
-When we say ``the formatter'' when speaking of behavior
+We say ``the formatter'' when speaking of behavior
 that is generally true of
 @command{troff} @c generic
 and

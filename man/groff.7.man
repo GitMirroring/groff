@@ -314,7 +314,7 @@ language,
 for which many
 similar implementations exist.
 .
-When we say \[lq]the formatter\[rq] when speaking of behavior
+We say \[lq]the formatter\[rq] when speaking of behavior
 that is generally true of
 .I troff \" generic
 and
