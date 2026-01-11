@@ -6961,8 +6961,7 @@ some of these are read-only.
 You can also define your own.
 .
 See section \[lq]Identifiers\[rq] above
-for information on constructing
-a valid name for a register.
+regarding the construction of valid names for registers.
 .
 .
 .P

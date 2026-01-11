@@ -8595,8 +8595,8 @@ supplying anything from components of the date
 to details of formatting parameters;
 some of these are read-only.
 You can also define your own.
-@xref{Identifiers},
-for information on constructing a valid name for a register.
+Recall @ref{Identifiers},
+regarding the construction of valid names for registers.
 
 @cindex format, register
 @cindex register format
