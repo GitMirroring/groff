@@ -1959,6 +1959,10 @@ only characters that are not meaningful as operators
 in that context
 can be used as output comparison delimiters.
 .
+The following inputs are therefore invalid as delimiters in
+GNU
+.IR troff . \" GNU
+.
 .
 .RS
 .IP \[bu] 3n
@@ -2005,7 +2009,7 @@ GNU
 keeps track of the nesting depth of escape sequence interpolations,
 so the only characters you need to avoid using as delimiters are those
 that appear in the arguments you input,
-not any that result from interpolation.
+not those that result from interpolation.
 .
 Typically,
 .B \[aq]

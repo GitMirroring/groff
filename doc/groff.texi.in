@@ -8311,17 +8311,20 @@ GNU
 @command{troff} @c GNU
 prohibits the same delimiters in the argument to the
 @code{tl}
-request.
+request.@footnote{@xref{Page Layout}.}
 The
 @code{if},
 @code{ie},
 and
 @code{while}
 requests each interpret their first argument
-as a conditional expression@footnote{@xref{Operators in Conditionals}.};
+as a conditional expression;@footnote{@xref{Operators in Conditionals}.}
 only characters that are not meaningful as operators
 in that context
 can be used as output comparison delimiters.
+The following inputs are therefore invalid as delimiters in
+GNU
+@command{troff}. @c GNU
 
 @itemize @bullet
 @item
@@ -8397,10 +8400,9 @@ GNU
 keeps track of the nesting depth of escape sequence interpolations,
 so the only characters you need to avoid using as delimiters are those
 that appear in the arguments you input,
-not any that result from interpolation.
+not those that result from interpolation.
 Typically,
-@code{'} works fine.
-@xref{Implementation Differences}.
+@code{'} works fine.@footnote{@xref{Implementation Differences}.}
 
 @Example
 $ groff -T ps
