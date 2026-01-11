@@ -5513,9 +5513,11 @@ which must previously have been the subject of an
 .BR opena )
 request.
 .
-The contents of
+GNU
+.I troff \" GNU
+reads the contents of
 .I name
-are read in copy mode.
+in copy mode.
 .
 .LE
 .

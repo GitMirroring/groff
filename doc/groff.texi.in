@@ -19605,6 +19605,14 @@ Multiple
 requests construct a multi-stage pipeline
 in the same order as the formatter encounters the requests.
 
+@Example
+.pi foo
+.pi bar
+@endExample
+
+is the same as
+@w{@samp{.pi foo | bar}}.
+
 @code{pi}
 must be invoked before
 GNU
@@ -19650,14 +19658,6 @@ which
 output drivers then fail to process.
 The pipeline you construct is responsible
 for maintaining the validity of the input to the output driver.
-
-@Example
-.pi foo
-.pi bar
-@endExample
-
-is the same as
-@w{@samp{.pi foo | bar}}.
 @endDefreq
 
 @cindex system commands, running
@@ -19674,9 +19674,14 @@ The formatter does not capture the output produced by the command(s).
 @cindex mode, safer
 @cindex unsafe mode
 @cindex mode, unsafe
-It is an error to use this request in safer mode; this is the default.
-Give GNU @code{troff} or a front end program the @option{-U} option to
-enable unsafe mode.
+It is an error to use this request in safer mode;
+this is the default.
+Give
+GNU
+@command{troff} @c GNU
+or a front end program the
+@option{-U}
+command-line option to enable unsafe mode.
 
 @cindex @code{system()} return value register (@code{systat})
 The writable register @code{systat} contains the return value of the
@@ -19739,12 +19744,19 @@ if it already exists instead of overwriting it.
 @cindex mode, safer
 @cindex unsafe mode
 @cindex mode, unsafe
-It is an error to use these requests in safer mode; this is the default.
-Give GNU @code{troff} or a front end program the @option{-U} option to
-enable unsafe mode.
+It is an error to use these requests in safer mode;
+this is the default.
+Give
+GNU
+@command{troff} @c GNU
+or a front end program the
+@option{-U}
+command-line option to enable unsafe mode.
 
-The @code{pstream} request dumps the list of open streams to the
-standard error stream; see @ref{Debugging}.
+The
+@code{pstream}
+request dumps the list of open streams
+to the standard error stream.@footnote{@xref{Debugging}.}
 @endDefreq
 
 @DefreqList {write, stream [@code{"}]@Var{contents}}
@@ -19766,17 +19778,33 @@ appends a newline to @var{contents}.
 
 @Defreq {writem, stream name}
 @cindex @code{asciify} request, and @code{writem}
-Write the contents of the macro or string @var{name} to @var{stream},
-which must previously have been the subject of an @code{open} (or
-@code{opena}) request.
+Write the contents of the macro or string
+@var{name}
+to
+@var{stream},
+which must previously have been the subject of an
+@code{open}
+(or
+@code{opena})
+request.
 @cindex @code{writem} request, and copy mode
 @cindex copy mode, and @code{writem} request
 @cindex mode, copy, and @code{writem} request
-The contents of
-@var{name} are read in copy mode.  That is, already formatted elements
-(nodes) are ignored.  Consequently, diversions must be unformatted with
-the @code{asciify} request before calling @code{writem}.  Usually, this
-means a loss of information.
+GNU
+@command{troff} @c GNU
+reads the contents of
+@var{name}
+in copy mode.
+That is,
+it ignores already formatted elements (nodes).
+Consequently,
+diversions must be unformatted with
+the
+@code{asciify}
+request before calling
+@code{writem}.
+Usually,
+this means a loss of information.
 @endDefreq
 
 @Defreq {close, stream}
