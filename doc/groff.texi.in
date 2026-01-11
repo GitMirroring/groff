@@ -9154,23 +9154,6 @@ Revision number of the running GNU @code{troff} formatter.  For example,
 if the version number is 1.23.0, then @code{.Y} contains@tie{}@samp{0}.
 @end table
 
-If you wish to embed the date and/or time of a document's formatting
-into its output,
-interpolate these registers into its text.
-Use the @code{af} request to format their values for output.
-
-@Example
-.af year 0000
-.af mo 00
-.af dy 00
-.af hours 00
-.af minutes 00
-.af seconds 00
-ISO 8601 date stamp:
-\n[year]-\n[mo]-\n[dy]T\n[hours]:\n[minutes]:\n[seconds]
-    @result{} ISO 8601 date stamp: 2025-12-07T02:17:54
-@endExample
-
 @c =====================================================================
 
 @node Manipulating Filling and Adjustment, Manipulating Hyphenation, Registers, GNU troff Reference
@@ -19170,6 +19153,25 @@ Enabling unsafe mode at the command line permits
 the writing of files and execution of external commands,
 with or without inclusion of their output in the document.
 @end table
+
+If you wish to embed the date and/or time of a document's formatting
+into its output,
+interpolate these registers into its text.
+Use the
+@code{af}
+request to format their values for output.
+
+@Example
+.af year 0000
+.af mo 00
+.af dy 00
+.af hours 00
+.af minutes 00
+.af seconds 00
+ISO 8601 date stamp:
+\n[year]-\n[mo]-\n[dy]T\n[hours]:\n[minutes]:\n[seconds]
+    @result{} ISO 8601 date stamp: 2025-12-07T02:17:54
+@endExample
 
 @cindex spaces in file name or system command arguments
 @cindex comments, after file name or system command arguments
