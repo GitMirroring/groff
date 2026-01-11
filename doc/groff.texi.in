@@ -18744,12 +18744,13 @@ Truly.
 @noindent
 By ending each text line of the macros with an escaped
 @key{RET},
-we get the desired effect
-(recall @pxref{Line Continuation}).@footnote{We must
+we get the desired effect;
+recall @ref{Line Continuation}.@footnote{We must
 double the backslash.
 Recall @ref{Copy Mode}.}
 What would have happened if we had used only one backslash in each case?
 
+@need 1000
 Interpolating a string does not hide existing macro arguments.  We can
 also place the escaped newline outside the string interpolation instead
 of within the string definition.  Thus, in a macro, a more efficient way
@@ -18767,8 +18768,10 @@ is
 @endExample
 
 @noindent
-The latter calling syntax doesn't change the value of @code{\$0}, which
-is then inherited from the calling macro (@pxref{Parameters}).
+The latter calling syntax doesn't change the value of
+@code{\$0},
+which is then inherited from the calling macro;
+recall @ref{Parameters}.
 
 It is sometimes convenient to copy a single-line diversion to a string,
 which can then be interpolated with @code{\*}.
@@ -18787,9 +18790,14 @@ interpolation system
 @endExample
 
 @noindent
-In the foregoing, we see that formatted output can thus be stored in a
-string.  The @code{\c} escape sequence prevents the subsequent newline
-from being interpreted as a break (again, @pxref{Line Continuation}).
+In the foregoing,
+we see that formatted output can thus be stored in a string.
+The
+@code{\c}
+escape sequence prevents the subsequent newline
+from being interpreted as a break;
+again,
+recall @ref{Line Continuation}.
 
 Copying multi-output line diversions produces unexpected results.
 
