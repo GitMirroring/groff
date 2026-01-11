@@ -16502,9 +16502,11 @@ drawing position unless @var{expr} begins with the boundary-relative
 measurement operator @samp{|}.  @xref{Numeric Expressions}.
 @endDefesc
 
-The following string definition sets the @TeX{}
-logo.@footnote{@xref{Strings}, for an explanation of the trailing
-@samp{\"}.}
+The following string definition sets the @TeX{} logo.
+Recall
+@ref{Strings}
+regarding the trailing
+@samp{\"}.
 
 @Example
 .ds TeX T\h'-.1667m'\v'.224m'E\v'-.224m'\h'-.125m'X\"
@@ -16512,13 +16514,22 @@ logo.@footnote{@xref{Strings}, for an explanation of the trailing
 
 @cindex backspace character
 @cindex character, backspace
-An input backspace becomes a negative horizontal motion of one word
-space (recall @ref{Manipulating Filling and Adjustment}).  This feature
-persists for backward compatibiity with early formatters that predate
-@command{nroff} and even Unix itself, and which used it to facilitate
-user-directed overstriking for character composition, boldfacing, and
-underlining.  GNU @command{troff} has explicit features to support each
-of these; use them instead.
+An input backspace becomes a negative horizontal motion
+of one word space;
+recall @ref{Manipulating Filling and Adjustment}.
+This feature persists for backward compatibiity
+with early formatters that predate
+@command{nroff} @c generic
+and even Unix itself,
+and which used it to facilitate user-directed overstriking
+for character composition,
+boldfacing,
+and
+underlining.
+GNU
+@command{troff} @c GNU
+has explicit features to support each of these;
+use them instead.
 
 Several escape sequences support special cases of horizontal motion.
 
@@ -16560,7 +16571,8 @@ Move right by the width of a numeral in the current font.
 @endDefesc
 
 Horizontal motions are not discarded at the end of an output line as
-word spaces are.  @xref{Breaking}.
+word spaces are;
+recall @ref{Breaking}.
 
 @DefescList {\\w, @code{'}, input, @code{'}}
 @DefregItemx {st}
