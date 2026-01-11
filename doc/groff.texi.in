@@ -18531,15 +18531,18 @@ Use
 @code{\!}
 by itself to embed newlines in a diversion.
 @cindex @code{\?}, interpretation in copy mode
-Unlike
-@code{\!},
+The two escape sequences differ in that
+GNU
+@command{troff} @c GNU
+interprets
 @code{\?}
-is interpreted even in copy mode
-(@pxref{Copy Mode});
-consequently,
+even in copy mode;
+recall
+@ref{Copy Mode}.
+Consequently,
 comparands protected with
 @code{\?}
-need not even be valid
+need not be valid
 GNU
 @command{troff} @c GNU
 syntax.
