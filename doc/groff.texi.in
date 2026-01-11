@@ -20053,7 +20053,10 @@ lower-, @w{-left}, @w{-right}) values into the registers @code{llx},
 example, if no @code{%%BoundingBox} comment is present), the formatter
 sets these registers to@tie{}0.
 
-The search path for @var{file} can be controlled with the @option{-I}
+Control the search path for
+@var{file}
+with the
+@option{-I}
 command-line option.
 @endDefreq
 
