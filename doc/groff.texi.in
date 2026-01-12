@@ -21556,6 +21556,21 @@ to behave in ways difficult to predict.
 @subsection Other Differences
 
 @c BEGIN Keep in sync with groff_diff(7).
+GNU
+@command{troff} @c GNU
+does not emit output if it has nothing to format.
+For example,
+it treats an input document consisting solely of
+@code{nr}
+and
+@code{tm}
+requests as empty,
+and produces nothing on its standard output stream.
+@acronym{AT&T}
+@code{troff} @c AT&T
+does,
+creating a blank page.
+
 Use of C0 control characters in identifiers is not portable;
 Solaris,
 Plan@tie{}9,

@@ -6438,6 +6438,25 @@ McIlroy referred to it as a \[lq]living fossil\[rq].]
 .\" ====================================================================
 .
 .\" BEGIN Keep in sync with groff.texi node "Other Differences".
+GNU
+.I troff \" GNU
+does not emit output if it has nothing to format.
+.
+For example,
+it treats an input document consisting solely of
+.B nr
+and
+.B tm
+requests as empty,
+and produces nothing on its standard output stream.
+.
+AT&T
+.I troff \" AT&T
+does,
+creating a blank page.
+.
+.
+.P
 Use of C0 control characters in identifiers is not portable;
 Solaris,
 Plan\~9,
