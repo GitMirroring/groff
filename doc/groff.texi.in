@@ -19245,12 +19245,6 @@ or, for portability across many @code{roff} programs, to the following.
 .nr y4 1900+\n(yr
 This document was formatted in \n(y4.
 @endExample
-GNU
-@command{troff} @c GNU
-permits the reading of files into the input stream.
-Enabling unsafe mode at the command line permits
-the writing of files and execution of external commands,
-with or without inclusion of their output in the document.
 @end table
 
 If you wish to embed the date and/or time of a document's formatting
@@ -19271,6 +19265,13 @@ ISO 8601 date stamp:
 \n[year]-\n[mo]-\n[dy]T\n[hours]:\n[minutes]:\n[seconds]
     @result{} ISO 8601 date stamp: 2025-12-07T02:17:54
 @endExample
+
+GNU
+@command{troff} @c GNU
+permits the reading of files into the input stream.
+Enabling unsafe mode at the command line permits
+the writing of files and execution of external commands,
+with or without inclusion of their output in the document.
 
 @cindex spaces in file name or system command arguments
 @cindex comments, after file name or system command arguments
