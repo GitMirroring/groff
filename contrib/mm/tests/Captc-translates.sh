@@ -19,13 +19,6 @@
 
 groff="${abs_top_builddir:-.}/test-groff"
 
-fail=
-
-wail () {
-    echo ...FAILED >&2
-    fail=YES
-}
-
 # Regression-test (part of ) Savannah #67830.
 
 input='.
