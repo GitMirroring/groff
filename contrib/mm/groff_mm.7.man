@@ -3861,7 +3861,14 @@ tables,
 equations,
 and exhibits,
 in that order.
-A list appears only if at least one such captioned item is present.
+A list appears only if at least one such captioned item is present,
+and if its corresponding register
+.RB ( Le ,
+.BR Lf ,
+.BR Lt ,
+or
+.BR Lx )
+is set.
 .
 .BI TX xx
 and
