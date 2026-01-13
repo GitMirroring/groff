@@ -20863,8 +20863,10 @@ codes of enabled warning categories.
 GNU
 @command{troff} @c GNU
 has command-line options for reporting warnings
-(@option{-w})
-and for issuing backtraces
+(@option{-w}),
+suppressing them
+(@option{-W}),
+and issuing backtraces
 (@option{-b})
 when a warning or an error occurs.
 
