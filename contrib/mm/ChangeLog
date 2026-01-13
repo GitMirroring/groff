@@ -1,3 +1,11 @@
+2026-01-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m.tmac (lix@print-ds): Simplify fix for Savannah #67903; as I
+	see it, once `TC` begins operating, it takes over the page
+	layout, so we can unconditionally set the indentation to zero
+	safely.  In any case, use of the `in` request by a document is
+	not licensed by the DWB 3.3 mm manual (see §3.8).
+
 2026-01-10  Alexis Hildebrandt <afh@surryhill.net>
 
 	* m.tmac (lix@print-ds): If indentation is greater than zero at
