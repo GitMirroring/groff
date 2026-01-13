@@ -6,9 +6,9 @@
 2026-01-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	Regression-test (the defect reported in) Savannah #67830.  The
-	package's `Capcon` string was not getting translated.
+	package's `Captc` string was not getting translated.
 
-	* tests/Capcon-translates.sh: Do it.
+	* tests/Captc-translates.sh: Do it.
 	* mm.am (mm_TESTS): Run test.
 
 2026-01-06  G. Branden Robinson <g.branden.robinson@gmail.com>
