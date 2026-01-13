@@ -1,3 +1,11 @@
+2026-01-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	Regression-test for Savannah #67903.  Indentation of the caption
+	strings produced by the `TC` macro is erratic.
+
+	* tests/toc-captions-ident-correctly.sh: Do it.
+	* mm.am (mm_TESTS): Run test.
+
 2026-01-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m.tmac: (LT): Define `@cover` string as `\\$0`, not "LT"
