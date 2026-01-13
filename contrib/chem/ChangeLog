@@ -1,3 +1,51 @@
+2026-01-13  Norwid Behrnd <nbehrnd@yahoo.com>
+
+	* examples/lsd.chem: Improve visual representation.  Reorganize
+	representation of the structure.
+	- For aesthetic appeal, the structure was a rotated little bit.
+	  Its orientation is the one of ergoline, the parent hydride
+	  {in chemists' terms, the senior or reference structure motive}
+	  lsd and other ergot alkaloids derive from as displayed in
+	  appendix 3 of [1a], and publications (e.g., [2-4]).  The
+	  edit retains the pragmatic definition of the pyrrole moiety
+	  based on keyword flatring.
+	- The backbone labels the rings A, B, C, and D.  This is both
+	  for backward compatibility in nomenclature (rule P-101.2.4
+	  in [1b]) still used in peer reviewed publications today {e.g.,
+	  [2-4]} as well as showcase of chem's flexibilty of definitions
+	  coined by the user.
+	- Some cleaning according e.g., to rules GR-4.1.1, 4.1.2,
+	  6.5.[5]
+
+	[1a] Nomenclature of Organic Chemistry: IUPAC Recommendations
+	     and Preferred Names 2013; Favre, H. A., Powell, W. H.,
+	     International Union of Pure and Applied Chemistry, Eds.;
+	     Royal Society of Chemistry: Cambridge, 2014. Authorized
+	     online excerpt:
+	     https://iupac.qmul.ac.uk/BlueBook/Papp3.html
+	[1b] Same as [1a], authorized online excerpt:
+	     https://iupac.qmul.ac.uk/BlueBook/P10.html#1010204
+	[2]  Barker, S. A. Simple Analogs of the LSD D-Ring: A
+	     Consideration of Structure–Activity Relationships and Their
+	     Potential as Therapeutics. ACS Chem. Neurosci. 2025, 16
+	     (22), 4309–4314.
+	     https://doi.org/10.1021/acschemneuro.5c00695.
+	[3]  Pazur, E. J.; Kalatanova, A.; Tasker, N. R.; Vainionpää,
+	     K.; Leinonen, H.; Wipf, P. Synthesis and Biological
+	     Analysis of Iso-Dimethyltryptamines in a Model of
+	     Light-Induced Retinal Degeneration. ACS Med. Chem. Lett.
+	     2024, 15 (7), 1049–1056.
+	     https://doi.org/10.1021/acsmedchemlett.4c00130.
+	[4]  Rathnayake, U.; Garner, P. Asymmetric Synthesis of Lysergic
+	     Acid via an Intramolecular (3+2) Dipolar Cycloaddition/
+	     Ring-Expansion Sequence. Org. Lett. 2021, 23 (17),
+	     6756–6759.
+	     https://doi.org/10.1021/acs.orglett.1c02337.
+	[5]  Brecher, J. Graphical Representation Standards for Chemical
+	     Structure Diagrams (IUPAC Recommendations 2008). Pure Appl.
+	     Chem. 2008, 80 (2), 277–410.
+	     https://doi.org/10.1351/pac200880020277.
+
 2026-01-01  Norwid Behrnd <nbehrnd@yahoo.com>
 
 	* examples/penicillin.chem: Reorganize file.
