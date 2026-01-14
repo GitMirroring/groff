@@ -3610,7 +3610,7 @@ argument: '\\$2'
 ..
 .\" TODO: Kill this off in groff 1.24.0 release + 2 years.
 .de AST
-.\\*[debug@dump-args]\\
+\\*[debug@dump-args]\\
 .@warning \\$0: macro is deprecated; define string 'Abstract' instead
 .ds Abstract "\\$1\"
 ..
@@ -3648,7 +3648,7 @@ argument: '\\$2'
 .el          .ds cov*date \\*[cov*iso-date-format]
 ..
 .de ISODATE
-.\\*[debug@dump-args]\\
+\\*[debug@dump-args]\\
 .@warning \\$0: macro is deprecated; define register 'Isodate' instead
 .cov*set-date \\$@
 ..
@@ -3800,7 +3800,7 @@ argument: '\\$2'
 .\" Interpolate or retrieve reference ref-name's heading number.
 .\" GETHN ref-name [string]
 .de GETHN
-.\\*[debug@dump-args]\\
+\\*[debug@dump-args]\\
 .if \\n[.$]<1 .@error \\$0: expected 1 or 2 arguments, got \\n[.$]
 .if !r qrf*pass .@error \\$0: references uninitialized; call INITR first
 .ds qrf*caller \\$0\"
@@ -3819,7 +3819,7 @@ argument: '\\$2'
 .\" Interpolate or retrieve reference ref-name's page number.
 .\" GETPN ref-name [string]
 .de GETPN
-.\\*[debug@dump-args]\\
+\\*[debug@dump-args]\\
 .if \\n[.$]<1 .@error \\$0: expected 1 or 2 arguments, got \\n[.$]
 .if !r qrf*pass .@error \\$0: references uninitialized; call INITR first
 .ds qrf*caller \\$0\"
@@ -3838,7 +3838,7 @@ argument: '\\$2'
 .\" Retrieve and interpolate reference ref-name's heading and page data.
 .\" GETR ref-name
 .de GETR
-.\\*[debug@dump-args]\\
+\\*[debug@dump-args]\\
 .if \\n[.$]<1 .@error \\$0: expected an argument
 .if !r qrf*pass .@error \\$0: references uninitialized; call INITR first
 .ds qrf*caller \\$0\"
@@ -3884,7 +3884,7 @@ argument: '\\$2'
 .\" collect index entry
 .\" IND term ...
 .de IND
-.\\*[debug@dump-args]\\
+\\*[debug@dump-args]\\
 .if !d ind*file .@error \\$0: no active index; call INITI first
 .if \\n[.$]<1 .@error \\$0: expected an argument
 .if '\\$1'' .@error \\$0: cannot record empty index entry
@@ -3902,7 +3902,7 @@ argument: '\\$2'
 ..
 .\" print index
 .de INDP
-.\\*[debug@dump-args]\\
+\\*[debug@dump-args]\\
 .ie \\n[Ref] .tm .\\\\" Index: \\*[ind*file]
 .el \{\
 .	if !\\n[Cp] .pg@next-page
@@ -3932,7 +3932,7 @@ argument: '\\$2'
 .\"------------------------
 .\" Formal closing
 .de FC
-.\\*[debug@dump-args]\\
+\\*[debug@dump-args]\\
 .df@print-float 3
 .ie \\n[.$] .ds let*i \\$1
 .el         .ds let*i \\*[Letfc]
@@ -4029,7 +4029,7 @@ undefined
 .ds let*date-line \l'\n[let*date-line-length]u'
 .nr let*approval-gap 5m
 .de AV
-.\\*[debug@dump-args]\\
+\\*[debug@dump-args]\\
 .ne 6v
 .nf
 .sp
@@ -4049,7 +4049,7 @@ undefined
 .\"------------------------
 .\" Letter signature
 .de AVL
-.\\*[debug@dump-args]\\
+\\*[debug@dump-args]\\
 .ne 6v
 .nf
 .sp 3

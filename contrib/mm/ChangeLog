@@ -1,3 +1,10 @@
+2026-01-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m.tmac (AST, ISODATE, GETHN, GETPN, GETR, IND, INDP, FC, AV)
+	(AVL): Fix botched diagnostic argument dumping, which caused
+	spurious output to the standard error stream with any use of
+	these macros.
+
 2026-01-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m.tmac (lix@print-ds): Simplify fix for Savannah #67903; as I
