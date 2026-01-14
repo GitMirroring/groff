@@ -4,6 +4,9 @@
 	(AVL): Fix botched diagnostic argument dumping, which caused
 	spurious output to the standard error stream with any use of
 	these macros.
+	(IE, WE): Same, but also sequence the argument dump _after_
+	these macro's `ec` invokations so we can accurately dump them.
+	See "Punning Names" in our Texinfo manual or in groff(7).
 
 2026-01-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
