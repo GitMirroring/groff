@@ -2958,6 +2958,12 @@ does not interpret
 it can be a revision identifier
 (or empty).
 .
+.\" Explain debugging output at level 5 or higher.
+.I mm
+calls
+.B ND
+itself when initializing.
+.
 .
 .TP
 .B NE
