@@ -11,7 +11,10 @@
 	* m.tmac (lix@print-ds): If indentation is greater than zero at
 	the time we start setting the table of contents, reset it.
 
-	Fixes <https://savannah.gnu.org/bugs/?67903>.
+	Fixes <https://savannah.gnu.org/bugs/?67903>.  [Problem
+	reproducible as far back as groff 1.22.3 and appears to be an
+	oversight dating back to the introduction of groff mm in 1991.
+	--GBR]
 
 2026-01-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
