@@ -923,25 +923,6 @@ can be one of the following values.
 2 = Projecting square cap
 .
 .
-.LP
-.TP
-.BR "\[rs]X\[aq]ps:\~" .\|.\|.\& "\~pdfmark\[aq]"
-All the
-.I pdfmark
-macros installed by using
-.I \-m pdfmark
-or
-.I \-m mspdf
-(see documentation in
-.IR pdfmark.pdf ).
-.
-A subset of these macros are installed automatically when you use
-.B \-Tpdf
-so you should not need to use
-.RB \[lq] "\-m pdfmark" \[rq]
-to access most PDF functionality.
-.
-.
 .br
 .ne 3v
 .P
@@ -1167,11 +1148,6 @@ start and stop (respectively) the placement of the bookmark's
 the user will have called
 .RB \[lq] .pdfhref\~L \[rq]
 with the text of the hot spot.
-.
-Normally,
-these are never used except from within the
-.I pdfmark
-macros.
 .
 .
 .TP
