@@ -10,7 +10,7 @@ groff_mm \- memorandum macros for GNU
 .\" ====================================================================
 .\"
 .\" Copyright 1989-2019 Free Software Foundation, Inc.
-.\"           2020-2024 G. Branden Robinson
+.\"           2020-2026 G. Branden Robinson
 .\"
 .\" This file is part of mm, a reimplementation of the Documenter's
 .\" Workbench (DWB) troff memorandum macro package for use with GNU
@@ -222,6 +222,23 @@ or
 .B W
 from the command line,
 use an explicit scaling unit to avoid surprises.
+.
+.
+.IP \[bu]
+The
+.B Le
+register defaults to
+.BR 1 ,
+consistently with
+.BR Lf ,
+.BR Lt ,
+and
+.B Lx
+in DWB;
+equations captioned with
+.B EC
+appear in tables of contents produced by
+.BR TC .
 .
 .
 .IP \[bu]
@@ -5188,11 +5205,9 @@ respectively,
 after a table of contents;
 see
 .B TC
-(Boolean-valued;
-.BR Le :\~ 0 ;
-.BR Lf ,
-.BR Lt ,
-.BR Lx :\~ 1 ).
+(all:
+Boolean-valued;
+.BR 1 ).
 .
 .
 .\" XXX: What is the rationale for this feature?

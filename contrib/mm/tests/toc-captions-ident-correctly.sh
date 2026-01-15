@@ -30,7 +30,6 @@ wail () {
 # reproducer by Alexis Hildebrant.
 
 input='.
-.nr Le 1 \" enable equation list in TOC
 .ds Rule \l#\\n[.l]u-1n#
 .ds Captc A\*[Rule]
 .ds Le B\*[Rule]

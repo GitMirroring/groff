@@ -1,5 +1,21 @@
 2026-01-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac: Initialize register `Le` to `1`, not `0`.  This makes
+	its default consistent with the `Lf`, `Lt`, and `Lx` registers
+	of similar purpose, but inconsistently with DWB 3.3 mm.
+	Explicitly assigning the `Le` register in a document's preamble
+	continues to work as it always has.
+
+	* groff_mm.7.man (Description): Document it.
+
+	* tests/toc-captions-ident-correctly.sh: Update test input to
+	omit explicit `Le` assignment, and thereby regression-test this
+	change.
+
+	Fixes <https://savannah.gnu.org/bugs/?67907>.
+
+2026-01-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (AST, ISODATE, GETHN, GETPN, GETR, IND, INDP, FC, AV)
 	(AVL): Fix botched diagnostic argument dumping, which caused
 	spurious output to the standard error stream with any use of
@@ -3377,7 +3393,7 @@ Sun Jan 1 00:00:00 1991 Joergen Haegg (jh at efd.lth.se)
 ________________________________________________________________________
 
 Copyright 1991-2021 Free Software Foundation, Inc.
-Copyright 2021-2025 G. Branden Robinson
+Copyright 2021-2026 G. Branden Robinson
 
 Copying and distribution of this file, with or without modification,
 are permitted in any medium without royalty provided the copyright
