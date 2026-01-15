@@ -4293,11 +4293,6 @@ interpolates a bullet mark,
 .
 .
 .TP
-.B Captc
-\[lq]CONTENTS\[rq]
-.
-.
-.TP
 .B Capec
 \[lq]Equation\[rq]
 .
@@ -4315,6 +4310,11 @@ interpolates a bullet mark,
 .TP
 .B Captb
 \[lq]Table\[rq]
+.
+.
+.TP
+.B Captc
+\[lq]CONTENTS\[rq]
 .
 .
 .TP
