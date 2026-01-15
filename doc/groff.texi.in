@@ -20335,7 +20335,6 @@ restore tokens are removed.
 @c =====================================================================
 
 @need 1000
-@c BEGIN Keep parallel with section "Debugging" of groff(7).
 @node Debugging, Implementation Differences, GNU @command{troff} Internals, GNU troff Reference
 @section Debugging
 @cindex debugging
@@ -20347,15 +20346,17 @@ front of it until it works and if you still have problems add a \c.}
 @c https://www.tuhs.org/pipermail/tuhs/2021-February/023137.html
 @end flushright
 
-GNU
-@command{troff} @c GNU
-is not the easiest language to debug,
+The
+@code{roff}
+language family
+is not the easiest to debug,
 in part thanks to its design features
 of recursive interpolation
 and the use of multi-stage pipeline processing
 in the surrounding system.
 Nevertheless there exist several features useful for troubleshooting.
 
+@c BEGIN Keep parallel with section "Debugging" of groff(7).
 Preprocessors use the @code{lf} request to preserve the identity of the
 line numbers and names of input files.
 GNU
