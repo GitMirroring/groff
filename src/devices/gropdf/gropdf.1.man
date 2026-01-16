@@ -1683,6 +1683,57 @@ making the page location eligible as a target named by
 .
 .
 .TP
+.BR ".pdfhref L" \~\c
+.BI \-D\~ dest\~\c
+.RB [ \-S ] \~\c
+.RB [ \-P \~\c
+.IR prefix-text "] \c"
+.RB [ \-A \~\c
+.IR suffix-text "] \c"
+.RI [ link-text ]
+Create a hotspot link to
+.I dest,
+which a
+.RB \[lq] .pdfbookmark \~.\|.\|.\&\[rq]
+or
+.RB \[lq] ".pdfhref M" \~.\|.\|.\&\[rq]
+call elsewhere in the document should define.
+.
+(If the document employs forward references,
+it must be processed twice;
+see
+.MR pdfmom @MAN1EXT@ .)
+.
+If
+.I link-text
+is omitted,
+.I dest
+is formatted as the link text.
+.
+The
+.B \-P
+and
+.B \-A
+arguments format their successors as text
+before and after the link text,
+respectively,
+without intervening space.
+.
+Specifying
+.B \-S
+prevents
+.B pdfhref
+from \[lq]closing\[rq] the hotspot,
+requiring the document
+(or macro package wrapping
+.BR pdfhref )
+to do itself with
+.B \%pdfmarkend
+or
+.RB \[lq] "\[rs]X\[aq]pdf: markend\[aq]" \[rq].
+.
+.
+.TP
 .BR ".pdfhref M" \~\c
 .RB [ \-E ]\~\c
 .RB [ \-N \~\c
