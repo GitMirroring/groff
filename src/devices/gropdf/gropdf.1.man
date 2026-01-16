@@ -1654,6 +1654,34 @@ Some features have no direct device extension escape sequence
 counterpart.
 .
 .
+.TP
+.BR ".pdfbookmark " [ \-T\~\c
+.IR tag-name ]\~ "level text"
+Mark the nearest page location as a bookmark,
+and optionally a named destination as well.
+.
+.I Bookmarks
+populate the outline pane of the reader.
+.
+They are organized into a hierarchical tree;
+each level of the tree is numbered,
+starting at 1,
+and named as
+.I text
+in the outline.
+.
+.I "Named destinations"
+permit hyperlink-style navigation within the document.
+.
+Specifying
+.B \-T
+followed by
+.I tag-name
+creates a named destination
+making the page location eligible as a target named by
+.RB \[lq] ".pdfhref L" \~.\|.\|.\&\[rq].
+.
+.
 .\" pdfhref
 .
 .
