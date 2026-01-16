@@ -1053,11 +1053,11 @@ that take the same arguments and behave equivalently.
 .
 .
 .TP
-.BI "\eX\[aq]pdf: background\~" "cmd left top right bottom weight" \[aq]
+.BI "\eX\[aq]pdf: background " "cmd left top right bottom weight" \[aq]
 .TQ
 .B "\eX\[aq]pdf: background off\[aq]"
 .TQ
-.BI "\eX\[aq]pdf: background footnote\~" bottom \[aq]
+.BI "\eX\[aq]pdf: background footnote " bottom \[aq]
 produces a background rectangle on the page,
 where
 .RS
@@ -1215,7 +1215,7 @@ respectively.
 .
 .
 .TP
-.BI "\[rs]X\[aq]pdf: pagename\~" name \[aq]
+.BI "\[rs]X\[aq]pdf: pagename " name \[aq]
 Assign the current page a
 .IR name .
 .
@@ -1227,7 +1227,7 @@ The convenience macro for this command is
 .
 .
 .TP
-.BI "\[rs]X\[aq]pdf: pagenumbering\~" "type prefix start" \[aq]
+.BI "\[rs]X\[aq]pdf: pagenumbering " "type prefix start" \[aq]
 .RS
 Control the page numbering shown in a PDF reader's outline
 (which also contains bookmarks).
@@ -1313,7 +1313,7 @@ The convenience macro for this escape sequence is
 .
 .
 .TP
-.BI "\[rs]X\[aq]pdf: pdfpic\~" file\~\c
+.BI "\[rs]X\[aq]pdf: pdfpic " file\~\c
 .\" XXX: For consistency, this device extension command should be "pic".
 .\" --GBR
 .IB "alignment width height line-length" \[aq]
@@ -1386,7 +1386,7 @@ various graphic file formats.
 .
 .
 .TP
-.BI "\[rs]X\[aq]pdf: switchtopage\~" "when name" \[aq]
+.BI "\[rs]X\[aq]pdf: switchtopage " "when name" \[aq]
 Normally each new page is appended to the end of the document,
 this command allows following pages to be inserted at a
 .I \[oq]named\[cq]
@@ -1409,7 +1409,7 @@ The convenience macro for this command is
 .
 .
 .TP
-.BI \[rs]X\[aq]pdf:\~transition\~ feature\~\c
+.BI "\[rs]X\[aq]pdf: transition " feature\~\c
 .IB "mode duration dimension motion direction scale bool" \[aq]
 where
 .I feature
