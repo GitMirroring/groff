@@ -240,7 +240,7 @@ Compress all streams.
 T}
 8	T{
 .\" Why don't we flip the sense of this bit and the default can be
-.\" 15--all bits on? --GBR
+.\" 15--all bits on?  See Savannah #66342.  --GBR
 Don't embed font files.
 .
 (A font required by the document is not embedded;
@@ -1314,6 +1314,8 @@ The convenience macro for this escape sequence is
 .
 .TP
 .BI "\[rs]X\[aq]pdf: pdfpic\~" file\~\c
+.\" XXX: For consistency, this device extension command should be "pic".
+.\" --GBR
 .IB "alignment width height line-length" \[aq]
 Place an image from file
 .I file
@@ -1609,6 +1611,7 @@ not all PDF Readers support any or all these transitions.
 .
 .
 .TP
+.\" XXX: No convenience macro for this one?  --GBR
 .B \[rs]X\[aq]pdf: xrev\[aq]
 Toggle the reversal of glyph direction.
 .
@@ -1638,6 +1641,8 @@ counterpart.
 .
 .
 .TP
+.\" XXX: We don't need to expose PDF's '/' syntax in a *roff macro
+.\" file.  It should prefix "field" with '/' itself.  -- GBR
 .BI ".pdfinfo /" "field content"\~\c
 \&.\|.\|.
 Define PDF metadata.
