@@ -1058,8 +1058,9 @@ that take the same arguments and behave equivalently.
 .B "\eX\[aq]pdf: background off\[aq]"
 .TQ
 .BI "\eX\[aq]pdf: background footnote " bottom \[aq]
-produces a background rectangle on the page,
-where
+Produce a background rectangle on the page.
+.
+.
 .RS
 .TP 8n \" "bottom" + 2n
 .I cmd
@@ -1411,7 +1412,10 @@ The convenience macro for this command is
 .TP
 .BI "\[rs]X\[aq]pdf: transition " feature\~\c
 .IB "mode duration dimension motion direction scale bool" \[aq]
-where
+Configure the style of page transitions,
+as used in \[lq]slides\[rq]
+(or \[lq]foils\[rq]).
+.
 .I feature
 can be either SLIDE or BLOCK.
 When it is SLIDE the transition is used
