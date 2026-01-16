@@ -18635,7 +18635,7 @@ from the top-level diversion is to pass instructions
 to a postprocessor that interprets
 @var{character-sequence}
 and filters it out
-before sending it to the output device.
+before sending it to the output driver.
 @c TODO: Once the dust settles from Savannah #63074, document how these
 @c can be used to construct device extension commands without special
 @c character processing.
@@ -19481,7 +19481,7 @@ One application is to pass instructions
 to a postprocessor that interprets
 @var{file}'s
 contents and filters it out
-before sending it to the output device.
+before sending it to the output driver.
 
 @need 1000
 To define a macro@tie{}@code{x} containing the contents of
