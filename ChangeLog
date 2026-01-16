@@ -1,3 +1,11 @@
+2026-01-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/devices/gropdf/gropdf.1.man (Macros) <pdfbookmark>
+	<pdfnote, pdhref>: Document macros.
+
+	Fixes <https://savannah.gnu.org/bugs/?66453>.  Thanks to Deri
+	James for supplying an overview of features in Savannah #67665.
+
 2026-01-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/devices/gropdf/gropdf.1.man (Usage): Drop references to

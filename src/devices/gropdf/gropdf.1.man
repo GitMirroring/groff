@@ -1758,6 +1758,54 @@ as text in the document as well.
 .
 .
 .TP
+.BR ".pdfhref W" \~\c
+.BI \-D\~ uri\~\c
+.RB [ \-S ] \~\c
+.RB [ \-P \~\c
+.IR prefix-text "] \c"
+.RB [ \-A \~\c
+.IR suffix-text "] \c"
+.I link-text
+.\" The link-text argument is not, presently, optional.  See Savannah
+.\" #67916.
+.\" RI [ link-text ]
+Create a hotspot link to
+.I uri,
+a World Wide Web
+Universal Resource Identifer (URI).
+.
+.\" XXX: Nope--pdf.tmac formats "Unknown" as the link text instead.  See
+.\" Savannah #67916.
+.\" If
+.\" .I link-text
+.\" is omitted,
+.\" .I uri
+.\" is formatted as the link text.
+.
+The
+.B \-P
+and
+.B \-A
+arguments format their successors as text
+before and after the link text,
+respectively,
+without intervening space.
+.
+Specifying
+.B \-S
+prevents
+.B pdfhref
+from \[lq]closing\[rq] the hotspot,
+requiring the document
+(or macro package wrapping
+.BR pdfhref )
+to do itself with
+.B \%pdfmarkend
+or
+.RB \[lq] "\[rs]X\[aq]pdf: markend\[aq]" \[rq].
+.
+.
+.TP
 .\" XXX: We don't need to expose PDF's '/' syntax in a *roff macro
 .\" file.  It should prefix "field" with '/' itself.  -- GBR
 .BI ".pdfinfo /" "field content"\~\c
