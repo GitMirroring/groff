@@ -18804,7 +18804,7 @@ from being interpreted as a break;
 again,
 recall @ref{Line Continuation}.
 
-Copying multi-output line diversions produces unexpected results.
+Copying multi-output-line diversions produces unexpected results.
 
 @Example
 .di xxx
