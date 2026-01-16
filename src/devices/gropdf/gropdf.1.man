@@ -1194,10 +1194,10 @@ see
 .B \[rs]X\[aq]pdf: markend\[aq]
 Macros that support PDF bookmarks use these calls internally to
 start and stop (respectively) the placement of the bookmark's
-.I hot spot;
+.I hotspot;
 the user will have called
 .RB \[lq] .pdfhref\~L \[rq]
-with the text of the hot spot.
+with the text of the hotspot.
 .
 .
 .TP
@@ -1211,10 +1211,10 @@ with the text of the hot spot.
 If you use a page location trap to produce a header or footer,
 or otherwise interrupt a document's text,
 you need to use these commands if a PDF
-.I hot spot
+.I hotspot
 crosses a trap boundary;
-otherwise any text output by the trap will be marked as part of the hot
-spot.
+otherwise any text output by the trap will be marked as part
+of the hotspot.
 .
 To prevent this error,
 place these device extension escape sequences or their corresponding
