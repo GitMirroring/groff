@@ -18864,6 +18864,7 @@ environments store most of the parameters
 that determine the appearance of text.
 A default environment named
 @samp{0}
+(zero)
 exists when the formatter starts up;
 formatting-related requests and escape sequences modify its properties.
 

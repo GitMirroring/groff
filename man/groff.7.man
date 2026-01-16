@@ -9048,6 +9048,7 @@ Environments store most of the parameters that control text processing.
 .
 A default environment named
 .RB \[lq] 0 \[rq]
+(zero)
 exists when
 exists when the formatter starts up;
 formatting-related requests and escape sequences modify its properties.
