@@ -1682,7 +1682,28 @@ making the page location eligible as a target named by
 .RB \[lq] ".pdfhref L" \~.\|.\|.\&\[rq].
 .
 .
-.\" pdfhref
+.TP
+.BR ".pdfhref M" \~\c
+.RB [ \-E ]\~\c
+.RB [ \-N \~\c
+.IR tag-name ]\~\c
+.I dest
+Mark the nearest page location as a destionation named
+(the first word of)
+.I dest,
+which should be unique within a document.
+.
+Specifying
+.B \-T
+followed by
+.I tag-name
+overrides this default.
+.
+Specifying
+.B \-E
+formats
+.I dest
+as text in the document as well.
 .
 .
 .TP
