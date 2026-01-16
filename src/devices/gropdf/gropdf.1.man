@@ -74,7 +74,7 @@ output driver for Portable Document Format
 .RB [ \-p\~\c
 .IR paper-format ]
 .RB [ \-\-pdfver\~\c
-.RI { 1.4 \~|\~ 1.7 }]
+.RB { 1.4 \||\| 1.7 }]
 \#.RB [ \-w\~\c
 \#.IR n ]
 .RB [ \-u
@@ -282,12 +282,16 @@ for details.
 .
 .
 .TP
-.BI \-\-pdfver\~ 1.4 \~|\~ 1.7
-PDF version 1.7 introduced a more compact object format, this is
-now the default.
-If you require the original format (as produced by
+.BR "\-\-pdfver " { 1.4 \||\| 1.7 }
+PDF version 1.7 introduced a more compact object format;
+this is now the default.
+.
+If you require the original format
+(as produced by
 .I gropdf
-1.23) set the version to 1.4.
+1.23)
+set the version to
+.BR 1.4 .
 .
 .
 .TP
