@@ -10,6 +10,7 @@ output driver for Portable Document Format
 .\" ====================================================================
 .\"
 .\" Copyright 2011-2025 Free Software Foundation, Inc.
+.\"                2026 G. Branden Robinson
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -1673,6 +1674,21 @@ or another datum supported by the PDF standard or your reader.
 .
 .I field
 must be prefixed with a slash.
+.
+.
+.TP
+.BR ".pdfnote " [ \-T\~\c
+.IR title ]\~ text
+Create an annotation in the document.
+.
+Reader support for this feature varies.
+.
+Some place an icon in the margin;
+hovering over the icon reveals any
+.IR title ,
+while clicking on the icon
+pops up a window containing
+.IR text .
 .
 .
 .\" ====================================================================
