@@ -18170,16 +18170,20 @@ This specific feature affects only the first potential page break caused
 by the end-of-input macro; further page breaks emitted by the macro are
 handled normally.
 
-Another possible use of the @code{em} request is to make GNU
-@code{troff} emit a single large page instead of multiple pages.  For
-example, one may want to produce a long plain text file for reading
-in a terminal or emulator without page footers and headers interrupting
-the body of the document.  One approach is to set the page length at the
-beginning of the document to a very large value to hold all the
-text,@footnote{Another, taken by the @code{groff} @code{man} macros, is
-to intercept @code{ne} requests and wrap @code{bp} ones.} and
-automatically adjust it to the exact height of the document after the
-text has been output.
+Another possible use of the
+@code{em}
+request is to make
+GNU
+@command{troff} @c GNU
+emit a single large page instead of multiple pages.
+For example,
+one may want to produce a long plain text file
+for reading in a terminal or emulator
+without page footers and headers interrupting the body of the document.
+One approach is to set the page length at the beginning of the document
+to a very large value to hold all the text
+and automatically adjust it to the exact height of the document
+after the text has been output.
 
 @Example
 .de adjust-page-length
