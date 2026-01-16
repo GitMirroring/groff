@@ -1410,18 +1410,22 @@ The convenience macro for this command is
 .
 .
 .TP
-.BI "\[rs]X\[aq]pdf: transition " feature\~\c
+.BI "\[rs]X\[aq]pdf: transition " scope\~\c
 .IB "mode duration dimension motion direction scale bool" \[aq]
 Configure the style of page transitions,
 as used in \[lq]slides\[rq]
 (or \[lq]foils\[rq]).
 .
-.I feature
-can be either SLIDE or BLOCK.
-When it is SLIDE the transition is used
-when a new slide is introduced to the screen,
-if BLOCK then this transition is used for the individual blocks which
-make up the slide.
+.I scope
+can be either
+.B SLIDE
+or
+.BR BLOCK .
+.
+.B SLIDE
+applies the transition when a new slide is introduced to the screen;
+.B BLOCK
+applies it to the individual blocks making up the slide.
 .
 .
 .IP
