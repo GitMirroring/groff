@@ -2156,6 +2156,16 @@ producing a normal PDF instead.
 .
 .
 .TP
+.I GROPDF_OPTIONS
+.I gropdf
+interprets the contents of this environment variable
+as a space-separated list of command-line options.
+.
+Explicit command-line options override any settings
+from this environment variable.
+.
+.
+.TP
 .I SOURCE_DATE_EPOCH
 A timestamp
 (expressed as seconds since the Unix epoch)
