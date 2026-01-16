@@ -1,5 +1,5 @@
     Copyright 1992-2023 Free Software Foundation, Inc.
-              2018-2025 G. Branden Robinson
+              2018-2026 G. Branden Robinson
                    2022 Ingo Schwarze
 
     Copying and distribution of this file, with or without modification,
@@ -756,6 +756,48 @@ Output drivers
    16 degrees to the upright glyphs available in the standard symbol
    font "S".  That technique produced glyphs slightly larger than those
    in grops's "SS" font.  Thanks to Deri James.
+
+*  gropdf now subsets embedded fonts by default, meaning that it stores
+   only the glyphs a document actually uses.  Font subsetting usually
+   reduces the size of the PDF gropdf creates.  Thanks to Deri James.
+
+*  gropdf supports a new `--opt` command-line option, permitting a few
+   features, including font subsetting, to be selectively enabled.
+   Thanks to Deri James.
+
+*  gropdf now emits PDFs that conform to the PDF 1.7 standard (also
+   known as ISO 32000).  Its new `--pdfver` command-line option permits
+   production of PDF 1.4-conformant output instead.  Thanks to Deri
+   James.
+
+*  gropdf supports a new `pdf: pagenumbering` device extension command
+   and `pdfpagenumbering` convenience macro, allowing control of the
+   page numbers in a PDF reader's overview panel.  It is common for a
+   document to number early pages with Roman numerals and then restart
+   page enumeration at decimal 1 for its main matter.  Thanks to Deri
+   James.
+
+*  gropdf now offers its own implementations of the "pdfmark" macro
+   package's "pdfhref" and other macros, supporting internal (bookmarks,
+   named destinations) and external (URL) hyperlinks, and the
+   specification of hotspots for link text.  For example, when bundling
+   multiple man pages into a collection, as the supplied
+   groff-man-pages.pdf document and the Linux man-pages project do,
+   references to man pages within the collection are supported with
+   internal hyperlinks, and those outside with external ones.  Thanks to
+   Deri James.
+
+*  gropdf now supports characters outside the Unicode Basic Latin subset
+   in bookmarks, named destinations, and external hyperlinks.  (They
+   must be encoded using groff's Unicode special character escape
+   sequences; the preconv preprocessor is helpful to simply this
+   requirement.)  Thanks to Deri James.
+
+*  gropdf now recognizes a `GROPDF_OPTIONS` environment variable,
+   interpreting it as a space-separated list of command-line options.
+   Explicit command-line options override any settings from this
+   environment variable.  You can use this variable to obviate passing
+   options to gropdf via groff's `-P` option.  Thanks to Deri James.
 
 *  grops(1), the PostScript output driver, now supports fonts encoded
    using UTF-16.  Indicate the encoding by including the string
