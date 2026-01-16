@@ -19272,11 +19272,13 @@ ISO 8601 date stamp:
     @result{} ISO 8601 date stamp: 2025-12-07T02:17:54
 @endExample
 
+@code{roff}
+formatters allow files to be read into the input stream.
+Enabling
 GNU
-@command{troff} @c GNU
-permits the reading of files into the input stream.
-Enabling unsafe mode at the command line permits
-the writing of files and execution of external commands,
+@command{troff}'s @c GNU
+unsafe mode at the command line
+permits the writing of files and execution of external commands,
 with or without inclusion of their output in the document.
 
 @cindex spaces in file name or system command arguments
@@ -19703,9 +19705,14 @@ are esoteric;
 the request interpolates
 neither the standard output nor the standard error streams of
 @var{command}
-into the document.
+into the document---worse,
+@acronym{AT&T}
+@command{troff} @c AT&T
+afforded no means of verifying that
+@var{command}
+operated as expected.
 We therefore offer a silly example of its use,
-to make a document refuse to format if the system user name
+making a document refuse to format if the system user name
 running the formatter is
 @samp{branden}.@footnote{@acronym{POSIX}
 command environments
@@ -20309,6 +20316,7 @@ special fonts, we must call @code{rchar} to remove the definition of the
 fallback glyph.  Anyway, the translation is still active; @samp{x} now
 maps to the real glyph @samp{foo}.
 
+@need 1000
 @cindex compatibility mode, and parameters
 @cindex mode, compatibility, and parameters
 @cindex arguments, and compatibility mode
@@ -20759,8 +20767,7 @@ bar \c
     @result{} foo 96 bar 0 baz 144
 @endExample
 
-The timing of a flush is most easily perceived in GNU @command{troff}'s
-device-independent output.
+Flush timing is most easily perceived in device-independent output.
 
 Use of
 @samp{'fl}
