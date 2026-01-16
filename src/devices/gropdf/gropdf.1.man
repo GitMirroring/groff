@@ -1047,12 +1047,18 @@ supports several more device extensions using the
 .B pdf:
 tag.
 .
-Some have counterpart
-.I convenience macros
+The following have counterpart
+.I "convenience macros"
 that take the same arguments and behave equivalently.
 .
 .
 .TP
+.BI ".pdfbackground " "cmd left top right bottom weight"
+.TQ
+.B ".pdfbackground off"
+.TQ
+.BI ".pdfbackground footnote " bottom
+.TQ
 .BI "\eX\[aq]pdf: background " "cmd left top right bottom weight" \[aq]
 .TQ
 .B "\eX\[aq]pdf: background off\[aq]"
@@ -1168,9 +1174,6 @@ is included in the command.
 .
 .
 .P
-The convenience macro for this escape sequence is
-.BR .pdfbackground .
-.
 An
 .I sboxes
 macro file is also available;
@@ -1182,7 +1185,11 @@ see
 .br
 .ne 5v
 .TP
-.BI "\[rs]X\[aq]pdf: markstart " "/ANN-definition" \[aq]
+.BI ".pdfmarkstart " /ANN-definition
+.TQ
+.B .pdfmarkend
+.TQ
+.BI "\[rs]X\[aq]pdf: markstart " /ANN-definition \[aq]
 .TQ
 .B \[rs]X\[aq]pdf: markend\[aq]
 Macros that support PDF bookmarks use these calls internally to
@@ -1194,6 +1201,10 @@ with the text of the hot spot.
 .
 .
 .TP
+.B .pdfmarksuspend
+.TQ
+.B .pdfmarkrestart
+.TQ
 .B \[rs]X\[aq]pdf: marksuspend\[aq]
 .TQ
 .B \[rs]X\[aq]pdf: markrestart\[aq]
@@ -1216,6 +1227,8 @@ respectively.
 .
 .
 .TP
+.BI ".pdfpagename " name
+.TQ
 .BI "\[rs]X\[aq]pdf: pagename " name \[aq]
 Assign the current page a
 .IR name .
@@ -1223,11 +1236,10 @@ Assign the current page a
 All documents bear two default names,
 .RB \[oq] top "\[cq] and \[oq]" bottom \[cq].
 .
-The convenience macro for this command is
-.BR \%.pdfpagename .
-.
 .
 .TP
+.BI ".pdfpagenumbering " "type prefix start"
+.TQ
 .BI "\[rs]X\[aq]pdf: pagenumbering " "type prefix start" \[aq]
 .RS
 Control the page numbering shown in a PDF reader's outline
@@ -1305,18 +1317,15 @@ of
 determines the page number.
 .
 It defaults to 1.
-.
-.
-.P
-The convenience macro for this escape sequence is
-.BR \%.pdfpagenumbering .
 .RE
 .
 .
 .TP
-.BI "\[rs]X\[aq]pdf: pdfpic " file\~\c
+.BI ".pdfpic " "file alignment width height line-length"
+.TQ
 .\" XXX: For consistency, this device extension command should be "pic".
 .\" --GBR
+.BI "\[rs]X\[aq]pdf: pdfpic " file\~\c
 .IB "alignment width height line-length" \[aq]
 Place an image from file
 .I file
@@ -1387,6 +1396,8 @@ various graphic file formats.
 .
 .
 .TP
+.BI ".pdfswitchtopage " "when name"
+.TQ
 .BI "\[rs]X\[aq]pdf: switchtopage " "when name" \[aq]
 Normally each new page is appended to the end of the document,
 this command allows following pages to be inserted at a
@@ -1405,11 +1416,11 @@ This allows pages such as a TOC to be moved to elsewhere in the
 document,
 but more esoteric uses are possible.
 .
-The convenience macro for this command is
-.BR \%.pdfswitchtopage .
-.
 .
 .TP
+.BI ".pdftransition " "scope mode duration dimension motion direction\
+ scale bool"
+.TQ
 .BI "\[rs]X\[aq]pdf: transition " scope\~\c
 .IB "mode duration dimension motion direction scale bool" \[aq]
 Configure the style of page transitions,
@@ -1605,9 +1616,6 @@ the area that shall be flown
 in is rectangular and opaque.
 .LP
 .IP
-This command can be used by calling the macro
-.B .pdftransition
-using the parameters described above.
 Any of the parameters may be
 replaced with a "." which signifies the parameter retains its
 previous value, also any trailing missing parameters are ignored.
