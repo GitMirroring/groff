@@ -16795,8 +16795,9 @@ configures the horizontal spacing between the number and the text
 (default:
 @samp{1}).
 Any given
-@var{indentation} applies
-applied to the numbers (default: @samp{0}).
+@var{indentation}
+applies to the numbers
+(default: @samp{0}).
 @var{start}
 must be non-negative and
 @var{increment}
