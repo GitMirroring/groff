@@ -1,3 +1,14 @@
+2026-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	Crib gnulib's coverage generation from its "maint.mk" file.
+	This way developers can run "make coverage" to produce a code
+	coverage report.  Requires "lcov" package.
+
+	* Makefile.am: Define macros `COVERAGE_CCOPTS` and
+	`COVERAGE_OUT`.
+	(init-coverage, build-coverage, gen-coverage, coverage): Define
+	new (phony) target rules.
+
 2026-01-18  Deri James  <deri@chuzzlewit.myzen.co.uk>
 
 	* src/devices/gropdf/gropdf.pl (.pdf*href): For external
