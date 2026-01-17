@@ -1,5 +1,24 @@
 2026-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* doc/groff.texi.in:
+	- Stop attempting to manually recapitulate the topology of the
+	  Info node tree with arguments after the first to `@node`
+	  commands; doing so is no longer required by recent versions of
+	  Texinfo--thanks to Alexis Hildebrandt for bringing this to my
+	  attention and providing a proof-of-concept patch--but the
+	  normative topology of the directed tree is radically
+	  unintuitive to me, leading me to make many errors.  It _seems_
+	  like Info's idea of the node traversal strategy preferred by
+	  humans is breadth-first in one direction ("Next") and
+	  _depth_-first in the other ("Prev").
+	- Fix erroneous menu entries.  This finishes cleaning up
+	  warnings about the document's node topology from recent
+	  Texinfo.
+
+	Fixes Savannah #67838.
+
+2026-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Crib gnulib's coverage generation from its "maint.mk" file.
 	This way developers can run "make coverage" to produce a code
 	coverage report.  Requires "lcov" package.

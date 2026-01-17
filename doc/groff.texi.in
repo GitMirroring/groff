@@ -530,8 +530,8 @@ extensively for over thirty years.
 * Macro Package Intro::
 * Preprocessor Intro::
 * Output Device Intro::
-* Conventions Used in This Manual::
 * Installation::
+* Conventions Used in This Manual::
 * Credits::
 @end menu
 
@@ -5538,8 +5538,8 @@ and supplementing it with inter-sentence space.
 
 @menu
 * Filling::
-* Hyphenation::
 * Sentences::
+* Hyphenation::
 * Breaking::
 * Adjustment::
 * Tabs and Leaders::
@@ -17416,7 +17416,6 @@ The formatter passes no arguments to macros called by traps.
 
 @menu
 * Vertical Position Traps::
-* Diversion Traps::
 * Input Line Traps::
 * Blank Line Traps::
 * Leading Space Traps::
