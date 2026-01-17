@@ -1727,7 +1727,7 @@ from \[lq]closing\[rq] the hotspot,
 requiring the document
 (or macro package wrapping
 .BR pdfhref )
-to do itself with
+to do so itself with
 .B \%pdfmarkend
 or
 .RB \[lq] "\[rs]X\[aq]pdf: markend\[aq]" \[rq].
@@ -1799,7 +1799,7 @@ from \[lq]closing\[rq] the hotspot,
 requiring the document
 (or macro package wrapping
 .BR pdfhref )
-to do itself with
+to do so itself with
 .B \%pdfmarkend
 or
 .RB \[lq] "\[rs]X\[aq]pdf: markend\[aq]" \[rq].
