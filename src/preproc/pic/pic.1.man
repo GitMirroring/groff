@@ -1493,6 +1493,8 @@ and a standalone package and command
 is also available.
 .
 .
+.br
+.ne 2v
 .P
 For raster image formats,
 use
