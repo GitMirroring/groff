@@ -271,7 +271,7 @@ troff
 
 *  The `ptr` request has been renamed to `pwh` (mnemonic: "Print WHen
    traps will spring").  As a rule, debugging requests starting with `p`
-   correspond to a request name that manipulates the objects reports on
+   correspond to a request name that manipulates the objects reported on
    when the `p` is removed.  However, `ptr` had nothing to do with the
    `tr` request.  The only exceptions to the stated rule of `p`-removal
    are now `line`, `m`, and `stream`, none of which are request names.
