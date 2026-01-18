@@ -1,3 +1,14 @@
+2026-01-18  Deri James  <deri@chuzzlewit.myzen.co.uk>
+
+	* src/devices/gropdf/gropdf.pl (.pdf*href): For external
+	hotspot links (.pdfhref W  [-D URI] [-P prefix-text] \
+	[-A affixed-text] [--] [hotlink text]), if no 'hotlink text'
+	is specified but an URI is given, use it as the text
+	rather than 'Unknown'.
+
+	Fixes <https://savannah.gnu.org/bugs/?67916>. Thanks to
+	Branden Robinson for the suggested improvement.
+
 2026-01-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/devices/gropdf/gropdf.1.man (Macros) <pdfbookmark>
