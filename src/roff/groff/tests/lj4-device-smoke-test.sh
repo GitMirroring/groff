@@ -24,7 +24,7 @@ groff="${abs_top_builddir:-.}/test-groff"
 #0000100   l   o esc   *   p   -   9   X   , esc   *   p   +   4   9   X
 #0000120   w esc   *   p   -   9   X   o   r   l   d   !  ff esc   E
 
-output=$(echo "Hello, world!" | "$groff" -T lj4 | od -t a)
+output=$(echo "Hello, world!" | "$groff" -T lj4 -P -pletter | od -t a)
 echo "$output" | grep '^0000060'
 echo "$output" | grep '^00001[02]0'
 echo "$output" | grep -Eq '^0000060.*H +e +l'            || exit 1

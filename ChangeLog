@@ -1,3 +1,14 @@
+2026-01-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/groff/tests/lj4-device-smoke-test.sh: Pass `-P
+	-pletter` arguments to groff, to compel output driver to use
+	U.S. letter paper format.  Fixes test failure in environments
+	where this paper format is not the default.
+
+	Fixes <https://savannah.gnu.org/bugs/?67927>.  Thanks to Bjarni
+	Ingi Gislason for the report and Deri James for the analysis and
+	solution.
+
 2026-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* doc/groff.texi.in:
