@@ -59,6 +59,7 @@ pdfmom: $(gropdf_dir)/pdfmom.pl $(SH_DEPS_SED_SCRIPT)
 
 gropdf_TESTS = \
   tmac/tests/pdf_bookmark-starting-with-control-char-works.sh \
+  tmac/tests/pdf_pdfhref-W-without-link-text-works.sh \
   tmac/tests/pdfpic_does-not-choke-on-bad-pdfinfo-output.sh \
   tmac/tests/pdfpic_falls-back-to-PSPIC.sh
 TESTS += $(gropdf_TESTS)

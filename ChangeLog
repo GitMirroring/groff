@@ -1,5 +1,12 @@
 2026-01-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[gropdf]: Regression-test Savannah #67927.
+
+	* tmac/tests/pdf_pdfhref-W-without-link-text-works.sh: New file.
+	* src/devices/gropdf/gropdf.am (gropdf_TESTS): Run test.
+
+2026-01-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/groff/tests/lj4-device-smoke-test.sh: Pass `-P
 	-pletter` arguments to groff, to compel output driver to use
 	U.S. letter paper format.  Fixes test failure in environments
