@@ -1,3 +1,11 @@
+2026-01-18  Norwid Behrnd <nbehrnd@yahoo.com>
+
+	* examples/morphine.chem: Rename this...
+	* examples/mepacrine.chem: ...to this.
+	* chem.am (CHEM_EXAMPLES): Reflect rename.
+
+	Begins fixing <https://savannah.gnu.org/bugs/?67922>.
+
 2026-01-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tests/smoke-test.sh: Skip test if Perl's Math::Trig module is
