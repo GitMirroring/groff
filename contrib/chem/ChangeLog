@@ -46,6 +46,8 @@
 	     Chem. 2008, 80 (2), 277–410.
 	     https://doi.org/10.1351/pac200880020277.
 
+	Fixes <https://savannah.gnu.org/bugs/?67921>.
+
 2026-01-01  Norwid Behrnd <nbehrnd@yahoo.com>
 
 	* examples/penicillin.chem: Reorganize file.
