@@ -1,3 +1,11 @@
+2026-01-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* Makefile.am: Stop adding ".version" file to the `EXTRA_DIST`
+	and `BUILT_SOURCES` macros.
+
+	Fixes <https://savannah.gnu.org/bugs/?67927>.  Thanks to Colin
+	Watson for the report.
+
 2026-01-20  Deri James  <deri@chuzzlewit.myzen.co.uk>
 
 	* src/devices/gropdf/gropdf.1.man: Update copyright.
