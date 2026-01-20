@@ -1,3 +1,7 @@
+2026-01-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* gnulib: Update to stable/2026-01.
+
 2021-08-11  Douglas McIlroy <douglas.mcilroy@dartmouth.edu>
 
 	* src/prepic/pic/pic.1.man (Caveats): Explain dotted/dashed line
