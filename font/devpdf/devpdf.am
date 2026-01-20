@@ -20,7 +20,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 devpdf_srcdir = $(top_srcdir)/font/devpdf
-devpdf_builddir = $(top_builddir)/font/devpdf
+devpdf_builddir = font/devpdf
 devpdffont_descriptions_from_devps = \
   font/devpdf/S \
   font/devpdf/ZD \
