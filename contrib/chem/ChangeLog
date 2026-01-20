@@ -1,5 +1,19 @@
 2026-01-18  Norwid Behrnd <nbehrnd@yahoo.com>
 
+	* examples/mepacrine.chem: Update to describe mepacrine.  Now
+	the visual representation of the structure matches the
+	expectations set by the file name.  The visuals obtained by a
+	compilation meet the rules compiled by Brecher.[1]
+
+	[1] Brecher, J. Graphical Representation Standards for Chemical
+	    Structure Diagrams (IUPAC Recommendations 2008). Pure Appl.
+	    Chem 2008, 80 (2), 277–410.
+	    https://doi.org/10.1351/pac200880020277.
+
+	Continues fixing <https://savannah.gnu.org/bugs/?67922>.
+
+2026-01-18  Norwid Behrnd <nbehrnd@yahoo.com>
+
 	* examples/morphine.chem: Rename this...
 	* examples/mepacrine.chem: ...to this.
 	* chem.am (CHEM_EXAMPLES): Reflect rename.
