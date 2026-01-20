@@ -1,5 +1,25 @@
 2026-01-18  Norwid Behrnd <nbehrnd@yahoo.com>
 
+	* examples/morphine.chem: Resurrect, rewritting as a more
+	advanced example of how to use chem.  Make the visualization
+	follow the rules compiled by Brecher[1] in the orientation of
+	morphine (as illustration of rule P-13.8.1.1) and parental
+	hydride morphinane (in appendix 3) of IUAPC's Blue Book.[2,3]
+
+	[1] Brecher, J. Graphical Representation Standards for Chemical
+	    Structure Diagrams (IUPAC Recommendations 2008). Pure Appl.
+	    Chem. 2008, 80 (2), 277–410.
+	    https://doi.org/10.1351/pac200880020277.
+	[2] Nomenclature of Organic Chemistry: IUPAC Recommendations and
+	    Preferred Names 2013; Favre, H. A., Powell, W. H.,
+	    International Union of Pure and Applied Chemistry, Eds.;
+	    Royal Society of Chemistry: Cambridge, 2014.
+	[3] https://iupac.qmul.ac.uk/BlueBook/
+
+	Fixes <https://savannah.gnu.org/bugs/?67922>.
+
+2026-01-18  Norwid Behrnd <nbehrnd@yahoo.com>
+
 	* examples/mepacrine.chem: Update to describe mepacrine.  Now
 	the visual representation of the structure matches the
 	expectations set by the file name.  The visuals obtained by a
