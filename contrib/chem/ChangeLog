@@ -1,5 +1,30 @@
 2026-01-18  Norwid Behrnd <nbehrnd@yahoo.com>
 
+	* examples/reserpine.chem: Edit the visual representation of the
+	structure for aesthetic reasons.
+	- Contract substituents' labels where suitable;
+	- adjust bond angles; and
+	- complete the description of information about stereogenic
+	centres
+
+	... in line with rules compiled by Brecher,[1]  allowing a
+	simpler and shorter definition than the earlier one.  Retain the
+	orientation of the overall molecule previously set because this
+	matches the orientation of yohimban one can refer as parental
+	hydride depicted in appendix 3 of IUPAC's Blue Book.[2,3]
+
+	[1] Brecher, J. Graphical Representation Standards for Chemical
+	    Structure Diagrams (IUPAC Recommendations 2008). Pure Appl.
+	    Chem. 2008, 80 (2), 277–410.
+	    https://doi.org/10.1351/pac200880020277.
+	[2] Nomenclature of Organic Chemistry: IUPAC Recommendations and
+	    Preferred Names 2013; Favre, H. A., Powell, W. H.,
+	    International Union of Pure and Applied Chemistry, Eds.;
+	    Royal Society of Chemistry: Cambridge, 2014.
+	[3] https://iupac.qmul.ac.uk/BlueBook/
+
+2026-01-18  Norwid Behrnd <nbehrnd@yahoo.com>
+
 	* examples/morphine.chem: Resurrect, rewritting as a more
 	advanced example of how to use chem.  Make the visualization
 	follow the rules compiled by Brecher[1] in the orientation of
