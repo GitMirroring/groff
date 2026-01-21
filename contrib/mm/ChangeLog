@@ -2,7 +2,7 @@
 
 	* m.tmac: Initialize register `Le` to `1`, not `0`.  This makes
 	its default consistent with the `Lf`, `Lt`, and `Lx` registers
-	of similar purpose, but inconsistently with DWB 3.3 mm.
+	of similar purpose, but inconsistent with DWB 3.3 mm.
 	Explicitly assigning the `Le` register in a document's preamble
 	continues to work as it always has.
 
