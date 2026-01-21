@@ -44,6 +44,14 @@ A document explaining the basics of GNU Automake and its usage in groff
 is available in 'doc/automake.mom'; peruse a PDF rendering in
 'doc/automake.pdf' in your build tree.
 
+Tips:
+* Don't define macros, including those ending in `_srcdir` or
+  `_builddir`, unless you need to interpolate them elsewhere in the *.am
+  file.
+* If you need to define a `_builddir` macro, give it a plain literal
+  value; do _not_ lead it with an interpolation of `top_builddir` or
+  anything else.  Failure to heed this advice leads to out-of-tree build
+  failures with BSD Make.
 
 Testing
 -------
