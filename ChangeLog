@@ -1,3 +1,8 @@
+2026-01-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* font/devps/devps.am: Drop unused macro `devps_builddir`.
+	Automake itself doesn't require it, and we never interpolate it.
+
 2026-01-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* bootstrap: Resync with upstream.
