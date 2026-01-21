@@ -1,3 +1,13 @@
+2026-01-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* Makefile.am: Add "filename-length-max=99" to
+	`AUTOMAKE_OPTIONS` macro so that a "dist" build fails if the
+	file names get too long for a V7 tar archive.  Consequently, the
+	build should now fail earlier if "distcheck" would fail because
+	test scripts are missing because their file names were too long
+	to be archived.  See the GNU Automake 1.16.3 manual, §17.2 "List
+	of Automake options".
+
 2026-01-20  Bruno Haible <bruno@clisp.org>
 
 	* src/libs/libgroff/libgroff.am: Drop `libgroff_a_LIBADD` macro
