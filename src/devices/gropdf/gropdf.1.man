@@ -1543,12 +1543,10 @@ specified by
 .B Fade
 - (PDF 1.5) The new page gradually becomes visible through the
 old one.
-.LP
 .RE
 .IP
 .I duration
 is the length of the transition in seconds (default 1).
-.LP
 .IP
 .I dimension
 (Optional;
@@ -1559,7 +1557,6 @@ specified transition effect shall occur:
 Horizontal, or
 .B V
 Vertical.
-.LP
 .IP
 .I motion
 (Optional;
@@ -1571,7 +1568,6 @@ the specified transition effect:
 Inward from the edges of the page, or
 .B O
 Outward from the center of the page.
-.LP
 .IP
 .I direction
 (Optional;
@@ -1602,7 +1598,6 @@ which is relevant only for the
 transition when the value of
 .I scale
 is not 1.0.
-.LP
 .IP
 .I scale
 (Optional; PDF 1.5;
@@ -1622,7 +1617,6 @@ specifies an outward transition, the scale of the changes drawn
 shall progress from 1.0 to
 .I scale
 over the course of the transition
-.LP
 .IP
 .I bool
 (Optional; PDF 1.5;
@@ -1638,7 +1632,6 @@ previous value, also any trailing missing parameters are ignored.
 .IP
 .B Note:
 not all PDF Readers support any or all these transitions.
-.LP
 .
 .
 .\" ====================================================================
