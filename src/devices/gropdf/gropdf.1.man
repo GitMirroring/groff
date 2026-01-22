@@ -1046,21 +1046,28 @@ option.
 .BI "\[rs]X\[aq]pdf: markstart " /ANN-definition \[aq]
 .TQ
 .B \[rs]X\[aq]pdf: markend\[aq]
-Macros that support PDF features use these calls internally to
-start and stop (respectively) the placement of the
+Macros that support PDF features use these extension commands internally
+to bracket
 .I hotspot
-text; the user will have used a PDF macro which supports clickable
-text. The
-.I /ANN-definition
-is supplied internally, so user documents should use the appropriate
+text
+(a hyperlink).
+.
+User documents should call the
 .B \%.pdfhref
-call and never
-.B \[rs]X\[aq]pdf: markstart\[aq].
-The only time to mark the end of a hotspot is if you have called
+macro instead.
+.
+Their application is found in other macro packages
+(like
+.MR groff_man @MAN7EXT@
+or
+.MR groff_mdoc @MAN7EXT@ )
+that call
 .B \%.pdfhref
-with the -S flag, then use it to signal the end of the hotspot text
-using
-.B \[rs]X\[aq]pdf: markend\[aq]\[rs]m[\[rs]*[pdf:curcol]]
+with a
+.B \-S
+argument,
+then indicate the end of hotspot text with
+.BR \[rs]X\[aq]pdf: markend\[aq]\[rs]m[\[rs]*[pdf:curcol]] .
 .
 .
 .TP
@@ -1217,6 +1224,8 @@ see
 .RE
 .
 .
+.br
+.ne 6v
 .TP
 .B .pdfmarksuspend
 .TQ
@@ -1434,6 +1443,8 @@ document,
 but more esoteric uses are possible.
 .
 .
+.br
+.ne 5v
 .TP
 .BI ".pdftransition " "scope mode duration dimension motion direction\
  scale bool"
@@ -1829,7 +1840,8 @@ while clicking on the icon
 pops up a window containing
 .IR text .
 .
-.fl
+.
+.br
 .ne 12v
 .\" ====================================================================
 .SS "Parameters"
