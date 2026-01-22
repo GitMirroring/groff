@@ -296,8 +296,10 @@ implementations,
 .I grotty
 never outputs reverse line feeds.
 .
-There is therefore no need to filter its output through
-.MR col 1 .
+You need not filter its output
+through
+.MR col 1
+to remove them.
 .
 .
 .\" ====================================================================
