@@ -1042,6 +1042,40 @@ and
 option.
 .
 .
+.TP
+.BI "\[rs]X\[aq]pdf: markstart " /ANN-definition \[aq]
+.TQ
+.B \[rs]X\[aq]pdf: markend\[aq]
+Macros that support PDF features use these calls internally to
+start and stop (respectively) the placement of the
+.I hotspot
+text; the user will have used a PDF macro which supports clickable
+text. The
+.I /ANN-definition
+is supplied internally, so user documents should use the appropriate
+.B \%.pdfhref
+call and never
+.B \[rs]X\[aq]pdf: markstart\[aq].
+The only time to mark the end of a hotspot is if you have called
+.B \%.pdfhref
+with the -S flag, then use it to signal the end of the hotspot text
+using
+.B \[rs]X\[aq]pdf: markend\[aq]\[rs]m[\[rs]*[pdf:curcol]]
+.
+.
+.TP
+.B \[rs]X\[aq]pdf: xrev\[aq]
+Toggle the reversal of glyph direction.
+.
+This feature works by reversing all following text.
+Each separate letter is also mirrored.
+.
+One application is the reversal of glyphs in the Zapf Dingbats font.
+.
+To restore the normal glyph orientation,
+repeat the command.
+.
+.
 .LP
 .I gropdf
 supports several more device extensions using the
@@ -1181,29 +1215,6 @@ macro file is also available;
 see
 .MR groff_tmac @MAN5EXT@ .
 .RE
-.
-.
-.br
-.ne 3v
-.TP
-.BI "\[rs]X\[aq]pdf: markstart " /ANN-definition \[aq]
-.TQ
-.B \[rs]X\[aq]pdf: markend\[aq]
-Macros that support PDF features use these calls internally to
-start and stop (respectively) the placement of the
-.I hotspot
-text; the user will have used a PDF macro which supports clickable
-text. The
-.I /ANN-definition
-is supplied internally, so user documents should use the appropriate
-.B \%.pdfhref
-call and never
-.B \[rs]X\[aq]pdf: markstart\[aq].
-The only time to mark the end of a hotspot is if you have called
-.B \%.pdfhref
-with the -S flag, then use it to signal the end of the hotspot text
-using
-.B \[rs]X\[aq]pdf: markend\[aq]\[rs]m[\[rs]*[pdf:curcol]]
 .
 .
 .TP
@@ -1620,30 +1631,14 @@ transition style only) If
 .BR true ,
 the area that shall be flown
 in is rectangular and opaque.
-.LP
 .IP
 Any of the parameters may be
 replaced with a "." which signifies the parameter retains its
 previous value, also any trailing missing parameters are ignored.
-.LP
 .IP
 .B Note:
 not all PDF Readers support any or all these transitions.
 .LP
-.
-.
-.TP
-.\" XXX: No convenience macro for this one?  --GBR
-.B \[rs]X\[aq]pdf: xrev\[aq]
-Toggle the reversal of glyph direction.
-.
-This feature works by reversing all following text.
-Each separate letter is also mirrored.
-.
-One application is the reversal of glyphs in the Zapf Dingbats font.
-.
-To restore the normal glyph orientation,
-repeat the command.
 .
 .
 .\" ====================================================================
