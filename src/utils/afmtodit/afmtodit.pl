@@ -1,5 +1,5 @@
 #!@PERL@
-# Copyright (C) 1989-2010 Free Software Foundation, Inc.
+# Copyright 1989-2010 Free Software Foundation, Inc.
 #               2022-2024 G. Branden Robinson
 #      Written by James Clark (jjc@jclark.com)
 # Enhanced by: Werner Lemberg <wl@gnu.org>
