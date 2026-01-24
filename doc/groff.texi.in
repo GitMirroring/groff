@@ -1294,9 +1294,17 @@ elements that can be specified within the document.
 
 @pindex troffrc
 @pindex troffrc-end
-@command{@g@troff} also accepts a @option{-R} option, which is not
-accessible via @command{groff}.  This option prevents the loading of the
-@file{troffrc} and @file{troffrc-end} files.
+@command{@g@troff}
+also accepts a
+@option{-R}
+option,
+which is not accessible via
+@command{groff}.
+This option facilitates troubleshooting
+by preventing the loading of the
+@file{troffrc}
+and
+@file{troffrc-end} files.
 
 @item -s
 Run @command{gsoelim} preprocessor.
