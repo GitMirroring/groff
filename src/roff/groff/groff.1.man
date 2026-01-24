@@ -552,7 +552,7 @@ options use the metrics of X11 fonts.
 Disable postprocessing.
 .
 .I @g@troff
-output will appear on the standard output stream
+output appears on the standard output stream
 (unless suppressed with
 .BR \-z );
 see

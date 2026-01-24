@@ -1482,9 +1482,14 @@ the @option{-T X75}, @option{-T X75-12}, @option{-T X100}, and
 Suppress formatted output from @command{@g@troff}.
 
 @item -Z
-Disable postprocessing.  @command{@g@troff} output will appear on the
-standard output stream (unless suppressed with @option{-z}); see
-@ref{GNU @command{troff} Output} for a description of this format.
+Disable postprocessing.
+@command{@g@troff}
+output appears on the standard output stream
+(unless suppressed with
+@option{-z});
+see
+@ref{GNU @command{troff} Output}
+for a description of this format.
 @end table
 
 
