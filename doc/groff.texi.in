@@ -489,7 +489,7 @@ Documentation License''.
 * Invoking groff::
 * Tutorial for Macro Package Users::
 * Major Macro Packages::
-* GNU troff Reference::
+* GNU @command{troff} Reference::
 * File Formats::
 * Copying This Manual::
 * Request Index::
@@ -1850,7 +1850,7 @@ understand features like diversions, traps, and environments.  This
 chapter aims to familiarize you with basic concepts and mechanisms
 common to many macro packages (like ``displays'').  If you prefer a
 meticulous and comprehensive presentation of the language and its
-formatter, peruse @ref{GNU troff Reference} instead.
+formatter, peruse @ref{GNU @command{troff} Reference} instead.
 
 @menu
 * Basics::
@@ -5441,7 +5441,7 @@ Names constructed to implement arrays are of the form
 @c =====================================================================
 @c =====================================================================
 
-@node GNU troff Reference
+@node GNU @command{troff} Reference
 @anchor{gtroff Reference} @c 1.22.4
 @chapter GNU @command{troff} Reference
 @cindex reference, @command{gtroff}
