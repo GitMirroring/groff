@@ -27,6 +27,7 @@ doc_builddir = doc
 # the groff version number and the command prefix.  Use this in rules to
 # prepare formattable versions of them from .in files.
 DOC_SED = $(SED) \
+  -e "s;[@]PAGE[@];$(PAGE);" \
   -e "s;[@]VERSION[@];$(VERSION);" \
   -e "s;[@]g[@];$(g);g;"
 

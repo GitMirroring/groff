@@ -1,3 +1,10 @@
+2026-01-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* doc/doc.am: Update `DOC_SED` macro to also perform substituion
+	of "@PAGE@" with the contents of the `PAGE` (Auto)make macro.
+	We can thus refer directly to this configuration parameter in
+	our Texinfo manual without directing the reader to a man page.
+
 2026-01-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/groff_man.7.man.in (Document structure macros):
