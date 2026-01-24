@@ -991,15 +991,15 @@ the GNU @command{troff} formatter program, and a postprocessor.
 @cindex options
 
 @pindex groff
-@pindex gtroff
-@pindex gpic
-@pindex geqn
-@pindex ggrn
-@pindex grap
-@pindex gtbl
-@pindex gchem
-@pindex grefer
-@pindex gsoelim
+@pindex @g@troff
+@pindex @g@pic
+@pindex @g@eqn
+@pindex @g@grn
+@pindex @g@rap
+@pindex @g@tbl
+@pindex @g@chem
+@pindex @g@refer
+@pindex @g@soelim
 @pindex preconv
 @command{groff} runs the GNU @command{troff} program and, normally, a
 postprocessor appropriate to the selected device.  The default device is
@@ -1037,19 +1037,23 @@ groff [-abcCeEgGijklNpRsStUVXzZ] [-d @var{c}@var{s}]@
       [@var{file} @dots{}]
 @endExample
 
-@command{@g@troff} shares much of this interface; @command{groff} passes
-relevant options and operands to it.
+@command{@g@troff}
+shares much of this interface;
+@command{groff}
+passes relevant options and operands to it.
 
+@c We don't know the width of what @g@ interpolates, so indentation
+@c might be hinky.  Format for the common case of a null prefix.
 @Example
-gtroff [-abcCEiRSUz] [-f @var{font-family}] [-F @var{font-directory}]
-       [-I @var{inclusion-directory}] [-m @var{macro-package}]
-       [-M @var{macro-directory}] [-n @var{page-number}]@
+troff [-abcCEiRSUz] [-f @var{font-family}] [-F @var{font-directory}]
+      [-I @var{inclusion-directory}] [-m @var{macro-package}]
+      [-M @var{macro-directory}] [-n @var{page-number}]@
 [-o @var{page-list}]
-       [-r @var{c}@var{numeric-expression}]
-       [-r @var{register}=@var{numeric-expression}]@
+      [-r @var{c}@var{numeric-expression}]
+      [-r @var{register}=@var{numeric-expression}]@
 [-T @var{output-device}]
-       [-w @var{warning-category}] [-W @var{warning-category}]
-       [@var{file} @dots{}]
+      [-w @var{warning-category}] [-W @var{warning-category}]
+      [@var{file} @dots{}]
 @endExample
 
 Options that don't take arguments can be clustered after a
@@ -1098,11 +1102,13 @@ The above description should not be considered a specification; the
 details of @option{-a} output are subject to change.
 
 @item -b
-Write a backtrace reporting the state of @command{@g@troff}'s input parser
-to the standard error stream with each diagnostic message.  The line
-numbers given in the backtrace might not always be correct, because
-@command{@g@troff}'s idea of line numbers can be confused by requests that
-append to
+Write a backtrace reporting the state of
+@command{@g@troff}'s
+input parser to the standard error stream with each diagnostic message.
+The line numbers given in the backtrace might not always be correct,
+because
+@command{@g@troff}'s
+idea of line numbers can be confused by requests that append to
 @c XXX: strings or (??? strings never contain newlines)
 macros.
 
@@ -1140,9 +1146,15 @@ implies @option{-k}.
 Run @command{geqn} preprocessor.
 
 @item -E
-Inhibit @command{@g@troff} error messages.  This option does @emph{not}
-suppress messages sent to the standard error stream by documents or
-macro packages using @code{tm} or related requests.
+Inhibit
+@command{@g@troff}
+error messages.
+This option does
+@emph{not}
+suppress messages sent to the standard error stream
+by documents or macro packages using
+@code{tm}
+or related requests.
 
 @item -f @var{fam}
 Use @var{fam} as the default font family.  @xref{Font Families}.
@@ -1175,8 +1187,13 @@ implies @option{-g} and @option{-s}.
 file name arguments.
 
 @item
-@command{@g@troff} searches for files named as operands in its command
-line and as arguments to @code{psbb}, @code{so}, and @code{soquiet}
+@command{@g@troff}
+searches for files named as operands in its command line
+and as arguments to
+@code{psbb},
+@code{so},
+and
+@code{soquiet}
 requests.
 
 @anchor{Embedding PDF} @c 1.22.4
@@ -1264,8 +1281,10 @@ Output only pages in @var{list}, which is a comma-separated list of page
 ranges; @samp{@var{n}} means page@tie{}@var{n}, @samp{@var{m}-@var{n}}
 means every page between @var{m} and@tie{}@var{n}, @samp{-@var{n}} means
 every page up to@tie{}@var{n}, @samp{@var{n}-} means every page from
-@var{n}@tie{}on.  @command{@g@troff} stops processing and exits after
-formatting the last page enumerated in @var{list}.
+@var{n}@tie{}on.
+@command{@g@troff}
+stops processing and exits after formatting the last page enumerated in
+@var{list}.
 
 @item -p
 Run @command{gpic} preprocessor.
@@ -1322,18 +1341,34 @@ see
 @option{-U}
 below for its opposite.
 Safer mode is enabled by default.
-Explicitly specifying @code{-S} causes @command{@g@troff} to ignore any
-subsequent @code{-U} option.
+Explicitly specifying
+@code{-S}
+causes
+@command{@g@troff}
+to ignore any subsequent
+@code{-U}
+option.
 
 @item -t
 Run @command{gtbl} preprocessor.
 
 @item -T @var{dev}
-Prepare output for device @var{dev}.  @command{groff} passes the
-@option{-T} option and its argument to @command{@g@troff}, then (unless
-the @option{-Z} option is used) runs an output driver to convert
-@command{@g@troff}'s output to a form appropriate for @var{dev}.  The
-following output devices are available.
+Prepare output for device
+@var{dev}.
+@command{groff}
+passes the
+@option{-T}
+option and its argument to
+@command{@g@troff},
+then
+(unless the
+@option{-Z}
+option is used)
+runs an output driver to convert
+@command{@g@troff}'s
+output to a form appropriate for
+@var{dev}.
+The following output devices are available.
 
 @table @code
 @item ps
@@ -1479,7 +1514,8 @@ the @option{-T X75}, @option{-T X75-12}, @option{-T X100}, and
 @option{-T X100-12} options use the metrics of X11 fonts.
 
 @item -z
-Suppress formatted output from @command{@g@troff}.
+Suppress formatted output from
+@command{@g@troff}.
 
 @item -Z
 Disable postprocessing.
@@ -1524,12 +1560,29 @@ the names of programs it provides that had counterparts in
 @acronym{AT&T} @code{troff}, so that name collisions are avoided at run
 time.  The default prefix is empty.
 
-When used, this prefix is conventionally the letter @samp{g}.
-For example, GNU @command{troff} would be installed as @command{@g@troff}.
-Besides @command{troff}, the prefix applies to the formatter wrapper
-@command{nroff}; the preprocessors @command{eqn}, @command{grn},
-@command{pic}, @command{refer}, @command{tbl}, and @command{soelim}; and
-the utilities @command{indxbib} and @command{lookbib}.
+When used,
+this prefix is conventionally the letter @samp{g}.
+For example,
+GNU
+@command{troff} @c GNU
+would be installed as
+@command{@g@troff}.
+Besides
+@command{troff}, @c generic
+the prefix applies to the formatter wrapper
+@command{nroff}; @c generic (but not a wrapper in AT&T troff)
+the preprocessors
+@command{eqn}, @c generic
+@command{grn}, @c generic
+@command{pic}, @c generic
+@command{refer}, @c generic
+@command{tbl}, @c generic
+and
+@command{soelim}; @c generic
+and the utilities
+@command{indxbib} @c generic
+and
+@command{lookbib}. @c generic
 
 @item GROFF_ENCODING
 @tindex GROFF_ENCODING@r{, environment variable}
@@ -1544,13 +1597,19 @@ runs @code{preconv} without an @option{-e} option.  @command{groff}'s
 @item GROFF_FONT_PATH
 @tindex GROFF_FONT_PATH@r{, environment variable}
 Seek the selected output device's directory of device and font
-description files in this list of directories.  @xref{Font Directories},
-@cite{@g@troff@r{(1)}}, and @cite{groff_font@r{(5)}}.
+description files in this list of directories.
+@xref{Font Directories},
+@cite{@g@troff@r{(1)}},
+and
+@cite{groff_font@r{(5)}}.
 
 @item GROFF_TMAC_PATH
 @tindex GROFF_TMAC_PATH@r{, environment variable}
-Seek macro packages in this list of directories.  @xref{Macro
-Directories}, @cite{@g@troff@r{(1)}}, and @cite{groff_tmac@r{(5)}}.
+Seek macro packages in this list of directories.
+@xref{Macro Directories},
+@cite{@g@troff@r{(1)}},
+and
+@cite{groff_tmac@r{(5)}}.
 
 @item GROFF_TMPDIR
 @tindex GROFF_TMPDIR@r{, environment variable}
@@ -1645,11 +1704,14 @@ The user's home directory, found in the @env{HOME} environment variable.
 @cindex directory, site-local
 @cindex platform-specific directory
 @cindex directory, platform-specific
-A site-local platform-dependent directory, a site-local
-platform-independent directory, and a stock directory.  Locations
-corresponding to your installation are listed in section ``Environment''
-of @cite{@g@troff@r{(1)}}.  If not otherwise configured, they are as
-follows.
+A site-local platform-dependent directory,
+a site-local platform-independent directory,
+and a stock directory.
+Locations corresponding to your installation
+are listed in section ``Environment'' of
+@cite{@g@troff@r{(1)}}.
+If not otherwise configured,
+they are as follows.
 
 @Example
 /usr/local/lib/groff/site-tmac
@@ -1715,9 +1777,12 @@ Directories listed in the @env{GROFF_FONT_PATH} environment variable.
 @item
 @cindex site-local directory
 @cindex directory, site-local
-A site-local directory and a stock directory.  Locations corresponding
-to your installation are listed in section ``Environment'' of
-@cite{@g@troff@r{(1)}}.  If not otherwise configured, they are as follows.
+A site-local directory and a stock directory.
+Locations corresponding to your installation
+are listed in section ``Environment'' of
+@cite{@g@troff@r{(1)}}.
+If not otherwise configured,
+they are as follows.
 
 @Example
 /usr/local/share/groff/site-font
@@ -1822,7 +1887,7 @@ way to which @acronym{AT&T} @code{troff} users were accustomed, one
 would type (or script) a pipeline.
 
 @Example
-$ gpic foo.me | gtbl | gtroff -m e -T utf8 | grotty
+$ @g@pic foo.me | @g@tbl | @g@troff -m e -T utf8 | grotty
 @endExample
 
 Shorten this pipeline to an equivalent command using @command{groff}.
