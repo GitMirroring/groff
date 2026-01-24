@@ -901,11 +901,18 @@ Most examples are of @code{roff} language input that would be placed in
 a text file.  Occasionally, we start an example with a @samp{$}
 character to indicate a shell prompt, as seen above.
 
-You are encouraged to try the examples yourself, and to alter them to
-better learn @code{groff}'s behavior.  Our examples frequently need to
-direct the formatter to set a line length (with @samp{.ll}) that will
-fit within the page margins of this manual.  We mention this so that you
-know why it is there before we discuss the @code{ll} request
+We encourage you to to try the examples yourself,
+and to alter them to better learn
+@code{groff}'s
+behavior.
+Our examples sometimes need to direct the formatter to set a line length
+(with
+@samp{.ll})
+that fits within the page margins of this manual.
+We mention this so that you know why it is there
+before we discuss the
+@code{ll}
+request
 formally.@footnote{@xref{Line Layout}.}
 
 @cindex man pages
