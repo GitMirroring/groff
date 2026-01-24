@@ -1746,13 +1746,26 @@ be customized as part of the build-time configuration process.
 @cindex page orientation, landscape
 
 @c BEGIN Keep parallel with groff(1), subsection "Paper format".
-A device's page dimensions in the aforementioned @file{DESC} are used if
-declared there.  @code{groff}'s build process configures a default page
-format and writes it to typesetters' @file{DESC} files.  This
-installation's default is documented in @cite{@g@troff@r{(1)}}.  If the
-@file{DESC} file lacks this information, the formatter and output driver
-use a page length of @samp{11i} (eleven inches) for compatibility with
-@acronym{AT&T} @code{troff}.
+The formatter reads the device description file
+@file{DESC}
+for the selected output device when it starts;
+page dimensions declared there are used if present.
+
+@code{groff}'s @c system
+build process configures a default page format
+and writes it to typesetters'
+@file{DESC}
+files.
+This installation defaults to
+@samp{@PAGE@}. @c unscrew text editor syntax highlighting: }
+If the
+@file{DESC}
+file lacks this information,
+the formatter and output driver use a page length of
+@samp{11i}
+(eleven inches)
+for compatibility with @acronym{AT&T}
+@code{troff}.
 
 In the formatter, the @code{pl} request changes the page length, but
 macro packages often do not support alteration of the paper format
