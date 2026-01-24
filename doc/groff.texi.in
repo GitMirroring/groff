@@ -829,14 +829,22 @@ different provenance, this prefix is omitted; GNU @command{troff} is the
 only @code{troff} available.  Exceptionally, @samp{groff} always retains
 its leading @samp{g}.
 
-In this document, we consequently sometimes say @samp{@g@troff} when
-talking about the GNU @command{troff} command.
-@c XXX: Not for much longer... -- GBR
-We call other @code{troff} systems @acronym{AT&T} @code{troff} because
-that is the common origin of almost all @code{troff}
-implementations@footnote{Besides @code{groff}, @code{neatroff} is an
-exception.} (with more or less compatible changes).  Similarly, we say
-@samp{gpic}, @samp{geqn}, and so on.
+We call
+non-GNU
+@code{troff} @c GNU (system)
+systems
+@acronym{AT&T} @code{troff} @c AT&T
+because that is the common origin of almost all
+@code{troff} @c generic
+implementations@footnote{Besides @code{groff},
+@code{neatroff}
+is an exception.}
+(with more or less compatible changes).
+Similarly,
+we say
+@samp{gpic},
+@samp{geqn},
+and so on.
 
 @cindex @key{RET} (keycap notation)
 @cindex @key{SPC} (keycap notation)
