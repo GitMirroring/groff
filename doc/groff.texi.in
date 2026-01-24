@@ -22938,7 +22938,7 @@ for@tie{}@var{n}.
 @c BEGIN TODO: Make parallel with groff_out(5).
 @anchor{gtroff Output} @c 1.23
 @node GNU @command{troff} Output
-@section @command{gtroff} Output
+@section GNU @command{troff} Output
 @cindex @command{gtroff}, output
 @cindex output, @command{gtroff}
 
