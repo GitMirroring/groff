@@ -1468,7 +1468,7 @@ Suppress formatted output from @command{gtroff}.
 @item -Z
 Disable postprocessing.  @command{gtroff} output will appear on the
 standard output stream (unless suppressed with @option{-z}); see
-@ref{gtroff Output} for a description of this format.
+@ref{GNU @command{troff} Output} for a description of this format.
 @end table
 
 
@@ -20053,7 +20053,7 @@ GNU
 @command{troff}
 output as parameters to an
 @w{@samp{x X}}
-device extension command.@footnote{@xref{gtroff Output}.}
+device extension command.@footnote{@xref{GNU @command{troff} Output}.}
 The output driver or other postprocessor interprets
 @var{character-sequence}
 as it sees fit.
@@ -22290,7 +22290,7 @@ The next two sections describe their format.
 
 @menu
 * Device and Font Description Files::
-* gtroff Output::
+* GNU @command{troff} Output::
 @end menu
 
 
@@ -22936,7 +22936,8 @@ for@tie{}@var{n}.
 @c =====================================================================
 
 @c BEGIN TODO: Make parallel with groff_out(5).
-@node gtroff Output
+@anchor{gtroff Output} @c 1.23
+@node GNU @command{troff} Output
 @section @command{gtroff} Output
 @cindex @command{gtroff}, output
 @cindex output, @command{gtroff}
