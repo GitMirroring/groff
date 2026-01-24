@@ -2229,8 +2229,8 @@ often are.  Lists may or may not be.
 @cindex keeps (introduction)
 A @slanted{keep} is a group of output lines, often a display, that is
 formatted on a single page if possible; it causes a page break to happen
-early so as to not interrupt the kept material.  Packages for setting
-man pages support example displays but not keeps.
+early if necessary to not interrupt the kept material.  Packages for
+setting man pages support example displays but not keeps.
 @c XXX: man, mdoc keep support planned
 
 @cindex keep, floating
