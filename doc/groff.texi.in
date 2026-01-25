@@ -21160,9 +21160,15 @@ For example,
 @endExample
 
 @noindent
-causes a warning if @code{break} warnings are not suppressed and
-@command{@g@troff} must add 0.2@dmn{m} or more for each inter-word space
-in a line.  @xref{Warnings}.
+causes a warning if
+@code{break}
+warnings are not suppressed and
+GNU
+@command{troff} @c GNU
+must add
+0.2@dmn{m}
+or more for each inter-word space in a line.
+@xref{Warnings}.
 @endDefreq
 
 @DefreqList {warn, [@Var{n}]}
