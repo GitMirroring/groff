@@ -23103,21 +23103,39 @@ for@tie{}@var{n}.
 @cindex output, @command{@g@troff}
 
 We now describe the @code{groff} device-independent page description
-language produced by GNU @command{troff}.
+language produced by GNU
+@command{troff}. @c GNU
 
 @c BEGIN Keep parallel with subsection "Background" of groff_out(5).
-As @command{groff} is a wrapper program around GNU @command{troff} and
-automatically runs an output driver, users seldom encounter this format
-under normal circumstances.  @command{groff} offers the option
-@option{-Z} to inhibit postprocessing such that GNU @command{troff}'s
+As
+@command{groff}
+is a wrapper program around
+GNU
+@command{troff} @c GNU
+and
+automatically runs an output driver,
+users seldom encounter this format under normal circumstances.
+@command{groff}
+offers the option
+@option{-Z}
+to inhibit postprocessing such that
+GNU
+@command{troff}'s @c GNU
 output is sent to the standard output stream just as it is when running
-GNU @command{troff} directly.
+GNU
+@command{troff}
+directly.
 
-The purpose of device-independent output is to facilitate the
-development of postprocessors by providing a common programming
-interface for all devices.  It is a distinct, and much simpler, language
-from that of the formatter, @command{troff}.  The device-independent
-output can be thought of as a ``page description language''.
+The purpose of device-independent output
+is to facilitate the development of postprocessors
+by providing a common programming interface to all devices.
+It is a distinct,
+and much simpler,
+language
+from that of the formatter,
+@command{troff}. @c generic
+The device-independent output can be thought of
+as a ``page description language''.
 
 @cindex @command{troff} page description language
 @cindex page description language, @command{troff}
@@ -23127,27 +23145,38 @@ output can be thought of as a ``page description language''.
 @cindex format, @command{troff} output
 @cindex intermediate output
 @cindex output, intermediate
-In the following discussion, the term @dfn{troff output} describes what
-is output by GNU @command{troff}, while @dfn{page description} denotes
-the language accepted by the parser that interprets this output for the
-output drivers.
+In the following discussion,
+the term
+@dfn{troff output}
+describes what is output by
+GNU
+@command{troff}, @c GNU
+while
+@dfn{page description}
+denotes the language accepted
+by the parser that interprets this output for the output drivers.
 This parser handles whitespace more flexibly than @acronym{AT&T}
 @command{troff}'s
 implementation,
 recognizes a GNU extension to the language,
-and supports an obsolete construct for compatibility;
+and supports a legacy compressed encoding of a subset of commands
+for compatibility;
 otherwise,
 the formats are the same.@footnote{The parser
 for device-independent output can be found in the file
 @file{@var{groff-source-dir}/@/src/@/libs/@/libdriver/@/input.cpp}.}
 
-When Brian Kernighan designed @acronym{AT&T} @code{troff}'s
-device-independent page description language circa 1980, he had to
-balance readability and maintainability against severe constraints on
-file size and transmission speed to the output device.@footnote{See ``A
-Typesetter-independent TROFF'', Bell Labs CSTR@tie{}#97, 1982.}  A
-decade later, when James Clark wrote @code{groff}, these constraints
-were no longer as tight.
+When Brian Kernighan designed @acronym{AT&T}
+@command{troff}'s @c AT&T
+device-independent page description language circa 1980,
+he had to balance
+readability and maintainability against severe constraints on file size
+and transmission speed to the output device.@footnote{See ``A
+Typesetter-independent TROFF'', Bell Labs CSTR@tie{}#97, 1982.}
+A decade later,
+when James Clark wrote
+@code{groff},
+these constraints were no longer as tight.
 @c END Keep parallel with subsection "Background" of groff_out(5).
 
 @menu
@@ -23175,9 +23204,7 @@ In the following discussion,
 the term
 @dfn{command}
 always refers to this device-independent output language,
-and never to the
-@code{groff}
-language intended for direct use by document authors.
+and never to the language intended for direct use by document authors.
 Device-independent output commands comprise several categories:@:
 glyph output;
 font,

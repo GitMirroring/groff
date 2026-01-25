@@ -118,9 +118,11 @@ after these commands, otherwise the position is not changed.
 .
 .\" BEGIN Keep parallel with introductory paragraph of the "Language
 .\" Concepts" node in doc/groff.texi.in.
-The fundamental operation of the
-.MR @g@troff @MAN1EXT@
-formatter is the translation of the
+The fundamental operation of the GNU
+.I troff \" GNU
+formatter,
+.MR @g@troff @MAN1EXT@ ,
+is the translation of the
 .MR groff @MAN7EXT@
 input language
 into a series of instructions concerned primarily
@@ -131,9 +133,7 @@ In the following discussion,
 the term
 .I command
 refers to this device-independent output language,
-never to the
-.MR groff @MAN7EXT@
-language intended for use by document authors.
+never to the language intended for use by document authors.
 .
 Device-independent output commands comprise several categories:
 glyph output;
@@ -157,8 +157,8 @@ and embed URL hyperlinks in supported output formats.
 .SS Background
 .\" ====================================================================
 .
-.\" BEGIN Keep parallel with paragraphs after the first in the "gtroff
-.\" Output" node in doc/groff.texi.in.
+.\" BEGIN Keep parallel with paragraphs after the first in the "GNU
+.\" troff Output" node in doc/groff.texi.in.
 As
 .MR groff @MAN1EXT@
 is a wrapper program around GNU
@@ -178,14 +178,16 @@ directly.
 .
 .
 .P
-The purpose of device-independent output is to facilitate the
-development of postprocessors by providing a common programming
-interface for all devices.
+The purpose of device-independent output
+is to facilitate the development of postprocessors
+by providing a common programming interface for all devices.
 .
-It is a distinct, and much simpler, language from that of the formatter,
+It is a distinct,
+and much simpler,
+language from that of the formatter,
 .IR troff . \" generic
-The device-independent output can be thought of as a \[lq]page
-description language\[rq].
+The device-independent output can be thought of
+as a \[lq]page description language\[rq].
 .
 .
 .P
@@ -195,7 +197,7 @@ the term
 describes what is output by GNU
 .IR troff , \" GNU
 while
-.I "device-independent output"
+.I "page description"
 denotes the language accepted by the parser that interprets this output
 for the output drivers.
 .
@@ -203,7 +205,8 @@ This parser handles whitespace more flexibly than AT&T
 .IR troff 's \" AT&T
 implementation,
 recognizes a GNU extension to the language,
-and supports an obsolete construct for compatibility;
+and supports a legacy compressed encoding of a subset of commands
+for compatibility;
 otherwise,
 the formats are the same.
 .
