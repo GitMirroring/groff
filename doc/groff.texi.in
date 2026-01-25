@@ -12634,13 +12634,27 @@ contains glyph @code{foo} with a special shape fitting to font
 @code{BAR}.  After executing @code{fspecial}, font @code{BAR} is loaded
 at font position@tie{}1, and @code{BAZ} at position@tie{}2.
 
-We now switch to a new font @code{XXX}, trying to access glyph
-@code{foo} that is assumed to be missing.  There are neither
-font-specific special fonts for @code{XXX} nor any other fonts made
-special with the @code{special} request, so @command{@g@troff} starts the
-search for special fonts in the list of already mounted fonts, with
-increasing font positions.  Consequently, it finds @code{BAZ} before
-@code{FOO} even for @code{XXX}, which is not the intended behaviour.
+We now switch to a new font
+@code{XXX},
+trying to access glyph
+@code{foo}
+that is assumed to be missing.
+There are neither font-specific special fonts for
+@code{XXX}
+nor any other fonts made special with the
+@code{special}
+request,
+so the formatter starts the search for special fonts
+in the list of already mounted fonts,
+with increasing font positions.
+Consequently,
+it finds
+@code{BAZ}
+before
+@code{FOO}
+even before
+@code{XXX},
+which is not the intended behaviour.
 @end itemize
 
 @xref{Device and Font Description Files}, and @ref{Special Fonts}, for
@@ -12661,10 +12675,18 @@ man -T dvi groff_char > groff_char.dvi
 
 @noindent
 to obtain those available with the DVI device and default font
-configuration.@footnote{Not all versions of the @code{man} program
-support the @option{-T} option; use the subsequent example for an
-alternative.}  If you want to use an additional macro package to change
-the fonts used, @code{groff} (or @command{@g@troff}) must be run directly.
+configuration.@footnote{Not all versions of the
+@code{man}
+program support the
+@option{-T}
+option;
+use the subsequent example for an alternative.}
+If you want to use an additional macro package to change the fonts used,
+you must run
+@command{groff}
+(or
+@command{@g@troff})
+directly.
 
 @Example
 groff -T dvi -m ec -m an groff_char.7 > groff_char.dvi
@@ -13200,21 +13222,42 @@ X
     @result{} Z
 @endExample
 
-The @code{fchar} request defines a fallback glyph: @command{@g@troff} only
-checks for glyphs defined with @code{fchar} if it cannot find the glyph
-in the current font.  @command{@g@troff} carries out this test before
-checking special fonts.
+The
+@code{fchar}
+request defines a fallback glyph:@:
+@command{@g@troff}
+checks for glyphs defined with
+@code{fchar}
+only if it cannot find the glyph in the current font.
+@command{@g@troff}
+performs this test before checking special fonts.
 
-@code{fschar} defines a fallback glyph for font@tie{}@var{f}:
-@command{@g@troff} checks for glyphs defined with @code{fschar} after the
-list of fonts declared as font-specific special fonts with the
-@code{fspecial} request, but before the list of fonts declared as global
-special fonts with the @code{special} request.
+@code{fschar}
+defines a fallback glyph for font@tie{}@var{f}:@:
+@command{@g@troff}
+checks for glyphs defined with
+@code{fschar}
+after the list of fonts declared as font-specific special fonts
+with the
+@code{fspecial}
+request,
+but before the list of fonts declared as global special fonts
+with the
+@code{special}
+request.
 
-Finally, the @code{schar} request defines a global fallback glyph:
-@command{@g@troff} checks for glyphs defined with @code{schar} after the
-list of fonts declared as global special fonts with the @code{special}
-request, but before the already mounted special fonts.
+Finally,
+the
+@code{schar}
+request defines a global fallback glyph:@:
+@command{@g@troff}
+checks for glyphs defined with
+@code{schar}
+after the list of fonts declared as global special fonts
+with the
+@code{special}
+request,
+but before the already mounted special fonts.
 
 @xref{Character Classes}.
 
