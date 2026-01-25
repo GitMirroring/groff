@@ -15206,7 +15206,6 @@ True if @var{color} is defined.
 @cindex TTY, conditional output for
 @cindex terminal, conditional output for
 True if the document is being processed in @code{nroff} mode.
-@xref{@code{troff} and @code{nroff} Modes}.
 
 @item o
 True if the current page is odd-numbered.
@@ -15220,7 +15219,6 @@ translation is applied.
 
 @item t
 True if the document is being processed in @code{troff} mode.
-@xref{@code{troff} and @code{nroff} Modes}.
 
 @pindex vtroff
 @item v
