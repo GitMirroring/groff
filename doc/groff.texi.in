@@ -15181,12 +15181,8 @@ is available;
 is an
 ordinary,
 special
-(@samp{\(@var{xx}}
-or
-@samp{\[@var{xxx}]}),
 or
 indexed
-(@samp{\N'@var{xxx}'})
 character,
 whether defined by a font description file or a request.
 
