@@ -5786,7 +5786,7 @@ or are transparent to sentence endings
 with the
 @code{cflags}
 request
-(@pxref{Using Symbols}).
+(@pxref{Characters and Glyphs}).
 Use the
 @code{ss}
 request
@@ -11844,7 +11844,7 @@ attributes).
 * Selecting Fonts::
 * Font Families::
 * Font Positions::
-* Using Symbols::
+* Characters and Glyphs::
 * Character Classes::
 * Special Fonts::
 * Artificial Fonts::
@@ -12285,28 +12285,41 @@ followed, although GNU @code{troff} does not enforce this strictly.
 
 @c ---------------------------------------------------------------------
 
-@node Using Symbols
+@node Characters and Glyphs
+@anchor{Using Symbols} @c 1.23.0
 @anchor{Special Characters} @c 1.22.4
-@subsection Using Symbols
-@cindex using symbols
-@cindex symbols, using
+@subsection Characters and Glyphs
+@cindex using symbols (characters and glyphs)
+@cindex symbols (characters and glyphs), using
 
 @cindex glyph
 @cindex character
 @cindex glyph, distinguished from character
 @cindex character, distinguished from glyph
 @cindex ligature
-A @dfn{glyph} is a graphical representation of a @dfn{character}.  While
-a character is an abstraction of semantic information, a glyph is
-something that can be seen on screen or paper.  A character has many
-possible representation forms (for example, the character `A' can be
-written in an upright or slanted typeface, producing distinct
-glyphs).  Sometimes, a sequence of characters map to a single glyph:@:
-this is a @dfn{ligature}---the most common is `fi'.
+A glyph is a graphical representation of a character.
+Whereas a
+@dfn{character}
+is an abstraction of semantic information,
+a
+@dfn{glyph}
+is an intelligble mark visible on screen or paper.
+A character has many possible representation forms;
+for example,
+the character `A'
+can be written in an upright or slanted typeface,
+producing distinct glyphs.
+Sometimes,
+a sequence of characters map to a single glyph:@:
+this is a
+@dfn{ligature}---the most common is `fi'.
 
-Space characters never become glyphs in GNU @code{troff}.  If not
-discarded (as when trailing on text lines), they are represented by
-horizontal motions in the output.
+Space characters never become glyphs in
+GNU
+@code{troff}. @c GNU
+If not discarded
+(as when trailing text lines),
+horizontal motions represent them in the output.
 
 @cindex symbol
 @cindex special fonts
@@ -12314,52 +12327,192 @@ horizontal motions in the output.
 @pindex DESC
 @cindex @code{special} request, and glyph search order
 @cindex @code{fspecial} request, and glyph search order
-A @dfn{symbol} is simply a named glyph.  Within @command{gtroff}, all
-glyph names of a particular font are defined in its font file.  If the
-user requests a glyph not available in this font, @command{gtroff} looks
-up an ordered list of @dfn{special fonts}.  By default, the PostScript
-output device supports the two special fonts @samp{SS} (slanted symbols)
-and @samp{S} (symbols) (the former is looked up before the latter).
-Other output devices use different names for special fonts.  Fonts
-mounted with the @code{fonts} keyword in the @file{DESC} file are
-globally available.  To install additional special fonts locally (i.e.,
-for a particular font), use the @code{fspecial} request.
+@c TODO: XXX: Kill off this "symbol" terminology.
+@c A
+@c @dfn{symbol}
+@c is simply a named glyph.
+In a
+@code{troff} @c system
+system,
+a font description file
+(recall @ref{Font Directories})
+lists all of the glyphs a particular font provides.
+If the user requests a glyph
+not available in the currently selected font,
+the formatter looks it up an ordered list of
+@dfn{special fonts}.
+By default,
+the
+@samp{ps}
+(PostScript)
+and
+@samp{pdf}
+output devices support the two special fonts
+@samp{SS}
+(slanted symbol)
+and
+@samp{S} (symbol);
+and these devices'
+@file{DESC}
+files arrange them such that the formatter searches
+the former before the latter.
+Other output devices use different names for special fonts.
+Fonts mounted with the
+@code{fonts}
+keyword in the
+@file{DESC}
+file are globally available.
+GNU
+@command{troff}'s @c GNU
+@code{special}
+and
+@code{fspecial}
+requests alter the list of fonts treated as special on a general basis,
+or only when a certain font is currently selected,
+respectively.
 
-GNU @command{troff} searches for a symbol as follows.
+@c XXX: groff(7) defines "ordinary character" in section "Identifiers".
+The formatter supports three kinds of character.
+An
+@dfn{ordinary character}
+is the most commonly used,
+has no special syntax,
+and typically represents itself.@footnote{Depending on the breadth
+of the output device's glyph repertoire,
+the characters
+@code{'},
+@code{-},
+@code{^},
+@code{`},
+and
+@code{~}
+can be exceptions to this rule.
+@code{"}
+and
+@code{\}
+are not exceptions,
+but because they are syntactically meaningful to the formatter,
+access to their glyphs
+may require use of special characters
+(or changing or disabling the escape character).
+See @cite{groff_char@r{(7)}}.}
+Interpolate a
+@dfn{special character}
+with the
+@samp{\[@var{xxx}]}
+or
+@samp{\C'@var{xxx}'}
+escape sequence syntax,
+where
+@var{xxx}
+is an identifer.
+An
+@dfn{indexed character}
+bypasses most character-to-glyph resolution logic,
+uses the
+@samp{\N'@var{i}'}
+syntax,
+and selects a glyph from the currently selected font
+by its integer-valued position
+@var{i}
+in the output device's representation of that font.@footnote{Fonts
+do not necessarily arrange their glyphs
+per a standard character encoding.}
+
+@dfn{User-defined characters}
+are similar to string definitions,@footnote{@xref{Strings}.}
+and permit extension of or substitution within the character repertoire.
+Any ordinary,
+special,
+or indexed character can be user-defined.
+The
+@code{char},
+@code{fchar},
+@code{schar},
+and
+@code{fschar}
+requests create user-defined characters
+employed at various stages of the character-to-glyph resolution process.
+
+GNU
+@command{troff} @c GNU
+employs the following procedure to resolve an input character
+into a glyph.
+User-defined characters make this resolution process recursive.
+The first step that succeeds ends the resolution procedure
+for the character being formatted,
+which may not be the last in the sequence interpolated
+by a user-defined character.
 
 @itemize @bullet
 @item
-If the symbol has been defined with the @code{char} request, use it.
-This hides a symbol with the same name in the current font.
+Interpolate the definition of any character
+defined by the
+@code{char}
+request
+and apply this procedure to each character in its definition.
 
 @item
-Check the current font.
+Check the current font for a glyph corresponding to the character.
 
 @item
-If the symbol has been defined with the @code{fchar} request, use it.
+Interpolate the definition of any user-defined character matching
+defined by the
+@code{fchar}
+request
+and apply this procedure to each character in its definition.
 
 @item
 Check whether the current font has a font-specific list of special
-fonts; test all fonts in the order of appearance in the last
-@code{fspecial} call if appropriate.
+fonts;
+if so,
+check the each font therein,
+in the order determined by the last applicable
+@code{fspecial}
+request,
+for a glyph corresponding to the character.
 
 @item
-If the symbol has been defined with the @code{fschar} request for the
-current font, use it.
+Interpolate the definition of any character
+defined by the
+@code{fschar}
+request for the currently selected font,
+and apply this procedure to each character in its definition.
 
 @item
-Check all fonts in the order of appearance in the last @code{special}
-call.
+Check each font in the list configured by the most recently issued
+@code{special}
+request for a glyph corresponding to the character.
 
 @item
-If the symbol has been defined with the @code{schar} request, use it.
+Interpolate the definition of any character
+defined by the
+@code{sschar}
+request
+and apply this procedure to each character in its definition.
 
 @item
-As a last resort, consult all fonts loaded up to now for special fonts
-and check them, starting with the lowest font number.  This can
-sometimes lead to surprising results since the @code{fonts} line in
-the @file{DESC} file often contains empty positions, which are filled
-later on.  For example, consider the following:
+Finally,
+iterate through the list of mounted fonts by position;
+recall @xref{Font Positions}.
+For each mounted font,
+if that font bears the
+@code{special}
+directive,@footnote{@xref{Device and Font Description Files}.}
+check it for a glyph corresponding to the character.
+This stage of the resolution process
+can sometimes lead to surprising
+results since the
+@code{fonts}
+directive in the
+@file{DESC}
+file often contains empty positions that are filled
+by a macro file or document employing the
+@code{fp}
+request
+after the formatter initializes.
+
+For example, consider the following:
 
 @Example
 fonts 3 0 0 FOO
@@ -13032,7 +13185,7 @@ and/or sentential properties convenient;
 recall the
 @code{cflags}
 request in
-@ref{Using Symbols}.
+@ref{Characters and Glyphs}.
 Classes are particularly useful
 for East Asian languages such as
 Chinese,
@@ -13169,7 +13322,7 @@ as a range expression.
 @c @endExample
 @c
 @c @noindent
-@c See the @code{cflags} request in @ref{Using Symbols}, for more details.
+@c See the @code{cflags} request in @ref{Characters and Glyphs}, for more details.
 @endDefreq
 
 @c ---------------------------------------------------------------------
@@ -19984,7 +20137,7 @@ or as a usefully named bookmark or hyperlink anchor,
 GNU
 @command{troff} @c GNU
 maps other special characters to Unicode special character notation.
-Recall @ref{Using Symbols}.
+Recall @ref{Characters and Glyphs}.
 
 GNU
 @command{troff} @c GNU
@@ -20577,7 +20730,7 @@ immutable and their details unknown to the formatter.
 Report,
 to the standard error stream,
 the list of configured composite character mappings.
-Recall the @code{composite} request description in @ref{Using Symbols}.
+Recall the @code{composite} request description in @ref{Characters and Glyphs}.
 The ``from'' code point is listed first,
 followed by its ``to'' mapping.
 @endDefreq
@@ -21950,7 +22103,7 @@ inter-sentence space each to the nearest multiple of@tie{}12.
 @cindex output glyphs, and input characters, compatibility with @acronym{AT&T} @code{troff}
 @cindex characters, input, and output glyphs, compatibility with @acronym{AT&T} @code{troff}
 @cindex glyphs, output, and input characters, compatibility with @acronym{AT&T} @code{troff}
-@c TODO: A lot of this discussion should move to "Using Symbols" and
+@c TODO: A lot of this discussion should move to "Characters and Glyphs" and
 @c "GNU @command{troff} Internals".
 GNU
 @command{troff} @c GNU
