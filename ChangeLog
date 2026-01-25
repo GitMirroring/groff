@@ -1,3 +1,25 @@
+2026-01-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m4/groff.m4 (GROFF_URW_FONTS_SUPPORT): New Autoconf macro
+	creates a "with" configuration option, permitting the host
+	environment to easily switch off the search for URW fonts and
+	defeat all of the consequent features without the "configure"
+	script issuing a lengthy warning about failure to find the
+	aforementioned fonts.  New shell variable `urwfontsupport`
+	indicates the configuration's desired status (which still
+	defaults on).
+	(GROFF_URW_FONTS_CHECK): Add dependency on the foregoing macro.
+	Initialize `urwfontsdir` shell variable to empty
+	unconditionally, permitting it to be updated later if the URW
+	font feature isn't disabled.  Nest most of the work of this
+	macro inside a conditional on `urwfontsupprt`.  Continue to
+	unconditionally populate and `AC_SUBST`-itute
+	`groff_have_urw_fonts` and `urwfontsdir`, because
+	"configure.ac", "test-mom.sh.in", "mom.am",
+	"font/devpdf/Foundry.in", "devpdf.am", and
+	"check-urw-foundry.sh.in" variously rely on them to behave
+	appropriately for the configuration.
+
 2026-01-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* doc/doc.am: Update `DOC_SED` macro to also perform substituion
