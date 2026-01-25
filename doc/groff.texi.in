@@ -20567,14 +20567,26 @@ It contains these elements.
 
 @cindex @code{\v}, internal representation
 @noindent
-Elements 1, 7, and@tie{}8 are inserted by @command{@g@troff}; the latter
-two (which are always present) specify the vertical extent of the last
-line, possibly modified by @code{\x}.  The @code{br} request finishes
-the pending output line, inserting a newline token, which is
-subsequently converted to a space when the diversion is interpolated.
-Note that the word space node has a fixed width that isn't adjustable
-anymore.  To convert horizontal space nodes back into tokens, use
-the @code{unformat} request.
+@command{@g@troff}
+inserts elements 1,
+7,
+and@tie{}8;
+the latter two
+(which are always present)
+specify the vertical extent of the last line,
+possibly modified by @code{\x}.
+The
+@code{br}
+request finishes the pending output line,
+inserting a newline token,
+which is subsequently converted to a space
+when the diversion is interpolated.
+Note that the word space node
+has a fixed width that isn't adjustable anymore.
+To convert horizontal space nodes back into tokens,
+use the
+@code{unformat}
+request.
 
 Macros only contain elements in the token list (and the node list is
 empty); diversions and strings can contain elements in both lists.
