@@ -41,11 +41,20 @@ DOC_GROFF = \
   GROFF_BIN_PATH="$(GROFF_BIN_PATH)" \
   $(GROFFBIN) $(MFLAG) $(FFLAG) -ww -b
 
+# There's no point crashing the build due to fonts being unavailable for
+# embedding (or selection, even, when their metrics are missing) if we
+# knew at configuration time that the venture wouldn't come off.
+if HAVE_URW_FONTS
+if USE_GROPDF
+pdfmomoption = -P-W
+endif
+endif
+
 DOC_PDFMOM = \
   GROFF_COMMAND=test-groff \
   GROFF_COMMAND_PREFIX= \
   GROFF_BIN_PATH="$(GROFF_BIN_PATH)" \
-  $(PDFMOMBIN) $(MFLAG) $(FFLAG) -ww -b -P-W --roff
+  $(PDFMOMBIN) $(MFLAG) $(FFLAG) -ww -b $(pdfmomoption) --roff
 
 # This image file is used by several documents in the groff source tree.
 DOC_GNU_EPS = doc/gnu.eps

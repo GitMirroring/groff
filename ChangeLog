@@ -1,5 +1,11 @@
 2026-01-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* doc/doc.am: Abstract `-P-W` option to "gropdf" into a new
+	macro, `pdfmomoption`, populating it only if, at configuration
+	time, both `HAVE_URW_FONTS` and `USE_GROPDF` were enabled.
+
+2026-01-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* font/devpdf/util/BuildFoundries.pl (Warn): Don't set the exit
 	status to a nonzero value on warnings.  This script issues quite
 	a few warnings at gropdf's "Basic service" level.
