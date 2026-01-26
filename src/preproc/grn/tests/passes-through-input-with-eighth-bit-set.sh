@@ -24,8 +24,12 @@ fontdir="${abs_top_builddir:-.}/font"
 # grn should not strip "invalid" characters from parts of a document it
 # does not interpret.
 
+LC_ALL=C
+export LC_ALL
+
 output=$(printf '.\\" degree sign: \313\232\n' | "$grn" -F "$fontdir")
 printf "%s\n" "$output"
+printf "%s\n" "$output" | od -c
 printf "%s\n" "$output" | od -c | grep -q ' 232'
 
 # vim:set autoindent expandtab shiftwidth=4 tabstop=4 textwidth=72:
