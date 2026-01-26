@@ -352,50 +352,50 @@ AC_DEFUN([GROFF_URW_FONTS_CHECK], [
   urwfontsdir=
   if test "$urwfontsupport" != no
   then
-  AC_MSG_CHECKING([for URW fonts in Type 1/PFB format])
+    AC_MSG_CHECKING([for URW fonts in Type 1/PFB format])
 
 dnl Keep this list in sync with font/devpdf/Foundry.in.
-  _list_paths="\
-    /usr/share/fonts/type1/gsfonts/ \
-    /usr/share/fonts/default/Type1/ \
-    /usr/share/fonts/default/Type1/adobestd35/ \
-    /usr/share/fonts/type1/urw-base35/ \
-    /usr/share/fonts/urw-base35 \
-    /usr/share/ghostscript/Resource/Font \
-    /opt/local/share/fonts/urw-fonts/ \
-    /usr/local/share/fonts/ghostscript/"
+    _list_paths="\
+      /usr/share/fonts/type1/gsfonts/ \
+      /usr/share/fonts/default/Type1/ \
+      /usr/share/fonts/default/Type1/adobestd35/ \
+      /usr/share/fonts/type1/urw-base35/ \
+      /usr/share/fonts/urw-base35 \
+      /usr/share/ghostscript/Resource/Font \
+      /opt/local/share/fonts/urw-fonts/ \
+      /usr/local/share/fonts/ghostscript/"
 
-  if test -n "$urwfontsdir"
-  then
-    _list_paths="$urwfontsdir"
-  fi
+    if test -n "$urwfontsdir"
+    then
+      _list_paths="$urwfontsdir"
+    fi
 
 dnl Keep this list of font file names in sync with the corresponding
 dnl entry in font/devpdf/util/BuildFoundries.pl.
-  for k in $_list_paths
-  do
-    for _font_file in \
-      URWGothic-Book \
-      URWGothic-Book.t1 \
-      URWGothic-Book.pfb \
-      URWGothicL-Book.pfb \
-      a010013l.pfb
+    for k in $_list_paths
     do
-      if test -f $k/$_font_file
-      then
-        AC_MSG_RESULT([found in $k])
-        groff_have_urw_fonts=yes
-        urwfontsdir=$k
-        break 2
-      fi
+      for _font_file in \
+        URWGothic-Book \
+        URWGothic-Book.t1 \
+        URWGothic-Book.pfb \
+        URWGothicL-Book.pfb \
+        a010013l.pfb
+      do
+        if test -f $k/$_font_file
+        then
+          AC_MSG_RESULT([found in $k])
+          groff_have_urw_fonts=yes
+          urwfontsdir=$k
+          break 2
+        fi
+      done
     done
-  done
 
-  if test $groff_have_urw_fonts = no
-  then
-    AC_MSG_RESULT([none found])
-    urwfontsdir=
-  fi
+    if test $groff_have_urw_fonts = no
+    then
+      AC_MSG_RESULT([none found])
+      urwfontsdir=
+    fi
   fi
 
   AC_SUBST([groff_have_urw_fonts])
