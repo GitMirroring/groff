@@ -23976,15 +23976,27 @@ produce more readable output.
 @node Intermediate Output Examples
 @subsection Intermediate Output Examples
 
-This section presents the intermediate output generated from the same
-input for three different devices.  The input is the sentence @samp{hell
-world} fed into @command{@g@troff} on the command line.
+This section presents the output
+GNU
+@command{troff} @c GNU
+generates from the same input formatted for three different devices.
+The input is the phrase
+@samp{hell world}
+piped to
+GNU
+@command{troff} @c GNU
+on the command line.
 
 @table @asis
 @item High-resolution device @code{ps}
 
-This is the standard output of @command{@g@troff} if no @option{-T} option
-is given.
+We depict the standard output stream of
+GNU
+@command{troff} @c GNU
+in its default build configuration
+and in the absence of an explicit
+@option{-T}
+option.
 
 @example
 @group
@@ -24014,8 +24026,9 @@ x stop
 @end example
 
 @noindent
-This output can be fed into @code{grops} to get its representation as a
-PostScript file.
+This output can be placed onto the standard input stream of
+@command{grops}
+to produce its representation as a PostScript file.
 
 @item Low-resolution device @code{latin1}
 
@@ -24028,7 +24041,7 @@ the formatter.
 @group
 shell> echo "hell world" | groff -Z -T latin1
 
-# prologue
+# header
 x T latin1
 x res 240 24 40
 x init
@@ -24059,13 +24072,15 @@ x stop
 @end example
 
 @noindent
-This output can be fed into @code{grotty} to get a formatted text
-document.
+This output can be placed onto the standard input stream of
+@command{grotty}
+to produce its representation as text file.
 
-@item @acronym{AT&T} @code{troff} output
-Since a computer monitor has a much lower resolution than modern
-printers, the intermediate output for X11 devices can use the
-jump-and-write command with its 2-digit displacements.
+@item @acronym{AT&T} @command{troff} output
+Since a video display has lower resolution than modern printers,
+GNU
+@command{troff}'s @c GNU
+output for X11 devices can use the legacy compressed encoding.
 
 @example
 @group
@@ -24081,7 +24096,7 @@ f5
 s10
 V16
 H100
-# write text with jump-and-write commands
+# write text in legacy compressed encoding
 ch07e07l03lw06w11o07r05l03dh7
 n16 0
 @group
@@ -24092,11 +24107,16 @@ x stop
 @end example
 
 @noindent
-This output can be fed into @code{xditview} or @code{gxditview} for
-displaying in@tie{}X.
+Place the foregoing into the standard input stream of
+@command{xditview}
+or
+@command{gxditview}
+to display it in an X11 window.
 
-Due to the obsolete jump-and-write command, the text clusters in the
-@acronym{AT&T} @code{troff} output are almost unreadable.
+The legacy compressed encoding makes the content of formatted text
+in @acronym{AT&T}
+@command{troff} @c AT&T
+output almost incomprehenible.
 @end table
 
 @c ---------------------------------------------------------------------
