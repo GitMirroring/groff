@@ -1,5 +1,13 @@
 2026-01-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m4/groff.m4 (GROFF_PERL): Update error messages.  Refer to
+	Perl "executable", not "binary"; whether an executable is an
+	object file is not our concern.  When failing because the
+	available version of Perl is too old, report the minimum version
+	we require.
+
+2026-01-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* doc/doc.am: Abstract `-P-W` option to "gropdf" into a new
 	macro, `pdfmomoption`, populating it only if, at configuration
 	time, both `HAVE_URW_FONTS` and `USE_GROPDF` were enabled.

@@ -123,10 +123,10 @@ AC_DEFUN([GROFF_PERL], [
   AC_PATH_PROG([PERL], [perl], [no])
   if test "$PERL" = no
   then
-    AC_MSG_ERROR([perl binary not found], 1)
+    AC_MSG_ERROR([perl executable not found], 1)
   fi
   AX_PROG_PERL_VERSION([$PERLVERSION], true,
-    AC_MSG_ERROR([perl version is too old], 1))
+    AC_MSG_ERROR([perl version is too old (need $PERLVERSION)], 1))
 ])
 
 # We need m4 to generate some man pages.
