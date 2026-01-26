@@ -220,11 +220,11 @@ else
 	  $(devpdf_srcdir)/Foundry.in >$@
 endif
 
+if HAVE_URW_FONTS
 # This is kind of a cheat, but works because BuildFoundries produces so
 # many artifacts.
 $(devpdffont_descriptions_for_urw): font/devpdf/download
 
-if HAVE_URW_FONTS
 buildfoundries_extra_arg=--dirURW=$(urwfontsdir)
 else
 buildfoundries_extra_arg=

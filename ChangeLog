@@ -1,5 +1,12 @@
 2026-01-26  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* font/devpdf/devpdf.am [HAVE_URW_FONTS]: Shift conditional so
+	that we define a target rule for
+	`$(devpdffont_descriptions_for_urw)` only if the
+	`HAVE_URW_FONTS` Automake variable is defined.
+
+2026-01-26  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* font/devpdf/devpdf.am ($(devpdffont_descriptions_for_urw)):
 	Drop interpolations of no-longer-used `DEFAULT_BASE35_FONTS` and
 	`URW_BASE35_FONTS` macros.
