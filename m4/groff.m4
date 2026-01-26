@@ -1,6 +1,7 @@
 # Autoconf macros for groff
 #
 # Copyright 1989-2017 Free Software Foundation, Inc.
+#           2021-2024 G. Branden Robinson
 #
 # This file is part of groff, the GNU roff typesetting system.
 #
