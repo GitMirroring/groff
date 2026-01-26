@@ -1447,17 +1447,21 @@ Line continuation is a GNU extension.
 .
 .
 .\" ====================================================================
-.SS "Obsolete command"
+.SS "Legacy compressed encoding"
 .\" ====================================================================
 .
-In
-.I classical troff
-output, emitting a single glyph was mostly done by a very
-strange command that combined a horizontal move and the printing of a
-glyph.
+AT&T}
+.I troff \" AT&T
+output primarily emitted glyphs by writing two digits
+(a motion)
+followed by a single character corresponding to a glyph.
 .
-It didn't have a command code, but is represented by a 3-character
-argument consisting of exactly 2\~digits and a character.
+This syntax is less a command itself than a compressed encoding of the
+.B c
+and
+.B h
+commands.
+.
 .
 .TP
 .I ddc
@@ -1490,9 +1494,11 @@ spaces; this made such output almost unreadable.
 .
 .
 .P
-For modern high-resolution devices, this command does not make sense
-because the width of the glyphs can become much larger than two
-decimal digits.
+For modern high-resolution devices,
+this command is impractical
+because the widths of the glyphs have a greater magnitude
+in basic units
+than two decimal digits can represent.
 .
 In
 .IR groff ,
