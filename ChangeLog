@@ -1,5 +1,11 @@
 2026-01-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* font/devpdf/util/BuildFoundries.pl (Warn): Don't set the exit
+	status to a nonzero value on warnings.  This script issues quite
+	a few warnings at gropdf's "Basic service" level.
+
+2026-01-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m4/groff.m4 (GROFF_URW_FONTS_SUPPORT): New Autoconf macro
 	creates a "with" configuration option, permitting the host
 	environment to easily switch off the search for URW fonts and
