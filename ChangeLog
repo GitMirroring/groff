@@ -1,5 +1,9 @@
 2026-01-26  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* font/devpdf/devpdf.am (all): Drop unnecessary phony target.
+
+2026-01-26  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* font/devpdf/devpdf.am [HAVE_URW_FONTS]: Shift conditional so
 	that we define a target rule for
 	`$(devpdffont_descriptions_for_urw)` only if the
