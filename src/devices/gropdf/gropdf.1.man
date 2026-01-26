@@ -1067,7 +1067,7 @@ with a
 .B \-S
 argument,
 then indicate the end of hotspot text with
-.BR \[rs]X\[aq]pdf: markend\[aq]\[rs]m[\[rs]*[pdf:curcol]] .
+.BR "\[rs]X\[aq]pdf: markend\[aq]\[rs]m[\[rs]*[pdf:curcol]]" .
 .
 .
 .TP
