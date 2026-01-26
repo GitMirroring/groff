@@ -1552,93 +1552,128 @@ see the reference in section \[lq]Files\[rq] below.
 .SH Compatibility
 .\" ====================================================================
 .
-The
-.I intermediate output
-language of the
-.I classical troff
+.\" BEGIN Keep parallel with subsection "Output Language Compatibility"
+.\" in doc/groff.texi.in.
+The page description language of AT&T
+.I troff \" AT&T
 was first documented in
-[CSTR\~#97].
+\[lq]A Typesetter-independent TROFF\[rq],
+by Brian Kernighan,
+and by 1992 the AT&T
+.I troff \" AT&T; system
+manual was updated to incorporate a description of it.
 .
-The
-.I groff intermediate output
-format is compatible with this specification except for the following
-features.
+.
+.P
+.IR groff 's
+page description language is compatible with this specification
+except in the following aspects.
 .
 .
 .IP \[bu] 3n
-The classical quasi device independence is not yet implemented.
+AT&T device-independent
+.IR troff 's \" AT&T
+quasi-device independence is not yet implemented.
+.\" XXX: Explain what that means.
 .
 .
 .IP \[bu]
-The old hardware was very different from what we use today.
+The printing hardware of the early 1980s differed from today's.
 .
-So the
-.I groff
-devices are also fundamentally different from the ones in
-.I classical
-.IR troff .
-.
-For example, the classical PostScript device was called
-.I post
-and had a resolution of 720 units per inch,
-while
 .IR groff 's
-.I ps
+output device names also differ from those of AT&T
+.I troff \" AT&T; system
+.
+For example,
+the PostScript device in AT&T
+.I troff, \" AT&T; system
+.B post
+(implemented by the driver command
+.IR dpost ),
+has a resolution of only 720 units per inch,
+suitable for printers of decades past.
+.
+.IR groff 's
+.B ps
 device has a resolution of 72000 units per inch.
 .
-Maybe, by implementing some rescaling mechanism similar to the
-classical quasi device independence, these could be integrated into
-modern
-.IR groff .
+In principle,
+by implementing a rescaling mechanism,
+.I groff
+could come to emulate AT&T's
+.B post
+device.
 .
 .
 .IP \[bu]
-The B-spline command
+While the B-spline command
 .B D\[ti]
-is correctly handled by the
-.I intermediate output
-parser, but the drawing routines aren't implemented in some of the
-postprocessor programs.
+is reliably interpreted by
+.IR groff 's
+page description language parser,
+some output drivers don't implement drawing routines for it.
 .
 .
 .IP \[bu]
-The argument of the commands
+In
+GNU
+.I troff, \" GNU
+the argument to the commands
 .B s
 and
-.B x H
-has the implicit unit scaled point\~\c
+.B x\~H
+uses an implicit unit of scaled points
 .B z
-in
-.IR groff ,
-while
-.I classical troff
-had point (\c
-.BR p ).
+whereas AT&T
+.I troff \" AT&T
+uses spacing points
+.BR p .
 .
-This isn't an incompatibility, but a compatible extension, for both
-units coincide for all devices without a
-.I sizescale
-parameter, including all classical and the
+This isn't an incompatibility,
+but a compatible extension,
+for both units coincide for any device without a
+.B \%sizescale
+directive in its
+.I DESC
+file,
+including all postprocessors from AT&T and
+.IR groff 's
+text
+.RI ( nroff -mode)
+devices.
+.
 .I groff
-text devices.
+devices that use
+.B \%sizescale
+either do not exist for AT&T
+.I troff \" AT&T; system
+have a different name,
+or seem to have a different resolution.
 .
-The few
-.I groff
-devices with a sizescale parameter either did not exist, had a
-different name, or seem to have had a different resolution.
-.
-So conflicts with classical devices are very unlikely.
+So conflicts are very unlikely.
 .
 .
 .ie \n[@STUPID_DRAWING_POSITIONING]=1 \{\
 .IP \[bu]
-The position changing after the commands
-.BR Dp ,
-.BR DP ,
+The drawing position after the commands
+.RB \[lq] Dp \[rq],
+.RB \[lq] DP \[rq],
 and
-.B Dt
-is illogical, but as old versions of groff used this feature it is
-kept for compatibility reasons.
+.RB \[lq] Dt \[rq],
+are processed is illogical.
+.
+Since old versions of
+GNU
+.I troff \" GNU
+had this wart,
+we've retained it for compatibility,
+but may change it in the future.
+.
+Wrap these drawing commands with the
+.B \[rs]Z
+escape sequence to both overcome the illogical positioning
+and keep your input working consistently
+regardless of the wart's presence in the implementation.
 .\}             \" @STUPID_DRAWING_POSITIONING
 .el \{\
 .IP \[bu]
@@ -1673,6 +1708,8 @@ and
 .I classical troff
 are documented in
 .MR groff_diff @MAN7EXT@ .
+.\" END Keep parallel with subsection "Output Language Compatibility" in
+.\" doc/groff.texi.in.
 .
 .
 .\" ====================================================================

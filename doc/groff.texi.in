@@ -24124,50 +24124,110 @@ output almost incomprehenible.
 @node Output Language Compatibility
 @subsection Output Language Compatibility
 
-The intermediate output language of @acronym{AT&T} @code{troff} was
-first documented in @cite{A Typesetter-independent TROFF}, by Brian
-Kernighan, and by 1992 the @acronym{AT&T} @code{troff} manual was
-updated to incorporate a description of it.
+The page description language of @acronym{AT&T}
+@command{troff} @c AT&T
+was first documented in
+@cite{A Typesetter-independent TROFF},
+by Brian Kernighan,
+and by 1992 the @acronym{AT&T}
+@code{troff} @c AT&T; system
+manual was updated to incorporate a description of it.
 
-GNU @code{troff}'s page description language  is compatible with this
-specification except for the following features.
+@code{groff}'s
+page description language is compatible with this specification
+except in the following aspects.
 
 @itemize @bullet
 @item
-The classical quasi-device independence is not yet implemented.
+@acronym{AT&T} device-independent
+@code{troff}'s @c AT&T
+quasi-device independence is not yet implemented.
+@c XXX: Explain what that means.
 
 @item
-The old hardware was very different from what we use today.  So the
-@code{groff} devices are also fundamentally different from the ones
-in @acronym{AT&T} @code{troff}.  For example, the @acronym{AT&T}
-PostScript device is called @code{post} and has a resolution of only 720
-units per inch, suitable for printers 20 years ago, while @code{groff}'s
-@code{ps} device has a resolution of 72000 units per inch.  Maybe, by
-implementing some rescaling mechanism similar to the classical
-quasi-device independence, @code{groff} could emulate @acronym{AT&T}'s
-@code{post} device.
+The printing hardware of the early 1980s differed from today's.
+@code{groff}'s
+output device names also differ from those of @acronym{AT&T}
+@code{troff}. @c AT&T; system
+For example,
+the PostScript device in @acronym{AT&T}
+@code{troff}, @c AT&T; system
+@code{post}
+(implemented by the driver command
+@command{dpost}),
+has a resolution of only 720 units per inch,
+suitable for printers of decades past.
+@code{groff}'s
+@code{ps}
+device has a resolution of 72000 units per inch.
+In principle,
+by implementing a rescaling mechanism,
+@code{groff}
+could come to emulate @acronym{AT&T}'s
+@code{post}
+device.
 
 @item
-The B-spline command @samp{D~} is correctly handled by the intermediate
-output parser, but the drawing routines aren't implemented in some of
-the postprocessor programs.
+While the B-spline command
+@samp{D~}
+is reliably interpreted by
+@code{groff}'s
+page description language parser,
+some output drivers don't implement drawing routines for it.
 
 @item
-The argument of the commands @samp{s} and @w{@samp{x H}} has the
-implicit unit scaled point @samp{z} in @command{@g@troff}, while
-@acronym{AT&T} @code{troff} has point (@samp{p}).  This isn't an
-incompatibility but a compatible extension, for both units coincide for
-all devices without a @code{sizescale} parameter in the @file{DESC}
-file, including all postprocessors from @acronym{AT&T} and
-@code{groff}'s text devices.  The few @code{groff} devices with a
-@code{sizescale} parameter either do not exist for @acronym{AT&T}
-@code{troff}, have a different name, or seem to have a different
-resolution.  So conflicts are very unlikely.
+In
+GNU
+@command{troff}, @c GNU
+the argument to the commands
+@samp{s}
+and
+@w{@samp{x H}}
+uses an implicit unit of scaled points
+@samp{z}
+whereas @acronym{AT&T}
+@command{troff} @c AT&T
+uses spacing points
+@samp{p}.
+This isn't an incompatibility,
+but a compatible extension,
+for both units coincide for any device without a
+@code{sizescale}
+directive in its
+@file{DESC}
+file,
+including all postprocessors from @acronym{AT&T} and
+@code{groff}'s
+text
+(@code{nroff}-mode)
+devices.
+@code{groff}
+devices that use
+@code{sizescale}
+either do not exist for @acronym{AT&T}
+@code{troff}, @c system
+have a different name,
+or seem to have a different resolution.
+So conflicts are very unlikely.
 
 @item
-The position changing after the commands @samp{Dp}, @samp{DP}, and
-@samp{Dt} is illogical, but as old versions of @command{@g@troff} used
-this feature, it is kept for compatibility reasons.
+The drawing position after the commands
+@samp{Dp},
+@samp{DP},
+and
+@samp{Dt}
+are processed is illogical.
+Since old versions of
+GNU
+@command{troff} @c GNU
+had this wart,
+we've retained it for compatibility,
+but may change it in the future.
+Wrap these drawing commands with the
+@code{\Z}
+escape sequence to both overcome the illogical positioning
+and keep your input working consistently
+regardless of the wart's presence in the implementation.
 
 @ignore
 Temporarily, there existed some confusion on the positioning after the
