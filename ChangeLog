@@ -1,5 +1,11 @@
 2026-01-26  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* font/devpdf/devpdf.am ($(devpdffont_descriptions_for_urw)):
+	Drop interpolations of no-longer-used `DEFAULT_BASE35_FONTS` and
+	`URW_BASE35_FONTS` macros.
+
+2026-01-26  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* doc/doc.am: Abstract "-P-e" option to gropdf into new macro,
 	`groffmanpagesoption`.  We can't use it if the build is
 	configured without URW fonts to embed, so define the macro only

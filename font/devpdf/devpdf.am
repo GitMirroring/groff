@@ -222,8 +222,7 @@ endif
 
 # This is kind of a cheat, but works because BuildFoundries produces so
 # many artifacts.
-$(devpdffont_descriptions_for_urw) $(DEFAULT_BASE35_FONTS) \
-  $(URW_BASE35_FONTS): font/devpdf/download
+$(devpdffont_descriptions_for_urw): font/devpdf/download
 
 if HAVE_URW_FONTS
 buildfoundries_extra_arg=--dirURW=$(urwfontsdir)
