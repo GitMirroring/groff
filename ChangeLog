@@ -1,5 +1,14 @@
 2026-01-26  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* doc/doc.am: Abstract "-P-e" option to gropdf into new macro,
+	`groffmanpagesoption`.  We can't use it if the build is
+	configured without URW fonts to embed, so define the macro only
+	if `HAVE_URW_FONTS` _and_ `USE_GROPDF`.
+	(doc/groff-man-pages.pdf): Interpolate macro instead of
+	hard-coding "-P-e".
+
+2026-01-26  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* font/devpdf/tests/check-default-foundry.sh.in: Die with "hard
 	error" if test script cannot locate the "Foundry" file.  Skip
 	remainder of test (for fonts not in the PostScript Level 1/PDF
