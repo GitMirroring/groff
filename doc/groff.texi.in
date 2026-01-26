@@ -23223,7 +23223,7 @@ and embed URL hyperlinks in supported output formats.
 @menu
 * Syntax::
 * Argument Units::
-* Document Parts::
+* Output Structure::
 @end menu
 
 @node Syntax
@@ -23317,8 +23317,9 @@ integer argument is already terminated by the next non-digit character,
 which then is regarded as the first character of the next argument or
 command.
 
-@node Document Parts
-@subsubsection Document Parts
+@anchor{Document Parts} @c 1.23.0
+@node Output Structure
+@subsubsection Output Structure
 
 A correct intermediate output document consists of two parts, the
 @dfn{prologue} and the @dfn{body}.
