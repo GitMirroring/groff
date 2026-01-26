@@ -377,75 +377,95 @@ argument or command.
 .SS "Document parts"
 .\" ====================================================================
 .
-A correct
-.I intermediate output
-document consists of two parts, the
-.I prologue
-and the
-.IR body .
+Device-independent
+.I troff \" system
+output is organized into three parts:
+a header,
+a body,
+and a trailer.
+.
 .
 .P
-The task of the
-.I prologue
-is to set the general device parameters using three exactly specified
-commands.
+The task of the header is to set general device parameters.
 .
-The
-.I groff prologue
-is guaranteed to consist of the following three lines (in that order):
+GNU
+.I troff \" GNU
+guarantees that its
+header consists of the following three lines:
+.
+.
 .RS
 .P
-.B x\ T
+.B x\~T
 .I device
 .br
-.B x\ res
-.I n\ h\ v
+.B x\~res
+.I n\~h\~v
 .br
 .B x init
 .RE
-.P
-with the arguments set as outlined in subsection \[lq]Device Control
-Commands\[rq] below.
-.
-However, the parser for the
-.I intermediate output
-format is able to swallow additional whitespace and comments as well.
 .
 .
 .P
+with the parameters
+.IR n ,
+.IR h ,
+and
+.I v
+set as outlined in subsection \[lq]Device Control Commands\[rq] below.
+The parser for the device-independent page description language format
+is able to interpret additional whitespace and comments as well even in
+the header.
+.
+.
+.P
+The body contains the document's visible content.
+.
+Once an output driver interprets
+.RB \[lq] "x init" \[rq],
+@w{@samp{x init}},
+it prepares to handle commands in general.
+.
+Processing terminates when a
+.RB \[lq] "x stop" \[rq]
+command is encountered;
+the last line of any
+GNU
+.I troff \" GNU
+page description output always contains such a command.
+.
+.
+.P
+Semantically,
+the body is page-oriented.
+.
 The
-.I body
-is the main section for processing the document data.
+.B p
+command starts a new page.
 .
-Syntactically, it is a sequence of any commands different from the
-ones used in the
-.IR prologue .
+Positioning,
+writing,
+and drawing commands are performed within a page,
+so they cannot occur before the first
+.B p
+command.
 .
-Processing is terminated as soon as the first
-.B x\ stop
-command is encountered; the last line of any
-.I groff intermediate output
-always contains such a command.
-.
-.
-.P
-Semantically, the
-.I body
-is page oriented.
-.
-A new page is started by a
-.BR p \~command.
-.
-Positioning, writing, and drawing commands are always done within the
-current page, so they cannot occur before the first
-.BR p \~command.
-.
-Absolute positioning (by the
+The output driver reckons absolute positioning
+(by the
 .B H
 and
-.BR V \~commands)
-is done relative to the current page, all other positioning
-is done relative to the current location within this page.
+.B V
+commands)
+with respect to the current page's origin
+at the top left corner,
+and all other positioning relative to the drawing position on the page.
+.
+.
+.P
+The trailer advances the drawing position to the bottom of the page
+and informs the device that the document
+(or \[lq]job\[rq])
+has ended.
 .
 .
 .\" ====================================================================

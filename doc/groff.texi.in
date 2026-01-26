@@ -23321,12 +23321,18 @@ command.
 @node Output Structure
 @subsubsection Output Structure
 
-A correct intermediate output document consists of two parts, the
-@dfn{prologue} and the @dfn{body}.
+Device-independent
+@code{troff} @c system
+output is organized into three parts:@:
+a header,
+a body,
+and a trailer.
 
-The task of the prologue is to set the general device parameters using
-three exactly specified commands.  @command{@g@troff}'s prologue is
-guaranteed to consist of the following three lines (in that order):
+The task of the header is to set general device parameters.
+GNU
+@command{troff} @c GNU
+guarantees that its
+header consists of the following three lines:
 
 @Example
 x T @var{device}
@@ -23335,23 +23341,52 @@ x init
 @endExample
 
 @noindent
-with the arguments set as outlined in @ref{Device Control Commands}.
+with the parameters
+@var{n},
+@var{h},
+and
+@var{v}
+set as outlined in @ref{Device Control Commands}.
 The parser for the device-independent page description language format
 is able to interpret additional whitespace and comments as well even in
-the prologue.
+the header.
 
-The body is the main section for processing the document data.
-Syntactically, it is a sequence of any commands different from the ones
-used in the prologue.  Processing is terminated as soon as the first
-@w{@samp{x stop}} command is encountered; the last line of any
-@command{@g@troff} intermediate output always contains such a command.
+The body contains the document's visible content.
+Once an output driver interprets
+@w{@samp{x init}},
+it prepares to handle commands in general.
+Processing terminates when a
+@w{@samp{x stop}}
+command is encountered;
+the last line of any
+GNU
+@command{troff} @c GNU
+page description output always contains such a command.
 
-Semantically, the body is page oriented.  A new page is started by a
-@samp{p} command.  Positioning, writing, and drawing commands are always
-done within the current page, so they cannot occur before the first
-@samp{p} command.  Absolute positioning (by the @samp{H} and @samp{V}
-commands) is done relative to the current page; all other positioning is
-done relative to the current location within this page.
+Semantically,
+the body is page-oriented.
+The @code{p}
+command starts a new page.
+Positioning,
+writing,
+and drawing commands are performed within a page,
+so they cannot occur before the first
+@code{p}
+command.
+The output driver reckons absolute positioning
+(by the
+@code{H}
+and
+@code{V}
+commands)
+with respect to the current page's origin
+at the top left corner,
+and all other positioning relative to the drawing position on the page.
+
+The trailer advances the drawing position to the bottom of the page
+and informs the device that the document
+(or ``job'')
+has ended.
 
 @c ---------------------------------------------------------------------
 
