@@ -23393,8 +23393,12 @@ has ended.
 @node Command Reference
 @subsection Command Reference
 
-This section describes all intermediate output commands, both from
-@acronym{AT&T} @code{troff} as well as the @command{@g@troff} extensions.
+This subsection describes all page description output commands,
+both from @acronym{AT&T}
+@code{troff}
+as well as extension commands issued by
+GNU
+@command{troff}. @c GNU
 
 @menu
 * Comment Command::
@@ -23409,12 +23413,13 @@ This section describes all intermediate output commands, both from
 
 @table @code
 @item #@var{anything}@angles{end of line}
-A comment.  Ignore any characters from the @samp{#} character up to the
-next newline character.
+Apply comment annotation.
+Ignore any characters from the
+@samp{#}@tie{}character
+up to the next newline.
 
-This command is the only possibility for commenting in the intermediate
-output.  Each comment can be preceded by arbitrary syntactical space;
-every command can be terminated by a comment.
+Each comment can be preceded by arbitrary syntactical space,
+and every command can be terminated by a comment.
 @end table
 
 @node Simple Commands
@@ -23571,19 +23576,35 @@ library ignores it.  See @code{h} and @code{H} above.
 @node Graphics Commands
 @subsubsection Graphics Commands
 
-Each graphics or drawing command in the intermediate output starts with
-the letter @samp{D}, followed by one or two characters that specify a
-subcommand; this is followed by a fixed or variable number of integer
-arguments that are separated by a single space character.  A @samp{D}
-command may not be followed by another command on the same line (apart
-from a comment), so each @samp{D} command is terminated by a syntactical
-line break.
+Each graphics or drawing command in the page description language
+starts with the letter
+@samp{D},
+followed by one or two characters that specify a subcommand;
+this is followed by a fixed or variable number of integer
+arguments that are separated by a single space character.
+A
+@samp{D}
+command may not be followed by another command on the same line
+(apart from a comment),
+so each
+@samp{D}
+command is terminated by a syntactical line break.
 
-@command{@g@troff} output follows the classical spacing rules (no space
-between command and subcommand, all arguments are preceded by a single
-space character), but the parser allows optional space between the
-command letters and makes the space before the first argument optional.
-As usual, each space can be any sequence of tab and space characters.
+@c XXX: Fact-check this. --GBR
+GNU
+@command{troff} @c GNU
+output follows AT&T
+@command{troff}'s @c AT&T
+output conventions
+(no space between command and subcommand,
+all arguments are preceded by a single space character),
+but
+@code{groff}'s
+parser allows optional space
+between the command letters
+and makes the space before the first argument optional.
+As usual,
+each space can be any sequence of tab and space characters.
 
 Some graphics commands can take a variable number of arguments.  In this
 case, they are integers representing a size measured in basic units
@@ -23593,8 +23614,11 @@ left.  The arguments called @var{v1}, @var{v2}, @dots{}, @var{vn} stand
 for vertical distances where positive means down, negative up.  All
 these distances are offsets relative to the current location.
 
-Each graphics command directly corresponds to a similar @command{@g@troff}
-@code{\D} escape sequence.  @xref{Drawing Geometric Objects}.
+Each graphics command directly corresponds to a
+@command{troff}
+@code{\D}
+escape sequence.
+@xref{Drawing Geometric Objects}.
 
 Unknown @samp{D} commands are assumed to be device-specific.  Its
 arguments are parsed as strings; the whole information is then sent to
@@ -23624,7 +23648,8 @@ diameter@tie{}@var{d} (integer in basic units @samp{u}) with leftmost
 point at the current position; then move the current position to the
 rightmost point of the circle.  An optional second integer argument is
 ignored (this allows the formatter to generate an even number of
-arguments).  This command is a @command{@g@troff} extension.
+arguments).
+This command is a GNU extension.
 
 @item Dc @var{d}@angles{line break}
 Draw circle line with diameter@tie{}@var{d} (integer in basic units
@@ -23635,8 +23660,8 @@ current position to the rightmost point of the circle.
 Draw a solid ellipse in the current fill color with a horizontal
 diameter of@tie{}@var{h} and a vertical diameter of@tie{}@var{v} (both
 integers in basic units @samp{u}) with the leftmost point at the current
-position; then move to the rightmost point of the ellipse.  This command
-is a @command{@g@troff} extension.
+position; then move to the rightmost point of the ellipse.
+This command is a GNU extension.
 
 @item De @var{h} @var{v}@angles{line break}
 Draw an outlined ellipse with a horizontal diameter of@tie{}@var{h} and
@@ -23650,10 +23675,15 @@ the analogous command for setting the color of text, line graphics, and
 the outline of graphic objects is @samp{m}.  The color components are
 specified as integer arguments between 0 and 65535.  The number of color
 components and their meaning vary for the different color schemes.
-These commands are generated by @command{@g@troff}'s escape sequences
-@samp{\D'F @dots{}'} and @code{\M} (with no other corresponding
-graphics commands).  No position changing.  This command is a
-@command{@g@troff} extension.
+These commands are generated by
+GNU
+@command{troff}'s @c GNU
+escape sequences
+@samp{\D'F @dots{}'}
+and @code{\M}
+(with no other corresponding graphics commands).
+No position changing.
+This command is a GNU extension.
 
 @table @code
 @item DFc @var{cyan} @var{magenta} @var{yellow}@angles{line break}
@@ -23688,8 +23718,9 @@ to 32767.
 @item @math{0 @leq{} @var{n} @leq{} 1000}
 Set the color for filling solid drawing objects to a shade of gray,
 where 0 corresponds to solid white, 1000 (the default) to solid black,
-and values in between to intermediate shades of gray; this is obsoleted
-by command @samp{DFg}.
+and values in between to intermediate shades of gray;
+this command is superseded by
+@samp{DFg}.
 
 @item @math{@var{n} < 0} or @math{@var{n} > 1000}
 Set the filling color to the color that is currently being used for the
@@ -23706,7 +23737,8 @@ sets all colors to blue.
 @end table
 
 @noindent
-No position changing.  This command is a @command{@g@troff} extension.
+No position changing.
+This command is a GNU extension.
 
 @item Dl @var{h} @var{v}@angles{line break}
 Draw line from current position to offset (@var{h},@var{v}) (integers in
@@ -23725,7 +23757,7 @@ kept for compatibility.
 As the polygon is closed, the end of drawing is the starting point, so
 the position doesn't change.
 @end ignore
-This command is a @command{@g@troff} extension.
+This command is a GNU extension.
 
 @item DP @var{h1} @var{v1} @var{h2} @var{v2} @dots{} @var{hn} @var{vn}@angles{line break}
 Draw a solid polygon in the current fill color rather than an outlined
@@ -23734,7 +23766,7 @@ polygon, using the same arguments and positioning as the corresponding
 @ignore
 No position changing.
 @end ignore
-This command is a @command{@g@troff} extension.
+This command is a GNU extension.
 
 @item Dt @var{n}@angles{line break}
 Set the current line thickness to@tie{}@var{n} (an integer in basic
@@ -23748,26 +23780,44 @@ Although this doesn't make sense it is kept for compatibility.
 @ignore
 No position changing.
 @end ignore
-This command is a @command{@g@troff} extension.
+This command is a GNU extension.
 @end table
 
 @node Device Control Commands
 @subsubsection Device Control Commands
 
-Each device control command starts with the letter @samp{x}, followed by
-a space character (optional or arbitrary space or tab in
-@command{@g@troff}) and a subcommand letter or word; each argument (if
-any) must be preceded by a syntactical space.  All @samp{x} commands are
-terminated by a syntactical line break; no device control command can be
-followed by another command on the same line (except a comment).
+Each device control command starts with the letter
+@samp{x},
+followed by a space character
+(optional or arbitrary space or tab in
+GNU
+@command{troff}) @c GNU
+and a subcommand letter or word;
+each argument
+(if any)
+must be preceded by a syntactical space.
+All
+@samp{x}
+commands are terminated by a syntactical line break;
+no device control command
+can be followed by another command on the same line
+(except a comment).
 
 The subcommand is basically a single letter, but to increase
 readability, it can be written as a word, i.e., an arbitrary sequence of
 characters terminated by the next tab, space, or newline character.  All
-characters of the subcommand word but the first are simply ignored.  For
-example, @command{@g@troff} outputs the initialization command
-@w{@samp{x i}} as @w{@samp{x init}} and the resolution command
-@w{@samp{x r}} as @w{@samp{x res}}.
+characters of the subcommand word but the first are simply ignored.
+For example,
+GNU
+@command{troff} @c GNU
+outputs the initialization command
+@w{@samp{x i}}
+as
+@w{@samp{x init}}
+and the resolution command
+@w{@samp{x r}}
+as
+@w{@samp{x res}}.
 
 In the following, the syntax element @angles{line break} means a
 syntactical line break (@pxref{Syntax}).
@@ -23776,11 +23826,14 @@ syntactical line break (@pxref{Syntax}).
 @item xF @var{name}@angles{line break}
 The @samp{F} stands for @var{Filename}.
 
-Use @var{name} as the intended name for the current file in error
-reports.  This is useful for remembering the original file name when
-@command{@g@troff} uses an internal piping mechanism.  The input file is
-not changed by this command.  This command is a @command{@g@troff}
-extension.
+Use
+@var{name}
+as the intended name for the current file in error reports.
+This is useful for remembering the original file name when
+@command{groff}
+uses its internal piping mechanism.
+The input file is not changed by this command.
+This command is a GNU extension.
 
 @item xf @var{n} @var{s}@angles{line break}
 The @samp{f} stands for @var{font}.
@@ -23798,7 +23851,7 @@ instead.  @xref{Output Language Compatibility}.
 @item xi@angles{line break}
 The @samp{i} stands for @var{init}.
 
-Initialize device.  This is the third command of the prologue.
+Initialize device.  This is the third command of the header.
 
 @item xp@angles{line break}
 The @samp{p} stands for @var{pause}.
@@ -23818,7 +23871,7 @@ The @samp{r} stands for @var{resolution}.
 Resolution is@tie{}@var{n}, while @var{h} is the minimum horizontal
 motion, and @var{v} the minimum vertical motion possible with this
 device; all arguments are positive integers in basic units @samp{u} per
-inch.  This is the second command of the prologue.
+inch.  This is the second command of the header.
 
 @item xS @var{n}@angles{line break}
 The @samp{S} stands for @var{Slant}.
@@ -23829,7 +23882,9 @@ Set slant to@tie{}@var{n} (an integer in basic units @samp{u}).
 The @samp{s} stands for @var{stop}.
 
 Terminates the processing of the current file; issued as the last
-command of any intermediate @code{troff} output.
+command of device-independent
+@code{troff} @c generic
+output.
 
 @item xt@angles{line break}
 The @samp{t} stands for @var{trailer}.
@@ -23843,7 +23898,7 @@ The @samp{T} stands for @var{Typesetter}.
 Set the name of the output driver to @var{xxx}, a sequence of
 non-whitespace characters terminated by whitespace.  The possible names
 correspond to those of @code{groff}'s @option{-T} option.  This is the
-first command of the prologue.
+first command of the header.
 
 @item xu @var{n}@angles{line break}
 The @samp{u} stands for @var{underline}.
@@ -23851,7 +23906,8 @@ The @samp{u} stands for @var{underline}.
 Configure underlining of spaces.  If @var{n} is@tie{}1, start
 underlining of spaces; if @var{n} is@tie{}0, stop underlining of spaces.
 This is needed for the @code{cu} request in @code{nroff} mode and is
-ignored otherwise.  This command is a @command{@g@troff} extension.
+ignored otherwise.
+This command is a GNU extension.
 
 @item xX @var{anything}@angles{line break}
 The @samp{x} stands for @var{X-escape}.
@@ -23862,9 +23918,10 @@ interpreted as a continuation line in the following sense.  The @samp{+}
 is ignored, but a newline character is sent instead to the device, the
 rest of the line is sent uninterpreted.  The same applies to all
 following lines until the first character of a line is not a @samp{+}
-character.  This command is generated by the @command{@g@troff} escape
-sequence @code{\X}.  The line-continuing feature is a @command{@g@troff}
-extension.
+character.
+This command is generated by the escape sequence
+@code{\X}.
+Line continuation is a GNU extension.
 @end table
 
 @node Obsolete Command
