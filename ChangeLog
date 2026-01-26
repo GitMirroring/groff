@@ -1,5 +1,13 @@
 2026-01-26  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* arch/mingw/grap2graph.cmd: Revise version info.
+	- Drop "GNU" from reported version string; this is a contributed
+	  program--its shell script equivalent is in contrib/
+	  grap2graph--not a GNU program.
+	- Bump reported version to 1.24.0.
+
+2026-01-26  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* font/devpdf/devpdf.am ($(devpdffont_descriptions_from_devps)
 	($(devpdffontencdata), font/devpdf/SS)
 	($(devpdf_builddir)/symbolsl.afm)
