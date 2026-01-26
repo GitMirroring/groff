@@ -1,5 +1,14 @@
 2026-01-26  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* font/devpdf/devpdf.am ($(devpdffont_descriptions_from_devps)
+	($(devpdffontencdata), font/devpdf/SS)
+	($(devpdf_builddir)/symbolsl.afm)
+	($(devpdf_builddir)/symbolsl.pfb, $(devpdffontmapdata)): Copy
+	files with `cp -fp`, not just `cp -f`, preventing spurious
+	rebuilds of these targets.
+
+2026-01-26  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* font/devpdf/devpdf.am (all): Drop unnecessary phony target.
 
 2026-01-26  G. Branden Robinson <g.branden.robinson@gmail.com>
