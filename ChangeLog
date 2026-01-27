@@ -1,5 +1,14 @@
 2026-01-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/tests/an_MR-internal-hyperlinks-work-with-pdfmom.sh:
+	* tmac/tests/andoc_internal-hyperlinks-work-with-pdfmom.sh: Fix
+	regex to correctly quote a closing parenthesis _not_ used as an
+	ERE grouping operator.  Fixes spurious test failures on NetBSD.
+	Sadly, neither GNU grep 3.6 nor 3.12.14 warned me of my mistake.
+	Thanks to Bruno Haible for the report.
+
+2026-01-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/tbl/tests/boxed-TH-tables-work-on-utf8-device.sh:
 	Fix excessively strict regex, which caused test failure with
 	OpenBSD od(1) (and NetBSD's), because that implementation spaces
