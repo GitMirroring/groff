@@ -1,3 +1,13 @@
+2026-01-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tests/Np-register-works.sh:
+	* tests/date-localization-works.sh:
+	* tests/nP-works.sh: Avoid use of "cat -s" in test scripts.
+	It's not portable.  Omit entirely or replace with (not
+	equivalent but close enough for our purposes) "sed '/^$/d'".
+	Fixes spurious test failure on Alpine Linux.  Thanks to Bruno
+	Haible for the report.
+
 2026-01-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* mm.am: Drop unused macro `mm_builddir`.  Automake itself
