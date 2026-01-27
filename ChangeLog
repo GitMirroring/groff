@@ -1,3 +1,11 @@
+2026-01-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/preproc/tbl/tests/boxed-TH-tables-work-on-utf8-device.sh:
+	Fix excessively strict regex, which caused test failure with
+	OpenBSD od(1) (and NetBSD's), because that implementation spaces
+	the columns of its output more widely than GNU coreutils's
+	od(1).  Thanks to Bruno Haible for the report.
+
 2026-01-26  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* arch/mingw/grap2graph.cmd: Revise version info.
