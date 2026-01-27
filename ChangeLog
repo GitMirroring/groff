@@ -1,3 +1,17 @@
+2026-01-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* doc/groff.texi.in: Adapt manual content to the configured
+	groff command prefix.  If the build is configured without a
+	leading "g"--omitting it has been groff's default for many
+	years, possibly forever--then our Texinfo manual now omits that
+	prefix when mentioning the affected commands (all replacements
+	for AT&T troff commands).  This way, if you select a command
+	prefix, say "limbo", and rebuild the Texinfo manual, the
+	manual reflects the prefix used by your build configuration, and
+	talks about "limboeqn", "limbotroff", "limborefer", and so on.
+
+	Fixes <https://savannah.gnu.org/bugs/?66031>.
+
 2026-01-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/tests/an_MR-internal-hyperlinks-work-with-pdfmom.sh:
