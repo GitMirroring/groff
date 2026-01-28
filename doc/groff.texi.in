@@ -1222,9 +1222,9 @@ implies @option{-g} and @option{-s}.
 @itemize
 @item
 @command{@g@soelim}
-replaces
-@code{so}
-requests with the contents of their file name arguments.
+replaces lines matching
+@samp{.so @var{file-name}}
+with the contents of @var{file-name}.
 
 @item
 @command{@g@troff}
