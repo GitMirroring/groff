@@ -23366,7 +23366,7 @@ these constraints were no longer as tight.
 @menu
 * Language Concepts::
 * Command Reference::
-* Intermediate Output Examples::
+* GNU @command{troff} Output Examples::
 * Output Language Compatibility::
 @end menu
 
@@ -24157,8 +24157,9 @@ produce more readable output.
 
 @c ---------------------------------------------------------------------
 
-@node Intermediate Output Examples
-@subsection Intermediate Output Examples
+@anchor{Intermediate Output Examples} @c 1.23.0
+@node GNU @command{troff} Output Examples
+@subsection GNU @command{troff} Output Examples
 
 This section presents the output
 GNU
