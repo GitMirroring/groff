@@ -27,6 +27,7 @@ use Getopt::Long;
 use warnings;
 
 my $pathsep='@PATH_SEPARATOR@';
+my $urwfontsupport='@urwfontsupport@';
 
 my $check=0;
 my $dirURW='';
@@ -136,9 +137,12 @@ sub LoadFoundry
 			{
 			    $gotf=0;
 			    my $fns=join(', ',split('!',$r[5]));
-			    Warn("groff font '$gfont' will not be"
-				 . " available for PDF output; unable"
-				 . " to locate font file(s): $fns");
+			    if ($urwfontsupport ne 'no')
+			    {
+			      Warn("groff font '$gfont' will not be"
+				   . " available for PDF output; unable"
+				   . " to locate font file(s): $fns");
+			    }
 			    $notFoundFont=1;
 			    unlink $gfont;
 			}

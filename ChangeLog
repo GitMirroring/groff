@@ -1,5 +1,20 @@
 2026-01-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	Propagate "configure" shell variable `urwfontsupport` into
+	"BuildFoundries" script, quieting build-time warnings when URW
+	font support is explicitly deconfigured.
+
+	* m4/groff.m4 (GROFF_URW_FONTS_SUPPORT): `AC_SUBST`
+	`urwfontsupport` so that it is defined in Makefiles.
+	* font/devpdf/devpdf.am (BuildFoundries): Add `urwfontsupport`
+	to set of sed(1) substitutions performed when generating target.
+	* font/devpdf/util/BuildFoundries.pl: Add `urwfontsupport`
+	scalar, taking value of corresponding sed substituion.
+	(LoadFoundry): Suppress warning about unavailable font if
+	`urwfontsupport` matches "no".
+
+2026-01-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m4/groff.m4 (GROFF_URW_FONTS_CHECK): Stop emptying shell
 	variable `urwfontsdir` if the URW fonts aren't found.  This
 	variable _had_ been used both to store the directory where they

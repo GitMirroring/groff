@@ -325,6 +325,7 @@ AC_DEFUN([GROFF_URW_FONTS_SUPPORT], [
     [AS_HELP_STRING([--without-urw-fonts],
       [disable support for URW fonts])],
     [urwfontsupport="$withval"])
+  AC_SUBST(urwfontsupport)
 ])
 
 # Make URW font directory location configurable.
