@@ -4,7 +4,8 @@
 # files and a "download" file so gropdf can embed fonts in PDF output.
 #
 # Copyright 2011-2025 Free Software Foundation, Inc.
-#      Written by Deri James <deri@chuzzlewit.myzen.co.uk>
+#
+# Written by Deri James <deri@chuzzlewit.myzen.co.uk>
 #
 # This file is part of groff, the GNU roff typesetting system.
 #
