@@ -394,7 +394,6 @@ dnl entry in font/devpdf/util/BuildFoundries.pl.
     if test $groff_have_urw_fonts = no
     then
       AC_MSG_RESULT([none found])
-      urwfontsdir=
     fi
   fi
 

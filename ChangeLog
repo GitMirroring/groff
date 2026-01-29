@@ -1,5 +1,18 @@
 2026-01-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m4/groff.m4 (GROFF_URW_FONTS_CHECK): Stop emptying shell
+	variable `urwfontsdir` if the URW fonts aren't found.  This
+	variable _had_ been used both to store the directory where they
+	were found _and_ as an indicator of whether URW font support was
+	expected by the configuring user.  We now have `urwfontsupport`
+	for the latter purpose, and blanking out `urwfontsdir` had the
+	undesirable side effect of suppressing the message that the
+	`GROFF_URW_FONTS_NOTICE` macro emits, preventing notification of
+	the user that their intention to configure URW font support was
+	foiled.
+
+2026-01-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* configure.ac: Identify the report at the end of the
 	configuration process as the "configuration summary"; I've been
 	using this term for years when collecting information from users
