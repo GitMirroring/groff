@@ -1,5 +1,15 @@
 2026-01-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grodvi/grodvi.1.man (FT):
+	* src/devices/grolj4/grolj4.1.man (FT):
+	* src/devices/gropdf/gropdf.1.man (FT):
+	* src/devices/grops/grops.1.man (FT): Suppress screeching ("-w
+	font") from formatter if a font used for illustrating the
+	typeface repertoire is unavailable.  Using a text typeface to
+	depict its own name is typographical gravy.
+
+2026-01-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* font/devpdf/util/BuildFoundries.pl (LoadFoundry): Tweak
 	wording of warning diagnostic; favor "cannot" over "unable to"
 	or "can't".
