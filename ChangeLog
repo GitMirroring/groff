@@ -1,5 +1,12 @@
 2026-01-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* configure.ac: Identify the report at the end of the
+	configuration process as the "configuration summary"; I've been
+	using this term for years when collecting information from users
+	reporting bugs.
+
+2026-01-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* gnulib: Refresh stable/2026-01 branch to obtain commit
 	dc9ad4ec31, which should fix a build error in C++ code on
 	FreeBSD 15.  Thanks to Bruno Haible.
