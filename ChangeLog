@@ -1,3 +1,9 @@
+2026-01-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* gnulib: Refresh stable/2026-01 branch to obtain commit
+	dc9ad4ec31, which should fix a build error in C++ code on
+	FreeBSD 15.  Thanks to Bruno Haible.
+
 2026-01-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* doc/groff.texi.in: Adapt manual content to the configured
