@@ -1,5 +1,15 @@
 2026-01-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* font/devpdf/util/BuildFoundries.pl (LoadFoundry): Tweak
+	wording of warning diagnostic; favor "cannot" over "unable to"
+	or "can't".
+	(RunAfmtodit): Clarify warning diagnostic: this script _could_
+	pass unrecognized options to afmtodit(1); it _chooses_ not to.
+	Also use the word "option" instead of "flag"--not all of
+	afmtodit's command-line options are Boolean-valued.
+
+2026-01-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Propagate "configure" shell variable `urwfontsupport` into
 	"BuildFoundries" script, quieting build-time warnings when URW
 	font support is explicitly deconfigured.

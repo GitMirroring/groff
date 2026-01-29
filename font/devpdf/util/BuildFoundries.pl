@@ -152,7 +152,8 @@ sub LoadFoundry
 		}
 		else
 		{
-		    Warn("Can't read grops font '$r[0]' for Foundry '$foundry'");
+		    Warn("cannot read grops font '$r[0]' for Foundry"
+			 . " '$foundry'");
 		}
 	    }
 	    else
@@ -207,7 +208,8 @@ sub RunAfmtodit
     {
 	if (!exists($flg{$f}))
 	{
-	    Warn("Can't use undefined flag '$f' in calling afmtodit for groff font '$gfont'");
+	    Warn("refusing to pass unrecognized option '$f' to afmtodit"
+		 . " for groff font '$gfont'");
 	    return('');
 	}
 
