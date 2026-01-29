@@ -74,7 +74,7 @@
 	Initialize `urwfontsdir` shell variable to empty
 	unconditionally, permitting it to be updated later if the URW
 	font feature isn't disabled.  Nest most of the work of this
-	macro inside a conditional on `urwfontsupprt`.  Continue to
+	macro inside a conditional on `urwfontsupport`.  Continue to
 	unconditionally populate and `AC_SUBST`-itute
 	`groff_have_urw_fonts` and `urwfontsdir`, because
 	"configure.ac", "test-mom.sh.in", "mom.am",
