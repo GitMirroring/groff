@@ -423,7 +423,6 @@ The body contains the document's visible content.
 .
 Once an output driver interprets
 .RB \[lq] "x init" \[rq],
-@w{@samp{x init}},
 it prepares to handle commands in general.
 .
 Processing terminates when a
@@ -1450,7 +1449,7 @@ Line continuation is a GNU extension.
 .SS "Legacy compressed encoding"
 .\" ====================================================================
 .
-AT&T}
+AT&T
 .I troff \" AT&T
 primarily emitted glyphs by writing two digits
 (a motion)
