@@ -1452,7 +1452,7 @@ Line continuation is a GNU extension.
 .
 AT&T}
 .I troff \" AT&T
-output primarily emitted glyphs by writing two digits
+primarily emitted glyphs by writing two digits
 (a motion)
 followed by a single character corresponding to a glyph.
 .

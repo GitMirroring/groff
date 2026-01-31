@@ -24113,7 +24113,7 @@ Line continuation is a GNU extension.
 @subsubsection Legacy Compressed Encoding
 @acronym{AT&T}
 @command{troff}
-output primarily emitted glyphs by writing two digits
+primarily emitted glyphs by writing two digits
 (a motion)
 followed by a single character corresponding to a glyph.
 This syntax is less a command itself than a compressed encoding of the
