@@ -1,3 +1,15 @@
+2026-01-31  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp (token::description): Fix assertion
+	failures (potential and actual) by supplying descriptions even
+	of internally generated token types.  While a user _should_
+	never be exposed to these in a diagnostic message, the event is
+	not impossible (and said descriptions could be helpful to groff
+	developers in tracking down the "impossible" situation).
+
+	Fixes <https://savannah.gnu.org/bugs/?67990>.  Thanks to Deri
+	James for the report.
+
 2026-01-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/devices/grodvi/grodvi.1.man (FT):
