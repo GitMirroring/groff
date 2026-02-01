@@ -1,3 +1,17 @@
+2026-02-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* doc/doc.am: De-parameterize production and installation of PDF
+	documents created by groff.  We now build all such files
+	regardless of gropdf(1)'s service level (see its man page).
+	Update population of `pdfmomoption`, `groffmanpagesoption`,
+	`PROCESSEDDOCFILES_PDF`, `docpdfdocdir`, and
+	`nodist_docpdfdoc_DATA` accordingly.
+	($(PROCESSEDDOCFILES_PDF)): Target now exists unconditionally.
+	(mostlyclean_doc): Unconditionally delete these built files.
+
+	Completes "action item E" from <https://lists.gnu.org/archive/\
+	html/groff/2026-02/msg00004.html>.
+
 2026-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* configure.ac: Disclose identity of Ghostscript command
