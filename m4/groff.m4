@@ -509,29 +509,6 @@ AC_DEFUN([GROFF_GHOSTSCRIPT_PREFS],
     [ALT_GHOSTSCRIPT_PROGS="gs gswin32c gsos2"])
    AC_SUBST([ALT_GHOSTSCRIPT_PROGS])])
 
-AC_DEFUN([GROFF_GHOSTSCRIPT_AVAILABILITY_NOTICE], [
-  AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
-
-  gs_names=gs
-  if test -n "$ALT_GHOSTSCRIPT_PROGS"
-  then
-    gs_names="$ALT_GHOSTSCRIPT_PROGS"
-  fi
-
-  if test "$GHOSTSCRIPT" = missing
-  then
-    AC_MSG_NOTICE([No Ghostscript program was found in \$PATH.
-
-  It was sought under the name(s) "$gs_names".
-
-  groff documentation will not be available in HTML.
-
-  'grohtml' will have reduced function, being unable to produce
-  documents using the 'tbl' preprocessor.
-    ])
-  fi
-])
-
 # Ghostscript version check.  Versions 9.00 <= x < 9.54 suffer from a
 # rendering glitch that affects the AT&T troff (and groff) special
 # character \(lh; see

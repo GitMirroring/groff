@@ -1,5 +1,16 @@
 2026-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[build]: Kill off `GROFF_GHOSTSCRIPT_AVAILABILITY_NOTICE`.
+
+	* m4/groff.m4 (GROFF_GHOSTSCRIPT_AVAILABILITY_NOTICE): Delete.
+	* configure.ac: Stop interpolating same.
+
+	Completes (the revised) "action item D" from <https://\
+	lists.gnu.org/archive/html/groff/2026-02/msg00004.html>.  I've
+	abandoned "action item B".
+
+2026-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[build]: Report gropdf service level in configuration summary.
 
 	* m4/groff.m4 (GROFF_GROPDF_DEPENDENCIES_CHECK): Drop unused
