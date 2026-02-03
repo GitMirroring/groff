@@ -41,10 +41,8 @@ SBOXES_EXAMPLEFILES = $(sboxes_srcdir)/msboxes.ms.in
 sboxesotherdocdir = $(docdir)
 nodist_sboxesotherdoc_DATA = $(sboxes_builddir)/msboxes.ms
 
-if USE_GROPDF
 sboxespdfdocdir = $(pdfdocdir)
 nodist_sboxespdfdoc_DATA = $(sboxes_builddir)/msboxes.pdf
-endif
 
 MOSTLYCLEANFILES += msboxes.ms \
 	$(nodist_sboxesotherdoc_DATA) \
@@ -72,9 +70,8 @@ uninstall_sboxes:
 	if test -d $(DESTDIR)$(exampledir)/sboxes; then \
 	  rmdir $(DESTDIR)$(exampledir)/sboxes; \
 	fi
-if USE_GROPDF
 	-rmdir $(DESTDIR)$(sboxespdfdocdir)
-endif
+
 
 # Local Variables:
 # fill-column: 72
