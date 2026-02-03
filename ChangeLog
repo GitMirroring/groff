@@ -1,5 +1,24 @@
 2026-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[build]: Report gropdf service level in configuration summary.
+
+	* m4/groff.m4 (GROFF_GROPDF_DEPENDENCIES_CHECK): Drop unused
+	shell variables `use_gropdf` and `gropdf_missing_deps`.  Add new
+	shell variable `gropdf_service_level`, to be used (only) for
+	reporting an intelligible meaning to a human in the
+	configuration summary.  Default value to "full".  If URW fonts
+	are unavailable, demote value to "intermediate".  If Ghostscript
+	is unavailable, demote value to "basic".
+	* configure.ac: Rearrange summary and disclose gropdf service
+	level in it.  Report URW font directory (if applicable) after
+	Ghostscript command name and before the gropdf service level,
+	since the first two determine the last.
+
+	Completes "action item C" from <https://lists.gnu.org/archive/\
+	html/groff/2026-02/msg00004.html>.
+
+2026-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[build]: Kill off `GROFF_GROPDF_PROGRAM_NOTICE`.
 
 	* m4/groff.m4 (GROFF_GROHTML_PROGRAM_NOTICE): Delete.

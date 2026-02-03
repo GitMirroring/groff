@@ -217,6 +217,13 @@ echo "\
  C compiler and options           : $CC $CFLAGS $CPPFLAGS
  Perl interpreter version         : $perl_version
  Ghostscript command              : $GHOSTSCRIPT"
+if test "$groff_have_urw_fonts" = yes
+then
+ echo "\
+ URW fonts directory              : $urwfontsdir"
+fi
+ echo "\
+ gropdf service level             : $gropdf_service_level"
 if test "$groff_no_x" = yes
 then
   echo "\
@@ -227,16 +234,8 @@ else
  X11 app defaults directory       : $appdefdir"
 fi
 echo "\
- default paper format             : $PAGE"
-echo "\
+ default paper format             : $PAGE
  'groff -l' uses print spooler    : $groff_have_spooler
- use URW fonts for PDF output     : $groff_have_urw_fonts"
-if test "$groff_have_urw_fonts" = yes
-then
- echo "\
- URW fonts directory              : $urwfontsdir"
-fi
-echo "\
  preconv can use uchardet library : $groff_have_uchardet
  can build groff.{info,html,txt}  : $groff_have_makeinfo
  can build groff.{dvi,pdf}        : $groff_use_tex
