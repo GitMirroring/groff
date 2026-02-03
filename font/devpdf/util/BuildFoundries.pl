@@ -139,11 +139,12 @@ sub LoadFoundry
 			    my $fns=join(', ',split('!',$r[5]));
 			    if ($urwfontsupport ne 'no')
 			    {
-			      Warn("groff font '$gfont' will not be"
-				   . " available for PDF output; unable"
-				   . " to locate font file(s): $fns");
+			      Warn("excluding groff font description"
+				   . " file '$gfont'; unable to locate"
+				   . " corresponding font file(s):"
+				   . "$fns");
+			      $notFoundFont=1;
 			    }
-			    $notFoundFont=1;
 			    unlink $gfont;
 			}
 		    }

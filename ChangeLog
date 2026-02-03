@@ -1,3 +1,13 @@
+2026-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* font/devpdf/util/BuildFoundries.pl (LoadFoundry): Tweak
+	warning diagnostic to describe the decision being taken and the
+	reason for it.  Set `notFoundFont` scalar to 1 only if this
+	diagnostic was unexpected because the `urwfontsupport` scalar
+	didn't match "no".  This way we don't spray the (usually
+	enormous) "path(s) used for searching" diagnostic for no
+	apparent reason.
+
 2026-02-03  Dariusz Chilimoniuk <darek@stack.pl>
 
 	* tmac/hyphen.pl: New file adds Polish hyphenation patterns and
