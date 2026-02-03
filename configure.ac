@@ -184,7 +184,6 @@ AM_CONDITIONAL([MAKE_DEFINES_RM], [test "$groff_make_defines_rm" = yes])
 AM_CONDITIONAL([USEPROGRAMPREFIX], [test "$g" = g])
 
 AM_CONDITIONAL([USE_GROHTML], [test "$use_grohtml" = yes])
-AM_CONDITIONAL([USE_GROPDF], [test "$use_gropdf" = yes])
 AM_CONDITIONAL([USE_GROFF_ALLOCATOR],
                [test "$groff_use_own_allocator" = yes])
 AM_CONDITIONAL([HAVE_GHOSTSCRIPT], [test "$GHOSTSCRIPT" != no \
