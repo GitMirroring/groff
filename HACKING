@@ -148,7 +148,7 @@ Updating copyright notices
 Writing tests
 -------------
 
-Here are some portability notes on writing automated tests.
+Here is some advice on writing portable automated test scripts.
 
 * Write to the POSIX standard for the shell and utilities where
   possible.  Issue 4 from 1994 is old enough that no contemporary system
@@ -294,6 +294,7 @@ Here are some portability notes on writing automated tests.
       echo "unable to clear environment; skipping" >&2
       exit 77
   fi
+
 
 Updating gnulib
 ---------------
