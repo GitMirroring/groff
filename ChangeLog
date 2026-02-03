@@ -30,6 +30,8 @@
 	Also use the word "option" instead of "flag"--not all of
 	afmtodit's command-line options are Boolean-valued.
 
+	Continues the long process of fixing Savannah #66519.
+
 2026-01-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	Propagate "configure" shell variable `urwfontsupport` into
