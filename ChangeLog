@@ -1,5 +1,14 @@
 2026-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m4/groff.m4 (GROFF_URW_FONTS_CHECK): Stop blanking
+	`urwfontsdir` shell variable unconditionally.
+
+	Fixes problem with groff 1.24.0.rc2 reported by Alexis
+	Hildebrant in <https://lists.gnu.org/archive/html/groff/\
+	2026-02/msg00000.html>.
+
+2026-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* font/devpdf/util/BuildFoundries.pl (LoadFoundry): Clarify
 	diagnostic messages.  A digital font, like
 	"URWGothic-DemiOblique.t1", is not the same thing as font

@@ -333,7 +333,6 @@ AC_DEFUN([GROFF_URW_FONTS_CHECK], [
   AC_REQUIRE([GROFF_URW_FONTS_PATH])
   AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
   groff_have_urw_fonts=no
-  urwfontsdir=
   if test "$urwfontsupport" != no
   then
     AC_MSG_CHECKING([for URW fonts in Type 1/PFB format])
