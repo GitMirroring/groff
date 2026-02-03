@@ -106,7 +106,7 @@ their impact.
     horizontally compresses tables as well, _would_ be 'NEWS'-worthy.
 
 
-Updating Copyright Notices
+Updating copyright notices
 --------------------------
 
 * The overall copyright notice for groff as a work of software is
@@ -145,7 +145,7 @@ Updating Copyright Notices
   deliberately, and some never enjoyed copyright protection at all.)
 
 
-Writing Tests
+Writing tests
 -------------
 
 Here are some portability notes on writing automated tests.
