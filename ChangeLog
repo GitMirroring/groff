@@ -1,3 +1,25 @@
+2026-02-03  Dariusz Chilimoniuk <darek@stack.pl>
+
+	* tmac/hyphen.pl: New file adds Polish hyphenation patterns and
+	exceptions.
+	* tmac/pl.tmac: New file adds groff locale for Polish.
+	* tmac/tmac.am: Add the foregoing files to the `TMACNORMALFILES`
+	macro.
+	* LICENSES: Add copyright and license notices from CTAN Polish
+	hyphenation patterns.
+
+	* src/roff/groff/test/initialization-is-quiet.sh: Verify lack of
+	warnings when Polish l10n macro file is loaded (`-m pl`).
+	* tmac/tests/e_ld-works.sh: Test Polish translation.
+	* tmac/tests/localization-works.sh: Test Polish localization.
+
+	* doc/groff.texi.in (ms language and localization)
+	(Input Encodings, Manipulating Hyphenation):
+	* doc/ms.ms.in (Language and localization):
+	* man/groff_tmac.5.man (Localization packages):
+	* tmac/groff_ms.7.man (Language and localization): Note
+	availability of Polish localization.
+
 2026-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[build]: Kill off `GROFF_GHOSTSCRIPT_AVAILABILITY_NOTICE`.
