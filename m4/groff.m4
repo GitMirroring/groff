@@ -300,24 +300,6 @@ AC_DEFUN([GROFF_MAKEINFO_PROGRAM_NOTICE], [
 ])
 
 
-AC_DEFUN([GROFF_GROPDF_PROGRAM_NOTICE], [
-  AC_REQUIRE([GROFF_GROPDF_DEPENDENCIES_CHECK])
-
-  if test "$use_gropdf" = no
-  then
-    AC_MSG_NOTICE(['gropdf' will have reduced function.
-
-  Neither Ghostscript nor URW fonts are available; groff documentation
-  thus will not be available in PDF.
-
-  'gropdf' will be able to handle only documents using the standard PDF
-  base 14 fonts, plus the 'EURO' font groff supplies, and font embedding
-  with its '-e' option (accessed via the 'groff' command with the option
-  '-P -e') will not be possible.
-])
-  fi
-])
-
 # Make URW font support configurable.
 
 AC_DEFUN([GROFF_URW_FONTS_SUPPORT], [

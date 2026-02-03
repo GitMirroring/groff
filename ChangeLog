@@ -1,5 +1,12 @@
 2026-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[build]: Kill off `GROFF_GROPDF_PROGRAM_NOTICE`.
+
+	* m4/groff.m4 (GROFF_GROHTML_PROGRAM_NOTICE): Delete.
+	* configure.ac: Stop interpolating same.
+
+2026-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* configure.ac: Delete `AM_CONDITIONAL` for no-longer-used
 	`USE_GROPDF` configuration parameter.
 
