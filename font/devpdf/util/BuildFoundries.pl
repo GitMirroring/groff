@@ -148,13 +148,14 @@ sub LoadFoundry
 			    unlink $gfont;
 			}
 		    }
-		    Notice("copied grops font $gfont") if $gotf;
+		    Notice("copied grops font description $gfont for"
+			   . " gropdf") if $gotf;
 
 		}
 		else
 		{
-		    Warn("cannot read grops font '$r[0]' for Foundry"
-			 . " '$foundry'");
+		    Warn("cannot read grops font description '$r[0]'"
+			 . " for Foundry '$foundry'");
 		}
 	    }
 	    else
@@ -162,7 +163,8 @@ sub LoadFoundry
 		# Use afmtodit to create a groff font description file.
 		my $afmfile=LocateAF($foundrypath,$r[5]);
 		if (!$afmfile) {
-		    Warn("cannot locate AFM file for font '$gfont'");
+		    Warn("cannot locate AFM file for font description"
+			 . " '$gfont'");
 		    next;
 		}
 		my $psfont=RunAfmtodit($gfont,$afmfile,$r[2],$r[3],$r[4]);
@@ -171,11 +173,15 @@ sub LoadFoundry
 		{
 		    if (!PutDownload($psfont,LocatePF($foundrypath,$r[5]),uc($r[1])))
 		    {
-			unlink $gfont;	# Unable to find the postscript file for the font just created by afmtodit
+			# We were unable to find the PostScript file
+			# corresponding to the font description just
+			# created by afmtodit.
+			unlink $gfont;
 		    }
 		    else
 		    {
-			Notice("generated $gfont");
+			Notice("generated font description $gfont"
+			       . " for gropdf");
 		    }
 		}
 		else

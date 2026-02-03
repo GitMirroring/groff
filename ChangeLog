@@ -1,5 +1,13 @@
 2026-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* font/devpdf/util/BuildFoundries.pl (LoadFoundry): Clarify
+	diagnostic messages.  A digital font, like
+	"URWGothic-DemiOblique.t1", is not the same thing as font
+	description file for groff, like "ABI".  We do our users no
+	favors by conflating these two concepts.
+
+2026-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* font/devpdf/util/BuildFoundries.pl (LoadFoundry): Tweak
 	warning diagnostic to describe the decision being taken and the
 	reason for it.  Set `notFoundFont` scalar to 1 only if this
