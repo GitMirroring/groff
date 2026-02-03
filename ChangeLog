@@ -1,3 +1,10 @@
+2026-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* configure.ac: Disclose identity of Ghostscript command
+	discovered by Autoconf in configuration summary.  Completes
+	"action item A" from <https://lists.gnu.org/archive/html/groff/\
+	2026-02/msg00004.html>.
+
 2026-01-31  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (token::description): Fix assertion

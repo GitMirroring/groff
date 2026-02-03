@@ -216,7 +216,8 @@ echo "\
  C++ compiler and options         : $CXX $CXXFLAGS $CPPFLAGS
  use libgroff's memory allocator  : $groff_use_own_allocator
  C compiler and options           : $CC $CFLAGS $CPPFLAGS
- Perl interpreter version         : $perl_version"
+ Perl interpreter version         : $perl_version
+ Ghostscript command              : $GHOSTSCRIPT"
 if test "$groff_no_x" = yes
 then
   echo "\
