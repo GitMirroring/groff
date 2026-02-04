@@ -467,7 +467,7 @@ Documentation License''.
 @title groff
 @subtitle The GNU implementation of @code{troff}
 @subtitle version @VERSION@
-@subtitle January 2026
+@subtitle February 2026
 @author Trent@tie{}A.@: Fisher
 @author Werner Lemberg
 @author G.@tie{}Branden Robinson
@@ -626,7 +626,7 @@ its heart.
 The front end programs available in the
 GNU
 @code{roff}
-system easier to use than traditional
+system make it easier to use than traditional
 @code{roff}s
 that required the construction of pipelines
 or use of temporary files to carry a source document
