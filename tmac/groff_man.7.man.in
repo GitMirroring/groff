@@ -1645,7 +1645,8 @@ for more information.
 .
 .
 .IP
-displays as \[lq]Contact Fred Foonly \[la]fred\:.foonly@\:fubar\:.net\[ra]
+formats as
+\[lq]Contact Fred Foonly \[la]fred\:.foonly@\:fubar\:.net\[ra]
 for more information.\[rq].
 _endif()dnl
 .
@@ -1706,7 +1707,7 @@ home page
 .
 .
 .IP
-displays as \[lq]The GNU Project of the Free Software Foundation hosts
+formats as \[lq]The GNU Project of the Free Software Foundation hosts
 the
 .I groff
 home page
