@@ -52,4 +52,4 @@ $SEP$builddir/contrib/sboxes\
 export GROFF_COMMAND_PREFIX
 export GROFF_BIN_PATH GROFF_FONT_PATH GROFF_TMAC_PATH
 
-exec $builddir/groff ${1+"$@"}
+exec $builddir/groff "$@"
