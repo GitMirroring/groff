@@ -1,5 +1,9 @@
 2026-02-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* Makefile.am: Add ".version" file to `MOSTLYCLEANFILES` macro.
+
+2026-02-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/number.cpp (is_valid_term): Reintroduce warning
 	in category "tab" when a tab character starts a numeric
 	expression.  Lacking it caused the formatter to throw a huge

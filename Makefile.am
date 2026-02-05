@@ -773,7 +773,7 @@ EXTRA_DIST += \
   makevarescape.sed \
   mdate.pl
 
-MOSTLYCLEANFILES += $(prefixexecbin_SCRIPTS) $(bin_SCRIPTS) \
+MOSTLYCLEANFILES += .version $(prefixexecbin_SCRIPTS) $(bin_SCRIPTS) \
   $(man1_MANS) $(man5_MANS) $(man7_MANS) \
   $(PREFIXMAN1)
 
