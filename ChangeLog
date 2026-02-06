@@ -1,3 +1,9 @@
+2026-02-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* update-copyright.sh: Drop (unshipped) script.  I implement a
+	different approach to the problem it solves; see the "HACKING"
+	file.
+
 2026-02-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* doc/doc.am (maintainer-clean-local): Clean "gnu.eps" file in
