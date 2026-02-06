@@ -112,6 +112,9 @@ their impact.
 Updating copyright notices
 --------------------------
 
+Background
+..........
+
 * A lay person's views and opinion follow; they are not legal advice.
   If you require legal advice, consult a licensed attorney competent in
   copyright law in your jurisdiction.  The following discussion attempts
@@ -153,6 +156,9 @@ Updating copyright notices
   who don't legitimately have copyright in a work or by deliberately
   overstating the recency of their efforts is, in the lay opinion of the
   maintainer as of this writing, neglectful of responsibility.
+
+What To Do
+..........
 
 * Update the overall copyright notice for groff as a work of software
   at release time.  See the 'FOR-RELEASE' file in the Git repository.
