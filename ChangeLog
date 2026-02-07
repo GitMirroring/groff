@@ -1,5 +1,26 @@
 2026-02-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	Simplify handling of ".version" file.
+
+	* Makefile.am (.version): Spell target name without a leading
+	`$(top_srcdir)/` interpolation, which caused a build failure
+	using Debian's package of BSD make when performing a "make dist"
+	in an in-tree build.
+	* src/devices/xditview/xditview.am
+	($(GXDITVIEW_GROFF_VERSION_H):
+	* src/libs/libgroff/libgroff.am (src/libs/libgroff/version.cpp):
+	* src/roff/troff/troff.am (src/roff/troff/majorminor.cpp):
+	Update dependencies on ".version" accordingly.
+	* Makefile.am: Stop appending ".version" to the `EXTRA_DIST` and
+	`BUILT_SOURCES` macros--it's unnecessary.  The file is now an
+	ordinary build artifact.
+
+	Tested with "make check" and "make distcheck" in four
+	configurations: the Cartesian product of {BSD, GNU} make with
+	{in-, out-of-}tree builds.
+
+2026-02-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* doc/doc.am: Simplify generation of HTML documents with groff.
 	(doc/pic.html, doc/webpage.html): Stop changing directories as
 	part of the target receipe; instead, alter the argument to
