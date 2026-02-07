@@ -163,6 +163,8 @@
 	* tmac/groff_ms.7.man (Language and localization): Note
 	availability of Polish localization.
 
+	Fixes <https://savannah.gnu.org/bugs/?68004>.
+
 2026-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[build]: Kill off `GROFF_GHOSTSCRIPT_AVAILABILITY_NOTICE`.
