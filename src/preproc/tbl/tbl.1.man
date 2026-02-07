@@ -277,6 +277,7 @@ as a synonym.
 .B center
 Center the table region with respect to the line length,
 reducing the indentation if necessary
+(with a warning at formatting time)
 to make the table region fit;
 the default is to left-align it.
 .

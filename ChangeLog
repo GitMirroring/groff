@@ -1,3 +1,14 @@
+2026-02-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/preproc/tbl/table.cpp (table::compute_overall_width):
+	Distinguish formatting-time diagnostics emitted when a table
+	oversets; when the table is centered, note the fact because it
+	might not overrun the line length but instead has reduced the
+	indentation, which can be ugly in a different way.
+
+	* src/preproc/tbl/tbl.1.man (Region options) <center>: Advise of
+	circumstance in which formatting-time diagnostic is issued.
+
 2026-02-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/env.cpp: Revert refactoring from commit
