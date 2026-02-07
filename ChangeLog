@@ -1,3 +1,16 @@
+2026-02-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* doc/doc.am: Simplify generation of HTML documents with groff.
+	(doc/pic.html, doc/webpage.html): Stop changing directories as
+	part of the target receipe; instead, alter the argument to
+	grohtml's `-j` option to include the name of the desired
+	subdirectory.  Drop test for existence of separate image files
+	afterward.  Since the fix for Savannah #67133 last May, we
+	should be able to rely on groff to exit with a nonzero status if
+	grohtml fails.  Tested with "make check" and "make distcheck" in
+	four configurations: the Cartesian product of {BSD, GNU} make
+	with {in-, out-of-}tree builds.
+
 2026-02-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/preproc/tbl/table.cpp (table::compute_overall_width):
