@@ -5398,6 +5398,8 @@ see
 .BR 0 ).
 .
 .
+.br
+.ne 7v
 .\" XXX: This really should just be a string, shouldn't it?
 .TP
 .B Of
