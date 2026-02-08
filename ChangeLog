@@ -1,5 +1,13 @@
 2026-02-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/gropdf/gropdf.pl: Rename new `--opt` command-line
+	option to `--format-options`, with short `-f` synonym.
+	* src/devices/gropdf/gropdf.1.man (Options): Update.
+
+	Fixes <https://savannah.gnu.org/bugs/?68022>.
+
+2026-02-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Simplify handling of ".version" file.
 
 	* Makefile.am (.version): Spell target name without a leading
