@@ -67,19 +67,19 @@ output driver for Portable Document Format
 .
 .SY gropdf
 .RB [ \-delsW ]
+.RB [{ \-f | \-\-format-options }\~\c
+.IR bit-vector ]
 .RB [ \-F\~\c
 .IR font-directory ]
 .RB [ \-I\~\c
 .IR inclusion-directory ]
-.RB [ \-\-opt\~\c
-.IR option-bits ]
 .RB [ \-p\~\c
 .IR paper-format ]
 .RB [ \-\-pdfver\~\c
 .RB { 1.4 \||\| 1.7 }]
 \#.RB [ \-w\~\c
 \#.IR n ]
-.RB [ \-u
+.RB [ \-u\~\c
 .RI [ cmap-file ]]
 .RB [ \-y\~\c
 .IR foundry ]
