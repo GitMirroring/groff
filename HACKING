@@ -299,7 +299,7 @@ Here is some advice on writing portable automated test scripts.
 
   So a regex like this that works with GNU od:
     grep -q '81 30 55 81 30 56 81 6c e2'
-  might need to be weakened to the following to work on macOS.
+  might need to be weakened to the following to work on macOS/[NO]*BSD.
     grep -q '81  *30  *55  *81  *30  *56  *81  *6c  *e2'
 
 * The "od" command on macOS does not respect the environment variable
