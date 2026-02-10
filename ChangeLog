@@ -41,7 +41,7 @@
 
 	* doc/doc.am: Simplify generation of HTML documents with groff.
 	(doc/pic.html, doc/webpage.html): Stop changing directories as
-	part of the target receipe; instead, alter the argument to
+	part of the target recipe; instead, alter the argument to
 	grohtml's `-j` option to include the name of the desired
 	subdirectory.  Drop test for existence of separate image files
 	afterward.  Since the fix for Savannah #67133 last May, we
@@ -179,7 +179,7 @@
 
 	* font/devpdf/util/BuildFoundries.pl (LoadFoundry): Clarify
 	diagnostic messages.  A digital font, like
-	"URWGothic-DemiOblique.t1", is not the same thing as font
+	"URWGothic-DemiOblique.t1", is not the same thing as a font
 	description file for groff, like "ABI".  We do our users no
 	favors by conflating these two concepts.
 
