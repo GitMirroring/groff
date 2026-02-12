@@ -1,5 +1,19 @@
 2026-02-12  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	Add another URW font directory search path.
+
+	* font/devpdf/Foundry.in:
+	* m4/groff.m4 (GROFF_URW_FONTS_CHECK): Add
+	"/usr/share/fonts/type1" directory to search path for URW font
+	files.  That is apparently (yet another?) location Arch Linux
+	keeps them in.
+
+	Continues fixing <https://savannah.gnu.org/bugs/?65974>.  Thanks
+	to Morten Bo Johansen for the report in <https://lists.gnu.org/\
+	archive/html/groff/2026-02/msg00052.html>.
+
+2026-02-12  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Re-order URW font directory search path.
 
 	* font/devpdf/Foundry.in:
