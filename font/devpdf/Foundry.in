@@ -1,5 +1,5 @@
-# Foundry file
-
+# Define "foundries" (alternative font vendors) for use with gropdf(1)
+#
 # Copyright 2011 Free Software Foundation, Inc.
 #
 # Written by Deri James <deri@chuzzlewit.myzen.co.uk>
