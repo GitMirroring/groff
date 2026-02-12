@@ -1,3 +1,20 @@
+2026-02-12  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	Re-order URW font directory search path.
+
+	* font/devpdf/Foundry.in:
+	* m4/groff.m4 (GROFF_URW_FONTS_CHECK): Alter ordering of
+	directories to attempt to find separately packaged URW fonts,
+	which might in principle get updated more frequently than those
+	shipped with Ghostscript, before those supplied by Ghostscript
+	itself.  This procedure cannot be perfectly reliable using _any_
+	ordering because host systems can update their Ghostscript and
+	URW font packages (if any) on separate and arbitrary schedules,
+	and these matters are outside of groff's contol.  If groff finds
+	the "wrong" URW fonts (or can't find them at all), use the
+	"--with-urw-fonts-dir=" option to groff's "configure" script to
+	point it at the correct ones.
+
 2026-01-20  Deri James  <deri@chuzzlewit.myzen.co.uk>
 
 	* src/devices/gropdf/gropdf.pl: Allow whitespace after grout
