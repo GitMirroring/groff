@@ -807,7 +807,7 @@ and embedded in PDF output.
 .
 .
 .\" ====================================================================
-. SS "URW font support"
+. SS "Feature service levels and URW font support"
 .\" ====================================================================
 .
 The traditional PostScript Type\~1 fonts
