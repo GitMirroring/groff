@@ -1,6 +1,8 @@
 #!/bin/sh
 #
-# Copyright 2018-2024 Free Software Foundation, Inc.
+# Copyright 2018 Free Software Foundation, Inc.
+#
+# Written by Bertrand Garrigues <bertrand.garrigues@laposte.net>
 #
 # This file is part of hdtbl.
 #
