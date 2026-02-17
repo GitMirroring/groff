@@ -1,5 +1,12 @@
 2026-02-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* font/devpdf/util/BuildFoundries.pl (LoadFoundry): Clarify
+	warning diagnostic message when a font description file is
+	unavailable; "foundry ''" can look like a logic error.  Refer to
+	"default foundry" instead in that scenario.
+
+2026-02-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Eliminate new but superfluous Automake variable.
 
 	* configure.ac: Drop `AM_CONDITIONAL()` defining `GROPDF_INTER`,
