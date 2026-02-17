@@ -22,7 +22,7 @@
 	stashing logic needed to save the pre-interpretation form of the
 	"mark-or-list" argument, not a post-interpretation,
 	unambiguously typed string to use as the item mark.  A better
-	implementation of `LB` would stash as many distinctly, and
+	implementation of `LB` would stash as many distinct, and
 	unambiguously typed, data as warranted to recover necessary
 	state when a "pop" occurs.  I predict that doing so would, in
 	turn, make the `LI` macro's job simpler and easier, leaving less
