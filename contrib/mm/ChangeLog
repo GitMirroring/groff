@@ -1,5 +1,13 @@
 2026-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tests/lists-indent-correctly.sh: Add test for quantity of
+	diagnostic message lines produced by input.  We expect exactly
+	one.  Also wrangle the standard error stream so as to dump all
+	such diagnostics _after_ the (voluminous) formatted output,
+	where they're harder to miss.
+
+2026-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac: Fix truncated diagnostic messages caused by macro
 	programmer forgetting to name the string to which the `as`
 	request is meant to append.
