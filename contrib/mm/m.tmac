@@ -2791,7 +2791,7 @@ exceeds depth of nested lists (\\n[li*lvl])
 .nr li*text-indent \w@\\$1@u+1n
 .nr li*pad-amount 0
 .if \\n[.$]>1 \{\
-.	ie !\B'\\$2' \{\
+.	if !'\\$2'' .ie !\B'\\$2' \{\
 .		ds li*msg \\$0: text-indent argument is not numeric:\"
 .		as li*msg " '\\$2'\"
 .		@error \\*[li*msg]

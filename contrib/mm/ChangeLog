@@ -1,5 +1,12 @@
 2026-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (ML): Handle explicitly empty second argument.
+
+	Fixes <https://savannah.gnu.org/bugs/?68065>.  Problem
+	introduced by me in commit 512b749f4e, 2 July 2024.
+
+2026-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Add regression test for Savannah #68065.  Marked list (`ML`)
 	macro calls were not treating an explicitly empty second
 	argument (text indentation amount) as implying the computed
