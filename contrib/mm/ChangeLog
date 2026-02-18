@@ -1,5 +1,17 @@
 2026-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	Add regression test for Savannah #68065.  Marked list (`ML`)
+	macro calls were not treating an explicitly empty second
+	argument (text indentation amount) as implying the computed
+	default.  This matters when a third argument, the presence of
+	which suppresses vertical spacing before each list item, is
+	desired.
+
+	* tests/ML-accepts-empty-second-argument.sh: Do it.
+	* mm.am (mm_TESTS): Run test.
+
+2026-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (ML): Refactor to ease further bug fixing.  Call the
 	`LB` macro that this macro wraps in one place, not three.
 	Introduce new temporary `li*pad-amount` register to manage the
