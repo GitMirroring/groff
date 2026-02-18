@@ -1,3 +1,15 @@
+2026-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m.tmac: Fix truncated diagnostic messages caused by macro
+	programmer forgetting to name the string to which the `as`
+	request is meant to append.
+	(MULN): Fix truncated fatal error diagnostic arising from
+	disordered internal state when an undefined column width is
+	encountered when using groff mm's extended multi-column layout
+	feature.
+	(ML): Fix truncated error diagnostic when 2nd argument to macro
+	is not numeric.
+
 2026-02-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m.tmac (li@pop): When popping a nested list level, restore

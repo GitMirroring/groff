@@ -1949,7 +1949,8 @@ breaking page
 .if \\n[pg*cols-per-page]<2 .@error \\$0: not in multi-column mode
 .if \\n[pg*mul-x]>=\\n[pg*mul-max-col] \{\
 .	ds pg*msg .@abort undefined column width \"
-.	as (pg*mul-x=\\n[pg*mul-x] >= pg*mul-max-col=\\n[pg*mul-max])\"
+.	as pg*msg (pg*mul-x=\\n[pg*mul-x] >= \
+pg*mul-max-col=\\n[pg*mul-max])\"
 .	@abort \\*[pg*msg]
 .\}
 .br
@@ -2789,7 +2790,7 @@ exceeds depth of nested lists (\\n[li*lvl])
 .el \{\
 .	if !\B'\\$2' \{\
 .		ds li*msg \\$0: text-indent argument is not numeric:\"
-.		as " '\\$2'\"
+.		as li*msg " '\\$2'\"
 .		@error \\*[li*msg]
 .	\}
 .	ie \\n[.$]=2 .LB \\$2                 0 1 0 "\\$1"
