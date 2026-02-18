@@ -2554,7 +2554,7 @@ h=\\n[df*height!\\n[df*o-fnr]]
 .nr li*tind (n;0\\$1)\"			text-indent
 .nr li*mind (n;0\\$2)\"			mark-indent
 .nr li*pad (n;0\\$3)\"			pad
-.nr li*type 0\\$4\"			type
+.nr li*type 0\\$4\"			type (in range -1..6)
 .ds li*mf \\$5\"			mark-or-format
 .ie !'\\$6'' .nr li*li-spc \\$6\"	LI-space
 .el          .nr li*li-spc 1
@@ -2562,27 +2562,30 @@ h=\\n[df*height!\\n[df*o-fnr]]
 .el          .nr li*lb-spc 0
 .\" init listcounter
 .nr li*cnt!\\n[li*lvl] 0 1
-.\" assign format
-.af li*cnt!\\n[li*lvl] 1
+.nr li*mf-is-mark 1
 .if \\n[li*type] \{\
-.	ie '\?\\*[li*mf]\?'\?\&\?' .af li*cnt!\\n[li*lvl] 0
-.	el \{\
-.		nr li*is-format-valid 0
-.		if '\?\\*[li*mf]\?'\?a\?'       .nr li*is-format-valid 1
-.		if '\?\\*[li*mf]\?'\?A\?'       .nr li*is-format-valid 1
-.		if '\?\\*[li*mf]\?'\?i\?'       .nr li*is-format-valid 1
-.		if '\?\\*[li*mf]\?'\?I\?'       .nr li*is-format-valid 1
-.		if \B'\\*[li*mf]' \
-.			if \\*[li*mf]>-1        .nr li*is-format-valid 1
-.		if !\\n[li*is-format-valid] \{\
-.			@warning \\$0: type argument is \\n[li*type] \
-but mark argument '\\*[li*mf]' is not a valid register format; \
-assuming '0'
-.			ds li*mf 0\"
+.	nr li*mf-is-mark 0
+.	if '\\*[li*mf]'' .ds li*mf 0\"
+.	nr li*is-format-valid 0
+.	if '\?\\*[li*mf]\?'\?a\?'           .nr li*is-format-valid 1
+.	if '\?\\*[li*mf]\?'\?A\?'           .nr li*is-format-valid 1
+.	if '\?\\*[li*mf]\?'\?i\?'           .nr li*is-format-valid 1
+.	if '\?\\*[li*mf]\?'\?I\?'           .nr li*is-format-valid 1
+.	if \B'\\*[li*mf]' .if \\*[li*mf]>-1 .nr li*is-format-valid 1
+.	if !\\n[li*is-format-valid] \{\
+.		ds li*msg \\$0: type argument is \\n[li*type]\"
+.		as li*msg " but mark argument '\\*[li*mf]'\"
+.		as li*msg " is not a valid register format;\"
+.		as li*msg " assuming '0'\"
+.		@warning \\*[li*msg]
+.		rm li*msg
+.		ds li*mf 0\"
 .		\}
-.		af li*cnt!\\n[li*lvl] \\*[li*mf]
 .	\}
 .\}
+.ie \\n[li*mf-is-mark] .af li*cnt!\\n[li*lvl] 0
+.el                    .af li*cnt!\\n[li*lvl] \\*[li*mf]
+.rr li*mf-is-mark
 .\"
 .if \\n[li*lb-spc] .SP (u;\\n[li*lb-spc]*\\n[Lsp])
 .in +\\n[li*tind]u

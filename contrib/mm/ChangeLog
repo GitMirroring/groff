@@ -1,5 +1,28 @@
 2026-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (LB): Fix spurious warnings.  Refactor to clarify
+	logic, since I proved inadequate to the task of penetrating its
+	dialect before.  Document expected range of fourth macro
+	argument.  Assign register format to registers used as list item
+	enumerators in one place instead of three.  Introduce new
+	temporary register `li*mf-is-mark` to elucidate the peculiar
+	status of macro's fifth argument as an untagged union type.
+	{Why is it that _bad_ ideas are adopted so much more
+	aggressively than _good_ ones?}  Rearrange logic that parses
+	this fifth argument (tracked as `li*mf`) for validity as a
+	register format.  Replace highly specific check for `\&` as an
+	argument using GNU troff's "string comparison" extension with a
+	simple test for nonempty formatted output.  It's more
+	{traditionally} idiomatic and captures any other synonymous ways
+	that the fifth macro argument might be "nothing".  Assemble
+	lengthy diagnostic message into a temporary string, simplifying
+	its emission.
+
+	Fixes <https://savannah.gnu.org/bugs/?68066>.  Problem
+	introduced by me in commit ae66055171, 3 August 2025.
+
+2026-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tests/lists-indent-correctly.sh: Add test for quantity of
 	diagnostic message lines produced by input.  We expect exactly
 	one.  Also wrangle the standard error stream so as to dump all
