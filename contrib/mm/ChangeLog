@@ -1,5 +1,15 @@
 2026-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	Add regression test for Savannah #68059.  Marked list (`ML`)
+	macro calls were not paying any attention to an (optional) third
+	argument, the presence of which suppresses pre-item vertical
+	space.
+
+	* tests/ML-honors-third-argument.sh: Do it.
+	* mm.am (mm_TESTS): Run test.
+
+2026-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (ML): Handle explicitly empty second argument.
 
 	Fixes <https://savannah.gnu.org/bugs/?68065>.  Problem
