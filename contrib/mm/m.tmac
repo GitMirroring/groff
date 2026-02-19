@@ -2716,6 +2716,7 @@ exceeds depth of nested lists (\\n[li*lvl])
 .\"-------------
 .\" List types `AL` and `RL` combine enumerators with punctuation, and
 .\" use register `Li` to determine text indentation.
+.\" TODO: Refactor like `ML` to call `LB` in only one place.
 .de AL
 \\*[debug@dump-args]\\
 .if \\n[.$]>3 .@warning \\$0: ignoring excess arguments
@@ -2728,6 +2729,7 @@ exceeds depth of nested lists (\\n[li*lvl])
 .	\}
 .\}
 ..
+.\" TODO: Refactor like `ML` to call `LB` in only one place.
 .de RL
 \\*[debug@dump-args]\\
 .if \\n[.$]>2 .@warning \\$0: ignoring excess arguments
@@ -2740,6 +2742,7 @@ exceeds depth of nested lists (\\n[li*lvl])
 ..
 .\" List types `VL` and `BVL` set a user-specified tag (idiomatically a
 .\" word or phrase) and use register `Pi` to determine text indentation.
+.\" TODO: Refactor like `ML` to call `LB` in only one place.
 .de VL
 \\*[debug@dump-args]\\
 .if \\n[.$]>3 .@warning \\$0: ignoring excess arguments
@@ -2750,6 +2753,7 @@ exceeds depth of nested lists (\\n[li*lvl])
 .rr li*text-indent
 ..
 .\" `BVL` always breaks after the tag, so the mark cannot overset.
+.\" TODO: Refactor like `ML` to call `LB` in only one place.
 .de BVL
 \\*[debug@dump-args]\\
 .if \\n[.$]>3 .@warning \\$0: ignoring excess arguments
@@ -2761,6 +2765,7 @@ exceeds depth of nested lists (\\n[li*lvl])
 ..
 .\" List types `BL` and `DL` use bullets and em dashes, respectively, as
 .\" the item marks, and use register `Pi` to determine text indentation.
+.\" TODO: Refactor like `ML` to call `LB` in only one place.
 .de BL
 \\*[debug@dump-args]\\
 .if \\n[.$]>2 .@warning \\$0: ignoring excess arguments
@@ -2771,6 +2776,7 @@ exceeds depth of nested lists (\\n[li*lvl])
 .	el         .LB 0\\$1   0 1 0 \\*[BU] 0 1
 .\}
 ..
+.\" TODO: Refactor like `ML` to call `LB` in only one place.
 .de DL
 \\*[debug@dump-args]\\
 .if \\n[.$]>2 .@warning \\$0: ignoring excess arguments
@@ -2801,9 +2807,12 @@ exceeds depth of nested lists (\\n[li*lvl])
 .		nr li*pad-amount 1
 .	\}
 .\}
-.LB \\n[li*text-indent]u 0 \\n[li*pad-amount] 0 "\\$1"
+.ds li*more-args 0 1\"
+.if \\n[.$]<3 .ds li*more-args \" empty
+.LB \\n[li*text-indent]u 0 \\n[li*pad-amount] 0 "\\$1" \\*[li*more-args]
 .rr li*text-indent
 .rr li*pad-amount
+.rm li*extra-args
 ..
 .\" ####### module tbl #######################################
 .\" This module is copied from groff_ms and modified for mm.
