@@ -2789,18 +2789,21 @@ exceeds depth of nested lists (\\n[li*lvl])
 .if \\n[.$]>3 .@warning \\$0: ignoring excess arguments
 .if \\n[.$]<1 .@error \\$0: expected 1 to 3 arguments, got \\n[.$]
 .nr li*text-indent \w@\\$1@u+1n
-.ie \\n[.$]<2 .LB        \\n[li*text-indent]u 0 0 0 "\\$1"
-.el \{\
-.	if !\B'\\$2' \{\
+.nr li*pad-amount 0
+.if \\n[.$]>1 \{\
+.	ie !\B'\\$2' \{\
 .		ds li*msg \\$0: text-indent argument is not numeric:\"
 .		as li*msg " '\\$2'\"
 .		@error \\*[li*msg]
 .	\}
-.	ie \\n[.$]=2 .LB \\$2                 0 1 0 "\\$1"
-.	el           .LB \\n[li*text-indent]u 0 0 0 "\\$1"
+.	el \{\
+.		nr li*text-indent (n;\\$2)
+.		nr li*pad-amount 1
 .	\}
 .\}
+.LB \\n[li*text-indent]u 0 \\n[li*pad-amount] 0 "\\$1"
 .rr li*text-indent
+.rr li*pad-amount
 ..
 .\" ####### module tbl #######################################
 .\" This module is copied from groff_ms and modified for mm.

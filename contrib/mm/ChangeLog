@@ -1,5 +1,14 @@
 2026-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (ML): Refactor to ease further bug fixing.  Call the
+	`LB` macro that this macro wraps in one place, not three.
+	Introduce new temporary `li*pad-amount` register to manage the
+	third argument we pass to `LB`, which varies depending on
+	whether `ML` itself is given a (numeric expression as a) second
+	argument or not.
+
+2026-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (LB): Fix spurious warnings.  Refactor to clarify
 	logic, since I proved inadequate to the task of penetrating its
 	dialect before.  Document expected range of fourth macro
