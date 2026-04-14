@@ -42,7 +42,6 @@ class dictionary {
   double threshold;
   double factor;
   association *table;
-  void rehash(int);
 public:
   dictionary(int);
   void *lookup(symbol, void * = 0 /* nullptr */);

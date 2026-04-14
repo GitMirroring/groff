@@ -1,5 +1,10 @@
 2026-04-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/dictionary.h (class dictionary): Drop
+	declaration of unimplemented member function `rehash()`.
+
+2026-04-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Trivially refactor.  Drop some code introduced in
 	commit dc3c168c3b, 2004-10-10.  Per lcov(1) it's never used, and
 	deleting it does not adversely affect "make check".  It appears
