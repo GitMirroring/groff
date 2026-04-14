@@ -1092,15 +1092,8 @@ const char *page_offset_reg::get_string()
 
 class page_length_reg : public reg {
 public:
-  bool get_value(units *);
   const char *get_string();
 };
-
-bool page_length_reg::get_value(units *res)
-{
-  *res = topdiv->get_page_length().to_units();
-  return true;
-}
 
 const char *page_length_reg::get_string()
 {

@@ -1,6 +1,19 @@
 2026-04-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/div.cpp: Drop unused code introduced in initial
+	commit 351da0dcd, 1991-06-02.  Since the `.p` register is
+	interpolated only by its `get_string()` member function and
+	never `get_value()` (and nothing internally to the formatter
+	attempts to get at it by that means, since accessing the datum
+	via `curdiv->get_page_length()` is more straightforward), we can
+	drop the latter.
+
+	(class page_length_reg): Drop `get_value()` declaration.
+	(page_length_reg::get_value): Delete.
+
+2026-04-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/div.cpp: Drop unused code introduced in initial
 	commit 351da0dcd, 1991-06-02.  Since the `.d` register is
 	interpolated only by its `get_string()` member function and
 	never `get_value()` (and nothing internally to the formatter
