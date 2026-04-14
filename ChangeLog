@@ -1,5 +1,26 @@
 2026-04-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Slightly refactor.  Migrate GNU troff's `dictionary`
+	class to use `ssize_t` for measurement of its capacity and
+	occupancy (and for integer variables iterating through it on
+	that basis).
+
+	* src/roff/troff/dictionary.h (class dictionary_iterator):
+	Migrate member variable `i` from `int` to `ssize_t`.
+	(class dictionary): Migrate member variables `capacity` and
+	`occupancy` from `int` to `ssize_t`.
+	(class dictionary, class object_dictionary): Migrate
+	constructors to take an argument of `ssize_t` instead of `int`
+	type.
+	* src/roff/troff/dictionary.cpp: Preprocessor-include
+	"<sys/types.h"> header defining `ssize_t` type.
+
+	* bootstrap.conf: Add "ssize_t" to `gnulib_modules`, since
+	neither ISO C99 nor ISO C++98 guarantee its existence.  (It's a
+	POSIX 2001 feature).
+
+2026-04-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Trivially refactor.
 
 	* src/roff/troff/dictionary.h (class dictionary): Rename member

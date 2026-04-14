@@ -33,20 +33,20 @@ class dictionary;
 
 class dictionary_iterator {
   dictionary *dict;
-  int i;
+  ssize_t i;
 public:
   dictionary_iterator(dictionary &);
   bool get(symbol *, void **);
 };
 
 class dictionary {
-  int capacity;
-  int occupancy;
+  ssize_t capacity;
+  ssize_t occupancy;
   double threshold;
   double factor;
   association *table;
 public:
-  dictionary(int);
+  dictionary(ssize_t);
   void *lookup(symbol, void * = 0 /* nullptr */);
   void *lookup(const char *);
   void *remove(symbol);
@@ -74,7 +74,7 @@ public:
 class object_dictionary {
   dictionary d;
 public:
-  object_dictionary(int);
+  object_dictionary(ssize_t);
   object *lookup(symbol);
   void define(symbol, object *);
   void rename(symbol, symbol);

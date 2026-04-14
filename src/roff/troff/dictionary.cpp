@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #endif
 
 #include <stdio.h> // prerequisite of searchpath.h
+#include <sys/types.h> // ssize_t
 
 // libgroff
 #include "symbol.h" // prerequisite of dictionary.h
@@ -32,10 +33,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 // is 'p' a good size for a hash table
 
-static bool is_good_size(unsigned int p)
+static bool is_good_size(ssize_t p)
 {
-  const unsigned int SMALL = 10;
-  unsigned int i;
+  const ssize_t SMALL = 10;
+  ssize_t i;
   for (i = 2; i <= (p / 2); i++)
     if ((p % i) == 0)
       return false;
@@ -45,7 +46,7 @@ static bool is_good_size(unsigned int p)
   return true;
 }
 
-dictionary::dictionary(int n)
+dictionary::dictionary(ssize_t n)
   : capacity(n), occupancy(0), threshold(0.5), factor(1.5)
 {
   table = new association[n];
@@ -56,8 +57,8 @@ dictionary::dictionary(int n)
 
 void *dictionary::lookup(symbol s, void *v)
 {
-  int i;
-  for (i = size_t(s.hash() % capacity);
+  ssize_t i;
+  for (i = ssize_t(s.hash() % capacity);
        table[i].v != 0 /* nullptr */;
        i == 0 ? i = (capacity - 1) : --i)
     if (s == table[i].s) {
@@ -76,8 +77,8 @@ void *dictionary::lookup(symbol s, void *v)
   table[i].s = s;
   if (((static_cast<double>(occupancy) / static_cast<double>(capacity))
       >= threshold) || ((occupancy + 1) >= capacity)) {
-    int old_capacity = capacity;
-    capacity = int(capacity * factor);
+    ssize_t old_capacity = capacity;
+    capacity = ssize_t(capacity * factor);
     while (!is_good_size(capacity))
       ++capacity;
     association *old_table = table;
@@ -105,23 +106,25 @@ void *dictionary::lookup(const char *p)
 void *dictionary::remove(symbol s)
 {
   // this relies on the fact that we are using linear probing
-  int i;
-  for (i = int(s.hash() % capacity);
+  // XXX: This method requires us to use a signed type for `i` and thus
+  // for container capacity and occupancy.  -- GBR, 2026
+  ssize_t i;
+  for (i = ssize_t(s.hash() % capacity);
        table[i].v != 0 /* nullptr */ && s != table[i].s;
        i == 0 ? i = (capacity - 1) : --i)
     ;
   void *p = table[i].v;
   while (table[i].v != 0 /* nullptr */) {
     table[i].v = 0 /* nullptr */;
-    int j = i;
-    int r;
+    ssize_t j = i;
+    ssize_t r;
     do {
       --i;
       if (i < 0)
 	i = capacity - 1;
       if (table[i].v == 0 /* nullptr */)
 	break;
-      r = int(table[i].s.hash() % capacity);
+      r = ssize_t(table[i].s.hash() % capacity);
     } while ((i <= r && r < j) || (r < j && j < i) || (j < i && i <= r));
     table[j] = table[i];
   }
@@ -171,7 +174,7 @@ void object::remove_reference()
     delete this;
 }
 
-object_dictionary::object_dictionary(int n) : d(n)
+object_dictionary::object_dictionary(ssize_t n) : d(n)
 {
 }
 
