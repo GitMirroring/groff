@@ -1132,15 +1132,8 @@ const char *vertical_position_reg::get_string()
 
 class high_water_mark_reg : public reg {
 public:
-  bool get_value(units *);
   const char *get_string();
 };
-
-bool high_water_mark_reg::get_value(units *res)
-{
-  *res = curdiv->get_high_water_mark().to_units();
-  return true;
-}
 
 const char *high_water_mark_reg::get_string()
 {
