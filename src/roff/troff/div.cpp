@@ -1149,15 +1149,8 @@ const char *high_water_mark_reg::get_string()
 
 class distance_to_next_trap_reg : public reg {
 public:
-  bool get_value(units *);
   const char *get_string();
 };
-
-bool distance_to_next_trap_reg::get_value(units *res)
-{
-  *res = curdiv->distance_to_next_trap().to_units();
-  return true;
-}
 
 const char *distance_to_next_trap_reg::get_string()
 {
