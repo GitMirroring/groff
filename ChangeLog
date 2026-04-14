@@ -1,3 +1,17 @@
+2026-04-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Trivially refactor.  Drop some code introduced in
+	commit dc3c168c3b, 2004-10-10.  Per lcov(1) it's never used, and
+	deleting it does not adversely affect "make check".  It appears
+	that the `is_diversion()` member function that callers actually
+	use comes from the `macro` and `string_iterator` classes in
+	"input.cpp".
+
+	* src/roff/troff/div.h (class diversion): Drop `is_diversion()`
+	declaration.
+	(macro_diversion::is_diversion)
+	(top_level_diversion::is_diversion): Drop definitions.
+
 2026-04-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	Ditch our local (outdated) copy of gnulib's "localcharset"
