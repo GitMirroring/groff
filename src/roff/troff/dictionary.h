@@ -37,8 +37,8 @@ public:
 };
 
 class dictionary {
-  int size;
-  int used;
+  int capacity;
+  int occupancy;
   double threshold;
   double factor;
   association *table;

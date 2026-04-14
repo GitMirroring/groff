@@ -43,7 +43,7 @@ static bool is_good_size(unsigned int p)
 }
 
 dictionary::dictionary(int n)
-  : size(n), used(0), threshold(0.5), factor(1.5)
+  : capacity(n), occupancy(0), threshold(0.5), factor(1.5)
 {
   table = new association[n];
 }
@@ -54,9 +54,9 @@ dictionary::dictionary(int n)
 void *dictionary::lookup(symbol s, void *v)
 {
   int i;
-  for (i = int(s.hash() % size);
+  for (i = size_t(s.hash() % capacity);
        table[i].v != 0 /* nullptr */;
-       i == 0 ? i = (size - 1) : --i)
+       i == 0 ? i = (capacity - 1) : --i)
     if (s == table[i].s) {
       if (v != 0 /* nullptr */) {
 	void *temp = table[i].v;
@@ -68,19 +68,19 @@ void *dictionary::lookup(symbol s, void *v)
     }
   if (v == 0 /* nullptr */)
     return 0 /* nullptr */;
-  ++used;
+  ++occupancy;
   table[i].v = v;
   table[i].s = s;
-  if (((static_cast<double>(used) / static_cast<double>(size))
-      >= threshold) || ((used + 1) >= size)) {
-    int old_size = size;
-    size = int(size * factor);
-    while (!is_good_size(size))
-      ++size;
+  if (((static_cast<double>(occupancy) / static_cast<double>(capacity))
+      >= threshold) || ((occupancy + 1) >= capacity)) {
+    int old_capacity = capacity;
+    capacity = int(capacity * factor);
+    while (!is_good_size(capacity))
+      ++capacity;
     association *old_table = table;
-    table = new association[size];
-    used = 0;
-    for (i = 0; i < old_size; i++)
+    table = new association[capacity];
+    occupancy = 0;
+    for (i = 0; i < old_capacity; i++)
       if (old_table[i].v != 0 /* nullptr */)
 	(void) lookup(old_table[i].s, old_table[i].v);
     delete[] old_table;
@@ -103,9 +103,9 @@ void *dictionary::remove(symbol s)
 {
   // this relies on the fact that we are using linear probing
   int i;
-  for (i = int(s.hash() % size);
+  for (i = int(s.hash() % capacity);
        table[i].v != 0 /* nullptr */ && s != table[i].s;
-       i == 0 ? i = (size - 1) : --i)
+       i == 0 ? i = (capacity - 1) : --i)
     ;
   void *p = table[i].v;
   while (table[i].v != 0 /* nullptr */) {
@@ -115,15 +115,15 @@ void *dictionary::remove(symbol s)
     do {
       --i;
       if (i < 0)
-	i = size - 1;
+	i = capacity - 1;
       if (table[i].v == 0 /* nullptr */)
 	break;
-      r = int(table[i].s.hash() % size);
+      r = int(table[i].s.hash() % capacity);
     } while ((i <= r && r < j) || (r < j && j < i) || (j < i && i <= r));
     table[j] = table[i];
   }
   if (p != 0 /* nullptr */)
-    --used;
+    --occupancy;
   return p;
 }
 
@@ -133,7 +133,7 @@ dictionary_iterator::dictionary_iterator(dictionary &d) : dict(&d), i(0)
 
 bool dictionary_iterator::get(symbol *sp, void **vp)
 {
-  for (; i < dict->size; i++)
+  for (; i < dict->capacity; i++)
     if (dict->table[i].v) {
       *sp = dict->table[i].s;
       if (vp != 0 /* nullptr */)

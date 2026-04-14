@@ -1,5 +1,19 @@
 2026-04-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Trivially refactor.
+
+	* src/roff/troff/dictionary.h (class dictionary): Rename member
+	variables.
+	- size -> capacity
+	- used -> occupancy
+	* src/roff/troff/dictionary.cpp (dictionary::dictionary)
+	(dictionary::lookup)
+	(dictionary::remove)
+	(dictionary_iterator::dictionary_iterator): Update dereference
+	sites.
+
+2026-04-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/dictionary.cpp: Fix code style nits.
 	(is_good_size)
 	(dictionary::lookup)
