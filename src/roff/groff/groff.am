@@ -112,6 +112,7 @@ groff_TESTS = \
   src/roff/groff/tests/logical-predicates-work.sh \
   src/roff/groff/tests/localization-works.sh \
   src/roff/groff/tests/msoquiet-request-works.sh \
+  src/roff/groff/tests/ns-request-works.sh \
   src/roff/groff/tests/output-request-works.sh \
   src/roff/groff/tests/pchar-request-works.sh \
   src/roff/groff/tests/pdf-device-smoke-test.sh \
@@ -161,7 +162,6 @@ groff_XFAIL_TESTS = \
   src/roff/groff/tests/html-device-works-with-grn-and-eqn.sh \
   src/roff/groff/tests/stringup-request-transforms-non-basic-latin.sh
 XFAIL_TESTS += $(groff_XFAIL_TESTS)
-
 
 # Local Variables:
 # mode: makefile-automake
