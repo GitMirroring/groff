@@ -1,5 +1,18 @@
 2026-04-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/div.cpp: Drop unused code introduced in commit
+	0216fc85d3, 2001-05-05.  Since the (now-named) `.ns` register is
+	interpolated only by its `get_string()` member function and
+	never `get_value()` (and nothing internally to the formatter
+	attempts to get at it by that means, since accessing the datum
+	via `curdiv->is_in_no_space_mode` is more straightforward), we
+	can drop the latter.
+
+	(class no_space_mode_reg): Drop `get_value()` declaration.
+	(no_space_mode_reg::get_value): Delete.
+
+2026-04-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[groff]: Unit-test `.ns` register.
 
 	* src/roff/groff/tests/dot-ns-register-works.sh: Do it.

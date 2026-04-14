@@ -1268,15 +1268,8 @@ void nl_reg::set_value(units n)
 
 class no_space_mode_reg : public reg {
 public:
-  bool get_value(units *);
   const char *get_string();
 };
-
-bool no_space_mode_reg::get_value(units *val)
-{
-  *val = curdiv->is_in_no_space_mode;
-  return true;
-}
 
 const char *no_space_mode_reg::get_string()
 {
