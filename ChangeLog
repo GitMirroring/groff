@@ -1,5 +1,12 @@
 2026-04-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[groff]: Unit-test `.ns` register.
+
+	* src/roff/groff/tests/dot-ns-register-works.sh: Do it.
+	* src/roff/groff/groff.am (groff_TESTS): Run test.
+
+2026-04-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[groff]: Unit-test `ns` request.
 
 	* src/roff/groff/tests/ns-request-works.sh: Do it.
