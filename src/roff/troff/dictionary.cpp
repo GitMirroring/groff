@@ -34,7 +34,7 @@ static bool is_good_size(unsigned int p)
   const unsigned int SMALL = 10;
   unsigned int i;
   for (i = 2; i <= (p / 2); i++)
-    if (p % i == 0)
+    if ((p % i) == 0)
       return false;
   for (i = 0x100; i != 0; i <<= 8)
     if ((i % p) <= SMALL || (i % p) > (p - SMALL))
@@ -42,7 +42,8 @@ static bool is_good_size(unsigned int p)
   return true;
 }
 
-dictionary::dictionary(int n) : size(n), used(0), threshold(0.5), factor(1.5)
+dictionary::dictionary(int n)
+  : size(n), used(0), threshold(0.5), factor(1.5)
 {
   table = new association[n];
 }
@@ -55,7 +56,7 @@ void *dictionary::lookup(symbol s, void *v)
   int i;
   for (i = int(s.hash() % size);
        table[i].v != 0 /* nullptr */;
-       i == 0 ? i = size - 1: --i)
+       i == 0 ? i = (size - 1) : --i)
     if (s == table[i].s) {
       if (v != 0 /* nullptr */) {
 	void *temp = table[i].v;
@@ -70,7 +71,8 @@ void *dictionary::lookup(symbol s, void *v)
   ++used;
   table[i].v = v;
   table[i].s = s;
-  if ((double(used) / double(size) >= threshold) || used + 1 >= size) {
+  if (((static_cast<double>(used) / static_cast<double>(size))
+      >= threshold) || ((used + 1) >= size)) {
     int old_size = size;
     size = int(size * factor);
     while (!is_good_size(size))
@@ -103,7 +105,7 @@ void *dictionary::remove(symbol s)
   int i;
   for (i = int(s.hash() % size);
        table[i].v != 0 /* nullptr */ && s != table[i].s;
-       i == 0 ? i = size - 1: --i)
+       i == 0 ? i = (size - 1) : --i)
     ;
   void *p = table[i].v;
   while (table[i].v != 0 /* nullptr */) {
@@ -172,23 +174,23 @@ object_dictionary::object_dictionary(int n) : d(n)
 
 object *object_dictionary::lookup(symbol nm)
 {
-  return (object *)d.lookup(nm);
+  return static_cast<object *>(d.lookup(nm));
 }
 
 void object_dictionary::define(symbol nm, object *obj)
 {
   obj->add_reference();
   obj = static_cast<object *>(d.lookup(nm, obj));
-  if (obj)
+  if (obj != 0 /* nullptr */)
     obj->remove_reference();
 }
 
 void object_dictionary::rename(symbol oldnm, symbol newnm)
 {
   object *obj = static_cast<object *>(d.remove(oldnm));
-  if (obj) {
+  if (obj != 0 /* nullptr */) {
     obj = (object *)d.lookup(newnm, obj);
-    if (obj)
+    if (obj != 0 /* nullptr */)
       obj->remove_reference();
   }
 }
@@ -196,7 +198,7 @@ void object_dictionary::rename(symbol oldnm, symbol newnm)
 void object_dictionary::remove(symbol nm)
 {
   object *obj = static_cast<object *>(d.remove(nm));
-  if (obj)
+  if (obj != 0 /* nullptr */)
     obj->remove_reference();
 }
 
@@ -205,10 +207,10 @@ void object_dictionary::remove(symbol nm)
 bool object_dictionary::alias(symbol newnm, symbol oldnm)
 {
   object *obj = static_cast<object *>(d.lookup(oldnm));
-  if (obj) {
+  if (obj != 0 /* nullptr */) {
     obj->add_reference();
     obj = static_cast<object *>(d.lookup(newnm, obj));
-    if (obj)
+    if (obj != 0 /* nullptr */)
       obj->remove_reference();
     return true;
   }
