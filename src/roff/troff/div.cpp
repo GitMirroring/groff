@@ -1109,18 +1109,8 @@ const char *page_length_reg::get_string()
 
 class vertical_position_reg : public reg {
 public:
-  bool get_value(units *);
   const char *get_string();
 };
-
-bool vertical_position_reg::get_value(units *res)
-{
-  if ((curdiv == topdiv) && (topdiv->before_first_page_status > 0))
-    *res = -1;
-  else
-    *res = curdiv->get_vertical_position().to_units();
-  return true;
-}
 
 const char *vertical_position_reg::get_string()
 {
