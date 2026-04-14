@@ -38,6 +38,8 @@ EXTRA_DIST += src/roff/groff/groff.1.man
 groff_TESTS = \
   src/roff/groff/tests/ab-request-works.sh \
   src/roff/groff/tests/adjustment-works.sh \
+  src/roff/groff/tests/aln-request-works.sh \
+  src/roff/groff/tests/als-request-works.sh \
   src/roff/groff/tests/arithmetic-works.sh \
   src/roff/groff/tests/asciify-composite-nodes-correctly.sh \
   src/roff/groff/tests/asciify-request-works.sh \

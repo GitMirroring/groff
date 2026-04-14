@@ -1,5 +1,13 @@
 2026-04-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[groff]: Unit-test `aln` and `als` requests.
+
+	* src/roff/groff/tests/aln-request-works.sh:
+	* src/roff/groff/tests/als-request-works.sh: Do it.
+	* src/roff/groff/groff.am (groff_TESTS): Run tests.
+
+2026-04-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Slightly refactor.  Migrate GNU troff's `dictionary`
 	class to use `ssize_t` for measurement of its capacity and
 	occupancy (and for integer variables iterating through it on
