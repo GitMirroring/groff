@@ -16,11 +16,12 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
 
 groff="${abs_top_builddir:-.}/test-groff"
 
-DOC='\
+# Unit-test `.nm` register.
+
+input='.
 .nf
 foo (\n[.nm])
 .nm 1
@@ -30,11 +31,14 @@ baz (\n[.nm])
 .nm
 qux (\n[.nm])
 .fi
-'
+.'
 
-set -e
+output=$(printf '%s\n' "$input" | "$groff" -T utf8)
+echo "$output"
 
-printf '%s' "$DOC" | "$groff" -T utf8 | grep -Fqx 'foo (0)'
-printf '%s' "$DOC" | "$groff" -T utf8 | grep -Fqx '  1 bar (1)'
-printf '%s' "$DOC" | "$groff" -T utf8 | grep -Fqx 'baz (1)'
-printf '%s' "$DOC" | "$groff" -T utf8 | grep -Fqx 'qux (0)'
+echo "$output" | grep -Fqx 'foo (0)'
+echo "$output" | grep -Fqx '  1 bar (1)'
+echo "$output" | grep -Fqx 'baz (1)'
+echo "$output" | grep -Fqx 'qux (0)'
+
+# vim:set autoindent expandtab shiftwidth=4 tabstop=4 textwidth=72:

@@ -16,16 +16,17 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
 
 groff="${abs_top_builddir:-.}/test-groff"
 
 fail=
 
 wail () {
-  echo ...FAILED >&2
-  fail=YES
+    echo ...FAILED >&2
+    fail=YES
 }
+
+# Unit-test `.cp` register.
 
 input='.
 .pl 1v
@@ -52,20 +53,20 @@ F
 # A 0 B 0 C 1 D 0 E 1 F 0
 # A 1 B 1 C 1 D 0 E 1 F 0
 
-output=$(printf "%s" "$input" | "$groff" -T ascii)
+output=$(printf '%s\n' "$input" | "$groff" -T ascii)
 echo "$output"
 
 echo "checking value of '.cp' when not started in compatibility mode" \
-  >&2
+    >&2
 echo "$output" | grep -Fqx "A 0 B 0 C 1 D 0 E 1 F 0" || wail
 
 output=$(printf "%s" "$input" | "$groff" -C -T ascii)
 echo "$output"
 
 echo "checking value of '.cp' when started in compatibility mode" \
-  >&2
+    >&2
 echo "$output" | grep -Fqx "A 1 B 1 C 1 D 0 E 1 F 0" || wail
 
 test -z "$fail"
 
-# vim:set autoindent expandtab shiftwidth=2 tabstop=2 textwidth=72:
+# vim:set autoindent expandtab shiftwidth=4 tabstop=4 textwidth=72:
