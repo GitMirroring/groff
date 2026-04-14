@@ -17,6 +17,9 @@ for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
+// TODO: Migrate association -> std::pair
+// TODO: Migrate dictionary -> std::unordered_map
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
