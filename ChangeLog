@@ -2,6 +2,16 @@
 
 	* src/roff/troff/node.cpp (suppress_node::tprint): Refactor code
 	populating "grohtml-info" output to access the contents of
+	built-in registers `.F` and `.c` directly via their
+	`get_string()` member functions instead of this file's
+	`get_string()` function, which syntactically sugars that
+	procedure.
+	(get_string): Delete now-unused function.
+
+2026-04-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/node.cpp (suppress_node::tprint): Refactor code
+	populating "grohtml-info" output to access the contents of
 	`psbb` request-populated registers `op{min,max}{x,y}` directly
 	via their member functions instead of this file's
 	`get_register()` function, which syntactically sugars that

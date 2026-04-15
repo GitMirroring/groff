@@ -4612,16 +4612,6 @@ int tag_node::ends_sentence()
   return 2;
 }
 
-// Get contents of register `p` as string.
-// Used only by suppress_node::tprint().
-static const char *get_string(const char *p)
-{
-  assert(p != 0 /* nullptr */);
-  reg *r = static_cast<reg *>(register_dictionary.lookup(p));
-  assert(r != 0 /* nullptr */);
-  return r->get_string();
-}
-
 void suppress_node::put(troff_output_file *out, const char *s)
 {
   int i = 0;
@@ -4787,8 +4777,11 @@ void suppress_node::tprint(troff_output_file *out)
 		topdiv->get_page_number(),
 		opminx, opminy, opmaxx, opmaxy,
 		page_width,
-		name, hresolution, vresolution, get_string(".F"),
-		get_string(".c"));
+		name, hresolution, vresolution,
+		static_cast<reg *>(register_dictionary.lookup(".F"))
+		    ->get_string(),
+		static_cast<reg *>(register_dictionary.lookup(".c"))
+		    ->get_string());
 	fflush(stderr);
       }
     }
