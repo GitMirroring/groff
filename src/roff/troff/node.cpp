@@ -4612,18 +4612,6 @@ int tag_node::ends_sentence()
   return 2;
 }
 
-// Get contents of register `p` as integer.
-// Used only by suppress_node::tprint().
-static int get_register(const char *p)
-{
-  assert(p != 0 /* nullptr */);
-  reg *r = static_cast<reg *>(register_dictionary.lookup(p));
-  assert(r != 0 /* nullptr */);
-  units value;
-  assert(r->get_value(&value));
-  return int(value);
-}
-
 // Get contents of register `p` as string.
 // Used only by suppress_node::tprint().
 static const char *get_string(const char *p)
@@ -4775,6 +4763,18 @@ void suppress_node::tprint(troff_output_file *out)
 	//	  topdiv->get_page_number(),
 	//	  suppression_starting_page_number);
 	// `name` will contain a "%d" in which the image_no is placed.
+	units opminx, opminy, opmaxx, opmaxy;
+	// XXX: We ignore `get_value()`'s return value.  It's false if
+	// the register didn't already exist.  We assume that it does or
+	// this code won't work anyway.
+	(void) static_cast<reg *>(register_dictionary.lookup("opminx"))
+		->get_value(&opminx);
+	(void) static_cast<reg *>(register_dictionary.lookup("opminy"))
+		->get_value(&opminy);
+	(void) static_cast<reg *>(register_dictionary.lookup("opmaxx"))
+		->get_value(&opmaxx);
+	(void) static_cast<reg *>(register_dictionary.lookup("opmaxy"))
+		->get_value(&opmaxy);
 	units page_width; // not counting the right margin
 	if (ckd_add(&page_width, topdiv->get_page_offset().to_units(),
 		    curenv->get_line_length().to_units()))
@@ -4785,8 +4785,7 @@ void suppress_node::tprint(troff_output_file *out)
 		"grohtml-info:page %d  %d  %d  %d  %d  %d  %s  %d  %d"
 		"  %s:%s\n",
 		topdiv->get_page_number(),
-		get_register("opminx"), get_register("opminy"),
-		get_register("opmaxx"), get_register("opmaxy"),
+		opminx, opminy, opmaxx, opmaxy,
 		page_width,
 		name, hresolution, vresolution, get_string(".F"),
 		get_string(".c"));
