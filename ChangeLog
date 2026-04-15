@@ -1,5 +1,12 @@
 2026-04-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[groff]: Unit-test `sv` and `os` requests.
+
+	* src/roff/groff/tests/sv-and-os-requests-work.sh: Do it.
+	* src/roff/groff/groff.am (groff_TESTS): Run test.
+
+2026-04-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/div.cpp (set_page_number_request): Drop logic
 	testing existence of `ps4html` register.  That can easily be
 	handled by macro programming.
