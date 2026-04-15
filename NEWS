@@ -18,6 +18,13 @@ troff
 *  GNU troff, the formatter, now employs the unusual Roman numerals "W"
    and "Z" of AT&T troff only in compatibility mode.
 
+*  The `dt` request, when given invalid arguments, now does nothing
+   instead of removing any existing diversion trap.  This change is
+   inconsistent with AT&T troff but more consistent with general *roff
+   syntax; as a rule, requests given invalid arguments (and that don't
+   process a list of similar objects, as `rm` and `rr` do) perform no
+   operation.
+
 *  The "delim", "syntax", and "escape" warning categories are enabled by
    default.
 

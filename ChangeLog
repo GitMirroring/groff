@@ -1,5 +1,22 @@
 2026-04-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/div.cpp (diversion_trap_request): Ignore
+	request if arguments are present but nonsensical: either the
+	first is not a valid vertical position expression, or it's
+	present and valid but no second argument is present.
+
+	* src/roff/groff/tests/\
+	error-dt-request-given-bogus-arguments.sh: Test it.
+	* src/roff/groff/groff.am (groff_TESTS): Run test.
+
+	* doc/groff.texi.in (Other Differences):
+	* man/groff_diff.7.man (Other differences):
+	* NEWS: Document this behavioral difference from AT&T troffs.
+
+	Fixes <https://savannah.gnu.org/bugs/?68246>.
+
+2026-04-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/div.cpp (diversion_trap_request): Throw warning
 	in category "missing" if a `dist` argument is specified but the
 	then-mandatory `name` argument is omitted.

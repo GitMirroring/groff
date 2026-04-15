@@ -7027,6 +7027,20 @@ the former does (uselessly).
 .
 .
 .P
+When the
+.B dt
+request is given invalid arguments,
+AT&T
+.I troff \" AT&T
+behaves as if it were given no arguments at all,
+removing any existing diversion trap;
+GNU
+.I troff \" GNU
+does nothing,
+more consistently with other requests given unintelligible arguments.
+.
+.
+.P
 The
 .B lf
 request sets the number of the

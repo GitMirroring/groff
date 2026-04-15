@@ -22926,6 +22926,19 @@ does not accept a scaling unit on the argument,
 a page number;
 the former does (uselessly).
 
+@cindex @code{dt} request, incompatibilities with @acronym{AT&T} @code{troff}
+When the
+@code{dt}
+request is given invalid arguments,
+@acronym{AT&T}
+@command{troff} @c AT&T
+behaves as if it were given no arguments at all,
+removing any existing diversion trap;
+GNU
+@command{troff} @c GNU
+does nothing,
+more consistently with other requests given unintelligible arguments.
+
 @cindex @code{lf} request, incompatibilities with @acronym{AT&T} @code{troff}
 The
 @code{lf}

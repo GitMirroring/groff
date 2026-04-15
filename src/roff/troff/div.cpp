@@ -997,18 +997,23 @@ void top_level_diversion::clear_diversion_trap()
 static void diversion_trap_request() // .dt
 {
   vunits n;
-  if (has_arg() && read_vunits(&n, 'v')) {
-    symbol s = read_identifier();
-    if (!s.is_null())
-      curdiv->set_diversion_trap(s, n);
-    else {
+  if (!has_arg())
+    curdiv->clear_diversion_trap();
+  else if (read_vunits(&n, 'v')) {
+    if (has_arg()) {
+      symbol s = read_identifier();
+      if (!s.is_null())
+	curdiv->set_diversion_trap(s, n);
+    }
+    else
       warning(WARN_MISSING, "diversion trap request expects macro"
 	      " identifier argument after vertical position argument");
-      curdiv->set_diversion_trap(s, n);
-    }
   }
-  else
-    curdiv->clear_diversion_trap();
+  // We have no `else` branch here; `read_vunits()` already threw an
+  // error diagnostic.  Historically, GNU troff, like other troffs,
+  // treated botched `dt` arguments the same as no arguments at all,
+  // removing the trap.  That behavior was inconsistent with other
+  // request handling.
   skip_line();
 }
 
