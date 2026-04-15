@@ -994,7 +994,7 @@ void top_level_diversion::clear_diversion_trap()
   error("cannot clear diversion trap when not diverting output");
 }
 
-static void diversion_trap() // .dt
+static void diversion_trap_request() // .dt
 {
   vunits n;
   if (has_arg() && read_vunits(&n, 'v')) {
@@ -1009,7 +1009,7 @@ static void diversion_trap() // .dt
   skip_line();
 }
 
-static void change_trap() // .ch
+static void change_trap_request() // .ch
 {
   symbol s = read_identifier(true /* want_diagnostic */);
   if (!s.is_null()) {
@@ -1022,13 +1022,13 @@ static void change_trap() // .ch
   skip_line();
 }
 
-static void print_traps() // .pwh
+static void print_traps_request() // .pwh
 {
   topdiv->print_traps();
   skip_line();
 }
 
-static void mark() // .mk
+static void mark_request() // .mk
 {
   symbol s = read_identifier();
   if (s.is_null())
@@ -1063,7 +1063,7 @@ static void return_request() // .rt
   skip_line();
 }
 
-static void vertical_position_traps() // .vpt
+static void configure_vertical_position_traps_request() // .vpt
 {
   int n = 0;
   if (has_arg() && read_integer(&n))
@@ -1243,24 +1243,24 @@ void init_div_requests()
   init_request("box", box);
   init_request("boxa", box_append);
   init_request("bp", begin_page);
-  init_request("ch", change_trap);
+  init_request("ch", change_trap_request);
   init_request("da", divert_append);
   init_request("di", divert);
-  init_request("dt", diversion_trap);
+  init_request("dt", diversion_trap_request);
   init_request("fl", flush_request);
-  init_request("mk", mark);
+  init_request("mk", mark_request);
   init_request("ne", need_space);
   init_request("ns", no_space);
   init_request("os", output_saved_vertical_space);
   init_request("pl", configure_page_length_request);
   init_request("pn", page_number);
   init_request("po", configure_page_offset_request);
-  init_request("pwh", print_traps);
+  init_request("pwh", print_traps_request);
   init_request("rs", restore_spacing);
   init_request("rt", return_request);
   init_request("sp", space_request);
   init_request("sv", save_vertical_space);
-  init_request("vpt", vertical_position_traps);
+  init_request("vpt", configure_vertical_position_traps_request);
   init_request("wh", when_request);
   register_dictionary.define(".a",
       new readonly_register(&last_post_line_extra_space));

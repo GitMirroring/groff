@@ -1,5 +1,22 @@
 2026-04-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/div.cpp: Trivially refactor.  Rename request
+	handler functions.
+	(diversion_trap)
+	(change_trap)
+	(print_traps)
+	(mark)
+	(vertical_position_traps): Rename these...
+	(diversion_trap_request)
+	(change_trap_request)
+	(print_traps_request)
+	(mark_request)
+	(configure_vertical_position_traps_request): ...to these.
+	(init_div_requests): Update wire-uppery of request names to
+	handler functions.
+
+2026-04-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[groff]: Improve `dt` request unit test.
 
 	* src/roff/groff/tests/dt-request-works.sh: Verify that
