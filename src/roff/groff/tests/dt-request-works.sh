@@ -19,7 +19,16 @@
 
 groff="${abs_top_builddir:-.}/test-groff"
 
+fail=
+
+wail () {
+   echo "...FAILED"
+   fail=yes
+}
+
 # Unit-test `dt` request.
+
+# Test trap planting.
 
 input='.
 .de TT
@@ -40,6 +49,32 @@ qux
 output=$(printf '%s\n' "$input" | "$groff" -a 2>/dev/null)
 echo "$output"
 output=$(echo $output) # condense onto one line
-echo "$output" | grep -q "bar BOING qux"
+echo "$output" | grep -q "bar BOING qux" || wail
+
+# Test trap removal.
+
+input2='.
+.de TT
+WHOOPS
+.br
+..
+.di DD
+.dt 3v TT
+.nf
+foo
+bar
+.dt
+.sp
+baz
+.di
+.DD
+.'
+
+output2=$(printf '%s\n' "$input2" | "$groff" -a 2>/dev/null)
+echo "$output2"
+output2=$(echo $output2) # condense onto one line
+echo "$output2" | grep -q "foo bar baz" || wail
+
+test -z "$fail"
 
 # vim:set autoindent expandtab shiftwidth=4 tabstop=4 textwidth=72:

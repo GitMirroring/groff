@@ -1,5 +1,12 @@
 2026-04-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[groff]: Improve `dt` request unit test.
+
+	* src/roff/groff/tests/dt-request-works.sh: Verify that
+	diversion trap removal works.
+
+2026-04-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp (suppress_node::tprint): Refactor code
 	populating "grohtml-info" output to access the contents of
 	built-in registers `.F` and `.c` directly via their
