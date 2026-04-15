@@ -1,5 +1,11 @@
 2026-04-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/div.cpp (set_page_number_request): Drop logic
+	testing existence of `ps4html` register.  That can easily be
+	handled by macro programming.
+
+2026-04-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/div.cpp: Trivially refactor.  Rename request
 	handler functions.
 	(need_space)

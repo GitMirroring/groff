@@ -926,15 +926,8 @@ static void set_page_number_request() // .pn
     return;
   }
   int n = 0;
-  // the ps4html register is set if we are using -Tps
-  // to generate images for html
-  // XXX: Yuck!  Get rid of this; macro packages already test the
-  // register before invoking .pn.
-  reg *r = static_cast<reg *>(register_dictionary.lookup("ps4html"));
-  if (0 /* nullptr */ == r)
-    if (has_arg()
-	&& read_integer_crement(&n, topdiv->get_page_number()))
-      topdiv->set_next_page_number(n);
+  if (has_arg() && read_integer_crement(&n, topdiv->get_page_number()))
+    topdiv->set_next_page_number(n);
   skip_line();
 }
 
