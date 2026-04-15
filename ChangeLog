@@ -1,5 +1,11 @@
 2026-04-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/div.cpp (diversion_trap_request): Throw warning
+	in category "missing" if a `dist` argument is specified but the
+	then-mandatory `name` argument is omitted.
+
+2026-04-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/div.cpp: Trivially refactor.  Rename request
 	handler functions.
 	(diversion_trap)

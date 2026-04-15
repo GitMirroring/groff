@@ -1001,8 +1001,11 @@ static void diversion_trap_request() // .dt
     symbol s = read_identifier();
     if (!s.is_null())
       curdiv->set_diversion_trap(s, n);
-    else
-      curdiv->clear_diversion_trap();
+    else {
+      warning(WARN_MISSING, "diversion trap request expects macro"
+	      " identifier argument after vertical position argument");
+      curdiv->set_diversion_trap(s, n);
+    }
   }
   else
     curdiv->clear_diversion_trap();
