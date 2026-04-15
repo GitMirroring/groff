@@ -390,7 +390,7 @@
 	argument.  Gather that hyphenation code earlier, and mark the
 	word as invalid if the hyphenation code is zero--exception: the
 	character '-' is also valid, since it marks a hyphenation point.
-	Consequently, we now throw a warning in category `char` on
+	Consequently, we now throw a warning in category "char" on
 	attempted hyphenation exception words like "non*sense" and
 	"0123456789".  Drop later conditional loop break if the
 	hyphenation code is zero since that now cannot be the case--we
@@ -16662,7 +16662,7 @@ Version 1.24.0 released 2026-02-28
 	`was_any_page_in_output_list` tracks this datum; defaults false.
 	(troff_output_file::trailer): When finishing up, don't write a
 	"trailer" grout command (and vertical motion) if no page ever
-	began.  Instead, throw a warning in category `range`.
+	began.  Instead, throw a warning in category "range".
 	(real_output_file::begin_page): Make
 	`was_any_page_in_output_list` true if any page is written.
 
@@ -24741,7 +24741,7 @@ Version 1.24.0 released 2026-02-28
 2023-12-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (if_else_request, if_request): Throw
-	warning in category `missing` if given no arguments.
+	warning in category "missing" if given no arguments.
 
 2023-12-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -24859,7 +24859,7 @@ Version 1.24.0 released 2026-02-28
 	(associate_style_with_font_position, select_underline_font)
 	(define_font_specific_character, remove_font_specific_character)
 	(configure_track_kerning, constantly_space_font): Throw warning
-	in category `missing` if given no arguments.
+	in category "missing" if given no arguments.
 
 	(set_font_specific_special_fonts, set_special_fonts): Demote
 	diagnostic when given no arguments to warning in category
