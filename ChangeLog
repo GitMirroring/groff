@@ -1,3 +1,29 @@
+2026-04-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	Ditch our local (outdated) copy of gnulib's "localcharset"
+	module.  Our build brings it in already via the dependencies of
+	gnulib's "hypot" module.
+
+	* src/include/localcharset.h:
+	* src/libs/libgroff/localcharset.c: Delete.
+
+	* src/libs/libgroff/libgroff.am (libgroff_a_SOURCES): Drop
+	"src/libs/libgroff/localcharset.c" from macro definition.
+	(EXTRA_DIST): Stop shipping "src/libs/libgroff/config.charset",
+	"src/libs/libgroff/ref-add.sin", and
+	"src/libs/libgroff/ref-del.sin" in our distribution archive.
+	(CLEANFILES): Drop "config.charset", "ref-add.sin", and
+	"ref-del.sin" from macro definition.
+	(LIBGROFF_PACKAGE): Delete macro definition.
+	(all, charset.alias, ref-add.sed, ref-del.sed)
+	(install-data-local, install_charset_data)
+	(uninstall-local, uninstall_charset_data): Delete targets.
+
+	* m4/localcharset.m4: Delete.
+	* acinclude.m4: Drop inclusion of "m4/localcharset.m4".
+
+	Continues the long process of fixing Savannah #66518.
+
 2026-04-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/env.cpp: Trivially refactor.
