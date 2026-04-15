@@ -515,10 +515,8 @@ void top_level_diversion::transparent_output(unsigned char c)
     the_output->transparent_char(*s++);
 }
 
-void top_level_diversion::transparent_output(node * /*n*/)
+void top_level_diversion::transparent_output(node *)
 {
-  // TODO: When Savannah #63074 is fixed, the user will have a way to
-  // avoid this error.
   error("cannot write a node to device-independent output");
 }
 

@@ -19518,9 +19518,18 @@ to a postprocessor that interprets
 @var{character-sequence}
 and filters it out
 before sending it to the output driver.
-@c TODO: Once the dust settles from Savannah #63074, document how these
-@c can be used to construct device extension commands without special
-@c character processing.
+If all you require is to encode character code points
+that are not meaningful in
+@code{roff}
+device-independent output but are to an output driver,
+such as Unicode characters in document metadata,
+bookmarks,
+or URLs,
+consider the
+@code{device}
+request or
+@code{\X}
+escape sequence.@footnote{@xref{Postprocessor Access}.}
 @endDefreq
 
 @Defreq {asciify, div}
@@ -20815,9 +20824,6 @@ GNU
 output as parameters to an
 @w{@samp{x X}}
 device extension command.@footnote{@xref{GNU @command{troff} Output}.}
-The output driver or other postprocessor interprets
-@var{character-sequence}
-as it sees fit.
 
 @cindex @code{device} request, and copy mode
 @cindex copy mode, and @code{device} request
@@ -20904,6 +20910,21 @@ as arguments to device extension commands.@footnote{When encountered,
 these produce warnings in category
 @samp{char}.
 @xref{Warnings}.}
+
+To avoid the transformations
+@code{device}
+and
+@code{\X}
+perform,
+employ the
+@code{output}
+or
+@code{\!}
+or
+@code{\?}
+escape sequences;
+recall
+@xref{Diversions}.
 @endDefesc
 
 GNU
@@ -23415,6 +23436,7 @@ Make the font handling module always return unscaled character widths.
 The @code{grohtml} driver uses this directive.
 
 @c XXX: Savannah #63074 is trying to make this obsolescent.
+@c TODO: That bug is fixed.  Can we get rid of this?
 @item use_charnames_in_special
 @kindex use_charnames_in_special
 GNU
