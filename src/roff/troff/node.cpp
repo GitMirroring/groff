@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #endif
 
 #include <errno.h>
+#include <stdckdint.h> // ckd_add() in suppress_node::tprint() hackery
 #include <stdio.h> // prerequisite of searchpath.h
 #include <stdlib.h> // free(), malloc()
 #include <string.h> // strerror()
@@ -4774,14 +4775,19 @@ void suppress_node::tprint(troff_output_file *out)
 	//	  topdiv->get_page_number(),
 	//	  suppression_starting_page_number);
 	// `name` will contain a "%d" in which the image_no is placed.
+	units page_width; // not counting the right margin
+	if (ckd_add(&page_width, topdiv->get_page_offset().to_units(),
+		    curenv->get_line_length().to_units()))
+	  // This really should never happen.
+	  warning(WARN_RANGE, "addition saturated when adding"
+		  " page offset and line length for grohtml-info");
 	fprintf(stderr,
 		"grohtml-info:page %d  %d  %d  %d  %d  %d  %s  %d  %d"
 		"  %s:%s\n",
 		topdiv->get_page_number(),
 		get_register("opminx"), get_register("opminy"),
 		get_register("opmaxx"), get_register("opmaxy"),
-		// page offset + line length
-		get_register(".o") + get_register(".l"),
+		page_width,
 		name, hresolution, vresolution, get_string(".F"),
 		get_string(".c"));
 	fflush(stderr);

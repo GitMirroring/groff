@@ -1,3 +1,18 @@
+2026-04-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/node.cpp (suppress_node::tprint): Refactor code
+	populating "grohtml-info" output to access the formatter's page
+	offset and line length parameters directly, instead of going
+	through the register dictionary.  Because we're adding them,
+	check that addition for overflow; preprocessor-include
+	"<stdckdint.h>" accordingly.
+
+	We can consequently drop some now-unused code.
+
+	* src/roff/troff/div.cpp (class page_offset_reg): Drop
+	`get_value()` declaration.
+	(page_offset_reg::get_value): Delete.
+
 2026-04-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/div.cpp: Drop unused code introduced in initial

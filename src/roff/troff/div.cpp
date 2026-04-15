@@ -1075,15 +1075,8 @@ static void vertical_position_traps() // .vpt
 
 class page_offset_reg : public reg {
 public:
-  bool get_value(units *);
   const char *get_string();
 };
-
-bool page_offset_reg::get_value(units *res)
-{
-  *res = topdiv->get_page_offset().to_units();
-  return true;
-}
 
 const char *page_offset_reg::get_string()
 {
