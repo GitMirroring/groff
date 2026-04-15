@@ -790,7 +790,7 @@ static void when_request() // .wh
   skip_line();
 }
 
-static void begin_page() // .bp
+static void begin_page_request() // .bp
 {
   bool got_arg = false;
   int n = 0;
@@ -906,7 +906,7 @@ void blank_line()
 /* need_space might spring a trap and so we must be careful that the
 BEGIN_TRAP token is not skipped over. */
 
-static void need_space() // .ne
+static void need_vertical_space_request() // .ne
 {
   vunits n;
   if (!has_arg() || !read_vunits(&n, 'v'))
@@ -917,7 +917,7 @@ static void need_space() // .ne
   tok.next();
 }
 
-static void page_number() // .pn
+static void set_page_number_request() // .pn
 {
   if (!has_arg()) {
     warning(WARN_MISSING, "page number assignment request expects an"
@@ -940,7 +940,7 @@ static void page_number() // .pn
 
 vunits saved_space;
 
-static void save_vertical_space() // .sv
+static void save_vertical_space_request() // .sv
 {
   vunits x;
   if (!has_arg() || !read_vunits(&x, 'v'))
@@ -952,7 +952,7 @@ static void save_vertical_space() // .sv
   skip_line();
 }
 
-static void output_saved_vertical_space() // .os
+static void output_saved_vertical_space_request() // .os
 {
   while (!tok.is_newline() && !tok.is_eof())
     tok.next();
@@ -1250,24 +1250,24 @@ void init_div_requests()
 {
   init_request("box", box);
   init_request("boxa", box_append);
-  init_request("bp", begin_page);
+  init_request("bp", begin_page_request);
   init_request("ch", change_trap_request);
   init_request("da", divert_append);
   init_request("di", divert);
   init_request("dt", diversion_trap_request);
   init_request("fl", flush_request);
   init_request("mk", mark_request);
-  init_request("ne", need_space);
+  init_request("ne", need_vertical_space_request);
   init_request("ns", no_space);
-  init_request("os", output_saved_vertical_space);
+  init_request("os", output_saved_vertical_space_request);
   init_request("pl", configure_page_length_request);
-  init_request("pn", page_number);
+  init_request("pn", set_page_number_request);
   init_request("po", configure_page_offset_request);
   init_request("pwh", print_traps_request);
   init_request("rs", restore_spacing);
   init_request("rt", return_request);
   init_request("sp", space_request);
-  init_request("sv", save_vertical_space);
+  init_request("sv", save_vertical_space_request);
   init_request("vpt", configure_vertical_position_traps_request);
   init_request("wh", when_request);
   register_dictionary.define(".a",

@@ -1,5 +1,20 @@
 2026-04-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/div.cpp: Trivially refactor.  Rename request
+	handler functions.
+	(need_space)
+	(page_number)
+	(save_vertical_space)
+	(output_saved_vertical_space): Rename these...
+	(need_vertical_space_request)
+	(set_page_number_request)
+	(save_vertical_space_request)
+	(output_saved_vertical_space): ...to these.
+	(init_div_requests): Update wire-uppery of request names to
+	handler functions.
+
+2026-04-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/div.cpp (diversion_trap_request): Ignore
 	request if arguments are present but nonsensical: either the
 	first is not a valid vertical position expression, or it's
