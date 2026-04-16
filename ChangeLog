@@ -1,5 +1,12 @@
 2026-04-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[groff]: Unit-test `pnr` request.
+
+	* src/roff/groff/tests/pnr-request-works.sh: Do it.
+	* src/roff/groff/groff.am (groff_TESTS): Run test.
+
+2026-04-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[groff]: Unit-test support for alphabetic register formats.
 
 	* src/roff/groff/tests/\
