@@ -3081,6 +3081,19 @@ source than
 escape sequences do.
 .
 .
+.IP
+Only the listed font escape sequences are dependable.
+.
+Others,
+such as
+.BR \efC ,
+are not portable,
+are meaningless on terminal devices,
+and can prompt warnings from
+GNU
+.IR troff .\" GNU
+.
+.
 .P
 Several special characters are also widely portable.
 .\" meaning: groff, Heirloom Doctools troff, neatroff, mandoc
