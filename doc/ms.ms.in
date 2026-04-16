@@ -44,7 +44,7 @@
 .ds FR 1
 .nr TC-MARGIN \w'00' \" expect 2-digit page numbers at most
 .ds header-title Using \f[I]groff\f[] with the \f[I]ms\f[] macros\"
-.ds date November 2025\"
+.ds date April 2026\"
 .ND \*[date]
 .ds CH \" empty
 .ie t \{\
@@ -3415,7 +3415,7 @@ T}
 .PP
 For even greater flexibility,
 .I ms
-is designed to permit the redefinition of the macros that are called
+permits the redefinition of the macros that are called
 when formatter traps
 that ordinarily cause the headers and footers to be output are sprung.
 .
