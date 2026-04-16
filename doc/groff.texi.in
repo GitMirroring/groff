@@ -628,7 +628,7 @@ GNU
 @code{roff}
 system make it easier to use than traditional
 @code{roff}s
-that required the construction of pipelines
+that required the explicit construction of pipelines
 or use of temporary files to carry a source document
 from maintainable form to device-ready output.
 @c END Keep parallel with groff(1), section "Usage" (introduction).
