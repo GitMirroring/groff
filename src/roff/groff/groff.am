@@ -39,6 +39,7 @@ groff_TESTS = \
   src/roff/groff/tests/ab-request-works.sh \
   src/roff/groff/tests/adjustment-works.sh \
   src/roff/groff/tests/aln-request-works.sh \
+  src/roff/groff/tests/alpha-format-register-interpolation-works.sh \
   src/roff/groff/tests/als-request-works.sh \
   src/roff/groff/tests/arithmetic-works.sh \
   src/roff/groff/tests/asciify-composite-nodes-correctly.sh \

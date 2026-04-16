@@ -1,5 +1,13 @@
 2026-04-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[groff]: Unit-test support for alphabetic register formats.
+
+	* src/roff/groff/tests/\
+	alpha-format-register-interpolation-works.sh: Do it.
+	* src/roff/groff/groff.am (groff_TESTS): Run test.
+
+2026-04-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[groff]: Unit-test support for Roman numeral register formats.
 
 	* src/roff/groff/tests/\
