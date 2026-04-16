@@ -10273,12 +10273,19 @@ matching a hyphenation exception word defined with
 @code{hw}.
 
 @cindex hyphenation exception words, removing
-@Defreq {rhw}
-Empty the current hyphenation language's exception word list
-of all entries populated by the input.@footnote{GNU
+@Defreq {rhw, [@Var{word} @r{@dots{}}]}
+Remove each
+@var{word}
+from the current hyphenation language's exception word list
+or,
+without arguments,
+empty that list of all entries populated by the input.@footnote{GNU
 @command{troff} @c GNU
 retains those supplied by hyphenation pattern exception files;
 see below.}
+Hyphens in
+@var{word}
+are ignored.
 @endDefreq
 
 Situations also arise when only a specific occurrence of a word needs

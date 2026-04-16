@@ -4255,9 +4255,18 @@ See
 .
 .
 .TP
-.B .rhw
-Empty the current hyphenation language's exception word list
-of all entries populated by the input.
+.BR .rhw \~[\c
+.IR word \~\&.\|.\|.]
+Remove each
+.I word
+from the current hyphenation language's exception word list
+or,
+without arguments,
+empty that list of all entries populated by the input.
+.
+Hyphens in
+.I word
+are ignored.
 .
 .
 .TP

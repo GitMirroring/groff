@@ -37,16 +37,16 @@ output=$(printf '%s\n' "$input" | "$groff" 2>&1)
 echo "$output"
 echo "$output" | grep -Eqx "(baz-qux|kwy-ji-bo|sa-hu-agin)" && wail
 
-#input='.
-#.hw baz-qux kwy-ji-bo sa-hu-agin
-#.rhw kwyjibo
-#.phw
-#.'
-#
-#echo "checking operation of 'rhw' request without arguments"
-#output=$(printf '%s\n' "$input" | "$groff" 2>&1)
-#echo "$output"
-#echo "$output" | grep -qx "kwyjibo" || wail
+input='.
+.hw baz-qux kwy-ji-bo sa-hu-agin
+.rhw kwyjibo
+.phw
+.'
+
+echo "checking operation of 'rhw' request with arguments"
+output=$(printf '%s\n' "$input" | "$groff" 2>&1)
+echo "$output"
+echo "$output" | grep -qx "kwy-*ji-*bo" && wail
 
 test -z "$fail"
 

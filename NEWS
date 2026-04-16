@@ -56,9 +56,9 @@ troff
    and if found, is reported with its hyphenation points.  Only
    hyphenation exceptions defined by the `hw` request are reported.
 
-*  A new request, `rhw`, clears the current hyphenation language's list
-   of user-defined hyphenation exception words.  Those supplied by files
-   like "tmac/hyphenex.{cs,en,pl}" are retained.
+*  A new request, `rhw`, removes user-defined hyphenation exception
+   words from the current hyphenation language's list thereof.  Those
+   supplied by files like "tmac/hyphenex.{cs,en,pl}" are retained.
 
 Macro packages
 --------------

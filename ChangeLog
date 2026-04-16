@@ -1,5 +1,22 @@
 2026-04-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp
+	(remove_hyphenation_exception_words_request): Implement argument
+	processing; each is normalized (hyphens are removed), looked up
+	in the current hyphenation language's exception word dictionary,
+	and deleted thence if present.
+
+	* src/roff/groff/tests/rhw-request-works.sh: Test functionality.
+
+	* doc/groff.texi.in (Manipulating Hyphenation):
+	* man/groff.7.man (Request short reference):
+	* man/groff_diff.7.man (New requests):
+	* NEWS: Document it.
+
+	Fixes <https://savannah.gnu.org/bugs/?64478>.
+
+2026-04-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[groff]: Unit-test `pnr` request.
 
 	* src/roff/groff/tests/pnr-request-works.sh: Do it.
