@@ -22752,20 +22752,6 @@ which is not suitable in GNU
 for some languages,
 including English.
 
-Unlike
-GNU
-@command{troff}, @c GNU
-@acronym{AT&T}
-@command{troff} @c AT&T
-does not recognize an occurrence of
-@code{\%}
-at the beginning of a word as suppressing its hyphenation;
-instead,
-it (uselessly) marks the start of the word
-as a potential hyphenation point,
-permitting output lines to end with hyphens
-that are not interior to a word.
-
 GNU
 @command{troff} @c GNU
 handles the dummy character

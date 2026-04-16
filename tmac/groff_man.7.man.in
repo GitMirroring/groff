@@ -2743,6 +2743,35 @@ those specified with
 .BR \e% .
 .
 .
+.IP
+Beginning a word with this escape sequence doesn't work
+with font selection macros
+in
+DWB,
+Plan\~9,
+or
+Solaris
+.IR troff s \" DWB, Plan 9, Solaris
+due to the way their
+.I man
+macros are written.
+.\" They're all like this:
+.\"
+.\".deXX
+.\".nh
+.\".ft2 \" or whichever
+.\".it1 }N
+.\".if!<BEL>\\$1<BEL><BEL> \&\\$1 \\$2 \\$3 \\$4 \\$5 \\$6
+.\".HY
+.\"
+.\" The prefixing of the first argument with a dummy character means
+.\" that the argument's `\%` loses its place at the start of the
+.\" interpolated word.  A spurious "inter-word" hyphenation break point
+.\" is the unwelcome result.  GBR knows of no good way to defeat this.
+.\" There are many bad ones that would be intrusive in man(7) document
+.\" source.
+.
+.
 .TP
 .B \e:
 Insert a non-printing break point.
