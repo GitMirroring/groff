@@ -10,7 +10,8 @@ manuscript macro package for formatting documents
 .\" Legal Terms
 .\" ====================================================================
 .\"
-.\" Copyright 1989-2025 Free Software Foundation, Inc.
+.\" Copyright 1989-2021 Free Software Foundation, Inc.
+.\"           2018-2023 G. Branden Robinson
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
