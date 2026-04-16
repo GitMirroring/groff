@@ -3044,6 +3044,8 @@ when three different font styles are required in one word.
 .IP
 Style escape sequences may be more portable than
 .BR \ec .
+.\" _Formatters_ handle \c just fine, but po4a does not.  See
+.\" <https://github.com/mquinson/po4a/issues/527>.
 .
 As shown above,
 it is up to you to account for italic corrections with
