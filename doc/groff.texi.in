@@ -685,6 +685,13 @@ embedding of hyperlinks, images, document metadata, and other inclusions
 (where supported by the output device)
 @end itemize
 
+@code{roff}
+as a programming language also supports
+evaluation of arithmetic expressions,
+storage and retrieval of parameters
+(``registers'' and ``strings''),
+and altered flow of control dependent on the foregoing.
+
 
 @c =====================================================================
 
