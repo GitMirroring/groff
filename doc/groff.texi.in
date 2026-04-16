@@ -18736,11 +18736,21 @@ exist at most one such vertical position trap per diversion.
 @cindex setting diversion trap (@code{dt})
 @cindex diversion trap, setting (@code{dt})
 @cindex trap, diversion, setting (@code{dt})
-Set a trap @emph{within} a diversion at location @var{dist}, which is
-interpreted relative to diversion rather than page boundaries.  If invoked with
-fewer than two arguments, any diversion trap in the current diversion is
-removed.  The register @code{.t} works within diversions.  It is an
-error to invoke @code{dt} in the top-level diversion.
+Set a trap calling
+@var{name}
+from
+@emph{within}
+a diversion at location
+@var{dist},
+which is interpreted relative to diversion rather than page boundaries.
+If invoked with fewer than two arguments,
+any diversion trap in the current diversion is removed.
+The register
+@code{.t}
+works within diversions.
+It is an error to invoke
+@code{dt}
+in the top-level diversion.
 @xref{Diversions}.
 @endDefreq
 
