@@ -2069,7 +2069,7 @@ and the
 and
 .B \%PORPHANS
 registers
-work with respect to column breaks instead of page breaks.
+work with respect to column breaks in addition to page breaks.
 .
 .
 .TP
