@@ -183,7 +183,7 @@ static void copy_mode_error(const char *,
 			    const errarg & = empty_errarg);
 
 enum escape_sequence_parameter_cardinality {
-  ALLOW_EMPTY,
+  ARGUMENTS_OPTIONAL,
   ARGUMENTS_MANDATORY,
   ARGUMENTS_FORBIDDEN
 };
@@ -1087,7 +1087,7 @@ static symbol read_long_escape_parameters(
   }
   buf[i] = '\0';
   if (0 == i) {
-    if (mode != ALLOW_EMPTY)
+    if (mode != ARGUMENTS_OPTIONAL)
       // XXX: `.device \[]` passes through as-is but `\X \[]` doesn't,
       // landing here.  Implement almost-but-not-quite-copy-mode?
       copy_mode_error("empty escape sequence argument");
@@ -2524,7 +2524,7 @@ void token::next()
 		  char(cc));
 	  break;
 	}
-	select_font(read_escape_parameter(ALLOW_EMPTY));
+	select_font(read_escape_parameter(ARGUMENTS_OPTIONAL));
 	if (!want_att_compat)
 	  have_formattable_input = true;
 	break;
@@ -2532,7 +2532,7 @@ void token::next()
 	if (want_att_compat)
 	  warning(WARN_SYNTAX, "an escaped '%1' is not portable to"
 		  " AT&T troff", char(cc));
-	curenv->set_family(read_escape_parameter(ALLOW_EMPTY));
+	curenv->set_family(read_escape_parameter(ARGUMENTS_OPTIONAL));
 	have_formattable_input = true;
 	break;
       case 'g':
@@ -2591,7 +2591,7 @@ void token::next()
 	if (want_att_compat)
 	  warning(WARN_SYNTAX, "an escaped '%1' is not portable to"
 		  " AT&T troff", char(cc));
-	do_stroke_color(read_escape_parameter(ALLOW_EMPTY));
+	do_stroke_color(read_escape_parameter(ARGUMENTS_OPTIONAL));
 	if (!want_att_compat)
 	  have_formattable_input = true;
 	break;
@@ -2599,7 +2599,7 @@ void token::next()
 	if (want_att_compat)
 	  warning(WARN_SYNTAX, "an escaped '%1' is not portable to"
 		  " AT&T troff", char(cc));
-	do_fill_color(read_escape_parameter(ALLOW_EMPTY));
+	do_fill_color(read_escape_parameter(ARGUMENTS_OPTIONAL));
 	if (!want_att_compat)
 	  have_formattable_input = true;
 	break;
