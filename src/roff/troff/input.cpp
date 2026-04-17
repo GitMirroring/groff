@@ -5014,7 +5014,7 @@ bool unpostpone_traps()
     return false;
 }
 
-void read_request()
+void read_from_terminal_request() // .rd
 {
   macro_iterator *mi = new macro_iterator;
   bool is_reading_from_terminal = bool(isatty(fileno(stdin)));
@@ -10342,7 +10342,7 @@ void init_input_requests()
   init_request("pso", pipe_source_request);
   init_request("pstream", print_stream_request);
   init_request("rchar", remove_character);
-  init_request("rd", read_request);
+  init_request("rd", read_from_terminal_request);
   init_request("return", return_macro_request);
   init_request("rm", remove_macro);
   init_request("rn", rename_macro);

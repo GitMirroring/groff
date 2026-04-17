@@ -1,6 +1,16 @@
 2026-04-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp: Trivially refactor.
+	(read_request): Rename this...
+	(read_from_terminal_request): ...to this.  It's a *roff
+	input-reading function, but an oddball and highly specific one.
+	Make its name less apparently general.
+	(init_input_requests): Update wire-uppery of request name to
+	handler function.
+
+2026-04-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp: Trivially refactor.
 	(read_escape_sequence_parameter)
 	(read_long_escape_sequence_parameters): Rename function
 	parameter `mode`, a heavily overloaded term in *roff
