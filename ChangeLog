@@ -1,6 +1,14 @@
 2026-04-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp: Trivially refactor.
+	(read_escape_sequence_parameter)
+	(read_long_escape_sequence_parameters): Rename function
+	parameter `mode`, a heavily overloaded term in *roff
+	parlance--like "transparent" and "special"--to `arity`.
+
+2026-04-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp: Trivially refactor.
 	(read_char_in_copy_mode): Rename this...
 	(read_character_in_copy_mode): ...to this.
 

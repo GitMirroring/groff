@@ -182,15 +182,15 @@ static void copy_mode_error(const char *,
 			    const errarg & = empty_errarg,
 			    const errarg & = empty_errarg);
 
-enum escape_sequence_parameter_cardinality {
+enum escape_sequence_parameter_arity {
   ARGUMENTS_OPTIONAL,
   ARGUMENTS_MANDATORY,
   ARGUMENTS_FORBIDDEN
 };
 static symbol read_escape_sequence_parameter(
-    escape_sequence_parameter_cardinality = ARGUMENTS_FORBIDDEN);
+    escape_sequence_parameter_arity = ARGUMENTS_FORBIDDEN);
 static symbol read_long_escape_sequence_parameters(
-    escape_sequence_parameter_cardinality = ARGUMENTS_FORBIDDEN);
+    escape_sequence_parameter_arity = ARGUMENTS_FORBIDDEN);
 static void interpolate_string(symbol);
 static void interpolate_string_with_args(symbol);
 static void interpolate_macro_or_invoke_request(symbol, bool = false);
@@ -1040,7 +1040,7 @@ static symbol read_two_character_escape_sequence_parameter()
 }
 
 static symbol read_long_escape_sequence_parameters(
-    escape_sequence_parameter_cardinality mode)
+    escape_sequence_parameter_arity arity)
 {
   int start_level = input_stack::get_level();
   int buf_size = default_buffer_size;
@@ -1058,13 +1058,13 @@ static symbol read_long_escape_sequence_parameters(
   bool have_char = false;
   for (;;) {
     c = read_character_in_escape_sequence_parameter(have_char
-	    && (ARGUMENTS_MANDATORY == mode));
+	    && (ARGUMENTS_MANDATORY == arity));
     if ('\0' == c) {
       delete[] buf;
       return NULL_SYMBOL;
     }
     have_char = true;
-    if ((ARGUMENTS_MANDATORY == mode) && (' ' == c))
+    if ((ARGUMENTS_MANDATORY == arity) && (' ' == c))
       break;
     if (i + 2 > buf_size) {
       char *old_buf = buf;
@@ -1087,7 +1087,7 @@ static symbol read_long_escape_sequence_parameters(
   }
   buf[i] = '\0';
   if (0 == i) {
-    if (mode != ARGUMENTS_OPTIONAL)
+    if (arity != ARGUMENTS_OPTIONAL)
       // XXX: `.device \[]` passes through as-is but `\X \[]` doesn't,
       // landing here.  Implement almost-but-not-quite-copy-mode?
       copy_mode_error("empty escape sequence argument");
@@ -1101,7 +1101,7 @@ static symbol read_long_escape_sequence_parameters(
 }
 
 static symbol read_escape_sequence_parameter(
-    escape_sequence_parameter_cardinality mode)
+    escape_sequence_parameter_arity arity)
 {
   char c = read_character_in_escape_sequence_parameter();
   if ('\0' == c)
@@ -1109,7 +1109,7 @@ static symbol read_escape_sequence_parameter(
   if ('(' == c)
     return read_two_character_escape_sequence_parameter();
   if (('[' == c) && !want_att_compat)
-    return read_long_escape_sequence_parameters(mode);
+    return read_long_escape_sequence_parameters(arity);
   char buf[2];
   buf[0] = c;
   buf[1] = '\0';
