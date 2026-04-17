@@ -1,3 +1,10 @@
+2026-04-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/env.cpp (read_hyphenation_patterns_from_file):
+	Trivially refactor.  Rename function parameter `append` to
+	`appending`.  (Elsewhere, we have member functions named
+	`append()` that have side effects.)
+
 2026-04-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/groff/tests/dot-nm-register-works.sh: Repair test
