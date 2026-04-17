@@ -1,6 +1,14 @@
 2026-04-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp: Trivially refactor.
+	(read_increment_and_escape_parameter): Rename this...
+	(read_increment_and_escape_sequence_parameter): ...to this.
+	(read_char_in_copy_mode)
+	(token::next): Update call sites.
+
+2026-04-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp: Trivially refactor.
 	(read_escape_parameter): Rename this...
 	(read_escape_sequence_parameter): ...to this.
 	(read_increment_and_escape_parameter)
