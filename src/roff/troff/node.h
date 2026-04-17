@@ -710,7 +710,6 @@ extern bool is_valid_font_mounting_position(int);
 extern bool is_valid_font(int);
 extern int mounting_position_of_font(symbol);
 extern int next_available_font_mounting_position();
-extern void init_size_list(int *);
 extern int get_selected_underline_font_mounting_position();
 
 class output_file {

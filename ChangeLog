@@ -1,5 +1,14 @@
 2026-04-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Trivially refactor.
+
+	* src/roff/troff/env.h: Declare `init_size_list()` here,
+	corresponding to its definition in "env.cpp", and along with
+	other "size_list"-related stuff...
+	* src/roff/troff/node.h: ...instead of here.
+
+2026-04-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.h: Drop declaration of unused symbol
 	`read_desc()`.
 
