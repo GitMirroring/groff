@@ -187,7 +187,7 @@ enum escape_sequence_parameter_cardinality {
   ARGUMENTS_MANDATORY,
   ARGUMENTS_FORBIDDEN
 };
-static symbol read_escape_parameter(
+static symbol read_escape_sequence_parameter(
     escape_sequence_parameter_cardinality = ARGUMENTS_FORBIDDEN);
 static symbol read_long_escape_parameters(
     escape_sequence_parameter_cardinality = ARGUMENTS_FORBIDDEN);
@@ -1100,7 +1100,7 @@ static symbol read_long_escape_parameters(
   return s;
 }
 
-static symbol read_escape_parameter(
+static symbol read_escape_sequence_parameter(
     escape_sequence_parameter_cardinality mode)
 {
   char c = read_char_in_escape_sequence_parameter();
@@ -1128,10 +1128,10 @@ static symbol read_increment_and_escape_parameter(int *incp)
     return read_two_char_escape_parameter();
   case '+':
     *incp = 1;
-    return read_escape_parameter();
+    return read_escape_sequence_parameter();
   case '-':
     *incp = -1;
-    return read_escape_parameter();
+    return read_escape_sequence_parameter();
   case '[':
     if (!want_att_compat) {
       *incp = 0;
@@ -1211,7 +1211,7 @@ static int read_char_in_copy_mode(node **nd,
     case '$':
       {
 	(void) input_stack::get(0 /* nullptr */);
-	symbol s = read_escape_parameter();
+	symbol s = read_escape_sequence_parameter();
 	if (!(s.is_null() || s.is_empty()))
 	  interpolate_positional_parameter(s);
 	break;
@@ -1219,7 +1219,7 @@ static int read_char_in_copy_mode(node **nd,
     case '*':
       {
 	(void) input_stack::get(0 /* nullptr */);
-	symbol s = read_escape_parameter(ARGUMENTS_MANDATORY);
+	symbol s = read_escape_sequence_parameter(ARGUMENTS_MANDATORY);
 	if (!(s.is_null() || s.is_empty())) {
 	  if (have_multiple_params) {
 	    have_multiple_params = false;
@@ -1253,7 +1253,7 @@ static int read_char_in_copy_mode(node **nd,
     case 'g':
       {
 	(void) input_stack::get(0 /* nullptr */);
-	symbol s = read_escape_parameter();
+	symbol s = read_escape_sequence_parameter();
 	if (!(s.is_null() || s.is_empty()))
 	  interpolate_number_format(s);
 	break;
@@ -1264,7 +1264,7 @@ static int read_char_in_copy_mode(node **nd,
     case 'V':
       {
 	(void) input_stack::get(0 /* nullptr */);
-	symbol s = read_escape_parameter();
+	symbol s = read_escape_sequence_parameter();
 	if (!(s.is_null() || s.is_empty()))
 	  interpolate_environment_variable(s);
 	break;
@@ -2439,14 +2439,14 @@ void token::next()
 	break;
       case '$':
 	{
-	  symbol s = read_escape_parameter();
+	  symbol s = read_escape_sequence_parameter();
 	  if (!(s.is_null() || s.is_empty()))
 	    interpolate_positional_parameter(s);
 	  break;
 	}
       case '*':
 	{
-	  symbol s = read_escape_parameter(ARGUMENTS_MANDATORY);
+	  symbol s = read_escape_sequence_parameter(ARGUMENTS_MANDATORY);
 	  if (!(s.is_null() || s.is_empty())) {
 	    if (have_multiple_params) {
 	      have_multiple_params = false;
@@ -2524,7 +2524,7 @@ void token::next()
 		  char(cc));
 	  break;
 	}
-	select_font(read_escape_parameter(ARGUMENTS_OPTIONAL));
+	select_font(read_escape_sequence_parameter(ARGUMENTS_OPTIONAL));
 	if (!want_att_compat)
 	  have_formattable_input = true;
 	break;
@@ -2532,12 +2532,13 @@ void token::next()
 	if (want_att_compat)
 	  warning(WARN_SYNTAX, "an escaped '%1' is not portable to"
 		  " AT&T troff", char(cc));
-	curenv->set_family(read_escape_parameter(ARGUMENTS_OPTIONAL));
+	curenv->set_family(
+	    read_escape_sequence_parameter(ARGUMENTS_OPTIONAL));
 	have_formattable_input = true;
 	break;
       case 'g':
 	{
-	  symbol s = read_escape_parameter();
+	  symbol s = read_escape_sequence_parameter();
 	  if (!(s.is_null() || s.is_empty()))
 	    interpolate_number_format(s);
 	  break;
@@ -2565,7 +2566,7 @@ void token::next()
 	  have_formattable_input = true;
 	break;
       case 'k':
-	nm = read_escape_parameter();
+	nm = read_escape_sequence_parameter();
 	if (nm.is_null() || nm.is_empty())
 	  break;
 	type = TOKEN_MARK_INPUT;
@@ -2591,7 +2592,8 @@ void token::next()
 	if (want_att_compat)
 	  warning(WARN_SYNTAX, "an escaped '%1' is not portable to"
 		  " AT&T troff", char(cc));
-	do_stroke_color(read_escape_parameter(ARGUMENTS_OPTIONAL));
+	do_stroke_color(
+	    read_escape_sequence_parameter(ARGUMENTS_OPTIONAL));
 	if (!want_att_compat)
 	  have_formattable_input = true;
 	break;
@@ -2599,7 +2601,8 @@ void token::next()
 	if (want_att_compat)
 	  warning(WARN_SYNTAX, "an escaped '%1' is not portable to"
 		  " AT&T troff", char(cc));
-	do_fill_color(read_escape_parameter(ARGUMENTS_OPTIONAL));
+	do_fill_color(
+	    read_escape_sequence_parameter(ARGUMENTS_OPTIONAL));
 	if (!want_att_compat)
 	  have_formattable_input = true;
 	break;
@@ -2627,7 +2630,7 @@ void token::next()
 	if (want_att_compat)
 	  warning(WARN_SYNTAX, "an escaped '%1' is not portable to"
 		  " AT&T troff", char(cc));
-	nd = do_suppress(read_escape_parameter());
+	nd = do_suppress(read_escape_sequence_parameter());
 	if (0 /* nullptr */ == nd)
 	  break;
 	type = TOKEN_NODE;
@@ -2686,7 +2689,7 @@ void token::next()
 	  warning(WARN_SYNTAX, "an escaped '%1' is not portable to"
 		  " AT&T troff", char(cc));
 	{
-	  symbol s = read_escape_parameter();
+	  symbol s = read_escape_sequence_parameter();
 	  if (!(s.is_null() || s.is_empty()))
 	    interpolate_environment_variable(s);
 	  break;
@@ -2711,7 +2714,7 @@ void token::next()
 	  warning(WARN_SYNTAX, "an escaped '%1' is not portable to"
 		  " AT&T troff", char(cc));
 	{
-	  symbol s = read_escape_parameter();
+	  symbol s = read_escape_sequence_parameter();
 	  if (s.is_null() || s.is_empty())
 	    break;
 	  request_or_macro *p = lookup_request(s);
