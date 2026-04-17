@@ -64,7 +64,7 @@
 	(need_vertical_space_request)
 	(set_page_number_request)
 	(save_vertical_space_request)
-	(output_saved_vertical_space): ...to these.
+	(output_saved_vertical_space_request): ...to these.
 	(init_div_requests): Update wire-uppery of request names to
 	handler functions.
 
