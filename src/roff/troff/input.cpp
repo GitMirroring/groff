@@ -189,7 +189,7 @@ enum escape_sequence_parameter_cardinality {
 };
 static symbol read_escape_sequence_parameter(
     escape_sequence_parameter_cardinality = ARGUMENTS_FORBIDDEN);
-static symbol read_long_escape_parameters(
+static symbol read_long_escape_sequence_parameters(
     escape_sequence_parameter_cardinality = ARGUMENTS_FORBIDDEN);
 static void interpolate_string(symbol);
 static void interpolate_string_with_args(symbol);
@@ -1039,7 +1039,7 @@ static symbol read_two_char_escape_parameter()
   return symbol(buf);
 }
 
-static symbol read_long_escape_parameters(
+static symbol read_long_escape_sequence_parameters(
     escape_sequence_parameter_cardinality mode)
 {
   int start_level = input_stack::get_level();
@@ -1109,7 +1109,7 @@ static symbol read_escape_sequence_parameter(
   if ('(' == c)
     return read_two_char_escape_parameter();
   if (('[' == c) && !want_att_compat)
-    return read_long_escape_parameters(mode);
+    return read_long_escape_sequence_parameters(mode);
   char buf[2];
   buf[0] = c;
   buf[1] = '\0';
@@ -1135,7 +1135,7 @@ static symbol read_increment_and_escape_sequence_parameter(int *incp)
   case '[':
     if (!want_att_compat) {
       *incp = 0;
-      return read_long_escape_parameters();
+      return read_long_escape_sequence_parameters();
     }
     break;
   }
@@ -2774,7 +2774,8 @@ void token::next()
 	  warning(WARN_SYNTAX, "an escaped '%1' is not portable to"
 		  " AT&T troff", char(cc));
 	if (!want_att_compat) {
-	  symbol s = read_long_escape_parameters(ARGUMENTS_MANDATORY);
+	  symbol s
+	    = read_long_escape_sequence_parameters(ARGUMENTS_MANDATORY);
 	  if (s.is_null() || s.is_empty())
 	    break;
 	  if (have_multiple_params) {
@@ -6947,7 +6948,8 @@ static void device_request()
 	}
 	if (is_valid) {
 	  input_stack::push(make_temp_iterator(sc.contents()));
-	  symbol s = read_long_escape_parameters(ARGUMENTS_MANDATORY);
+	  symbol s
+	    = read_long_escape_sequence_parameters(ARGUMENTS_MANDATORY);
 	  map_special_character_for_device_output(&mac, s.contents());
 	}
 	else {
