@@ -1,3 +1,23 @@
+2022-04-17  Dave Kemper <saint.snit@gmail.com>
+
+	* tmac/pspic.tmac: Allow `PSPIC` macro to place image at bottom
+	of page.  From groff 1.01 through 1.04, the macro did not invoke
+	a break, explicitly or implicitly; thus the vertical space
+	`.ne`eded for the image was incremented by 1v to account for a
+	possible partially collected output line.  The "ChangeLog.old"
+	file shows that James Clark added a break to this macro in a
+	1992-03-16 change (the Git history for this era is too coarse to
+	show this change alone; it first shows up in commit a48ab7b6d,
+	containing all changes between groff 1.04 and groff 1.05).
+	However, the 1v increment was (presumably) inadvertently left in
+	place, preventing an image that would exactly fit at the bottom
+	of a page from being placed there.  This adjustment has been
+	unnecessary for over 34 years, so get rid of it.
+
+	[Fixes <https://savannah.gnu.org/bugs/?50770>.  Per the
+	foregoing, problem dates back to groff 1.05, March 1992.  Thanks
+	to Dave and Deri for sorting this out! --GBR]
+
 2026-04-24  Deri James  <deri@chuzzlewit.myzen.co.uk>
 
 	[pdfmom]: Don't try to pass commands to pdfroff (-Tps) if
