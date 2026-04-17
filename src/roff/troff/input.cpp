@@ -1025,7 +1025,7 @@ static char read_char_in_escape_sequence_parameter(bool allow_space
   return c;
 }
 
-static symbol read_two_char_escape_parameter()
+static symbol read_two_character_escape_sequence_parameter()
 {
   char buf[3];
   buf[0] = read_char_in_escape_sequence_parameter();
@@ -1107,7 +1107,7 @@ static symbol read_escape_sequence_parameter(
   if ('\0' == c)
     return NULL_SYMBOL;
   if ('(' == c)
-    return read_two_char_escape_parameter();
+    return read_two_character_escape_sequence_parameter();
   if (('[' == c) && !want_att_compat)
     return read_long_escape_sequence_parameters(mode);
   char buf[2];
@@ -1125,7 +1125,7 @@ static symbol read_increment_and_escape_sequence_parameter(int *incp)
     return NULL_SYMBOL;
   case '(':
     *incp = 0;
-    return read_two_char_escape_parameter();
+    return read_two_character_escape_sequence_parameter();
   case '+':
     *incp = 1;
     return read_escape_sequence_parameter();
@@ -2353,7 +2353,7 @@ void token::next()
       cc = input_stack::get(&n);
       switch (cc) {
       case '(':
-	nm = read_two_char_escape_parameter();
+	nm = read_two_character_escape_sequence_parameter();
 	type = TOKEN_SPECIAL_CHAR;
 	return;
       case EOF:
