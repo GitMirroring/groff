@@ -5757,7 +5757,7 @@ with string interpolation).
 .
 The trailing backslashes prevent the final newline in the macro
 definition from being interpolated,
-potentially putting an unwanted blank line on the output.
+which would put a possibly unwanted blank line on the output.
 .
 See section \[lq]Punning Names\[rq] in
 .MR groff @MAN7EXT@ .
