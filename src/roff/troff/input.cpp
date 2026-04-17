@@ -182,9 +182,15 @@ static void copy_mode_error(const char *,
 			    const errarg & = empty_errarg,
 			    const errarg & = empty_errarg);
 
-enum read_mode { ALLOW_EMPTY, WITH_ARGS, NO_ARGS };
-static symbol read_escape_parameter(read_mode = NO_ARGS);
-static symbol read_long_escape_parameters(read_mode = NO_ARGS);
+enum escape_sequence_parameter_cardinality {
+  ALLOW_EMPTY,
+  WITH_ARGS,
+  NO_ARGS
+};
+static symbol read_escape_parameter(
+    escape_sequence_parameter_cardinality = NO_ARGS);
+static symbol read_long_escape_parameters(
+    escape_sequence_parameter_cardinality = NO_ARGS);
 static void interpolate_string(symbol);
 static void interpolate_string_with_args(symbol);
 static void interpolate_macro_or_invoke_request(symbol, bool = false);
@@ -1033,7 +1039,8 @@ static symbol read_two_char_escape_parameter()
   return symbol(buf);
 }
 
-static symbol read_long_escape_parameters(read_mode mode)
+static symbol read_long_escape_parameters(
+    escape_sequence_parameter_cardinality mode)
 {
   int start_level = input_stack::get_level();
   int buf_size = default_buffer_size;
@@ -1093,7 +1100,8 @@ static symbol read_long_escape_parameters(read_mode mode)
   return s;
 }
 
-static symbol read_escape_parameter(read_mode mode)
+static symbol read_escape_parameter(
+    escape_sequence_parameter_cardinality mode)
 {
   char c = read_char_in_escape_sequence_parameter();
   if ('\0' == c)
