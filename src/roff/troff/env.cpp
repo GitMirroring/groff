@@ -4858,7 +4858,7 @@ static void hyphenate(hyphen_list *h, unsigned int flags)
   }
 }
 
-static void read_hyphenation_patterns_from_file(bool appending)
+static void update_hyphenation_patterns_from_file(bool appending)
 {
   char *filename = read_rest_of_line_as_argument();
   if (filename != 0 /* nullptr */) {
@@ -4878,7 +4878,7 @@ static void load_hyphenation_patterns_from_file_request() // .hpf
     skip_line();
     return;
   }
-  read_hyphenation_patterns_from_file(false /* appending */);
+  update_hyphenation_patterns_from_file(false /* appending */);
   skip_line();
 }
 
@@ -4890,7 +4890,7 @@ static void append_hyphenation_patterns_from_file_request() // .hpfa
     skip_line();
     return;
   }
-  read_hyphenation_patterns_from_file(true /* appending */);
+  update_hyphenation_patterns_from_file(true /* appending */);
   skip_line();
 }
 
