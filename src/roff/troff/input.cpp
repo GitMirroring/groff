@@ -993,8 +993,8 @@ void shift()
 }
 
 // TODO: return unsigned char (future: grochar)?  We handle EOF here.
-static char read_char_in_escape_sequence_parameter(bool allow_space
-						   = false)
+static char read_character_in_escape_sequence_parameter(
+    bool allow_space = false)
 {
   int c = read_char_in_copy_mode(0 /* nullptr */,
 				 false /* is_defining */,
@@ -1028,9 +1028,9 @@ static char read_char_in_escape_sequence_parameter(bool allow_space
 static symbol read_two_character_escape_sequence_parameter()
 {
   char buf[3];
-  buf[0] = read_char_in_escape_sequence_parameter();
+  buf[0] = read_character_in_escape_sequence_parameter();
   if (buf[0] != '\0') {
-    buf[1] = read_char_in_escape_sequence_parameter();
+    buf[1] = read_character_in_escape_sequence_parameter();
     if (buf[1] == '\0')
       buf[0] = '\0';
     else
@@ -1057,7 +1057,7 @@ static symbol read_long_escape_sequence_parameters(
   char c;
   bool have_char = false;
   for (;;) {
-    c = read_char_in_escape_sequence_parameter(have_char
+    c = read_character_in_escape_sequence_parameter(have_char
 	    && (ARGUMENTS_MANDATORY == mode));
     if ('\0' == c) {
       delete[] buf;
@@ -1103,7 +1103,7 @@ static symbol read_long_escape_sequence_parameters(
 static symbol read_escape_sequence_parameter(
     escape_sequence_parameter_cardinality mode)
 {
-  char c = read_char_in_escape_sequence_parameter();
+  char c = read_character_in_escape_sequence_parameter();
   if ('\0' == c)
     return NULL_SYMBOL;
   if ('(' == c)
@@ -1118,7 +1118,7 @@ static symbol read_escape_sequence_parameter(
 
 static symbol read_increment_and_escape_sequence_parameter(int *incp)
 {
-  char c = read_char_in_escape_sequence_parameter();
+  char c = read_character_in_escape_sequence_parameter();
   switch (c) {
   case 0:
     *incp = 0;
