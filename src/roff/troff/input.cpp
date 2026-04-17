@@ -185,12 +185,12 @@ static void copy_mode_error(const char *,
 enum escape_sequence_parameter_cardinality {
   ALLOW_EMPTY,
   WITH_ARGS,
-  NO_ARGS
+  ARGUMENTS_FORBIDDEN
 };
 static symbol read_escape_parameter(
-    escape_sequence_parameter_cardinality = NO_ARGS);
+    escape_sequence_parameter_cardinality = ARGUMENTS_FORBIDDEN);
 static symbol read_long_escape_parameters(
-    escape_sequence_parameter_cardinality = NO_ARGS);
+    escape_sequence_parameter_cardinality = ARGUMENTS_FORBIDDEN);
 static void interpolate_string(symbol);
 static void interpolate_string_with_args(symbol);
 static void interpolate_macro_or_invoke_request(symbol, bool = false);
