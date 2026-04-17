@@ -1,5 +1,10 @@
 2026-04-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.h: Drop declaration of unused symbol
+	`read_desc()`.
+
+2026-04-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp: Trivially refactor.
 	(read_special_fonts): Rename this...
 	(read_special_font_identifiers): ...to this.
