@@ -3822,7 +3822,7 @@ public:
   hyphen_trie() {}
   ~hyphen_trie() {}
   void hyphenate(const char *, int, int *);
-  void read_patterns_file(const char *, bool, dictionary *);
+  void interpret_patterns_file(const char *, bool, dictionary *);
 };
 
 struct hyphenation_language {
@@ -4124,7 +4124,7 @@ static void print_hyphenation_exceptions_request() // .phw
   unsigned char *hypoint;
   // Pathologically, we could have a hyphenation point after every
   // character in a word except the last.  The word may have a trailing
-  // space; see `hyphen_trie::read_patterns_file()`.
+  // space; see `hyphen_trie::interpret_patterns_file()`.
   // C++11: constexpr
   static const size_t bufsz = WORD_MAX * 2;
   // C++03: char wordbuf[bufsz]();
@@ -4425,8 +4425,9 @@ fail:
   return c;
 }
 
-void hyphen_trie::read_patterns_file(const char *name, bool appending,
-				     dictionary *ex)
+void hyphen_trie::interpret_patterns_file(const char *name,
+					  bool appending,
+					  dictionary *ex)
 {
   if (!appending)
     clear();
@@ -4864,8 +4865,8 @@ static void read_hyphenation_patterns_from_file(bool appending)
     if (0 /* nullptr */ == current_language)
       error("no current hyphenation language");
     else
-      current_language->patterns.read_patterns_file(filename, appending,
-	&current_language->exceptions);
+      current_language->patterns.interpret_patterns_file(filename,
+	  appending, &current_language->exceptions);
   }
 }
 

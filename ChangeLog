@@ -1,5 +1,18 @@
 2026-04-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp: Trivially refactor.  Rename
+	`hyphen_trie` class's member function `read_patterns_file()` to
+	`interpret_patterns_file()`.  We're pretty close to exclusive
+	use of function names starting with "read_" for input stream
+	reading operations; that is, interpretation of *roff language.
+	This change moves us closer to that goal.
+	(class hyphen_trie): Update declaration.
+	(hyphen_trie::read_patterns_file): Rename this...
+	(hyphen_trie::interpret_patterns_file): ...to this.
+	(read_hyphenation_patterns_from_file): Update call site.
+
+2026-04-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp (read_hyphenation_patterns_from_file):
 	Trivially refactor.  Rename function parameter `append` to
 	`appending`.  (Elsewhere, we have member functions named
