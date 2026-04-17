@@ -184,7 +184,7 @@ static void copy_mode_error(const char *,
 
 enum escape_sequence_parameter_cardinality {
   ALLOW_EMPTY,
-  WITH_ARGS,
+  ARGUMENTS_MANDATORY,
   ARGUMENTS_FORBIDDEN
 };
 static symbol read_escape_parameter(
@@ -1058,13 +1058,13 @@ static symbol read_long_escape_parameters(
   bool have_char = false;
   for (;;) {
     c = read_char_in_escape_sequence_parameter(have_char
-					       && (WITH_ARGS == mode));
+	    && (ARGUMENTS_MANDATORY == mode));
     if ('\0' == c) {
       delete[] buf;
       return NULL_SYMBOL;
     }
     have_char = true;
-    if ((WITH_ARGS == mode) && (' ' == c))
+    if ((ARGUMENTS_MANDATORY == mode) && (' ' == c))
       break;
     if (i + 2 > buf_size) {
       char *old_buf = buf;
@@ -1219,7 +1219,7 @@ static int read_char_in_copy_mode(node **nd,
     case '*':
       {
 	(void) input_stack::get(0 /* nullptr */);
-	symbol s = read_escape_parameter(WITH_ARGS);
+	symbol s = read_escape_parameter(ARGUMENTS_MANDATORY);
 	if (!(s.is_null() || s.is_empty())) {
 	  if (have_multiple_params) {
 	    have_multiple_params = false;
@@ -2446,7 +2446,7 @@ void token::next()
 	}
       case '*':
 	{
-	  symbol s = read_escape_parameter(WITH_ARGS);
+	  symbol s = read_escape_parameter(ARGUMENTS_MANDATORY);
 	  if (!(s.is_null() || s.is_empty())) {
 	    if (have_multiple_params) {
 	      have_multiple_params = false;
@@ -2771,7 +2771,7 @@ void token::next()
 	  warning(WARN_SYNTAX, "an escaped '%1' is not portable to"
 		  " AT&T troff", char(cc));
 	if (!want_att_compat) {
-	  symbol s = read_long_escape_parameters(WITH_ARGS);
+	  symbol s = read_long_escape_parameters(ARGUMENTS_MANDATORY);
 	  if (s.is_null() || s.is_empty())
 	    break;
 	  if (have_multiple_params) {
@@ -6944,7 +6944,7 @@ static void device_request()
 	}
 	if (is_valid) {
 	  input_stack::push(make_temp_iterator(sc.contents()));
-	  symbol s = read_long_escape_parameters(WITH_ARGS);
+	  symbol s = read_long_escape_parameters(ARGUMENTS_MANDATORY);
 	  map_special_character_for_device_output(&mac, s.contents());
 	}
 	else {

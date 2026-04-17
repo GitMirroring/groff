@@ -2,6 +2,16 @@
 
 	* src/roff/troff/input.cpp: Trivially refactor.  Rename
 	constant in `escape_sequence_parameter_cardinality` enumeration
+	from `WITH_ARGS` to `ARGUMENTS_MANDATORY`.
+	(read_long_escape_parameters)
+	(read_char_in_copy_mode)
+	(token::next)
+	(device_request): Update dereference sites.
+
+2026-04-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp: Trivially refactor.  Rename
+	constant in `escape_sequence_parameter_cardinality` enumeration
 	from `NO_ARGS` to `ARGUMENTS_FORBIDDEN`.
 
 2026-04-17  G. Branden Robinson <g.branden.robinson@gmail.com>
