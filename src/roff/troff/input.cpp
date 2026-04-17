@@ -9417,7 +9417,7 @@ void abort_request()
     if ((c != '\n') && (c != EOF)) {
       for (;
 	   (c != '\n') && (c != EOF);
-	   (c = read_char_in_copy_mode(0 /* nullptr */)))
+	   c = read_char_in_copy_mode(0 /* nullptr */))
 	fputs(encode_for_stream_output(c), stderr);
       fputc('\n', stderr);
       fflush(stderr);
