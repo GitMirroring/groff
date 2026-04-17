@@ -1,5 +1,13 @@
 2026-04-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp: Trivially refactor.
+	(read_special_fonts): Rename this...
+	(read_special_font_identifiers): ...to this.
+	(set_font_specific_special_fonts_request)
+	(set_special_fonts_request): Update call sites.
+
+2026-04-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp: Trivially refactor.
 	(read_request): Rename this...
 	(read_from_terminal_request): ...to this.  It's a *roff

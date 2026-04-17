@@ -7114,7 +7114,12 @@ static void remove_font_specific_character_request() // .rfschar
   skip_line();
 }
 
-static void read_special_fonts(special_font_list **sp)
+// Consume *roff arguments from the input stream, interpret them as font
+// identifiers, and associate them with the special font list argument
+// `sp`.  The list is erased first, which is how you clear it.  There is
+// no appending operation, which can be achieved with *roff string
+// interpolation.
+static void read_special_font_identifiers(special_font_list **sp)
 {
   special_font_list *s = *sp;
   *sp = 0 /* nullptr */;
@@ -7151,13 +7156,13 @@ static void set_font_specific_special_fonts_request() // .fspecial
     font_lookup_error(finfo, "to mark other fonts as special"
 			     " contingently upon it"); // a mouthful :-/
   else
-    read_special_fonts(&font_table[finfo.position]->sf);
+    read_special_font_identifiers(&font_table[finfo.position]->sf);
   skip_line();
 }
 
 static void set_special_fonts_request() // .special
 {
-  read_special_fonts(&global_special_fonts);
+  read_special_font_identifiers(&global_special_fonts);
   skip_line();
 }
 
