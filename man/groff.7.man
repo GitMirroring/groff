@@ -3046,7 +3046,8 @@ option of
 .TPx
 .REQ .bd font
 Stop emboldening font
-.I font.
+.I font
+by overstriking its glyphs.
 .
 .TPx
 .REQ .bd "font n"
