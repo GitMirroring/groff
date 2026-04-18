@@ -3344,21 +3344,21 @@ compatibility mode per Boolean expression
 .IR b .
 .
 .TPx
-.REQ .cs f
+.REQ .cs font
 Disable constant-width glyph spacing mode for font
-.I f.
+.I font.
 .
 .TPx
-.REQ .cs "f n"
+.REQ .cs "font n"
 Enable constant-width glyph spacing mode for font
-.I f
+.I font
 at
 .IR n /36
 ems.
 .
 .TPx
-.REQ .cs "f n p"
-Enable constant-width glyph spacing mode for
+.REQ .cs "font n p"
+Enable constant-width glyph spacing mode for font
 .I font
 at
 .IR n /36
@@ -3750,19 +3750,19 @@ at non-negative position
 .IR pos .
 .
 .TPx
-.REQ .fschar "f c"
+.REQ .fschar "font c"
 Define fallback
 .RI character\~ c
-specific to
-.RI font\~ f
+specific to font
+.I font
 as empty.
 .
 .TPx
-.REQ .fschar "f c contents"
+.REQ .fschar "font c contents"
 Define fallback
 .RI character\~ c
-specific to
-.RI font\~ f
+specific to font
+.I font
 as
 .IR contents .
 .
@@ -3779,17 +3779,17 @@ are searched and before those named as arguments to the
 request.
 .
 .TPx
-.REQ .fspecial f
+.REQ .fspecial font
 Empty the list of fonts treated as special when
-.I f
+.I font
 is selected.
 .
 .TPx
-.REQ .fspecial "f s \fR\&.\|.\|.\&\fP"
+.REQ .fspecial "font s \fR\&.\|.\|.\&\fP"
 Declare each font
 .I s
-as special only when
-.RB font\~ f
+as special only when font
+.I font
 is selected.
 .
 .\" TODO: Move this sentence to a new (sub)section describing the glyph
@@ -3861,20 +3861,20 @@ Also see
 .esc f .
 .
 .TPx
-.REQ .ftr f
-Remove translation of font named
-.IR f .
+.REQ .ftr font
+Remove translation of font
+.IR font .
 .
 .TPx
-.REQ .ftr "f1 f2"
+.REQ .ftr "font1 font2"
 Translate font name
-.I f1
+.I font1
 to
-.IR f2 .
+.IR font2 .
 .
 .TPx
 .REQ .fzoom font\~\f[B]0\f[]
-Stop magnifying
+Stop magnifying font
 .IR font .
 .
 .TPx
@@ -4865,11 +4865,11 @@ but perform the skip twice\[em]once within the macro being interpreted
 and once in an enclosing macro.
 .
 .TPx
-.REQ .rfschar "f c\fR\&.\|.\|.\&\fP"
+.REQ .rfschar "font c\fR\&.\|.\|.\&\fP"
 Remove each fallback special
 .RI character\~ c
 for font
-.IR f .
+.IR font .
 .
 Spaces need not separate
 .I c
