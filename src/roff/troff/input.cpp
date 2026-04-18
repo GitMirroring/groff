@@ -174,9 +174,9 @@ search_path *mac_path = &safer_macro_path;
 // Initialize inclusion search path with only the current directory.
 search_path include_search_path(0 /* nullptr */, 0 /* nullptr */, 0, 1);
 
-static int read_char_in_copy_mode(node ** /* nd; 0 to discard */,
-				  bool /* is_defining */ = false,
-				  bool /* handle_escaped_E */ = false);
+static int read_character_in_copy_mode(node ** /* nd; 0 to discard */,
+    bool /* is_defining */ = false,
+    bool /* handle_escaped_E */ = false);
 static void copy_mode_error(const char *,
 			    const errarg & = empty_errarg,
 			    const errarg & = empty_errarg,
@@ -996,9 +996,9 @@ void shift()
 static char read_character_in_escape_sequence_parameter(
     bool allow_space = false)
 {
-  int c = read_char_in_copy_mode(0 /* nullptr */,
-				 false /* is_defining */,
-				 true /* handle_escaped_E  */);
+  int c = read_character_in_copy_mode(0 /* nullptr */,
+				      false /* is_defining */,
+				      true /* handle_escaped_E  */);
   switch (c) {
   case EOF:
     copy_mode_error("end of input in escape sequence");
@@ -1150,9 +1150,9 @@ static symbol read_increment_and_escape_sequence_parameter(int *incp)
 // stream are typically read into the contents of an existing node (like
 // a string or macro definition), or discarded.  A handful of escape
 // sequences (\n, etc.) interpolate as they do outside of copy mode.
-static int read_char_in_copy_mode(node **nd,
-				  bool is_defining,
-				  bool handle_escaped_E)
+static int read_character_in_copy_mode(node **nd,
+				       bool is_defining,
+				       bool handle_escaped_E)
 {
   for (;;) {
     int c = input_stack::get(nd);
@@ -2140,7 +2140,7 @@ bool has_arg(bool peeking)
     for (;;) {
       c = input_stack::peek();
       if (' ' == c)
-	(void) read_char_in_copy_mode(0 /* nullptr */);
+	(void) read_character_in_copy_mode(0 /* nullptr */);
       else
 	break;
     }
@@ -3619,7 +3619,7 @@ void process_input_stack()
 	    int cc;
 	    do {
 	      node *n;
-	      cc = read_char_in_copy_mode(&n);
+	      cc = read_character_in_copy_mode(&n);
 	      if (cc != EOF) {
 		if (cc != '\0')
 		  curdiv->transparent_output(transparent_translate(cc));
@@ -4695,10 +4695,10 @@ static void decode_macro_call_arguments(macro_iterator *mi)
 {
   if (!tok.is_newline() && !tok.is_eof()) {
     node *n;
-    int c = read_char_in_copy_mode(&n);
+    int c = read_character_in_copy_mode(&n);
     for (;;) {
       while (c == ' ')
-	c = read_char_in_copy_mode(&n);
+	c = read_character_in_copy_mode(&n);
       if (('\n' == c) || (EOF == c))
 	break;
       macro arg;
@@ -4709,7 +4709,7 @@ static void decode_macro_call_arguments(macro_iterator *mi)
       if (c == '"') {
 	arg.append(DOUBLE_QUOTE);
 	quote_input_level = input_stack::get_level();
-	c = read_char_in_copy_mode(&n);
+	c = read_character_in_copy_mode(&n);
       }
       while ((c != EOF) && (c != '\n')
 	     && !(c == ' ' && quote_input_level == 0)) {
@@ -4717,10 +4717,10 @@ static void decode_macro_call_arguments(macro_iterator *mi)
 	    && (want_att_compat
 		|| input_stack::get_level() == quote_input_level)) {
 	  arg.append(DOUBLE_QUOTE);
-	  c = read_char_in_copy_mode(&n);
+	  c = read_character_in_copy_mode(&n);
 	  if (c == '"') {
 	    arg.append(c);
-	    c = read_char_in_copy_mode(&n);
+	    c = read_character_in_copy_mode(&n);
 	  }
 	  else
 	    break;
@@ -4736,7 +4736,7 @@ static void decode_macro_call_arguments(macro_iterator *mi)
 	    }
 	    arg.append(c);
 	  }
-	  c = read_char_in_copy_mode(&n);
+	  c = read_character_in_copy_mode(&n);
 	}
       }
       arg.append(POP_GROFFCOMP_MODE);
@@ -4748,10 +4748,10 @@ static void decode_macro_call_arguments(macro_iterator *mi)
 static void decode_escape_sequence_arguments(macro_iterator *mi)
 {
   node *n;
-  int c = read_char_in_copy_mode(&n);
+  int c = read_character_in_copy_mode(&n);
   for (;;) {
     while (c == ' ')
-      c = read_char_in_copy_mode(&n);
+      c = read_character_in_copy_mode(&n);
     if (('\n' == c) || (EOF == c)) {
       error("missing ']' in parameterized escape sequence");
       break;
@@ -4763,17 +4763,17 @@ static void decode_escape_sequence_arguments(macro_iterator *mi)
     bool was_warned = false; // about an input tab character
     if (c == '"') {
       quote_input_level = input_stack::get_level();
-      c = read_char_in_copy_mode(&n);
+      c = read_character_in_copy_mode(&n);
     }
     while (c != EOF && c != '\n'
 	   && !(c == ']' && quote_input_level == 0)
 	   && !(c == ' ' && quote_input_level == 0)) {
       if (quote_input_level > 0 && c == '"'
 	  && input_stack::get_level() == quote_input_level) {
-	c = read_char_in_copy_mode(&n);
+	c = read_character_in_copy_mode(&n);
 	if (c == '"') {
 	  arg.append(c);
-	  c = read_char_in_copy_mode(&n);
+	  c = read_character_in_copy_mode(&n);
 	}
 	else
 	  break;
@@ -4790,7 +4790,7 @@ static void decode_escape_sequence_arguments(macro_iterator *mi)
 	  }
 	  arg.append(c);
 	}
-	c = read_char_in_copy_mode(&n);
+	c = read_character_in_copy_mode(&n);
       }
     }
     mi->add_arg(arg, (c == ' '));
@@ -5020,16 +5020,16 @@ void read_request()
   bool is_reading_from_terminal = bool(isatty(fileno(stdin)));
   bool had_prompt = false;
   if (has_arg(true /* peeking */)) {
-    int c = read_char_in_copy_mode(0 /* nullptr */);
+    int c = read_character_in_copy_mode(0 /* nullptr */);
     while (c == ' ')
-      c = read_char_in_copy_mode(0 /* nullptr */);
+      c = read_character_in_copy_mode(0 /* nullptr */);
     while (c != EOF && c != '\n' && c != ' ') {
       if (!is_invalid_input_char(c)) {
 	if (is_reading_from_terminal)
 	  fputc(c, stderr);
 	had_prompt = true;
       }
-      c = read_char_in_copy_mode(0 /* nullptr */);
+      c = read_character_in_copy_mode(0 /* nullptr */);
     }
     if (c == ' ') {
       tok.make_space();
@@ -5088,11 +5088,11 @@ static void do_define_string(define_mode mode, comp_mode comp)
     return;
   }
   else
-    c = read_char_in_copy_mode(&n);
+    c = read_character_in_copy_mode(&n);
   while (c == ' ')
-    c = read_char_in_copy_mode(&n);
+    c = read_character_in_copy_mode(&n);
   if (c == '"')
-    c = read_char_in_copy_mode(&n);
+    c = read_character_in_copy_mode(&n);
   macro mac;
   request_or_macro *rm
     = static_cast<request_or_macro *>(request_dictionary.lookup(nm));
@@ -5108,7 +5108,7 @@ static void do_define_string(define_mode mode, comp_mode comp)
       mac.append(n);
     else
       mac.append((unsigned char) c);
-    c = read_char_in_copy_mode(&n);
+    c = read_character_in_copy_mode(&n);
   }
   if ((COMP_DISABLE == comp) || (COMP_ENABLE == comp))
     mac.append(POP_GROFFCOMP_MODE);
@@ -5201,11 +5201,11 @@ void define_character(char_mode mode, const char *font_name)
     return;
   }
   else
-    c = read_char_in_copy_mode(&n);
+    c = read_character_in_copy_mode(&n);
   while (c == ' ' || c == '\t')
-    c = read_char_in_copy_mode(&n);
+    c = read_character_in_copy_mode(&n);
   if (c == '"')
-    c = read_char_in_copy_mode(&n);
+    c = read_character_in_copy_mode(&n);
   macro *m = new macro;
   // Construct a macro from input characters; if the input character
   // code is 0, we've read a node--append that.
@@ -5214,7 +5214,7 @@ void define_character(char_mode mode, const char *font_name)
       m->append(static_cast<unsigned char>(c));
     else
       m->append(n);
-    c = read_char_in_copy_mode(&n);
+    c = read_character_in_copy_mode(&n);
   }
   // Assign the macro to the character, discarding any previous macro.
   m = ci->set_macro(m, mode);
@@ -5520,7 +5520,7 @@ static void do_define_macro(define_mode mode, calling_mode calling,
 				&start_lineno);
   node *n;
   // doing this here makes the line numbers come out right
-  int c = read_char_in_copy_mode(&n, true /* is_defining */);
+  int c = read_character_in_copy_mode(&n, true /* is_defining */);
   macro mac;
   macro *mm = 0 /* nullptr */;
   if ((DEFINE_NORMAL == mode) || (DEFINE_APPEND == mode)) {
@@ -5543,7 +5543,7 @@ static void do_define_macro(define_mode mode, calling_mode calling,
       if ((DEFINE_NORMAL == mode) || (DEFINE_APPEND == mode))
 	// TODO: grochar; may need NFD decomposition and UTF-8 encoding
 	mac.append(static_cast<unsigned char>(c));
-      c = read_char_in_copy_mode(&n, true /* is_defining */);
+      c = read_character_in_copy_mode(&n, true /* is_defining */);
     }
     if (can_terminate_definition_with_dot && ('.' == c)) {
       const char *s = term.contents();
@@ -5551,11 +5551,12 @@ static void do_define_macro(define_mode mode, calling_mode calling,
       // see if it matches term
       int i = 0;
       if (s[0] != '\0') {
-	while (((d = read_char_in_copy_mode(&n)) == ' ') || (d == '\t'))
+	while (((d = read_character_in_copy_mode(&n)) == ' ')
+	       || ('\t' == d))
 	  ;
 	if (s[0] == d) {
 	  for (i = 1; s[i] != '\0'; i++) {
-	    d = read_char_in_copy_mode(&n);
+	    d = read_character_in_copy_mode(&n);
 	    if (s[i] != d)
 	      break;
 	  }
@@ -5563,7 +5564,7 @@ static void do_define_macro(define_mode mode, calling_mode calling,
       }
       if (s[i] == '\0'
 	  && (((i == 2) && want_att_compat)
-	      || ((d = read_char_in_copy_mode(&n)) == ' ')
+	      || ((d = read_character_in_copy_mode(&n)) == ' ')
 	      || (d == '\n'))) { // we found it
 	if (d == '\n')
 	  tok.make_newline();
@@ -5624,7 +5625,7 @@ static void do_define_macro(define_mode mode, calling_mode calling,
 	mac.append(static_cast<unsigned char>(c));
     }
     can_terminate_definition_with_dot = ('\n' == c);
-    c = read_char_in_copy_mode(&n, true /* is_defining */);
+    c = read_character_in_copy_mode(&n, true /* is_defining */);
   }
 }
 
@@ -5959,15 +5960,15 @@ void length_request()
     return;
   }
   else
-    c = read_char_in_copy_mode(&n);
+    c = read_character_in_copy_mode(&n);
   while (c == ' ')
-    c = read_char_in_copy_mode(&n);
+    c = read_character_in_copy_mode(&n);
   if (c == '"')
-    c = read_char_in_copy_mode(&n);
+    c = read_character_in_copy_mode(&n);
   int len = 0;
   while (c != '\n' && c != EOF) {
     ++len;
-    c = read_char_in_copy_mode(&n);
+    c = read_character_in_copy_mode(&n);
   }
   reg *r = static_cast<reg *>(register_dictionary.lookup(ret));
   if (r != 0 /* nullptr */)
@@ -6649,7 +6650,7 @@ static node *do_non_interpreted() // \?
   node *n;
   int c;
   macro mac;
-  while (((c = read_char_in_copy_mode(&n)) != ESCAPE_QUESTION)
+  while (((c = read_character_in_copy_mode(&n)) != ESCAPE_QUESTION)
 	 && (c != EOF)
 	 && (c != '\n'))
     if (c == 0)
@@ -6875,9 +6876,9 @@ static void device_request()
   macro mac;
   int c;
   for (;;) {
-    c = read_char_in_copy_mode(0 /* nullptr */);
+    c = read_character_in_copy_mode(0 /* nullptr */);
     if ('"' == c) {
-      c = read_char_in_copy_mode(0 /* nullptr */);
+      c = read_character_in_copy_mode(0 /* nullptr */);
       break;
     }
     if (c != ' ' && c != '\t')
@@ -6887,7 +6888,7 @@ static void device_request()
     topdiv->begin_page();
   for (;
       (c != '\0') && (c != '\n') && (c != EOF);
-       c = read_char_in_copy_mode(0 /* nullptr */)) {
+       c = read_character_in_copy_mode(0 /* nullptr */)) {
     // We may encounter some of the C0 and C1 character codes GNU troff
     // uses for special purposes; see src/roff/troff/input.h.  They
     // produce nothing in grout.  Warn only about the ones that are left
@@ -6903,7 +6904,7 @@ static void device_request()
     else if (c != '\\')
       mac.append(c);
     else {
-      int c1 = read_char_in_copy_mode(0 /* nullptr */);
+      int c1 = read_character_in_copy_mode(0 /* nullptr */);
       if (c1 != '[') {
 	mac.append(c);
 	mac.append(c1);
@@ -6927,9 +6928,9 @@ static void device_request()
 	// character escape sequence?
 	bool is_valid = false;
 	string sc = "";
-	int c2 = read_char_in_copy_mode(0 /* nullptr */);
+	int c2 = read_character_in_copy_mode(0 /* nullptr */);
 	for (; (c2 != '\0') && (c2 != '\n') && (c2 != EOF);
-	     c2 = read_char_in_copy_mode(0 /* nullptr */)) {
+	     c2 = read_character_in_copy_mode(0 /* nullptr */)) {
 	  // XXX: `map_special_character_for_device_output()` will need
 	  // the closing bracket in the iterator we construct, but a
 	  // composite character mapping mustn't see it.
@@ -6989,9 +6990,9 @@ static void output_request()
   }
   int c;
   for (;;) {
-    c = read_char_in_copy_mode(0 /* nullptr */);
+    c = read_character_in_copy_mode(0 /* nullptr */);
     if ('"' == c) {
-      c = read_char_in_copy_mode(0 /* nullptr */);
+      c = read_character_in_copy_mode(0 /* nullptr */);
       break;
     }
     if (c != ' ' && c != '\t')
@@ -6999,7 +7000,7 @@ static void output_request()
   }
   for (;
        (c != '\n') && (c != EOF);
-       (c = read_char_in_copy_mode(0 /* nullptr */)))
+       (c = read_character_in_copy_mode(0 /* nullptr */)))
     topdiv->transparent_output(c);
   topdiv->transparent_output('\n');
   tok.next();
@@ -8191,9 +8192,9 @@ void tag()
     string s;
     int c;
     for (;;) {
-      c = read_char_in_copy_mode(0 /* nullptr */);
+      c = read_character_in_copy_mode(0 /* nullptr */);
       if (c == '"') {
-	c = read_char_in_copy_mode(0 /* nullptr */);
+	c = read_character_in_copy_mode(0 /* nullptr */);
 	break;
       }
       if (c != ' ' && c != '\t')
@@ -8202,7 +8203,7 @@ void tag()
     s = "x X ";
     for (;
 	 (c != '\n') && (c != EOF);
-	 (c = read_char_in_copy_mode(0 /* nullptr */)))
+	 (c = read_character_in_copy_mode(0 /* nullptr */)))
       s += (char) c;
     s += '\n';
     curenv->add_node(new tag_node(s, 0));
@@ -8216,9 +8217,9 @@ void taga()
     string s;
     int c;
     for (;;) {
-      c = read_char_in_copy_mode(0 /* nullptr */);
+      c = read_character_in_copy_mode(0 /* nullptr */);
       if (c == '"') {
-	c = read_char_in_copy_mode(0 /* nullptr */);
+	c = read_character_in_copy_mode(0 /* nullptr */);
 	break;
       }
       if (c != ' ' && c != '\t')
@@ -8227,7 +8228,7 @@ void taga()
     s = "x X ";
     for (;
 	 (c != '\n') && (c != EOF);
-	 (c = read_char_in_copy_mode(0 /* nullptr */)))
+	 (c = read_character_in_copy_mode(0 /* nullptr */)))
       s += (char) c;
     s += '\n';
     curenv->add_node(new tag_node(s, 1));
@@ -8253,9 +8254,9 @@ static void terminal_write(bool do_append_newline,
   if (has_arg(true /* peeking */)) {
     int c;
     for (;;) {
-      c = read_char_in_copy_mode(0 /* nullptr */);
+      c = read_character_in_copy_mode(0 /* nullptr */);
       if (interpret_leading_spaces && ('"' == c)) {
-	c = read_char_in_copy_mode(0 /* nullptr */);
+	c = read_character_in_copy_mode(0 /* nullptr */);
 	break;
       }
       if ((c != ' ') && (c != '\t'))
@@ -8263,7 +8264,7 @@ static void terminal_write(bool do_append_newline,
     }
     for (;
 	 (c != '\n') && (c != EOF);
-	 (c = read_char_in_copy_mode(0 /* nullptr */)))
+	 (c = read_character_in_copy_mode(0 /* nullptr */)))
       fputs(encode_for_stream_output(c), stderr);
   }
   if (do_append_newline)
@@ -8497,14 +8498,14 @@ static void do_write_request(bool do_append_newline)
     return;
   }
   if (has_arg(true /* peeking */)) {
-    int c = read_char_in_copy_mode(0 /* nullptr */);
+    int c = read_character_in_copy_mode(0 /* nullptr */);
     while (' ' == c)
-      c = read_char_in_copy_mode(0 /* nullptr */);
+      c = read_character_in_copy_mode(0 /* nullptr */);
     if ('"' == c)
-      c = read_char_in_copy_mode(0 /* nullptr */);
+      c = read_character_in_copy_mode(0 /* nullptr */);
     while (c != '\n' && c != EOF) {
       fputs(encode_for_stream_output(c), fp);
-      c = read_char_in_copy_mode(0 /* nullptr */);
+      c = read_character_in_copy_mode(0 /* nullptr */);
     }
   }
   if (do_append_newline)
@@ -9411,13 +9412,13 @@ void abort_request()
     else if (tok.is_newline())
       c = '\n';
     else {
-      while ((c = read_char_in_copy_mode(0 /* nullptr */)) == ' ')
+      while ((c = read_character_in_copy_mode(0 /* nullptr */)) == ' ')
 	;
     }
     if ((c != '\n') && (c != EOF)) {
       for (;
 	   (c != '\n') && (c != EOF);
-	   c = read_char_in_copy_mode(0 /* nullptr */))
+	   c = read_character_in_copy_mode(0 /* nullptr */))
 	fputs(encode_for_stream_output(c), stderr);
       fputc('\n', stderr);
       fflush(stderr);
@@ -9440,11 +9441,11 @@ char *read_rest_of_line_as_argument()
   int buf_size = 256;
   char *s = new char[buf_size]; // C++03: new char[buf_size]();
   (void) memset(s, 0, (buf_size * sizeof(char)));
-  int c = read_char_in_copy_mode(0 /* nullptr */);
+  int c = read_character_in_copy_mode(0 /* nullptr */);
   while (' ' == c)
-    c = read_char_in_copy_mode(0 /* nullptr */);
+    c = read_character_in_copy_mode(0 /* nullptr */);
   if ('"' == c)
-    c = read_char_in_copy_mode(0 /* nullptr */);
+    c = read_character_in_copy_mode(0 /* nullptr */);
   int i = 0;
   while ((c != '\n') && (c != EOF)) {
     if (!is_invalid_input_char(c)) {
@@ -9458,7 +9459,7 @@ char *read_rest_of_line_as_argument()
       }
       s[i++] = c;
     }
-    c = read_char_in_copy_mode(0 /* nullptr */);
+    c = read_character_in_copy_mode(0 /* nullptr */);
   }
   s[i] = '\0';
   if (0 == i) {

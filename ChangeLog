@@ -1,5 +1,31 @@
 2026-04-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp: Trivially refactor.
+	(read_char_in_copy_mode): Rename this...
+	(read_character_in_copy_mode): ...to this.
+
+	(read_character_in_escape_sequence_parameter)
+	(has_arg)
+	(process_input_stack)
+	(decode_macro_call_arguments)
+	(decode_escape_sequence_arguments)
+	(read_request)
+	(do_define_string)
+	(define_character)
+	(do_define_macro)
+	(length_request)
+	(do_non_interpreted)
+	(device_request)
+	(output_request)
+	(tag)
+	(taga)
+	(terminal_write)
+	(do_write_request)
+	(abort_request)
+	(read_rest_of_line_as_argument): Update call sites.
+
+2026-04-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (abort_request): Fix code style nit.
 	Drop extraneous parentheses; no formally complex operation is
 	occurring here, in the sense I use the term.  Only one dyadic
