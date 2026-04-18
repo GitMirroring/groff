@@ -7002,15 +7002,52 @@ bool is_valid_font(int n)
 // Read the next token and look it up as a font name or position number.
 // Return lookup success.  Store, in the supplied struct argument, the
 // requested name or position, and the position actually resolved.
+//
+// TODO: This duplicates logic from env.cpp:select_font().  Refactor.
+// Need read_font_mounting_position_or_identifier(), storing the
+// resolved mounting position in an argument.
 static bool read_font_identifier(font_lookup_info *finfo)
 {
-  int mp;
   tok.skip_spaces();
-  if (tok.is_usable_as_delimiter()) {
-    symbol s = read_identifier(true /* want_diagnostic */);
+  // Painful.  We read the whole argument as a symbol, then see if it's
+  // interpretable as an (unsigned) decimal integer.  If is, we treat it
+  // as a mounting position.  If not, we treat it as a font "name".
+  symbol s = read_identifier();
+  bool is_number = true;
+  assert(!s.is_null() && !s.is_empty());
+  if (!s.is_null() && !s.is_empty()) {
+    const char *p = s.contents();
+    assert(*p != 0 /* nullptr */);
+    // Silently ignore a leading minus sign so we can issue a range
+    // warning later.
+    if ((csdigit(*p)) || ('-' == *p))
+      p++;
+    for (; (p != 0 /* nullptr */) && (*p != '\0'); p++) {
+      if (!csdigit(*p)) {
+	is_number = false;
+	break;
+      }
+    }
+  }
+  if (is_number) {
+    errno = 0;
+    long val = strtol(s.contents(), NULL, 10);
+    if ((ERANGE == errno) || (val > INT_MAX) || (val < 0)) {
+      warning(WARN_RANGE, "font mounting position must be in range"
+	      " 0..%1, got %2", INT_MAX, s.contents());
+      return false;
+    }
+    int mp = int(val);
+    if (!is_valid_font_mounting_position(mp)) {
+      warning(WARN_FONT, "no font mounted at position %1", mp);
+      return false;
+    }
+    finfo->position = curenv->get_family()->resolve(mp);
+  }
+  else {
     finfo->requested_name = const_cast<char *>(s.contents());
     if (!s.is_null()) {
-      mp = mounting_position_of_font(s);
+      int mp = mounting_position_of_font(s);
       if (mp < 0) {
 	mp = next_available_font_mounting_position();
 	if (mount_font_at_position(s, mp))
@@ -7018,11 +7055,6 @@ static bool read_font_identifier(font_lookup_info *finfo)
       }
       finfo->position = curenv->get_family()->resolve(mp);
     }
-  }
-  else if (read_integer(&mp)) {
-    finfo->requested_position = mp;
-    if (is_valid_font_mounting_position(mp))
-      finfo->position = curenv->get_family()->resolve(mp);
   }
   return (finfo->position != FONT_NOT_MOUNTED);
 }

@@ -1331,6 +1331,10 @@ static void select_stroke_color_request() // .gcolor
 static symbol P_symbol("P");
 
 // Select font with name or mounting position `s`.
+//
+// TODO: This duplicates logic from node.cpp:read_font_identifier().
+// Refactor.  Need read_font_mounting_position_or_identifier(), storing
+// the resolved mounting position in an argument.
 void select_font(symbol s)
 {
   bool is_number = true;

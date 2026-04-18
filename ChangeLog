@@ -1,5 +1,87 @@
 2026-04-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp (read_font_identifier): Rewrite to fix
+	Savannah #68252, an assertion failure I introduced in commit
+	8b83fd3dd8, 2 November, in "src/roff/troff/input.cpp:token::
+	is_usable_as_delimiter()".
+
+	Time to fire up the development mailing list critical homunculus
+	and have a Socratic dialogue with it.
+
+	"Rewrite?"  Why hit such a small thing with such a big hammer?
+	Why not just fix my stupid mistake of adding an assertion?  {A}
+	I couldn't--wouldn't--just rip the assertion out, because it's
+	in a hot-path function where much sanity checking takes place.
+	{B} This code implicates one of the more challenging parts of
+	the *roff language grammar: (almost) anywhere you can read a
+	font identifier like `B`, `TR`, or `MARIGOLD`, it's also valid
+	to read a font mounting position, a nonnegative integer.  In
+	*roff, nonnegative integers also happen to be valid identifier
+	names!  You can have a register named `55` or a string/macro/
+	diversion named `10` {hello, eqn(1)}.  {C} This function is
+	called only by uncommonly used request handlers, those for `uf`,
+	`fschar`, `rfschar`, `special`, `fspecial`, `fzoom`, `bd`, and
+	`tkf`.  {It's a rare groff user who can say with confidence what
+	_all_ of those requests do.}  "But wait," you say, "isn't this
+	same kind of font lookup done wildly commonly, like with every
+	`ft` request or `\f` escape sequence?  {D} Yes!  So there's good
+	news and bad news, and they're the same news.  There is logic to
+	do exactly that--to disambiguate and resolve font mounting
+	positions and identifiers behind that request and that escape
+	sequence.  It lives, duplicatively, in another function in a
+	different source file.  {E} "But wait," you say, "why was this
+	function, a supporting function for request handlers that read
+	only space-delimited arguments, calling `token::
+	is_usable_as_delimiter()`?"  Good question!  I don't know, but
+	it's been doing that, modulus the renamings for which I fear I
+	am becoming notorious, at least since groff 1.22.3 in November
+	2014.  Within the request handlers, we aren't in a delimited
+	input context at all--as the GNU troff code base uses that
+	term--so it's a mystery.
+
+	`token::is_usable_as_delimiter()` used to be known as
+	`token::delimiter()`.  I invite the reader to compare and
+	contrast the following.
+
+	https://cgit.git.savannah.gnu.org/cgit/groff.git/tree/src/roff/\
+	troff/node.cpp?h=1.22.3#n6163
+
+	https://cgit.git.savannah.gnu.org/cgit/groff.git/tree/troff/\
+	node.c?h=1.02#n4373
+
+	Why not just have `read_font_identifier()` call `select_font()`
+	over in "env.cpp"?  Side effects.  As with many GNU troff
+	functions, parsing logic is entangled with engine logic; see
+	Savannah #68240.  So instead I copy the lexical analysis bits of
+	`select_font()` into this function, replacing most of it.  How
+	can I be confident this will work well?  Apart from a build
+	proceeding successfully and passing our test suite (now with 340
+	automated tests), the `select_font()` logic is a hotter code
+	path and, I suspect, always has been.  After my last push
+	earlier this week, I gathered coverage statistics from a full
+	build with tests.  `read_font_identifier() was hit 12,023 times.
+	That seems like a lot, right?
+
+	`select_font()` was hit 254,489 times.  If you can't
+	successfully change fonts in GNU troff, a lot more people (and
+	test scripts of ours) will notice than can observe malfunctions
+	of the `uf`, `fschar`, `rfschar`, `special`, `fspecial`,
+	`fzoom`, `bd`, or `tkf` requests.  (And, in fact, `bd` _doesn't_
+	work well.  See Savannah #68256.)  So if I have to violate DRY,
+	I'm cribbing the battle-hardened code.  Moreover there's no
+	reason at all, on any principle, to be checking for delimiters
+	in this input context, as noted above.
+
+	Fixes <https://savannah.gnu.org/bugs/?68252>.  The root cause of
+	the problem depends on what you consider the defect to be.  As
+	noted above, the assertion came in with commit 8b83fd3dd8, 2
+	November, affecting groff 1.24.0.  But the code path
+	_containing_ the assertion should never have been taken in the
+	first place by the request handlers for `bd` et al.--yet it has
+	been, ever since groff's birth.  Until now.
+
+2026-04-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp (read_font_identifier): Trivially
 	refactor.  Rename local variable `n` to `mp` to prepare for
 	subsequent, larger change.
