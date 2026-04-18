@@ -1,5 +1,16 @@
 2026-04-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp: Slightly refactor.  Demote return
+	types of `font_info` class's member functions returning Boolean
+	values from `int` to `bool`.
+	(class font_info): Update declarations.
+	(font_info::contains)
+	(font_info::is_special)
+	(font_info::is_style)
+	(font_info::is_named): Update definitions.
+
+2026-04-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp (read_font_identifier): Rewrite to fix
 	Savannah #68252, an assertion failure I introduced in commit
 	8b83fd3dd8, 2 November, in "src/roff/troff/input.cpp:token::

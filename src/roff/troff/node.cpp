@@ -174,22 +174,22 @@ class font_info {
 public:
   special_font_list *sf;
   font_info(symbol, int, symbol, font *);
-  int contains(charinfo *);
+  bool contains(charinfo *);
   void set_bold(hunits);
   void unbold();
   void set_conditional_bold(int, hunits);
   void conditional_unbold(int);
   void set_track_kern(track_kerning_function &);
   void set_constant_space(constant_space_type, units = 0);
-  int is_named(symbol);
+  bool is_named(symbol);
   symbol get_name();
   tfont *get_tfont(font_size, int, int, int);
   hunits get_space_width(font_size, int);
   hunits get_narrow_space_width(font_size);
   hunits get_half_narrow_space_width(font_size);
   bool is_emboldened(hunits *); // "by how many hunits?" in argument
-  int is_special();
-  int is_style();
+  bool is_special();
+  bool is_style();
   void set_zoom(int);
   int get_zoom();
   font *get_font() const;
@@ -272,17 +272,17 @@ font_info::font_info(symbol nm, int n, symbol enm, font *f)
 {
 }
 
-inline int font_info::contains(charinfo *ci)
+inline bool font_info::contains(charinfo *ci)
 {
   return (fm != 0 /* nullptr */) && fm->contains(ci->as_glyph());
 }
 
-inline int font_info::is_special()
+inline bool font_info::is_special()
 {
   return (fm != 0 /* nullptr */) && fm->is_special();
 }
 
-inline int font_info::is_style()
+inline bool font_info::is_style()
 {
   return (0 /* nullptr */ == fm);
 }
@@ -465,7 +465,7 @@ void font_info::flush()
   last_tfont = 0;
 }
 
-int font_info::is_named(symbol s)
+bool font_info::is_named(symbol s)
 {
   return internal_name == s;
 }
