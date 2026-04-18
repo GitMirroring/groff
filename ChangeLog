@@ -1,3 +1,8 @@
+2026-04-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/env.cpp (select_font): Fix code style nit.
+	Parenthesize formally complex expression.
+
 2026-04-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Trivially refactor.

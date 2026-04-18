@@ -1341,9 +1341,11 @@ void select_font(symbol s)
   else {
     const char *p = s.contents();
     assert(*p != 0 /* nullptr */);
+    // Silently ignore a leading minus sign so we can issue a range
+    // warning later.
     if ((csdigit(*p)) || ('-' == *p))
       p++;
-    for (; p != 0 /* nullptr */ && *p != '\0'; p++)
+    for (; (p != 0 /* nullptr */) && (*p != '\0'); p++)
       if (!csdigit(*p)) {
 	is_number = false;
 	break;
