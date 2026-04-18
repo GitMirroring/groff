@@ -505,6 +505,24 @@ bool file_iterator::next_file(FILE *f, const char *s)
   return true;
 }
 
+// TODO: Define a function, say, process_input_character().
+//
+// Delegate the actual work on inbounding a UTF-8 sequence from the
+// standard I/O stream to some gnulib module (research needed).  Prepare
+// for exceptional conditions:
+//   1.  EOF
+//   2.  incomplete UTF-8 sequence
+//   3.  invalid UTF-8 sequence (overlong encoding, outside code range)
+//
+// If an exceptional condition occurs, throw an exception of a type we
+// define; our callers must catch it.  The result of the exception is
+// likely either to abort collection of the syntactical item being
+// collected (such as an identifier) and/or to decide we've reached the
+// end of input.  Follow the pattern(s) of existing EOF handling.
+//
+// If no exception occurs, apply Normalization Form D (if gnulib
+// can't/doesn't do that), and return an std::vector<> of `char32_t`.
+
 // Returns an unsigned char or `EOF`.
 int file_iterator::fill(node **)
 {
@@ -515,6 +533,7 @@ int file_iterator::fill(node **)
   ptr = p;
   unsigned char *e = p + BUF_SIZE;
   while (p < e) {
+    // TODO: process_input_character()
     int c = getc(fp);
     if (EOF == c)
       break;
@@ -542,9 +561,11 @@ int file_iterator::fill(node **)
 
 int file_iterator::peek()
 {
+  // TODO: process_input_character()
   int c = getc(fp);
   while (is_invalid_input_char(c)) {
     warning(WARN_INPUT, "invalid input character code %1", c);
+    // TODO: process_input_character()
     c = getc(fp);
   }
   if (c != EOF)
@@ -1150,6 +1171,32 @@ static symbol read_increment_and_escape_sequence_parameter(int *incp)
 // stream are typically read into the contents of an existing node (like
 // a string or macro definition), or discarded.  A handful of escape
 // sequences (\n, etc.) interpolate as they do outside of copy mode.
+//
+// XXX: This is one of the places where the rubber meets the road in the
+// "migrate GNU troff from reading unsigned chars to UTF-8" project,
+// because it returns an `int` and therefore can encode `EOF`, which the
+// rest of the code uses in a traditional C-idiomatic way.
+//
+// That idiom seems bad for us: reading a UTF-8 sequence adds a whole
+// layer of additional state because situations like a UTF-8 sequence
+// being invalid (e.g., possessing an overlength encoding), incomplete,
+// or outside the encoding range can happen.  Even if some gnulib module
+// nicely wraps up and handles all that madness for us (and I think/hope
+// it does), there are still going to be exceptional conditions that are
+// impossible with a single-byte character encoding where all code point
+// values are valid (for reading purposes--not necessarily to GNU
+// troff).  To be useful, gnulib (or whatever external UTF-8-chomping
+// library) has to communicate error information up to the application.
+//
+// Due to the variety of exceptional conditions, we might want to throw
+// and catch exceptions instead.
+//
+// Another place (_the_ other place?) is of course reading an input
+// character _not_ in copy mode--in interpretation mode, if you will.
+// Unfortunately that is done ad hoc wherever a lexical analysis
+// function needs to pump the input stream.  We might need a counterpart
+// function, read_character(), or to make this that function, with an
+// additional Boolean parameter with a default value of `false`.
 static int read_character_in_copy_mode(node **nd,
 				       bool is_defining,
 				       bool handle_escaped_E)
@@ -9615,6 +9662,10 @@ static void transparent_throughput_file_request()
       else {
 	bool is_at_beginning_of_input_line = true;
 	for (;;) {
+	  // TODO: Decide what "transparency" means when attempting to
+	  // copy UTF-8 input "safely", unlike `cf`, which dumbly slings
+	  // bytes from input to output without interpretation (which
+	  // can produce wildly invalid "grout").
 	  int c = getc(fp);
 	  if (EOF == c)
 	    break;
