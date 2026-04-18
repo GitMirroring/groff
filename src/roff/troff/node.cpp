@@ -7004,25 +7004,25 @@ bool is_valid_font(int n)
 // requested name or position, and the position actually resolved.
 static bool read_font_identifier(font_lookup_info *finfo)
 {
-  int n;
+  int mp;
   tok.skip_spaces();
   if (tok.is_usable_as_delimiter()) {
     symbol s = read_identifier(true /* want_diagnostic */);
     finfo->requested_name = const_cast<char *>(s.contents());
     if (!s.is_null()) {
-      n = mounting_position_of_font(s);
-      if (n < 0) {
-	n = next_available_font_mounting_position();
-	if (mount_font_at_position(s, n))
-	  finfo->position = n;
+      mp = mounting_position_of_font(s);
+      if (mp < 0) {
+	mp = next_available_font_mounting_position();
+	if (mount_font_at_position(s, mp))
+	  finfo->position = mp;
       }
-      finfo->position = curenv->get_family()->resolve(n);
+      finfo->position = curenv->get_family()->resolve(mp);
     }
   }
-  else if (read_integer(&n)) {
-    finfo->requested_position = n;
-    if (is_valid_font_mounting_position(n))
-      finfo->position = curenv->get_family()->resolve(n);
+  else if (read_integer(&mp)) {
+    finfo->requested_position = mp;
+    if (is_valid_font_mounting_position(mp))
+      finfo->position = curenv->get_family()->resolve(mp);
   }
   return (finfo->position != FONT_NOT_MOUNTED);
 }

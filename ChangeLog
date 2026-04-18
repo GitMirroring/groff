@@ -1,5 +1,11 @@
 2026-04-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (read_font_identifier): Trivially
+	refactor.  Rename local variable `n` to `mp` to prepare for
+	subsequent, larger change.
+
+2026-04-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp (select_font): Fix code style nit.
 	Parenthesize formally complex expression.
 
