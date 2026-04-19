@@ -7119,7 +7119,7 @@ static void remove_font_specific_character_request() // .rfschar
 		      " character");
   else {
     symbol f = font_table[finfo.position]->get_name();
-    while (!tok.is_newline() && !tok.is_eof()) {
+    while (!tok.is_terminator()) {
       if (!tok.is_space() && !tok.is_tab()) {
 	charinfo *s = tok.get_charinfo(true /* is_mandatory */);
 	if (0 /* nullptr */ == s)

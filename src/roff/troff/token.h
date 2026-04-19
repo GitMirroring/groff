@@ -109,6 +109,7 @@ public:
   bool is_page_ejector();
   bool is_hyphen_indicator();
   bool is_zero_width_break();
+  bool is_terminator();
   bool operator==(const token &); // for delimiters & conditional exprs
   bool operator!=(const token &); // ditto
   unsigned char ch();
@@ -290,6 +291,14 @@ inline bool token::is_hyphen_indicator()
 inline bool token::is_zero_width_break()
 {
   return (TOKEN_ZERO_WIDTH_BREAK == type);
+}
+
+// Does this token terminate a nonterminal symbol such as an identifier
+// or numeric expression?
+inline bool token::is_terminator()
+{
+  // TODO: Add right brace?  Left brace?  Tab?
+  return ((TOKEN_NEWLINE == type) || (TOKEN_EOF == type));
 }
 
 // Local Variables:

@@ -1,5 +1,55 @@
 2026-04-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/token.h (class token): Add new member function,
+	`is_terminator()` returning `bool`.  The idea is to make
+	handlers of formatter instructions more consistent by having one
+	source of truth regarding whether, in the parlance of parser
+	theory, the token on the input stream terminates a "nonterminal
+	symbol" (like an identifier or numeric expression, which can
+	comprise multiple "terminal" or "primitive" tokens).  Right now,
+	GNU troff pretty consistently regards newline and EOF tokens as
+	terminating a sequence of such nonterminals.  It's less
+	consistent regarding whether a right brace escape sequence does,
+	causing inconsistency in its handling of numeric expressions as
+	arguments to `nr` requests on the one hand and "contents"
+	arguments to `ds` requests on the other, and divergence between
+	AT&T and GNU troff parsers.  See Savannah #68257.
+	(token::is_terminator): Define it `inline`.  Equivalent to
+	`tok.is_newline() && tok.is_eof()`.
+
+	* src/roff/troff/div.cpp (begin_page_request)
+	(space_request)
+	(need_vertical_space_request)
+	(save_vertical_space_request)
+	(output_saved_vertical_space_request)
+	(flush_request):
+	* src/roff/troff/env.cpp (fill)
+	(no_fill)
+	(center)
+	(right_justify)
+	(indent)
+	(temporary_indent)
+	(number_lines)
+	(do_break_request):
+	* src/roff/troff/input.cpp (diagnose_missing_identifier)
+	(diagnose_invalid_identifier)
+	(flush_pending_lines)
+	(decode_macro_call_arguments)
+	(remove_character)
+	(do_define_macro)
+	(read_title_parts)
+	(ps_bbox_request)
+	(do_translate)
+	(hyphenation_patterns_file_code)
+	(define_class_request)
+	(read_drawing_command):
+	* src/roff/troff/node.cpp
+	(remove_font_specific_character_request): Migrate input handlers
+	to call `token::is_terminator()` rather than the evaluating
+	Boolean expression `tok.is_newline() && tok.is_eof()`.
+
+2026-04-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/groff/tests/dt-request-works.sh: Add test case: a
 	diversion trap is removed when `dt` is called with one argument.
 	If that argument is a valid numeric expression (albeit a

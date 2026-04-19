@@ -1499,7 +1499,7 @@ static void space_size() // .ss
 
 static void fill() // .fi
 {
-  while (!tok.is_newline() && !tok.is_eof())
+  while (!tok.is_terminator())
     tok.next();
   if (was_invoked_with_regular_control_character)
     curenv->do_break();
@@ -1509,7 +1509,7 @@ static void fill() // .fi
 
 static void no_fill() // .nf
 {
-  while (!tok.is_newline() && !tok.is_eof())
+  while (!tok.is_terminator())
     tok.next();
   if (was_invoked_with_regular_control_character)
     curenv->do_break();
@@ -1532,7 +1532,7 @@ void center() // .ce
     n = 1;
   else if (n < 0)
     n = 0;
-  while (!tok.is_newline() && !tok.is_eof())
+  while (!tok.is_terminator())
     tok.next();
   if (was_invoked_with_regular_control_character)
     curenv->do_break();
@@ -1553,7 +1553,7 @@ void right_justify() // .rj
     n = 1;
   else if (n < 0)
     n = 0;
-  while (!tok.is_newline() && !tok.is_eof())
+  while (!tok.is_terminator())
     tok.next();
   if (was_invoked_with_regular_control_character)
     curenv->do_break();
@@ -1666,7 +1666,7 @@ void indent() // .in
   }
   else
     temp = curenv->prev_indent;
-  while (!tok.is_newline() && !tok.is_eof())
+  while (!tok.is_terminator())
     tok.next();
   if (was_invoked_with_regular_control_character)
     curenv->do_break();
@@ -1702,7 +1702,7 @@ void temporary_indent() // .ti
     if (!read_hunits(&temp, 'm', curenv->get_indent()))
       is_valid = false;
     // XXX: Why not `skip_line()`?
-    while (!tok.is_newline() && !tok.is_eof())
+    while (!tok.is_terminator())
       tok.next();
   }
   if (was_invoked_with_regular_control_character)
@@ -1816,7 +1816,7 @@ void number_lines() // .nm
       }
     }
     else
-      while (!tok.is_space() && !tok.is_newline() && !tok.is_eof())
+      while (!tok.is_space() && !tok.is_terminator())
 	tok.next();
     if (has_arg()) {
       if (!tok.is_usable_as_delimiter()) { // XXX abuse of function
@@ -1830,7 +1830,7 @@ void number_lines() // .nm
 	}
       }
       else
-	while (!tok.is_space() && !tok.is_newline() && !tok.is_eof())
+	while (!tok.is_space() && !tok.is_terminator())
 	  tok.next();
       if (has_arg()) {
 	if (!tok.is_usable_as_delimiter()) { // XXX abuse of function
@@ -1838,7 +1838,7 @@ void number_lines() // .nm
 	    curenv->number_text_separation = n;
 	}
 	else
-	  while (!tok.is_space() && !tok.is_newline() && !tok.is_eof())
+	  while (!tok.is_space() && !tok.is_terminator())
 	    tok.next();
 	if (has_arg() && !tok.is_usable_as_delimiter() // XXX abuse of function
 	    && read_integer(&n))
@@ -2736,7 +2736,7 @@ bool environment::is_empty()
 
 void do_break_request(bool want_adjustment)
 {
-  while (!tok.is_newline() && !tok.is_eof())
+  while (!tok.is_terminator())
     tok.next();
   if (was_invoked_with_regular_control_character)
     curenv->do_break(want_adjustment);

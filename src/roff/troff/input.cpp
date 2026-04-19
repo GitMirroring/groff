@@ -3236,7 +3236,7 @@ static void diagnose_missing_identifier(bool is_mandatory)
       tok.next();
     } while (tok.is_space() || tok.is_right_brace() || tok.is_tab());
     // XXX: unreachable code? --GBR
-    if (!tok.is_newline() && !tok.is_eof())
+    if (!tok.is_terminator())
       error("%1 is not allowed before an argument", start);
     else if (is_mandatory)
       warning(WARN_MISSING, "missing identifier");
@@ -3251,7 +3251,7 @@ static void diagnose_missing_identifier(bool is_mandatory)
 
 static void diagnose_invalid_identifier()
 {
-  if (!tok.is_newline() && !tok.is_eof() && !tok.is_space()
+  if (!tok.is_terminator() && !tok.is_space()
       && !tok.is_tab() && !tok.is_right_brace()
       // We don't want to give a warning for .el\{
       && !tok.is_left_brace())
@@ -3867,7 +3867,7 @@ void process_input_stack()
 
 void flush_pending_lines()
 {
-  while (!tok.is_newline() && !tok.is_eof())
+  while (!tok.is_terminator())
     tok.next();
   curenv->output_pending_lines();
   tok.next();
@@ -4740,7 +4740,7 @@ static void interpolate_macro_or_invoke_request(symbol nm,
 
 static void decode_macro_call_arguments(macro_iterator *mi)
 {
-  if (!tok.is_newline() && !tok.is_eof()) {
+  if (!tok.is_terminator()) {
     node *n;
     int c = read_character_in_copy_mode(&n);
     for (;;) {
@@ -5340,7 +5340,7 @@ static void remove_character()
     skip_line();
     return;
   }
-  while (!tok.is_newline() && !tok.is_eof()) {
+  while (!tok.is_terminator()) {
     if (!tok.is_space() && !tok.is_tab()) {
       if (tok.is_any_character()) {
 	charinfo *ci = tok.get_charinfo(true /* is_mandatory */,
@@ -5557,7 +5557,7 @@ static void do_define_macro(define_mode mode, calling_mode calling,
   term = read_identifier(); // terminating name
   if (term.is_null())
     term = dot_symbol;
-  while (!tok.is_newline() && !tok.is_eof())
+  while (!tok.is_terminator())
     tok.next();
   const char *start_filename;
   int start_lineno;
@@ -6595,7 +6595,7 @@ void read_title_parts(node **part, hunits *part_width)
   int start_level = input_stack::get_level();
   tok.next();
   for (int i = 0; i < 3; i++) {
-    while (!tok.is_newline() && !tok.is_eof()) {
+    while (!tok.is_terminator()) {
       if ((tok == start)
 	  && (want_att_compat
 	      || input_stack::get_level() == start_level)) {
@@ -6618,7 +6618,7 @@ void read_title_parts(node **part, hunits *part_width)
     part_width[i] = curenv->get_input_line_position();
     part[i] = curenv->extract_output_line();
   }
-  while (!tok.is_newline() && !tok.is_eof())
+  while (!tok.is_terminator())
     tok.next();
 }
 
@@ -8089,7 +8089,7 @@ void ps_bbox_request() // .psbb
   else {
     // File name acquired: swallow the rest of the line.
     //
-    while (!tok.is_newline() && !tok.is_eof())
+    while (!tok.is_terminator())
       tok.next();
     errno = 0;
 
@@ -8705,7 +8705,7 @@ static void init_hpf_code_table()
 static void do_translate(bool transparently, bool as_input)
 {
   tok.skip_spaces();
-  while (!tok.is_newline() && !tok.is_eof()) {
+  while (!tok.is_terminator()) {
     if (tok.is_space()) {
       // This is a really bizarre troff feature.
       tok.next();
@@ -8922,7 +8922,7 @@ void hyphenation_patterns_file_code() // .hpfcode
     skip_line();
     return;
   }
-  while (!tok.is_newline() && !tok.is_eof()) {
+  while (!tok.is_terminator()) {
     int n1, n2;
     if (read_integer(&n1) && ((0 <= n1) && (n1 <= 255))) {
       if (!has_arg()) {
@@ -8963,7 +8963,7 @@ static void define_class_request() // .class
   (void) ci->set_macro(m);
   charinfo *child1 = 0 /* nullptr */, *child2 = 0 /* nullptr */;
   bool just_chained_a_range_expression = false;
-  while (!tok.is_newline() && !tok.is_eof()) {
+  while (!tok.is_terminator()) {
     tok.skip_spaces();
     // Chained range expressions like
     //   \[u3041]-\[u3096]-\[u30FF]
@@ -10610,7 +10610,7 @@ static node *read_drawing_command() // \D
 	}
 	tok.skip_spaces();
       }
-      while (tok != start_token && !tok.is_newline() && !tok.is_eof())
+      while (tok != start_token && !tok.is_terminator())
 	tok.next();
       if (!had_error) {
 	switch (type) {
