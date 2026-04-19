@@ -388,6 +388,8 @@ T}
 \[rs]|	T{
 Move horizontally by one-sixth em
 (\[lq]thin space\[rq]).
+.\" Keep the descriptions of the last two items distinct; in *roff,
+.\" space is discardable, whereas a motion is not.
 T}
 .TE
 .

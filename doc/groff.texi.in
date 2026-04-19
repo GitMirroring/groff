@@ -3145,6 +3145,8 @@ Insert an unbreakable space that is adjustable like a normal space.
 
 @item \|
 Move horizontally by one-sixth em (``thin space'').
+@c Keep the descriptions of the last two items distinct; in *roff,
+@c space is discardable, whereas a motion is not.
 @end table
 
 Prefix any words that start with a dot @samp{.} or neutral apostrophe
