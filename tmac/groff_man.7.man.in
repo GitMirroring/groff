@@ -3795,11 +3795,9 @@ for left alignment
 .
 Any valid argument to
 .IR groff 's
-\[lq]ad\[rq] request may be used.
-.
-See
-.MR groff @MAN7EXT@
-for less-common choices.
+\[lq]ad\[rq] request may be used;
+see
+.MR groff @MAN7EXT@ .
 .
 .
 .TP
@@ -3915,9 +3913,8 @@ the default is
 .
 Any valid argument to
 .IR groff 's
-\[lq]ft\[rq] request may be used.
-.
-See
+\[lq]ft\[rq] request may be used;
+see
 .MR groff @MAN7EXT@ .
 .
 .
@@ -3991,7 +3988,9 @@ the default is
 .
 Any valid argument to
 .IR groff 's
-\[lq]ft\[rq] request may be used.
+\[lq]ft\[rq] request may be used;
+see
+.MR groff @MAN7EXT@ .
 .
 If the
 .B MF
@@ -4074,9 +4073,9 @@ as
 .IR p c,
 and so forth.
 .
-The register tracking the suffixed page letter uses format \[lq]a\[rq]
-(see the \[lq]af\[rq] request in
-.MR groff @MAN7EXT@ ).
+The register tracking the suffixed page letter uses format \[lq]a\[rq];
+see the \[lq]af\[rq] request in
+.MR groff @MAN7EXT@ .
 .
 _ifstyle()dnl
 For example,
