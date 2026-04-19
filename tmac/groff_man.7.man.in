@@ -3681,12 +3681,12 @@ and
 registers.
 .
 4.3BSD (1986) incorporated
+.B P
+and added
 .\" undocumented DS and DE macros for "displays", which are RS/RE
 .\" wrappers with filling disabled and vertical space of 1v before and
 .\" .5v after, as well as...
-.B AT
-and
-.BR P .
+.BR AT .
 .
 .\" Per Doug McIlroy in
 .\" <https://lists.gnu.org/archive/html/groff/2019-07/msg00038.html>...
