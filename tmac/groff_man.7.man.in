@@ -4074,7 +4074,9 @@ as
 and so forth.
 .
 The register tracking the suffixed page letter uses format \[lq]a\[rq];
-see the \[lq]af\[rq] request in
+.\" We shouldn't have to manually adjust kerning between a roman f and a
+.\" roman \[rq].  See Savannah #67544.
+see the \[lq]af\|\[rq] request in
 .MR groff @MAN7EXT@ .
 .
 _ifstyle()dnl
@@ -4305,6 +4307,8 @@ you can type
 .RB \[lq] "man fprintf" \|\[rq],
 and other pages can refer to it,
 without knowing whether the installed document uses
+.\" We shouldn't have to manually adjust kerning between a roman f and a
+.\" roman \[rq].  See Savannah #67544.
 \[lq]printf\|\[rq],
 \[lq]fprintf\|\[rq],
 or even \[lq]c_printf\|\[rq]
