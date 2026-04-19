@@ -1,3 +1,10 @@
+2026-04-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/groff/tests/dt-request-works.sh: Add test case: a
+	diversion trap is removed when `dt` is called with one argument.
+	If that argument is a valid numeric expression (albeit a
+	meaningless one), the diversion's trap is removed.
+
 2026-04-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/node.cpp: Slightly refactor.  Demote return
