@@ -16324,13 +16324,32 @@ U
     @result{} N O U
 @endExample
 
-The above behavior may challenge the intuition; it was implemented to
-retain compatibility with @acronym{AT&T} @code{troff}.  For clarity, it
+@Example
+.ie 1 \@{\
+.  ds a abc\@}def
+a="\*a"
+.el ghi
+    @result{} a="abcdef"
+@endExample
+
+The above behavior may challenge the intuition;
+it was implemented to retain compatibility with @acronym{AT&T}
+@command{troff}.
+A right-brace escape sequence governs flow of control this way:@:
+if a branch is
+@emph{not}
+taken,
+then the closing brace that closes a conditional block
+causes the formatter to ignore the entire input line
+on which it appears for all purposes except matching braces.
+
+For clarity, it
 is idiomatic to end input lines with @code{\@{} (followed by
 @code{\@key{RET}} if appropriate), and to precede @code{\@}} on an input
 line with nothing more than a control character, spaces, tabs, and other
 instances of itself.
 
+@need 1000
 We can use @code{ie}, @code{el}, and conditional blocks to simulate the
 multi-way ``switch'' or ``case'' control structures of other languages.
 The following example is adapted from the @code{groff} @file{man}
