@@ -23031,6 +23031,25 @@ GNU
 rounds down the values of minimum inter-word and additional
 inter-sentence space each to the nearest multiple of@tie{}12.
 
+@cindex @code{sv} request, incompatibilities with @acronym{AT&T} @code{troff}
+In AT&T
+@command{troff}, @c AT&T
+the
+@code{sv}
+request springs a page location trap
+if it is nearer to the drawing position
+than the amount of vertical space requested;
+GNU
+@command{troff} @c GNU
+saves the space but does not spring the trap.
+To simulate AT&T behavior,
+consider the following.
+
+@Example
+.sv 3i \" or however much space you need
+.if \n(.g .ne 3i
+@endExample
+
 @cindex @code{bd} request, incompatibilities with @acronym{AT&T} @code{troff}
 @cindex @code{cs} request, incompatibilities with @acronym{AT&T} @code{troff}
 @cindex @code{tr} request, incompatibilities with @acronym{AT&T} @code{troff}
