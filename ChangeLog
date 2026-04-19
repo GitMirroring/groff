@@ -1,3 +1,9 @@
+2026-04-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/groff/tests/dot-nm-register-works.sh: Repair test
+	script so it can fail again.  Problem introduced by me in commit
+	7aaeddf570, 14 April.
+
 2026-04-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/env.cpp

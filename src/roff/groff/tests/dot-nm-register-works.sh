@@ -36,9 +36,11 @@ qux (\n[.nm])
 output=$(printf '%s\n' "$input" | "$groff" -T utf8)
 echo "$output"
 
-echo "$output" | grep -Fqx 'foo (0)'
-echo "$output" | grep -Fqx '  1 bar (1)'
-echo "$output" | grep -Fqx 'baz (1)'
-echo "$output" | grep -Fqx 'qux (0)'
+echo "$output" | grep -Fqx 'foo (0)' || fail=yes
+echo "$output" | grep -Fqx '  1 bar (1)' || fail=yes
+echo "$output" | grep -Fqx 'baz (1)' || fail=yes
+echo "$output" | grep -Fqx 'qux (0)' || fail=yes
+
+test -z "$fail"
 
 # vim:set autoindent expandtab shiftwidth=4 tabstop=4 textwidth=72:
