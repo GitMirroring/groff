@@ -3933,20 +3933,20 @@ see section \[lq]Localization\[lq] of
 .
 .
 .TP
-.BI \-rIN= standard-indentation
+.BI \-rIN= indentation-increment
 Set the default indentation amount used by
 .BR IP ,
 .BR TP ,
 .\" TQ inherits its indentation from the preceding TP.
 and
 .BR HP ,
-and the inset amount used by
+and the default inset amount used by
 .BR RS .
 .
 The default is 7n on terminals and 7.2n on typesetters.
 .
-Use only integer multiples of unit \[lq]n\[rq] on terminals for consistent
-indentation.
+Use only integer multiples of unit \[lq]n\[rq] on terminals
+for consistent indentation.
 .
 .
 .TP
