@@ -3045,9 +3045,9 @@ Our @file{radical.ms} document might look like this.
 @Example
 .LP
 Radical novelties are so disturbing that they tend to be
-suppressed or ignored, to the extent that even the
-possibility of their existence in general is more often
-denied than admitted.
+suppressed or ignored,
+to the extent that even the possibility of their existence
+in general is more often denied than admitted.
 
 @arrow{}That's what Dijkstra said, anyway.
 @endExample
