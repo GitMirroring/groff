@@ -4235,7 +4235,7 @@ _ifstyle()dnl
 .EX
 .ne 2v
 \&.\e" Put only one space after the end of a sentence.
-\&.ss 12 0 \e" See groff(@MAN7EXT@).
+\&.ss \n[.ss] 0 \e" See groff(@MAN7EXT@).
 .ne 2v
 \&.\e" Keep pages narrow even on wide terminals.
 \&.if n .if \en[LL]>80n .nr LL 80n
