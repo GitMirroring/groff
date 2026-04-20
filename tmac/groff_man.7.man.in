@@ -129,17 +129,39 @@ document formatting system.
 It is used to compose manual pages
 .\" We use an unbreakable space \~ here to keep the phrase intact for
 .\" its introduction; in subsequent discussion, that is not important.
+_ifstyle()dnl
 (\[lq]man\~pages\[rq])
 like the one you are reading.
+_endif()dnl
+_ifnotstyle()dnl
+(\[lq]man\~pages\[rq]).
+_endif()dnl
 .
 This document presents the macros thematically;
 for those needing only a quick reference,
 the following table lists them alphabetically,
 with references to appropriate subsections below.
+.
+We prefix macro names with
+_ifstyle()dnl
+a dot
+.RB ( . ),
+_endif()dnl
+the default
+.I roff
+control character\c
+_ifstyle()dnl
+,
+_endif()dnl
+_ifnotstyle()dnl
+\&
+_endif()dnl
+in summaries and synopses.
+.
 _ifstyle()dnl
 Experienced
 .I man
-authors may prefer
+authors may prefer to consult
 .MR groff_man @MAN7EXT@ .
 _endif()dnl
 .
@@ -370,12 +392,6 @@ _endif()dnl
 .
 A tagged paragraph describes each macro.
 .
-We present coupled pairs together,
-as with
-.B EX
-and
-.BR EE .
-.
 _ifstyle()dnl
 Square brackets surround optional macro arguments.
 .
@@ -383,11 +399,9 @@ If a macro accepts multiple arguments,
 those containing space \" or tab (in Plan 9 troff [only?])
 characters must be double-quoted to be interpreted correctly.
 .
-_endif()dnl
 If you require an empty macro argument,
 specify it as a pair of neutral double quotes
 .RB ( \[dq]\^\[dq] ).
-_ifstyle()dnl
 .
 See section \[lq]Notes\[rq] below for examples of cases where better
 alternatives to empty arguments in macro calls are available.
@@ -413,18 +427,20 @@ _endif()dnl
 .
 Document structure macros organize a man page's content.
 .
-All of them break the output line.
+All break the output line.
 .
 .B TH
 (title heading)
-identifies the document as a man page and configures the page headers
-and footers.
+initializes the package,
+identifies the document as a man page,
+and configures the page headers and footers.
 .
 Section headings
 .RB ( SH ),
-one of which is mandatory and many of which are conventionally expected,
-facilitate location of material by the reader and aid the man page
-writer to discuss all essential aspects of the topics presented.
+one of which is mandatory and many of which a reader expects,
+facilitate location of material
+and aid the man page writer
+to discuss all essential aspects of the topics presented.
 .
 Subsection headings
 .RB ( SS )
@@ -523,8 +539,10 @@ is centered in the header.
 If
 .I section
 is an integer between 1 and\~9 (inclusive),
-there is no need to specify
+_ifstyle()dnl
+do not specify
 .I header-middle;
+_endif()dnl
 .I an.tmac
 supplies text for it.
 .
@@ -533,7 +551,8 @@ If
 or
 .I footer-inside
 would overset the space available in the header and/or footer,
-this package may abbreviate them with
+.I "groff man"
+may abbreviate them with
 _ifnotstyle()dnl
 ellipses.
 _endif()dnl
@@ -552,13 +571,12 @@ suppresses headers and footers in HTML output.
 .
 .
 .IP
-A typical
+Do not redefine
+.BR TH .
+.
+Call it prior to any other
 .I man
-document calls
-.B TH
-only once,
-early in the file,
-prior to any other macro calls.
+macros.
 _ifstyle()dnl
 .
 By convention,
