@@ -4907,6 +4907,14 @@ James Clark wrote the initial GNU implementation of the
 macro package. \" by 1.01
 .
 Later,
+.MT ru@\:FreeBSD\:.org
+Ruslan Ermilov
+.ME
+contributed implementations of
+.B AT \" 1.18
+and
+.BR UC , \" 1.18
+while
 .MT wl@\:gnu\:.org
 Werner Lemberg
 .ME
