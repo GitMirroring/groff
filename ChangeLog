@@ -1,5 +1,13 @@
 2026-04-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[groff]: Regression-test Savannah #68257.
+
+	* src/roff/groff/tests/\
+	backslash-right-brace-ends-string-definition.sh: Do it.
+	* src/roff/groff/groff.am (groff_TESTS): Run test.
+
+2026-04-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/token.h (token::is_terminator): Add
 	`TOKEN_RIGHT_BRACE` to the set of tokens that can terminate a
 	sequence of nonterminal symbols (such as the character sequence
