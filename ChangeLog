@@ -1,3 +1,12 @@
+2026-04-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp: Trivially refactor.  Rename
+	`read_character_in_copy_mode()` function parameter from
+	`is_defining` to `is_defining_macro` in declaration.
+	(read_character_in_copy_mode): Update definition.
+	(read_character_in_escape_sequence_parameter):
+	(do_define_macro): Update call sites.
+
 2026-04-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[groff]: Test conditional block nesting.

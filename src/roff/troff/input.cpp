@@ -175,7 +175,7 @@ search_path *mac_path = &safer_macro_path;
 search_path include_search_path(0 /* nullptr */, 0 /* nullptr */, 0, 1);
 
 static int read_character_in_copy_mode(node ** /* nd; 0 to discard */,
-    bool /* is_defining */ = false,
+    bool /* is_defining_macro */ = false,
     bool /* handle_escaped_E */ = false);
 static void copy_mode_error(const char *,
 			    const errarg & = empty_errarg,
@@ -1018,7 +1018,7 @@ static char read_character_in_escape_sequence_parameter(
     bool allow_space = false)
 {
   int c = read_character_in_copy_mode(0 /* nullptr */,
-				      false /* is_defining */,
+				      false /* is_defining_macro */,
 				      true /* handle_escaped_E  */);
   switch (c) {
   case EOF:
@@ -1172,6 +1172,12 @@ static symbol read_increment_and_escape_sequence_parameter(int *incp)
 // a string or macro definition), or discarded.  A handful of escape
 // sequences (\n, etc.) interpolate as they do outside of copy mode.
 //
+// CSTR #54 did not disclose that troff had two copy modes: one for
+// macro definitions (including `.ig`nored pseudomacros) and one for
+// everything else (string definitions, `\!` transparent throughput, and
+// terminal messages `tm` and `ab`).  The difference is that in macro
+// definitions, brace escape sequences not discarded.
+//
 // XXX: This is one of the places where the rubber meets the road in the
 // "migrate GNU troff from reading unsigned chars to UTF-8" project,
 // because it returns an `int` and therefore can encode `EOF`, which the
@@ -1198,7 +1204,7 @@ static symbol read_increment_and_escape_sequence_parameter(int *incp)
 // function, read_character(), or to make this that function, with an
 // additional Boolean parameter with a default value of `false`.
 static int read_character_in_copy_mode(node **nd,
-				       bool is_defining,
+				       bool is_defining_macro,
 				       bool handle_escaped_E)
 {
   for (;;) {
@@ -1230,7 +1236,7 @@ static int read_character_in_copy_mode(node **nd,
     if ((ESCAPE_E == c) && handle_escaped_E)
       c = escape_char;
     if (ESCAPE_NEWLINE == c) {
-      if (is_defining)
+      if (is_defining_macro)
 	return c;
       do {
 	c = input_stack::get(nd);
@@ -1318,7 +1324,7 @@ static int read_character_in_copy_mode(node **nd,
       }
     case '\n':
       (void) input_stack::get(0 /* nullptr */);
-      if (is_defining)
+      if (is_defining_macro)
 	return ESCAPE_NEWLINE;
       break;
     case ' ':
@@ -5567,7 +5573,7 @@ static void do_define_macro(define_mode mode, calling_mode calling,
 				&start_lineno);
   node *n;
   // doing this here makes the line numbers come out right
-  int c = read_character_in_copy_mode(&n, true /* is_defining */);
+  int c = read_character_in_copy_mode(&n, true /* is_defining_macro */);
   macro mac;
   macro *mm = 0 /* nullptr */;
   if ((DEFINE_NORMAL == mode) || (DEFINE_APPEND == mode)) {
@@ -5590,7 +5596,7 @@ static void do_define_macro(define_mode mode, calling_mode calling,
       if ((DEFINE_NORMAL == mode) || (DEFINE_APPEND == mode))
 	// TODO: grochar; may need NFD decomposition and UTF-8 encoding
 	mac.append(static_cast<unsigned char>(c));
-      c = read_character_in_copy_mode(&n, true /* is_defining */);
+      c = read_character_in_copy_mode(&n, true /* is_defining_macro */);
     }
     if (can_terminate_definition_with_dot && ('.' == c)) {
       const char *s = term.contents();
@@ -5672,7 +5678,7 @@ static void do_define_macro(define_mode mode, calling_mode calling,
 	mac.append(static_cast<unsigned char>(c));
     }
     can_terminate_definition_with_dot = ('\n' == c);
-    c = read_character_in_copy_mode(&n, true /* is_defining */);
+    c = read_character_in_copy_mode(&n, true /* is_defining_macro */);
   }
 }
 
