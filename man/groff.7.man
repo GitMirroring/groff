@@ -2254,7 +2254,9 @@ closing the body of a
 request must be the last such escape sequence on an input line.
 .
 .
-.P
+.\" ====================================================================
+.SS "while loops"
+.\" ====================================================================
 GNU
 .I troff \" GNU
 treats the body of a
