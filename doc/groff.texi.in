@@ -16248,10 +16248,21 @@ To conveniently nest conditionals, keep reading.
 @cindex blocks, conditional
 
 It is frequently desirable for a control structure to govern more than
-one request, macro call, text line, or combination of the foregoing.
-The opening and closing brace escape sequences @code{\@{} and @code{\@}}
-define such groups.  These @dfn{conditional blocks} can furthermore be
-nested.
+one request,
+macro call,
+text line,
+or combination of the foregoing.
+The opening and closing brace escape sequences
+@code{\@{}
+and
+@code{\@}}
+define such groups.
+These
+@dfn{conditional blocks}
+can furthermore be nested.
+
+Brace escape sequences outside of control structures have no meaning and
+produce no output.@c TODO: footnote: style warning
 
 @DefescList {\@\{, , , }
 @DefescListEnd {\@\}, , , }
@@ -16267,26 +16278,50 @@ nested.
 @cindex escape sequences, brace (@code{\@{}, @code{\@}})
 @cindex opening brace escape sequence (@code{\@}})
 @cindex closing brace escape sequence (@code{\@})}
-@code{\@{} begins a conditional block; it must appear (after optional
-spaces and tabs) immediately subsequent to the conditional expression of
-an @code{if}, @code{ie}, or @code{while}
-request,@footnote{@xref{while}.} or as the argument to an @code{el}
+@code{\@{}
+begins a conditional block;
+it must appear
+(after optional spaces and tabs)
+immediately subsequent to the conditional expression of an
+@code{if},
+@code{ie},
+or
+@code{while}
+request,@footnote{@xref{while}.}
+or as the argument to an
+@code{el}
 request.
 
-@code{\@}} ends a conditional block and should appear on a line with
-other occurrences of itself as necessary to match @code{\@{} sequences.
-It can be preceded by a control character, spaces, and tabs.  Input
-after any quantity of @code{\@}} sequences on the same line is processed
-only if all of the preceding conditions to which they correspond are
-true.  Furthermore, a @code{\@}} closing the body of a @code{while}
+@code{\@}}
+ends a conditional block and should appear on an input line
+with other occurrences of itself as necessary to match
+@code{\@{}
+sequences.
+It can be preceded by a control character,
+spaces,
+and tabs.
+Input after any quantity of opening brace escape sequences
+@code{\@}}
+on the same line is processed
+only if all of the preceding conditions to which they correspond
+are true.
+Furthermore,
+a closing brace escape sequence
+@code{\@}}
+closing the body of a
+@code{while}
 request must be the last such escape sequence on an input line.
 
-Brace escape sequences outside of control structures have no meaning and
-produce no output.
-
-@strong{Caution:@:} Input lines using @code{\@{} often end with
-@code{\RET}, especially in macros that consist primarily of control
-lines.  Forgetting to use @code{\RET} on an input line after @code{\@{}
+@strong{Caution:@:}
+Input lines using
+@code{\@{}
+often end with
+@code{\RET},
+especially in macros that consist primarily of control lines.
+Forgetting to use
+@code{\RET}
+on an input line after
+@code{\@{}
 is a common source of error.
 @endDefesc
 

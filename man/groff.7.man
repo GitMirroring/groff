@@ -2219,21 +2219,34 @@ The opening and closing brace escape sequences
 .esc {
 and
 .esc }
-perform such grouping.
+define such groups.
+.
+These
+.I "conditional blocks"
+can furthermore be nested.
 .
 Brace escape sequences outside of control structures have no meaning and
-produce no output.
+produce no output.\" TODO: footnote: style warning
 .
 .
 .P
 .esc {
-should appear
+begins a conditional block;
+it must appear
 (after optional spaces and tabs)
-immediately subsequent to the request's conditional expression.
+immediately subsequent to the conditional expression of an
+.RB \[lq] if \[rq],
+.BR ie ,
+or
+.RB \[lq] while \[rq]
+request,\" @footnote{@xref{while}.}
+or as the argument to an
+.B el
+request.
 .
 .esc }
-should appear on a line with other occurrences of itself as necessary to
-match
+ends a conditional block and should appear on an input line
+with other occurrences of itself as necessary to match
 .esc {
 sequences.
 .
@@ -2241,17 +2254,33 @@ It can be preceded by a control character,
 spaces,
 and tabs.
 .
-Input after any quantity of
+Input after any quantity of opening brace escape sequences
 .esc }
-sequences on the same line is processed only if all the preceding
-conditions to which they correspond are true.
+on the same line is processed
+only if all of the preceding conditions to which they correspond
+are true.
 .
 Furthermore,
-a
+a closing brace escape sequence
 .esc }
 closing the body of a
 .RB \[lq] while \[rq]
 request must be the last such escape sequence on an input line.
+.
+.
+.P
+.I Caution:
+Input lines using
+.esc {
+often end with
+.escarg \& newline ,
+especially in macros that consist primarily of control lines.
+.
+Forgetting to use
+.escarg \& newline
+on an input line after
+.esc {
+is a common source of error.
 .
 .
 .\" ====================================================================
