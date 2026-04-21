@@ -3806,6 +3806,16 @@ request.
 .REQ .ft
 .TQ
 .REQ ".ft P"
+Select previous font mounting position
+(abstract style or font).
+.
+Also see
+.esc f[]
+and
+.esc fP .
+.
+.TPx
+.REQ .ft font
 Select the typeface
 .I font.
 .
@@ -3848,7 +3858,7 @@ See section \[lq]Warnings\[rq] in
 .MR @g@troff @MAN1EXT@ .)
 .
 Also see
-.B \[rs]f .
+.esc f .
 .
 .TPx
 .REQ .ftr f
