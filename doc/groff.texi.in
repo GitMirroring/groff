@@ -16261,8 +16261,15 @@ These
 @dfn{conditional blocks}
 can furthermore be nested.
 
-Brace escape sequences outside of control structures have no meaning and
-produce no output.@c TODO: footnote: style warning
+Brace escape sequences outside of control structures have no meaning
+(but can be used as delimiters)
+and produce no output.@footnote{When its parser can tell
+that a brace escape sequence is useless,
+GNU
+@command{troff} @c GNU
+emits a warning in category
+@samp{style}.
+@xref{Warnings}.}
 
 @DefescList {\@\{, , , }
 @DefescListEnd {\@\}, , , }
@@ -22053,6 +22060,7 @@ ambiguous delimiters are accepted without warning.
 Input was non-idiomatic or likely to produce an unexpected result
 (or none at all),
 but is not invalid:
+a brace escape sequence was employed uselessly;
 the end of a sentence was detected prior to the end of a text line;
 or
 an attempt was made to combine temporary indentation

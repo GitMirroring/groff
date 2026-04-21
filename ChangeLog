@@ -1,5 +1,17 @@
 2026-04-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Throw warning in category "style" when nilpotent brace
+	escape sequences are encountered.
+
+	* src/roff/troff/input.cpp (read_character_in_copy_mode): Do it.
+
+	* doc/groff.texi.in (Conditional Blocks, Warnings):
+	* man/groff.7.man (Conditional blocks):
+	* src/roff/troff/troff.1.man (Warnings): Document new warning
+	circumstance.
+
+2026-04-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp: Handle brace escape sequences
 	better.  In AT&T troff, a brace escape sequence not occurring in
 	a macro definition is discarded when read in copy mode--make GNU

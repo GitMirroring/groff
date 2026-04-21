@@ -2225,8 +2225,17 @@ These
 .I "conditional blocks"
 can furthermore be nested.
 .
-Brace escape sequences outside of control structures have no meaning and
-produce no output.\" TODO: footnote: style warning
+Brace escape sequences outside of control structures have no meaning
+(but can be used as delimiters)
+and produce no output.
+.
+When its parser can tell that
+a brace escape sequence is useless,
+GNU
+.I troff \" GNU
+emits a warning in category
+.RB \[lq] style \[rq].
+.
 .
 .
 .P

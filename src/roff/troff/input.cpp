@@ -1346,11 +1346,13 @@ static int read_character_in_copy_mode(node **nd,
       (void) input_stack::get(0 /* nullptr */);
       if (is_defining_macro)
 	return ESCAPE_LEFT_BRACE;
+      warning(WARN_STYLE, "left brace escape sequence is nilpotent");
       break;
     case '}':
       (void) input_stack::get(0 /* nullptr */);
       if (is_defining_macro)
 	return ESCAPE_RIGHT_BRACE;
+      warning(WARN_STYLE, "right brace escape sequence is nilpotent");
       break;
     case '`':
       (void) input_stack::get(0 /* nullptr */);
