@@ -1,3 +1,31 @@
+2026-04-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp: Handle brace escape sequences
+	better.  In AT&T troff, a brace escape sequence not occurring in
+	a macro definition is discarded when read in copy mode--make GNU
+	troff do likewise.  When occurring in a macro definition, it
+	_is_ being read in copy mode and must be preserved, so retain
+	existing behavior.  Unfortunately, the datum "we are defining
+	a macro right now" was not consistently being passed from
+	`do_define_macro()` to `read_character_in_copy_mode()`, so fix
+	that problem too.  Fixing one of these without the other
+	produces chaos in the formatter and wrecks a build; couple them.
+	(read_character_in_copy_mode): Return an
+	`ESCAPE_{LEFT,RIGHT}_BRACE` encoded token (character code) only
+	if `is_defining_macro`.
+	(do_define_macro): Supply `true` parameter (`is_defining_macro`)
+	in _all_ `read_character_in_copy_mode()` calls.
+
+	Fixes <https://savannah.gnu.org/bugs/?68260>.  Problems appear
+	mostly to date back to groff's birth: see groff 1.01,[1]
+	"input/troff.cc", lines 741-746, 3113, and 3119.  Commit
+	5ba4c4ddb3, 2001-11-16, added another instance of
+	`read_character_in_copy_mode()` (then called `get_copy()`) being
+	given only one argument.
+
+	[1] https://minnie.tuhs.org/cgi-bin/utree.pl?file=Net2/usr/src/\
+	usr.bin/groff/troff/input.cc
+
 2026-04-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[groff]: Regression-test Savannah #68257.

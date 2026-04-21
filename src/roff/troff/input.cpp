@@ -1344,10 +1344,14 @@ static int read_character_in_copy_mode(node **nd,
       return ESCAPE_CIRCUMFLEX;
     case '{':
       (void) input_stack::get(0 /* nullptr */);
-      return ESCAPE_LEFT_BRACE;
+      if (is_defining_macro)
+	return ESCAPE_LEFT_BRACE;
+      break;
     case '}':
       (void) input_stack::get(0 /* nullptr */);
-      return ESCAPE_RIGHT_BRACE;
+      if (is_defining_macro)
+	return ESCAPE_RIGHT_BRACE;
+      break;
     case '`':
       (void) input_stack::get(0 /* nullptr */);
       return ESCAPE_LEFT_QUOTE;
@@ -5604,12 +5608,12 @@ static void do_define_macro(define_mode mode, calling_mode calling,
       // see if it matches term
       int i = 0;
       if (s[0] != '\0') {
-	while (((d = read_character_in_copy_mode(&n)) == ' ')
+	while (((d = read_character_in_copy_mode(&n, true /* is_defining_macro */)) == ' ')
 	       || ('\t' == d))
 	  ;
 	if (s[0] == d) {
 	  for (i = 1; s[i] != '\0'; i++) {
-	    d = read_character_in_copy_mode(&n);
+	    d = read_character_in_copy_mode(&n, true /* is_defining_macro */);
 	    if (s[i] != d)
 	      break;
 	  }
@@ -5617,7 +5621,7 @@ static void do_define_macro(define_mode mode, calling_mode calling,
       }
       if (s[i] == '\0'
 	  && (((i == 2) && want_att_compat)
-	      || ((d = read_character_in_copy_mode(&n)) == ' ')
+	      || ((d = read_character_in_copy_mode(&n, true /* is_defining_macro */)) == ' ')
 	      || (d == '\n'))) { // we found it
 	if (d == '\n')
 	  tok.make_newline();
