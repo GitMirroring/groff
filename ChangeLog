@@ -1,5 +1,12 @@
 2026-04-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[groff]: Test conditional block nesting.
+
+	* src/roff/groff/tests/nested-conditional-blocks-work.sh: Do it.
+	* src/roff/groff/groff.am (groff_TESTS): Run test.
+
+2026-04-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/token.h (class token): Add new member function,
 	`is_terminator()` returning `bool`.  The idea is to make
 	handlers of formatter instructions more consistent by having one
