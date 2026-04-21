@@ -1,5 +1,16 @@
 2026-04-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/token.h (token::is_terminator): Add
+	`TOKEN_RIGHT_BRACE` to the set of tokens that can terminate a
+	sequence of nonterminal symbols (such as the character sequence
+	producing a *roff identifier, transparent throughput argument,
+	contents of a string definition, or other string-like request
+	argument like file names or system commands).
+
+	Fixes <https://savannah.gnu.org/bugs/?68257>.
+
+2026-04-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp: Trivially refactor.  Rename
 	`read_character_in_copy_mode()` function parameter from
 	`is_defining` to `is_defining_macro` in declaration.

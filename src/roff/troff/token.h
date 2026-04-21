@@ -297,8 +297,16 @@ inline bool token::is_zero_width_break()
 // or numeric expression?
 inline bool token::is_terminator()
 {
-  // TODO: Add right brace?  Left brace?  Tab?
-  return ((TOKEN_NEWLINE == type) || (TOKEN_EOF == type));
+  // Why other token types don't qualify as terminators (expand this
+  // list as necessary):
+  //
+  // 1.  A left brace escape sequence doesn't terminate the contents of
+  //     a string assignment in Plan 9 or DWB troffs, but is discarded,
+  //     instead of populating the string.
+  // 2.  A tab can populate string contents.
+  return ((TOKEN_NEWLINE == type)
+	  || (TOKEN_EOF == type)
+	  || (TOKEN_RIGHT_BRACE == type));
 }
 
 // Local Variables:
