@@ -10881,7 +10881,7 @@ static void do_error(error_type type,
     break;
   }
   errprint(format, arg1, arg2, arg3);
-  if (WARNING == type) {
+  if ((WARNING == type) || (OUTPUT_WARNING == type)) {
       const char *category_name = lookup_warning_by_bitset(wc);
       assert(category_name != 0 /* nullptr */);
       if (category_name != 0 /* nullptr */)

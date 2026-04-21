@@ -10,6 +10,14 @@
 
 2026-04-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (do_error): Report warning category
+	governing diagnostic message even if the type of diagnostic is
+	not `WARNING` but `OUTPUT_WARNING`.
+
+	Continues commit 0220f00c3c, 18 March.
+
+2026-04-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Throw warning in category "style" when nilpotent brace
 	escape sequences are encountered.
 
