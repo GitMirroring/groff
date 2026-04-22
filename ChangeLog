@@ -1,5 +1,13 @@
 2026-04-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[groff]: Unit-test `\l` and `\L` escape sequences.
+
+	* src/roff/groff/tests/backslash-L-works.sh:
+	* src/roff/groff/tests/backslash-l-works.sh: Do it.
+	* src/roff/groff/groff.am (groff_TESTS): Run tests.
+
+2026-04-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Trivially refactor.  Rename `get_flags()` global
 	function to `recompute_character_flags()`.  In addition to being
 	more clear and explicit, it avoids a collision with the
