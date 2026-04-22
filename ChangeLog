@@ -1,5 +1,14 @@
 2026-04-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/groff/tests/\
+	roman-format-register-interpolation-works.sh: Fix missing
+	parentheses in AT&T troff register interpolation syntax.  Make
+	final two test cases capable of actually failing.
+
+	Continues commit 5050eecc10, 16 April.
+
+2026-04-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[groff]: Unit-test `\l` and `\L` escape sequences.
 
 	* src/roff/groff/tests/backslash-L-works.sh:
