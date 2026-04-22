@@ -1575,9 +1575,12 @@ processed in the usual way, passing @option{-v} to the formatter and any
 pre- or postprocessors invoked.
 
 @item -V
-Output the pipeline that @command{groff} would run to the standard
-output stream and exit.  If given more than once, @command{groff} both
-writes the pipeline to the standard error stream and runs it.
+Write the command pipeline that
+@command{groff}
+would run to the standard output stream and exit.
+If given more than once,
+@command{groff}
+both writes the pipeline to the standard error stream and runs it.
 
 @item -w @var{cat}
 @itemx -W @var{cat}
