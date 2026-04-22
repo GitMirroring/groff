@@ -20,8 +20,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <vector>
 #include <utility>
 
-extern bool using_character_classes;	// if `.class` is invoked
-extern void get_flags();
+extern bool using_character_classes;	// was `class` request invoked?
+
+// input.cpp
+extern void recompute_character_flags();
 
 class macro;
 
@@ -130,70 +132,70 @@ extern charinfo *charset_table[];
 inline bool charinfo::overlaps_horizontally()
 {
   if (using_character_classes)
-    ::get_flags();
+    recompute_character_flags();
   return (flags & OVERLAPS_HORIZONTALLY);
 }
 
 inline bool charinfo::overlaps_vertically()
 {
   if (using_character_classes)
-    ::get_flags();
+    recompute_character_flags();
   return (flags & OVERLAPS_VERTICALLY);
 }
 
 inline bool charinfo::allows_break_before()
 {
   if (using_character_classes)
-    ::get_flags();
+    recompute_character_flags();
   return (flags & ALLOWS_BREAK_BEFORE);
 }
 
 inline bool charinfo::allows_break_after()
 {
   if (using_character_classes)
-    ::get_flags();
+    recompute_character_flags();
   return (flags & ALLOWS_BREAK_AFTER);
 }
 
 inline bool charinfo::ends_sentence()
 {
   if (using_character_classes)
-    ::get_flags();
+    recompute_character_flags();
   return (flags & ENDS_SENTENCE);
 }
 
 inline bool charinfo::is_transparent_to_end_of_sentence()
 {
   if (using_character_classes)
-    ::get_flags();
+    recompute_character_flags();
   return (flags & IS_TRANSPARENT_TO_END_OF_SENTENCE);
 }
 
 inline bool charinfo::ignores_surrounding_hyphenation_codes()
 {
   if (using_character_classes)
-    ::get_flags();
+    recompute_character_flags();
   return (flags & IGNORES_SURROUNDING_HYPHENATION_CODES);
 }
 
 inline bool charinfo::prohibits_break_before()
 {
   if (using_character_classes)
-    ::get_flags();
+    recompute_character_flags();
   return (flags & PROHIBITS_BREAK_BEFORE);
 }
 
 inline bool charinfo::prohibits_break_after()
 {
   if (using_character_classes)
-    ::get_flags();
+    recompute_character_flags();
   return (flags & PROHIBITS_BREAK_AFTER);
 }
 
 inline bool charinfo::is_interword_space()
 {
   if (using_character_classes)
-    ::get_flags();
+    recompute_character_flags();
   return (flags & IS_INTERWORD_SPACE);
 }
 

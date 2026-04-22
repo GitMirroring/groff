@@ -11046,7 +11046,7 @@ void charinfo::set_translation(charinfo *ci, bool transparently,
 }
 
 // Recompute flags for all entries in the charinfo dictionary.
-void get_flags()
+void recompute_character_flags()
 {
   dictionary_iterator iter(charinfo_dictionary);
   charinfo *ci;

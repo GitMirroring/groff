@@ -1,5 +1,28 @@
 2026-04-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Trivially refactor.  Rename `get_flags()` global
+	function to `recompute_character_flags()`.  In addition to being
+	more clear and explicit, it avoids a collision with the
+	`charinfo` class's own `get_flags()` member function.
+
+	* src/roff/troff/input.cpp (get_flags): Rename this...
+	(recompute_character_flags): ...to this.
+	* src/roff/troff/charinfo.h: Update `extern` declaration
+	"importing" the symbol.
+	(charinfo::overlaps_horizontally)
+	(charinfo::overlaps_vertically)
+	(charinfo::allows_break_before)
+	(charinfo::allows_break_after)
+	(charinfo::ends_sentence)
+	(charinfo::is_transparent_to_end_of_sentence)
+	(charinfo::ignores_surrounding_hyphenation_codes)
+	(charinfo::prohibits_break_before)
+	(charinfo::prohibits_break_after)
+	(charinfo::is_interword_space): Update call sites.  Drop now-
+	unneeded namespace access operator.
+
+2026-04-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Drop dead/unreachable nested character class code.
 
 	* src/roff/troff/charinfo.h (class charinfo): Drop
