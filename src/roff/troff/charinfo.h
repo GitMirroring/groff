@@ -42,7 +42,6 @@ class charinfo : glyph {
   char_mode mode;
   // Unicode character classes
   std::vector<std::pair<int, int> > ranges;
-  std::vector<charinfo *> nested_classes; // XXX: see Savannah #67770
 public:
   // Values for the flags bitmask.  See groff manual, description of the
   // '.cflags' request.
@@ -115,7 +114,6 @@ public:
   symbol *get_symbol();
   void add_to_class(int);
   void add_to_class(int, int);
-  void add_to_class(charinfo *);
   bool is_class();
   bool contains(int, bool = false);
   bool contains(symbol, bool = false);
@@ -302,15 +300,9 @@ inline void charinfo::add_to_class(int lo,
   ranges.push_back(std::pair<int, int>(lo, hi));
 }
 
-inline void charinfo::add_to_class(charinfo *ci)
-{
-  using_character_classes = true;
-  nested_classes.push_back(ci);
-}
-
 inline bool charinfo::is_class()
 {
-  return (!ranges.empty() || !nested_classes.empty());
+  return !ranges.empty();
 }
 
 // Local Variables:

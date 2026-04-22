@@ -1,3 +1,22 @@
+2026-04-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Drop dead/unreachable nested character class code.
+
+	* src/roff/troff/charinfo.h (class charinfo): Drop
+	`nested_classes` member variable.  Drop declaration of
+	overloaded `add_to_class()` member function taking a pointer to
+	a `charinfo` as argument.
+	(charinfo::add_to_class): Drop definition per above.
+	(charinfo::is_class): Simplify test to eliminate dereference of
+	now-vanished `nested_classes` member variable.
+	* src/roff/troff/input.cpp (define_class_request): Generalize
+	condition under which warning diagnostics about inability to
+	nest character classes are thrown.  Drop branches unreached in a
+	"make check" build that required the aforementioned member
+	function signature.
+	(charinfo::contains, charinfo::dump): Drop iterators of nested
+	classes `#if 0`-ed out in groff 1.24.0 release.
+
 2022-04-17  Dave Kemper <saint.snit@gmail.com>
 
 	* tmac/pspic.tmac: Allow `PSPIC` macro to place image at bottom
