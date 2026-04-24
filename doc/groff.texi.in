@@ -5288,33 +5288,38 @@ and adds several of its own.
 The internals of
 @code{groff}
 @file{ms}
-differ from those of @acronym{AT&T}
+differ from those of @acronym{AT&T} and Berkeley
 @file{ms}.
-Documents that depend upon implementation details of @acronym{AT&T}
-@file{ms}
-may not format properly with
+Documents that depend upon implementation details of
+those implementations
+might not format as expected with
 @code{groff}
 @file{ms}.
-Such details include macros whose function was not documented in the
-@acronym{AT&T}
+It therefore defines the register
+@code{GS}
+.CW GS ,
+which @acronym{AT&T} and Berkeley do not use,
+to@tie{}1.
+A document can test its value to determine whether it is being formatted
+with
+@code{groff}
 @file{ms}
-@c XXX: Texinfo's @cite command conceives only of citations of long-form
-@c works, like books, and forces italics.  APA, MLA, and Chicago styles
-@c all agree that article citations are set in roman.  MLA and Chicago
-@c furthermore place them within quotation marks.
-manual.@footnote{``Typing Documents on the UNIX System: Using the
--ms Macros with Troff and Nroff'', M.@tie{}E.@: Lesk, Bell Laboratories,
-1978}
-@c XXX: We support RT anyway; maybe we should stop?
+or another implementation.
 
 @item
-The error-handling policy of @code{groff} @file{ms} is to detect and
-report errors, rather than to ignore them silently.
+The error-handling policy of
+@code{groff}
+@file{ms}
+is to detect and report errors,
+rather than to ignore them silently.
 
 @item
 Research Tenth Edition @c possibly 9th
-Unix supported @code{P1}/@code{P2} macros to bracket code
-examples; @code{groff} @file{ms} does not.
+Unix supported
+@code{P1}/@code{P2}
+macros to bracket code examples;
+@code{groff}
+@file{ms} does not.
 
 @item
 @code{groff}
