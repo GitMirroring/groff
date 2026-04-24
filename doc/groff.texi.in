@@ -4133,7 +4133,12 @@ instead of bold.  Argument recognition is a GNU extension.
 @endDefmac
 
 @Defmac {I, [@Var{text} [@Var{post} [@Var{pre}]]], ms}
-As @code{B}, but use an @i{italic} or oblique style instead of bold.
+As
+@code{B},
+but use an
+@i{italic}
+(slanted or oblique)
+style instead of bold.
 @endDefmac
 
 @Defmac {BI, [@Var{text} [@Var{post} [@Var{pre}]]], ms}

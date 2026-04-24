@@ -1125,7 +1125,9 @@ Argument recognition is a GNU extension.
 .IR text \~[ post \~[ pre ]]]
 As
 .BR B ,
-but use an italic or oblique style instead of bold.
+but use an italic
+(slanted or oblique)
+style instead of bold.
 .
 .
 .TP

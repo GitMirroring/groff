@@ -1706,7 +1706,8 @@ As
 .CW B ,
 but use an
 .I italic
-or oblique style instead of bold.
+(slanted or oblique)
+style instead of bold.
 T}
 _
 \&.BI \f[R][\f[I]text\f[] [\f[I]post\f[] [\f[I]pre\f[]]]]	T{
