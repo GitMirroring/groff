@@ -1191,7 +1191,9 @@ preprocessor.
 @item -E
 Inhibit
 @command{@g@troff}
-error messages.
+error messages;
+implies
+@code{-Ww}.
 This option does
 @emph{not}
 suppress messages sent to the standard error stream
