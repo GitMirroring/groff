@@ -5299,7 +5299,7 @@ It therefore defines the register
 @code{GS}
 .CW GS ,
 which @acronym{AT&T} and Berkeley do not use,
-to@tie{}1.
+as@tie{}1.
 A document can test its value to determine whether it is being formatted
 with
 @code{groff}

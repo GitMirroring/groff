@@ -2374,7 +2374,7 @@ might not format as expected with
 It therefore defines the register
 .BR GS ,
 which AT&T and Berkeley do not use,
-to\~1.
+as\~1.
 .
 A document can test its value to determine whether it is being formatted
 with
