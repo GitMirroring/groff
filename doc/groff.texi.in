@@ -2389,16 +2389,28 @@ start of the subsequent paragraph.
 @node Headers and Footers
 @subsection Headers and Footers
 
-@slanted{Headers} and @slanted{footers} occupy the top and bottom of
-each page, respectively, and contain data like the page number and the
-article or chapter title.  Their appearance is not affected by the
-running text.  Some packages allow for different titles on even- and
-odd-numbered pages (for printed, bound material).
+@slanted{Headers}
+and
+@slanted{footers}
+occupy the top and bottom of each page,
+respectively,
+and contain data like the page number
+and the article or chapter title.
+Their appearance is not affected by the running text.
 
-Headers and footers are together called @slanted{titles}, and comprise
-three parts:@: left-aligned, centered, and right-aligned.  A @samp{%}
-character appearing anywhere in a title is automatically replaced by the
-page number.  @xref{Page Layout}.
+Headers and footers are together called
+@slanted{titles},
+and comprise three parts:@:
+left-aligned,
+centered,
+and right-aligned.
+The formatter replaces a
+@samp{%}
+character appearing anywhere in a title with the page number.
+@xref{Page Layout}.
+Some packages allow for different titles on even- and
+odd-numbered pages
+(for printed, bound material).
 
 @c ---------------------------------------------------------------------
 
