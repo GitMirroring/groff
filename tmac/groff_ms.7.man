@@ -1089,7 +1089,9 @@ arguments is a GNU extension.
 .IR text \~[ post \~[ pre ]]]
 Style
 .I text
-in bold,
+in bold\[em]\c
+that is,
+with a heavier stroke weight\[em]\c
 followed by
 .I post
 in the previous font style without intervening space,

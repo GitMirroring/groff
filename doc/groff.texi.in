@@ -4108,11 +4108,23 @@ boldface.  By Version@tie{}7 (1979) it recognized a second argument; in
 to avoid breaking support for older documents.}
 
 @Defmac {B, [@Var{text} [@Var{post} [@Var{pre}]]], ms}
-Style @var{text} in @b{bold}, followed by @var{post} in the previous
-font style without intervening space, and preceded by @var{pre}
-similarly.  Without arguments, @file{ms} styles subsequent text in bold
-until the next paragraphing, heading, or no-argument typeface macro
-call.
+Style
+@var{text}
+in
+@b{bold}---that is,
+with a heavier stroke weight---followed by
+@var{post}
+in the previous font style without intervening space,
+and preceded by
+@var{pre}
+similarly.
+Without arguments,
+@file{ms}
+styles subsequent text in bold
+until the next
+paragraphing,
+heading,
+or no-argument typeface macro call.
 @endDefmac
 
 @Defmac {R, [@Var{text} [@Var{post} [@Var{pre}]]], ms}

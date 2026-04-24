@@ -1672,7 +1672,9 @@ _
 Style
 .I text
 in
-.B bold ,
+.B bold \[em]\c
+that is,
+with a heavier stroke weight\[em]\c
 followed by
 .I post
 in the previous font style without intervening space,
