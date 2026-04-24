@@ -10,7 +10,9 @@ documents
 .\" Legal Terms
 .\" ====================================================================
 .\"
-.\" Copyright 2000-2024 Free Software Foundation, Inc.
+.\" Copyright      2000 Free Software Foundation, Inc.
+.\"                2000 Daniel Senderowicz
+.\"           2020-2024 G. Branden Robinson
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
