@@ -2583,7 +2583,7 @@ T{
 .br
 \&.PF
 T}	T{
-.CW .PS
+.CW PS
 marks the start of a
 .I pic (1)
 preprocessor
