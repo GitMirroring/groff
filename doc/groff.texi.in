@@ -19399,9 +19399,11 @@ interchangeably.
 @cindex nested diversions
 @cindex diversion, nested
 @cindex diversion name register (@code{.z})
-@cindex vertical position in diversion register (@code{.d})
-@cindex position, vertical, in diversion, register (@code{.d})
-@cindex diversion, vertical position in, register (@code{.d})
+@cindex vertical drawing position on page or in diversion register (@code{.d})
+@cindex drawing position, vertical, on page or in diversion, register (@code{.d})
+@cindex position, vertical drawing, on page or in diversion, register (@code{.d})
+@cindex diversion, vertical drawing position in or on page, register (@code{.d})
+@cindex page, vertical drawing position on or in diversion, register (@code{.d})
 Diversion requests may be nested.  The read-only string-valued register
 @code{.z} contains the name of the current diversion.  The read-only
 register @code{.d} contains the vertical drawing position in the
