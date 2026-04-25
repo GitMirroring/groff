@@ -5720,7 +5720,9 @@ does not strictly enforce adherence.
 .I troff \" GNU
 looks up fonts by name with a search that is
 .RI O( n )
-in the length of the dynamically sized mounting position list.)
+in the length
+.I n
+of the dynamically sized mounting position list.)
 .
 .
 .P

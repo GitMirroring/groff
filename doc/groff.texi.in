@@ -12919,7 +12919,9 @@ does not strictly enforce adherence.@footnote{GNU
 @command{troff} @c GNU
 looks up fonts by name with a search that is
 O(@var{n})
-in the length of the dynamically sized mounting position list.}
+in the length
+@var{n}
+of the dynamically sized mounting position list.}
 @endDefreq
 
 @c ---------------------------------------------------------------------
