@@ -2614,9 +2614,9 @@ the
 .I groff
 Texinfo manual),
 disabling compatibility mode
-and setting the escape character to
-.RB to\~ \[rs]
-while interpreting
+and treating
+.B \[rs]
+as the escape character while interpreting
 .I contents.
 .
 Any emboldening,

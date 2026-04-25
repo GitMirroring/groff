@@ -13696,9 +13696,9 @@ processes
 in a temporary environment and enscapsulates the result
 in a node;@footnote{@xref{GNU @command{troff} Internals}.}
 disabling compatibility mode
-and setting the escape character
-to@tie{}@code{\}
-while interpreting
+and treating
+@code{\}
+as the escape character while interpreting
 @var{contents}.
 Any emboldening,
 constant spacing,
