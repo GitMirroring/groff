@@ -13802,18 +13802,8 @@ with the
 request,
 but before the already mounted special fonts.
 
-@xref{Character Classes}.
-
-@strong{Caution:@:}
-These requests remove a leading neutral double quote
-@samp{"}
-and treat the remainder of the input line
-as their second argument,
-including any spaces,
-up to a newline or comment escape sequence.
-See the discussion of the
-@code{ds}
-request in @ref{Strings}.
+User-defined characters can be grouped
+into character classes.@footnote{@xref{Character Classes}.}
 @endDefreq
 
 @DefreqList {rchar, c @dots{}}
