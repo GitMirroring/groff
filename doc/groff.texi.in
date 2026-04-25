@@ -13305,10 +13305,24 @@ more @var{combining-component}s.  For example, @samp{\[A ho]} is a
 capital letter ``A'' with a ``hook accent'' (ogonek).
 
 There is no special syntax for one-character names---the analogous form
-@samp{\@var{n}} would collide with other escape sequences.  However, the
-four escape sequences @code{\'}, @code{\-}, @code{\_}, and @code{\`},
-are translated on input to the special character escape sequences
-@code{\[aa]}, @code{\[-]}, @code{\[ul]}, and @code{\[ga]}, respectively.
+@samp{\@var{n}}
+would collide with other escape sequences.
+A few escape sequences that are not
+special characters also produce glyphs;
+these exist for syntactical or historical reasons.
+The formatter translates the four escape sequences
+@code{\'},
+@code{\-},
+@code{\_},
+and
+@code{\`},
+on input to the special character escape sequences
+@code{\[aa]},
+@code{\[-]},
+@code{\[ul]},
+and
+@code{\[ga]},
+respectively.
 
 A special character name of length one is not the same thing as an
 ordinary character: that is, the character @code{a} is not the same as

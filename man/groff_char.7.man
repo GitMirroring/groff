@@ -162,16 +162,16 @@ primarily using font
 .
 .P
 A few escape sequences that are not
-.I groff
 special characters also produce glyphs;
 these exist for syntactical or historical reasons.
 .
+The formatter translates the four escape sequences
 .BR \e\[aq] ,
 .BR \e\[ga] ,
 .BR \e\- ,
 and
 .B \e_
-are translated on input to the special character escape sequences
+on input to the special character escape sequences
 .BR \e[aa] ,
 .BR \e[ga] ,
 .BR \e[\-] ,
