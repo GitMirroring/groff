@@ -13135,9 +13135,9 @@ and apply this procedure to each character in its definition.
 @item
 Finally,
 iterate through the list of mounted fonts by position;
-recall @xref{Font Positions}.
+recall @ref{Font Positions}.
 For each mounted font,
-if that font bears the
+if that font's description bears the
 @code{special}
 directive,@footnote{@xref{Device and Font Description Files}.}
 check it for a glyph corresponding to the character.

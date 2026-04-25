@@ -8534,10 +8534,10 @@ and apply this procedure to each character in its definition.
 .IP \[bu]
 Finally,
 iterate through the list of mounted fonts by position.
-.\" recall @xref{Font Positions}.
+.\" recall @ref{Font Positions}.
 .
 For each mounted font,
-if that font bears the
+if that font's description bears the
 .B \%special
 directive
 (see
