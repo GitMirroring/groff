@@ -2149,14 +2149,6 @@ in any directories specified by
 command-line options,
 followed by the current working directory.
 .
-If
-.I file
-does not exist or is not readable,
-GNU
-.I troff \" GNU
-emits a warning in category
-.RB \[lq] file \[rq].
-.
 .
 .TP
 .BI .ss\~ minimum-inter-word-space-size\~\c
@@ -2673,12 +2665,7 @@ in kerning adjustments or italic corrections.
 The formatter prevents infinite recursion
 by treating an occurrence
 of a character in its own definition
-as if it were undefined;
-when interpolating such a character,
-GNU
-.I troff \" GNU
-emits a warning in category
-.RB \[lq] char \[rq].
+as if it were undefined.
 (Mutually recursive character definitions are handled similarly.)
 .
 .
