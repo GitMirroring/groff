@@ -13477,7 +13477,7 @@ and drawn lower than the underscore @samp{_}.
 @cindex properties of characters (@code{cflags})
 Assign properties encoded by non-negative integer
 @var{n}
-to each character or class@footnote{@xref{Character Classes}.}.
+to each character or class@footnote{@xref{Character Classes}.}
 @var{c}.
 Spaces need not separate
 @var{c}
@@ -13491,14 +13491,12 @@ special,
 or
 indexed,
 have certain associated properties.
-The first argument is the sum of the desired flags and the remaining
-arguments are the characters to be assigned those properties.
-arguments.
-
-The non-negative integer
+The argument
 @var{n}
-is the sum of any of the following.
-Some combinations are nonsensical,
+is the sum of the desired flags
+and the remaining arguments are the characters
+to be assigned those properties.
+Some property combinations are nonsensical,
 such as
 @samp{33}
 (1 + 32).
