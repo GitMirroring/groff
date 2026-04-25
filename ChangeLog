@@ -1,5 +1,17 @@
 2026-04-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an.tmac (SH, SS, TP): Throw warning if macro called while
+	an input trap is pending (for example, `.TP` followed
+	immediately by `.SH`).  This input is not specified or
+	countenanced by any man(7) documentation I know of, and produces
+	unpredictable output across implementations.  (Given the
+	foregoing example, Plan 9 troff truncates the input at that
+	point.)  Seen in the wild in fvwm-config(1).
+
+	Fixes <https://savannah.gnu.org/bugs/?68279>.
+
+2026-04-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp (environment::newline): Reset contents
 	of read-only `.itm` register (introduced in groff 1.24.0) to
 	null after an input trap has sprung, so that it doesn't
