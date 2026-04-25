@@ -15162,6 +15162,7 @@ E\\R'#CAP_HEIGHT \\n[.cht]'
 .    ie '\\$1'' \{\
 .       nr #ENDNOTE 1
 .       ds $PRE_EN_QUAD \\*[$QUAD_VALUE]
+.       if \\n[#SQ_ON] .if \\n[#OPEN_CLOSE]=1 .nr #OPEN_CLOSE 0
 .       ie !\\n[#EN_MARKER_STYLE]=2 \{\
 .          if \\n[#CONDENSE] .nop \*[CONDX]\c
 .          if \\n[#EXTEND] .nop \*[EXTX]\c
@@ -15404,6 +15405,7 @@ EN-\\n[#CH_NUM]\\n[#EN_NUMBER]-body \s-2\v'-\\n[#DOC_LEAD]u/7u'\\n[#EN_NUMBER]\|
 \*[SLANT]\c
 .       \}
 .       ds $QUAD_VALUE \\*[$PRE_EN_QUAD]
+.       if \\n[#SQ_ON] .if \\n[#OPEN_CLOSE]=0 .nr #OPEN_CLOSE 1
 .    \}
 .    if \\n[#NUM_ARGS]=2 \{\
 .       if '\\$2'BREAK' .BR
