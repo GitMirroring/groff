@@ -2662,11 +2662,17 @@ in kerning adjustments or italic corrections.
 .
 .
 .IP
-The formatter prevents infinite recursion
+GNU
+.I troff \" GNU
+prevents infinite recursion
 by treating an occurrence
 of a character in its own definition
-as if it were undefined.
-(Mutually recursive character definitions are handled similarly.)
+as if it had no user-directed definition;
+if a component character remains undefined at the time
+it is interpolated,
+it does not format.
+.
+Mutually recursive character definitions are handled similarly.
 .
 .
 .IP

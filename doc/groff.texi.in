@@ -13740,15 +13740,19 @@ a user-defined character
 does not participate at its boundaries
 in kerning adjustments or italic corrections.
 
-The formatter prevents infinite recursion
-by treating an occurrence
-of a character in its own definition
-as if it were undefined;
-when interpolating such a character,
 GNU
 @command{troff} @c GNU
-emits a warning in category @samp{char}.@footnote{Mutually recursive
-character definitions are handled similarly.}
+prevents infinite recursion
+by treating an occurrence
+of a character in its own definition
+as if it had no user-directed definition;
+if a component character remains undefined at the time
+it is interpolated,
+it does not format.@footnote{GNU
+@command{troff} @c GNU
+emits a warning in category @samp{char}.
+@xref{Warnings}.} @c omit footnote from man page
+Mutually recursive character definitions are handled similarly.
 
 The @code{tr} and @code{trin} requests take precedence if @code{char}
 accesses the same symbol.
