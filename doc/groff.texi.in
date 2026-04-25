@@ -14645,7 +14645,10 @@ Here's a sentence.\c
 Another one.\c
 .Suffix-) '
 And a third.
+@c 47 asterisks
+***********************************************
     @result{} Here's a sentence.' Another one.'  And a third.
+    @result{} ***********************************************
 @endExample
 @endDefesc
 
