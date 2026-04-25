@@ -836,6 +836,20 @@ at present it also accepts
 on ISO\~Latin-1 systems.)
 .
 .
+Except for the special character names listed
+in the \[lq]Input\[rq] columns of the glyph tables below,
+GNU
+.I troff \" GNU
+derives special character names algorithmically,
+using a simplified version of the technique employed by the
+.UR https://\:github\:.com/\:adobe\-type\-tools/\:agl\-aglfn
+Adobe Glyph List (AGL) algorithm
+.UE .
+.
+The (frozen) set of names that can't be derived algorithmically
+is called the
+@dfn{@code{groff} glyph list (GGL)}.
+.
 .TP
 .BI \[rs][u base-character\c
 [\c

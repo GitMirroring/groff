@@ -13239,12 +13239,18 @@ groff -T dvi -m ec -m an groff_char.7 > groff_char.dvi
 @cindex @code{groff} glyph list (GGL)
 @cindex GGL (@code{groff} glyph list)
 @cindex Adobe Glyph List (AGL)
-Special character names not listed in @cite{groff_char@r{(7)}} are
-derived algorithmically, using a simplified version of the Adobe Glyph
-List (AGL) algorithm, which is described in
-@uref{https://github.com@//adobe-type-tools@//agl-aglfn}.  The (frozen)
-set of names that can't be derived algorithmically is called the
-@dfn{@code{groff} glyph list (GGL)}.
+Except for those listed in
+@cite{groff_char@r{(7)}},
+GNU
+@command{troff} @c GNU
+derives special character names algorithmically,
+using a simplified version of the technique employed by the
+Adobe Glyph List (AGL) algorithm,
+described in
+@uref{https://github.com@//adobe-type-tools@//agl-aglfn}.
+The (frozen) set of names that can't be derived algorithmically
+is called the
+@dfn{groff glyph list (GGL)}.
 
 @itemize @bullet
 @item
