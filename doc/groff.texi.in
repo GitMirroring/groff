@@ -14856,13 +14856,14 @@ is negative; the vertical spacing is then set to the smallest possible
 positive value, the vertical motion quantum (as found in the @code{.V}
 register).
 
-@w{@samp{.vs 0}} isn't saved in a diversion since it doesn't result in
-a vertical motion.  You must explicitly issue this request before
-interpolating the diversion.
+@w{@samp{.vs 0}}
+isn't saved in a diversion since it doesn't result in a vertical motion.
+You must explicitly issue this request
+before interpolating the diversion if you desire its effect.
 
 The read-only register
 @code{.v}
-contains the vertical spacing.
+interpolates the vertical spacing.
 @endDefreq
 
 @need 200
@@ -14874,15 +14875,30 @@ When a break occurs, GNU @code{troff} performs the following procedure.
 @item
 @cindex extra pre-vertical line space (@code{\x})
 @cindex line space, extra pre-vertical (@code{\x})
-Move the drawing position vertically by the @dfn{extra pre-vertical line
-space}, the minimum of all negative @code{\x} escape sequence arguments
-in the pending output line.
+Move the drawing position vertically by the
+@dfn{extra pre-vertical line space},
+the minimum of all negative
+@code{\x}
+escape sequence arguments in the pending output line.
+If this motion springs a
+vertical position trap,@footnote{@xref{Vertical Position Traps}.}
+including
+the implicit page trap,@footnote{@xref{The Implicit Page Trap}.}
+interrupt this procedure.
 
 @item
 Move the drawing position vertically by the vertical line spacing.
+If this motion springs a trap,
+including the implicit page trap,
+interrupt this procedure.
 
 @item
-Write out the pending output line.
+Apply any configured adjustment
+and marginal annotations@footnote{@xref{Output Line Annotation}.},
+and append the pending output line
+to the current diversion@footnote{@xref{Diversions}.}
+(often,
+the output device's current page).
 
 @item
 @cindex extra post-vertical line space (@code{\x})
@@ -14890,20 +14906,53 @@ Write out the pending output line.
 Move the drawing position vertically by the @dfn{extra post-vertical line
 space}, the maximum of all positive @code{\x} escape sequence arguments
 in the line that has just been output.
+If this motion springs a trap,
+including the implicit page trap,
+abort this procedure.
 
 @item
 @cindex post-vertical line spacing
 @cindex line spacing, post-vertical (@code{pvs})
 Move the drawing position vertically by the @dfn{post-vertical line
 spacing} (see below).
+If this motion springs a trap,
+including the implicit page trap,
+abort this procedure.
 @end itemize
 
+If the break procedure is interrupted or aborted
+because a vertical position trap is sprung,
+GNU
+@command{troff} @c GNU
+updates the values of the
+@code{.ne}
+and
+@code{.trunc}
+registers.@footnote{@xref{Page Location Traps}.}
+Encountering the implicit page trap
+(@slanted{ibid.})
+does not alter them.
+
 @cindex double-spacing (@code{vs}, @code{pvs})
-Prefer @code{vs} or @code{pvs} over @code{ls} to produce double-spaced
-documents.  @code{vs} and @code{pvs} have finer granularity than
-@code{ls}; moreover, some preprocessors assume single spacing.
-@xref{Manipulating Spacing}, regarding the @code{\x} escape sequence and
-the @code{ls} request.
+Prefer
+@code{vs}
+or
+@code{pvs}
+over
+@code{ls}
+to produce double-spaced documents.
+@code{vs}
+and
+@code{pvs}
+have finer granularity than
+@code{ls};
+moreover, some preprocessors assume single spacing.
+Recall @ref{Manipulating Spacing},
+regarding the
+@code{\x}
+escape sequence and the
+@code{ls}
+request.
 
 @DefreqList {pvs, [@Var{space}]}
 @DefreqItem {pvs, @t{+}@Var{space}}
