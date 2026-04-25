@@ -12814,7 +12814,7 @@ interpolates nothing.
 
 To support typeface indirection through abstract styles, and for
 compatibility with @acronym{AT&T} @code{troff}, the formatter maintains
-a list of font @dfn{positions} at which fonts required by a document are
+a list of @dfn{positions} at which fonts required by a document are
 @dfn{mounted}.  An output device's description file @file{DESC}
 typically configures a set of pre-mounted fonts; see @ref{Device and
 Font Description Files}.  A font need not be explicitly mounted before
