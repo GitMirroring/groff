@@ -14514,10 +14514,14 @@ without any intervening space.
 @node Dummy Characters
 @subsection Dummy Characters
 
-As discussed in @ref{Requests and Macros}, the first character on an
-input line is treated specially.  Further, formatting a glyph has many
-consequences on formatter state (@pxref{Environments}).  Occasionally,
-we want to escape this context or embrace some of those consequences
+As discussed in @ref{Requests and Macros},
+the formatter treats the first character on an input line specially.
+Further,
+formatting a glyph has many consequences
+on formatter state.@footnote{@xref{Environments}.}
+Occasionally,
+we want to escape this context
+or embrace some of those consequences
 without actually rendering a glyph to the output.
 
 @Defesc {\\&, , , }
