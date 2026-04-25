@@ -13231,7 +13231,7 @@ you must run
 directly.
 
 @Example
-groff -T dvi -m ec -m an groff_char.7 > groff_char.dvi
+groff -t -m ec -m an -T dvi groff_char.7 > groff_char.dvi
 @endExample
 
 @cindex composite glyph names
