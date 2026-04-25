@@ -1,3 +1,13 @@
+2026-04-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/env.cpp (environment::newline): Reset contents
+	of read-only `.itm` register (introduced in groff 1.24.0) to
+	null after an input trap has sprung, so that it doesn't
+	interpolate a stale and/or misleading value.
+
+	Fixes <https://savannah.gnu.org/bugs/?68278>.  Continues commit
+	1fce75f6ba, 2024-02-11.
+
 2026-04-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/groff/tests/\
