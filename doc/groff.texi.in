@@ -13669,8 +13669,8 @@ removes a leading neutral double quote
 from
 @var{contents},
 permitting initial embedded spaces in it,
-and reads it to the end of the input line in copy mode.
-@xref{Copy Mode}.
+and reads it to the end of the input line
+in copy mode.@footnote{@xref{Copy Mode}.}
 
 Defining
 (or redefining)
