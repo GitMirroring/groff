@@ -13654,14 +13654,12 @@ character
 @var{c}
 as
 @var{contents}.
-
 Omitting
 @var{contents}
 gives
 @var{c}
 an empty definition.
-
-@c Omit this paragraph from man pages.
+@c Omit this sentence from man pages.
 GNU
 @command{troff} @c GNU
 removes a leading neutral double quote
