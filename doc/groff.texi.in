@@ -6771,7 +6771,7 @@ particular output driver, or their glyphs may not have representation in
 the font used.  For terminal devices, fallbacks are defined, like
 @samp{EUR} for the Euro sign and @samp{(C)} for the copyright sign.  For
 typesetter devices, you may need to ``mount'' fonts that support glyphs
-required by the document.  @xref{Font Mounting Positions}.
+required by the document.@footnote{@xref{Font Mounting Positions}.}
 
 @pindex freeeuro.pfa
 @pindex ec.tmac
@@ -7633,8 +7633,9 @@ requests and escape sequences:@: @code{bp}, @code{in}, @code{ll},
 and decrementation operators, respectively.
 To negate an expression in these contexts,
 subtract it from zero
-or include the unary minus in parentheses with its argument.
-@xref{Setting Registers}, for examples.
+or include the unary minus in parentheses
+with its argument.@footnote{@xref{Setting Registers},
+for examples.}
 
 @opindex |
 @cindex @code{|}, and page motion
@@ -7701,9 +7702,13 @@ B \Z'C'\v'|0'D
     @result{} B C
 @endExample
 
-In the foregoing example, we've used the @code{\Z} escape sequence
-(@pxref{Page Motions}) to restore the drawing position after formatting
-@samp{C}, then moved vertically to the first text baseline on the page.
+In the foregoing example,
+we've used the
+@code{\Z}
+escape sequence@footnote{@xref{Page Motions}.}
+to restore the drawing position after formatting
+@samp{C},
+then moved vertically to the first text baseline on the page.
 
 @Defesc {\\B, @code{'}, input, @code{'}}
 @cindex numeric expression, valid
@@ -7712,12 +7717,16 @@ Interpolate@tie{}1 if
 @var{input}
 is a valid numeric expression,
 and@tie{}0 otherwise.
-The delimiter need not be a neutral apostrophe;
-see @ref{Delimiters}.
+The delimiter need not be
+a neutral apostrophe.@footnote{@xref{Delimiters}.}
 @endDefesc
 
-You might use @code{\B} along with the @code{if} request to filter out
-invalid macro or string arguments.  @xref{Conditionals and Loops}.
+You might use
+@code{\B}
+along with the
+@code{if}
+request to filter out invalid macro
+or string arguments.@footnote{@xref{Conditionals and Loops}.}
 
 @Example
 .\" Indent by amount given in first argument; assume ens.
@@ -7727,17 +7736,18 @@ invalid macro or string arguments.  @xref{Conditionals and Loops}.
 ..
 @endExample
 
-A register interpolated as an operand in a numeric expression must have
-an Arabic format; luckily, this is the default.  @xref{Assigning
-Register Formats}.
+A register interpolated as an operand in a numeric expression
+must have an Arabic format;
+luckily,
+this is the default.@footnote{@xref{Assigning Register Formats}.}
 
 @cindex space characters, in expressions
 @cindex expressions, and space characters
 Because spaces separate arguments to requests,
 spaces are not allowed in numeric expressions
-unless parentheses surround the (sub)expression containing them.
-@xref{Invoking Requests}, and
-@ref{Conditionals and Loops}.
+unless parentheses surround
+the (sub)expression containing them.@footnote{@xref{Invoking Requests}
+and @ref{Conditionals and Loops}.}
 
 @Example
 .nf
@@ -7750,9 +7760,15 @@ unless parentheses surround the (sub)expression containing them.
     @result{} 6
 @endExample
 
-The @code{nr} request (@pxref{Setting Registers}) expects its second and
-optional third arguments to be numeric expressions; a bare @code{+} does
-not qualify, so our first attempt elicited an error diagnostic.
+The
+@code{nr}
+request@footnote{@xref{Setting Registers}.}
+expects its second and optional third arguments
+to be numeric expressions;
+a bare
+@code{+}
+does not qualify,
+so our first attempt elicited an error diagnostic.
 @c END Keep (roughly) parallel with section "Numeric expressions" of
 @c groff(7).
 
@@ -7897,8 +7913,8 @@ Interpolate@tie{}1 if
 @var{input}
 is a valid identifier,
 and@tie{}0 otherwise.
-The delimiter need not be a neutral apostrophe; see
-@ref{Delimiters}.
+The delimiter need not be
+a neutral apostrophe.@footnote{@xref{Delimiters}.}
 Because GNU
 @command{troff} @c GNU
 ignores any input character with an invalid code when reading it,
@@ -7931,9 +7947,15 @@ The center is at (\n[center!x], \n[center!y]).
 @endExample
 
 @noindent
-In this example, we also validated the numeric arguments; the registers
-@samp{point!x} and @samp{point!y} remain undefined.  @xref{Numeric
-Expressions} for the @code{\B} escape sequence.
+In this example,
+we also validated the numeric arguments;
+the registers
+@samp{point!x}
+and
+@samp{point!y}
+remain undefined.
+Recall @ref{Numeric Expressions}
+regarding the @code{\B} escape sequence.
 @endDefesc
 
 @cindex undefined identifiers
@@ -8335,23 +8357,34 @@ desired as literals.  In GNU @code{troff}, the special character escape
 sequence @code{\[rs]} produces a backslash and @code{\[dq]} a neutral
 double quote.
 
-In GNU @code{troff}'s @acronym{AT&T} compatibility mode, these
-characters remain available as @code{\(rs} and @code{\(dq},
-respectively.  @acronym{AT&T} @code{troff} did not consistently define
-these special characters,
+In
+GNU
+@command{troff}'s @c GNU
+@acronym{AT&T} compatibility mode,
+these characters remain available as
+@code{\(rs}
+and
+@code{\(dq},
+respectively.
+@acronym{AT&T}
+@code{troff} @c AT&T
+did not consistently define these special characters,
 @c It seems that AT&T troff never recognized \(rs, though DWB 3.3
 @c defined \(bs as an alias of "\" on its "Latin1" device, in
 @c deliberate(?) collision with the Bell System logo identifier.  It
 @c also defined \(dq for several devices (pcl, Latin1, nroff, ...) along
 @c with \(aq.
-but its descendants can be made to support them.  @xref{Device and Font
-Description Files}.
+but its descendants can be made
+to support them.@footnote{@xref{Device and Font Description Files}.}
 
-If even that is not feasible, options remain.  To obtain a literal
-escape character in a macro argument, you can simply type it if you
-change or disable the escape character first.  @xref{Using Escape
-Sequences}.  Otherwise, you must escape the escape character repeatedly
-to a context-dependent extent.  @xref{Copy Mode}.
+If even that is not feasible,
+options remain.
+To obtain a literal escape character in a macro argument,
+you can simply type it if you change or disable
+the escape character first.@footnote{@xref{Using Escape Sequences}.}
+Otherwise,
+you must escape the escape character repeatedly
+to a context-dependent extent.@footnote{@xref{Copy Mode}.}
 
 For the (neutral) double quote, you have recourse to an obscure
 syntactical feature of @acronym{AT&T} @code{troff}.  Because a double
@@ -8402,12 +8435,11 @@ intact through multiple macro calls.
 @cindex depth, interpolation
 @cindex nesting depth, of interpolations
 @cindex depth, nesting, of interpolations
-Outside of compatibility mode,
+Outside of compatibility mode,@footnote{@xref{Compatibility Mode}.}
 GNU
 @command{troff} @c GNU
 doesn't exhibit this problem
 because it tracks the nesting depth of interpolations.
-@xref{Implementation Differences}.
 
 @c ---------------------------------------------------------------------
 
@@ -8503,10 +8535,15 @@ even in copy mode.@footnote{@xref{Copy Mode}.}
 
 @cindex formatting a backslash glyph (@code{\[rs]})
 @cindex backslash glyph, formatting (@code{\[rs]})
-The @code{\[rs]} special character escape sequence formats a backslash
-glyph.  In macro and string definitions, the input sequences @code{\\}
-and @code{\E} defer interpretation of escape sequences.  @xref{Copy
-Mode}.
+The
+@code{\[rs]}
+special character escape sequence formats a backslash glyph.
+In macro and string definitions,
+the input sequences
+@code{\\}
+and
+@code{\E}
+defer interpretation of escape sequences.@footnote{@xref{Copy Mode}.}
 
 @Defreq {eo, }
 @cindex disabling @code{\} (@code{eo})
@@ -12293,8 +12330,8 @@ If you plant a page location trap at vertical position
 (idiomatically to format a header),
 you can assign a negative value to
 @code{nl}
-to spring that trap even if the page has already started
-(@pxref{Page Location Traps}).
+to spring that trap even if the page
+has already started.@footnote{@xref{Page Location Traps}.}
 
 @Example
 .de HD
@@ -14325,8 +14362,7 @@ The read-only register
 @code{.ul}
 stores the count of productive input lines
 remaining to be underlined,
-which is associated with the environment
-(@pxref{Environments}).
+which is associated with the environment.@footnote{@xref{Environments}.}
 
 When
 @code{ul}
@@ -14761,8 +14797,8 @@ GNU @code{troff} uses 10@tie{}point type on 12@tie{}point spacing.
 Typographers call the difference between type size and vertical spacing
 @dfn{leading}.@footnote{Rhyme with ``sledding''; mechanical typography
 used lead metal (Latin @emph{plumbum}).}
-Both properties are associated with the environment;
-see @ref{Environments})
+Both properties are associated
+with the environment.@footnote{@xref{Environments}.}
 
 @menu
 * Changing the Type Size::
@@ -14814,8 +14850,7 @@ size in points as a decimal fraction.
 To obtain the type size in scaled points,
 interpolate the
 @code{.ps}
-register instead
-(@pxref{Using Fractional Type Sizes}).
+register instead.@footnote{@xref{Using Fractional Type Sizes}.}
 @endDefreq
 
 @Defesc {\\s, , size, }
@@ -24895,7 +24930,7 @@ This command is a GNU extension.
 The @samp{f} stands for @var{font}.
 
 Mount font position@tie{}@var{n} (a non-negative integer) with font
-named@tie{}@var{s} (a text word).  @xref{Font Mounting Positions}.
+named@tie{}@var{s} (a text word).  Recall @ref{Font Mounting Positions}.
 
 @item xH @var{n}@angles{line break}
 The @samp{H} stands for @var{Height}.
