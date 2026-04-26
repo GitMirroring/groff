@@ -686,7 +686,7 @@
 	* src/roff/troff/div.cpp: Drop unused code introduced in initial
 	commit 351da0dcd, 1991-06-02.  Since the `.p` register is
 	interpolated only by its `get_string()` member function and
-	never `get_value()` (and nothing internally to the formatter
+	never `get_value()` (and nothing internal to the formatter
 	attempts to get at it by that means, since accessing the datum
 	via `curdiv->get_page_length()` is more straightforward), we can
 	drop the latter.
@@ -699,7 +699,7 @@
 	* src/roff/troff/div.cpp: Drop unused code introduced in initial
 	commit 351da0dcd, 1991-06-02.  Since the `.d` register is
 	interpolated only by its `get_string()` member function and
-	never `get_value()` (and nothing internally to the formatter
+	never `get_value()` (and nothing internal to the formatter
 	attempts to get at it by that means, since accessing the datum
 	via `curdiv->get_vertical_position()` is more straightforward),
 	we can drop the latter.
@@ -712,7 +712,7 @@
 	* src/roff/troff/div.cpp: Drop unused code introduced in initial
 	commit 351da0dcd, 1991-06-02.  Since the `.h` register is
 	interpolated only by its `get_string()` member function and
-	never `get_value()` (and nothing internally to the formatter
+	never `get_value()` (and nothing internal to the formatter
 	attempts to get at it by that means, since accessing the datum
 	via `curdiv->get_high_water_mark()` is more straightforward),
 	we can drop the latter.
@@ -725,7 +725,7 @@
 	* src/roff/troff/div.cpp: Drop unused code introduced in initial
 	commit 351da0dcd, 1991-06-02.  Since the `.t` register is
 	interpolated only by its `get_string()` member function and
-	never `get_value()` (and nothing internally to the formatter
+	never `get_value()` (and nothing internal to the formatter
 	attempts to get at it by that means, since accessing the datum
 	via `curdiv->distance_to_next_trap()` is more straightforward),
 	we can drop the latter.
@@ -739,7 +739,7 @@
 	* src/roff/troff/div.cpp: Drop unused code introduced in commit
 	0216fc85d3, 2001-05-05.  Since the (now-named) `.ns` register is
 	interpolated only by its `get_string()` member function and
-	never `get_value()` (and nothing internally to the formatter
+	never `get_value()` (and nothing internal to the formatter
 	attempts to get at it by that means, since accessing the datum
 	via `curdiv->is_in_no_space_mode` is more straightforward), we
 	can drop the latter.
@@ -944,7 +944,7 @@
 
 	* src/roff/troff/node.h: Rename declaration of
 	`mount_font()` to `mount_font_at_position()`.  Also resequence
-	arguments to follow the order implies by the English words in
+	arguments to follow the order implied by the English words in
 	the function name.  (Compare fprintf(3) and contrast fputs(3).)
 	* src/roff/troff/node.cpp (mount_font): Rename this...
 	(mount_font_at_position): ...to this.  Resequence arguments.
