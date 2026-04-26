@@ -12605,13 +12605,28 @@ font description file for the resolved font name is not found, GNU
 @code{troff} emits a warning in category @samp{font} and ignores the
 request.
 
-The @code{\f} escape sequence is similar, accepting names or mounting
-positions of one character @var{f}, two characters @var{fn}, or
-arbitrary length @var{font}.
+The
+@code{\f}
+escape sequence is similar,
+accepting names or mounting positions of one character
+@var{f},
+two characters
+@var{fn},
+or arbitrary length
+@var{font}.
 @cindex previous font, selecting (@code{\f[]}, @code{\fP})
 @cindex font, previous, selecting (@code{\f[]}, @code{\fP})
-@samp{\f[]} selects the previous font.  The syntax form @samp{\fP} is
-supported for backward compatibility, and @samp{\f[P]} for consistency.
+@samp{\f[]}
+selects the previous font.
+GNU
+@command{troff} @c GNU
+supports the syntax form
+@samp{\fP}
+for compatibility with @acronym{AT&T}
+@command{troff}, @c AT&T
+and
+@samp{\f[P]}
+for consistency.
 
 @Example
 eggs, bacon,
