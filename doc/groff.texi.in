@@ -12725,9 +12725,11 @@ to@tie{}@var{f}, GNU @command{troff} uses @var{g} instead.  Omit @var{g}
 or repeat @var{f} as@tie{}@var{g} to untranslate @var{f}.  @var{f} and
 @var{g} need not be mounted fonts.
 
-You can obtain a report of font translations defined by @code{ftr} on
-the standard error stream with the @code{pftr} request.
-@xref{Debugging}.
+Obtain a report of font translations defined by
+@code{ftr}
+on the standard error stream with the
+@code{pftr}
+request.@footnote{@xref{Debugging}.}
 @endDefreq
 
 @DefreqList {fzoom, font [@Var{zoom}]}
@@ -13003,7 +13005,7 @@ identifiers.
 @c exercised this freedom in 30+ years, and we should consider
 @c prohibiting it.  --GBR
 
-You can obtain a report of occupied font mounting positions
+Obtain a report of occupied font mounting positions
 (whether configured by the
 @samp{DESC}
 file,
@@ -13012,8 +13014,8 @@ the
 request,
 or automatic mounting)
 on the standard error stream with the
-@code{pfp} request.
-@xref{Debugging}.
+@code{pfp}
+request.@footnote{@xref{Debugging}.}
 
 @cindex font position register (@code{.f})
 The position of the currently selected font (or abstract style) is
@@ -13556,9 +13558,11 @@ combining one.  A set of default mappings for many accents can be found
 in the file @file{composite.tmac}, loaded by the default @file{troffrc}
 at startup.
 
-You can obtain a report of mappings defined by @code{composite} on the
-standard error stream with the @code{pcomposite} request.
-@xref{Debugging}.
+Obtain a report of mappings defined by
+@code{composite}
+on the standard error stream with the
+@code{pcomposite}
+request.@footnote{@xref{Debugging}.}
 @endDefreq
 
 @Defesc {\\N, @code{'}, n, @code{'}}
@@ -15437,8 +15441,11 @@ clamps it at 65,535).
 .defcolor darkgreen rgb 0.1f 0.5f 0.2f
 @endExample
 
-You can obtain a report of colors defined by @code{defcolor} on the
-standard error stream with the @code{pcolor} request.  @xref{Debugging}.
+Obtain a report of colors defined by
+@code{defcolor}
+on the standard error stream with the
+@code{pcolor}
+request.@footnote{@xref{Debugging}.}
 @endDefreq
 
 @cindex default color

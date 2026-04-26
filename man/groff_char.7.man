@@ -747,7 +747,7 @@ suppressing advancement.
 .
 .
 .P
-You can obtain a report of mappings defined by the
+Obtain a report of mappings defined by the
 .B \%composite
 request on the standard error stream with the
 .B \%pcomposite
