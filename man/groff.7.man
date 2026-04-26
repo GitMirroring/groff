@@ -1769,8 +1769,8 @@ Texinfo manual for the complex macro argument quoting rules of AT&T
 .\" BEGIN Keep (roughly) parallel with groff.texi node "Using Escape
 .\" Sequences".
 Whereas requests must occur on control lines,
-escape sequences can occur intermixed with text and may appear in
-arguments to requests,
+escape sequences can occur intermixed with text
+and may appear in arguments to requests,
 macros,
 and other escape sequences.
 .
@@ -1822,12 +1822,13 @@ again,
 and
 .BR \|\[rs]n ).
 .
-In no case can an escape sequence parameter contain an unescaped
-newline.
-.\" As with requests, use of some escape sequences in source documents
-.\" may interact poorly with a macro package you use; consult its
-.\" documentation to learn of ``safe'' sequences or alternative
-.\" facilities it provides to achieve the desired result.
+In no case can an escape sequence parameter
+contain an unescaped newline.
+.\" As with requests,
+.\" use of some escape sequences in source documents
+.\" may interact poorly with a macro package you use;
+.\" consult its documentation to learn of ``safe'' sequences
+.\" or alternative facilities it provides to achieve the desired result.
 .
 .
 .P
@@ -1843,15 +1844,22 @@ emits a warning in category
 See section \[lq]Warnings\[rq] in
 .MR @g@troff @MAN1EXT@ .)
 .
+In copy mode,
+the escape character can be used to quote the escape or control
+characters.
+.
+(See subsection \[lq]Copy mode\[rq] below.)
+.
 .
 .P
-Escape sequence interpolation is of higher precedence than escape
-sequence argument interpretation.
+Escape sequence interpolation is of higher precedence
+than escape sequence argument interpretation.
 .
-This rule affords flexibility in using escape sequences to construct
-parameters to other escape sequences.
+This rule affords flexibility in using escape sequences
+to construct parameters to other escape sequences.
 .
 .
+.\" This summary paragraph is unique to the man page.
 .P
 The escape character can be interpolated
 .RB ( \[rs]e ).

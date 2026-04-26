@@ -8450,32 +8450,59 @@ because it tracks the nesting depth of interpolations.
 @cindex using escape sequences
 @cindex escape sequences
 
-Whereas requests must occur on control lines, escape sequences can occur
-intermixed with text and may appear in arguments to requests, macros,
+Whereas requests must occur on control lines,
+escape sequences can occur intermixed with text
+and may appear in arguments to requests,
+macros,
 and other escape sequences.
 @esindex \
-An escape sequence is introduced by the escape character, a backslash
-@code{\} (but see the @code{ec} request below).  The next character
-selects the escape's function.
+An escape sequence is introduced by the escape character,
+a backslash
+@code{\}
+(but see the
+@code{ec}
+request below).
+The next character selects the escape's function.
 
-Escape sequences vary in length.  Some take an argument, and of those,
+Escape sequences vary in length.
+Some take an argument,
+and of those,
 some have different syntactical forms for a one-character,
-two-character, or arbitrary-length argument.  Others accept @emph{only}
-an arbitrary-length argument.  In the former scheme, a one-character
-argument follows the function character immediately, an opening
-parenthesis @samp{(} introduces a two-character argument (no closing
-parenthesis is used), and an argument of arbitrary length is enclosed in
-brackets @samp{[]}.  In the latter scheme, the user selects a delimiter
-character.  A few escape sequences are idiosyncratic, and support both
-of the foregoing conventions (@code{\s}), designate their own
-termination sequence (@code{\?}), consume input until the next newline
-(@code{\!}, @code{\"}, @code{\#}), or support an additional modifier
-character (@code{\s} again, and @code{\n}).  In no case can an escape
-sequence parameter contain an unescaped newline.  As with requests, use
-of some escape sequences in source documents may interact poorly with a
-macro package you use; consult its documentation to learn of ``safe''
-sequences or alternative facilities it provides to achieve the desired
-result.
+two-character, or arbitrary-length argument.
+Others accept
+@emph{only}
+an arbitrary-length argument.
+In the former scheme,
+a one-character argument follows the function character immediately,
+an opening parenthesis
+@samp{(}
+introduces a two-character argument
+(no closing parenthesis is used),
+and an argument of arbitrary length is enclosed in brackets
+@samp{[]}.
+In the latter scheme,
+the user selects a delimiter character.
+A few escape sequences are idiosyncratic,
+and support both of the foregoing conventions
+(@code{\s}),
+designate their own termination sequence
+(@code{\?}),
+consume input until the next newline
+(@code{\!},
+@code{\"},
+@code{\#}),
+or support an additional modifier character
+(@code{\s}
+again,
+and
+@code{\n}).
+In no case can an escape sequence parameter
+contain an unescaped newline.
+As with requests,
+use of some escape sequences in source documents
+may interact poorly with a macro package you use;
+consult its documentation to learn of ``safe'' sequences
+or alternative facilities it provides to achieve the desired result.
 
 If the character that follows the escape character
 does not identify a valid operation,
@@ -8484,6 +8511,9 @@ the formatter ignores the escape character.@footnote{GNU
 emits a warning in category
 @samp{escape}.
 @xref{Warnings}.}
+In copy mode,
+the escape character can be used to quote the escape or control
+characters.@footnote{@xref{Copy Mode}.}
 
 @Example
 $ groff -T ps -ww
@@ -8496,10 +8526,10 @@ said \P.\&\~Pseudo Pachyderm.
     @result{} I have @slanted{12 white elephants,} said P. Pseudo Pachyderm.
 @endExample
 
-Escape sequence interpolation is of higher precedence than escape
-sequence argument interpretation.  This rule affords flexibility in
-using escape sequences to construct parameters to other escape
-sequences.
+Escape sequence interpolation is of higher precedence
+than escape sequence argument interpretation.
+This rule affords flexibility in using escape sequences
+to construct parameters to other escape sequences.
 @c END Keep (roughly) parallel with section "Escape sequences" of
 @c groff(7).
 
