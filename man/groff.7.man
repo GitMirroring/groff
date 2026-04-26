@@ -8917,9 +8917,8 @@ Applying string interpolation to a macro does not change this name.
 .SS "Copy mode"
 .\" ====================================================================
 .
-GNU
-.I troff \" GNU
-processes certain requests in
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Copy Mode".
+The formatter processes certain requests in
 .I "copy mode:"
 it copies ordinary,
 special,
@@ -8957,8 +8956,6 @@ represents
 .BR \[rs]_ ,
 .BR \[rs]| ,
 .BR \[rs]\[ha] ,
-.BR \[rs]{ ,
-.BR \[rs]} ,
 .BR \[rs]\[ga] ,
 .BR \[rs]\[aq] ,
 .BR \[rs]\- ,
@@ -8975,6 +8972,16 @@ and
 in an encoded form,
 and copies other escape sequences as-is.
 .
+(When defining a macro,
+GNU
+.I troff \" GNU
+also encodes
+.B \[rs]{
+and
+.B \[rs]}
+so that they can participate in control flow decisions.
+.\" recall @ref{Conditional Blocks}.)
+.
 The term \[lq]copy mode\[rq] reflects its most visible application
 in requests that populate macros and strings,
 but other requests also use it when interpreting arguments
@@ -8986,11 +8993,20 @@ in a hyphenation pattern file name
 or a diagnostic message written to the terminal
 .RB ( tm ).
 .
+Any other use of the escape character in copy mode serves to
+.I quote
+the subsequent character,
+delaying its interpretation until the material processed in copy mode
+is subsequently interpolated.
+.
+.
+.P
 The complement of copy mode\[em]a
 .I roff
 formatter's behavior when not defining or appending to a macro,
 string,
-or diversion\[em]where all macros are interpolated,
+or diversion\[em]where
+all macros are interpolated,
 requests invoked,
 and valid escape sequences processed immediately upon recognition,
 can be termed
@@ -9076,8 +9092,7 @@ before
 and
 .B \[aq]
 where
-.I @g@troff
-expects them as control characters
+the formatter expects them as control characters
 if you mean to use them literally.
 .
 .
@@ -9120,15 +9135,19 @@ required to quote and thereby delay interpolation of
 and
 .B \[rs]?\&
 at each nesting level.
+.\" which can be daunting.
+.\" GNU
+.\" @code{troff} @c GNU
+.\" offers a solution.
 .
-An alternative is to use
-.BR \[rs]E ,
-which represents an escape character that is not interpreted in copy
-mode.
+.B \[rs]E
+encodes an escape character that is not interpreted in copy mode.
+.
+Its use can ease the writing of nested macro definitions.
 .
 Because
-.B \[rs].\&
-is not a true escape sequence,
+.RB \[lq] \[rs].\& \[rq]
+is a quoted control character,
 we can't use
 .B \[rs]E
 to keep
@@ -9137,6 +9156,7 @@ from ending a macro definition prematurely.
 .
 If the multiplicity of backslashes complicates maintenance,
 use end macros.
+.\" END Keep (roughly) parallel with groff.texi node "Copy Mode".
 .
 .
 .\" ====================================================================

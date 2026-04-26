@@ -17203,9 +17203,9 @@ Applying string interpolation to a macro does not change this name.
 @cindex mode, copy
 @cindex mode, copy
 
-GNU
-@code{troff}
-processes certain requests in
+@c BEGIN Keep (roughly) parallel with subsection "Copy mode" of
+@c groff(7).
+The formatter processes certain requests in
 @dfn{copy mode}:@:
 it copies ordinary,
 special,
@@ -17242,8 +17242,6 @@ represents
 @code{\_},
 @code{\|},
 @code{\^},
-@code{\@{},
-@code{\@}},
 @code{\`},
 @code{\'},
 @code{\-},
@@ -17258,6 +17256,16 @@ and
 @code{\:}
 in an encoded form,
 and copies other escape sequences as-is.
+(When defining a macro,
+GNU
+@command{troff} @c GNU
+also encodes
+@code{\@{}
+@code{\@}}
+so that they can participate in control flow decisions;
+recall @ref{Conditional Blocks}.)
+@c I don't think it's user-perceptible, but \{ and \} also get encoded
+@c in `ig`nored input.  Brace-matching logic skips ignored code.  --GBR
 The term ``copy mode'' reflects its most visible application
 in requests that populate macros and strings,
 but other requests also use it when interpreting arguments
@@ -17268,13 +17276,25 @@ in a hyphenation pattern file name
 (@code{hpf})
 or a diagnostic message written to the terminal
 (@code{tm}).
+@cindex quotation, in roff syntax
+@cindex escape character, as a syntactical quotation character
+Any other use of the escape character in copy mode serves to
+@dfn{quote}
+the subsequent character,
+delaying its interpretation until the material processed in copy mode
+is subsequently interpolated.
 
 @cindex interpretation mode
 @cindex mode, interpretation
-The complement of copy mode---a @code{roff} formatter's behavior when
-not defining or appending to a macro, string, or diversion---where all
-macros are interpolated, requests invoked, and valid escape sequences
-processed immediately upon recognition, can be termed
+The complement of copy mode---a
+@code{roff}
+formatter's behavior when not defining or appending to a macro,
+string,
+or diversion---where
+all macros are interpolated,
+requests invoked,
+and valid escape sequences processed immediately upon recognition,
+can be termed
 @dfn{interpretation mode}.
 
 @Defesc {\\\\, , , }
@@ -17282,15 +17302,8 @@ processed immediately upon recognition, can be termed
 @cindex @code{\\}, as quotation character
 @cindex quoting the escape character with @code{\\}
 @cindex quoting the control character with @code{\\}
-The escape character
-(@code{\}
-by default)
-when used before itself
-@dfn{quotes}
-an escape character for later interpretation
-in an enclosing context.
-Escape character quotation enables you to control
-whether the formatter interprets a given
+Quoting the escape character
+enables you to control whether the formatter interprets a given
 @code{\n},
 @code{\g},
 @code{\$},
@@ -17312,39 +17325,12 @@ or later when the macro is called.@footnote{Compare this to the
 .y
     @result{} 20 10
 @endExample
-
-You can think of
-@code{\\}
-as a ``delayed'' backslash;
-it is the escape character
-followed by a backslash
-from which the escape character
-has removed its special meaning.
-Consequently,
-@samp{\\}
-is not best considered an escape sequence,
-but a quoted escape character.
-In any escape sequence
-@samp{\@var{X}}
-that
-GNU
-@code{troff} @c GNU
-does not recognize,
-the formatter discards the escape character and outputs
-@var{X}.
-An unrecognized escape sequence causes a warning in category
-@samp{escape},
-with two exceptions---@samp{\\}
-is the first.
 @endDefesc
 
 @cindex @code{\.}, interpretation in copy mode
 @Defesc {\\., , , }
 @code{\.}
 quotes the control character.
-It is similar to
-@code{\\}
-in that it isn't a true escape sequence.
 It is used to permit nested macro definitions to end
 without a named macro call to conclude them.
 Without a syntax for quoting the control character,
@@ -17353,11 +17339,9 @@ this would not be possible.
 @Example
 .de m1
 foo
-.
 .  de m2
 bar
 \\..
-.
 ..
 .m1
 .m2
@@ -17389,10 +17373,9 @@ before
 and
 @samp{'}
 where
-GNU
-@code{troff} @c GNU
-expects them as control characters
-if you mean to use them literally (recall @ref{Requests and Macros}).
+the formatter expects them as control characters
+if you mean to use them literally;
+recall @ref{Requests and Macros}.
 
 @cindex nesting depth, of escape sequences in macro definitions
 @cindex depth, nesting, of escape sequences in macro definitions
@@ -17423,7 +17406,7 @@ once,
 when populating the macro or string,
 where the first
 @samp{\}
-serves its quotation function\[em]thus
+serves its quotation function---thus
 only one
 @samp{\}
 is stored in the definition.
@@ -17448,12 +17431,13 @@ and
 at each nesting level,
 which can be daunting.
 GNU
-@code{troff} @c GNU
+@command{troff} @c GNU
 offers a solution.
 
 @Defesc {\\E, , , }
-@code{\E} represents an escape character that is not interpreted in copy
-mode.  You can use it to ease the writing of nested macro definitions.
+@code{\E}
+encodes an escape character that is not interpreted in copy mode.
+Its use can ease the writing of nested macro definitions.
 
 @Example
 .de M1
@@ -17472,10 +17456,18 @@ This vehicle handles
     @result{} This vehicle handles a bit better.
 @endExample
 
-Observe that because @code{\.} is not a true escape sequence, we can't
-use @code{\E} to keep @samp{..} from ending a macro definition
-prematurely.  If the multiplicity of backslashes complicates
-maintenance, use end macros.
+Because
+@samp{\.}
+is a quoted control character,
+we can't use
+@code{\E}
+to keep
+@samp{..}
+from ending a macro definition prematurely.
+If the multiplicity of backslashes complicates maintenance,
+use end macros.
+@c END Keep (roughly) parallel with subsection "Copy mode" of
+@c groff(7).
 
 @code{\E}
 is also convenient to define strings containing escape sequences that
