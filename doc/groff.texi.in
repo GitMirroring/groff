@@ -11800,7 +11800,7 @@ the previous values.
 @endExample
 
 Requests exist to place line numbers and margin characters beyond the
-page margins; @ref{Miscellaneous}.
+page margins.@footnote{@xref{Output Line Annotation}.}
 
 @DefreqList {po, [@Var{offset}]}
 @DefreqItem {po, @t{+}@Var{offset}}
@@ -12662,8 +12662,8 @@ does not tokenize
 when reading it;
 the escape sequence updates the environment.
 It thus can be used in requests that expect a single-character argument.
-We can assign a font to a margin character as follows
-(@pxref{Miscellaneous}).
+We can assign a font to a margin character
+as follows.@footnote{@xref{Output Line Annotation}.}
 
 @Example
 .mc \f[I]x\f[]
@@ -12824,8 +12824,8 @@ does not tokenize
 when reading it;
 the escape sequence updates the environment.
 It thus can be used in requests that expect a single-character argument.
-We can assign a font family to a margin character as follows
-(@pxref{Miscellaneous}).
+We can assign a font family to a margin character
+as follows.@footnote{@xref{Output Line Annotation}.}
 
 @Example
 .mc \F[P]x\F[]
@@ -14282,9 +14282,8 @@ when reading it;
 the escape sequence
 updates the environment.@footnote{@xref{Environments}.}
 It thus can be used in requests that expect a single-character argument.
-We can alter the font height
-of a margin character@footnote{@xref{Miscellaneous}.}
-as follows.
+We can alter the font height of a margin character
+as follows.@footnote{@xref{Output Line Annotation}.}
 
 @Example
 .mc \H'+5z'x\H'0'
@@ -14339,9 +14338,8 @@ when reading it;
 the escape sequence
 updates the environment.@footnote{@xref{Environments}.}
 It thus can be used in requests that expect a single-character argument.
-We can apply a slant
-to a margin character@footnote{@xref{Miscellaneous}.}
-as follows.
+We can apply a slant to a margin character
+as follows.@footnote{@xref{Output Line Annotation}.}
 
 @Example
 .mc \S'20'x\S'0'
@@ -14959,8 +14957,8 @@ The formatter does not tokenize
 when reading its input;
 it instead updates the environment.
 It thus can be used in requests that expect a single-character argument.
-We might alter the type size
-when writing a margin character as follows (@pxref{Miscellaneous}).
+We can alter the type size of a margin character
+as follows.@footnote{@xref{Output Line Annotation}.}
 
 @Example
 .mc \s[20]x\s[0]
@@ -15470,8 +15468,8 @@ does not tokenize
 when reading it;
 the escape sequence updates the environment.
 It thus can be used in requests that expect a single-character argument.
-We can assign a stroke color to a margin character as follows
-(@pxref{Miscellaneous}).
+We can assign a stroke color to a margin character
+as follows.@footnote{@xref{Output Line Annotation}.}
 
 @Example
 .mc \m[red]x\m[]
@@ -15505,8 +15503,8 @@ does not tokenize
 when reading it;
 the escape sequence updates the environment.
 It thus can be used in requests that expect a single-character argument.
-We can assign a fill color to a margin character as follows
-(@pxref{Miscellaneous});
+We can assign a fill color to a margin character
+as follows;@footnote{@xref{Output Line Annotation}.}
 @command{grotty}
 interprets the fill color as a character cell background color.
 
