@@ -6771,7 +6771,7 @@ particular output driver, or their glyphs may not have representation in
 the font used.  For terminal devices, fallbacks are defined, like
 @samp{EUR} for the Euro sign and @samp{(C)} for the copyright sign.  For
 typesetter devices, you may need to ``mount'' fonts that support glyphs
-required by the document.  @xref{Font Positions}.
+required by the document.  @xref{Font Mounting Positions}.
 
 @pindex freeeuro.pfa
 @pindex ec.tmac
@@ -12470,7 +12470,7 @@ or by altering @w{ISO 6429}/ECMA-48
 @menu
 * Selecting Fonts::
 * Font Families::
-* Font Positions::
+* Font Mounting Positions::
 * Characters and Glyphs::
 * Character Classes::
 * Special Fonts::
@@ -12857,10 +12857,12 @@ interpolates nothing.
 
 @c ---------------------------------------------------------------------
 
-@node Font Positions
-@subsection Font Positions
-@cindex font positions
-@cindex positions, font
+@node Font Mounting Positions
+@anchor{Font Positions} @c 1.24.1
+@subsection Font Mounting Positions
+@cindex font mounting positions
+@cindex mounting positions, font
+@cindex positions, font mounting
 
 To support typeface indirection through abstract styles, and for
 compatibility with @acronym{AT&T} @code{troff}, the formatter maintains
@@ -13185,7 +13187,7 @@ and apply this procedure to each character in its definition.
 @item
 Finally,
 iterate through the list of mounted fonts by position;
-recall @ref{Font Positions}.
+recall @ref{Font Mounting Positions}.
 For each mounted font,
 if that font's description bears the
 @code{special}
@@ -24893,7 +24895,7 @@ This command is a GNU extension.
 The @samp{f} stands for @var{font}.
 
 Mount font position@tie{}@var{n} (a non-negative integer) with font
-named@tie{}@var{s} (a text word).  @xref{Font Positions}.
+named@tie{}@var{s} (a text word).  @xref{Font Mounting Positions}.
 
 @item xH @var{n}@angles{line break}
 The @samp{H} stands for @var{Height}.
