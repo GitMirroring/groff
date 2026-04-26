@@ -2304,8 +2304,8 @@
 	`int` to store the value fails to communicate that constraint to
 	snprintf(3).
 
-	Even the use of `int` a bit slippery of us, since it's a signed
-	type with a 31-bit significand.  But libgroff's
+	Even the use of `int` is a bit slippery of us, since it's a
+	signed type with a 31-bit significand.  But libgroff's
 	`glyph_to_unicode()`, which `get_unicode_code()` calls, uses
 	"-1" to signal an error in-band.
 
