@@ -240,7 +240,7 @@
 	(read_drawing_command):
 	* src/roff/troff/node.cpp
 	(remove_font_specific_character_request): Migrate input handlers
-	to call `token::is_terminator()` rather than the evaluating
+	to call `token::is_terminator()` rather than evaluating the
 	Boolean expression `tok.is_newline() && tok.is_eof()`.
 
 2026-04-19  G. Branden Robinson <g.branden.robinson@gmail.com>
