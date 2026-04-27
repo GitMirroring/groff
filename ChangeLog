@@ -1,5 +1,14 @@
 2026-04-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/number.cpp: Slightly refactor.  Convince any
+	compiler that we're not falling off the end of functions
+	returning `bool` (or `incr_number_result`).  End function bodies
+	with an unconditional `return`.
+	(read_vunits, read_hunits, read_measurement, read_integer)
+	(get_incr_number): Do it.
+
+2026-04-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Stop reporting number format for read-only registers.
 
 	* src/roff/troff/reg.h (class reg, class general_reg): Define

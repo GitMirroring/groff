@@ -70,8 +70,7 @@ bool read_vunits(vunits *res, unsigned char si) // TODO: grochar
     *res = vunits(x);
     return true;
   }
-  else
-    return false;
+  return false;
 }
 
 bool read_hunits(hunits *res, unsigned char si) // TODO: grochar
@@ -83,8 +82,7 @@ bool read_hunits(hunits *res, unsigned char si) // TODO: grochar
     *res = hunits(x);
     return true;
   }
-  else
-    return false;
+  return false;
 }
 
 bool read_measurement(units *res,
@@ -99,8 +97,7 @@ bool read_measurement(units *res,
     *res = x;
     return true;
   }
-  else
-    return false;
+  return false;
 }
 
 bool read_integer(int *res)
@@ -113,8 +110,7 @@ bool read_integer(int *res)
     *res = x;
     return true;
   }
-  else
-    return false;
+  return false;
 }
 
 enum incr_number_result { INVALID, ASSIGN, INCREMENT, DECREMENT };
@@ -246,10 +242,13 @@ static incr_number_result get_incr_number(units *res,
   }
   if (is_valid_expression(res, si, false /* is_parenthesized */))
     return result;
-  else
-    return INVALID;
+  return INVALID;
 }
 
+// TODO: This is a pretty crude test: it doesn't check the first
+// character of a putative numeric expression to see if it makes any
+// sense.  Can we be more scrupulous at our call sites and turn this
+// into a simple `inline` assert(3)ion?
 static bool is_valid_expression_start()
 {
   tok.skip_spaces();
