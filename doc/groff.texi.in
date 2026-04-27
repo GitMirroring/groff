@@ -22042,14 +22042,15 @@ and diversions and their lengths in characters or nodes.
 @Defreq {pnr, [@Var{reg} @r{@dots{}}]}
 @cindex dumping registers (@code{pnr})
 @cindex registers, dumping (@code{pnr})
-Report the name and value and,
-if its type is numeric,
-the autoincrement amount and assigned format of each register
-@var{reg},
-or,
-without arguments,
-those of all defined registers,
+Report the name,
+value,
+and
+(as applicable)
+autoincrement amount and assigned format of each register
+@var{reg}
 to the standard error stream.
+If arguments are omitted,
+report the foregoing properties of all defined registers.
 @endDefreq
 
 @Defreq {pstream, }
