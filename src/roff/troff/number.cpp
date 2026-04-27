@@ -113,10 +113,13 @@ bool read_integer(int *res)
   return false;
 }
 
-enum incr_number_result { INVALID, ASSIGN, INCREMENT, DECREMENT };
+// A "crement" is a *roff numeric expression that accepts an optional
+// leading sign (plus or minus) to alter a value relative to its
+// existing magnitude.
+enum crement { INVALID, ASSIGN, INCREMENT, DECREMENT };
 
-static incr_number_result get_incr_number(units * /* res */,
-					  unsigned char /* si */); // TODO: grochar
+static crement read_crement(units * /* res */,
+			    unsigned char /* si */); // TODO: grochar
 
 bool read_vunits(vunits *res,
 		 unsigned char si, // TODO: grochar
@@ -126,7 +129,7 @@ bool read_vunits(vunits *res,
   // Use a primitive temporary because having the ckd macros store to
   // &(res->n) requires `friend` access and produces wrong results.
   int i;
-  switch (get_incr_number(&v, si)) {
+  switch (read_crement(&v, si)) {
   case INVALID:
     return false;
   case ASSIGN:
@@ -156,7 +159,7 @@ bool read_hunits(hunits *res,
   // Use a primitive temporary because having the ckd macros store to
   // &(res->n) requires `friend` access and produces wrong results.
   int i;
-  switch (get_incr_number(&h, si)) {
+  switch (read_crement(&h, si)) {
   case INVALID:
     return false;
   case ASSIGN:
@@ -183,7 +186,7 @@ bool read_measurement_crement(units *res,
 			      units operand)
 {
   units u;
-  switch (get_incr_number(&u, si)) {
+  switch (read_crement(&u, si)) {
   case INVALID:
     return false;
   case ASSIGN:
@@ -206,7 +209,7 @@ bool read_measurement_crement(units *res,
 bool read_integer_crement(int *res, int operand)
 {
   units i;
-  switch (get_incr_number(&i, 0)) {
+  switch (read_crement(&i, 0)) {
   case INVALID:
     return false;
   case ASSIGN:
@@ -226,12 +229,11 @@ bool read_integer_crement(int *res, int operand)
   return true;
 }
 
-static incr_number_result get_incr_number(units *res,
-					  unsigned char si) // TODO: grochar
+static crement read_crement(units *res, unsigned char si) // TODO: grochar
 {
   if (!is_valid_expression_start())
     return INVALID;
-  incr_number_result result = ASSIGN;
+  crement result = ASSIGN;
   if (tok.ch() == int('+')) { // TODO: grochar
     tok.next();
     result = INCREMENT;

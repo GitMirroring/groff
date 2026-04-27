@@ -1,5 +1,19 @@
 2026-04-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/number.cpp: Trivially refactor.  Rename
+	`incr_number_result` enumeration type to `crement`.  Annotate
+	it.  Rename `get_incr_number()` to `read_crement()`.  We're
+	pretty close to exclusive use of function names starting with
+	"read_" for input stream reading operations; that is,
+	interpretation of *roff language.  This change moves us closer
+	to that goal.
+	(get_incr_number): Rename this...
+	(read_crement): ...to this.  Update its return type.
+	(read_vunits, read_hunits, read_measurement_crement)
+	(read_integer_crement): Update call sites.
+
+2026-04-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/number.cpp: Slightly refactor.  Convince any
 	compiler that we're not falling off the end of functions
 	returning `bool` (or `incr_number_result`).  End function bodies
