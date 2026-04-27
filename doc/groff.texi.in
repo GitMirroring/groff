@@ -9197,7 +9197,7 @@ exist, the request is ignored.  Renaming a built-in register does not
 otherwise alter its properties.
 @endDefreq
 
-@Defreq {aln, new-register old-register}
+@Defreq {aln, new-register existing-register}
 @cindex alias, register, creating (@code{aln})
 @cindex creating alias of register (@code{aln})
 @cindex register, creating alias of (@code{aln})
