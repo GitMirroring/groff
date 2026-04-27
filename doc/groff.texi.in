@@ -14898,14 +14898,16 @@ with the environment.@footnote{@xref{Environments}.}
 @cindex changing type sizes (@code{ps}, @code{\s})
 @cindex type sizes, changing (@code{ps}, @code{\s})
 @cindex point sizes, changing (@code{ps}, @code{\s})
-Set (increase, decrease) the type size to (by) @var{size} points.
+Set the type size to,
+or alter it by,
+@var{size}.
 @code{ps} with no argument restores the previous size.
 The
 @code{ps}
 request's default scaling unit is
 @samp{z};
 recall @ref{Measurements}
-and see @ref{Using Fractional Type Sizes}).
+and see @ref{Using Fractional Type Sizes}). @c inline forward reference
 The formatter rounds the requested size to the nearest valid size
 (with ties rounding down)
 within the limits supported by the device,
