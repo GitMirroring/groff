@@ -23004,6 +23004,55 @@ spaces or tabs between the ordinary control character and a
 or macro name that would normally end a macro definition
 prevent it from doing so.
 
+GNU
+@command{troff} @c GNU
+regards a failed attempt to select a different font
+as a meaningful action
+and updates the the identity of the previous font selection.
+Most @acronym{AT&T}-descended
+@command{troff}s @c AT&T
+do not.
+Consequently,
+given the input
+
+@Example
+\fBfoo\fZbar\fPbaz
+@endExample
+
+and,
+assuming that the output device lacks a font named
+@samp{Z},
+GNU
+and Heirloom Doctools
+@command{troff}s @c GNU, Heirloom
+set
+@samp{baz}
+in bold;
+DWB,
+Plan@tie{}9,
+and Solaris@tie{}10
+@command{troff}s @c DWB, Plan 9, Solaris 10
+set it in roman.
+The only way to determine if a font selection operation succeeded
+in the latter group of formatters
+is to save the value of the
+@code{.f}
+register prior to attempting the change,
+make the attempt,
+then compare the saved value to the current one;
+if it changed,
+the font selection presumably succeeded.
+Since doing so requires
+@code{nr}
+and
+@code{if}
+(or
+@code{ie})
+requests,
+such a procedure cannot be performed amid
+@code{\f}
+sequences on an input line.
+
 Formatters that don't implement
 GNU
 @command{troff} @c GNU

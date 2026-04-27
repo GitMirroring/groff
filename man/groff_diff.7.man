@@ -6769,6 +6769,38 @@ prevent it from doing so.
 .
 .
 .P
+GNU
+.I troff \" GNU
+regards a failed attempt to select a different font
+as a meaningful action
+and updates the the identity of the previous font selection.
+Most AT&T-descended
+.IR troff s \" AT&T
+do not.
+.
+The only way to determine if a font selection operation succeeded
+in the latter group of formatters
+is to save the value of the
+.B .f
+register prior to attempting the change,
+make the attempt,
+then compare the saved value to the current one;
+if it changed,
+the font selection presumably succeeded.
+.
+Since doing so requires
+.B nr
+and
+.RB \[lq] if \^\[rq]
+(or
+.BR ie )
+requests,
+such a procedure cannot be performed amid
+.B \[rs]f
+sequences on an input line.
+.
+.
+.P
 Formatters that don't implement
 GNU
 .I troff \" GNU
