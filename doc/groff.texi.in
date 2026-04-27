@@ -12307,7 +12307,14 @@ Spacing}).  While the @code{sv} request allows negative values for
 @c formatter doesn't start a page until it has to.
 @code{nl}
 interpolates the vertical drawing position
-as of the most recently typeset output line.
+as of the most recently typeset output line.@footnote{@xref{Diversions},
+for a comparison of
+@code{nl}
+with the
+@code{.h}
+and
+@code{.d}
+registers.}
 It does not necessarily
 (and often does not)
 represent that of the pending output line,
@@ -12360,9 +12367,6 @@ Second page.
 Without resetting @code{nl} to a negative value, the trap just planted
 would be active beginning with the @emph{next} page, not the current
 one.
-
-@xref{Diversions}, for a comparison of @code{nl} with the @code{.h} and
-@code{.d} registers.
 @endDefreg
 
 
