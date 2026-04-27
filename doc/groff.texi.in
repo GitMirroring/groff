@@ -14443,19 +14443,34 @@ request).
 @endDefreq
 
 @Defreq {cs, font [@Var{width} [@Var{em-size}]]}
-@cindex constant glyph spacing mode (@code{cs})
+@cindex constant glyph spacing (@code{cs})
 @cindex mode, constant glyph spacing (@code{cs})
-@cindex glyph mode, constant spacing (@code{cs})
-@cindex @code{ps} request, and constant glyph spacing mode
-Switch to and from @dfn{constant glyph spacing mode}.  If activated, the
-width of every glyph is @math{@var{width}/36} ems.  The em size is given
-absolutely by @var{em-size}; if this argument is missing, the em value
-is taken from the current font size (as set with the @code{ps} request)
-when the font is effectively in use.  Without second and third argument,
-constant glyph spacing mode is deactivated.
+@cindex spacing, constant glyph (@code{cs})
+@cindex @code{ps} request, and constant glyph spacing
+Apply
+@dfn{constant glyph spacing}
+to font
+@var{font}.
+@cindex advance width
+@cindex width, advance
+The
+@dfn{advance width}
+of every glyph in the font---the amount the drawing position
+moves horizontally after setting the glyph---becomes
+@math{@var{width}/36} ems.
+The
+@var{em-size}
+argument overrides the font's em size;
+omitting it preserves the formatter's usual recomputation of
+@var{font}'s
+em size from the type size in effect each time that font is selected.
+Omitting both the second and third arguments deactivates
+constant glyph spacing for font
+@var{font}.
 
-Default scaling unit for @var{em-size} is @samp{z}; @var{width} is an
-integer.
+The default scaling unit for @var{em-size} is @samp{z};
+@var{width}
+is an integer.
 @endDefreq
 
 @c ---------------------------------------------------------------------

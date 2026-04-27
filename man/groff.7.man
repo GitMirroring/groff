@@ -3386,27 +3386,28 @@ compatibility mode per Boolean expression
 .
 .TPx
 .REQ .cs font
-Disable constant-width glyph spacing mode for font
+Disable constant glyph spacing for font
 .I font.
 .
 .TPx
 .REQ .cs "font n"
-Enable constant-width glyph spacing mode for font
-.I font
-at
+Enable constant glyph spacing for font
+.IR font ,
+overriding the advance width of every glyph in font to
 .IR n /36
 ems.
 .
 .TPx
 .REQ .cs "font n p"
-Enable constant-width glyph spacing mode for font
-.I font
-at
+Enable constant glyph spacing for font
+.IR font ,
+overriding the advance width of every glyph in font to
 .IR n /36
-ems,
-as if one em equals
+ems with an assumed em size of
 .I p
-scaled points.
+points
+(default scaling unit\~\c
+.scaleindicator z ).
 .
 .TPx
 .REQ .cu
