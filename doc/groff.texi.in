@@ -14886,6 +14886,7 @@ with the environment.@footnote{@xref{Environments}.}
 
 @c ---------------------------------------------------------------------
 
+@need 875
 @node Changing the Type Size
 @anchor{Changing Type Sizes} @c 1.22.4
 @subsection Changing the Type Size
@@ -15019,7 +15020,6 @@ type size (such as @samp{12000}), or a range of sizes (such as
 @samp{4000-72000}).  You can optionally end the list with a @samp{0}.
 @endDefreq
 
-@need 1000
 @node Changing the Vertical Spacing
 @subsection Changing the Vertical Spacing
 
@@ -17666,6 +17666,7 @@ rather than the distance between text baselines (vees).@footnote{At the
 difference between half a vee and half an em can be subtle:@: large
 spacings like @samp{.vs .5i} make it obvious.}
 
+@need 500
 @DefescList {\\r, , , }
 @DefescItemx {\\u, , , }
 @DefescListEndx {\\d, , , }
