@@ -10436,7 +10436,7 @@ void init_input_requests()
   register_dictionary.define(".br", new break_flag_reg);
   register_dictionary.define(".C", new readonly_boolean_register(&want_att_compat));
   register_dictionary.define(".cp", new enclosing_want_att_compat_reg);
-  register_dictionary.define(".O", new variable_reg(&suppression_level));
+  register_dictionary.define(".O", new readonly_register(&suppression_level));
   register_dictionary.define(".c", new lineno_reg);
   register_dictionary.define(".color", new readonly_boolean_register(&want_color_output));
   register_dictionary.define(".F", new filename_reg);

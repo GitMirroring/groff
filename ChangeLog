@@ -1,5 +1,14 @@
 2026-04-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (init_input_requests): Make `.O`
+	read-only register actually read-only.
+
+	Fixes <https://savannah.gnu.org/bugs/?68284>.  Problem appears
+	to date back to feature addition in commit bc34881980,
+	2007-09-19.
+
+2026-04-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[libgroff]: Decouple diagnosis of file I/O error from font
 	description file content validation.
 
