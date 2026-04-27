@@ -7875,15 +7875,15 @@ Several registers are predefined but also modifiable;
 some are updated upon interpretation of certain requests or escape
 sequences.
 .
-Date- and time-related registers are set to the local time as determined
-by
+The formatter sets date- and time-related registers per the local time
+as determined by
 .MR localtime 3
 when the formatter launches.
 .
-This initialization can be overridden by
-.I \%SOURCE_DATE_EPOCH
-and
-.IR TZ ;
+This initialization can be influenced by the environment variable
+.I TZ
+and overridden by
+.IR \%SOURCE_DATE_EPOCH ;
 see section \[lq]Environment\[rq] of
 .MR groff @MAN1EXT@ .
 .
