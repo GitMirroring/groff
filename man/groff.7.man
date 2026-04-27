@@ -3929,19 +3929,39 @@ to
 .IR font2 .
 .
 .TPx
-.REQ .fzoom font\~\f[B]0\f[]
-Stop magnifying font
-.IR font .
+.REQ .fzoom f
+.TQ
+.REQ .fzoom f\~\f[B]0\f[]
+.TQ
+.REQ .fzoom f\~\f[B]1000\f[]
+Stop magnifying
+.RI font\~ f .
+.
+.IR f \~must
+be a resolved font name,
+not an abstract style or mounting position.
 .
 .TPx
-.REQ .fzoom "font zoom"
-Set magnification of mounted
-.I font
-to
-.IR zoom ,
-a multiplier of the current type size in thousandths
-(default:
-1000).
+.REQ .fzoom "f zoom"
+Set zoom factor
+.I zoom
+for
+.RI font\~ f .
+.
+.I zoom
+must be a non-negative integer;
+it scales the magnification by thousandths with 1000 as a default.
+.
+.I zoom
+must be non-negative.
+.
+.B fzoom
+applies to glyphs when they are formatted,
+altering a font's apparent size in relation to others.
+.
+.IR f \~must
+be a resolved font name,
+not an abstract style or a mounting position.
 .
 .TPx
 .REQ .gcolor

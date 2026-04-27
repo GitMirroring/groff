@@ -12736,12 +12736,24 @@ request.@footnote{@xref{Debugging}.}
 @cindex optical size of a font, setting the (@code{fzoom})
 @cindex font, optical size, setting (@code{fzoom})
 @cindex size, optical, of a font, setting (@code{fzoom})
-Set magnification of mounted @var{font} to factor @var{zoom}, a
-multiplier applied to the type size in thousandths.  @var{zoom} must be
-non-negative.  @code{fzoom} applies to glyphs when they are formatted,
-altering a font's apparent size in relation to others.  A missing or
-zero @var{zoom} is treated as @samp{1000}---no magnification.
-@var{font} must be a resolved font name, not an abstract style.
+Set magnification of
+@var{font}
+to factor
+@var{zoom},
+a multiplier applied to the type size in thousandths.
+@var{zoom}
+must be non-negative.
+@code{fzoom}
+applies to glyphs when they are formatted,
+altering a font's apparent size in relation to others.
+If
+@var{zoom}
+is missing or equal to zero or 1000,
+@var{font}
+is not magnified.
+@var{font}
+must be a resolved font name,
+not an abstract style or a mounting position.
 
 Font magnification is transparent to some aspects of GNU @code{troff}.
 A change of the zoom factor affects scaling of glyph sizes, inter-word
@@ -12752,7 +12764,7 @@ supplemental inter-sentence space sizes.  It @emph{is} reflected in
 measurements of formatted output:@: the horizontal drawing position
 register @code{hp}, interpolation of the @code{\w} escape sequence, and
 the registers updated by that escape sequence or the formatting of a
-glyph in the environment.  @xref{Environments}.
+glyph in the environment.@footnote{@xref{Environments}.}
 
 @code{fzoom} can harmonize the apparent cap-heights of fonts from
 different families when formatted on the same baseline at the same type

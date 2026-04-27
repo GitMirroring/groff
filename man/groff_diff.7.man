@@ -3302,19 +3302,21 @@ is not translated.
 .RI [ zoom ]
 Set zoom factor
 .I zoom
-for font\~\c
+for
+.RI font\~ f .
 .IR f .
 .I zoom
 must be a non-negative integer;
-it scales the magnification by thousandths with 1000 as a basis.
+it scales the magnification by thousandths with 1000 as a default.
+.
 If
 .I zoom
 is missing or equal to zero or 1000,
-.RI font\~ f
+.I f
 is not magnified.
 .
-.IR f \~\c
-must be a resolved font name,
+.IR f \~must
+be a resolved font name,
 not an abstract style or mounting position.
 .
 .
