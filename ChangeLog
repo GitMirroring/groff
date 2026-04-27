@@ -1,3 +1,29 @@
+2026-04-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[libgroff]: Decouple diagnosis of file I/O error from font
+	description file content validation.
+
+	* src/include/font.h (class font): Update declaration of
+	`load_font()` public member function to insert new `bool`-valued
+	argument defaulting `true`.  It governs whether an error
+	diagnostic is issued if a font description file can't be opened.
+	Update declaration of `load` protected member function with a
+	new `bool`-valued first argument defaulting true, for the same
+	purpose, since the former function wraps the latter.
+	* src/libs/libgroff/font.cpp (font::load_font): Update
+	definition and pass new argument to `load()` member function of
+	object.
+	(font::load): Condition `error()` diagnostic on
+	`want_diagnostic` argument, not `validate_only`.
+	* src/roff/troff/node.cpp
+	(assign_font_and_file_name_to_mounting_position): Update
+	`font::load_font()` call to pass `!in_nroff_mode` as the value
+	of the former's `want_diagnostic` parameter.  Annotate why.
+	(is_font_available): Pass `font::load_font()` a `false`
+	`want_diagnostic` parameter.
+
+	Continues commit 48ab338d25, 12 April.
+
 2026-04-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/an.tmac (SH, SS, TP): Throw warning if macro called while
