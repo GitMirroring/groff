@@ -17655,16 +17655,25 @@ to indicate continuation of a footnote.
 @xref{Traps}.
 @endDefesc
 
-A few escape sequences that produce vertical motion are unusual.  They
-are thought to originate early in AT&T @code{nroff} history to achieve
-super- and subscripting by half-line motions on line printers and
-teletypewriters before the phototypesetter made more precise positioning
-available.  They are reckoned in ems---not vees---to maintain continuity
-with their original purpose of moving relative to the size of the type
-rather than the distance between text baselines (vees).@footnote{At the
-@code{grops} defaults of 10-point type on 12-point vertical spacing, the
-difference between half a vee and half an em can be subtle:@: large
-spacings like @samp{.vs .5i} make it obvious.}
+A few escape sequences that produce vertical motion are unusual.
+They are thought to originate early in AT&T
+@command{nroff}
+history to achieve super- and subscripting
+by half-line motions on line printers and teletypewriters
+before the phototypesetter made more precise positioning available.
+They are reckoned in ems---not vees---to maintain continuity
+with their original purpose
+of moving relative to the size of the type
+rather than the distance between text baselines
+(vees).@footnote{At the
+@code{grops}
+defaults of 10-point type on 12-point vertical spacing,
+the difference between half a vee and half an em can be subtle:@:
+large spacings,
+as configured by
+@samp{.vs .5i}
+for example,
+make it obvious.}
 
 @need 500
 @DefescList {\\r, , , }
