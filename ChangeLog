@@ -1,5 +1,12 @@
 2026-04-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp: Trivially refactor.
+	(read_increment_and_escape_sequence_parameter): Rename this...
+	(read_crement_and_escape_sequence_parameter): ...to this.
+	(read_character_in_copy_mode, token::next): Update call sites.
+
+2026-04-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/number.cpp: Trivially refactor.  Rename
 	`incr_number_result` enumeration type to `crement`.  Annotate
 	it.  Rename `get_incr_number()` to `read_crement()`.  We're
