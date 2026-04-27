@@ -14712,13 +14712,18 @@ Prevent insertion of extra space after an end-of-sentence character.
 @Example
 Test.
 Test.
+.br
+************
     @result{} Test.  Test.
+    @result{} ************
 Test.\&
 Test.
+.br
+************
     @result{} Test. Test.
+    @result{} ************
 @endExample
 
-@need 1000
 @item
 Prevent recognition of a control character.
 
@@ -14731,21 +14736,28 @@ Prevent recognition of a control character.
 
 @item
 Prevent kerning between two glyphs.
+@ifnottex
+See a typeset
+(DVI or PDF)
+version of this manual for an illustration.
+@end ifnottex
 
 @iftex
 @c can't use @Example...@endExample here
 @example
 @group
-VA
-    @result{} @r{VA}
-V\&A
-    @result{} @r{V@w{}A}
+VAVAVA
+    @result{} @r{VAVAVA}
+V\&A\&V\&A\&V\&A
+    @result{} @r{V@w{}A@w{}V@w{}A@w{}V@w{}A}
 @end group
 @end example
 @end iftex
 
 @item
 Translate a character to ``nothing''.
+@c XXX: This feature is on the chopping block outside of compatibility
+@c mode; see Savannah #68133.
 
 @Example
 .tr JIjiK\&k\&UVuv
