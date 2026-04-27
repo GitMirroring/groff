@@ -1238,12 +1238,24 @@ or that are interpolated at varying macro nesting depths.
 .
 .
 .TP
+.BI \[rs]f f
+.TQ
+.BI \[rs]f( ft
+.TQ
 .BI \[rs]f\^[ fnt ]
-Select typeface
-.IR fnt ,
-which may be a mounting position,
-abstract style,
-or font name.
+If
+.I f,
+.I ft,
+or
+.I fnt
+names an abstract style or its mounting position,
+GNU
+.I troff \" GNU
+combines it with the default family to make a resolved font name
+before attempting to access it.
+.
+See subsction
+\[lq]Font families, abstract styles, and translation\[rq] above.
 .
 .BR \[rs]f\^[] ,
 .BR \[rs]f\^[P] ,
@@ -2074,6 +2086,20 @@ enabling compatibility mode during its interpolation.
 Thus they work as expected
 even if the interpolation context disables compatibility mode.
 .\" END Keep in sync with groff.texi node "Compatibility Mode".
+.
+.
+.TP
+.BI .ft\~ fnt
+If
+.I fnt
+names an abstract style or its mounting position,
+GNU
+.I troff \" GNU
+combines it with the default family to make a resolved font name
+before attempting to access it.
+.
+See subsction
+\[lq]Font families, abstract styles, and translation\[rq] above.
 .
 .
 .TP

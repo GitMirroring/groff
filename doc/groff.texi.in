@@ -12579,15 +12579,8 @@ default family.
 @cindex selecting the previous font (@code{ft})
 @cindex previous font, selecting (@code{ft})
 @cindex font, previous, selecting (@code{ft})
-The
-@code{ft}
-request selects the typeface
+Select the typeface
 @var{font}.
-If the argument is absent or
-@samp{P},
-it selects the previously used typeface;
-if there is none,
-the formatter ignores the request.
 If
 @var{font}
 is an integer,
@@ -12609,17 +12602,18 @@ is
 @samp{DESC},
 if the mounting position is not an abstract style
 and no font is mounted there,
-or the mounting position is negative,
-GNU
+or if the mounting position is negative,
+the formatter ignores the request.@footnote{GNU
 @command{troff} @c GNU
-ignores the request.@footnote{It also
 emits a warning in category @samp{font} or @samp{range},
 as appropriate.
 @xref{Warnings}.}
-
-If @var{font} matches a style name, it is combined with the default
-family to make a resolved font name.  If not, @var{font} is assumed
-to be resolved already.
+If the argument is absent or
+@samp{P},
+the formatter selects the previously used typeface
+and makes the current selection the previous one;
+if there is no previous font selection,
+the formatter ignores the request.
 
 @cindex automatic font mounting
 @cindex font mounting, automatic

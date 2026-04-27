@@ -3892,12 +3892,11 @@ is
 .RB \[lq] DESC \[rq],
 if the mounting position is not an abstract style
 and no font is mounted there,
-or the mounting position is negative,
-GNU
-.I troff \" GNU
-ignores the request.
+or if the mounting position is negative,
+the formatter ignores the request.
 .
-(It also
+(GNU
+.I troff \" GNU
 emits a warning in category
 .RB \[lq] font \[rq],
 or
@@ -3906,6 +3905,13 @@ as appropriate.
 .
 See section \[lq]Warnings\[rq] in
 .MR @g@troff @MAN1EXT@ .)
+.
+If the argument is absent or
+.RB \[lq] P \[rq],
+the formatter selects the previously used typeface
+and makes the current selection the previous one;
+if there is no previous font selection,
+the formatter ignores the request.
 .
 Also see
 .esc f .
