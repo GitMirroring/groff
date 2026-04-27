@@ -1,5 +1,16 @@
 2026-04-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Stop reporting number format for read-only registers.
+
+	* src/roff/troff/reg.h (class reg, class general_reg): Define
+	new public member function `has_format()` returning `bool`.
+	* src/roff/troff/reg.cpp (reg::has_format): Return `false`.
+	(general_reg::has_format): Return `true`.
+	(dump_register): Report register format only if register's
+	`has_format()` member function returns `true`.
+
+2026-04-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (init_input_requests): Make `.O`
 	read-only register actually read-only.
 
