@@ -6819,13 +6819,19 @@ Several traditions have accrued in service of these goals.
 @itemize @bullet
 @item
 Follow sentence endings in the input with newlines to ease their
-recognition (@pxref{Sentences}).  It is frequently convenient to end
-text lines after colons and semicolons as well, as these typically
-precede independent clauses.  Consider doing so after commas; they often
-occur in lists that become easy to scan when itemized by line, or
-constitute supplements to the sentence that are added, deleted, or
-updated to clarify it.  Parenthetical and quoted phrases are also good
-candidates for placement on text lines by themselves.
+recognition;
+recall @ref{Sentences}.
+It is frequently convenient to end text lines after colons
+and semicolons as well,
+as these typically precede independent clauses.
+Consider doing so after commas;
+they often occur in lists that become easy to scan
+when itemized by line,
+or constitute supplements to the sentence that are added,
+deleted,
+or updated to clarify it.
+Parenthetical and quoted phrases
+are also good candidates for placement on text lines by themselves.
 
 @item
 Set your text editor's line length to 72 characters or
