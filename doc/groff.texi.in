@@ -17288,6 +17288,7 @@ GNU
 @command{troff} @c GNU
 also encodes
 @code{\@{}
+and
 @code{\@}}
 so that they can participate in control flow decisions;
 recall @ref{Conditional Blocks}.)
