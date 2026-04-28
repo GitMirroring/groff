@@ -196,7 +196,7 @@ reference manuals;
 they do not support features like footnotes or multiple columnation.
 .
 .TP 9n \" "mandoc" + 2n + hand-tuned for PDF
-.I an
+.I man
 constructs man pages in a format introduced by Seventh Edition Unix
 (1979).
 .
@@ -207,11 +207,11 @@ see
 .
 .
 .TP
-.I doc
+.I mdoc
 constructs man pages in a format introduced by 4.3BSD-Reno (1990).
 .
 It provides many more features than
-.IR an ,
+.IR man ,
 but is also larger,
 more complex,
 and not as widely adopted;
@@ -226,11 +226,11 @@ a wrapper is available.
 .
 .
 .TP 9n \" "mandoc" + 2n + hand-tuned for PDF
-.I \%andoc
+.I \%mandoc
 recognizes a document's use of
-.I an
+.I man
 or
-.I doc
+.I mdoc
 and loads the corresponding macro package.
 .
 Multiple man pages,
