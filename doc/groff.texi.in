@@ -9653,6 +9653,7 @@ GNU
 @command{troff}, @c GNU
 or obtain information about its command-line options
 or processing progress.
+All are read-only.
 
 @table @code
 @item \n[.A]
@@ -12053,7 +12054,7 @@ flushing out the pending output line in the usual way.
 
 @cindex interrupted line register (@code{.int})
 @cindex continued output line register (@code{.int})
-The @code{.int} register interpolates a positive value
+The @code{.int} read-only register interpolates a positive value
 only if the pending output line has been continued with
 @code{\c};
 this datum is associated
@@ -15186,7 +15187,8 @@ before the last call to @code{pvs}.  GNU @code{troff} emits a warning in
 category @samp{range} if @var{space} is negative; the post-vertical
 spacing is then set to zero.
 
-The read-only register @code{.pvs}
+The read-only register
+@code{.pvs}
 interpolates the post-vertical spacing.
 @endDefreq
 
@@ -18079,9 +18081,14 @@ updated as each line is output, even if no line number is formatted with
 it because it is being skipped (it is not a multiple of @var{increment})
 or because numbering is suppressed (see the @code{nn} request below).
 
-The @code{.nm} register tracks the enablement status of numbering.
-Temporary suspension of numbering with the @code{nn} request does
-@emph{not} alter its value.
+The
+@code{.nm}
+read-only register tracks the enablement status of numbering.
+Temporary suspension of numbering with the
+@code{nn}
+request does
+@emph{not}
+alter its value.
 
 @Example
 .po 5n
@@ -18136,8 +18143,10 @@ lines once
 @code{nm}
 enables it.
 
-The @code{.nn} register stores the
-count of lines remaining in the environment
+The
+@code{.nn}
+read-only register
+stores the count of lines remaining in the environment
 for which numbering is suppressed
 while output line numbering is enabled.
 
@@ -20336,19 +20345,36 @@ Copying an environment to itself discards the foregoing data.
 @cindex skew, of last glyph (@code{.csk})
 @cindex last glyph, dimensions (@code{.w}, @code{.cht}, @code{.cdp}, @code{.csk})
 @cindex glyph, last, dimensions (@code{.w}, @code{.cht}, @code{.cdp}, @code{.csk})
-The @code{\n[.w]} register contains the width of the last glyph
+The
+@code{\n[.w]}
+read-only register contains the width of the last glyph
+formatted in the environment.@footnote{This quantity
+is also known as the
+@slanted{advance width};
+recall the
+@code{cs}
+request description in @ref{Artificial Fonts}.}
+
+The
+@code{\n[.cht]}
+read-only register contains the height of the last glyph
 formatted in the environment.
 
-The @code{\n[.cht]} register contains the height of the last glyph
+The
+@code{\n[.cdp]}
+read-only register contains the depth of the last glyph
 formatted in the environment.
+It is positive for glyphs extending below the baseline.
 
-The @code{\n[.cdp]} register contains the depth of the last glyph
-formatted in the environment.  It is positive for glyphs extending below
-the baseline.
-
-The @code{\n[.csk]} register contains the @dfn{skew} (how far to the
-right of the glyph's center that GNU @code{troff} should place an
-accent) of the last glyph formatted in the environment.
+The
+@code{\n[.csk]}
+read-only register contains the
+@dfn{skew}
+(how far to the right of the glyph's center that
+GNU
+@command{troff}
+should place an accent)
+of the last glyph formatted in the environment.
 @endDefreg
 
 @Defreg {.n}
@@ -20356,8 +20382,10 @@ accent) of the last glyph formatted in the environment.
 @cindex line length, previous (@code{.n})
 @cindex length of previous line (@code{.n})
 @cindex previous line length (@code{.n})
-The @code{\n[.n]} register contains the length of the previous output
-line emitted in the environment.
+The
+@code{\n[.n]}
+read-only register contains the length
+of the output line most recently formatted in the environment.
 @endDefreg
 
 @codequotebacktick off
@@ -20457,8 +20485,12 @@ the next image.
 @cindex suppression nesting level register (@code{.O})
 @cindex nesting level, suppression, register (@code{.O})
 @cindex level, suppression nesting, register (@code{.O})
-Output suppression nesting level applied by @code{\O3} and @code{\O4}
-escape sequences.
+The output suppression nesting level applied by
+@code{\O3}
+and
+@code{\O4}
+is available in the read-only register
+@samp{.O}.
 @endDefreg
 
 @c =====================================================================

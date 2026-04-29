@@ -1,3 +1,14 @@
+2026-04-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* doc/groff.texi.in: Explicitly call out read-only registers as
+	such.  Most already were; gather up the stragglers: `.O`,
+	`.cdp`, `.cht`, `.csk`, `.int`, `.n`, `.nm`, `.nn`, and `.w`.
+	(Built-in Registers): Accordingly annotate the table of such
+	registers whose values are fixed at formatter start-up.
+
+	Fixes <https://savannah.gnu.org/bugs/?68287>.  Thanks to Dave
+	Kemper for the report.
+
 2026-04-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/reg.cpp: Slightly refactor.  Tweak and make
