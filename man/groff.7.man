@@ -5416,8 +5416,29 @@ Temporarily indent next output line
 .
 .TPx
 .REQ .tkf "font s1 n1 s2 n2"
-Enable track kerning for
-.IR font .
+Enable track kerning for font
+.I font.
+If the selected font is
+.I font,
+increase the advance width by an amount between
+.I n1
+and
+.I n2
+(each can be negative):
+if the type size is less than or equal to
+.IR s1 ,
+or if
+.I s2
+is less than or equal to
+.IR s1 ,
+the width increases by
+.IR n1 ;
+if the type size is greater than or equal to
+.IR s2 ,
+the width increases by
+.IR n2 ;
+otherwise,
+the advance width increase is a linear function of the type size.
 .
 .TPx
 .REQ .tl \f[B]\[aq]\f[]left\f[B]\[aq]\f[]center\f[B]\[aq]\f[]right\

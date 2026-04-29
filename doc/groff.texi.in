@@ -14738,21 +14738,52 @@ the reader notices the effect.
 @Defreq {tkf, f s1 n1 s2 n2}
 @cindex activating track kerning (@code{tkf})
 @cindex track kerning, activating (@code{tkf})
-Enable track kerning for font@tie{}@var{f}.  If the current font
-is@tie{}@var{f} the width of every glyph is increased by an amount
-between @var{n1} and @var{n2} (@var{n1}, @var{n2} can be negative); if
-the current type size is less than or equal to @var{s1} the width is
-increased by @var{n1}; if it is greater than or equal to @var{s2} the
-width is increased by @var{n2}; if the type size is greater than or
-equal to @var{s1} and less than or equal to @var{s2} the increase in
-width is a linear function of the type size.
+Enable track kerning for
+font@tie{}@var{f}.
+If the selected font
+is@tie{}@var{f},
+increase the advance width by an amount between
+@var{n1}
+and
+@var{n2}
+(each can be negative):@:
+if the type size is less than or equal to
+@var{s1},
+or if
+@var{s2}
+is less than or equal to
+@var{s1},
+the width increases by
+@var{n1};
+if the type size is greater than or equal to
+@var{s2},
+the width increases by
+@var{n2};
+otherwise,
+the advance width increase is a linear function of the type size.
 
-The default scaling unit is @samp{z} for @var{s1} and @var{s2}, @samp{p}
-for @var{n1} and @var{n2}.
-
-The track kerning amount is added even to the rightmost glyph in a line;
-for large values it is thus recommended to increase the line length by
-the same amount to compensate.
+The default scaling unit is
+@samp{z}
+for
+@var{s1}
+and
+@var{s2},
+and
+@samp{p}
+for
+@var{n1}
+and
+@var{n2}.
+GNU
+@command{troff} @c GNU
+adds the track kerning amount even to the rightmost glyph in a line;
+for large
+@var{n1}
+and/or
+@var{n2},
+we thus recommend increasing the line length to compensate.
+@c XXX: Doesn't this depend on how many glyphs on the output line are
+@c affected, and the type sizes of each?
 @endDefreq
 
 @c ---------------------------------------------------------------------

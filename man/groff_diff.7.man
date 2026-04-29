@@ -4624,27 +4624,55 @@ request.
 .
 .TP
 .BI .tkf\~ f\~s1\~n1\~s2\~n2
-Enable track kerning for font\~\c
-.IR f .
-When the current font is\~\c
-.IR f ,
-the width of every glyph is increased by an amount between
+Enable track kerning for
+.RI font\~ f.
+If the selected font
+.RI is\~ f,
+increase the advance width by an amount between
 .I n1
 and
-.IR n2 ;
-when the current type size is less than or equal to
+.I n2
+(each can be negative):
+if the type size is less than or equal to
 .IR s1 ,
-the width is increased by
+or if
+.I s2
+is less than or equal to
+.IR s1 ,
+the width increases by
 .IR n1 ;
-when it is greater than or equal to
+if the type size is greater than or equal to
 .IR s2 ,
-the width is increased by
+the width increases by
 .IR n2 ;
-when the type size is greater than or equal to
+otherwise,
+the advance width increase is a linear function of the type size.
+.
+.
+.IP
+The default scaling unit is
+.B z
+for
 .I s1
-and less than or equal to
+and
 .IR s2 ,
-the increase in width is a linear function of the type size.
+and
+.B p
+for
+.I n1
+and
+.IR n2 .
+.
+GNU
+.I troff \" GNU
+adds the track kerning amount even to the rightmost glyph in a line;
+for large
+.I n1
+and/or
+.IR n2 ,
+we thus recommend increasing the line length to compensate.
+.\" XXX: Doesn't this depend on how many glyphs on the output line are
+.\" affected, and the type sizes of each?
 .
 .
 .TP
