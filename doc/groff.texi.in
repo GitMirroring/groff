@@ -13029,7 +13029,7 @@ on the standard error stream with the
 @code{pfp}
 request.@footnote{@xref{Debugging}.}
 
-@cindex font position register (@code{.f})
+@cindex font mounting position register (@code{.f})
 The position of the currently selected font (or abstract style) is
 available in the read-only register @samp{.f}.  It is associated with
 the environment (@pxref{Environments}).
@@ -13043,8 +13043,8 @@ use.
 .ft \n(sF
 @endExample
 
-@cindex next free font position register (@code{.fp})
-The index of the next (non-zero) free font position
+@cindex next free font mounting position register (@code{.fp})
+The index of the next (non-zero) free font mounting position
 is available in the read-only register
 @samp{.fp}.
 @cindex @file{DESC} file, and font mounting
@@ -13305,28 +13305,42 @@ by a macro file or document employing the
 request
 after the formatter initializes.
 
-For example, consider the following:
+For example,
+consider the following
+@file{DESC}
+contents:
 
 @Example
-fonts 3 0 0 FOO
+fonts 3 0 0 ZD
 @endExample
 
 @noindent
-This mounts font @code{foo} at font position@tie{}3.  We assume that
-@code{FOO} is a special font, containing glyph @code{foo}, and that no
-font has been loaded yet.  The line
+This directive mounts (only) font
+@code{ZD}
+at position@tie{}3.
+We assume that
+@code{ZD}
+is a special font,
+containing glyph
+@code{foo},
+and that no other fonts have yet been mounted.
+The request
 
 @Example
 .fspecial BAR BAZ
 @endExample
 
 @noindent
-makes font @code{BAZ} special only if font @code{BAR} is active.  We
-further assume that @code{BAZ} is really a special font, i.e., the font
+makes font
+@code{BAZ}
+special while font
+@code{BAR}
+is selected.
+We further assume that @code{BAZ} is really a special font, i.e., the font
 description file contains the @code{special} keyword, and that it also
 contains glyph @code{foo} with a special shape fitting to font
 @code{BAR}.  After executing @code{fspecial}, font @code{BAR} is loaded
-at font position@tie{}1, and @code{BAZ} at position@tie{}2.
+at mounting position@tie{}1, and @code{BAZ} at position@tie{}2.
 
 We now switch to a new font
 @code{XXX},
@@ -13340,7 +13354,7 @@ nor any other fonts made special with the
 request,
 so the formatter starts the search for special fonts
 in the list of already mounted fonts,
-with increasing font positions.
+with increasing mounting positions.
 Consequently,
 it finds
 @code{BAZ}
@@ -14458,8 +14472,9 @@ well (if a TTY output device is used).
 @cindex underline font (@code{uf})
 @cindex font for underlining (@code{uf})
 Set the underline font (globally) used by @code{ul} and @code{cu}.  By
-default, this is the font at position@tie{}2.  @var{font} can be either
-a non-negative font position or the name of a font.
+default, this is the font at mounting position@tie{}2.
+@var{font}
+is a font identifier or mounting position.
 @endDefreq
 
 @DefreqList {bd, font [@Var{offset}]}
@@ -14479,8 +14494,8 @@ font to embolden, and the second is the number of basic units, minus
 one, by which the two glyphs are offset.  If the second argument is
 missing, emboldening is turned off.
 
-@var{font} can be either a non-negative font position or the name of a
-font.
+@var{font}
+is a font identifier or mounting position.
 
 @var{offset} is available in the @code{.b} read-only register if a
 special font is active; in the @code{bd} request, its default unit is
@@ -23754,11 +23769,23 @@ The default font family is @var{fam}.
 
 @item fonts @var{n} @var{F1} @r{@dots{}} @var{Fn}
 @kindex fonts
-Fonts @var{F1}, @dots{}, @var{Fn} are mounted at font positions
-@var{m}+1, @dots{}, @var{m}+@var{n} where @var{m} is the number of
-@code{styles} (see below).  This directive may extend over more than one
-line.  A font name of@tie{}@code{0} causes no font to be mounted at the
-corresponding position.
+Fonts
+@var{F1},
+@dots{},
+@var{Fn}
+are mounted at positions
+@var{m}+1,
+@dots{},
+@var{m}+@var{n},
+where
+@var{m}
+is the number of
+@code{styles}
+(see below).
+This directive may extend over more than one line.
+A font name
+of@tie{}@code{0}
+causes no font to be mounted at the corresponding position.
 
 @item hor @var{n}
 @kindex hor
@@ -25079,11 +25106,16 @@ uses its internal piping mechanism.
 The input file is not changed by this command.
 This command is a GNU extension.
 
-@item xf @var{n} @var{s}@angles{line break}
+@item xf @var{pos} @var{file}@angles{line break}
 The @samp{f} stands for @var{font}.
 
-Mount font position@tie{}@var{n} (a non-negative integer) with font
-named@tie{}@var{s} (a text word).  Recall @ref{Font Mounting Positions}.
+Mount font described in file
+@var{file}
+at position
+@var{pos},
+a non-negative integer.
+@c TODO: Check how the boundaries of "file" are defined.
+Recall @ref{Font Mounting Positions}.
 
 @item xH @var{n}@angles{line break}
 The @samp{H} stands for @var{Height}.
