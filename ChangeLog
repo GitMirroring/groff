@@ -1,5 +1,28 @@
 2026-04-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/reg.cpp: Slightly refactor.  Tweak and make
+	consistent the buffer-scribbling technique when formatting
+	register properties.  Never hit the stack for this purpose; use
+	only one file-global static buffer, `scratchpad`.  Shrink size
+	of said buffer to only what we require: `INT_DIGITS` decimal
+	places plus a leading sign.  As long as `INT_DIGITS` remains
+	{generously} sized for 64-bit `int`s--though I'm not familiar
+	with a port of groff to an I(LP)64 host--doing so buys back over
+	100 bytes of BSS.  If this technique seems old-fashioned, it
+	is--but GNU troff is single-threaded and none of the functions
+	using this buffer participate in cycles in the program's call
+	graph (i.e., they're not reëntrant).
+	(number_value_to_ascii, number_format_to_ascii, dump_register):
+	Zero out the buffer with memset(3) before using it, for
+	paranoia's sake.
+	(number_format_to_ascii): Use the `scratchpad` buffer instead of
+	a different, local `static` buffer of 24 bytes.
+	(dump_register): Use `scratchpad` instead of automatic (stack)
+	storage as buffer for autoincrement value.  Declare `n` variable
+	closer to use.
+
+2026-04-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp: Trivially refactor.
 	(read_increment_and_escape_sequence_parameter): Rename this...
 	(read_crement_and_escape_sequence_parameter): ...to this.

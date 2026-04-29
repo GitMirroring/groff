@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <assert.h>
 #include <stdio.h> // prerequisite of searchpath.h
+#include <string.h> // memset()
 
 // libgroff
 #include "errarg.h" // prerequisite of troff.h
@@ -42,6 +43,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "token.h"
 
 object_dictionary register_dictionary(101);
+
+// Scribble into this any time we need to format a *roff integer as a
+// C string and will use the result immediately.  Think of *roff
+// register values, decimal number formats, and autoincrement amounts.
+//
+// Register values in decimal (and the corresponding number format)
+// occupy the most possible space in this buffer.  Non-decimal numbers
+// and their formats are always smaller.  Even AT&T troff's extended
+// Roman numerals can't express much more than a signed 16-bit integer,
+// and base-26 alphabetic formats are a more compact representation than
+// decimal.
+//
+// C++11: constexpr
+static const size_t scratchpad_size = INT_DIGITS + 1 /* leading sign */;
+static char scratchpad[scratchpad_size];
 
 bool reg::get_value(units * /*d*/)
 {
@@ -114,20 +130,21 @@ static char lowercase_array[] = {
 static const char *number_value_to_ascii(int value, char format,
 					 int width)
 {
-  static char buf[128];		// must be at least 21
+  (void) memset(scratchpad, 0, (scratchpad_size * sizeof(char)));
   switch (format) {
   case '1':
     if (width <= 0)
       return i_to_a(value);
-    else if (width > int((sizeof buf) - 2))
-      sprintf(buf, "%.*d", int((sizeof buf) - 2), int(value));
+    else if (width > int((sizeof scratchpad) - 2))
+      sprintf(scratchpad, "%.*d", int((sizeof scratchpad) - 2),
+	      int(value));
     else
-      sprintf(buf, "%.*d", width, int(value));
+      sprintf(scratchpad, "%.*d", width, int(value));
     break;
   case 'i':
   case 'I':
     {
-      char *p = buf;
+      char *p = scratchpad;
       bool is_value_out_of_roman_numeral_range = false;
       int n = int(value);
       // AT&T troff uses z and w to represent 10000 and 5000 in Roman
@@ -209,7 +226,7 @@ static const char *number_value_to_ascii(int value, char format,
   case 'A':
     {
       int n = value;
-      char *p = buf;
+      char *p = scratchpad;
       if (n == 0) {
 	*p++ = '0';
 	*p = '\0';
@@ -230,7 +247,7 @@ static const char *number_value_to_ascii(int value, char format,
 				 uppercase_array[d - 1];
 	}
 	*p-- = '\0';
-	char *q = buf[0] == '-' ? buf + 1 : buf;
+	char *q = scratchpad[0] == '-' ? scratchpad + 1 : scratchpad;
 	while (q < p) {
 	  char temp = *q;
 	  *q = *p;
@@ -245,7 +262,7 @@ static const char *number_value_to_ascii(int value, char format,
     assert(0 == "unhandled case of register format");
     break;
   }
-  return buf;
+  return scratchpad;
 }
 
 const char *general_reg::get_string()
@@ -298,22 +315,22 @@ void general_reg::alter_format(char f, int w)
 
 static const char *number_format_to_ascii(char format, int width)
 {
-  static char buf[24];
+  (void) memset(scratchpad, 0, (scratchpad_size * sizeof(char)));
   if (format == '1') {
     if (width > 0) {
       int n = width;
-      if (n > int(sizeof buf) - 1)
-	n = int(sizeof buf) - 1;
-      sprintf(buf, "%.*d", n, 0);
-      return buf;
+      if (n > (int(sizeof scratchpad) - 1))
+	n = int(sizeof scratchpad) - 1;
+      sprintf(scratchpad, "%.*d", n, 0);
+      return scratchpad;
     }
     else
       return "0";
   }
   else {
-    buf[0] = format;
-    buf[1] = '\0';
-    return buf;
+    scratchpad[0] = format;
+    scratchpad[1] = '\0';
+    return scratchpad;
   }
 }
 
@@ -577,15 +594,15 @@ static void rename_register_request()
 
 static void dump_register(symbol *id, reg *r)
 {
-  int n;
-  const size_t sz = INT_DIGITS + 1 /* leading sign */;
-  char inc[sz];
   errprint("%1\t", id->contents());
+  int n;
   if (r->get_value(&n)) {
     errprint("%1", n);
     if (r->can_autoincrement()) {
-      (void) snprintf(inc, sz, "%+d", r->get_increment());
-      errprint("\t%1", inc);
+      (void) memset(scratchpad, 0, (scratchpad_size * sizeof(char)));
+      (void) snprintf(scratchpad, scratchpad_size, "%+d",
+		      r->get_increment());
+      errprint("\t%1", scratchpad);
     }
     if (r->has_format()) {
       const char *f = r->get_format();
