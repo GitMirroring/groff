@@ -25,7 +25,7 @@ public:
   virtual void decrement();
   virtual void set_increment(units);
   virtual int get_increment() const;
-  virtual void alter_format(char f, int w = 0);
+  virtual void alter_format(char, int = 0);
   virtual const char *get_format();
   virtual void set_value(units);
   virtual bool can_autoincrement() const;
@@ -57,7 +57,7 @@ public:
   const char *get_string();
   void increment();
   void decrement();
-  void alter_format(char f, int w = 0);
+  void alter_format(char, int = 0);
   void set_increment(units);
   int get_increment() const;
   bool can_autoincrement() const;
@@ -78,11 +78,11 @@ public:
 };
 
 extern object_dictionary register_dictionary;
-extern void set_register(symbol nm, units n);
-extern void check_output_limits(int x, int y);
+extern void set_register(symbol, units);
+extern void check_output_limits(int /* x */, int /* y */);
 extern void reset_output_registers();
 
-extern reg *look_up_register(symbol, bool suppress_creation = false);
+extern reg *look_up_register(symbol, bool = false);
 #if 0
 void inline_define_register();
 #endif
