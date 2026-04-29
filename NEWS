@@ -25,8 +25,8 @@ troff
    process a list of similar objects, as `rm` and `rr` do) perform no
    operation.
 
-*  The "delim", "syntax", and "escape" warning categories are enabled by
-   default.
+*  The formatter now enables the "delim", "syntax", and "escape" warning
+   categories by default.
 
 *  The `trf` (transparent file throughput) request now discards input
    characters that are invalid in GNU troff's output format, meaning all
@@ -37,9 +37,9 @@ troff
    lines remaining to be be underlined in the environment (as configured
    by either the `cu` or `ul` requests).
 
-*  A new warning category, "style" is supported.  It is used to diagnose
-   input that is non-idiomatic or likely to produce an unexpected result
-   (or none at all), but is not invalid.
+*  The formatter supports a new warning category, "style".  It is used
+   to diagnose input that is non-idiomatic or likely to produce an
+   unexpected result (or none at all), but is not invalid.
 
 *  When issuing warning diagnostic messages, GNU troff now reports the
    warning category governing its emission.  This change is to make it
@@ -51,7 +51,7 @@ troff
    operand (first request argument) unchanged instead of emptying it.
 
 *  The `phw` request now accepts arguments.  Each is interpreted as a
-   possible hyphenation word, ignoring hyphens in the input, looked
+   possible hyphenation word (ignoring hyphens in the input), looked
    up in the hyphenation exception list for the hyphenation language,
    and if found, is reported with its hyphenation points.  Only
    hyphenation exceptions defined by the `hw` request are reported.
