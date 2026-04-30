@@ -49,8 +49,20 @@ output=$(printf '%s\n' "$input" | "$groff" -T ascii)
 echo "$output"
 echo "$output" | grep -qx 'qux' || wail
 
-# TODO: Check that parser returns to correct state after '.ti' with no
-# arguments.
+# Check that parser returns to correct state after '.ti' with no
+# arguments.  Savannah #68285.
+
+input2='.
+.ti
+.ce 3
+FOOBAR
+.'
+
+echo "checking that 'ti' request returns parser to correct state" \
+    "when given no arguments" >&2
+output2=$(printf '%s\n' "$input2" | "$groff" -T ascii)
+echo "$output2"
+echo "$output2" | grep -qx ' *FOOBAR' || wail
 
 test -z "$fail"
 
