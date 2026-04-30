@@ -1,5 +1,12 @@
 2026-04-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[groff]: Unit-test `ti` request.
+
+	* src/roff/groff/tests/ti-request-works.sh: Do it.
+	* src/roff/groff/groff.am (groff_TESTS): Run test.
+
+2026-04-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* doc/groff.texi.in: Explicitly call out read-only registers as
 	such.  Most already were; gather up the stragglers: `.O`,
 	`.cdp`, `.cht`, `.csk`, `.int`, `.n`, `.nm`, `.nn`, and `.w`.
