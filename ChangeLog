@@ -1,3 +1,22 @@
+2026-04-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Fix Savannah #68285.
+
+	* src/roff/troff/env.cpp (temporary_indent): When invalidly
+	given no argument, the `ti` request was failing to correctly
+	skip the remainder of the input line.  Drop two instances of
+	logic that "manually" pump the input stream by calling
+	`tok.next()`.  The second is better replaced by `skip_line()`,
+	and the first made redundant thereby.  Nearly all request
+	handlers call that function to consume the remainder of the
+	input line once they've handled all the arguments they expect.
+
+	Fixes <https://savannah.gnu.org/bugs/?68285>.  Problem
+	introduced by me in commit ca8c376830, 2024-11-09.  I altered
+	request handlers for four requests in that commit: `pn`, `ti`,
+	`rchar`, and `hpfcode`, but fortunately made this mistake only
+	with `ti`.
+
 2026-04-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[groff]: Regression-test Savannah #68285.

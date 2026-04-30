@@ -1701,9 +1701,6 @@ void temporary_indent() // .ti
     }
     if (!read_hunits(&temp, 'm', curenv->get_indent()))
       is_valid = false;
-    // XXX: Why not `skip_line()`?
-    while (!tok.is_terminator())
-      tok.next();
   }
   if (was_invoked_with_regular_control_character)
     curenv->do_break();
@@ -1717,7 +1714,7 @@ void temporary_indent() // .ti
     curenv->have_temporary_indent = true;
     curdiv->modified_tag.incl(MTSM_TI);
   }
-  tok.next(); // XXX: Why not `skip_line()`?
+  skip_line();
 }
 
 void configure_underlining(bool want_spaces_underlined)
