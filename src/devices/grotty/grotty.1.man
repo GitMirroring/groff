@@ -294,11 +294,15 @@ In contrast to the terminal output drivers of some other
 .I roff
 implementations,
 .I grotty
-never outputs reverse line feeds.
+never outputs reverse
+(or partial)
+line feeds.
 .
 You need not filter its output
 through
 .MR col 1
+or
+.MR colcrt 1
 to remove them.
 .
 .
