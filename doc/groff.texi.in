@@ -5937,7 +5937,12 @@ flags certain characters
 @samp{?},
 and
 @samp{.})
-as potentially ending a sentence.
+as potentially ending a sentence.@footnote{@TeX{}
+treats
+@samp{:}
+as ending a sentence for spacing purposes.
+@code{roff}
+formatters do not.}
 When
 GNU
 @command{troff} @c GNU
