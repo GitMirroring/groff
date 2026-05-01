@@ -19099,25 +19099,50 @@ qux
 @endExample
 
 @Defreg {.ne}
-The read-only register @code{.ne} contains the amount of space that was
-needed in the last @code{ne} request that caused a trap to be sprung;
-it is useful in conjunction with the @code{.trunc} register.  @xref{Page
-Control}.  Since the @code{.ne} register is set only by traps, it
-doesn't make sense to interpolate it outside of macros called by traps.
+The read-only register
+@code{.ne}
+contains the amount of vertical space demanded by the most recent
+@code{ne}
+request that sprang a vertical position trap;
+it is useful in conjunction with the
+@code{.trunc}
+register;
+recall @ref{Page Control}.
+Since the
+@code{.ne}
+register is set only by traps,
+it doesn't make sense
+to interpolate it outside of macros called by traps.
 @endDefreg
 
 @Defreg {.trunc}
 @cindex @code{ne} request, and the @code{.trunc} register
 @cindex truncated vertical space register (@code{.trunc})
-A read-only register containing the amount of vertical space truncated
-from an @code{sp} request by the most recently sprung vertical
-position trap, or, if the trap was sprung by an @code{ne} request,
-minus the amount of vertical motion produced by the @code{ne}
-request.  In other words, at the point a trap is sprung, it
-represents the difference of what the vertical position would have
-been but for the trap, and what the vertical position actually is.
-Since the @code{.trunc} register is set only by traps, it doesn't make
-sense to interpolate it outside of macros called by traps.
+The read-only register
+@code{.trunc}
+contains the amount of vertical space truncated
+from an
+@code{sp}
+request's argument
+@c ...but not a `sv` request's argument.
+by the most recently sprung vertical position trap,
+or,
+if the trap was sprung by an
+@code{ne}
+request,
+minus the amount of vertical motion produced by the
+@code{ne}
+request.
+In other words,
+at the point a trap is sprung,
+it represents the difference
+of what the vertical position would have been but for the trap,
+and what the vertical position actually is.
+Since the
+@code{.trunc}
+register is set only by traps,
+it doesn't make sense
+to interpolate it outside of macros called by traps.
 @endDefreg
 
 @Defreg {.trap}

@@ -5312,7 +5312,7 @@ This is a string-valued register.
 .B \[rs]n[.ne]
 Interpolate amount of space demanded by the most recent
 .B ne
-request that sprang a page location trap.
+request that sprang a vertical position trap.
 .
 See
 .BR \[rs]n[.trunc] .
@@ -5449,7 +5449,7 @@ This is a string-valued register.
 .TP
 .B \[rs]n[.trunc]
 Interpolate amount of vertical space truncated by the most recently
-sprung page location trap,
+sprung vertical position trap,
 or,
 if the trap was sprung by an
 .B ne
