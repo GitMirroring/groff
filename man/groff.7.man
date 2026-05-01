@@ -1586,9 +1586,10 @@ characters to any desired ordinary character
 but must be distinct.
 .
 While a macro definition is interpreted,
-the
+GNU
+.IR troff 's \" GNU
 .B .br
-register permits discovery of the control character used in the call.
+register permits discovery of the control character used in its call.
 .\" END Keep (roughly) parallel with groff.texi node "Control
 .\" Characters".
 .

@@ -8147,9 +8147,10 @@ is associated with the environment.@footnote{@xref{Environments}.}
 @endDefreq
 
 While a macro definition is interpreted,
-the
+GNU
+@command{troff}'s @c GNU
 @code{.br}
-register permits discovery of the control character used in the call.
+register permits discovery of the control character used in its call.
 
 @Defreg {.br}
 This read-only register interpolates@tie{}1
