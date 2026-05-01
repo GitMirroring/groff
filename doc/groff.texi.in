@@ -14576,10 +14576,15 @@ Most typesetters support ligatures for the sequences `fi', `fl', `ff',
 `ffi', and `ffl', and @code{troff} does likewise.  Some fonts may
 include others, but GNU @code{troff} does not (yet) support them.
 
-The formatter checks only the current font for ligatures and kerning
-adjustments; neither glyphs from special fonts nor special characters
-defined with the @code{char} request (and its siblings) are considered
-for these processes.
+The formatter checks only the current font
+for ligatures and kerning adjustments;
+neither glyphs from special fonts nor special characters
+defined with the
+@code{char}
+request
+(and its siblings)
+are considered
+for these processes.@footnote{@xref{Characters and Glyphs}.}
 
 @DefreqList {lg, [@Var{flag}]}
 @DefregListEndx {.lg}
