@@ -331,7 +331,7 @@ also treat
 .B \[dq]
 non-literally at the beginning of an argument.)
 .
-Furthermore,
+Further,
 not all of the special character escape sequences are portable to AT&T
 .I troff
 and all of its descendants;

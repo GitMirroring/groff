@@ -1285,7 +1285,7 @@ requests.
 .\" This is worded to avoid implying that the operator doesn't apply to
 .\" conditional expressions in general, albeit without mentioning them
 .\" because they're out of scope.
-Furthermore,
+Further,
 the formatter recognizes
 .B !\&
 only at the beginning of a numeric expression
@@ -2277,7 +2277,7 @@ on the same line is processed
 only if all of the preceding conditions to which they correspond
 are true.
 .
-Furthermore,
+Further,
 a closing brace escape sequence
 .esc }
 closing the body of a
@@ -8811,7 +8811,7 @@ and lettercase relationships
 and
 .BR hpfcode ).
 .
-Furthermore,
+Further,
 hyphenation of a word might be suppressed due to a limit on
 consecutive hyphenated lines
 .RB ( hlm ),

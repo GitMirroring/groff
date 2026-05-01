@@ -7559,7 +7559,7 @@ within @code{if}, @code{ie}, and @code{while} requests.
 @c This is worded to avoid implying that the operator doesn't apply
 @c to conditional expressions in general, albeit without mentioning them
 @c because they're out of scope.
-Furthermore,
+Further,
 the formatter recognizes
 @code{!}
 only at the beginning of a numeric expression
@@ -8408,7 +8408,7 @@ line to do so.   We consider this lethargic practice poor style.}  In
 the argument list to a macro, a double quote that @emph{isn't} preceded
 by a space @emph{doesn't} start a macro argument.  If not preceded by a
 double quote that began an argument, this double quote becomes part of
-the argument.  Furthermore, within a quoted argument, a pair of adjacent
+the argument.  Further, within a quoted argument, a pair of adjacent
 double quotes becomes a literal double quote.
 
 @Example
@@ -10560,7 +10560,7 @@ word prior to breaking a line at the end of a page (more or less; see
 below for details), and at which positions within that word
 automatically determined hyphenation points are permissible.  The places
 within a word that are eligible for hyphenation are determined by
-language-specific data and lettercase relationships.  Furthermore,
+language-specific data and lettercase relationships.  Further,
 hyphenation of a word might be suppressed due to a limit on
 consecutive hyphenated lines (@code{hlm}), a minimum line length
 threshold (@code{hym}), or because the line can instead be adjusted with
@@ -14207,7 +14207,7 @@ GNU
 @command{troff} @c GNU
 skips the range expression and any remaining arguments.
 @c 
-@c Furthermore, classes can be nested.
+@c Further, classes can be nested.
 @c 
 @c @Example
 @c .class [prepunct] , : ; > @}
@@ -16698,7 +16698,7 @@ Input after any quantity of opening brace escape sequences
 on the same line is processed
 only if all of the preceding conditions to which they correspond
 are true.
-Furthermore,
+Further,
 a closing brace escape sequence
 @code{\@}}
 closing the body of a

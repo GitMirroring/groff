@@ -2816,7 +2816,7 @@ GNU
 .I troff \" GNU
 skips the range expression and any remaining arguments.
 .\" .
-.\" Furthermore,
+.\" Further,
 .\" classes can be nested.
 .
 .
