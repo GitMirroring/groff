@@ -7825,7 +7825,7 @@ suitable for use as argument to
 .TP
 .REG .trap
 Name of the next vertical position trap
-after the vertical drawing position.
+after the vertical drawing position
 (string-valued);
 see
 .request wh ,
