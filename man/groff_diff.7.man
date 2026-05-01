@@ -4330,10 +4330,14 @@ Rename register
 to
 .IR r2 .
 .
+Renaming a built-in register
+does not otherwise alter its properties.
 If
 .I r1
-doesn't exist,
-the request is ignored.
+is undefined,
+GNU
+.I troff \" GNU
+ignores the request.
 .
 .
 .br
