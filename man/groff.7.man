@@ -5582,11 +5582,14 @@ Enable or disable vertical position traps per Boolean expression
 .
 .TPx
 .REQ .vs
-Change to previous vertical spacing.
+Reset the vertical spacing
+to its previous value,
+or the default if there is none.
 .
 .TPx
 .REQ .vs \[+-]N
-Set vertical spacing to
+Set the vertical spacing to,
+or alter it by,
 .I \[+-]N
 (default scaling unit\~\c
 .scaleindicator p ).

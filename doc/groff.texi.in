@@ -15065,18 +15065,34 @@ type size (such as @samp{12000}), or a range of sizes (such as
 @cindex changing vertical line spacing (@code{vs})
 @cindex vertical line spacing, changing (@code{vs})
 @cindex vertical line spacing register (@code{.v})
-Set the vertical spacing to, or alter it by, @var{space}.  The default
-scaling unit is @samp{p}.  If @code{vs} is invoked without an argument,
-the vertical spacing is reset to the previous value before the last call
-to @code{vs}.
+Set the vertical spacing to,
+or alter it by,
+@var{space}.
+The default scaling unit is
+@samp{p}.
+If
+@var{space}
+is omitted,
+the formatter resets the vertical spacing
+to its previous value,
+or the default if there is none.
 @cindex @code{.V} register, and @code{vs}
-GNU @code{troff} emits a warning in category @samp{range} if @var{space}
-is negative; the vertical spacing is then set to the smallest possible
-positive value, the vertical motion quantum (as found in the @code{.V}
-register).
+If
+@var{space}
+is negative,
+the formatter sets
+the vertical spacing to the smallest possible positive value,
+the vertical motion quantum
+(as found in the
+@code{.V}
+register).@footnote{GNU
+@command{troff} @c GNU
+emits a warning in category @samp{range}.
+@xref{Warnings}.} @c omit footnote from man page
 
 @w{@samp{.vs 0}}
-isn't saved in a diversion since it doesn't result in a vertical motion.
+isn't saved in a diversion since it doesn't result
+in a vertical motion.@footnote{@xref{Diversions}.}
 You must explicitly issue this request
 before interpolating the diversion if you desire its effect.
 
@@ -15085,7 +15101,7 @@ The read-only register
 interpolates the vertical spacing.
 @endDefreq
 
-@need 200
+@need 500
 @cindex vertical line spacing, effective value
 @noindent
 When a break occurs, GNU @code{troff} performs the following procedure.
