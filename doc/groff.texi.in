@@ -15655,6 +15655,25 @@ as does an
 @code{fcolor}
 request without an argument.
 
+Create an ellipse with a red interior as follows.
+
+@Example
+\M[red]\h'0.5i'\D'E 2i 1i'\M[]
+@endExample
+
+@cindex background color name register (@code{.M})
+@cindex name, background color, register (@code{.M})
+@cindex color name, background, register (@code{.M})
+@cindex fill color name register (@code{.M})
+@cindex name, fill color, register (@code{.M})
+@cindex color name, fill, register (@code{.M})
+The current environment's fill color selection
+is available in the read-only string-valued register
+@samp{.M}.@footnote{@xref{Environments}.}
+The default fill color is named
+@samp{default}.
+@endDefesc
+
 @cindex @code{\M} escape sequence, untokenized on input
 @cindex untokenized escape sequence, @code{\M}
 GNU
@@ -15673,24 +15692,6 @@ interprets the fill color as a character cell background color.
 @Example
 .mc \m[black]\M[green]x\M[]\m[]
 @endExample
-
-@cindex background color name register (@code{.M})
-@cindex name, background color, register (@code{.M})
-@cindex color name, background, register (@code{.M})
-@cindex fill color name register (@code{.M})
-@cindex name, fill color, register (@code{.M})
-@cindex color name, fill, register (@code{.M})
-The current environment's fill color selection
-is available in the read-only string-valued register @samp{.M}
-(@pxref{Environments}).
-The default fill color is named @samp{default}.
-
-Create an ellipse with a red interior as follows.
-
-@Example
-\M[red]\h'0.5i'\D'E 2i 1i'\M[]
-@endExample
-@endDefesc
 @c END Keep (roughly) parallel with section "Colors" of groff(7).
 
 
