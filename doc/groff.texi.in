@@ -8946,6 +8946,7 @@ because after eliminating the comment,
 that is all that remains.
 
 @Example
+.nf
 apples bananas
 \" cantaloupes
 durians
