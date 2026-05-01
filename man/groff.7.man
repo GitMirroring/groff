@@ -7176,6 +7176,21 @@ request or the
 .B \[rs]R
 escape sequence.
 .
+Interpolate a register's value with the
+.B \[rs]n
+escape sequence.
+.
+Use the requests
+.B rr
+to remove (delete) a register,
+and
+.B rnn
+to rename it.
+.
+The
+.B aln
+request creates an alias of a register's name.
+.
 .
 .P
 User-defined registers can also be incremented or decremented
@@ -7200,7 +7215,9 @@ considered an \[lq]auto-decrement\[rq].)
 .
 .
 .P
-Many predefined registers are available.
+Many
+.I built-in
+(predefined) registers are available.
 .
 A register synopsis in this document uses interpolation syntax
 .BI \[rs]n[ ident ]
@@ -7219,6 +7236,8 @@ are
 part of the register's identifier.
 .
 .
+.br
+.ne 5v
 .\" ====================================================================
 .SS "Assigning register formats"
 .\" ====================================================================
