@@ -8325,7 +8325,9 @@ emits a warning in category
 Calling an undefined macro
 @emph{does}
 end a macro definition naming it
-as its end macro.@footnote{@xref{Writing Macros}.}
+as its end macro,
+unless a tab lies between the control character
+and its name.@footnote{@xref{Writing Macros}.}
 
 @cindex spaces, in a macro argument
 To embed spaces

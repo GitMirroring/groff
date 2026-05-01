@@ -1700,7 +1700,9 @@ See section \[lq]Warnings\[rq] in
 .
 Calling an undefined macro
 .I does
-end a macro definition naming it as its end macro
+end a macro definition naming it as its end macro,
+unless a tab lies between the control character
+and its name
 (see section \[lq]Writing macros\[rq] below).
 .
 .
