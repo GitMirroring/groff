@@ -347,7 +347,7 @@
 	Time to fire up the development mailing list critical homunculus
 	and have a Socratic dialogue with it.
 
-	"Rewrite?"  Why hit such a small thing with such a big hammer?
+	"Rewrite"?  Why hit such a small thing with such a big hammer?
 	Why not just fix my stupid mistake of adding an assertion?  {A}
 	I couldn't--wouldn't--just rip the assertion out, because it's
 	in a hot-path function where much sanity checking takes place.
