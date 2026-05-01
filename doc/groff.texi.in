@@ -12691,12 +12691,11 @@ for later use.
 
 @cindex @code{\f} escape sequence, untokenized on input
 @cindex untokenized escape sequence, @code{\f}
-GNU
-@command{troff} @c GNU
-does not tokenize
+The formatter does not tokenize
 @code{\f}
 when reading it;
-the escape sequence updates the environment.
+the escape sequence
+updates the environment.@footnote{@xref{Environments}.}
 It thus can be used in requests that expect a single-character argument.
 We can assign a font to a margin character
 as follows.@footnote{@xref{Output Line Annotation}.}
@@ -12872,7 +12871,8 @@ GNU
 does not tokenize
 @code{\F}
 when reading it;
-the escape sequence updates the environment.
+the escape sequence
+updates the environment.@footnote{@xref{Environments}.}
 It thus can be used in requests that expect a single-character argument.
 We can assign a font family to a margin character
 as follows.@footnote{@xref{Output Line Annotation}.}
@@ -15036,8 +15036,9 @@ wink, wink, \s+2nudge, nudge,\s+8 say no more!
 @cindex untokenized escape sequence, @code{\s}
 The formatter does not tokenize
 @code{\s}
-when reading its input;
-it instead updates the environment.
+when reading it;
+the escape sequence
+updates the environment.@footnote{@xref{Environments}.}
 It thus can be used in requests that expect a single-character argument.
 We can alter the type size of a margin character
 as follows.@footnote{@xref{Output Line Annotation}.}
@@ -15567,7 +15568,8 @@ GNU
 does not tokenize
 @code{\m}
 when reading it;
-the escape sequence updates the environment.
+the escape sequence
+updates the environment.@footnote{@xref{Environments}.}
 It thus can be used in requests that expect a single-character argument.
 We can assign a stroke color to a margin character
 as follows.@footnote{@xref{Output Line Annotation}.}
@@ -15600,9 +15602,10 @@ request without an argument.
 GNU
 @command{troff} @c GNU
 does not tokenize
-@code{\F}
+@code{\M}
 when reading it;
-the escape sequence updates the environment.
+the escape sequence
+updates the environment.@footnote{@xref{Environments}.}
 It thus can be used in requests that expect a single-character argument.
 We can assign a fill color to a margin character
 as follows;@footnote{@xref{Output Line Annotation}.}
