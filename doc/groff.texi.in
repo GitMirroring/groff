@@ -5968,6 +5968,7 @@ Barnum.
     @result{} P. T.  Barnum.
 @endExample
 
+Observe the two spaces after ``T.'' in the output.
 ``Barnum'' doesn't begin a sentence!
 What to do?
 Let us meet our first
