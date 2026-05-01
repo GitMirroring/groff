@@ -1,5 +1,26 @@
 2026-04-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[man]: Alter extension macro testing technique.  What we had
+	wasn't working when copy-and-pasted into man pages formatted
+	with non-groff-compatible formatters.  Now people copying these
+	macros can preserve or discard the lines with brace escape
+	sequences surrounding the macro definitions, or not, and things
+	should work either way.
+
+	* tmac/an.tmac: Initialize `mG` register to zero.
+	* tmac/an-ext.tmac: Invert sense of test when defining macros
+	that also have definitions in "tmac/an.tmac".
+	* tmac/tests/an-ext_MR-works.sh: Assign `mG` value of "1" when
+	testing the "an-ext.tmac" file's implementations of macros.
+
+2026-04-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/an-ext.tmac: Relocate material.  Group all the macro
+	definitions that don't conditionalize their definitions on the
+	value of the `mG` register before those that do.
+
+2026-04-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Fix Savannah #68285.
 
 	* src/roff/troff/env.cpp (temporary_indent): When invalidly

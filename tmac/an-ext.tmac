@@ -23,12 +23,6 @@
 .\"
 .\" Convention: Auxiliary string, macros, and registers start with 'm'
 .\"             followed by an uppercase letter or digit.
-.\"
-.\" Setting the `mG` register to a positive value (e.g., on the command
-.\" line) enables usage of macros defined here that have alternative
-.\" definitions in the main groff man macro file.  This is for testing.
-.\" The logic uses subtraction due to frustrating, AT&T troff-compatible
-.\" limitations on the '!' operator.
 .
 .
 .\" Protect against being sourced twice.
@@ -120,6 +114,25 @@
 ..
 .
 .
+.\" Add supplementary paragraph tag on its own line after TP.
+.de TQ
+.  br
+.  ns
+.  \" Do not quote the argument to `TP`; the user might specify
+.  \" their own quotes for multi-word tags or to exercise AT&T troff
+.  \" quoting rules.
+.  TP \\$1\"
+..
+.
+.
+.\" Setting the `mG` register to "-1" (e.g., on the command line)
+.\" enables usage of macros defined here that have alternative
+.\" definitions in the main groff man macro file.  This is for testing.
+.\" The logic uses subtraction due to frustrating, AT&T troff-compatible
+.\" limitations on the '!' operator.
+.nr mG +0
+.
+.
 .\" Prepare link text for mail/web hyperlinks.  `MT` and `UR` call this.
 .de mV
 .  ds mU \\$1\"
@@ -139,7 +152,7 @@
 .
 .\" Start URL.
 .\" .UR url
-.if \n(.g-\n(mG \{\
+.if !\n(.g-\n(mG \{\
 .de UR
 .  mV \\$1
 ..
@@ -148,7 +161,7 @@
 .
 .\" End URL.
 .\" .UE [punctuation]
-.if \n(.g-\n(mG \{\
+.if !\n(.g-\n(mG \{\
 .de UE
 .  mQ \\$1
 ..
@@ -157,7 +170,7 @@
 .
 .\" Start email address.
 .\" .MT address
-.if \n(.g-\n(mG \{\
+.if !\n(.g-\n(mG \{\
 .de MT
 .  mV \\$1
 ..
@@ -166,7 +179,7 @@
 .
 .\" End email address.
 .\" .ME [punctuation]
-.if \n(.g-\n(mG \{\
+.if !\n(.g-\n(mG \{\
 .de ME
 .  mQ \\$1
 ..
@@ -175,7 +188,7 @@
 .
 .\" Set a man page cross reference.
 .\" .MR page-topic page-section [trailing-text]
-.if \n(.g-\n(mG \{\
+.if !\n(.g-\n(mG \{\
 .de MR
 .  mY
 .  nh
@@ -188,22 +201,11 @@
 .\}
 .
 .
-.\" Add supplementary paragraph tag on its own line after TP.
-.de TQ
-.  br
-.  ns
-.  \" Do not quote the argument to `TP`; the user might specify
-.  \" their own quotes for multi-word tags or to exercise AT&T troff
-.  \" quoting rules.
-.  TP \\$1\"
-..
-.
-.
 .\" `EX` and `EE` are Ninth Edition Unix extensions that survived into
 .\" Plan 9 troff but other AT&T troff descendants did not adopt.
 .
 .\" Start example.
-.if \n(.g-\n(mG \{\
+.if !\n(.g-\n(mG \{\
 .de EX
 .  br
 .  if !\\n(mE \{\
@@ -220,7 +222,7 @@
 .
 .
 .\" End example.
-.if \n(.g-\n(mG \{\
+.if !\n(.g-\n(mG \{\
 .de EE
 .  br
 .  if \\n(mE \{\

@@ -45,7 +45,7 @@ foo @- a command with a very short name
 The real work is done by
 .MR bar 1 .'
 
-output=$(echo "$input" | "$groff" -rmG=0 -Tascii -man -Z | nl)
+output=$(echo "$input" | "$groff" -r mG=1 -T ascii -m an -Z | nl)
 echo "$output"
 
 # Expected:
@@ -64,4 +64,4 @@ echo "$output" | grep -Eq '92[[:space:]]+t\(1\)' || wail
 
 test -z "$fail"
 
-# vim:set ai et sw=4 ts=4 tw=72:
+# vim:set autoindent expandtab shiftwidth=4 tabstop=4 textwidth=72:
