@@ -8947,14 +8947,16 @@ Macro call and string interpolation parameters can be accessed using
 escape sequences starting with
 .RB \[lq] \|\[rs]$ \[rq].
 .
-The
+The read-only register
 .B \[rs]n[.$]
-read-only register stores the count of parameters available to a macro
-or string;
-change its value with the
-.B .shift
-request,
-which dequeues parameters from the current list.
+makes the count of a macro or interpolation's parameters
+available to its definition.
+The
+.RB \[lq] shift \[rq]
+request dequeues parameters,
+and thus updates
+.BR \[rs]n[.$] 's
+value.
 .
 The
 .B \[rs]$0

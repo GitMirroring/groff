@@ -17191,8 +17191,16 @@ shall motivate and explain below (@pxref{Copy Mode}).
 
 @Defreg {.$}
 @cindex parameter count register (@code{.$})
-The count of parameters available to a macro or string is kept in this
-read-only register.  The @code{shift} request can change its value.
+The read-only register
+@code{.$}
+makes the count of a macro or interpolation's parameters
+available to its definition.
+The
+@code{shift}
+request dequeues parameters,
+and thus updates
+@code{.$}'s
+value.
 @endDefreg
 
 Any individual parameter can be accessed by its position in the list of
