@@ -18791,10 +18791,22 @@ multiple columns, and footnotes.
 @cindex vertical position traps, enabling (@code{vpt})
 @cindex vertical position trap enable register (@code{.vpt})
 Enable or disable vertical position traps per Boolean expression
-@var{b}.  They are enabled by default, and if @var{b} is omitted.
-Vertical position traps are those set by the @code{wh} request or by
-@code{dt} within a diversion.  Vertical position trap enablement is
-global.  Its status is stored in the @code{.vpt} read-only register.
+@var{b}.
+They are enabled by default,
+and if
+@var{b}
+is omitted.
+Vertical position traps are those set by the
+@code{ch},
+@code{wh},
+and
+@code{dt}
+requests.
+Vertical position trap enablement is global.
+The
+read-only register
+@code{.vpt}
+stores its status.
 
 @cindex page break, prevented by @code{vpt}
 @cindex break, page, prevented by @code{vpt}
