@@ -9014,14 +9014,29 @@ we get the following undesired output.
 @endDefesc
 
 @Defreq {ig, [@Var{end}]}
-Ignore input until, in the current conditional block (if
-any),@footnote{@xref{Conditional Blocks}.} the macro @var{end} is called
-at the start of a control line, or the control line @samp{..} is
-encountered if @var{end} is not specified.  @code{ig} is parsed as if it
-were a macro definition, but its contents are discarded, not
-stored.@footnote{Exception: auto-incrementing registers defined outside
-the ignored region @emph{will} be modified if interpolated with
-@code{\n±} inside it.  @xref{Auto-increment}.}
+Ignore input until,
+in the current conditional block
+(if any),@footnote{@xref{Conditional Blocks}.}
+the macro
+@var{end}
+is called at the start of a control line,
+or,
+if
+@var{end}
+is omitted,
+the control line
+@samp{..}
+is encountered.
+The formatter processes the ignored input
+as if it were a macro definition,
+but discards rather than storing it.@footnote{Exception:@:
+auto-incrementing registers
+defined outside the ignored region
+@emph{will}
+be modified if interpolated with
+@code{\n±}
+inside it.
+@xref{Auto-increment}.}
 
 @c Wrap example at 56 columns.
 @Example
