@@ -9952,9 +9952,23 @@ sequence.
 
 @DefreqList {ad, [@Var{mode}]}
 @DefregListEndx {.j}
-Enable output line adjustment in @var{mode}, taking effect when the
-pending (or next) output line is broken.  Adjustment is suppressed when
-filling is.  @var{mode} can have one of the following values.
+Enable output line adjustment in
+@var{mode},
+taking effect when the pending
+(or next)
+output line automatically breaks.
+Adjustment is suppressed when filling is,
+and when a break is directed or implied by another request.
+(Exceptionally,
+the
+@code{brp}
+request and
+@code{\p}
+escape sequence break
+@emph{and}
+adjust the line.)
+@var{mode}
+can have one of the following values.
 
 @table @code
 @item b
