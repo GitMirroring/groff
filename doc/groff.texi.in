@@ -11292,15 +11292,6 @@ this spacing for the first paragraph in a section.
 A tab character (code point@tie{}9) causes a horizontal movement to the
 next tab stop, if any.
 
-@Defesc {\\t, , , }
-@cindex tab character, non-interpreted (@code{\t})
-@cindex character, tab, non-interpreted (@code{\t})
-@cindex @code{\t}, and copy mode
-@cindex copy mode, and @code{\t}
-@cindex mode, copy, and @code{\t}
-Interpolate a tab in copy mode; see @ref{Copy Mode}.
-@endDefesc
-
 @DefreqList {ta, [[@Var{n1} @Var{n2} @dots{} @Var{nn} ]@t{T} @Var{r1}@
  @Var{r2} @dots{} @Var{rn}]}
 @DefregListEndx {.tabs}
@@ -11447,6 +11438,15 @@ extension to tab stop syntax.}
     @result{} T120u
 @endExample
 @endDefreq
+
+@Defesc {\\t, , , }
+@cindex tab character, non-interpreted (@code{\t})
+@cindex character, tab, non-interpreted (@code{\t})
+@cindex @code{\t}, and copy mode
+@cindex copy mode, and @code{\t}
+@cindex mode, copy, and @code{\t}
+Interpolate a tab in copy mode; see @ref{Copy Mode}.
+@endDefesc
 
 @Defreq {tc, [@Var{c}]}
 @cindex tab repetition character (@code{tc})
