@@ -22,8 +22,8 @@ groff="${abs_top_builddir:-.}/test-groff"
 fail=
 
 wail () {
-  echo ...FAILED >&2
-  fail=YES
+    echo ...FAILED >&2
+    fail=YES
 }
 
 # Locate directory containing our test artifacts.
@@ -100,11 +100,11 @@ echo "checking textification of composite special character 'e aa'" >&2
 echo "$output" | grep -q "<'e>" || wail
 
 echo "checking textification of Unicode special character with Latin-1" \
-  "mapping 'u00E1'" >&2
+    "mapping 'u00E1'" >&2
 echo "$output" | grep -q "<'a>" || wail
 
 echo "checking textification of decomposable (with Basic Latin base" \
-  "character) Unicode special character 'u0106'" >&2
+    "character) Unicode special character 'u0106'" >&2
 echo "$output" | grep -q "C<aa>" || wail
 
 # TODO: See "test this" above.
@@ -122,11 +122,11 @@ echo "checking textification of dummy character escape sequence" >&2
 echo "$output" | grep -q "1@2" || wail
 
 echo "checking textification of EOS-transparent dummy character" \
-   "escape sequence" >&2
+    "escape sequence" >&2
 echo "$output" | grep -q "2@3" || wail
 
 echo "checking textification of output line continuation escape" \
-   "sequence" >&2
+    "sequence" >&2
 echo "$output" | grep -q "3@4" || wail
 
 echo "checking textification of tag request" >&2
@@ -195,4 +195,4 @@ echo "$output" | grep -q '24@25' || wail
 
 test -z "$fail"
 
-# vim:set autoindent expandtab shiftwidth=2 tabstop=2 textwidth=72:
+# vim:set autoindent expandtab shiftwidth=4 tabstop=4 textwidth=72:
