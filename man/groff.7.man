@@ -7744,11 +7744,17 @@ and
 .REG .S
 Reserved.
 .
-Plan\~9
-.I troff \" Plan 9
-uses this name for a purpose similar to
+DWB 3.3,
+Plan\~9,
+and Heirloom Doctools
+.IR troff s \" DWB, Plan 9, Heirloom
+lack,
+and thus do not report,
 GNU
 .IR troff 's \" GNU
+.RB \[lq] T \[rq]
+extension to tab stop syntax;
+see
 .register .tabs .
 .
 .TP

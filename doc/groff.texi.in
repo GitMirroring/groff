@@ -11420,12 +11420,26 @@ tab stop.
 Tab stops are associated with the environment (@pxref{Environments}).
 
 @cindex tab stop settings register (@code{.tabs})
-@cindex @code{.S} register, Plan@tie{}9 name for @code{.tabs}
-@cindex @code{.tabs} register, Plan@tie{}9 name for (@code{.S})
-The read-only register @code{.tabs} contains a string
-representation of the current tab settings suitable for use as an
-argument to the @code{ta} request.@footnote{Plan@tie{}9 @code{troff}
-uses the register @code{.S} for this purpose.}
+@cindex @code{.S} register, other @command{troff}s' name for @code{.tabs}
+@cindex @code{.tabs} register, other @command{troff}s' name for (@code{.S})
+The read-only register
+@code{.tabs}
+contains a string representation of the current tab settings
+suitable for use as an argument to the
+@code{ta}
+request.@footnote{DWB 3.3,
+Plan@tie{}9,
+and Heirloom Doctools
+@command{troff}s @c DWB, Plan 9, Heirloom
+uses the register
+@code{.S}
+for this purpose,
+lack,
+and thus do not report,
+GNU
+@command{troff}'s
+@code{T}
+extension to tab stop syntax.}
 
 @Example
 .ds tab-string \n[.tabs]
