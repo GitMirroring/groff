@@ -141,13 +141,13 @@ Device *device_load(const char *name)
 		dev->X11 = 1;
 	    else if (strcmp(p, "sizescale") == 0)
 		np = &dev->sizescale;
- 	    else if (strcmp(p, "res") == 0)
+	    else if (strcmp(p, "res") == 0)
 		np = &dev->res;
- 	    else if (strcmp(p, "unitwidth") == 0)
+	    else if (strcmp(p, "unitwidth") == 0)
 		np = &dev->unitwidth;
- 	    else if (strcmp(p, "paperwidth") == 0)
+	    else if (strcmp(p, "paperwidth") == 0)
 		np = &dev->paperwidth;
- 	    else if (strcmp(p, "paperlength") == 0)
+	    else if (strcmp(p, "paperlength") == 0)
 		np = &dev->paperlength;
 	    
 	    if (np) {
