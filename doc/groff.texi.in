@@ -11445,7 +11445,7 @@ extension to tab stop syntax.}
 @cindex @code{\t}, and copy mode
 @cindex copy mode, and @code{\t}
 @cindex mode, copy, and @code{\t}
-Interpolate a tab in copy mode; see @ref{Copy Mode}.
+Interpolate a tab in copy mode.@footnote{@xref{Copy Mode}.}
 @endDefesc
 
 @Defreq {tc, [@Var{c}]}
@@ -11453,14 +11453,29 @@ Interpolate a tab in copy mode; see @ref{Copy Mode}.
 @cindex character, tab repetition (@code{tc})
 @cindex glyph, tab repetition (@code{tc})
 Set the tab repetition character to the ordinary or special character
-@var{c}; normally, no glyph is written when moving to a tab stop (and
-some output devices may output space characters to achieve this motion).
-A @dfn{tab repetition character} causes the formatter to write as many
-instances of @var{c} as are necessary to occupy the interval from the
-horizontal drawing position to the next tab stop.  With no argument, GNU
-@code{troff} reverts to the default behavior.  The tab repetition
-character is associated with the environment (@pxref{Environments}).
-Only a single character of @var{c} is recognized; any excess is ignored.
+@var{c};
+normally,
+no glyph is written when moving to a tab stop
+(and some output devices may output space characters
+to achieve this motion).
+A
+@dfn{tab repetition character}
+causes the formatter to write as many instances of
+@var{c}
+as are necessary to occupy the interval
+from the horizontal drawing position to the next tab stop.
+If
+@var{c}
+is omitted,
+GNU
+@command{troff} @c GNU
+reverts to the default behavior.
+The tab repetition character
+is associated with the environment.@footnote{@xref{Environments}.}
+Only a single character of
+@var{c}
+is recognized;
+any excess is ignored.
 @endDefreq
 
 @DefreqList {linetabs, [@Var{b}]}
