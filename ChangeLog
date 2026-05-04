@@ -1,5 +1,10 @@
 2026-05-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/groff/tests/asciify-request-works.sh: Unit-test
+	asciification of (left and regular) italic correction nodes.
+
+2026-05-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/groff/tests/asciify-request-works.sh: Test sample
 	input not just with "ps" output device, but "utf8" as well.
 	Exclude two checks when producing output for the latter; one

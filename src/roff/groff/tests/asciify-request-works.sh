@@ -79,7 +79,8 @@ $%antimatter15@$b"hup"16@$c
 17@$D"l 1i 1i"18@$x".5v"19@$l"1i"20@$L"1i"21@$o"o+"22@$
 $O[0]fnord$O[1]23@$Z"visible"24@$c
 '"'trf $artifact_dir/throughput-file"'
-25@
+25@$c
+roman$,$f[I]italic$f[]$/normal@26
 .br
 .box
 .asciify DIV2
@@ -203,6 +204,12 @@ do
     echo "checking textification of diverted 'trf' request" >&2
     echo "$output" | grep -q "$comment" && wail
     echo "$output" | grep -q '24@25' || wail
+
+    echo "checking textification of left italic correction escape sequence" >&2
+    echo "$output" | grep -q "25@ro" || wail
+
+    echo "checking textification of italic correction escape sequence" >&2
+    echo "$output" | grep -q "talicnormal@26" || wail
 done
 
 test -z "$fail"
