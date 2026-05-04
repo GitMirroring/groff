@@ -4039,7 +4039,8 @@ void italic_corrected_node::asciify(macro *m)
 
 void left_italic_corrected_node::asciify(macro *m)
 {
-  assert(nodes != 0 /* nullptr */);
+  // In nroff mode, this node type _can_ be an empty container.
+  assert(in_nroff_mode || (nodes != 0 /* nullptr */));
   if (!is_output_suppressed && (nodes != 0 /* nullptr */))
     nodes->asciify(m);
   nodes = 0 /* nullptr */;

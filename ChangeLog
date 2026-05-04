@@ -1,5 +1,16 @@
 2026-05-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (left_italic_corrected_node::asciify):
+	Revise assert(3)ion: it's okay for this type of container node's
+	contents (`nodes`) to be empty if we're in nroff mode.
+
+	Fixes <https://savannah.gnu.org/bugs/?68303>.  Problem
+	introduced by me in commit d445aee94e, 10 September, as part of
+	the redesign of the "asciify" feature.  Thanks to Deri James for
+	catching the problem and root-cause analyzing it.
+
+2026-05-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (process_input_stack): Add null
 	pointer check when processing a horizontal motion token.  An
 	experimental code change in my working copy while exploring
