@@ -467,7 +467,7 @@ Documentation License''.
 @title groff
 @subtitle The GNU implementation of @code{troff}
 @subtitle version @VERSION@
-@subtitle April 2026
+@subtitle May 2026
 @author Trent@tie{}A.@: Fisher
 @author Werner Lemberg
 @author G.@tie{}Branden Robinson
@@ -14661,27 +14661,43 @@ is an integer.
 @cindex ligatures and kerning
 @cindex kerning and ligatures
 
-Proportional fonts commonly employ two techniques to improve the
-esthetics of typeset text.  @dfn{Ligatures} are sequences of glyphs that
-are visually connected or ``tied'', overlapping them and slightly
-altering their shapes.  @dfn{Kerning} is the adjustment of horizontal
-spacing between glyphs.  Neither is employed on terminals.@footnote{A
-monospaced font may possess glyphs for ligatures, but they nevertheless
-seldom see use to set text.}
+Proportional fonts commonly employ two techniques
+to improve the esthetics of typeset text.
+@dfn{Ligatures}
+are sequences of glyphs that are visually connected or ``tied'',
+overlapping them and slightly altering their shapes.
+@dfn{Kerning}
+is the adjustment of horizontal spacing between glyphs.
+Neither is employed on terminals.@footnote{
+monospaced font may possess ligature glyphs,
+but they nevertheless seldom see use to set text.}
 
-Most typesetters support ligatures for the sequences `fi', `fl', `ff',
-`ffi', and `ffl', and @code{troff} does likewise.  Some fonts may
-include others, but GNU @code{troff} does not (yet) support them.
+Most typesetters support ligatures for the sequences
+`fi',
+`fl',
+`ff',
+`ffi',
+and
+`ffl',
+and
+@code{troff} @c generic
+formatters do likewise.
+Some fonts may include others,
+but
+GNU
+@command{troff} @c GNU
+does not (yet) support them.
 
 The formatter checks only the current font
-for ligatures and kerning adjustments;
+for ligatures and kerning adjustments:@:
 neither glyphs from special fonts nor special characters
 defined with the
 @code{char}
 request
 (and its siblings)
 are considered
-for these processes.@footnote{@xref{Characters and Glyphs}.}
+for these processes;
+recall @ref{Characters and Glyphs}.
 
 @DefreqList {lg, [@Var{flag}]}
 @DefregListEndx {.lg}
@@ -14698,14 +14714,21 @@ Setting the ligature mode to@tie{}2 enables the two-character ligatures
 ffl).
 @endDefreq
 
-@dfn{Pairwise kerning} is another subtle typesetting mechanism that
-modifies the distance between adjacent glyphs in a pair to improve
-readability.  In most cases (but not always) the distance is decreased.
+@dfn{Pairwise kerning}
+modifies the distance between adjacent glyphs in a pair,
+improving readability.
+In most cases,
+this alteration is a decrease.
 @iftex
-For example, compare the combination of the letters `V' and `A'.  With
-kerning, `VA' is printed.  Without kerning it appears as `V@w{}A'.
+Consider the letters `V' and `A' set adjacently.
+With kerning,
+`VA' is rendered.
+Without kerning,
+they appear as `V@w{}A'.
 @end iftex
-Monospaced (typewriter-like) fonts and terminals don't use kerning.
+Monospaced (typewriter-like) fonts,
+and therefore terminals,
+don't use kerning.
 
 @DefreqList {kern, [@Var{flag}]}
 @DefregListEndx {.kern}
@@ -14720,20 +14743,29 @@ kerning is enabled, 0@tie{}otherwise.
 
 @cindex dummy character (@code{\&}), effect on kerning
 @cindex character, dummy (@code{\&}), effect on kerning
-If the font description file contains pairwise kerning information,
-glyphs from that font are kerned.  Kerning between two glyphs can be
-inhibited by placing @code{\&} between them: @samp{V\&A}.
-
-@xref{Font Description File Format}.
+If the font description file
+contains pairwise kerning information,
+GNU
+@command{troff} @c GNU
+kerns glyphs
+from that font.@footnote{@xref{Font Description File Format}.}
+Kerning between two glyphs can be inhibited by placing
+@code{\&}
+between them:
+@samp{V\&A}.
 @endDefreq
 
 @cindex track kerning
 @cindex kerning, track
-@dfn{Track kerning} expands or reduces the space between glyphs.  This
-can be handy, for example, if you need to squeeze a long word onto a
-single line or spread some text to fill a narrow column.  It must be
-used with great care since it is usually considered bad typography if
-the reader notices the effect.
+@dfn{Track kerning}
+expands or reduces the space between glyphs.
+This can be handy,
+for example,
+if you need to squeeze a long word onto a single line
+or spread some text to fill a narrow column.
+It must be used with great care
+since it is usually considered bad typography
+if the reader notices the effect.
 
 @Defreq {tkf, f s1 n1 s2 n2}
 @cindex activating track kerning (@code{tkf})
@@ -14788,6 +14820,7 @@ we thus recommend increasing the line length to compensate.
 
 @c ---------------------------------------------------------------------
 
+@need 1000
 @node Italic Corrections
 @subsection Italic Corrections
 

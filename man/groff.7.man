@@ -2175,6 +2175,112 @@ to spring that trap even if the page has already started
 .\" definitions with the `char` request family) and fonts (including
 .\" special fonts and the character resolution process).
 .\" ====================================================================
+.SH "Ligatures and kerning"
+.\" ====================================================================
+.
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Ligatures and
+.\" Kerning".
+Proportional fonts commonly employ two techniques
+to improve the esthetics of typeset text.
+.I Ligatures
+are sequences of glyphs that are visually connected or \[lq]tied\[rq],
+overlapping them and slightly altering their shapes.
+.
+.I Kerning
+is the adjustment of horizontal spacing between glyphs.
+.
+Neither is employed on terminals.
+.
+(A monospaced font may possess ligature glyphs,
+but they nevertheless seldom see use to set text.)
+.
+.
+.P
+Most typesetters support ligatures for the sequences
+\[lq]fi\[rq],
+\[lq]fl\[rq],
+\[lq]ff\^\[rq],\" The hair space `\^` is a kludge--see Savannah #67544.
+\[lq]ffi\[rq],
+and
+\[lq]ffl\[rq],
+and
+.I troff \" generic
+formatters do likewise.
+.
+Some fonts may include others,
+but
+GNU
+.I troff \" GNU
+does not (yet) support them.
+.
+.
+.P
+The formatter checks only the current font
+for ligatures and kerning adjustments:
+neither glyphs from special fonts nor special characters
+defined with the
+.B char
+request
+(and its siblings)
+are considered
+for these processes.
+.
+.
+.P
+.I "Pairwise kerning"
+modifies the distance between adjacent glyphs in a pair,
+improving readability.
+.
+In most cases,
+this alteration is a decrease.
+.
+.if t \{\
+Consider the letters \[lq]V\[rq] and \[lq]A\[rq] set adjacently.
+.
+With kerning,
+\[lq]VA\[rq] is rendered.
+.
+Without kerning,
+they appear as \[lq]V\&A\[rq].
+.
+.\}
+Monospaced (typewriter-like) fonts,
+and therefore terminals,
+don't use kerning.
+.
+.
+.P
+.I "Track kerning"
+expands or reduces the space between glyphs.
+.
+This can be handy,
+for example,
+if you need to squeeze a long word onto a single line
+or spread some text to fill a narrow column.
+.
+It must be used with great care
+since it is usually considered bad typography
+if the reader notices the effect.
+.
+.
+.\" man-page-only feature summary
+.P
+The
+.B lg
+request configures the
+.I "ligature mode,"
+the
+.B kern
+request enables or disables pairwise glyph kerning,
+and the
+.B tkf
+request configures track kerning.
+.\" recall @ref{Characters and Glyphs}.
+.\" END Keep (roughly) parallel with groff.texi node "Ligatures and
+.\" Kerning".
+.
+.
+.\" ====================================================================
 .SH "Control structures"
 .\" ====================================================================
 .
