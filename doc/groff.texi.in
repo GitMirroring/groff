@@ -10134,7 +10134,7 @@ A
 @dfn{productive input line}
 directly produces formatted output.
 Text lines that populate a diversion
-(include the top-level one)
+(including the top-level one)
 produce output,
 as do control lines containing requests like
 @samp{.tl //Page %//}
