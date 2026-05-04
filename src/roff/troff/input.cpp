@@ -3775,6 +3775,7 @@ void process_input_stack()
     case token::TOKEN_NODE:
     case token::TOKEN_DELIMITED_HORIZONTAL_MOTION:
     case token::TOKEN_HORIZONTAL_MOTION:
+      assert(tok.nd != 0 /* nullptr */);
       if (curenv->get_was_line_interrupted()) {
 	// We don't want to warn about node types.  They might have been
 	// interpolated into the input by the formatter itself, as with
@@ -3787,13 +3788,14 @@ void process_input_stack()
       }
       else if (possibly_handle_first_page_transition())
 	;
-      else if (tok.nd->need_reread(&can_accept_control_character)) {
+      else if (tok.nd != 0 /* nullptr */
+	       && tok.nd->need_reread(&can_accept_control_character)) {
 	delete tok.nd;
-	tok.nd = 0;
+	tok.nd = 0 /* nullptr */;
       }
       else {
 	curenv->add_node(tok.nd);
-	tok.nd = 0;
+	tok.nd = 0 /* nullptr */;
 	can_accept_control_character = false;
 	curenv->possibly_break_line(true /* must break here */);
       }

@@ -1,3 +1,13 @@
+2026-05-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp (process_input_stack): Add null
+	pointer check when processing a horizontal motion token.  An
+	experimental code change in my working copy while exploring
+	Savannah #68303 caused a SEGV in a place I didn't expect.  While
+	that change is likely erroneous, it appears to have revealed an
+	implicit invariant.  Make the invariant explicit, as above, and
+	add an assert(3)ion for it as well.
+
 2026-04-29  Dave Kemper <saint.snit@gmail.com>
 
 	* doc/groff.texi.in (Ligatures and Kerning):
