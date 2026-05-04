@@ -1,5 +1,14 @@
 2026-05-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/groff/tests/asciify-request-works.sh: Test sample
+	input not just with "ps" output device, but "utf8" as well.
+	Exclude two checks when producing output for the latter; one
+	because it's an as yet unimplemented feature, and the other
+	because the feature (ligature rendering) is unsupported in nroff
+	mode.  This is to catch more cases like Savannah #68303.
+
+2026-05-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp (left_italic_corrected_node::asciify):
 	Revise assert(3)ion: it's okay for this type of container node's
 	contents (`nodes`) to be empty if we're in nroff mode.
