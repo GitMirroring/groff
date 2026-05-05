@@ -154,7 +154,7 @@ I.  Installing the pre-compiled binary package
 
                  - bash
                  - gawk
-                 - egrep
+                 - grep
                  - sed
 
        The following Groff programs are Perl scripts; they require a

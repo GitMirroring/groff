@@ -933,6 +933,9 @@ in place to use a conforming shell.  Here is an example.
       `find . -name '*.sh.in' | egrep '/(examples|tests)/'`
   $ PATH=/usr/xpg4/bin:$PATH gmake check
 
+[POSIX.1-2024 has withdrawn specification of egrep(1) but Solaris 10
+doesn't support `grep -E`.  --GBR in 2026]
+
 ----------------------------------------------------------------------
 
 * I get warnings from afmtodit about names already being mapped.
