@@ -1,5 +1,14 @@
 2026-05-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp
+	(read_character_in_escape_sequence_parameter): Fix code style
+	nits.  Arrange equality comparisons to avoid inadvertent lvalue
+	assignment.  Return explicitly constructed `char` object from
+	an `int` value rather than relying upon "the default
+	conversions" of C and C++.
+
+2026-05-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Correct some highly outdated Microsoft DOS/Windows port stuff.
 
 	* arch/mingw/groffer.cmd:

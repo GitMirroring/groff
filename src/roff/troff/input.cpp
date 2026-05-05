@@ -1024,16 +1024,18 @@ static char read_character_in_escape_sequence_parameter(
   case EOF:
     copy_mode_error("end of input in escape sequence");
     return '\0';
+  // XXX: This is a bit unorthodox, and maybe too clever.
   default:
     if (!is_invalid_input_char(c))
       break;
     // fall through
+  // We now have to test `c` again due to the `default:` above.
   case '\n':
-    if (c == '\n')
+    if ('\n' == c)
       input_stack::push(make_temp_iterator("\n"));
     // fall through
   case ' ':
-    if (c == ' ' && allow_space)
+    if ((' ' == c) && allow_space)
       break;
     // fall through
   case '\t':
@@ -1043,7 +1045,7 @@ static char read_character_in_escape_sequence_parameter(
 		    input_char_description(c));
     return '\0';
   }
-  return c;
+  return char(c);
 }
 
 static symbol read_two_character_escape_sequence_parameter()
