@@ -133,24 +133,42 @@ I.  Installing the pre-compiled binary package
        an error message, and the produced file will have links which
        will fail to resolve when you view it with a Web browser.
 
-    6. Some programs in the package are supplied as Unix shell
-       scripts.  While it is relatively easy to write a DOS batch file
-       which will do the same, DOS doesn't allow to redirect input and
-       output of a batch file.  Since Groff tools are meant to be
-       invoked in a pipe, the batch files are not very useful.  The
-       batch files are included in the binary distribution
-       nonetheless.
+    6. The following Groff programs are POSIX shell scripts.
+
+                 - nroff
+                 - neqn
+                 - grap2graph
+                 - eqn2graph
+                 - pic2graph
+                 - gdiffmk
+
+       While it is relatively easy to write a DOS batch file that will
+       do the same, DOS doesn't allow redirection of the input and
+       output streams of a batch file.  Since Groff tools are meant to
+       be invoked in a pipeline, the batch files are not very useful.
+       We include batch files in the binary distribution corresponding
+       to some of them nonetheless.
 
        These scripts need the following utilities to run (in addition
-       to the Groff programs they invoke):
+       to the Groff programs they invoke).
 
                  - bash
                  - gawk
                  - egrep
                  - sed
 
-       The 'afmtodit' and 'mmroff' utilities are Perl scripts, so you
-       will need a Perl port to run them.
+       The following Groff programs are Perl scripts; they require a
+       Perl interpreter to run.
+
+                 - grof
+                 - afmtodit
+                 - pdfmom
+                 - gropdf
+                 - gperl
+                 - glilypond
+                 - mmroff
+                 - chem
+                 - gpinyin
 
        All of these ports should be available from the DJGPP sites.
 

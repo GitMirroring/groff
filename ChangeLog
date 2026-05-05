@@ -1,3 +1,20 @@
+2026-05-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	Correct some highly outdated Microsoft DOS/Windows port stuff.
+
+	* arch/mingw/groffer.cmd:
+	* arch/mingw/roff2dvi.cmd:
+	* arch/mingw/roff2html.cmd:
+	* arch/mingw/roff2pdf.cmd:
+	* arch/mingw/roff2ps.cmd:
+	* arch/mingw/roff2text.cmd:
+	* arch/mingw/roff2x.cmd: Delete these remnants of "groffer",
+	dropped from the groff distribution in commit 1d2df80a93,
+	2020-04-22.
+	* arch/mingw/mingw.am: Update `WINSCRIPTS` macro to no longer
+	specify them.
+	* arch/djgpp/README: Update.
+
 2026-05-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/devices/xditview/device.c: Fix code style nits.  Spell

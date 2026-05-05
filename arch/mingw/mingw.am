@@ -27,13 +27,7 @@ WINSCRIPTS=\
   arch/mingw/gropdf.cmd \
   arch/mingw/mmroff.cmd \
   arch/mingw/neqn.cmd \
-  arch/mingw/pdfmom.cmd \
-  arch/mingw/roff2dvi.cmd \
-  arch/mingw/roff2html.cmd \
-  arch/mingw/roff2pdf.cmd \
-  arch/mingw/roff2ps.cmd \
-  arch/mingw/roff2text.cmd \
-  arch/mingw/roff2x.cmd
+  arch/mingw/pdfmom.cmd
 
 if BUILD_WINSCRIPTS
 bin_SCRIPTS += $(WINSCRIPTS)
