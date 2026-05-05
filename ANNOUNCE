@@ -103,10 +103,10 @@ which they apply, we find the following.
   Feature change               NN   Driver: grops                  NN
   Incorrect behavior           NN   Driver: grotty                 NN
   Lint                         NN   Driver: others/general         NN
-  Rendering/cosmetics          NN   Font: devpdf                   NN
-  Test                         NN   Font: devps                    NN
-  Warning/suspicious behavior  NN   Font: others/general           NN
-                                    General                        NN
+  Refactoring                  NN   Font: devpdf                   NN
+  Rendering/cosmetics          NN   Font: devps                    NN
+  Test                         NN   Font: others/general           NN
+  Warning/suspicious behavior  NN   General                        NN
                                     Macros: man                    NN
                                     Macros: mdoc                   NN
                                     Macros: me                     NN
