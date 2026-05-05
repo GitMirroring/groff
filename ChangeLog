@@ -1,5 +1,28 @@
 2026-05-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp: Fix code style nits.
+	(decode_macro_call_arguments)
+	(decode_escape_sequence_arguments)
+	(read_from_terminal_request)
+	(do_define_string)
+	(define_character)
+	(do_define_macro)
+	(length_request)
+	(read_size)
+	(skip_branch)
+	(is_conditional_expression_true)
+	(while_request)
+	(psbb_locator::get_line)
+	(tag)
+	(taga): Arrange equality comparisons to avoid inadvertent lvalue
+	assignment.  Parenthesize formally complex expressions.  For
+	clarity, compare characters (even if of `int` type for <stdio.h>
+	reasons) to null character literal instead of numeric zero.
+	(is_conditional_expression_true): More consistently cast
+	character literals to `int` in comparisons.
+
+2026-05-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp
 	(read_character_in_escape_sequence_parameter): Fix code style
 	nits.  Arrange equality comparisons to avoid inadvertent lvalue

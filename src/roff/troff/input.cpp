@@ -4760,7 +4760,7 @@ static void decode_macro_call_arguments(macro_iterator *mi)
     node *n;
     int c = read_character_in_copy_mode(&n);
     for (;;) {
-      while (c == ' ')
+      while (' ' == c)
 	c = read_character_in_copy_mode(&n);
       if (('\n' == c) || (EOF == c))
 	break;
@@ -4769,19 +4769,21 @@ static void decode_macro_call_arguments(macro_iterator *mi)
       bool was_warned = false; // about an input tab character
       arg.append(want_att_compat ? PUSH_COMP_MODE : PUSH_GROFF_MODE);
       // we store discarded double quotes for \$^
-      if (c == '"') {
+      if ('"' == c) {
 	arg.append(DOUBLE_QUOTE);
 	quote_input_level = input_stack::get_level();
 	c = read_character_in_copy_mode(&n);
       }
-      while ((c != EOF) && (c != '\n')
-	     && !(c == ' ' && quote_input_level == 0)) {
-	if (quote_input_level > 0 && c == '"'
+      while ((c != EOF)
+	     && (c != '\n')
+	     && !((' ' == c) && (quote_input_level == 0))) {
+	if ((quote_input_level > 0)
+	    && ('"' == c)
 	    && (want_att_compat
-		|| input_stack::get_level() == quote_input_level)) {
+		|| (input_stack::get_level() == quote_input_level))) {
 	  arg.append(DOUBLE_QUOTE);
 	  c = read_character_in_copy_mode(&n);
-	  if (c == '"') {
+	  if ('"' == c) {
 	    arg.append(c);
 	    c = read_character_in_copy_mode(&n);
 	  }
@@ -4789,10 +4791,11 @@ static void decode_macro_call_arguments(macro_iterator *mi)
 	    break;
 	}
 	else {
-	  if (c == 0)
+	  if ('\0' == c)
 	    arg.append(n);
 	  else {
-	    if (c == '\t' && quote_input_level == 0 && !was_warned) {
+	    if (('\t' == c) && (quote_input_level == 0) && !was_warned)
+	    {
 	      warning(WARN_TAB, "tab character in unquoted macro"
 		      " argument");
 	      was_warned = true;
@@ -4803,7 +4806,7 @@ static void decode_macro_call_arguments(macro_iterator *mi)
 	}
       }
       arg.append(POP_GROFFCOMP_MODE);
-      mi->add_arg(arg, (c == ' '));
+      mi->add_arg(arg, (' ' == c));
     }
   }
 }
@@ -4813,28 +4816,28 @@ static void decode_escape_sequence_arguments(macro_iterator *mi)
   node *n;
   int c = read_character_in_copy_mode(&n);
   for (;;) {
-    while (c == ' ')
+    while (' ' == c)
       c = read_character_in_copy_mode(&n);
     if (('\n' == c) || (EOF == c)) {
       error("missing ']' in parameterized escape sequence");
       break;
     }
-    if (c == ']')
+    if (']' == c)
       break;
     macro arg;
     int quote_input_level = 0;
     bool was_warned = false; // about an input tab character
-    if (c == '"') {
+    if ('"' == c) {
       quote_input_level = input_stack::get_level();
       c = read_character_in_copy_mode(&n);
     }
-    while (c != EOF && c != '\n'
-	   && !(c == ']' && quote_input_level == 0)
-	   && !(c == ' ' && quote_input_level == 0)) {
-      if (quote_input_level > 0 && c == '"'
+    while ((c != EOF) && (c != '\n')
+	   && !((']' == c) && (quote_input_level == 0))
+	   && !((' ' == c) && (quote_input_level == 0))) {
+      if ((quote_input_level > 0) && ('"' == c)
 	  && input_stack::get_level() == quote_input_level) {
 	c = read_character_in_copy_mode(&n);
-	if (c == '"') {
+	if ('"' == c) {
 	  arg.append(c);
 	  c = read_character_in_copy_mode(&n);
 	}
@@ -4842,11 +4845,10 @@ static void decode_escape_sequence_arguments(macro_iterator *mi)
 	  break;
       }
       else {
-	if (c == 0)
+	if ('\0' == c)
 	  arg.append(n);
 	else {
-	  if (c == '\t' && quote_input_level == 0 && !was_warned)
-	  {
+	  if (('\t' == c) && (quote_input_level == 0) && !was_warned) {
 	    warning(WARN_TAB, "a tab character is invalid in a"
 		    " parameterized escape sequence");
 	    was_warned = true;
@@ -4856,7 +4858,7 @@ static void decode_escape_sequence_arguments(macro_iterator *mi)
 	c = read_character_in_copy_mode(&n);
       }
     }
-    mi->add_arg(arg, (c == ' '));
+    mi->add_arg(arg, (' ' == c));
   }
 }
 
@@ -5084,9 +5086,9 @@ void read_from_terminal_request() // .rd
   bool had_prompt = false;
   if (has_arg(true /* peeking */)) {
     int c = read_character_in_copy_mode(0 /* nullptr */);
-    while (c == ' ')
+    while (' ' == c)
       c = read_character_in_copy_mode(0 /* nullptr */);
-    while (c != EOF && c != '\n' && c != ' ') {
+    while ((c != EOF) && (c != '\n') && (c != ' ')) {
       if (!is_invalid_input_char(c)) {
 	if (is_reading_from_terminal)
 	  fputc(c, stderr);
@@ -5094,7 +5096,7 @@ void read_from_terminal_request() // .rd
       }
       c = read_character_in_copy_mode(0 /* nullptr */);
     }
-    if (c == ' ') {
+    if (' ' == c) {
       tok.make_space();
       decode_macro_call_arguments(mi);
     }
@@ -5111,7 +5113,7 @@ void read_from_terminal_request() // .rd
     if (is_invalid_input_char(c))
       warning(WARN_INPUT, "invalid input character code %1", int(c));
     else {
-      if (c == '\n') {
+      if ('\n' == c) {
 	if (!saw_newline)
 	  break;
 	else
@@ -5152,9 +5154,9 @@ static void do_define_string(define_mode mode, comp_mode comp)
   }
   else
     c = read_character_in_copy_mode(&n);
-  while (c == ' ')
+  while (' ' == c)
     c = read_character_in_copy_mode(&n);
-  if (c == '"')
+  if ('"' == c)
     c = read_character_in_copy_mode(&n);
   macro mac;
   request_or_macro *rm
@@ -5166,8 +5168,8 @@ static void do_define_string(define_mode mode, comp_mode comp)
     mac.append(PUSH_GROFF_MODE);
   else if (COMP_ENABLE == comp)
     mac.append(PUSH_COMP_MODE);
-  while (c != '\n' && c != EOF) {
-    if (c == 0)
+  while ((c != '\n') && (c != EOF)) {
+    if ('\0' == c)
       mac.append(n);
     else
       mac.append((unsigned char) c);
@@ -5265,15 +5267,15 @@ void define_character(char_mode mode, const char *font_name)
   }
   else
     c = read_character_in_copy_mode(&n);
-  while (c == ' ' || c == '\t')
+  while ((' ' == c) || ('\t' == c))
     c = read_character_in_copy_mode(&n);
-  if (c == '"')
+  if ('"' == c)
     c = read_character_in_copy_mode(&n);
   macro *m = new macro;
   // Construct a macro from input characters; if the input character
   // code is 0, we've read a node--append that.
-  while (c != '\n' && c != EOF) {
-    if (c != 0)
+  while ((c != '\n') && (c != EOF)) {
+    if (c != '\0')
       m->append(static_cast<unsigned char>(c));
     else
       m->append(n);
@@ -5681,7 +5683,7 @@ static void do_define_macro(define_mode mode, calling_mode calling,
       return;
     }
     if ((DEFINE_NORMAL == mode) || (DEFINE_APPEND == mode)) {
-      if (c == '\0')
+      if ('\0' == c)
 	mac.append(n);
       else
 	// TODO: grochar; may need NFD decomposition and UTF-8 encoding
@@ -6024,9 +6026,9 @@ void length_request()
   }
   else
     c = read_character_in_copy_mode(&n);
-  while (c == ' ')
+  while (' ' == c)
     c = read_character_in_copy_mode(&n);
-  if (c == '"')
+  if ('"' == c)
     c = read_character_in_copy_mode(&n);
   int len = 0;
   while (c != '\n' && c != EOF) {
@@ -6267,30 +6269,31 @@ static bool read_size(int *x) // \s
 {
   tok.next();
   int c = tok.ch(); // safely compares to char literals; TODO: grochar
+  // TODO: Migrate to `crement` enumerated type in "number.cpp".
   int inc = 0;
-  if (c == int('-')) { // TODO: grochar
+  if (int('-') == c) { // TODO: grochar
     inc = -1;
     tok.next();
     c = tok.ch();
   }
-  else if (c == int('+')) { // TODO: grochar
+  else if (int('+') == c) { // TODO: grochar
     inc = 1;
     tok.next();
     c = tok.ch();
   }
   int val = 0;		// pacify compiler
   bool contains_invalid_digit = false;
-  if (c == int('(')) { // TODO: grochar
+  if (int('(') == c) { // TODO: grochar
     tok.next();
     c = tok.ch();
     if (!inc) {
       // allow an increment either before or after the left parenthesis
-      if (c == int('-')) { // TODO: grochar
+      if (int('-') == c) { // TODO: grochar
 	inc = -1;
 	tok.next();
 	c = tok.ch();
       }
-      else if (c == int('+')) { // TODO: grochar
+      else if (int('+') == c) { // TODO: grochar
 	inc = 1;
 	tok.next();
 	c = tok.ch();
@@ -6347,8 +6350,8 @@ static bool read_size(int *x) // \s
     token start(tok);
     tok.next();
     c = tok.ch();
-    if ((inc == 0) && ((c == '-') || (c == '+'))) {
-      inc = (c == '+') ? 1 : -1;
+    if ((inc == 0) && ((int('-') == c) || (int('+') == c))) {
+      inc = (int('+') == c) ? 1 : -1;
       tok.next();
     }
     if (!read_measurement(&val, (unsigned char)('z'))) // TODO: grochar
@@ -6356,8 +6359,8 @@ static bool read_size(int *x) // \s
     // safely compares to char literals; TODO: grochar
     int s = start.ch();
     int t = tok.ch();
-    if (!((s == int('[')) && (t == int(']'))) && (start != tok)) {
-      if (s == int('['))
+    if (!((int('[') == s) && (int(']') == t)) && (start != tok)) {
+      if (int('[') == s)
 	error("missing ']' in type size escape sequence");
       else {
 	// token::description() writes to static, class-wide storage, so
@@ -6716,7 +6719,7 @@ static node *do_non_interpreted() // \?
   while (((c = read_character_in_copy_mode(&n)) != ESCAPE_QUESTION)
 	 && (c != EOF)
 	 && (c != '\n'))
-    if (c == 0)
+    if ('\0' == c)
       mac.append(n);
     else
       mac.append(c);
@@ -7233,7 +7236,7 @@ static void skip_branch()
 
       So don't give an error message in this case.
     */
-    if (level <= 0 && c == '\n')
+    if (level <= 0 && ('\n' == c))
       break;
   }
   tok.next();
@@ -7338,36 +7341,36 @@ static bool is_conditional_expression_true()
     default:
       break;
     }
-  if (c == int('t')) { // TODO: grochar
+  if (int('t') == c) { // TODO: grochar
     tok.next();
     result = !in_nroff_mode;
   }
-  else if (c == int('n')) { // TODO: grochar
+  else if (int('n') == c) { // TODO: grochar
     tok.next();
     result = in_nroff_mode;
   }
-  else if (c == int('o')) { // TODO: grochar
+  else if (int('o') == c) { // TODO: grochar
     result = (topdiv->get_page_number() & 1); // TODO: dump cleverness
     tok.next();
   }
-  else if (c == int('e')) { // TODO: grochar
+  else if (int('e') == c) { // TODO: grochar
     result = !(topdiv->get_page_number() & 1); // TODO: dump cleverness
     tok.next();
   }
   // TODO: else if (!want_att_compat) {
   // Check for GNU troff extended conditional expression operators.
-  else if ((c == int('d') || (c == int('r')))) { // TODO: grochar
+  else if ((int('d') == c || (int('r') == c))) { // TODO: grochar
     tok.next();
     symbol nm = read_identifier(true /* want_diagnostic */);
     if (nm.is_null()) {
       skip_branch();
       return false;
     }
-    result = ((c == 'd')
+    result = ((int('d') == c)
 	      ? request_dictionary.lookup(nm) != 0 /* nullptr */
 	      : register_dictionary.lookup(nm) != 0 /* nullptr */);
   }
-  else if (c == 'm') {
+  else if (int('m') == c) {
     tok.next();
     symbol nm = read_long_identifier(true /* want_diagnostic */);
     if (nm.is_null()) {
@@ -7377,7 +7380,7 @@ static bool is_conditional_expression_true()
     result = ((nm == default_symbol)
 	      || color_dictionary.lookup(nm) != 0 /* nullptr */);
   }
-  else if (c == 'c') {
+  else if (int('c') == c) {
     tok.next();
     tok.skip_spaces();
     // XXX: Mystery: the presence of a character (fortunately) doesn't
@@ -7392,7 +7395,7 @@ static bool is_conditional_expression_true()
     result = character_exists(ci, curenv);
     tok.next();
   }
-  else if (c == 'F') {
+  else if (int('F') == c) {
     tok.next();
     symbol nm = read_long_identifier(true /* want_diagnostic */);
     if (nm.is_null()) {
@@ -7401,7 +7404,7 @@ static bool is_conditional_expression_true()
     }
     result = is_font_available(curenv->get_family()->nm, nm);
   }
-  else if (c == 'S') {
+  else if (int('S') == c) {
     tok.next();
     symbol nm = read_long_identifier(true /* want_diagnostic */);
     if (nm.is_null()) {
@@ -7411,7 +7414,7 @@ static bool is_conditional_expression_true()
     result = is_abstract_style(nm);
   }
   // vtroff extension
-  else if (c == 'v') {
+  else if (int('v') == c) {
     tok.next();
     result = false;
   }
@@ -7498,14 +7501,14 @@ static void while_request()
     int c = input_stack::get(&n);
     if (EOF == c)
       break;
-    if (c == 0) {
+    if ('\0' == c) {
       is_char_escaped = false;
       mac.append(n);
     }
     else if (is_char_escaped) {
-      if (c == '{')
+      if ('{' == c)
 	level += 1;
-      else if (c == '}')
+      else if ('}' == c)
 	level -= 1;
       is_char_escaped = false;
       mac.append(c);
@@ -7518,7 +7521,7 @@ static void while_request()
       else if (escape_char == c)
 	is_char_escaped = true;
       mac.append(c);
-      if (c == '\n' && level <= 0)
+      if (('\n' == c) && (level <= 0))
 	break;
     }
   }
@@ -7905,7 +7908,7 @@ int psbb_locator::get_line(int dscopt)
     // encounter a line terminator, or end of file...
     //
     while (((c = getc(fp)) != '\n') && (c != '\r') && (c != EOF)) {
-      if ((((lastc = c) < 0x1b) && !white_space(c)) || (c == 0x7f))
+      if ((((lastc = c) < 0x1b) && !white_space(c)) || (0x7f == c))
 	//
 	// ...rejecting any which may be designated as invalid.
 	//
@@ -8256,7 +8259,7 @@ void tag()
     int c;
     for (;;) {
       c = read_character_in_copy_mode(0 /* nullptr */);
-      if (c == '"') {
+      if ('"' == c) {
 	c = read_character_in_copy_mode(0 /* nullptr */);
 	break;
       }
@@ -8281,7 +8284,7 @@ void taga()
     int c;
     for (;;) {
       c = read_character_in_copy_mode(0 /* nullptr */);
-      if (c == '"') {
+      if ('"' == c) {
 	c = read_character_in_copy_mode(0 /* nullptr */);
 	break;
       }
