@@ -1072,7 +1072,7 @@ void ps_printer::flush_sbuf()
     RELATIVE_HV,
     ABSOLUTE
     } motion = NONE;
-  int space_flag = 0;
+  bool space_flag = false;
   if (sbuf_len == 0)
     return;
   if (output_style != sbuf_style) {
@@ -1099,7 +1099,7 @@ void ps_printer::flush_sbuf()
 	set_space_code(sbuf_space_code);
 	output_space_code = sbuf_space_code;
       }
-      space_flag = 1;
+      space_flag = true;
       extra_space = sbuf_space_width - w - sbuf_kern;
       if (sbuf_space_diff_count > sbuf_space_count/2)
 	extra_space++;
@@ -1123,7 +1123,7 @@ void ps_printer::flush_sbuf()
 			  'Q', 'R', 'S', 'T'};
   char sym[2];
   sym[0] = command_array[(motion * 4)
-			 + space_flag
+			 + int(space_flag)
 			 + (2 * (sbuf_kern != 0))];
   sym[1] = '\0';
   switch (motion) {

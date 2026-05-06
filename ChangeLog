@@ -1,5 +1,13 @@
 2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grops/ps.cpp (ps_printer::flush_sbuf): Demote
+	local variable `space_flag` from `int` to `bool`.  Assign to it
+	using Boolean, not integer, literals.  Explicitly construct
+	integer from its Boolean value when summing it with other values
+	to compute an array index.
+
+2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[grops]: Boolify and rename class member variable.
 
 	* src/devices/grops/ps.h (class ps_output): `need_space` of type
