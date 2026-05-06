@@ -473,7 +473,8 @@ ps_font::~ps_font()
   delete[] reencoded_name;
 }
 
-void ps_font::handle_unknown_font_command(const char *command, const char *arg,
+void ps_font::handle_unknown_font_command(const char *command,
+					  const char *arg,
 					  const char *fn, int lineno)
 {
   if (strcmp(command, "encoding") == 0) {
@@ -485,7 +486,8 @@ void ps_font::handle_unknown_font_command(const char *command, const char *arg,
   }
 }
 
-static void handle_unknown_desc_command(const char *command, const char *arg,
+static void handle_unknown_desc_command(const char *command,
+					const char *arg,
 					const char *fn, int lineno)
 {
   if (strcmp(command, "broken") == 0) {
@@ -669,7 +671,7 @@ ps_printer::ps_printer(double pl)
   if (font::vert != 1)
     fatal("device vertical motion quantum must be 1, got %1",
 	font::vert);
-  if (font::res % (font::sizescale*72) != 0)
+  if (font::res % (font::sizescale * 72) != 0)
     fatal("device resolution must be a multiple of 72*'sizescale', got"
 	" %1 ('sizescale'=%2)", font::res, font::sizescale);
   int r = font::res;
@@ -699,7 +701,8 @@ int ps_printer::set_encoding_index(ps_font *f)
       char *encoding = (static_cast<ps_font *>(p->p))->encoding;
       int encoding_index
 	= (static_cast<ps_font *>(p->p))->encoding_index;
-      if ((encoding != 0 /* nullptr */) && encoding_index >= 0
+      if ((encoding != 0 /* nullptr */)
+	  && (encoding_index >= 0)
 	  && strcmp(f->encoding, encoding) == 0) {
 	return f->encoding_index = encoding_index;
       }
@@ -983,11 +986,12 @@ void ps_printer::set_style(const style &sty)
   }
   else
     psname = get_subfont(sty.sub, psname);
-  out.put_fix_number((font::res/(72*font::sizescale))*sty.point_size);
+  out.put_fix_number((font::res / (72 * font::sizescale))
+		     * sty.point_size);
   if (sty.height != 0 || sty.slant != 0) {
     int h = sty.height == 0 ? sty.point_size : sty.height;
-    h *= font::res/(72*font::sizescale);
-    int c = int(h*tan(radians(sty.slant)) + .5);
+    h *= font::res / (72 * font::sizescale);
+    int c = int(h * tan(radians(sty.slant)) + .5);
     out.put_fix_number(c)
        .put_fix_number(h)
        .put_literal_symbol(psname)
@@ -1111,7 +1115,9 @@ void ps_printer::flush_sbuf()
 			  'M', 'N', 'O', 'P',
 			  'Q', 'R', 'S', 'T'};
   char sym[2];
-  sym[0] = command_array[motion*4 + space_flag + 2*(sbuf_kern != 0)];
+  sym[0] = command_array[(motion * 4)
+			 + space_flag
+			 + (2 * (sbuf_kern != 0))];
   sym[1] = '\0';
   switch (motion) {
   case NONE:
@@ -1144,7 +1150,10 @@ void ps_printer::set_line_thickness_and_color(const environment *env)
   if (line_thickness < 0) {
     if (output_draw_point_size != env->size) {
       // we ought to check for overflow here
-      int lw = ((font::res/(72*font::sizescale))*linewidth*env->size)/1000;
+      int lw = ((font::res / (72 * font::sizescale))
+		 * linewidth
+		 * env->size)
+	       / 1000;
       out.put_fix_number(lw)
 	 .put_symbol("LW");
       output_draw_point_size = env->size;
@@ -1281,16 +1290,16 @@ void ps_printer::draw(int code, int *p, int np, const environment *env)
       const int tnum = 2;
       const int tden = 3;
       for (int i = 0; i < np - 2; i += 2) {
-	out.put_fix_number((p[i]*tnum)/(2*tden))
-	   .put_fix_number((p[i + 1]*tnum)/(2*tden))
-	   .put_fix_number(p[i]/2 + (p[i + 2]*(tden - tnum))/(2*tden))
-	   .put_fix_number(p[i + 1]/2 + (p[i + 3]*(tden - tnum))/(2*tden))
-	   .put_fix_number((p[i] - p[i]/2) + p[i + 2]/2)
-	   .put_fix_number((p[i + 1] - p[i + 1]/2) + p[i + 3]/2)
+	out.put_fix_number((p[i] * tnum) / (2 * tden))
+	   .put_fix_number((p[i + 1] * tnum) / (2 * tden))
+	   .put_fix_number(p[i] / 2 + (p[i + 2] * (tden - tnum)) / (2 * tden))
+	   .put_fix_number(p[i + 1]/2 + (p[i + 3] * (tden - tnum)) / (2 * tden))
+	   .put_fix_number((p[i] - p[i] / 2) + p[i + 2] / 2)
+	   .put_fix_number((p[i + 1] - p[i + 1] / 2) + p[i + 3] / 2)
 	   .put_symbol("RC");
       }
-      out.put_fix_number(p[np - 2] - p[np - 2]/2)
-	 .put_fix_number(p[np - 1] - p[np - 1]/2)
+      out.put_fix_number(p[np - 2] - p[np - 2] / 2)
+	 .put_fix_number(p[np - 1] - p[np - 1] / 2)
 	 .put_symbol("RL");
       set_line_thickness_and_color(env);
       out.put_symbol("ST");
