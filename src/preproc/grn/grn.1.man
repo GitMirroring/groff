@@ -56,12 +56,12 @@ documents
 .
 .SY @g@grn
 .RB [ \-C ]
-.RB [ \-T\~\c
-.IR dev ]
-.RB [ \-M\~\c
-.IR dir ]
 .RB [ \-F\~\c
 .IR dir ]
+.RB [ \-M\~\c
+.IR dir ]
+.RB [ \-T\~\c
+.IR dev ]
 .RI [ file\~ .\|.\|.]
 .YS
 .
