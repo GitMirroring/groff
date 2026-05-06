@@ -45,7 +45,7 @@ private:
   FILE *fp;
   size_t col;
   size_t max_line_length;		// not including newline
-  int need_space;
+  bool is_space_needed;
   int fixed_point;
 };
 

@@ -115,7 +115,8 @@ static inline bool is_ascii(char c)
 }
 
 ps_output::ps_output(FILE *f, int n)
-: fp(f), col(0), max_line_length(n), need_space(0), fixed_point(0)
+: fp(f), col(0), max_line_length(n), is_space_needed(false),
+  fixed_point(0)
 {
 }
 
@@ -139,7 +140,7 @@ ps_output &ps_output::end_line()
   if (col != 0) {
     putc('\n', fp);
     col = 0;
-    need_space = 0;
+    is_space_needed = false;
   }
   return *this;
 }
@@ -155,7 +156,7 @@ ps_output &ps_output::special(const char *s)
   fputs(s, fp);
   if (strchr(s, '\0')[-1] != '\n')
     putc('\n', fp);
-  need_space = 0;
+  is_space_needed = false;
   return *this;
 }
 
@@ -168,7 +169,7 @@ ps_output &ps_output::simple_comment(const char *s)
   fputs(s, fp);
   putc('\n', fp);
   col = 0;
-  need_space = 0;
+  is_space_needed = false;
   return *this;
 }
 
@@ -189,7 +190,7 @@ ps_output &ps_output::end_comment()
     putc('\n', fp);
     col = 0;
   }
-  need_space = 0;
+  is_space_needed = false;
   return *this;
 }
 
@@ -222,7 +223,7 @@ ps_output &ps_output::put_delimiter(char c)
   }
   putc(c, fp);
   col++;
-  need_space = 0;
+  is_space_needed = false;
   return *this;
 }
 
@@ -318,27 +319,28 @@ ps_output &ps_output::put_string(const uint16_t *s, size_t n,
     putc(')', fp);
     col++;
   }
-  need_space = 0;
+  is_space_needed = false;
   return *this;
 }
 
 ps_output &ps_output::put_number(int n)
 {
-  char buf[1 + INT_DIGITS + 1];
+  char buf[1 /* sign */ + INT_DIGITS + 1 /* '\0' */];
   sprintf(buf, "%d", n);
   size_t len = strlen(buf);
-  if ((col > 0) && ((col + len + need_space) > max_line_length)) {
+  if ((col > 0)
+      && ((col + len + int(is_space_needed)) > max_line_length)) {
     putc('\n', fp);
     col = 0;
-    need_space = 0;
+    is_space_needed = false;
   }
-  if (need_space) {
+  if (is_space_needed) {
     putc(' ', fp);
     col++;
   }
   fputs(buf, fp);
   col += len;
-  need_space = 1;
+  is_space_needed = true;
   return *this;
 }
 
@@ -346,18 +348,19 @@ ps_output &ps_output::put_fix_number(int i)
 {
   const char *p = if_to_a(i, fixed_point);
   size_t len = strlen(p);
-  if ((col > 0) && ((col + len + need_space) > max_line_length)) {
+  if ((col > 0)
+      && ((col + len + int(is_space_needed)) > max_line_length)) {
     putc('\n', fp);
     col = 0;
-    need_space = 0;
+    is_space_needed = false;
   }
-  if (need_space) {
+  if (is_space_needed) {
     putc(' ', fp);
     col++;
   }
   fputs(p, fp);
   col += len;
-  need_space = 1;
+  is_space_needed = true;
   return *this;
 }
 
@@ -371,36 +374,38 @@ ps_output &ps_output::put_float(double d)
   if (buf[last] == '.')
     last--;
   buf[++last] = '\0';
-  if ((col > 0) && ((col + last + need_space) > max_line_length)) {
+  if ((col > 0)
+      && ((col + last + int(is_space_needed)) > max_line_length)) {
     putc('\n', fp);
     col = 0;
-    need_space = 0;
+    is_space_needed = false;
   }
-  if (need_space) {
+  if (is_space_needed) {
     putc(' ', fp);
     col++;
   }
   fputs(buf, fp);
   col += last;
-  need_space = 1;
+  is_space_needed = true;
   return *this;
 }
 
 ps_output &ps_output::put_symbol(const char *s)
 {
   size_t len = strlen(s);
-  if ((col > 0) && ((col + len + need_space) > max_line_length)) {
+  if ((col > 0)
+      && ((col + len + int(is_space_needed)) > max_line_length)) {
     putc('\n', fp);
     col = 0;
-    need_space = 0;
+    is_space_needed = false;
   }
-  if (need_space) {
+  if (is_space_needed) {
     putc(' ', fp);
     col++;
   }
   fputs(s, fp);
   col += len;
-  need_space = 1;
+  is_space_needed = true;
   return *this;
 }
 
@@ -409,18 +414,19 @@ ps_output &ps_output::put_color(unsigned int c)
   char buf[128];
   sprintf(buf, "%.3g", double(c) / double(color::MAX_COLOR_VAL));
   size_t len = strlen(buf);
-  if ((col > 0) && ((col + len + need_space) > max_line_length)) {
+  if ((col > 0)
+      && ((col + len + int(is_space_needed)) > max_line_length)) {
     putc('\n', fp);
     col = 0;
-    need_space = 0;
+    is_space_needed = false;
   }
-  if (need_space) {
+  if (is_space_needed) {
     putc(' ', fp);
     col++;
   }
   fputs(buf, fp);
   col += len;
-  need_space = 1;
+  is_space_needed = true;
   return *this;
 }
 
@@ -434,7 +440,7 @@ ps_output &ps_output::put_literal_symbol(const char *s)
   putc('/', fp);
   fputs(s, fp);
   col += len + 1;
-  need_space = 1;
+  is_space_needed = true;
   return *this;
 }
 
@@ -448,7 +454,7 @@ public:
   void handle_unknown_font_command(const char * /* command */,
 				   const char * /* arg */,
 				   const char * /* fn */,
-				   int lineno);
+				   int /* lineno */);
   static ps_font *load_ps_font(const char * /* s */);
 };
 
@@ -457,13 +463,14 @@ ps_font *ps_font::load_ps_font(const char *s)
   ps_font *f = new ps_font(s);
   if (!f->load()) {
     delete f;
-    return 0;
+    return 0 /* nullptr */;
   }
   return f;
 }
 
 ps_font::ps_font(const char *nm)
-: font(nm), encoding_index(-1), encoding(0), reencoded_name(0)
+: font(nm), encoding_index(-1), encoding(0 /* nullptr */),
+  reencoded_name(0 /* nullptr */)
 {
 }
 

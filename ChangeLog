@@ -1,3 +1,32 @@
+2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[grops]: Boolify and rename class member variable.
+
+	* src/devices/grops/ps.h (class ps_output): `need_space` of type
+	`int` becomes `is_space_needed` of type `bool`.
+	* src/devices/grops/ps.cpp (ps_output::ps_output): Update
+	constructor's initializer list.
+	(ps_output::end_line):
+	(ps_output::special):
+	(ps_output::simple_comment):
+	(ps_output::end_comment):
+	(ps_output::put_delimiter):
+	(ps_output::put_string):
+	(ps_output::put_number):
+	(ps_output::put_fix_number):
+	(ps_output::put_float):
+	(ps_output::put_symbol):
+	(ps_output::put_color):
+	(ps_output::put_literal_symbol): Update.
+
+	(ps_output::put_fix_number):
+	(ps_output::put_float):
+	(ps_output::put_symbol):
+	(ps_output::put_color):
+	(ps_output::put_literal_symbol): Explicitly construct integer
+	from its Boolean value when summing it with `col` and `end` to
+	decide whether to put a newline on the output.
+
 2026-05-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/groff/tests/asciify-request-works.sh: Unit-test
