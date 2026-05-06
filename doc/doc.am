@@ -387,9 +387,6 @@ doc/pic.ps: $(doc_srcdir)/pic.ms $(TMAC_PACKAGE_MS) eqn pic tbl
 	$(GROFF_V)$(MKDIR_P) `dirname $@` \
 	&& $(DOC_GROFF) -pet -Tps -ms $(doc_srcdir)/pic.ms >$@
 
-# groff(1)'s `-I` implies `-g` and `-s`, so we must depend on grn and
-# soelim even though the document doesn't require them.
-doc/webpage.ps: grn soelim
 doc/webpage.ps: $(DOC_GNU_EPS) tmac/pspic.tmac tmac/www.tmac tbl
 doc/webpage.ps: $(doc_srcdir)/webpage.ms $(TMAC_PACKAGE_MS)
 	$(GROFF_V)$(MKDIR_P) `dirname $@` \
@@ -415,11 +412,7 @@ doc/pic.html: $(doc_srcdir)/pic.ms $(TMAC_PACKAGE_MS)
 	  $(doc_srcdir)/pic.ms > pic.html.tmp
 	$(AM_V_at)mv $@.tmp $@
 
-# groff(1)'s `-I` implies `-g` and `-s`, so we must depend on grn and
-# soelim even though the document doesn't require them.
-#
 # XXX: See XXX comment before "pic.html" target above.
-doc/webpage.html: grn soelim
 doc/webpage.html: $(DOC_GNU_EPS) tmac/www.tmac tbl
 doc/webpage.html: $(doc_srcdir)/groff.css
 doc/webpage.html: $(doc_srcdir)/webpage.ms $(TMAC_PACKAGE_MS)

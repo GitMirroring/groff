@@ -1,5 +1,34 @@
 2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[groff]: Make `-I` stop implying `-g` and `-s`.
+
+	To date, specifying `-I` has been the only way (employing only
+	groff(1)) as a pipeline manager, a usage we strongly encourage)
+	to get an `-M` option of the same meaning to grn.
+
+	However, we didn't know, simply from the user's specification of
+	`-I`, that they meant to pass a `-M` option to grn.  Maybe they
+	meant it for soelim(1).  Maybe they don't need preprocessors at
+	all.
+
+	With grn(1) now accepting `-I`, groff(1) no longer needs to
+	synthesize `-g` and `-s` to cover these bases.  If the user
+	demands these the grn(1) and soelim(1) preprocessors, they can
+	specify their options, consistently with other groff
+	preprocessors support a command-line option.
+
+	* src/roff/groff/groff.cpp (main) <I>: Do it.
+
+	* doc/doc.am (doc/webpage.html, doc/webpage.ps): Drop
+	now-unnecessary dependencies on "grn" and "soelim".
+
+	* src/roff/groff/groff.1.man (groff-specific options) <I>:
+	* NEWS: Document it.
+
+	Fixes <https://savannah.gnu.org/bugs/?68277>.
+
+2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[grn]: Rename `-M` option to `-I`, better paralleling troff(1).
 	Inclusions are not the same things as macro file resources.
 

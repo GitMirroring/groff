@@ -124,10 +124,8 @@ SUFFIXES += .roff.in .ps
 	&& sed -e "s|[@]fontdir[@]|$(fontdir)|" \
 	       -e "s|[@]EGREP[@]|$(EGREP)|" $< >$@
 
-# groff(1)'s `-I` implies `-g` and `-s`, so we must depend on grn and
-# soelim even though the documents don't require them.
 $(HDTBLPROCESSEDEXAMPLEFILES): $(HDTBLTMACFILES) $(DOC_GNU_EPS) groff \
-  troff eqn pic tbl grops grn soelim font/devps/stamp \
+  troff eqn pic tbl grops font/devps/stamp \
   contrib/hdtbl/examples/common.roff
 
 uninstall_groffdirs: uninstall-hdtbl-hook
@@ -135,7 +133,6 @@ uninstall-hdtbl-hook:
 	if test -d $(DESTDIR)$(hdtblexampledir); then \
 	  rmdir $(DESTDIR)$(hdtblexampledir); \
 	fi
-
 
 # Local Variables:
 # mode: makefile-automake

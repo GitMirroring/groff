@@ -81,6 +81,10 @@ groff
 *  groff now passes `-I` options as-is to grn(1), instead of translating
    the option name to `-M`.
 
+*  groff's `-I` option no longer implies `-g` or `-s`; if your document
+   needs to be piped through grn(1) and/or soelim(1), specify the
+   foregoing options as appropriate.
+
 Macro packages
 --------------
 
