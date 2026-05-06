@@ -1,5 +1,13 @@
 2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp (temporary_indent_request): If given no
+	arguments, cancel any temporary indentation existing in the
+	environment.
+
+	Fixes <https://savannah.gnu.org/bugs/?68286>.
+
+2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp: Trivially refactor.
 	(temporary_indent): Rename this...
 	(temporary_indent_request): ...to this.  Also declare it

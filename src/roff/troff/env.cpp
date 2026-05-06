@@ -1700,8 +1700,7 @@ static void temporary_indent_request() // .ti
   if (was_invoked_with_regular_control_character)
     curenv->do_break();
   if (!has_arg())
-    warning(WARN_MISSING, "temporary indentation request expects"
-	    " argument");
+    cancel_temporary_indentation();
   else {
     bool is_valid = true;
     if (curenv->get_centered_line_count() > 0) {
