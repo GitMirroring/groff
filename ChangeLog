@@ -1,5 +1,14 @@
 2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp (temporary_indent): Slightly refactor.
+	Rename `temp` local variable to `amount` for clarity.  Shift
+	output line breaking logic earlier, separating it from
+	argument handling.  Drop redundant `skip_line()` call when
+	handling no-argument case.  Move declaration of `is_valid` local
+	variable within its narrower applicable brace scope.
+
+2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Rename `.zoom` register to `.fzoom`.
 
 	* src/roff/troff/env.cpp (init_env_requests): Do it.

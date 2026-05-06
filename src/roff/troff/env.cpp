@@ -1679,16 +1679,14 @@ void indent() // .in
 
 void temporary_indent() // .ti
 {
-  bool is_valid = true;
-  hunits temp = H0;
-  if (!has_arg()) {
+  hunits amount = H0;
+  if (was_invoked_with_regular_control_character)
+    curenv->do_break();
+  if (!has_arg())
     warning(WARN_MISSING, "temporary indentation request expects"
 	    " argument");
-    skip_line();
-    // _Don't_ return early; when invoked with the ordinary control
-    // character this request still breaks the line.
-  }
   else {
+    bool is_valid = true;
     if (curenv->centered_line_count > 0) {
       is_valid = false;
       warning(WARN_STYLE, "ignoring temporary indentation request while"
@@ -1699,20 +1697,18 @@ void temporary_indent() // .ti
       warning(WARN_STYLE, "ignoring temporary indentation request while"
 	      " right-aligning text");
     }
-    if (!read_hunits(&temp, 'm', curenv->get_indent()))
+    if (!read_hunits(&amount, 'm', curenv->get_indent()))
       is_valid = false;
-  }
-  if (was_invoked_with_regular_control_character)
-    curenv->do_break();
-  if (temp < H0) {
-    warning(WARN_RANGE, "treating total indentation %1u as zero",
-	    temp.to_units());
-    temp = H0;
-  }
-  if (is_valid) {
-    curenv->temporary_indent = temp;
-    curenv->have_temporary_indent = true;
-    curdiv->modified_tag.incl(MTSM_TI);
+    if (amount < H0) {
+      warning(WARN_RANGE, "treating total indentation %1u as zero",
+	      amount.to_units());
+      amount = H0;
+    }
+    if (is_valid) {
+      curenv->temporary_indent = amount;
+      curenv->have_temporary_indent = true;
+      curdiv->modified_tag.incl(MTSM_TI);
+    }
   }
   skip_line();
 }
