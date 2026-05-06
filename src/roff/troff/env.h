@@ -119,7 +119,6 @@ void post_vertical_spacing();
 void line_spacing();
 void line_length();
 void indent();
-void temporary_indent();
 void configure_underlining(bool);
 void do_input_trap(bool);
 void set_tabs();
@@ -305,6 +304,8 @@ public:
   void configure_filling(bool);
   hunits get_indent();			// .i
   hunits get_temporary_indent();
+  void set_temporary_indent(hunits);
+  void cancel_temporary_indent();
   hunits get_line_length();		// .l
   hunits get_saved_line_length();	// .ll
   hunits get_saved_indent();		// .in
@@ -403,10 +404,8 @@ public:
   friend void line_spacing();
   friend void line_length();
   friend void indent();
-  friend void temporary_indent();
   friend void configure_underlining(bool);
   friend void do_input_trap(bool);
-  friend void cancel_temporary_indentation();
   friend void set_tabs();
   friend void margin_character();
   friend void no_number();

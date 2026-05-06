@@ -1,5 +1,30 @@
 2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Refactor.  Separate engine logic from parsing logic
+	with respect to an environment's temporary indentation.
+
+	* src/roff/troff/env.h: Stop globally declaring
+	`temporary_indent()`.
+	(class environment): Declare new member functions returning
+	`void`: `set_temporary_indent()` and
+	`cancel_temporary_indent()`.  Drop declaration of `friend`
+	functions `temporary_indent()` and
+	`cancel_temporary_indentation()`.
+	* src/roff/troff/env.cpp (environment::set_temporary_indent)
+	(environment::cancel_temporary_indent): New functions mutate
+	object of `environment` class.
+	(set_temporary_indentation): New function updates the
+	environment and through mutator functions, much like the
+	existing `cancel_temporary_indentation()` does.
+	(temporary_indent): Use accessor member functions of
+	`environment` class to get at object properties.  Call
+	`set_temporary_indentation()` instead of open-coding its
+	operations.
+
+	Continues the long process of fixing Savannah #68240.
+
+2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp (temporary_indent): Slightly refactor.
 	Rename `temp` local variable to `amount` for clarity.  Shift
 	output line breaking logic earlier, separating it from

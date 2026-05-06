@@ -1191,6 +1191,18 @@ hunits environment::get_temporary_indent()
   return temporary_indent;
 }
 
+void environment::set_temporary_indent(hunits amount)
+{
+  temporary_indent = amount;
+  have_temporary_indent = true;
+}
+
+void environment::cancel_temporary_indent()
+{
+  temporary_indent = 0;
+  have_temporary_indent = false;
+}
+
 hunits environment::get_title_length()
 {
   return title_length;
@@ -1518,10 +1530,15 @@ static void no_fill() // .nf
   tok.next();
 }
 
-void cancel_temporary_indentation()
+static void set_temporary_indentation(hunits amount)
 {
-  curenv->temporary_indent = 0;
-  curenv->have_temporary_indent = false;
+  curenv->set_temporary_indent(amount);
+  curdiv->modified_tag.incl(MTSM_TI);
+}
+
+static void cancel_temporary_indentation()
+{
+  curenv->cancel_temporary_indent();
   curdiv->modified_tag.excl(MTSM_TI);
 }
 
@@ -1687,12 +1704,12 @@ void temporary_indent() // .ti
 	    " argument");
   else {
     bool is_valid = true;
-    if (curenv->centered_line_count > 0) {
+    if (curenv->get_centered_line_count() > 0) {
       is_valid = false;
       warning(WARN_STYLE, "ignoring temporary indentation request while"
 	    " centering text");
     }
-    if (curenv->right_aligned_line_count > 0) {
+    if (curenv->get_right_aligned_line_count() > 0) {
       is_valid = false;
       warning(WARN_STYLE, "ignoring temporary indentation request while"
 	      " right-aligning text");
@@ -1704,11 +1721,8 @@ void temporary_indent() // .ti
 	      amount.to_units());
       amount = H0;
     }
-    if (is_valid) {
-      curenv->temporary_indent = amount;
-      curenv->have_temporary_indent = true;
-      curdiv->modified_tag.incl(MTSM_TI);
-    }
+    if (is_valid)
+      set_temporary_indentation(amount);
   }
   skip_line();
 }
