@@ -314,7 +314,7 @@ public:
   hunits get_prev_char_skew();
   vunits get_prev_char_height();
   vunits get_prev_char_depth();
-  hunits get_text_length();		// .k 
+  hunits get_text_length();		// .k
   hunits get_prev_text_length();	// .n
   hunits get_space_width() { return env_space_width(this); }
   int get_space_size() { return space_size; }	// in ems/36
