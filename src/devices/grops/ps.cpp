@@ -147,7 +147,7 @@ ps_output &ps_output::end_line()
 
 ps_output &ps_output::special(const char *s)
 {
-  if (s == 0 || *s == '\0')
+  if ((0 /* nullptr */ == s) || ('\0' == *s))
     return *this;
   if (col != 0) {
     putc('\n', fp);
@@ -485,7 +485,7 @@ void ps_font::handle_unknown_font_command(const char *command,
 					  const char *fn, int lineno)
 {
   if (strcmp(command, "encoding") == 0) {
-    if (arg == 0)
+    if (0 == arg)
       error_with_file_and_line(fn, lineno,
 			       "'encoding' command requires an argument");
     else
@@ -498,7 +498,7 @@ static void handle_unknown_desc_command(const char *command,
 					const char *fn, int lineno)
 {
   if (strcmp(command, "broken") == 0) {
-    if (arg == 0)
+    if (0 /* nullptr */ == arg)
       error_with_file_and_line(fn, lineno,
 			       "'broken' command requires an argument");
     else if (!bflag)
@@ -555,11 +555,11 @@ style::style(font *p, subencoding *s, int sz, int h, int sl)
 
 int style::operator==(const style &s) const
 {
-  return (f == s.f
-	  && sub == s.sub
-	  && point_size == s.point_size
-	  && height == s.height
-	  && slant == s.slant);
+  return ((f == s.f)
+	  && (sub == s.sub)
+	  && (point_size == s.point_size)
+	  && (height == s.height)
+	  && (slant == s.slant));
 }
 
 int style::operator!=(const style &s) const
@@ -683,18 +683,18 @@ ps_printer::ps_printer(double pl)
 	" %1 ('sizescale'=%2)", font::res, font::sizescale);
   int r = font::res;
   int point = 0;
-  while (r % 10 == 0) {
+  while ((r % 10) == 0) {
     r /= 10;
     point++;
   }
   res = r;
   out.set_fixed_point(point);
   space_glyph = name_to_glyph("space");
-  if (pl == 0)
+  if (0.0 == pl)
     paper_length = font::paperlength;
   else
     paper_length = int(pl * font::res + 0.5);
-  if (paper_length == 0)
+  if (0 == paper_length)
     paper_length = 11 * font::res;
   equalise_spaces = font::res >= 72000;
 }
@@ -739,7 +739,7 @@ subencoding *ps_printer::set_subencoding(font *f, glyph *g,
   code[0] = idx % 256;
   code[1] = 0;
   unsigned int num = idx >> 8;
-  if (num == 0)
+  if (0U == num)
     return 0 /* nullptr */;
   subencoding *p = 0 /* nullptr */;
   for (p = subencodings; p; p = p->next)
@@ -789,7 +789,7 @@ void ps_printer::set_char(glyph *g, font *f, const environment *env,
 	sbuf_end_hpos += w + sbuf_kern;
 	return;
       }
-      if ((sbuf_len == 1) && (sbuf_kern == 0)) {
+      if ((1 == sbuf_len) && (0 == sbuf_kern)) {
 	sbuf_kern = env->hpos - sbuf_end_hpos;
 	sbuf_end_hpos = env->hpos + sbuf_kern + w;
 	sbuf[sbuf_len++] = code[0];
@@ -799,8 +799,10 @@ void ps_printer::set_char(glyph *g, font *f, const environment *env,
       }
       /* If sbuf_end_hpos - sbuf_kern == env->hpos, we are better off
 	 starting a new string. */
-      if (sbuf_len < SBUF_SIZE - 1 && env->hpos >= sbuf_end_hpos
-	  && (sbuf_kern == 0 || sbuf_end_hpos - sbuf_kern != env->hpos)) {
+      if ((sbuf_len < (SBUF_SIZE - 1))
+	  && (env->hpos >= sbuf_end_hpos)
+	  && ((0 == sbuf_kern)
+	      || ((sbuf_end_hpos - sbuf_kern) != env->hpos))) {
 	if (sbuf_space_code < 0) {
 	  if (f->contains(space_glyph) && !sub) {
 	    sbuf_space_code = f->get_code(space_glyph);
@@ -816,7 +818,8 @@ void ps_printer::set_char(glyph *g, font *f, const environment *env,
 	}
 	else {
 	  int diff = env->hpos - sbuf_end_hpos - sbuf_space_width;
-	  if (diff == 0 || (equalise_spaces && (diff == 1 || diff == -1))) {
+	  if (0 == diff
+	      || (equalise_spaces && ((1 == diff) || (-1 == diff)))) {
 	    sbuf_end_hpos = env->hpos + w + sbuf_kern;
 	    sbuf[sbuf_len++] = sbuf_space_code;
 	    sbuf[sbuf_len++] = code[0];
@@ -889,7 +892,10 @@ void ps_printer::define_encoding(const char *encoding,
     if (*p != '#' && *p != '\0' && (p = strtok(buf, WS)) != 0) {
       char *q = strtok(0, WS);
       int n = 0;		// pacify compiler
-      if (q == 0 || sscanf(q, "%d", &n) != 1 || n < 0 || n >= 256)
+      if ((0 /* nullptr */ == q)
+	  || (sscanf(q, "%d", &n) != 1)
+	  || (n < 0)
+	  || (n >= 256))
 	fatal_with_file_and_line(path, lineno, "invalid encoding file:"
 	    " expected integer in range 0-255 as second word on line,"
 	    " got '%1'", q);
@@ -902,7 +908,7 @@ void ps_printer::define_encoding(const char *encoding,
   out.put_literal_symbol(make_encoding_name(encoding_index))
      .put_delimiter('[');
   for (i = 0; i < 256; i++) {
-    if (vec[i] == 0)
+    if (0 /* nullptr */ == vec[i])
       out.put_literal_symbol(".notdef");
     else {
       out.put_literal_symbol(vec[i]);
@@ -924,7 +930,7 @@ void ps_printer::reencode_font(ps_font *f)
 
 void ps_printer::encode_fonts()
 {
-  if (next_encoding_index == 0)
+  if (0 == next_encoding_index)
     return;
   char *done_encoding = new char[next_encoding_index];
   for (int i = 0; i < next_encoding_index; i++)
@@ -977,7 +983,7 @@ void ps_printer::set_style(const style &sty)
     fatal("cannot set style; font description file '%1' lacks an"
 	  " 'internalname' directive", sty.f->get_filename());
   char *encoding = ((ps_font *)sty.f)->encoding;
-  if (sty.sub == 0) {
+  if (0 /* nullptr */ == sty.sub) {
     if (encoding != 0 /* nullptr */) {
       char *s = ((ps_font *)sty.f)->reencoded_name;
       if (0 /* nullptr */ == s) {
@@ -996,7 +1002,7 @@ void ps_printer::set_style(const style &sty)
   out.put_fix_number((font::res / (72 * font::sizescale))
 		     * sty.point_size);
   if (sty.height != 0 || sty.slant != 0) {
-    int h = sty.height == 0 ? sty.point_size : sty.height;
+    int h = (0 == sty.height) ? sty.point_size : sty.height;
     h *= font::res / (72 * font::sizescale);
     int c = int(h * tan(radians(sty.slant)) + .5);
     out.put_fix_number(c)
@@ -1073,7 +1079,7 @@ void ps_printer::flush_sbuf()
     ABSOLUTE
     } motion = NONE;
   bool space_flag = false;
-  if (sbuf_len == 0)
+  if (0 == sbuf_len)
     return;
   if (output_style != sbuf_style) {
     set_style(sbuf_style);
@@ -1101,9 +1107,9 @@ void ps_printer::flush_sbuf()
       }
       space_flag = true;
       extra_space = sbuf_space_width - w - sbuf_kern;
-      if (sbuf_space_diff_count > sbuf_space_count/2)
+      if (sbuf_space_diff_count > (sbuf_space_count / 2))
 	extra_space++;
-      else if (sbuf_space_diff_count < -(sbuf_space_count/2))
+      else if (sbuf_space_diff_count < -(sbuf_space_count / 2))
 	extra_space--;
     }
   }
@@ -1203,9 +1209,9 @@ void ps_printer::draw(int code, int *p, int np, const environment *env)
       error("1 argument required for circle");
       break;
     }
-    out.put_fix_number(env->hpos + p[0]/2)
+    out.put_fix_number(env->hpos + p[0] / 2)
        .put_fix_number(env->vpos)
-       .put_fix_number(p[0]/2)
+       .put_fix_number(p[0] / 2)
        .put_symbol("DC");
     if (fill_flag)
       fill_path(env);
@@ -1236,7 +1242,7 @@ void ps_printer::draw(int code, int *p, int np, const environment *env)
     }
     out.put_fix_number(p[0])
        .put_fix_number(p[1])
-       .put_fix_number(env->hpos + p[0]/2)
+       .put_fix_number(env->hpos + (p[0] / 2))
        .put_fix_number(env->vpos)
        .put_symbol("DE");
     if (fill_flag)
@@ -1288,8 +1294,8 @@ void ps_printer::draw(int code, int *p, int np, const environment *env)
       out.put_fix_number(env->hpos)
 	 .put_fix_number(env->vpos)
 	 .put_symbol("MT");
-      out.put_fix_number(p[0]/2)
-	 .put_fix_number(p[1]/2)
+      out.put_fix_number(p[0] / 2)
+	 .put_fix_number(p[1] / 2)
 	 .put_symbol("RL");
       /* tnum/tden should be between 0 and 1; the closer it is to 1
 	 the tighter the curve will be to the guiding lines; 2/3
@@ -1300,7 +1306,7 @@ void ps_printer::draw(int code, int *p, int np, const environment *env)
 	out.put_fix_number((p[i] * tnum) / (2 * tden))
 	   .put_fix_number((p[i + 1] * tnum) / (2 * tden))
 	   .put_fix_number(p[i] / 2 + (p[i + 2] * (tden - tnum)) / (2 * tden))
-	   .put_fix_number(p[i + 1]/2 + (p[i + 3] * (tden - tnum)) / (2 * tden))
+	   .put_fix_number(p[i + 1] / 2 + (p[i + 3] * (tden - tnum)) / (2 * tden))
 	   .put_fix_number((p[i] - p[i] / 2) + p[i + 2] / 2)
 	   .put_fix_number((p[i + 1] - p[i + 1] / 2) + p[i + 3] / 2)
 	   .put_symbol("RC");
@@ -1372,14 +1378,14 @@ int ps_printer::media_width()
    *  PostScript definition specifies that media matching should be done
    *  within a tolerance of 5 units.
    */
-  return int(user_paper_width ? user_paper_width*72.0 + 0.5
-			      : font::paperwidth*72.0/font::res + 0.5);
+  return int(user_paper_width ? user_paper_width * 72.0 + 0.5
+			      : font::paperwidth * 72.0 / font::res + 0.5);
 }
 
 int ps_printer::media_height()
 {
-  return int(user_paper_length ? user_paper_length*72.0 + 0.5
-			       : paper_length*72.0/font::res + 0.5);
+  return int(user_paper_length ? user_paper_length * 72.0 + 0.5
+			       : paper_length * 72.0 / font::res + 0.5);
 }
 
 void ps_printer::media_set()
@@ -1781,10 +1787,10 @@ void ps_printer::do_mdef(char *arg, const environment *)
 
 void ps_printer::do_import(char *arg, const environment *env)
 {
-  while (*arg == ' ' || *arg == '\n')
+  while ((' ' == *arg) || ('\n' == *arg))
     arg++;
   char *p;
-  for (p = arg; *p != '\0' && *p != ' ' && *p != '\n'; p++)
+  for (p = arg; (*p != '\0') && (*p != ' ') && (*p != '\n'); p++)
     ;
   if (*p != '\0')
     *p++ = '\0';
@@ -1798,11 +1804,13 @@ void ps_printer::do_import(char *arg, const environment *env)
     parms[nparms++] = int(n);
     p = end;
   }
-  if (csalpha(*p) && (p[1] == '\0' || p[1] == ' ' || p[1] == '\n')) {
+  if ((csalpha(*p) && (p[1] == '\0'))
+      || (p[1] == ' ')
+      || (p[1] == '\n')) {
     error("scaling units not allowed in arguments for X import command");
     return;
   }
-  while (*p == ' ' || *p == '\n')
+  while ((' ' == *p) || ('\n' == *p))
     p++;
   if (nparms < 5) {
     if (*p == '\0')
@@ -1826,7 +1834,7 @@ void ps_printer::do_import(char *arg, const environment *env)
 	  desired_width);
     return;
   }
-  if (nparms == 6 && desired_height <= 0) {
+  if ((nparms == 6) && (desired_height <= 0)) {
     error("bad height argument '%1' for X import command: must be > 0",
 	  desired_height);
     return;
@@ -1846,7 +1854,7 @@ void ps_printer::do_import(char *arg, const environment *env)
       old_wid = -old_wid;
     if (old_ht < 0)
       old_ht = -old_ht;
-    desired_height = int(desired_width*(double(old_ht)/double(old_wid)) + .5);
+    desired_height = int(desired_width * (double(old_ht) / double(old_wid)) + .5);
   }
   if (env->vpos - desired_height < 0)
     warning("top of imported graphic is above the top of the page");
@@ -1908,7 +1916,7 @@ int main(int argc, char **argv)
       bflag = 1;
       break;
     case 'c':
-      if (sscanf(optarg, "%d", &ncopies) != 1 || ncopies <= 0) {
+      if ((sscanf(optarg, "%d", &ncopies) != 1) || (ncopies <= 0)) {
 	error("expected positive integer argument to '-c' option, got"
 	      " '%1'; ignoring", optarg);
 	ncopies = 1;

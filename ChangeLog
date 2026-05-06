@@ -1,5 +1,31 @@
 2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grops/ps.cpp: Fix code style nits.
+	(ps_output::special)
+	(ps_font::handle_unknown_font_command)
+	(ps_font::handle_unknown_desc_command)
+	(ps_printer::ps_printer)
+	(ps_printer::set_char)
+	(ps_printer::define_encoding)
+	(ps_printer::encode_fonts)
+	(ps_printer::set_style)
+	(ps_printer::flush_sbuf)
+	(ps_printer::do_import): Arrange equality comparisons to avoid
+	inadvertent lvalue assignment.
+	(style::operator==)
+	(ps_printer::ps_printer)
+	(ps_printer::set_char)
+	(ps_printer::define_encoding)
+	(ps_printer::flush_sbuf)
+	(ps_printer::do_import)
+	(main): Parenthesize formally complex expression.
+	(ps_printer::ps_printer): Compare variable of floating-point
+	type to a floating point, not integer, literal.
+	(ps_printer::set_subencoding): Compare variable of unsigned
+	integer type to unsigned, not signed, integer literal.
+
+2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grops/ps.cpp (ps_printer::flush_sbuf): Demote
 	local variable `space_flag` from `int` to `bool`.  Assign to it
 	using Boolean, not integer, literals.  Explicitly construct
