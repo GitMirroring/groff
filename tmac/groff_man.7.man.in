@@ -2391,7 +2391,8 @@ see section \[lq]Files\[rq] below.
 The following strings are defined for use in man pages.
 .
 _ifnotstyle()dnl
-None of these is necessary in a contemporary man page;
+None of these is necessary in man pages
+targeting only contemporary formatters;
 see
 .MR groff_man_style @MAN7EXT@ .
 _endif()dnl
