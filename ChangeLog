@@ -1,5 +1,15 @@
 2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp: Trivially refactor.
+	(temporary_indent): Rename this...
+	(temporary_indent_request): ...to this.  Also declare it
+	`static`, as `friend` access via the `environment` class is now
+	gone and so external linkage is unnecessary.
+	(init_env_requests): Update wire-uppery of request name to
+	handler function.
+
+2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Refactor.  Separate engine logic from parsing logic
 	with respect to an environment's temporary indentation.
 

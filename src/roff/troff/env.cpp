@@ -1694,7 +1694,7 @@ void indent() // .in
   tok.next();
 }
 
-void temporary_indent() // .ti
+static void temporary_indent_request() // .ti
 {
   hunits amount = H0;
   if (was_invoked_with_regular_control_character)
@@ -4665,7 +4665,7 @@ void init_env_requests()
   init_request("sizes", override_available_type_sizes_request);
   init_request("ss", space_size);
   init_request("ta", configure_tab_stops_request);
-  init_request("ti", temporary_indent);
+  init_request("ti", temporary_indent_request);
   init_request("tc", tab_character_request);
   init_request("tl", title);
   init_request("ul", underline);
