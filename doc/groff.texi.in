@@ -12888,9 +12888,10 @@ and \F[P]Palatino\F[].
 M\F[H]M\F[C]M\F[P]M
 @endExample
 
-The zoom factor of the currently selected font is available in the
-read-only register @samp{.zoom}.  It interpolates zero if there is no
-magnification.
+The zoom factor of the currently selected font
+is available in the read-only register
+@samp{.zoom}.
+It interpolates zero if there is no magnification.
 @endDefreq
 
 @c ---------------------------------------------------------------------
