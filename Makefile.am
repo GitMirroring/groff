@@ -613,6 +613,7 @@ include $(top_srcdir)/src/utils/hpftodit/hpftodit.am
 include $(top_srcdir)/src/utils/indxbib/indxbib.am
 include $(top_srcdir)/src/utils/lkbib/lkbib.am
 include $(top_srcdir)/src/utils/lookbib/lookbib.am
+include $(top_srcdir)/src/utils/pdfmom/pdfmom.am
 include $(top_srcdir)/src/utils/pfbtops/pfbtops.am
 include $(top_srcdir)/src/utils/tfmtodit/tfmtodit.am
 include $(top_srcdir)/src/utils/xtotroff/xtotroff.am

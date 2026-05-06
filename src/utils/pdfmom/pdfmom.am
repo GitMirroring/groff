@@ -18,49 +18,24 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-gropdf_dir = $(top_srcdir)/src/devices/gropdf
+pdfmom_dir = $(top_srcdir)/src/utils/pdfmom
 
-bin_SCRIPTS += gropdf
+bin_SCRIPTS += pdfmom
 EXTRA_DIST += \
-  src/devices/gropdf/TODO \
-  src/devices/gropdf/gropdf.pl \
-  src/devices/gropdf/gropdf.1.man
-
-GROPDFTMACFILES = \
-  tmac/pdf.tmac \
-  tmac/pdfpic.tmac
-gropdftmacdir = $(tmacdir)
-dist_gropdftmac_DATA = $(GROPDFTMACFILES)
+  src/utils/pdfmom/pdfmom.pl \
+  src/utils/pdfmom/pdfmom.1.man
 
 man1_MANS += \
-  src/devices/gropdf/gropdf.1
+  src/utils/pdfmom/pdfmom.1
 
-gropdf: $(gropdf_dir)/gropdf.pl $(SH_DEPS_SED_SCRIPT)
+pdfmom: $(pdfmom_dir)/pdfmom.pl $(SH_DEPS_SED_SCRIPT)
 	$(AM_V_GEN)$(RM) $@ \
 	&& sed -f $(SH_DEPS_SED_SCRIPT) \
 	       -e "s|[@]VERSION[@]|$(VERSION)|" \
-	       -e "s|[@]PERL[@]|$(PERL)|" \
-	       -e "s|[@]GROFF_FONT_DIR[@]|$(fontpath)|" \
-	       -e "s|[@]RT_SEP[@]|$(RT_SEP)|" $(gropdf_dir)/gropdf.pl \
+	       -e "s|[@]RT_SEP[@]|$(RT_SEP)|" \
+	       -e "s|[@]PERL[@]|$(PERL)|" $(pdfmom_dir)/pdfmom.pl \
 	       >$@ \
 	&& chmod +x $@
-
-gropdf_TESTS = \
-  src/devices/gropdf/tests/interpret-grout-correctly.sh \
-  tmac/tests/pdf_bookmark-starting-with-control-char-works.sh \
-  tmac/tests/pdf_pdfhref-W-without-link-text-works.sh \
-  tmac/tests/pdfpic_does-not-choke-on-bad-pdfinfo-output.sh \
-  tmac/tests/pdfpic_falls-back-to-PSPIC.sh
-TESTS += $(gropdf_TESTS)
-EXTRA_DIST += $(gropdf_TESTS)
-
-gropdf_XFAIL_TESTS = \
-  tmac/tests/pdf_bookmark-starting-with-control-char-works.sh
-XFAIL_TESTS += $(gropdf_XFAIL_TESTS)
-
-uninstall_groffdirs: uninstall_gropdf_hook
-uninstall_gropdf_hook:
-	-rmdir $(DESTDIR)$(tmacdir)
 
 # Local Variables:
 # fill-column: 72

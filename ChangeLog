@@ -1,3 +1,23 @@
+2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	Relocate "pdfmom" in source tree.
+
+	* src/devices/gropdf/pdfmom.1.man:
+	* src/devices/gropdf/pdfmom.pl: Rename these...
+	* src/utils/pdfmom/pdfmom.1.man:
+	* src/utils/pdfmom/pdfmom.pl: ...to these.
+
+	* src/devices/gropdf/gropdf.am: Move pdfmom-related stuff from
+	here...
+	* src/utils/pdfmom/pdfmom.am: ...into this new file.
+
+	* Makefile.am: Include new Automake script.
+	* doc/doc.am (GROFF_MAN_PAGES1): Update man page location.
+
+	* MANIFEST: Update.
+
+	Fixes <https://savannah.gnu.org/bugs/?68294>.
+
 2026-05-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp: Fix code style nits.
