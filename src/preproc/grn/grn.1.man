@@ -58,7 +58,7 @@ documents
 .RB [ \-C ]
 .RB [ \-F\~\c
 .IR dir ]
-.RB [ \-M\~\c
+.RB [ \-I\~\c
 .IR dir ]
 .RB [ \-T\~\c
 .IR dev ]
@@ -903,7 +903,7 @@ and
 .
 .
 .TP
-.BI \-M\~ dir
+.BI \-I\~ dir
 Prepend
 .I dir
 to the search path for
@@ -917,6 +917,21 @@ the home directory,
 and
 .IR @MACRODIR@ ,
 in that order.
+.
+GNU
+.I grn \" GNU
+accepts
+.B \-L
+and
+.B \-M
+as synonyms of
+.B \-I
+for compatibility with Berkeley
+.I grn \" Berkeley
+and
+older versions of
+.IR groff ,
+respectively.
 .\".
 .\".
 .\".TP

@@ -300,11 +300,11 @@ doc/groff-man-pages.utf8.txt: $(GROFF_MAN_PAGES_ALL) eqn pic tbl \
 	  $(tmac_srcdir)/sv.tmac $(GROFF_MAN_PAGES2) \
 	  $(tmac_srcdir)/en.tmac $(GROFF_MAN_PAGES3) > $@
 
-# `-M $(doc_srcdir)` is so that grn can find "grnexampl.g".
+# `-I $(doc_srcdir)` is so that grn can find "grnexampl.g".
 doc/grnexmpl.ps: $(doc_srcdir)/grnexmpl.me $(doc_srcdir)/grnexmpl.g \
   $(TMAC_PACKAGE_ME) grn eqn
 	$(GROFF_V)$(MKDIR_P) `dirname $@` \
-	&& $(DOC_GROFF) -Tps -ge -M $(doc_srcdir) -me \
+	&& $(DOC_GROFF) -Tps -ge -I $(doc_srcdir) -me \
 	     $(doc_srcdir)/grnexmpl.me >$@
 
 # Generating *.me from *.me.in is, surprisingly, a challenge.

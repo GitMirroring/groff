@@ -66,6 +66,21 @@ troff
    old name remains as an alias configured by the default "troffrc"
    file.
 
+grn
+---
+
+*  The `-M` command-line option is renamed to to `-I`, better
+   paralleling troff(1).  Inclusions are not the same things as macro
+   file resources.  The program accepts `-L` (the original Berkeley name
+   for this option), and `-M` (groff grn prior to this point)
+   synonymously.
+
+groff
+-----
+
+*  groff now passes `-I` options as-is to grn(1), instead of translating
+   the option name to `-M`.
+
 Macro packages
 --------------
 

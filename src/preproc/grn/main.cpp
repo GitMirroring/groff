@@ -349,7 +349,9 @@ main(int argc,
 	device = operand(&argc, &argv);
 	break;
 
-      case 'M':		/* set library directory */
+      case 'I':		/* set library directory */
+      case 'L':		/* original Berkeley synonym */
+      case 'M':		/* groff < 1.25 synonym */
 	macro_path.command_line_dir(operand(&argc, &argv));
 	break;
 

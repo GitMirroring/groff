@@ -1,5 +1,23 @@
 2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[grn]: Rename `-M` option to `-I`, better paralleling troff(1).
+	Inclusions are not the same things as macro file resources.
+
+	* src/preproc/grn/main.cpp (main): Accept `-I`, `-L` (the
+	original Berkeley name for this option), and `-M` (groff grn
+	prior to this point) synonymously.
+	* src/roff/groff/groff.cpp (main): Pass `-I` options as-is to
+	grn.  Stop doing so for `-M` arguments.
+	* doc/doc.am (doc/grnexmpl.ps): Pass groff option `-I` instead
+	of `-M`.
+
+	* src/preproc/grn/grn.1.man (Synopsis, Options):
+	* NEWS: Document it.
+
+	Fixes <https://savannah.gnu.org/bugs/?68276>.
+
+2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp (temporary_indent_request): If given no
 	arguments, cancel any temporary indentation existing in the
 	environment.

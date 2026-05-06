@@ -189,7 +189,7 @@ int main(int argc, char **argv)
       break;
     case 'I':
       commands[GRN_INDEX].set_name(command_prefix, "grn");
-      commands[GRN_INDEX].append_arg("-M", optarg);
+      commands[GRN_INDEX].append_arg(buf, optarg);
       commands[SOELIM_INDEX].set_name(command_prefix, "soelim");
       commands[SOELIM_INDEX].append_arg(buf, optarg);
       // .psbb may need to search for files
@@ -360,7 +360,6 @@ int main(int argc, char **argv)
     case 'M':
       commands[EQN_INDEX].append_arg(buf, optarg);
       commands[GRAP_INDEX].append_arg(buf, optarg);
-      commands[GRN_INDEX].append_arg(buf, optarg);
       commands[TROFF_INDEX].append_arg(buf, optarg);
       break;
     case 'P':
