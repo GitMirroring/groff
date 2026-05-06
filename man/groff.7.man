@@ -7619,6 +7619,12 @@ and
 Next non-zero free font mounting position index.
 .
 .TP
+.REG .fzoom
+Magnification of the environment's selected font
+(in thousandths;
+zero if no magnification).
+.
+.TP
 .REG .g
 Always true in GNU
 .I troff \" GNU
@@ -8050,14 +8056,6 @@ formatter.
 Name of diversion (string-valued).
 .
 Empty if output is directed to the top-level diversion.
-.
-.TP
-.REG .zoom
-Magnification of the environment's selected font
-(in thousandths;
-zero if no magnification);
-see
-.request fzoom .
 .LE
 .
 .

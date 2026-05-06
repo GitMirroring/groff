@@ -4713,7 +4713,7 @@ void init_env_requests()
   init_int_env_reg(".ul", get_underlined_line_count);
   init_vunits_env_reg(".v", get_vertical_spacing);
   init_hunits_env_reg(".w", get_prev_char_width);
-  init_int_env_reg(".zoom", get_zoom);
+  init_int_env_reg(".fzoom", get_zoom);
   register_dictionary.define("ct", new variable_reg(&ct_reg_contents));
   register_dictionary.define("hp", new horizontal_place_reg);
   register_dictionary.define("ln", new variable_reg(&next_line_number));

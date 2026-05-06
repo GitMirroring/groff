@@ -1,5 +1,19 @@
 2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Rename `.zoom` register to `.fzoom`.
+
+	* src/roff/troff/env.cpp (init_env_requests): Do it.
+	* tmac/troffrc: Configure alias for backward compatibility.
+
+	* doc/groff.texi.in (Selecting Fonts):
+	* man/groff.7.man (Read-only registers):
+	* man/groff_diff.7.man (New register):
+	* NEWS: Document change.
+
+	Fixes <https://savannah.gnu.org/bugs/?68288>.
+
+2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Relocate "pdfmom" in source tree.
 
 	* src/devices/gropdf/pdfmom.1.man:

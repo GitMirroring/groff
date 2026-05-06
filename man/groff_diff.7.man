@@ -5195,6 +5195,13 @@ Interpolate next free non-zero font mounting position.
 .
 .
 .TP
+.B \[rs]n[.fzoom]
+Interpolate magnification of the environment's selected font,
+in thousandths,
+or\~0 if magnification unused.
+.
+.
+.TP
 .B \[rs]n[.g]
 Interpolate\~1.
 .
@@ -5547,16 +5554,6 @@ Also see
 and
 .B \[rs]n[.y]
 above.
-.
-.
-.TP
-.B \[rs]n[.zoom]
-Interpolate magnification of the environment's selected font,
-in thousandths,
-or\~0 if magnification unused.
-.
-See
-.BR fzoom .
 .
 .
 .P

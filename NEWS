@@ -60,6 +60,12 @@ troff
    words from the current hyphenation language's list thereof.  Those
    supplied by files like "tmac/hyphenex.{cs,en,pl}" are retained.
 
+*  The built-in, read-only register `.zoom` is now named `.fzoom` for
+   consistency with other GNU troff extensions, which largely pair
+   names of request with those of read-only registers they affect.  The
+   old name remains as an alias configured by the default "troffrc"
+   file.
+
 Macro packages
 --------------
 

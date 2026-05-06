@@ -12835,7 +12835,7 @@ request.@footnote{@xref{Debugging}.}
 @endDefreq
 
 @DefreqList {fzoom, font [@Var{zoom}]}
-@DefregListEndx {.zoom}
+@DefregListEndx {.fzoom}
 @cindex magnification, font, request (@code{fzoom})
 @cindex font magnification request(@code{fzoom})
 @cindex zoom factor of a font (@code{fzoom})
@@ -12890,7 +12890,7 @@ M\F[H]M\F[C]M\F[P]M
 
 The zoom factor of the currently selected font
 is available in the read-only register
-@samp{.zoom}.
+@samp{.fzoom}.
 It interpolates zero if there is no magnification.
 @endDefreq
 

@@ -74,6 +74,9 @@ troffrc!html
 .  pwh
 ..
 .
+.\" groff 1.25 renamed the '.zoom' register to '.fzoom'.
+.do aln .zoom .fzoom
+.
 .
 .\" Local Variables:
 .\" mode: nroff
