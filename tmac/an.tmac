@@ -236,11 +236,11 @@
 .
 .de an*reset-section-parameters
 .  fam \\*[an*body-family]
-.  nr an-inset-level 1
-.  nr an-margin \\n[BP]
-.  nr an-saved-margin!1 \\n[BP]
-.  nr an-prevailing-indent \\n[IN]
-.  nr an-saved-prevailing-indent!1 \\n[IN]
+.  nr an*inset-level 1
+.  nr an*margin \\n[BP]
+.  nr an*saved-margin!1 \\n[BP]
+.  nr an*prevailing-indent \\n[IN]
+.  nr an*saved-prevailing-indent!1 \\n[IN]
 ..
 .
 .\" We don't handle the line length here because its handling differs
@@ -705,20 +705,20 @@ contains unsupported escape sequence
 .  evc 0
 .  mc
 .  nf
-.  in \\n[an-margin]u
+.  in \\n[an*margin]u
 .  \" Prevent page break between the tag and the rest of the paragraph.
 .  ne (2v + 1u)
 .  \" Does the tag fit within the paragraph indentation?
 .  nr an-tag-fits \
      (\\n[dl] + (\\n[TS]*\\n[an*enforce-tag-separation]) \
-        <= \\n[an-prevailing-indent])
+        <= \\n[an*prevailing-indent])
 .  if \\n[an-tag-fits] .DEVTAG-COL 1
 .  an*paragraph-tag
 .  rm an*paragraph-tag
 .  nr an*have-paragraph-tag 0
 .  if \\n[an-tag-fits] .sp -1v
 .  ev
-.  in (\\n[an-margin]u + \\n[an-prevailing-indent]u)
+.  in (\\n[an*margin]u + \\n[an*prevailing-indent]u)
 .  if \\n[an-tag-fits] .DEVTAG-COL 2
 .  rr an-tag-fits
 ..
@@ -875,8 +875,8 @@ contains unsupported escape sequence
 .de1 P
 .  an*break-paragraph
 .  ll \\n[LL]u
-.  in \\n[an-margin]u
-.  nr an-prevailing-indent \\n[IN]
+.  in \\n[an*margin]u
+.  nr an*prevailing-indent \\n[IN]
 ..
 .
 .\" Accommodate ms(7) paragraphing refugees.
@@ -889,7 +889,7 @@ contains unsupported escape sequence
 .de1 TP
 .  if \\n[.it] .an-warn cannot call .\\$0 while an input trap is pending
 .  an*break-paragraph
-.  if \\n[.$] .nr an-prevailing-indent (n;\\$1)
+.  if \\n[.$] .nr an*prevailing-indent (n;\\$1)
 .  if '\\n[.z]'an*paragraph-tag' \{\
 .    an-warn cannot nest .\\$0 or .TQ inside .\\$0; supply a tag
 .    return
@@ -897,7 +897,7 @@ contains unsupported escape sequence
 .  nr an*have-paragraph-tag 1
 .  itc 1 an*input-trap
 .  in 0
-.  ll -\\n[an-margin]u
+.  ll -\\n[an*margin]u
 .  nr an*saved-adjustment-mode \\n[.j]
 .  di an*paragraph-tag
 .  na
@@ -910,7 +910,7 @@ contains unsupported escape sequence
 .  an*break-paragraph
 .  ie !\\n[.$] \{\
 .    ne (1v + 1u)
-.    in (\\n[an-margin]u + \\n[an-prevailing-indent]u)
+.    in (\\n[an*margin]u + \\n[an*prevailing-indent]u)
 .  \}
 .  el \{\
 .    ie (\\n[.$] > 1) .TP "\\$2"
@@ -926,9 +926,9 @@ contains unsupported escape sequence
 .  an*break-paragraph
 .  ll \\n[LL]u
 .  ne (1v + 1u)
-.  if \\n[.$] .nr an-prevailing-indent (n;\\$1)
-.  in (\\n[an-margin]u + \\n[an-prevailing-indent]u)
-.  ti \\n[an-margin]u
+.  if \\n[.$] .nr an*prevailing-indent (n;\\$1)
+.  in (\\n[an*margin]u + \\n[an*prevailing-indent]u)
+.  ti \\n[an*margin]u
 .  DEVTAG-COL 1
 .  nr an-devtag-needs-second-column 1
 ..
@@ -1068,14 +1068,14 @@ contains unsupported escape sequence
 .\" Start a relative inset level (by the amount given in the argument).
 .\" .RS [inset-amount]
 .de1 RS
-.  nr an-saved-margin!\\n[an-inset-level] \\n[an-margin]
-.  nr an-saved-prevailing-indent!\\n[an-inset-level] \
-     \\n[an-prevailing-indent]
-.  ie \\n[.$] .nr an-margin +(n;\\$1)
-.  el         .nr an-margin +\\n[an-prevailing-indent]
-.  in \\n[an-margin]u
-.  nr an-prevailing-indent \\n[IN]
-.  nr an-inset-level +1
+.  nr an*saved-margin!\\n[an*inset-level] \\n[an*margin]
+.  nr an*saved-prevailing-indent!\\n[an*inset-level] \
+     \\n[an*prevailing-indent]
+.  ie \\n[.$] .nr an*margin +(n;\\$1)
+.  el         .nr an*margin +\\n[an*prevailing-indent]
+.  in \\n[an*margin]u
+.  nr an*prevailing-indent \\n[IN]
+.  nr an*inset-level +1
 ..
 .
 .\" End relative inset level, backing up by one level (or to the level
@@ -1083,11 +1083,11 @@ contains unsupported escape sequence
 .\" .RE [inset-level]
 .de1 RE
 .  ie \\n[.$] .nr an-RE-requested-level \\$1
-.  el         .nr an-RE-requested-level (\\n[an-inset-level] - 1)
+.  el         .nr an-RE-requested-level (\\n[an*inset-level] - 1)
 .  ie \\n[.$] \{\
-.    if (\\n[an-RE-requested-level] = \\n[an-inset-level]) \
-.      ds an-RE-problem already at level \\n[an-inset-level]\"
-.    if (\\n[an-RE-requested-level] > \\n[an-inset-level]) \
+.    if (\\n[an-RE-requested-level] = \\n[an*inset-level]) \
+.      ds an-RE-problem already at level \\n[an*inset-level]\"
+.    if (\\n[an-RE-requested-level] > \\n[an*inset-level]) \
 .      ds an-RE-problem too large\"
 .    if (\\n[an-RE-requested-level] < 1) \
 .      ds an-RE-problem too small\"
@@ -1097,13 +1097,13 @@ contains unsupported escape sequence
 .  \}
 .  el .if !(\\n[an-RE-requested-level]) .an*style-warn unbalanced .\\$0
 .  rr an-RE-requested-level
-.  ie \\n[.$] .nr an-inset-level ((;\\$1) <? \\n[an-inset-level])
-.  el         .nr an-inset-level -1
-.  nr an-inset-level (1 >? \\n[an-inset-level])
-.  nr an-margin \\n[an-saved-margin!\\n[an-inset-level]]
-.  nr an-prevailing-indent \
-     \\n[an-saved-prevailing-indent!\\n[an-inset-level]]
-.  in \\n[an-margin]u
+.  ie \\n[.$] .nr an*inset-level ((;\\$1) <? \\n[an*inset-level])
+.  el         .nr an*inset-level -1
+.  nr an*inset-level (1 >? \\n[an*inset-level])
+.  nr an*margin \\n[an*saved-margin!\\n[an*inset-level]]
+.  nr an*prevailing-indent \
+     \\n[an*saved-prevailing-indent!\\n[an*inset-level]]
+.  in \\n[an*margin]u
 ..
 .
 .\" Deprecated: Style an option with an argument (mandatory if
@@ -1504,7 +1504,7 @@ contains unsupported escape sequence
 .\" Initialize registers and strings that trap-called macros access, to
 .\" avoid warnings when formatting degenerate man(7) documents.
 .an*reset-paragraph-spacing
-.nr an-margin 0
+.nr an*margin 0
 .nr an-need-no-space-mode 0
 .nr an-need-break 0
 .ds an-pageref \" empty

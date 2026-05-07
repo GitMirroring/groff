@@ -1,5 +1,17 @@
 2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an.tmac (an*reset-section-parameters)
+	(an-write-paragraph-tag, P, TP, IP, HP, RS, RE): Trivially
+	refactor; rename registers.
+	- an-inset-level           -> an*inset-level
+	- an-margin                -> an*margin
+	- an-saved-margin!1 (etc.) -> an*saved-margin!1 (etc.)
+	- an-prevailing-indent     -> an*prevailing-indent
+	- an-saved-prevailing-indent!1 (etc.)
+	  -> an*saved-prevailing-indent!1 (etc.)
+
+2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[groff]: Make `-I` stop implying `-g` and `-s`.
 
 	To date, specifying `-I` has been the only way (employing only
