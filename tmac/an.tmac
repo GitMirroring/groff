@@ -1179,6 +1179,10 @@ contains unsupported escape sequence
 .    ftr BI
 .    rr an*unmap-fonts
 .  \}
+.  \" Switching families in `EX` was conditional; switch back
+.  \" unconditionally because doing so (a) _should_ be harmless and (b)
+.  \" recovers from any unauthorized floor-penetrating family change
+.  \" shenanigans the document may have gotten up to.
 .  fam \\*[an*saved-family]
 .  ft \\n[an*saved-font]
 .  nr PD \\n[an*saved-paragraph-distance]
