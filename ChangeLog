@@ -1,3 +1,26 @@
+2026-05-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/devices/grops/ps.cpp
+	(ps_font::handle_unknown_font_command)
+	(ps_font::handle_unknown_desc_command)
+	(ps_printer::ps_printer)
+	(ps_printer::set_char)
+	(ps_printer::draw)
+	(ps_printer::end_page)
+	(ps_printer::~ps_printer)
+	(ps_printer::special)
+	(ps_printer::do_exec)
+	(ps_printer::do_file)
+	(ps_printer::do_def)
+	(ps_printer::do_mdef)
+	(ps_printer::do_import)
+	(ps_printer::do_invis)
+	(main): Revise diagnostic messages to more closely match
+	terminology from our documentation and model language from
+	elsewhere in the source tree.
+
+	Continues the long process of fixing Savannah #66519.
+
 2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/devices/grops/ps.cpp: Fix code style nits.

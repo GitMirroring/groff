@@ -487,7 +487,8 @@ void ps_font::handle_unknown_font_command(const char *command,
   if (strcmp(command, "encoding") == 0) {
     if (0 == arg)
       error_with_file_and_line(fn, lineno,
-			       "'encoding' command requires an argument");
+			       "device description directive 'encoding'"
+			       " requires an argument");
     else
       encoding = strsave(arg);
   }
@@ -500,7 +501,8 @@ static void handle_unknown_desc_command(const char *command,
   if (strcmp(command, "broken") == 0) {
     if (0 /* nullptr */ == arg)
       error_with_file_and_line(fn, lineno,
-			       "'broken' command requires an argument");
+			       "device description directive 'broken'"
+			       " requires an argument");
     else if (!bflag)
       broken_flags = atoi(arg);
   }
@@ -673,14 +675,14 @@ ps_printer::ps_printer(double pl)
   if (linewidth < 0)
     linewidth = DEFAULT_LINEWIDTH;
   if (font::hor != 1)
-    fatal("device horizontal motion quantum must be 1, got %1",
-	font::hor);
+    fatal("device description horizontal motion quantum directive"
+	  " must be 1; got %1", font::hor);
   if (font::vert != 1)
-    fatal("device vertical motion quantum must be 1, got %1",
-	font::vert);
+    fatal("device description vertical motion quantum directive"
+	  " must be 1; got %1", font::vert);
   if (font::res % (font::sizescale * 72) != 0)
-    fatal("device resolution must be a multiple of 72*'sizescale', got"
-	" %1 ('sizescale'=%2)", font::res, font::sizescale);
+    fatal("device resolution must be a multiple of 72 * 'sizescale',"
+	  " got %1 ('sizescale'=%2)", font::res, font::sizescale);
   int r = font::res;
   int point = 0;
   while ((r % 10) == 0) {
@@ -773,7 +775,8 @@ void ps_printer::set_char(glyph *g, font *f, const environment *env,
   style sty(f, sub, env->size, env->height, env->slant);
   if (sty.slant != 0) {
     if (sty.slant > 80 || sty.slant < -80) {
-      error("silly slant '%1' degrees", sty.slant);
+      error("glyph slant of %1 degrees is out of range; using 0",
+	    sty.slant);
       sty.slant = 0;
     }
   }
@@ -1206,7 +1209,7 @@ void ps_printer::draw(int code, int *p, int np, const environment *env)
   case 'c':
     // troff adds an extra argument to C
     if (np != 1 && !(code == 'C' && np == 2)) {
-      error("1 argument required for circle");
+      error("circle drawing command requires exactly one argument");
       break;
     }
     out.put_fix_number(env->hpos + p[0] / 2)
@@ -1222,7 +1225,8 @@ void ps_printer::draw(int code, int *p, int np, const environment *env)
     break;
   case 'l':
     if (np != 2) {
-      error("2 arguments required for line");
+      error("line drawing command requires"
+	    " exactly two arguments");
       break;
     }
     set_line_thickness_and_color(env);
@@ -1237,7 +1241,8 @@ void ps_printer::draw(int code, int *p, int np, const environment *env)
     // fall through
   case 'e':
     if (np != 2) {
-      error("2 arguments required for ellipse");
+      error("ellipse drawing command requires"
+	    " exactly two arguments");
       break;
     }
     out.put_fix_number(p[0])
@@ -1258,11 +1263,12 @@ void ps_printer::draw(int code, int *p, int np, const environment *env)
   case 'p':
     {
       if (np & 1) {
-	error("even number of arguments required for polygon");
+	error("polygon drawing command requires"
+	      " an even number of arguments");
 	break;
       }
       if (np == 0) {
-	error("no arguments for polygon");
+	error("polygon drawing command requires arguments");
 	break;
       }
       out.put_fix_number(env->hpos)
@@ -1284,11 +1290,12 @@ void ps_printer::draw(int code, int *p, int np, const environment *env)
   case '~':
     {
       if (np & 1) {
-	error("even number of arguments required for spline");
+	error("spline drawing command requires"
+	      " an even number of arguments");
 	break;
       }
       if (np == 0) {
-	error("no arguments for spline");
+	error("spline drawing command requires arguments");
 	break;
       }
       out.put_fix_number(env->hpos)
@@ -1321,7 +1328,8 @@ void ps_printer::draw(int code, int *p, int np, const environment *env)
   case 'a':
     {
       if (np != 4) {
-	error("4 arguments required for arc");
+	error("arc drawing command requires"
+	      " exactly two arguments");
 	break;
       }
       set_line_thickness_and_color(env);
@@ -1347,7 +1355,8 @@ void ps_printer::draw(int code, int *p, int np, const environment *env)
     else {
       // troff gratuitously adds an extra 0
       if (np != 1 && np != 2) {
-	error("0 or 1 argument required for thickness");
+	error("line thickness drawing command requires"
+	      " at most one argument");
 	break;
       }
       line_thickness = p[0];
@@ -1466,7 +1475,7 @@ void ps_printer::end_page(int)
   set_color(&default_color);
   out.put_symbol("EP");
   if (invis_count != 0) {
-    error("missing 'endinvis' command");
+    error("missing device extension command 'endinvis'");
     invis_count = 0;
   }
 }
@@ -1483,7 +1492,7 @@ ps_printer::~ps_printer()
      .put_symbol("end")
      .simple_comment("EOF");
   if (fseek(tempfp, 0L, SEEK_SET) < 0)
-    fatal("unable to seek within temporary file: %1", strerror(errno));
+    fatal("cannot seek within temporary file: %1", strerror(errno));
   fputs("%!PS-Adobe-", stdout);
   fputs((broken_flags & USE_PS_ADOBE_2_0) ? "2.0" : "3.0", stdout);
   putchar('\n');
@@ -1663,7 +1672,7 @@ void ps_printer::special(char *arg, const environment *env, char type)
   for (; *p != '\0' && *p != ' ' && *p != '\n'; p++)
     ;
   if (*command == '\0') {
-    error("empty X command ignored");
+    error("ignoring null device extension command");
     return;
   }
   for (size_t i = 0; i < countof(proc_table); i++)
@@ -1674,7 +1683,7 @@ void ps_printer::special(char *arg, const environment *env, char type)
       (this->*(proc_table[i].proc))(p, env);
       return;
     }
-  error("X command '%1' not recognised", command);
+  error("device extension command '%1' not recognised", command);
 }
 
 // A conforming PostScript document must not have lines longer
@@ -1700,11 +1709,11 @@ void ps_printer::do_exec(char *arg, const environment *env)
   while (csspace(*arg))
     arg++;
   if (*arg == '\0') {
-    error("missing argument to X exec command");
+    error("device extension command 'exec' requires arguments");
     return;
   }
   if (!check_line_lengths(arg))
-    warning("lines in X exec command should"
+    warning("lines in device extension command 'exec' should"
 	    " not be more than 255 characters long");
   out.put_fix_number(env->hpos)
      .put_fix_number(env->vpos)
@@ -1725,7 +1734,7 @@ void ps_printer::do_file(char *arg, const environment *env)
   while (csspace(*arg))
     arg++;
   if (*arg == '\0') {
-    error("missing argument to X file command");
+    error("device extension command 'file' requires an argument");
     return;
   }
   const char *resource_filename = arg;
@@ -1751,7 +1760,7 @@ void ps_printer::do_def(char *arg, const environment *)
   while (csspace(*arg))
     arg++;
   if (!check_line_lengths(arg))
-    warning("lines in X def command should"
+    warning("lines in device extension command 'def' should"
 	    " not be more than 255 characters long");
   defs += arg;
   if (*arg != '\0' && strchr(arg, '\0')[-1] != '\n')
@@ -1766,18 +1775,20 @@ void ps_printer::do_mdef(char *arg, const environment *)
   char *p;
   int n = (int)strtol(arg, &p, 10);
   if (p == arg) {
-    error("first argument to X mdef must be an integer");
+    error("device extension command 'mdef' requires"
+	  " an integer as its first argument");
     return;
   }
   if (n < 0) {
-    error("out of range argument '%1' to X mdef command", int(n));
+    error("argument '%1' to device extension command 'mdef'"
+	  " is out of range", int(n));
     return;
   }
   arg = p;
   while (csspace(*arg))
     arg++;
   if (!check_line_lengths(arg))
-    warning("lines in X mdef command should"
+    warning("lines in device extension command 'mdef' should"
 	    " not be more than 255 characters long");
   defs += arg;
   if (*arg != '\0' && strchr(arg, '\0')[-1] != '\n')
@@ -1807,20 +1818,23 @@ void ps_printer::do_import(char *arg, const environment *env)
   if ((csalpha(*p) && (p[1] == '\0'))
       || (p[1] == ' ')
       || (p[1] == '\n')) {
-    error("scaling units not allowed in arguments for X import command");
+    error("scaling unit '%1' not allowed in argument to"
+	  "device extension command 'import'");
     return;
   }
   while ((' ' == *p) || ('\n' == *p))
     p++;
   if (nparms < 5) {
     if (*p == '\0')
-      error("too few arguments for X import command");
+      error("too few arguments to device extension command 'import'");
     else
-      error("invalid argument '%1' for X import command", p);
+      error("invalid argument '%1'"
+	    " to device extension command 'import'", p);
     return;
   }
   if (*p != '\0') {
-    error("superfluous argument '%1' for X import command", p);
+    error("superfluous argument '%1'"
+	  " to device extension command 'import'", p);
     return;
   }
   int llx = parms[0];
@@ -1830,21 +1844,25 @@ void ps_printer::do_import(char *arg, const environment *env)
   int desired_width = parms[4];
   int desired_height = parms[5];
   if (desired_width <= 0) {
-    error("bad width argument '%1' for X import command: must be > 0",
+    error("desired width (6th) argument '%1'"
+	  " to device extension command 'import' must be > 0",
 	  desired_width);
     return;
   }
   if ((nparms == 6) && (desired_height <= 0)) {
-    error("bad height argument '%1' for X import command: must be > 0",
+    error("desired height (7th) argument '%1'"
+	  " to device extension command 'import' must be > 0",
 	  desired_height);
     return;
   }
   if (llx == urx) {
-    error("llx and urx arguments for X import command must not be equal");
+    error("llx and urx arguments"
+	  " to device extension command 'import' must not be equal");
     return;
   }
   if (lly == ury) {
-    error("lly and ury arguments for X import command must not be equal");
+    error("lly and ury arguments"
+	  " to device extension command 'import' must not be equal");
     return;
   }
   if (nparms == 5) {
@@ -1881,7 +1899,7 @@ void ps_printer::do_invis(char *, const environment *)
 void ps_printer::do_endinvis(char *, const environment *)
 {
   if (invis_count == 0)
-    error("unbalanced 'endinvis' command");
+    error("unbalanced device extension command 'endinvis'");
   else
     --invis_count;
 }
@@ -1952,7 +1970,7 @@ int main(int argc, char **argv)
       break;
     case 'w':
       if (sscanf(optarg, "%d", &linewidth) != 1 || linewidth < 0) {
-	error("invalid line width '%1' ignored", optarg);
+	error("ignoring invalid rule thickness '%1'", optarg);
 	linewidth = -1;
       }
       break;
