@@ -23427,7 +23427,8 @@ does not always hyphenate words as @acronym{AT&T}
 @command{troff} @c AT&T
 does.
 The @acronym{AT&T} implementation uses a set of hard-coded rules
-specific to U.S.@: English,
+specific to U.S.@: English
+(``suftab''),
 while GNU
 @command{troff} @c GNU
 uses language-specific hyphenation pattern files derived from @TeX{}.

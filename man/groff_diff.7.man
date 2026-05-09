@@ -6917,7 +6917,8 @@ does not always hyphenate words as AT&T
 does.
 .
 The AT&T implementation uses a set of hard-coded rules
-specific to U.S.\& English,
+specific to U.S.\& English
+(\[lq]suftab\[rq]),
 while GNU
 .I troff \" GNU
 uses language-specific hyphenation pattern files derived from \*[tx].
