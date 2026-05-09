@@ -24009,6 +24009,8 @@ Device and font description files are read both by the formatter, GNU
 processing to an internal library, @file{libgroff}, ensuring their
 consistent interpretation.
 
+All integers used by these files must be specified in decimal format.
+
 @menu
 * DESC File Format::
 * Font Description File Format::
