@@ -12008,22 +12008,46 @@ The indentation amount is associated with the environment
 (@pxref{Environments}).
 @endDefreq
 
-@DefreqList {ti, offset}
-@DefreqItem {ti, @t{+}@Var{offset}}
-@DefreqItem {ti, @t{-}@Var{offset}}
+@cindex temporary indentation
+@cindex indentation, temporary
+@DefreqList {ti, [@Var{amount}]}
+@DefreqItem {ti, [@t{+}@Var{amount}]}
+@DefreqItem {ti, [@t{-}@Var{amount}]}
 @DefregListEndx {.in}
-Temporarily indent the next output line by @var{offset}; if @var{offset}
-is signed, adjust the temporary indentation relative to the value set by
-the @code{in} request.  The default scaling unit is @samp{m}.  This
-request causes a break.
+Temporarily indent the next output line by
+@var{amount};
+if
+@var{amount}
+is signed,
+apply it as an offset to the indentation configured by the
+@code{in}
+request.
+The default scaling unit is
+@samp{m}.
+This request causes a break.
+The effect of
+@code{ti}
+is delayed until a partially collected line
+(if it exists)
+is output.
+In other words,
+it does not change a pending output line's indentation.
+The read-only register
+@code{.in}
+reports the indentation that applies to the pending output line.
+The temporary indentation is associated
+with the environment.@footnote{@xref{Environments}.}
 
-The effect of @code{ti} is delayed until a partially collected line (if
-it exists) is output.  In other words, it does not change a pending
-output line's indentation.
-
-The read-only register @code{.in} reports the indentation that applies
-to the pending output line.  The temporary indentation is associated
-with the environment (@pxref{Environments}).
+@cindex first-line indentation, of paragraph
+@cindex indentation, first line, of paragraph
+@cindex hanging paragraph
+@cindex paragraph, hanging
+The idiomatic application of the
+@code{ti}
+request is invocation by a paragraphing macro
+to set up a first-line indentation,
+of positive sign in the conventional case,
+and negative for a ``hanging'' paragraph.
 @endDefreq
 
 @DefreqList {ll, [@Var{length}]}
