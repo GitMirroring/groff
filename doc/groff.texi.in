@@ -7083,7 +7083,7 @@ Macro packages keep users from having to confront this difficulty
 by setting ``traps'';@footnote{@xref{Traps}.}
 moreover,
 all but the simplest page layouts tend to have headers and footers,
-or at least bear vertical margins of at least one vee.
+or bear vertical margins of at least one vee.
 @c END Keep parallel with subsection "Page geometry" of roff(7).
 
 
@@ -7275,7 +7275,7 @@ The basic unit
 @code{u}
 is not necessarily an output device's smallest addressable length;
 @code{u}
-can be smaller to avoid integer rounding errors.
+can be smaller to avoid rounding errors.
 The minimum distances that a device can work with
 in the horizontal and vertical directions are termed its
 @dfn{motion quanta}.

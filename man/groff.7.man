@@ -1009,7 +1009,7 @@ The basic unit
 .B u
 is not necessarily an output device's smallest addressable length;
 .B u
-can be smaller to avoid integer rounding errors.
+can be smaller to avoid rounding errors.
 .
 The minimum distances that a device can work with
 in the horizontal and vertical directions are termed its

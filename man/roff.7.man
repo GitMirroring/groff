@@ -718,7 +718,7 @@ by setting \[lq]traps\[rq];
 .\" @footnote{@xref{Traps}.}
 moreover,
 all but the simplest page layouts tend to have headers and footers,
-or at least bear vertical margins of at least one vee.
+or bear vertical margins of at least one vee.
 .\" END Keep parallel with groff.texi node "Page Geometry".
 .
 .
