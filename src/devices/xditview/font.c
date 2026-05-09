@@ -8,12 +8,14 @@
 #include <config.h>
 #endif
 
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h> // strcmp(), strcpy(), strlen(), strncpy()
+
 #include <X11/Xos.h>
 #include <X11/IntrinsicP.h>
 #include <X11/StringDefs.h>
-#include <stdio.h>
-#include <ctype.h>
-#include <stdlib.h>
 
 #include "DviP.h"
 #include "XFontName.h"

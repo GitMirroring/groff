@@ -2,6 +2,10 @@
 #include <config.h>
 #endif
 
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h> // strcmp(), strcpy(), strlen()
+
 #ifndef SABER
 #ifndef lint
 static char Xrcsid[] = "$XConsortium: Dvi.c,v 1.9 89/12/10 16:12:25 rws Exp $";
@@ -22,8 +26,6 @@ static char Xrcsid[] = "$XConsortium: Dvi.c,v 1.9 89/12/10 16:12:25 rws Exp $";
 #include <X11/IntrinsicP.h>
 #include <X11/StringDefs.h>
 #include <X11/Xmu/Converters.h>
-#include <stdio.h>
-#include <ctype.h>
 
 #include "DviP.h"
 #include "font.h"

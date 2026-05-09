@@ -21,10 +21,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <config.h>
 #endif
 
-#include <stdio.h>
 #include <ctype.h>
-#include <stdlib.h>
-#include <string.h>
+#include <stdio.h>
+#include <stdlib.h> // strtol()
+#include <string.h> // strcat(), strchr(), strcmp(), strcpy(),
+		    // strlen(), strtok()
 
 #include <X11/Xos.h>
 #include <X11/Intrinsic.h>

@@ -1,5 +1,13 @@
 2026-05-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/xditview/Dvi.c:
+	* src/devices/xditview/device.c:
+	* src/devices/xditview/font.c: Arrange inclusions of C standard
+	library header files before X11 ones.  Within such inclusions,
+	sort header file names in alphabetical order.
+
+2026-05-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grotty/tty.cpp (tty_font::handle_x_command): Fix
 	code style nit.  Parenthesize formally complex expressions.
 
