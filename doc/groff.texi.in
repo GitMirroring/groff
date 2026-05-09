@@ -24485,7 +24485,8 @@ as they are in @acronym{AT&T} device-independent
 
 The
 @var{width}
-subfield gives the width of the glyph.
+subfield gives the advance width of the glyph;
+recall @ref{Artificial Fonts}.
 The
 @var{height}
 subfield gives the height of the glyph
@@ -24521,13 +24522,24 @@ to add after a slanted glyph
 to be followed by a subscript;
 it should be less than the italic correction.
 
-For fonts used with typesetters, the @var{type} field gives a featural
-description of the glyph: it is a bit mask recording whether the glyph
-is an ascender, descender, both, or neither.  When a @code{\w} escape
-sequence is interpolated, these values are bitwise or-ed together for
-each glyph and stored in the @code{nr} register.  In font descriptions
-for terminals, all glyphs might have a type of zero, regardless of their
-appearance.
+For fonts used with typesetters,
+the
+@var{type}
+field gives a featural description of the glyph:@:
+it is a bit pair recording whether the glyph is an ascender,
+descender,
+both,
+or neither.
+When a
+@code{\w}
+escape sequence is interpolated,
+these values are bitwise or-ed together
+for each glyph and stored in the
+@code{ct}
+register.
+In font descriptions for terminals,
+all glyphs might have a type of zero,
+regardless of their appearance.
 
 @table @code
 @item 0
@@ -24549,7 +24561,8 @@ parentheses in some fonts.
 
 The
 @var{index}
-field is an integer that uniquely identifies a glyph within the font;
+field is an integer
+that uniquely identifies a glyph within the font;
 any integer is accepted as input,@footnote{that is,
 any integer parsable
 by the C standard library's

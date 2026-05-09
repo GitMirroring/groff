@@ -857,7 +857,8 @@ as they are in AT&T device-independent
 .P
 The
 .I width
-subfield gives the width of the glyph.
+subfield gives the advance width of the glyph.
+.\" recall @ref{Artificial Fonts}.
 .
 The
 .I height
@@ -907,7 +908,7 @@ For fonts used with typesetters,
 the
 .I type
 field gives a featural description of the glyph:
-it is a bit mask recording whether the glyph is an ascender,
+it is a bit pair recording whether the glyph is an ascender,
 descender,
 both,
 or neither.
@@ -959,7 +960,8 @@ parentheses in some fonts.
 .P
 The
 .I index
-field is an integer that uniquely identifies a glyph within the font;
+field is an integer
+that uniquely identifies a glyph within the font;
 any integer is accepted as input,
 (that is,
 any integer parsable
