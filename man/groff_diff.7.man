@@ -1254,7 +1254,7 @@ GNU
 combines it with the default family to make a resolved font name
 before attempting to access it.
 .
-See subsction
+See subsection
 \[lq]Font families, abstract styles, and translation\[rq] above.
 .
 .BR \[rs]f\^[] ,
@@ -2098,7 +2098,7 @@ GNU
 combines it with the default family to make a resolved font name
 before attempting to access it.
 .
-See subsction
+See subsection
 \[lq]Font families, abstract styles, and translation\[rq] above.
 .
 .
