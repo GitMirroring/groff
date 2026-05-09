@@ -1,3 +1,9 @@
+2026-05-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m.tmac (lix@print-text): Drop unnecessary break request
+	invocation.  No matter which path we take through the subsequent
+	branch, a break-implying request (`in` or `ce`) is invoked.
+
 2026-04-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m.tmac (pg@header, pg@print-footer): Revise debugging output
