@@ -293,7 +293,9 @@ and the command to write one glyph
 .RB ( c ),
 each take a single argument;
 the former a signed integer,
-and the latter a printable ISO\~646/\[lq]ASCII\[rq] character.
+and the latter a printable
+ECMA-6/ISO\~646:1991\~IRV/US-ASCII
+character.
 .
 A series of such commands could validly occur without spaces
 on an input line,

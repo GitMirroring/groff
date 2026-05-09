@@ -24819,7 +24819,9 @@ and the command to write one glyph
 (@code{c}),
 each take a single argument;
 the former a signed integer,
-and the latter a printable ISO@tie{}646/``ASCII'' character.
+and the latter a printable
+@acronym{ECMA-6}/ISO@tie{}646:1991@tie{}IRV/US-@acronym{ASCII}
+character.
 A series of such commands could validly occur without spaces
 on an input line,
 but GNU
@@ -25038,10 +25040,18 @@ Move the drawing position right @var{n} basic units.  @acronym{AT&T}
 such values, but @code{groff}'s output driver library handles them.
 
 @item m @var{color-scheme} @r{[}@var{component} @dots{}@r{]}
-Select the stroke color using the @var{component}s in the color space
-@var{scheme}.  Each @var{component} is an integer between 0 and 65535.
+Select the stroke color using the
+@var{component}s
+in the color space
+@var{scheme}.
+Each
+@var{component}
+is an integer between 0 and 65535.
 The quantity of components and their meanings vary with each
-@var{scheme}.  This command is a @code{groff} extension.
+@var{scheme}.
+This command is a
+@code{groff}
+extension.
 
 @table @code
 @item mc @var{cyan} @var{magenta} @var{yellow}
