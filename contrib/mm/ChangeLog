@@ -1,5 +1,14 @@
 2026-05-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (@reset, pg@set-env): Cancel temporary indentation,
+	preventing issue of warning in category "style" from formatter
+	if the document should employ `ce` or `rj` requests immediately
+	after either of these internal macros is called.
+
+	See <https://savannah.gnu.org/bugs/?68285>.
+
+2026-05-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (lix@print-text): Drop unnecessary break request
 	invocation.  No matter which path we take through the subsequent
 	branch, a break-implying request (`in` or `ce`) is invoked.
