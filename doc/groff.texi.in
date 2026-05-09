@@ -3023,8 +3023,9 @@ macro early in the document to initialize the package.
 A
 @dfn{macro}
 is a formatting instruction to
-@file{ms}.
-Put a macro call on a line by itself with a dot before its name.
+@file{ms};
+to call it,
+start a line with a dot followed by its name.
 Use
 @samp{.PP}
 if you want your paragraph's first line indented,

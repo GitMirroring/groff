@@ -189,9 +189,10 @@ macro early in the document to initialize the package.
 A
 .I macro
 is a formatting instruction to
-.I ms.
+.I ms;
+to call it,
+start a line with a dot followed by its name.
 .
-Put a macro call on a line by itself with a dot before its name.
 .
 Use
 .CW PP
