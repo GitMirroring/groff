@@ -7865,6 +7865,7 @@ the identifiers
 @samp{br},
 @samp{PP},
 @samp{end-list},
+@samp{10}, @c eqn
 @samp{ref*normal-print},
 @samp{|},
 @samp{@@_},
