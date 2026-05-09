@@ -1,5 +1,17 @@
 2026-05-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/xditview/device.c: Fix code style nits.  Spell
+	null pointer literal the idiomatic (pre-ISO C23) C way (`NULL`)
+	instead of as `0`.  Explicitly compare variables of pointer type
+	to null pointer literal instead of letting them pun down to
+	Booleans.  Arrange equality comparisons to avoid inadvertent
+	lvalue assignment.  Explicitly compare variables of type `int`
+	{that store error codes, for example} to integer literals
+	instead of letting them pun down to Booleans.  Parenthesize
+	formally complex expressions.
+
+2026-05-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/xditview/Dvi.c:
 	* src/devices/xditview/device.c:
 	* src/devices/xditview/font.c: Arrange inclusions of C standard

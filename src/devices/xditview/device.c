@@ -67,7 +67,7 @@ struct charinfo {
     char name[1];
 };
 
-static char *current_filename = 0;
+static char *current_filename = NULL;
 static int current_lineno = -1;
 
 static void error(const char *s);
@@ -102,7 +102,7 @@ Device *new_device(const char *name)
 void device_destroy(Device *dev)
 {
     DeviceFont *f;
-    
+
     if (!dev)
 	return;
     f = dev->fonts;
@@ -111,7 +111,7 @@ void device_destroy(Device *dev)
 	f = f->next;
 	delete_font(tem);
     }
-    
+
     XtFree(dev->name);
     XtFree((char *)dev);
 }
@@ -124,16 +124,16 @@ Device *device_load(const char *name)
     char buf[256];
 
     fp = open_device_file(name, "DESC", &current_filename);
-    if (!fp)
-	return 0;
+    if (NULL == fp)
+	return NULL;
     dev = new_device(name);
     current_lineno = 0;
     while (fgets(buf, sizeof(buf), fp)) {
 	char *p;
 	current_lineno++;
 	p = strtok(buf, WS);
-	if (p) {
-	    int *np = 0;
+	if (p != NULL) {
+	    int *np = NULL;
 	    char *q;
 
 	    if (strcmp(p, "charset") == 0)
@@ -150,15 +150,17 @@ Device *device_load(const char *name)
 		np = &dev->paperwidth;
 	    else if (strcmp(p, "paperlength") == 0)
 		np = &dev->paperlength;
-	    
-	    if (np) {
+
+	    if (np != NULL) {
 		q = strtok((char *)0, WS);
-		if (!q || sscanf(q, "%d", np) != 1 || *np <= 0) {
+		if ((q != NULL)
+		    || (sscanf(q, "%d", np) != 1)
+		    || *np <= 0) {
 		    error("bad argument");
 		    err = 1;
 		    break;
 		}
-	    }	
+	    }
 	}
     }
     fclose(fp);
@@ -177,12 +179,12 @@ Device *device_load(const char *name)
 	dev->paperlength = dev->res*11;
     if (dev->paperwidth == 0)
 	dev->paperwidth = dev->res*8 + dev->res/2;
-    if (err) {
+    if (err != 0) {
 	device_destroy(dev);
-	dev = 0;
+	dev = NULL;
     }
     XtFree(current_filename);
-    current_filename = 0;
+    current_filename = NULL;
     return dev;
 }
 
@@ -191,9 +193,9 @@ DeviceFont *device_find_font(Device *dev, const char *name)
 {
     DeviceFont *f;
 
-    if (!dev)
-	return 0;
-    for (f = dev->fonts; f; f = f->next)
+    if (NULL == dev)
+	return NULL;
+    for (f = dev->fonts; f != NULL; f = f->next)
 	if (strcmp(f->name, name) == 0)
 	    return f;
     return load_font(dev, name);
@@ -209,28 +211,30 @@ DeviceFont *load_font(Device *dev, const char *name)
 
     fp = open_device_file(dev->name, name, &current_filename);
     if (!fp)
-	return 0;
+	return NULL;
     current_lineno = 0;
     for (;;) {
 	char *p;
 
 	if (!fgets(buf, sizeof(buf), fp)) {
 	    error("no charset line");
-	    return 0;
+	    return NULL;
 	}
 	current_lineno++;
 	p = strtok(buf, WS);
 	/* charset must be on a line by itself */
-	if (p && strcmp(p, "charset") == 0 && strtok((char *)0, WS) == 0)
+	if ((p != NULL)
+	    && (strcmp(p, "charset") == 0)
+	    && (strtok((char *)0, WS) == NULL))
 	    break;
-	if (p && strcmp(p, "special") == 0)
+	if ((p != NULL) && (strcmp(p, "special") == 0))
 	    special = 1;
     }
     f = new_font(name, dev);
     f->special = special;
     if (!read_charset_section(f, fp)) {
 	delete_font(f);
-	f = 0;
+	f = NULL;
     }
     else {
 	f->next = dev->fonts;
@@ -238,7 +242,7 @@ DeviceFont *load_font(Device *dev, const char *name)
     }
     fclose(fp);
     XtFree(current_filename);
-    current_filename = 0;
+    current_filename = NULL;
     return f;
 }
 
@@ -334,6 +338,7 @@ char *canonicalize_name(const char *s)
 /* Return 1 if the character is present in the font; widthp gets the
 width if non-null. */
 
+// TODO: boolify
 int device_char_width(DeviceFont *f, int ps, const char *name, int *widthp)
 {
     struct charinfo *p;
@@ -349,6 +354,7 @@ int device_char_width(DeviceFont *f, int ps, const char *name, int *widthp)
     return 1;
 }
 
+// TODO: boolify
 int device_code_width(DeviceFont *f, int ps, int code, int *widthp)
 {
     struct charinfo *p;
@@ -365,40 +371,40 @@ int device_code_width(DeviceFont *f, int ps, int code, int *widthp)
 
 char *device_name_for_code(DeviceFont *f, int code)
 {
-    static struct charinfo *state = 0;
-    if (f)
+    static struct charinfo *state = NULL;
+    if (f != NULL)
 	state = f->code_table[code & 0xff];
-    for (; state; state = state->code_next)
+    for (; state != NULL; state = state->code_next)
 	if (state->code == code && state->name[0] != '\0') {
 	    char *name = state->name;
 	    state = state->code_next;
 	    return name;
 	}
-    return 0;
+    return NULL;
 }
 
 int device_font_special(DeviceFont *f)
 {
     return f->special;
 }
-    
+
 static
 struct charinfo *add_char(DeviceFont *f, const char *name, int width, int code)
 {
     struct charinfo **pp;
     struct charinfo *ci;
-    
+
     name = canonicalize_name(name);
     if (strcmp(name, "---") == 0)
 	name = "";
 
     ci = (struct charinfo *)XtMalloc(XtOffsetOf(struct charinfo, name[0])
 				     + strlen(name) + 1);
-    
+
     strcpy(ci->name, name);
     ci->width = width;
     ci->code = code;
-    
+
     if (*name != '\0') {
 	pp = &f->char_table[hash_name(name) % CHAR_TABLE_SIZE];
 	ci->next = *pp;
@@ -412,10 +418,11 @@ struct charinfo *add_char(DeviceFont *f, const char *name, int width, int code)
 
 /* Return non-zero for success. */
 
+// TODO: boolify
 static
 int read_charset_section(DeviceFont *f, FILE *fp)
 {
-    struct charinfo *last_charinfo = 0;
+    struct charinfo *last_charinfo = NULL;
     char buf[256];
 
     while (fgets(buf, sizeof(buf), fp)) {
@@ -426,10 +433,10 @@ int read_charset_section(DeviceFont *f, FILE *fp)
 
 	current_lineno++;
 	name = strtok(buf, WS);
-	if (!name)
+	if (name != NULL)
 	    continue;		/* ignore blank lines */
 	p = strtok((char *)0, WS);
-	if (!p)			/* end of charset section */
+	if (NULL == p)			/* end of charset section */
 	    break;
 	if (strcmp(p, "\"") == 0) {
 	    if (!last_charinfo) {
@@ -467,6 +474,7 @@ int read_charset_section(DeviceFont *f, FILE *fp)
     return 1;
 }
 
+// TODO: Fix indentation.
 static
 FILE *find_file(const char *file, char **result)
 {
@@ -489,28 +497,28 @@ FILE *find_file(const char *file, char **result)
   strcat(path, FONTPATH);
 
   *result = NULL;
-  
+
   if (file == NULL)
     return NULL;
   if (*file == '\0')
     return NULL;
-  
+
   if (*file == '/') {
     fp = fopen(file, "r");
-    if (fp)
+    if (fp != NULL)
       *result = XtNewString(file);
     return fp;
   }
-  
+
   flen = strlen(file);
-  
+
   while (*path) {
     int len;
     char *start, *end;
-    
+
     start = path;
     end = strchr(path, ':');
-    if (end)
+    if (end != NULL)
       path = end + 1;
     else
       path = end = strchr(path, '\0');
@@ -520,7 +528,7 @@ FILE *find_file(const char *file, char **result)
       --end;
     len = (end - start) + 1 + flen + 1;
     if (len > bufsiz) {
-      if (buf)
+      if (buf != NULL)
 	buf = XtRealloc(buf, len);
       else
 	buf = XtMalloc(len);
@@ -530,7 +538,7 @@ FILE *find_file(const char *file, char **result)
     buf[end - start] = '/';
     strcpy(buf + (end - start) + 1, file);
     fp = fopen(buf, "r");
-    if (fp) {
+    if (fp != NULL) {
       *result = buf;
       return fp;
     }
@@ -539,6 +547,7 @@ FILE *find_file(const char *file, char **result)
   return NULL;
 }
 
+// TODO: Fix indentation.
 static
 FILE *open_device_file(const char *device_name, const char *file_name,
 		       char **result)
