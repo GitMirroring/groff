@@ -1,3 +1,40 @@
+2026-05-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/devices/grohtml/html-text.cpp: Fix code style nits.
+	(html_text::html_text)
+	(html_text::dump_stack_element)
+	(html_text::dump_stack)
+	(html_text::end_tag)
+	(html_text::start_tag)
+	(html_text::flush_text)
+	(html_text::is_present)
+	(html_text::uses_indent)
+	(html_text::do_push)
+	(html_text::push_para)
+	(html_text::do_pre)
+	(html_text::shutdown)
+	(html_text::check_emit_text)
+	(html_text::do_para)
+	(html_text::remove_indent)
+	(html_text::remove_def)
+	(html_text::remove_break)
+	(html_text::remove_para_align)
+	(html_text::get_alignment): Use idiomatic C++98 null pointer
+	literal.
+	(html_text::dump_stack_element)
+	(html_text::end_tag)
+	(html_text::start_tag)
+	(html_text::do_push)
+	(html_text::shutdown)
+	(html_text::do_para)
+	(html_text::remove_def)
+	(html_text::remove_break): Arrange equality comparisons to avoid
+	inadvertent lvalue assignment.
+	(html_text::do_para)
+	(html_text::remove_para_align)
+	(html_text::get_alignment): Parenthesize formally complex
+	expressions.
+
 2026-05-10  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/an.tmac (IP): Slightly refactor.  Call

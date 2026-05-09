@@ -50,8 +50,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #endif
 
 html_text::html_text (simple_output *op, html_dialect d) :
-  stackptr(NULL), lastptr(NULL), out(op), dialect(d),
-  space_emitted(TRUE), current_indentation(-1),
+  stackptr(0 /* nullptr */), lastptr(0 /* nullptr */), out(op),
+  dialect(d), space_emitted(TRUE), current_indentation(-1),
   pageoffset(-1), linelength(-1), blank_para(TRUE),
   start_space(FALSE)
 {
@@ -86,7 +86,7 @@ void html_text::dump_stack_element (tag_definition *p)
   fprintf(stderr, " | ");
   switch (p->type) {
 
-  case P_TAG:      if (p->indent == NULL) {
+  case P_TAG:      if (0 /* nullptr */ == p->indent) {
                       fprintf(stderr, "<P %s>", (char *)p->arg1); break;
                    } else {
                       fprintf(stderr, "<P %s [TABLE]>", (char *)p->arg1); break;
@@ -96,7 +96,7 @@ void html_text::dump_stack_element (tag_definition *p)
   case SUB_TAG:    fprintf(stderr, "<SUB>"); break;
   case SUP_TAG:    fprintf(stderr, "<SUP>"); break;
   case TT_TAG:     fprintf(stderr, "<TT>"); break;
-  case PRE_TAG:    if (p->indent == NULL) {
+  case PRE_TAG:    if (0 /* nullptr */ == p->indent) {
                       fprintf(stderr, "<PRE>"); break;
                    } else {
                       fprintf(stderr, "<PRE [TABLE]>"); break;
@@ -130,7 +130,7 @@ void html_text::dump_stack (void)
   if (debugStack) {
     tag_definition *p = stackptr;
 
-    while (p != NULL) {
+    while (p != 0 /* nullptr */) {
       dump_stack_element(p);
       p = p->next;
     }
@@ -153,11 +153,11 @@ void html_text::end_tag (tag_definition *t)
 
   case I_TAG:      out->put_string("</i>"); break;
   case B_TAG:      out->put_string("</b>"); break;
-  case P_TAG:      if (t->indent == NULL) {
+  case P_TAG:      if (0 /* nullptr */ == t->indent) {
                      out->put_string("</p>");
                    } else {
 		     delete t->indent;
-		     t->indent = NULL;
+		     t->indent = 0 /* nullptr */;
                      out->put_string("</p>");
 		   }
 		   out->enable_newlines(FALSE);
@@ -167,9 +167,9 @@ void html_text::end_tag (tag_definition *t)
   case TT_TAG:     out->put_string("</tt>"); break;
   case PRE_TAG:    out->put_string("</pre>"); out->enable_newlines(TRUE);
                    blank_para = TRUE;
-                   if (t->indent != NULL)
+                   if (t->indent != 0 /* nullptr */)
 		     delete t->indent;
-		   t->indent = NULL;
+		   t->indent = 0 /* nullptr */;
                    break;
   case SMALL_TAG:  if (! is_in_pre ())
                      out->put_string("</small>");
@@ -246,7 +246,7 @@ void html_text::start_tag (tag_definition *t)
 
   case I_TAG:      issue_tag("<i", (char *)t->arg1); break;
   case B_TAG:      issue_tag("<b", (char *)t->arg1); break;
-  case P_TAG:      if (t->indent != NULL) {
+  case P_TAG:      if (t->indent != 0 /* nullptr */) {
                      out->nl();
 #if defined(DEBUGGING)
 		     out->simple_comment("INDENTATION");
@@ -265,7 +265,7 @@ void html_text::start_tag (tag_definition *t)
   case TT_TAG:     issue_tag("<tt", (char *)t->arg1); break;
   case PRE_TAG:    out->enable_newlines(TRUE);
                    out->nl(); out->put_string("<pre");
-		   if (t->indent == NULL)
+		   if (0 /* nullptr */ == t->indent)
 		     issue_tag("", (char *)t->arg1, start_space);
 		   else {
 		     t->indent->begin(start_space);
@@ -306,7 +306,7 @@ void html_text::flush_text (void)
     stackptr = stackptr->next;
     delete p;
   }
-  lastptr = NULL;
+  lastptr = 0 /* nullptr */;
 }
 
 /*
@@ -317,7 +317,7 @@ int html_text::is_present (HTML_TAG t)
 {
   tag_definition *p=stackptr;
 
-  while (p != NULL) {
+  while (p != 0 /* nullptr */) {
     if (t == p->type)
       return TRUE;
     p = p->next;
@@ -334,8 +334,8 @@ int html_text::uses_indent (void)
 {
   tag_definition *p = stackptr;
 
-  while (p != NULL) {
-    if (p->indent != NULL)
+  while (p != 0 /* nullptr */) {
+    if (p->indent != 0 /* nullptr */)
       return TRUE;
     p = p->next;
   }
@@ -368,16 +368,17 @@ void html_text::do_push (tag_definition *p)
    *  if t is a P_TAG or PRE_TAG make sure it goes on the end of the stack.
    */
 
-  if (((t == P_TAG) || (t == PRE_TAG)) && (lastptr != NULL)) {
+  if (((t == P_TAG) || (t == PRE_TAG)) && (lastptr != 0 /* nullptr */))
+  {
     /*
      *  store, p, at the end
      */
     lastptr->next = p;
     lastptr       = p;
-    p->next       = NULL;
+    p->next       = 0 /* nullptr */;
   } else {
     p->next       = stackptr;
-    if (stackptr == NULL)
+    if (0 /* nullptr */ == stackptr)
       lastptr = p;
     stackptr      = p;
   }
@@ -409,7 +410,7 @@ void html_text::push_para (HTML_TAG t, void *arg, html_indent *in)
 
 void html_text::push_para (HTML_TAG t)
 {
-  push_para(t, (void *)"", NULL);
+  push_para(t, (void *)"", 0 /* nullptr */);
 }
 
 void html_text::push_para (color *c)
@@ -417,10 +418,10 @@ void html_text::push_para (color *c)
   tag_definition *p = new tag_definition;
 
   p->type         = COLOR_TAG;
-  p->arg1         = NULL;
+  p->arg1         = 0 /* nullptr */;
   p->col          = *c;
   p->text_emitted = FALSE;
-  p->indent       = NULL;
+  p->indent       = 0 /* nullptr */;
 
   do_push(p);
 }
@@ -467,10 +468,10 @@ void html_text::do_pre (void)
     int space = retrieve_para_space();
     (void)done_para();
     if (! is_present(PRE_TAG))
-      push_para(PRE_TAG, NULL, i);
+      push_para(PRE_TAG, 0 /* nullptr */, i);
     start_space = space;
   } else if (! is_present(PRE_TAG))
-    push_para(PRE_TAG, NULL, NULL);
+    push_para(PRE_TAG, 0 /* nullptr */, 0 /* nullptr */);
   dump_stack();
 }
 
@@ -509,15 +510,15 @@ void html_text::done_color (void)
 
 char *html_text::shutdown (HTML_TAG t)
 {
-  char *arg=NULL;
+  char *arg = 0 /* nullptr */;
 
   if (is_present(t)) {
-    tag_definition *p    =stackptr;
-    tag_definition *temp =NULL;
-    int notext           =TRUE;
+    tag_definition *p    = stackptr;
+    tag_definition *temp = 0 /* nullptr */;
+    int notext           = TRUE;
 
     dump_stack();
-    while ((stackptr != NULL) && (stackptr->type != t)) {
+    while ((stackptr != 0 /* nullptr */) && (stackptr->type != t)) {
       notext = (notext && (! stackptr->text_emitted));
       if (! notext) {
 	end_tag(stackptr);
@@ -528,8 +529,8 @@ char *html_text::shutdown (HTML_TAG t)
        */
       p        = stackptr;
       stackptr = stackptr->next;
-      if (stackptr == NULL)
-	lastptr = NULL;
+      if (0 /* nullptr */ == stackptr)
+	lastptr = 0 /* nullptr */;
 
       /*
        *  push tag onto temp stack
@@ -541,7 +542,7 @@ char *html_text::shutdown (HTML_TAG t)
     /*
      *  and examine stackptr
      */
-    if ((stackptr != NULL) && (stackptr->type == t)) {
+    if ((stackptr != 0 /* nullptr */) && (stackptr->type == t)) {
       if (stackptr->text_emitted) {
 	end_tag(stackptr);
       }
@@ -550,9 +551,9 @@ char *html_text::shutdown (HTML_TAG t)
       }
       p        = stackptr;
       stackptr = stackptr->next;
-      if (stackptr == NULL)
-	lastptr = NULL;
-      if (p->indent != NULL)
+      if (0 /* nullptr */ == stackptr)
+	lastptr = 0 /* nullptr */;
+      if (p->indent != 0 /* nullptr */)
 	delete p->indent;
       delete p;
     }
@@ -560,7 +561,7 @@ char *html_text::shutdown (HTML_TAG t)
     /*
      *  and restore unaffected tags
      */
-    while (temp != NULL) {
+    while (temp != 0 /* nullptr */) {
       if (temp->type == COLOR_TAG)
 	push_para(&temp->col);
       else
@@ -652,7 +653,7 @@ void html_text::done_big (void)
 
 void html_text::check_emit_text (tag_definition *t)
 {
-  if ((t != NULL) && (! t->text_emitted)) {
+  if ((t != 0 /* nullptr */) && (!t->text_emitted)) {
     check_emit_text(t->next);
     t->text_emitted = TRUE;
     start_tag(t);
@@ -697,8 +698,8 @@ void html_text::do_para (const char *arg, html_indent *in, int space)
     if (is_present(PRE_TAG)) {
       html_indent *i = remove_indent(PRE_TAG);
       done_pre();
-      if ((arg == NULL || (strcmp(arg, "") == 0)) &&
-	  (i == in || in == NULL))
+      if (((0 /* nullptr */ == arg) || (strcmp(arg, "") == 0))
+	  && ((i == in) || (0 /* nullptr */ == in)))
 	in = i;
       else
 	delete i;
@@ -711,7 +712,7 @@ void html_text::do_para (const char *arg, html_indent *in, int space)
 
 void html_text::do_para (const char *arg, int space)
 {
-  do_para(arg, NULL, space);
+  do_para(arg, 0 /* nullptr */, space);
 }
 
 void html_text::do_para (simple_output *op, const char *arg1,
@@ -721,7 +722,7 @@ void html_text::do_para (simple_output *op, const char *arg1,
   html_indent *ind;
 
   if (indentation_value == 0)
-    ind = NULL;
+    ind = 0 /* nullptr */;
   else
     ind = new html_indent(op, indentation_value, page_offset, line_length);
   do_para(arg1, ind, space);
@@ -742,22 +743,23 @@ char *html_text::done_para (void)
 
 /*
  *  remove_indent - returns the indent associated with, tag.
- *                  The indent associated with tag is set to NULL.
+ *                  The indent associated with tag is set to a null
+ *                  pointer.
  */
 
 html_indent *html_text::remove_indent (HTML_TAG tag)
 {
-  tag_definition *p=stackptr;
+  tag_definition *p = stackptr;
 
-  while (p != NULL) {
+  while (p != 0 /* nullptr */) {
     if (tag == p->type) {
       html_indent *i = p->indent;
-      p->indent = NULL;
+      p->indent = 0 /* nullptr */;
       return i;
     }
     p = p->next;
   }
-  return NULL;
+  return 0 /* nullptr */;
 }
 
 /*
@@ -889,13 +891,13 @@ void html_text::remove_def (tag_definition *t)
   if ((p != 0) && (p == t)) {
     if (p == stackptr) {
       stackptr = stackptr->next;
-      if (stackptr == NULL)
-	lastptr = NULL;
+      if (0 /* nullptr */ == stackptr)
+	lastptr = 0 /* nullptr */;
     } else if (l == 0) {
       error("stack list pointers are wrong");
     } else {
       l->next = p->next;
-      if (l->next == NULL)
+      if (0 /* nullptr */ == l->next)
 	lastptr = l;
     }
     delete p;
@@ -953,15 +955,15 @@ int html_text::remove_break (void)
   if ((p != 0) && (p->type == BREAK_TAG)) {
     if (p == stackptr) {
       stackptr = stackptr->next;
-      if (stackptr == NULL)
-	lastptr = NULL;
+      if (0 /* nullptr */ == stackptr)
+	lastptr = 0 /* nullptr */;
       q = stackptr;
     } else if (l == 0)
       error("stack list pointers are wrong");
     else {
       l->next = p->next;
       q = p->next;
-      if (l->next == NULL)
+      if (0 /* nullptr */ == l->next)
 	lastptr = l;
     }
     delete p;
@@ -989,8 +991,8 @@ void html_text::remove_para_align (void)
   if (is_present(P_TAG)) {
     tag_definition *p=stackptr;
 
-    while (p != NULL) {
-      if (p->type == P_TAG && p->arg1 != NULL) {
+    while (p != 0 /* nullptr */) {
+      if ((p->type == P_TAG) && (p->arg1 != 0 /* nullptr */)) {
 	html_indent *i = remove_indent(P_TAG);
 	int          space = retrieve_para_space();
 	done_para();
@@ -1012,8 +1014,8 @@ char *html_text::get_alignment (void)
   if (is_present(P_TAG)) {
     tag_definition *p=stackptr;
 
-    while (p != NULL) {
-      if (p->type == P_TAG && p->arg1 != NULL)
+    while (p != 0 /* nullptr */) {
+      if ((p->type == P_TAG) && (p->arg1 != 0 /* nullptr */))
 	return (char *)p->arg1;
       p = p->next;
     }
