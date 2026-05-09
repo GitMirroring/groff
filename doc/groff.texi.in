@@ -3120,6 +3120,8 @@ This is an example of an
 @dfn{escape sequence},
 the other kind of formatting instruction.
 Escape sequences can appear almost anywhere.
+@c ...but not where GNU troff expects an escape function selector or
+@c delimiter.
 They begin with the escape character
 (@code{\})
 and are followed by at least one more character.
@@ -8065,11 +8067,18 @@ like defining macros.
 
 @cindex escape sequence
 @cindex sequence, escape
-The other is an @dfn{escape sequence}, which begins with the escape
-character and can be embedded anywhere in the input, even in arguments
-to requests and other escape sequences.  Escape sequences interpolate
-special characters, strings, or registers, and handle comparatively
-minor formatting tasks like sub- and superscripting.
+The other is an
+@dfn{escape sequence},
+which begins with the escape character
+and can be embedded almost anywhere in the input,
+@c ...but not where GNU troff expects an escape function selector or
+@c delimiter.
+even in arguments to requests and other escape sequences.
+Escape sequences interpolate special characters,
+strings,
+or registers,
+and handle comparatively minor formatting tasks
+like sub- and superscripting.
 
 Some operations, such as font selection and type size alteration, are
 available via both requests and escape sequences.

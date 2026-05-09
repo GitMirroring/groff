@@ -176,7 +176,10 @@ a dot
 .
 The other is the
 .IR "escape sequence" ,
-which can occur almost anywhere and starts with the
+which can occur almost anywhere
+.\" ...but not where GNU troff expects an escape function selector or
+.\" delimiter.
+and starts with the
 .IR "escape character" ,
 a backslash
 .RB \[lq] \[rs] \[rq].
@@ -2076,6 +2079,8 @@ start with a backslash,
 .RB \[lq] \|\[rs] \[rq].
 .
 They can appear almost anywhere,
+.\" ...but not where GNU troff expects an escape function selector or
+.\" delimiter.
 even in the midst of text on a line,
 and implement various features,
 including the insertion of special characters with
