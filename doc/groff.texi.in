@@ -21725,7 +21725,11 @@ the formatter does not tokenize the escape sequences
 @code{\s},
 and
 @code{\S},
-but instead updates the environment.}
+but instead updates
+its global register dictionary
+(@code{\R}),
+or the environment
+(all others).}
 the smallest meaningful unit of
 @command{troff} @c generic
 input.
@@ -23333,8 +23337,8 @@ set
 in bold;
 DWB,
 Plan@tie{}9,
-and Solaris@tie{}10
-@command{troff}s @c DWB, Plan 9, Solaris 10
+and Solaris
+@command{troff}s @c DWB, Plan 9, Solaris
 set it in roman.
 The only way to determine if a font selection operation succeeded
 in the latter group of formatters
