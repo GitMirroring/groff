@@ -12038,6 +12038,13 @@ reports the indentation that applies to the pending output line.
 The temporary indentation is associated
 with the environment.@footnote{@xref{Environments}.}
 
+If
+@var{amount}
+is omitted,
+GNU
+@command{troff} @c GNU
+cancels any pending temporary indentation.
+
 @cindex first-line indentation, of paragraph
 @cindex indentation, first line, of paragraph
 @cindex hanging paragraph

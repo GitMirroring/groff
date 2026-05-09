@@ -5515,6 +5515,10 @@ Set tab repetition character
 (default: none).
 .
 .TPx
+.REQ .ti
+Cancel any pending temporary indentation.
+.
+.TPx
 .REQ .ti \[+-]N
 Temporarily indent next output line
 (default scaling unit\~\c

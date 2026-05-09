@@ -50,6 +50,11 @@ troff
    the request (and issues a warning in category "range"), leaving the
    operand (first request argument) unchanged instead of emptying it.
 
+*  When the `ti` request is given no arguments, the formatter now
+   cancels any pending temporary indentation.  (Formerly, it did nothing
+   in any troff, except, in GNU troff, issuing a warning in category
+   "missing".)
+
 *  The `phw` request now accepts arguments.  Each is interpreted as a
    possible hyphenation word (ignoring hyphens in the input), looked
    up in the hyphenation exception list for the hyphenation language,
