@@ -167,9 +167,9 @@ tty_font::~tty_font()
 #if 0
 void tty_font::handle_x_command(int argc, const char **argv)
 {
-  if (argc >= 1 && strcmp(argv[0], "bold") == 0)
+  if ((argc >= 1) && (strcmp(argv[0], "bold") == 0))
     mode |= BOLD_MODE;
-  else if (argc >= 1 && strcmp(argv[0], "underline") == 0)
+  else if ((argc >= 1) && (strcmp(argv[0], "underline") == 0))
     mode |= UNDERLINE_MODE;
 }
 #endif

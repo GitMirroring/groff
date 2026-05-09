@@ -1,3 +1,8 @@
+2026-05-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/devices/grotty/tty.cpp (tty_font::handle_x_command): Fix
+	code style nit.  Parenthesize formally complex expressions.
+
 2026-05-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/devices/grops/ps.cpp
