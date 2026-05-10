@@ -63,7 +63,7 @@ _endif()dnl
 .\"
 .\" Copyright 1999-2017 Free Software Foundation, Inc.
 .\"                2017 Ingo Schwarze
-.\"           2017-2025 G. Branden Robinson
+.\"           2017-2026 G. Branden Robinson
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -202,7 +202,9 @@ _
 \&.IB	Italic, bold alternating	Font style macros
 \&.IP	Indented paragraph	Paragraphing macros
 \&.IR	Italic, roman alternating	Font style macros
+\&.LE	End list	List enclosure macros
 \&.LP	Begin paragraph	Paragraphing macros
+\&.LS	Start list	List enclosure macros
 \&.ME	Mail-to end	Hyperlink macros
 \&.MR	Man page cross reference	Hyperlink macros
 \&.MT	Mail-to start	Hyperlink macros
@@ -1069,6 +1071,78 @@ as seen in this very paragraph.
 .
 .
 _endif()dnl
+.\" ====================================================================
+.SS "List enclosure macros"
+.\" ====================================================================
+.
+Enclose paragraphing macros between
+.B LS
+and
+.B LE
+to mark them as list items.
+.
+Doing so can mark them as \[lq]compact\[rq]\" ,
+.\" ease management of their indentation,
+and supply hints to the output driver to improve their rendering
+(as with HTML).
+.
+Lists can be nested.
+.
+(Sub)sectioning macro calls,
+and the end of the document,
+close all open lists.
+.
+These macros are GNU extensions.
+.
+.
+.TP
+.BI .LS\~ type\~\c
+.RI [ compactness ]
+.\"RI [ compactness \~[ indentation ]
+.IR (since\~ groff \~1.25) \" TODO: remove note once novelty dies down
+Start
+(or open)
+a list.
+.
+.I type
+is one of
+.RB \%\[lq] definition \[rq],
+.RB \%\[lq] enumerated \[rq],
+or
+.RB \%\[lq] itemized \[rq].
+.
+.I compactness
+is a Boolean value directing suppression of inter-paragraph spacing
+between list items.
+.
+.\".I indentation
+.\"specifies an indentation amount for the body of each list item;
+.\"it is then unnecessary to specify this argument to the list item macros.
+.
+Use
+.B IP
+with
+a mark argument to represent an itemized or enumerated list item,
+and
+.B TP
+for a definition list item.
+.
+Use
+.B IP
+without arguments to associate successive paragraphs
+with an existing list item;
+to these,
+inter‐paragraph spacing applies even in compact lists.
+.
+.
+.TP
+.B .LE
+.IR (since\~ groff \~1.25) \" TODO: remove note once novelty dies down
+End
+(or close)
+the most recent open list.
+.
+.
 .\" ====================================================================
 .SS "Synopsis macros"
 .\" ====================================================================
@@ -4987,7 +5061,7 @@ and the
 macro for
 .I groff
 1.23 (2023),
-and the
+the
 .BR BP ,
 .BR PO ,
 and
@@ -4997,7 +5071,12 @@ and a revised implementation of the
 .BR SY / YS
 macros for
 .I groff
-1.24 (2026).
+1.24 (2026);
+and the
+.BR LS / LE
+macros for
+.I groff
+1.25 (2026).
 .
 .
 .P

@@ -4,7 +4,7 @@
 .
 .\" Copyright 1989-2024 Free Software Foundation, Inc.
 .\"                2001 Ruslan Ermilov
-.\"           2020-2025 G. Branden Robinson
+.\"           2020-2026 G. Branden Robinson
 .\"
 .\" Written by James Clark (jjc@jclark.com)
 .\" Enhanced by: Werner Lemberg <wl@gnu.org>
@@ -103,6 +103,7 @@
 .de1 an*end-document
 .  an*input-trap
 .  if '\\n[.z]'an*paragraph-tag' .an*TP-trap
+.  an*list-close-all
 .  if \\n[cR] \{\
 .    sp 1v
 .    an-footer
@@ -765,16 +766,22 @@ contains unsupported escape sequence
 ..
 .
 .\" Break a paragraph.  Restore defaults, except for indentation.
+.\" The presence of an argument means "check for a compact list".
 .de an*break-paragraph
 .  an*reset-paragraph-parameters
-.  sp \\n[PD]u
+.  nr an*want-space 1
+.  if ((\\n[.$] > 0) & (\\n[an*list-depth] > 0)) \
+.    if \\n[an*list-is-compact!\\n[an*list-depth]] .nr an*want-space 0
+.  if \\n[an*want-space] .sp \\n[PD]u
 .  ns
+.  rr an*want-space
 ..
 .
 .\" Set arguments (or next input line producing written or drawn output
 .\" if none) as a section heading.
 .de1 SH
 .  if \\n[.it] .an-warn cannot call .\\$0 while an input trap is pending
+.  an*list-close-all
 .  an*reset-section-parameters
 .  an*break-paragraph
 .  fi
@@ -804,6 +811,7 @@ contains unsupported escape sequence
 .\" if none) as a subsection heading.
 .de1 SS
 .  if \\n[.it] .an-warn cannot call .\\$0 while an input trap is pending
+.  an*list-close-all
 .  an*reset-section-parameters
 .  an*break-paragraph
 .  fi
@@ -892,8 +900,13 @@ contains unsupported escape sequence
 .\" .TP [indent]
 .de1 TP
 .  if \\n[.it] .an-warn cannot call .\\$0 while an input trap is pending
-.  an*break-paragraph
+.  an*break-paragraph 1
 .  if \\n[.$] .nr an*prevailing-indent (n;\\$1)
+.\"el \{\
+.\"  if (\\n[an*list-depth] > 0)
+.\"  if !'\?\\*[an*list-indent!\\n[an*list-depth]]\?'\?\?' \
+.\"    nr an*prevailing-indent \\*[an*list-indent!\\n[an*list-depth]]
+.\"\}
 .  if '\\n[.z]'an*paragraph-tag' \{\
 .    an-warn cannot nest .\\$0 or .TQ inside .\\$0; supply a tag
 .    return
@@ -912,7 +925,7 @@ contains unsupported escape sequence
 .de1 IP
 .  nr an*enforce-tag-separation 0
 .  ie !\\n[.$] \{\
-.    an*break-paragraph
+.    an*break-paragraph 1
 .    ne (1v + 1u)
 .    in (\\n[an*margin]u + \\n[an*prevailing-indent]u)
 .  \}
@@ -927,10 +940,15 @@ contains unsupported escape sequence
 .\" Set a paragraph with a hanging indentation.
 .\" .HP [indent]
 .de1 HP
-.  an*break-paragraph
+.  an*break-paragraph 1
 .  ll \\n[LL]u
 .  ne (1v + 1u)
 .  if \\n[.$] .nr an*prevailing-indent (n;\\$1)
+.\"el \{\
+.\"  if (\\n[an*list-depth] > 0)
+.\"  if !'\?\\*[an*list-indent!\\n[an*list-depth]]\?'\?\?' \
+.\"    nr an*prevailing-indent \\*[an*list-indent!\\n[an*list-depth]]
+.\"\}
 .  in (\\n[an*margin]u + \\n[an*prevailing-indent]u)
 .  ti \\n[an*margin]u
 .  DEVTAG-COL 1
@@ -1404,6 +1422,79 @@ contains unsupported escape sequence
 .  \}
 .  nop \&\\$3
 .  hy \\n[an*hyphenation-mode]
+..
+.
+.\" === Support lists (groff 1.25). ===
+.\"
+.\" When authors of man(7) documents employ the deprecated `PD` macro at
+.\" all, they do so for one purpose only: to set lists more compactly.
+.\" Further, it is advantageous for HTML generation to distinguish
+.\" itemized, enumerated, and definition lists.  Finally, we support a
+.\" parameter to specify the indentation used by the `IP`, `TP` (and
+.\" `HP`, for that matter) macros.  This is advantageous becuse, if the
+.\" document author uses a non-default indentation--a cosmetic issue--
+.\" they have neither to remember to specify that parameter in the first
+.\" of their paragraph calls and maintain it there as list items change
+.\" or move over time, nor to tediously repeat the indentation amount in
+.\" each such macro call.  See section "Notes" in groff_man_style(7).
+.\"
+.\" Specify list items with `IP` (if itemized or enumerated) or `TP` (if
+.\" tagged with semantically important terms, like language keywords).
+.\"
+.\" Lists can be nested.  (Sub)sectioning macros, and the end of the
+.\" document, close all open lists.
+.\"
+.\" We designed this interface such that no document content is lost if
+.\" the formatter doesn't support these extension macros.
+.nr an*list-depth 0
+.
+.\" Start (or "open") a list.
+.\" .LS {definition|enumerated|itemized} [compactness] [indent]
+.de1 LS
+.  if ((\\n[.$] < 1) : (\\n[.$] > 3)) \
+.    an*style-warn .\\$0 expects 1 to 3 arguments, got \\n[.$]
+.  ds an*list-type invalid\"
+.  if '\?\\$1\?'\?definition\?' .ds an*list-type \\$1\"
+.  if '\?\\$1\?'\?enumerated\?' .ds an*list-type \\$1\"
+.  if '\?\\$1\?'\?itemized\?'   .ds an*list-type \\$1\"
+.  if '\?\\*[an*list-type]\?'\?invalid\?' \{\
+.    ds an*msg invalid .\\$0 list type '\\*[an*list-type]':
+.    as an*msg " assuming 'definition'
+.    an-warn \\*[an*msg]
+.    ds an*list-type definition\"
+.  \}
+.  nr an*list-is-compact 0
+.  if (\\n[.$] > 1) \{\
+.    ie !\B'\\$2' \
+.      an-warn invalid .\\$0 compactness Boolean value '\\$2'; using 0
+.    el .if \\$2 .nr an*list-is-compact 1
+.  \}
+.  ds an*list-indent \" empty
+.  if (\\n[.$] > 2) \{\
+.    ie !\B'\\$3' \
+.      an-warn invalid .\\$0 indent '\\$3'; ignoring
+.    el .ds an*list-indent \\$3\"
+.  \}
+.  nr an*list-depth +1
+.  ds an*list-type!\\n[an*list-depth] \\*[an*list-type]\"
+.  nr an*list-is-compact!\\n[an*list-depth] \\n[an*list-is-compact]
+.  ds an*list-indent!\\n[an*list-depth] \\*[an*list-indent]\"
+.  rm an*list-indent
+.  rr an*list-is-compact
+.  rm an*list-type
+.  rm an*msg
+..
+.
+.\" End (or "close") the most recently unclosed list.
+.de1 LE
+.  rm an*list-indent!\\n[an*list-depth]
+.  rr an*list-is-compact!\\n[an*list-depth]
+.  rm an*list-type!\\n[an*list-depth]
+.  nr an*list-depth -1
+..
+.
+.de an*list-close-all
+.  while (\\n[an*list-depth] > 0) .LE
 ..
 .
 .\" tbl(1) table support

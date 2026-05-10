@@ -1,3 +1,25 @@
+2026-05-11  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[man]: Begin implementing new `LS` and `LE` macros.
+
+	* tmac/an.tmac (LS): New interface macro starts (opens) a list
+	enclosure.
+	(LE): New interface macro ends (closes) a list enclosure.
+	(an*list-close-all): New macro recursively closes all lists.
+	(an*end-document, SH, SS): Call `an*list-close-all`.
+	(an*break-paragraph): Recognize argument to permit override of
+	inter-paragraph spacing application by checking list context for
+	"compactness".
+	(TP, IP, HP): Call `an*break-paragraph` with an argument,
+	thereby checking for override of inter-paragraph spacing
+	application.
+
+	* tmac/groff_man.7.man.in (Description): Document it.  Add new
+	macro names to initial table thereof.
+	(List enclosure macros): New subsection specifies them.
+
+	Begins fixing <https://savannah.gnu.org/bugs/?68335>.
+
 2026-05-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/devices/xditview/xditview.am: Fix race when running
