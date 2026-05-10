@@ -41,7 +41,7 @@
 	[groff]: Make `-I` stop implying `-g` and `-s`.
 
 	To date, specifying `-I` has been the only way (employing only
-	groff(1)) as a pipeline manager, a usage we strongly encourage)
+	groff(1) as a pipeline manager, a usage we strongly encourage)
 	to get an `-M` option of the same meaning to grn.
 
 	However, we didn't know, simply from the user's specification of
