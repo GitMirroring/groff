@@ -1,3 +1,11 @@
+2026-05-10  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/devices/xditview/device.c: Fix damage from code style nit
+	picking, which rendered gxditview(1) ineffective.  Repair sense
+	of comparisons to null pointers, and apply parentheses where
+	overlooked.  Problem introduced by me in commit 111bf3255b, 8
+	May.
+
 2026-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/an.tmac (an*reset-section-parameters)

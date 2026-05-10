@@ -153,9 +153,9 @@ Device *device_load(const char *name)
 
 	    if (np != NULL) {
 		q = strtok((char *)0, WS);
-		if ((q != NULL)
+		if ((NULL == q)
 		    || (sscanf(q, "%d", np) != 1)
-		    || *np <= 0) {
+		    || (*np <= 0)) {
 		    error("bad argument");
 		    err = 1;
 		    break;
@@ -433,7 +433,7 @@ int read_charset_section(DeviceFont *f, FILE *fp)
 
 	current_lineno++;
 	name = strtok(buf, WS);
-	if (name != NULL)
+	if (NULL == name)
 	    continue;		/* ignore blank lines */
 	p = strtok((char *)0, WS);
 	if (NULL == p)			/* end of charset section */
