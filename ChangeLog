@@ -1,5 +1,13 @@
 2026-05-10  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an.tmac: Define empty "bookmark handlers" for X100,
+	X100-12, X75, and X75-12 devices.  Continues commit d1a148f95c,
+	2024-01-27.
+
+	Fixes <https://savannah.gnu.org/bugs/?68333>.
+
+2026-05-10  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/xditview/device.c: Fix damage from code style nit
 	picking, which rendered gxditview(1) ineffective.  Repair sense
 	of comparisons to null pointers, and apply parentheses where
