@@ -911,8 +911,8 @@ contains unsupported escape sequence
 .\" .IP [marker[ indentation-amount]]
 .de1 IP
 .  nr an*enforce-tag-separation 0
-.  an*break-paragraph
 .  ie !\\n[.$] \{\
+.    an*break-paragraph
 .    ne (1v + 1u)
 .    in (\\n[an*margin]u + \\n[an*prevailing-indent]u)
 .  \}

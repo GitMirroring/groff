@@ -1,5 +1,14 @@
 2026-05-10  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an.tmac (IP): Slightly refactor.  Call
+	`an*break-paragraph` only if there are no arguments.  If
+	arguments are present, we call `TP`, which already calls the
+	aforementioned internal macro.  This way we avoid calling it
+	duplicatively.  Right now there's no visible effect, but there
+	is with forthcoming work to implement new `LS` and `LE` macros.
+
+2026-05-10  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/doc.tmac: Recognize that using the "X100-12" or "X75-12"
 	output devices necessarily implies an `S` register default of
 	"12", not "10", just as groff man(7) has done for a long time.
