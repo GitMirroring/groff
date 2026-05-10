@@ -242,17 +242,6 @@ language reference
 .    BR \\$*
 ..
 .
-.\" begin list [piloting a possible extension to man(7)]
-.de LS
-.  nr saved-PD \\n[PD]
-.  nr PD 0
-..
-.
-.\" end list [piloting a possible extension to man(7)]
-.de LE
-.  nr PD \\n[saved-PD]
-..
-.
 .
 .\" end of macro definitions
 .
@@ -917,7 +906,7 @@ then reading the register.
 .
 .
 .P
-.LS
+.LS definition 1
 .TP
 .B u
 Basic unit;
@@ -974,7 +963,7 @@ parameters in effect.
 .
 .
 .P
-.LS
+.LS definition 1
 .TP
 .B m
 Em;
@@ -2795,7 +2784,7 @@ A few denotations are more specific.
 .
 .
 .P
-.LS
+.LS definition 1
 .RS
 .
 .TPx
@@ -2976,7 +2965,7 @@ for features new to GNU
 .\" Instead, request invocations taking different argument quantities
 .\" are synopsized separately.
 .P
-.LS
+.LS definition 1
 .
 .TPx
 .REQ .ab
@@ -5892,7 +5881,7 @@ Texinfo manual.
 .
 .
 .P
-.LS
+.LS definition 1
 .
 .\" ========= comments =========
 .
@@ -6921,7 +6910,7 @@ whereas strokes have a line thickness
 .
 .
 .P
-.LS
+.LS definition 1
 .TP
 .BI \[rs]D\[aq]\[ti]\~ "h1 v1"\~\c
 .RI .\|.\|.\~ "hn vn"\c
@@ -7497,7 +7486,7 @@ exceptions are noted.
 .
 .
 .P
-.LS
+.LS definition 1
 .
 .TP 15n
 .REG .$
@@ -8085,7 +8074,7 @@ see section \[lq]Environment\[rq] of
 .
 .
 .P
-.LS
+.LS definition 1
 .
 .TP 15n
 .REG $$
