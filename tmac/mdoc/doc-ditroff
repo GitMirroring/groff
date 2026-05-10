@@ -35,7 +35,13 @@
 .
 .
 .\" Use -rS={11,12} to change the font size from 10pt to 11pt or 12pt.
-.if !r S .nr S 10
+.if !r S \{\
+.  nr S 10
+.  if '\*[.T]'X75-12' \
+.    nr S 12
+.  if '\*[.T]'X100-12' \
+.    nr S 12
+.\}
 .
 .ie        (\n[S] == 11) \{\
 .  ps 10.95z
