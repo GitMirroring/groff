@@ -333,7 +333,7 @@ sub interpret_line {
 		 'opena', 'os', 'output', 'pc', 'pchar', 'pcolor',
 		 'pcomposite', 'pev', 'pfp', 'pftr', 'phw', 'pi', 'pl',
 		 'pline', 'pm', 'pn', 'pnr', 'po', 'ps', 'psbb', 'pso',
-		 'ptr', 'pvs', 'rchar', 'rd', 'return', 'rfschar', 'rj',
+		 'pvs', 'pwh', 'rchar', 'rd', 'return', 'rfschar', 'rj',
 		 'rm', 'rn', 'rnn', 'rr', 'rs', 'rt', 'schar', 'shc',
 		 'shift', 'sizes', 'so', 'soquiet', 'sp', 'special',
 		 'spreadwarn', 'ss', 'stringdown', 'stringup', 'sty',

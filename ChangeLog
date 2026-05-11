@@ -61,6 +61,14 @@
 
 2026-05-10  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/utils/grog/grog.pl (interpret_line): Recognize `pwh`
+	instead of `ptr` as a GNU troff request name.  That request-
+	renaming was a late-breaking change in the 1.24.0 release cycle.
+
+	Continues fixing <https://savannah.gnu.org/bugs/?67880>.
+
+2026-05-10  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/doc.tmac: Recognize that using the "X100-12" or "X75-12"
 	output devices necessarily implies an `S` register default of
 	"12", not "10", just as groff man(7) has done for a long time.
