@@ -866,6 +866,11 @@ follow the break with vertical space
 macro);
 see subsection \[lq]Horizontal and vertical spacing\[rq] below.
 .
+The
+.BR LS / LE
+list enclosure macros can suppress this vertical spacing;
+see below.
+.
 Except for
 .BR TQ ,
 these macros
@@ -1141,6 +1146,36 @@ inter‐paragraph spacing applies even in compact lists.
 End
 (or close)
 the most recent open list.
+_ifstyle()dnl
+.
+.
+.P
+We might apply list enclosure macros as follows.
+.
+.
+.IP
+.EX
+\&.LS definition 1
+\&.TP
+3
+7th edition
+\&.I (default)
+\&.TP
+4
+System III
+\&.TP
+5
+System V
+\&.LE
+.EE
+.
+.
+.P
+For the result,
+see the
+.B AT
+macro description below.
+_endif()dnl
 .
 .
 .\" ====================================================================
@@ -2432,10 +2467,12 @@ _ifstyle()dnl
 where 1v is the distance between adjacent text baselines.
 _endif()dnl
 .
-(The deprecated macro
-.B PD
-can change this vertical spacing,
-but we discourage its use.)
+The
+.BR LS / LE
+list enclosure macros
+(and the deprecated
+.BR PD )
+can suppress inter-paragraph spacing.
 .
 Between
 .B EX
@@ -3454,12 +3491,14 @@ This macro exists only to render man pages from historical systems.
 .
 .
 .IP
-The inside footer is populated per the value of
+The packge populates the inside footer per the value of
 .I system.
 .
 .
 .RS \" Invisibly move left margin to current IP indentation.
 .RS \" Now indent further, visibly.
+.IP \" "mandoc -T lint" ain't gonna like this.
+.LS definition 1
 .TP
 3
 7th edition
@@ -3474,6 +3513,7 @@ System III
 .TP
 5
 System V
+.LE
 .RE \" Move left margin back to IP indentation.
 .RE \" Move left margin back to standard position.
 .
@@ -3506,6 +3546,7 @@ Thus,
 information or distinctions that you use tab stops to express are likely
 to be lost.
 .
+.ne 2v \" prevent stranded line at end of paragraph
 If you feel tempted to change the tab stops such that calling this macro
 later to restore them is desirable,
 consider composing a table using
@@ -3584,6 +3625,11 @@ information or distinctions that you use
 .B PD
 to express are likely to be lost.
 .
+To lay out lists compactly,
+see
+.BR LS / LE
+above.
+.
 .
 .TP
 .BR .SB \~[\c
@@ -3648,12 +3694,14 @@ This macro exists only to render man pages from historical systems.
 .
 .
 .IP
-The inside footer is populated per the value of
+The packge populates the inside footer per the value of
 .I version.
 .
 .
 .RS \" Invisibly move left margin to current IP indentation.
 .RS \" Now indent further, visibly.
+.IP \" "mandoc -T lint" ain't gonna like this.
+.LS definition 1
 .TP
 .if t \{\
 .  \" begin hideous cheat for U.S. letter paper
@@ -3683,6 +3731,7 @@ The inside footer is populated per the value of
 .TP
 7
 4.4 Berkeley Distribution
+.LE
 .RE \" Move left margin back to IP indentation.
 .RE \" Move left margin back to standard position.
 .if t \{\
@@ -4838,6 +4887,7 @@ if available,
 in all these formatters
 .\" including plan9port/Plan 9 from User Space as of commit e5b5757e64,
 .\" 10 October 2025
+.ne 2v \" prevent stranded line at end of paragraph
 (though
 .I neatroff
 does not supply a
@@ -5071,12 +5121,12 @@ and a revised implementation of the
 .BR SY / YS
 macros for
 .I groff
-1.24 (2026);
+1.24 (February 2026);
 and the
 .BR LS / LE
 macros for
 .I groff
-1.25 (2026).
+1.25 (July? 2026). \" XXX: TODO: FIXME: for groff 1.25 release
 .
 .
 .P
