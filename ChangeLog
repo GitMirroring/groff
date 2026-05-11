@@ -1,5 +1,20 @@
 2026-05-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/xditview/xditview.am: Fix race when running
+	"install" Make target with concurrency.  This Automake file was
+	duplicatively claiming responsibility for installing the
+	"tty.tmac" and "tty-char.tmac" files, which are properly within
+	_grotty_'s demense exclusively.  Drop definitions of
+	`GXDITVIEWTMACFILES`, `gxditviewtmacdir`, and
+	`dist_gxditviewtmac_DATA` macros.
+	(uninstall_xditview): Drop now superfluous rmdir(1) from recipe.
+
+	Fixes <https://savannah.gnu.org/bugs/?68336>.  Thanks to
+	Santiago Vila for the report and analysis.  Problem introduced
+	by me in commit 8910c63b6d, 2024-12-10.
+
+2026-05-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grohtml/html-text.cpp: Fix code style nits.
 	(html_text::html_text)
 	(html_text::dump_stack_element)
