@@ -27,7 +27,7 @@
 This manual documents GNU @command{troff} version @VERSION@.
 
 @display
-Copyright @copyright{} 1994--2018 Free Software Foundation, Inc.
+Copyright @copyright{} 1994--2026 Free Software Foundation, Inc.
 Copyright @copyright{} 2018--2026 G. Branden Robinson
 @end display
 
