@@ -1,3 +1,20 @@
+2026-05-11  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[groff]: Rename test scripts to accommodate case-insensitive
+	file systems.
+
+	* src/roff/groff/tests/backslash-l-works.sh:
+	* src/roff/groff/tests/backslash-L-works.sh: Rename these...
+	* src/roff/groff/tests/backslash-lowercase-l-works.sh:
+	* src/roff/groff/tests/backslash-uppercase-L-works.sh: ...to
+	these.
+
+	* src/roff/groff/groff.am (groff_TESTS): Reflect rename.
+
+	Fixes <https://savannah.gnu.org/bugs/?68336>.  Thanks to
+	John Gardner for the report.  Problem introduced by me in commit
+	58adafa251, 22 April.
+
 2026-05-10  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/utils/grog/grog.pl: Account for new `LS` and `LE` man(7)
