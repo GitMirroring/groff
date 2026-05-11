@@ -1,5 +1,12 @@
 2026-05-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[man]: Unit-test new `LS` and `LE` macros.
+
+	* tmac/tests/an_LS-and-LE-work.sh: Do it.
+	* tmac/tmac.am (tmac_TESTS): Run test.
+
+2026-05-11  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[man]: Begin implementing new `LS` and `LE` macros.
 
 	* tmac/an.tmac (LS): New interface macro starts (opens) a list

@@ -103,6 +103,7 @@
 .de1 an*end-document
 .  an*input-trap
 .  if '\\n[.z]'an*paragraph-tag' .an*TP-trap
+.  if \\n[DEBUG] .tm GBR: mark VALID01: \\$0
 .  an*list-close-all
 .  if \\n[cR] \{\
 .    sp 1v
@@ -769,10 +770,16 @@ contains unsupported escape sequence
 .\" The presence of an argument means "check for a compact list".
 .de an*break-paragraph
 .  an*reset-paragraph-parameters
+.  if \\n[DEBUG] .tm GBR: mark VALID02: \\$0
 .  nr an*want-space 1
-.  if ((\\n[.$] > 0) & (\\n[an*list-depth] > 0)) \
+.  if ((\\n[.$] > 0) & (\\n[an*list-depth] > 0)) \{\
 .    if \\n[an*list-is-compact!\\n[an*list-depth]] .nr an*want-space 0
-.  if \\n[an*want-space] .sp \\n[PD]u
+.    if \\n[DEBUG] .tm GBR: mark VALID03: \\$0 branch 1
+.  \}
+.  if \\n[an*want-space] \{\
+.    if \\n[DEBUG] .tm GBR: mark VALID04: \\$0 branch 2
+.    sp \\n[PD]u
+.  \}
 .  ns
 .  rr an*want-space
 ..
@@ -781,6 +788,7 @@ contains unsupported escape sequence
 .\" if none) as a section heading.
 .de1 SH
 .  if \\n[.it] .an-warn cannot call .\\$0 while an input trap is pending
+.  if \\n[DEBUG] .tm GBR: mark VALID05: \\$0
 .  an*list-close-all
 .  an*reset-section-parameters
 .  an*break-paragraph
@@ -811,6 +819,7 @@ contains unsupported escape sequence
 .\" if none) as a subsection heading.
 .de1 SS
 .  if \\n[.it] .an-warn cannot call .\\$0 while an input trap is pending
+.  if \\n[DEBUG] .tm GBR: mark VALID06: \\$0
 .  an*list-close-all
 .  an*reset-section-parameters
 .  an*break-paragraph
@@ -900,6 +909,7 @@ contains unsupported escape sequence
 .\" .TP [indent]
 .de1 TP
 .  if \\n[.it] .an-warn cannot call .\\$0 while an input trap is pending
+.  if \\n[DEBUG] .tm GBR: mark VALID07: \\$0
 .  an*break-paragraph 1
 .  if \\n[.$] .nr an*prevailing-indent (n;\\$1)
 .\"el \{\
@@ -925,6 +935,7 @@ contains unsupported escape sequence
 .de1 IP
 .  nr an*enforce-tag-separation 0
 .  ie !\\n[.$] \{\
+.    if \\n[DEBUG] .tm GBR: mark VALID08: \\$0
 .    an*break-paragraph 1
 .    ne (1v + 1u)
 .    in (\\n[an*margin]u + \\n[an*prevailing-indent]u)
@@ -1451,6 +1462,7 @@ contains unsupported escape sequence
 .\" Start (or "open") a list.
 .\" .LS {definition|enumerated|itemized} [compactness] [indent]
 .de1 LS
+.  if \\n[DEBUG] .tm GBR: mark VALID09: \\$0
 .  if ((\\n[.$] < 1) : (\\n[.$] > 3)) \
 .    an*style-warn .\\$0 expects 1 to 3 arguments, got \\n[.$]
 .  ds an*list-type invalid\"
@@ -1458,6 +1470,7 @@ contains unsupported escape sequence
 .  if '\?\\$1\?'\?enumerated\?' .ds an*list-type \\$1\"
 .  if '\?\\$1\?'\?itemized\?'   .ds an*list-type \\$1\"
 .  if '\?\\*[an*list-type]\?'\?invalid\?' \{\
+.    if \\n[DEBUG] .tm GBR: mark INVALID01: \\$0 branch 1
 .    ds an*msg invalid .\\$0 list type '\\*[an*list-type]':
 .    as an*msg " assuming 'definition'
 .    an-warn \\*[an*msg]
@@ -1465,15 +1478,27 @@ contains unsupported escape sequence
 .  \}
 .  nr an*list-is-compact 0
 .  if (\\n[.$] > 1) \{\
-.    ie !\B'\\$2' \
+.    if \\n[DEBUG] .tm GBR: mark VALID10: \\$0 branch 2 (more than one macro argument)
+.    ie !\B'\\$2' \{\
+.      if \\n[DEBUG] .tm GBR: mark INVALID02: \\$0 branch 3
 .      an-warn invalid .\\$0 compactness Boolean value '\\$2'; using 0
-.    el .if \\$2 .nr an*list-is-compact 1
+.    \}
+.    el .if \\$2 \{\
+.      if \\n[DEBUG] .tm GBR: mark VALID11: \\$0 branch 4 (list is compact)
+.      nr an*list-is-compact 1
+.    \}
 .  \}
 .  ds an*list-indent \" empty
 .  if (\\n[.$] > 2) \{\
-.    ie !\B'\\$3' \
+.    if \\n[DEBUG] .tm GBR: mark VALID12: \\$0 branch 4 (more than two macro arguments)
+.    ie !\B'\\$3' \{\
+.      if \\n[DEBUG] .tm GBR: mark INVALID03: \\$0 branch 5
 .      an-warn invalid .\\$0 indent '\\$3'; ignoring
-.    el .ds an*list-indent \\$3\"
+.    \}
+.    el \{\
+.      if \\n[DEBUG] .tm GBR: mark VALID13: \\$0 branch 6 (assigning list indentation)
+.      ds an*list-indent \\$3\"
+.    \}
 .  \}
 .  nr an*list-depth +1
 .  ds an*list-type!\\n[an*list-depth] \\*[an*list-type]\"
@@ -1487,6 +1512,7 @@ contains unsupported escape sequence
 .
 .\" End (or "close") the most recently unclosed list.
 .de1 LE
+.  if \\n[DEBUG] .tm GBR: mark VALID14: \\$0
 .  rm an*list-indent!\\n[an*list-depth]
 .  rr an*list-is-compact!\\n[an*list-depth]
 .  rm an*list-type!\\n[an*list-depth]
@@ -1714,6 +1740,9 @@ contains unsupported escape sequence
 .       tm \*[an]: ignoring double-sided layout in HTML output
 .       nr D 0
 .    \}
+.
+.if !r DEBUG \
+.  nr DEBUG 0
 .
 .\" footer distance
 .\"

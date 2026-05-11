@@ -146,6 +146,7 @@ tmac_TESTS = \
   tmac/tests/an_FT-register-value-should-not-trash-titles.sh \
   tmac/tests/an_HY-register-works.sh \
   tmac/tests/an_LL-register-initializes-sanely.sh \
+  tmac/tests/an_LS-and-LE-work.sh \
   tmac/tests/an_ME-second-argument-hyphenates.sh \
   tmac/tests/an_MR-internal-hyperlinks-work-with-pdfmom.sh \
   tmac/tests/an_MR-works.sh \
