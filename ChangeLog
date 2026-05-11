@@ -53,7 +53,7 @@
 	synthesize `-g` and `-s` to cover these bases.  If the user
 	demands these the grn(1) and soelim(1) preprocessors, they can
 	specify their options, consistently with other groff
-	preprocessors support a command-line option.
+	preprocessors supported by a command-line option.
 
 	* src/roff/groff/groff.cpp (main) <I>: Do it.
 
