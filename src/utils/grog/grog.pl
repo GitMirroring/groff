@@ -405,7 +405,7 @@ sub interpret_line {
 		   INITI|IND|INDP|
 		   INITR|SETR|GETHN|GETPN|
 		   ISODATE|
-		   LB|LE
+		   LB|
 		   MULB|MULN|MULE|
 		   LO|
 		   LT|
@@ -413,8 +413,9 @@ sub interpret_line {
 		   PH|
 		   SA
 		  )$/x) {
-    # `LI` is unique to mm among full-service macro packages, but
-    # www.tmac muddies the waters, so omit it.
+    # LE is also used by man (since groff 1.25).
+    # LI is unique to mm among full-service macro packages, but
+    #   www.tmac muddies the waters, so omit it.
     # P and MT are also used by man.
     # COVER and SP are also used by mom.
     # 1C, 2C, AE, AU, B1, B2, DE, DS, MC, ND, TL, and RP are also used
@@ -451,7 +452,6 @@ sub interpret_line {
 		   FT|
 		   LEFT|
 		   LL|
-		   LS|
 		   NEWPAGE|
 		   NO_TOC_ENTRY|
 		   PAGENUMBER|
@@ -466,6 +466,7 @@ sub interpret_line {
 		   TOC|
 		   T_MARGIN|
 		  )$/x) {
+    # LS is also used by man (since groff 1.25).
     # PP is also used by man.
     # SP is also used by mm.
     push_main_package('om');

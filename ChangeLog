@@ -1,3 +1,12 @@
+2026-05-10  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/utils/grog/grog.pl: Account for new `LS` and `LE` man(7)
+	macros.
+	(interpret_line): Drop `LE` from list of mm(7)-exclusive macros.
+	Drop `LS` from list of mom(7)-exclusive macros.
+
+	See <https://savannah.gnu.org/bugs/?68335>.
+
 2026-05-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[man]: Unit-test new `LS` and `LE` macros.
