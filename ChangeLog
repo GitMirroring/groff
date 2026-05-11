@@ -117,7 +117,7 @@
 	(environment::cancel_temporary_indent): New functions mutate
 	object of `environment` class.
 	(set_temporary_indentation): New function updates the
-	environment and through mutator functions, much like the
+	environment through a mutator member function, much like the
 	existing `cancel_temporary_indentation()` does.
 	(temporary_indent): Use accessor member functions of
 	`environment` class to get at object properties.  Call
