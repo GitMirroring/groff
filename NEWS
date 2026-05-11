@@ -1,4 +1,4 @@
-    Copyright 1992-2023 Free Software Foundation, Inc.
+    Copyright 1992-2026 Free Software Foundation, Inc.
               2018-2026 G. Branden Robinson
                    2022 Ingo Schwarze
 
@@ -90,6 +90,12 @@ groff
    needs to be piped through grn(1) and/or soelim(1), specify the
    foregoing options as appropriate.
 
+pic
+---
+
+*  groff's pic(1) manual, "Making Pictures With GNU PIC", is now built
+   and installed as a PDF rather than a PostScript document.
+
 Macro packages
 --------------
 
@@ -113,34 +119,38 @@ Macro packages
    These macro definitions are harmlessly redundant when formatting such
    a document with an older version of groff mm.
 
-*  The s (ms) macro package now supports the parameter `-rPDFFEAT=1`
-   which will enable PDF features when used with `-Tpdf`. The PDF produced
-   will show an overview bookmark panel, the pdf `properties` information
-   will include the document title and author(s), any TOC included will
-   have clickable entries which can navigate the document (even if the
-   document does not use the newer `XN` macro), and if the document has
-   a cover page (introduced with RP) the TOC will be relocated to after
-   the cover.
+*  The s (ms) macro package now supports PDF features.  Pass groff (or
+   troff) the command-line option `-r PDFFEAT=1` to enable them when
+   used with the "pdf" output device ("-T pdf").
 
-   Two new macros: `XR` and `XM` allow clickable internal links within
-   the document.
+   The PDF thus produced shows an overview bookmark panel or navigation
+   pane (viewer application support allowing); the viewer's interface to
+   document properties includes the document title and author(s); if the
+   document calls the package's `TC` macro, its entries will be
+   clickable to navigate the document (even if it does not use the `XN`
+   macro introduced in groff 1.23.0); and if the document calls `RP` to
+   configure a cover page, the TOC relocates to follow it.
 
-   The documents ms.ms and pic.ms are now delivered as pdfs (rather than
-   postscript) with features turned on. An additional document
-   `Groff-PDF-Features.pdf` covers using pdf features in several macro
-   packages, including `ms`.
+   The new macros `XM` and `XR` respectively set and navigate to
+   clickable internal links within the document.
 
-   These changes were inspired by Keith Marshall's spdf.tmac which was
-   withdrawn from groff, but is available at:-
+   These changes were inspired by Keith Marshall's "spdf.tmac" which was
+   withdrawn from groff in 1.24.0, but continues to be developed at:
 
       https://savannah.nongnu.org/projects/groff-pdfmark/
 
-   Although there are several differences. The aim with these additions
-   to `ms` was to add pdf features to any ms document without having to
-   make any changes to the document at all.
+   ...though groff ms(7) differs in some respects.  Our objective to
+   enable and support PDF features in any ms document without having to
+   make any changes at all to its content.
+
+*  groff's ms(7) manual, "Using groff with the ms macros", is now built
+   and installed as a PDF rather than a PostScript document.
 
 Miscellaneous
 -------------
+
+*  The new document "Groff-PDF-Features.pdf" surveys the PDF features
+   that groff enables and exposes in its full-service macro packages.
 
 *  The 'configure' options '--{en,dis}able-groff-allocator' introduced
    in groff 1.23.0 are now deprecated.  `--disable-groff-allocator` has
