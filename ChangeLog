@@ -1,48 +1,47 @@
 2026-05-11  Deri James  <deri@chuzzlewit.myzen.co.uk>
 
-	[ms]: add PDF support.
+	[ms]: Add PDF support.
 
-	* tmac/s.tmac  (initial): Depend on register PDFFEAT set to 1
-	to add features. Only allowed with -Tpdf. Alias new XR/XM
-	to LP (to prevent use before ms is initialised).
-	(XR/@XR): Macro for internal links.
-	(XM/@XM): Macro to 'mark' position in document.
+	* tmac/s.tmac: Depend on register `PDFFEAT` set to 1 to add
+	features.  Only allowed with `-T pdf`.  Alias new `XR`/`XM`
+	macros to LP (to prevent use before ms initialises).
+	(XR/@XR): New macro implements internal hyperlinks.
+	(XM/@XM): New macro 'marks' destination for internal links.
 	(RP): Name 'title' page, used to relocate TOC in .TC.
-	(cov*ab-init) turn on XR/XM.
-	(cov*print): Extract title and author for PDF meta data.
-	(@SH): Extra param (2) name bookmark, XR can link to it.
-	Setup diversion (box) to collect bookmark text.
-	(@NH): Extra param (2) name bookmark, XR can link to it.
-	Setup diversion (box) to collect bookmark text.
-	(@NH-end): Diversion trap when NH/SH has collected one
-	line of OUTPUT.
+	(cov*ab-init): Turn on XR/XM.
+	(cov*print): Extract title and author for PDF metadata.
+	(@SH, @NH): New second parameter names bookmark; XR can link to
+	it.  Set up box diversion to collect bookmark text.
+	(@NH-end): Diversion trap springs when NH/SH has collected one
+	line of _output_.
 	(XA): Start hotlink text (in TOC).
 	(XE): Stop marking hotlink.
-	(.TC): If .RP seen, move TOC to page after 'title'.
+	(TC): If .RP seen, move TOC to page after 'title'.
 
-	* doc/ms.ms.in (Initial): Add RP so that the TOC moves
-	after the cover.
-	(abstract): Mention PDF features.
-	(Introduction): Get PDF features by setting PDFFEAT.
-	(document Structure): Change references to hotlinks.
+	* doc/ms.ms.in: Call RP so that the TOC moves after the cover.
+	Name sections throughout to support hyperlinking.  Change man
+	page references to hyperlinks.
+	(Abstract): Mention PDF features.
+	(Introduction): Enable PDF features with PDFFEAT register.
+	(Document Structure): Change references to hotlinks.
 	(Tables of Contents): Explain how to move TOC.
-	(NH/SH): New param 'name' and document.
-	(Using PDF features with ms): New section.
-	(Throughouut)): Name various sections to support
-	hotlinking. Change man page references to hotlinks.
+	(Headings) <NH, SH>: Document new 'name' parameter.
+	(Using PDF features with ms): New.
 
 	* tmac/groff_ms.7.man:
-	* doc/groff.texi.in: Sync changes with ms.ms.
+	* doc/groff.texi.in: Sync with the foregoing.
 
-	* doc/Groff-PDF-Features.ms (new file): Document
-	PDF features in pdf.tmac and macro packages mom,
-	man/mandoc, ms.
+	* doc/Groff-PDF-Features.ms: New file documents PDF features in
+	pdf.tmac and macro packages mom, "man", mdoc, ms (and their
+	absence in "me" and mm).
 
-	* doc/doc.am: Build the new file above and switch
-	ms.ms and pic.ms to generate pdfs with features on.
+	* doc/doc.am: Build the new file above and switch ms.ms and
+	pic.ms to generate PDFs with `PDFFEAT` enabled.
 
-	* NEWS: Announce changes to s.tmac and acknowledge
-	antecedents of spdf.tmac.
+	* NEWS: Announce changes to groff ms(7) and acknowledge
+	antecedent work in spdf.tmac (now externally maintained).
+
+	Fixes <https://savannah.gnu.org/bugs/?68299>.
 
 2026-05-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
