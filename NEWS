@@ -113,6 +113,32 @@ Macro packages
    These macro definitions are harmlessly redundant when formatting such
    a document with an older version of groff mm.
 
+*  The s (ms) macro package now supports the parameter `-rPDFFEAT=1`
+   which will enable PDF features when used with `-Tpdf`. The PDF produced
+   will show an overview bookmark panel, the pdf `properties` information
+   will include the document title and author(s), any TOC included will
+   have clickable entries which can navigate the document (even if the
+   document does not use the newer `XN` macro), and if the document has
+   a cover page (introduced with RP) the TOC will be relocated to after
+   the cover.
+
+   Two new macros: `XR` and `XM` allow clickable internal links within
+   the document.
+
+   The documents ms.ms and pic.ms are now delivered as pdfs (rather than
+   postscript) with features turned on. An additional document
+   `Groff-PDF-Features.pdf` covers using pdf features in several macro
+   packages, including `ms`.
+
+   These changes were inspired by Keith Marshall's spdf.tmac which was
+   withdrawn from groff, but is available at:-
+
+      https://savannah.nongnu.org/projects/groff-pdfmark/
+
+   Although there are several differences. The aim with these additions
+   to `ms` was to add pdf features to any ms document without having to
+   make any changes to the document at all.
+
 Miscellaneous
 -------------
 

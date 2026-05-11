@@ -10,7 +10,7 @@ manuscript macro package for formatting documents
 .\" Legal Terms
 .\" ====================================================================
 .\"
-.\" Copyright 1989-2021 Free Software Foundation, Inc.
+.\" Copyright 1989-2021,2026 Free Software Foundation, Inc.
 .\"           2018-2023 G. Branden Robinson
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
@@ -104,7 +104,14 @@ preprocessors for inclusion of tables,
 mathematical equations,
 diagrams,
 and consistently formatted bibliographic citations.
-.
+If the document is intended to be a pdf (by
+using
+.BR -Tpdf ),
+extra pdf features can be enabled by using
+.B -rPDFFEAT=1
+on the command line.
+This will turn on a bookmark panel, clickable
+TOC entries, and other pdf features described below.
 .
 .P
 .I "groff ms"
@@ -157,6 +164,10 @@ Some document types found in other
 implementations are specific to AT&T or Berkeley,
 and are not supported in
 .IR "groff ms" .
+If
+.B PDFFEAT
+is turned on any TOC pages will be placed immediately after
+the cover page.
 .
 .
 .TP
@@ -224,7 +235,10 @@ the traditional procedure was to manually relocate the pages containing
 the table of contents between the cover page and the body text.
 .
 Today,
-page resequencing is more often done in the digital domain.
+page resequencing is more often done in the digital domain,
+such as when
+.B PDFFEAT
+is turned on.
 .
 An index works similarly,
 but because it typically needs to be sorted after collection,
@@ -847,7 +861,7 @@ section's content.
 .
 .TP
 .BR .NH \~[\c
-.IR depth ]
+.IR depth "] [" name ]
 Set an automatically numbered heading.
 .
 .I ms
@@ -881,6 +895,15 @@ and then
 .RB \[lq] ".NH\~3" \[rq],
 .I groff ms
 emits a warning on the standard error stream.
+If
+.B \%PDFFEAT
+is on and a
+.I name
+is assigned, it can be used as a destination
+.I name
+in an
+.B XR
+internal link.
 .
 .
 .TP
@@ -956,7 +979,7 @@ table of contents entries.
 .
 .TP
 .BR .SH \~[\c
-.IR depth ]
+.IR depth "] [" name
 Set an unnumbered heading.
 .
 The optional
@@ -973,6 +996,16 @@ numbered heading at the same depth when the
 and
 .B \[rs]n[PSINCR]
 heading size adjustment mechanism is in effect.
+.
+If
+.B \%PDFFEAT
+is on and a
+.I name
+is assigned, it can be used as a destination
+.I name
+in an
+.B XR
+internal link.
 .
 .
 .P
@@ -2338,6 +2371,119 @@ with a horizontal motion escape sequence to spread the dots.
 The width of the page number field is stored in the
 .B TC\-MARGIN
 register.
+.
+.
+.\" ====================================================================
+.SH "Using PDF features with \fIms\fP"
+.\" ====================================================================
+.
+If you run an
+.I ms
+document with
+.B -Tpdf
+and
+.B -rPDFFEAT=1
+the PDF features shown in this document
+will be incorporated.
+The PDF produced will show an overview
+bookmark panel, the pdf \[lq]properties\[rq]
+information will include the document title
+and author(s), any TOC included will have
+clickable entries which can navigate the document,
+and if the document has a cover page (introduced with
+.BR RP )
+the TOC will be relocated to after the cover.
+.P
+There are also two new macro calls available.
+.TP
+.BI .XR " name \c"
+.RI " [" after " [" before " [" hotlink\-text "]]]"
+The
+.I name
+parameter should match a
+.I name
+given to a
+.B NH
+or
+.B SH
+section/subsection,
+(See section Headings), or a name set by a
+.B XM
+command.
+The
+.I hotlink-text
+is the text which will be clickable.
+If the text ends with
+.B \[lq]+\[rq]
+or
+.B \[lq]*\[rq]
+(the expansion characters),
+the text associated with the section heading will replace
+the character (enclosed with double quotes if the
+final character is
+.BR \[lq]+\[rq] ).
+If no
+.I hotlink-text
+is given, the value of
+.B \[rs]*[spdf:txt_default]
+is used.
+Which is initially set to
+\[lq]see: +\[rq].
+(Note the expansion character).
+But you can change it.
+.TP
+.BI .XM " name \c"
+.RI [ text ]
+Mark a particular position in the document with a
+.I name .
+Any
+.I text
+given will be used to replace a trailing expansion character in an
+.B XR
+command which references the
+.I name .
+It is useful if you wish to name an arbitrary location in the
+document, so you can setup a link to a picture, diagram or even
+a single paragraph.
+.
+.LP
+Using
+.B .XR
+for a \[lq]forward\[rq] link
+(where the destination is \[lq]later\[rq] in the document),
+will not work properly if the link uses expansion characters
+and
+.I groff
+only sees a single pass of the document.
+So either use the full text, without a trailing expansion
+character in the
+.B .XR
+forward link, or use the multi-pass command
+.
+.
+.LP
+\f[CB]pdfmom --roff -ms -rPDFFEAT=1 file.ms > file.pdf\f[]
+.LP
+The command can be shortened to
+.B "pdfms -rPDFFEAT=1 ..."
+if you have created a link to the
+.I pdfmom
+command called
+.I pdfms .
+.
+.
+.LP
+Running an
+.I ms
+document with \fInroff\fP,
+is only a single pass, so the above advice about not using
+expansion characters with forward links also applies.
+.LP
+All of the PDF features mentioned in this document can be
+disabled if the
+.I groff
+command includes
+.B \%-rPDFFEAT=0 .
 .
 .
 .\" ====================================================================

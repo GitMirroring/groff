@@ -2969,6 +2969,7 @@ and Research Tenth Edition Unix.
 * ms Document Description Macros::
 * ms Body Text::
 * ms Page Layout::
+* Using PDF features with ms::
 * Differences from AT&T ms::
 * ms Legacy Features::
 * ms Naming Conventions::
@@ -3233,7 +3234,10 @@ output was designed for the production of hard copy,
 the traditional procedure was to manually relocate the pages containing
 the table of contents between the cover page and the body text.
 Today,
-page resequencing is more often done in the digital domain.
+page resequencing is more often done in the digital domain,
+and if you use a separate cover page with @code{RP}
+(and use @option{-T pdf}) the TOC will
+be positioned immediately after this cover page.
 An index works similarly,
 but because it typically needs to be sorted after collection,
 its preparation requires separate processing.
@@ -3940,7 +3944,7 @@ input lines following the macro call becomes the heading's title.  Call
 a paragraphing macro to end the heading text and start the section's
 content.
 
-@DefmacList {NH, [@Var{depth}], ms}
+@DefmacList {NH, [@Var{depth}] [@Var{name}], ms}
 @DefmacListEnd {NH, @t{S} @Var{heading-depth-index} @dots{}, ms}
 Set an automatically numbered heading.
 
@@ -3960,6 +3964,9 @@ If you specify @var{depth} such that an ascending gap occurs relative to
 the previous @code{NH} call---that is, you ``skip a depth'', as by
 @samp{.NH 1} and then @samp{.NH 3}---@code{groff} @file{ms} emits a
 warning on the standard error stream.
+
+The @var{name} is used to assign a named destination for use with
+the @code{XR} command.
 
 Alternatively, you can give @code{NH} a first argument of@tie{}@code{S},
 followed by integers to number the heading depths explicitly.  Further
@@ -4027,7 +4034,7 @@ facilitates its inclusion in, for example, table captions, equation
 labels, and @code{XS}/@code{XA}/@code{XE} table of contents entries.
 @endDefmpstr
 
-@Defmac {SH, [@Var{depth}], ms}
+@Defmac {SH, [@Var{depth}] [@Var{name}], ms}
 Set an unnumbered heading.
 
 The optional @var{depth} argument is a GNU extension indicating the
@@ -4035,6 +4042,8 @@ heading depth corresponding to the @var{depth} argument of @code{NH}.
 It matches the type size at which the heading is set to that of a
 numbered heading at the same depth when the @code{GROWPS} and
 @code{PSINCR} heading size adjustment mechanism is in effect.
+The @var{name} is used to assign a named destination for use with
+the @code{XR} command.
 @endDefmac
 
 If the @code{GROWPS} register is set to a value greater than the
@@ -5260,6 +5269,65 @@ character by using the @code{char} request.  A typical leader combines
 the dot glyph @samp{.} with a horizontal motion escape sequence to
 spread the dots.  The width of the page number field is stored in the
 @code{TC-MARGIN} register.
+
+@c ---------------------------------------------------------------------
+
+@node Using PDF features with ms
+@subsection Using @acronym{PDF} features with @file{ms}
+@cindex @file{ms} macros, Using @acronym{PDF} features
+@c @cindex @acronym{PDF} features @file{ms}, macro package differences
+
+If you run an ms document with @code{-Tpdf} and @code{-rPDFFEAT=1}
+the @acronym{PDF} features shown in this document will be incorporated.
+The @acronym{PDF} produced will show an overview bookmark panel,
+the pdf ``properties'' information will include the document title and author(s),
+any @acronym{TOC} included will have clickable entries which can
+navigate the document, and if the document has a cover page
+(introduced with @code{RP}) the @acronym{TOC}
+will be relocated to after the cover.
+
+There are also two new macro calls available.
+
+@Defmac {XR, name [@Var{post} [@Var{pre} [@Var{hotlink-text}]]], ms}
+The @Var{name} parameter should match a @Var{name} given to a
+@code{NH} or @code{SH} section/subsection, @xref{Headings in ms},
+or a name set by a @code{XM} command.
+The @Var{hotlink-text} is the text which will be clickable.
+If the text ends with ``@code{+}'' or ``@code{*}'' (the
+expansion characters), the text associated with the section heading
+will replace the character (enclosed with double quotes if the final
+character is ``@code{+}''). If no @Var{hotlink-text} is given, the
+value of @code{\*[spdf:txt_default]} is used. Which is initially set
+to ``@code{see: +}''. (Note the expansion character). But you can change it.
+@endDefmac
+
+@Defmac {XM, name [@Var{text}], ms}
+Mark a particular position in the document with a @Var{name}.
+Any text given will be used to replace a trailing expansion character
+in an @code{XR} command which references the @Var{name}.
+It is useful if you wish to name an arbitrary location in the document,
+so you can setup a link to a picture, diagram or even a single paragraph.
+@endDefmac
+
+Using @code{XR} for a ``forward'' link (where the destination is ``later''
+in the document), will not work properly if the link uses
+expansion characters and @code{groff} only sees a single pass
+of the document. So either use the full text, without a trailing
+expansion character in the forward link, or use the multi-pass command
+
+@Example
+pdfmom --roff -ms -rPDFFEAT=1 file.ms > file.pdf
+@endExample
+
+The command can be shortened to @code{pdfms -rPDFFEAT=1 ...}
+if you have created a link to the @code{pdfmom} command called @code{pdfms}.
+
+Running an @file{ms} document with @code{nroff}, is only a single pass,
+so the above advice about not using expansion characters with
+forward links also applies.
+
+All of the @acronym{PDF} features mentioned in this document
+can be disabled if the @code{groff} command includes @code{-rPDFFEAT=0}.
 
 @c ---------------------------------------------------------------------
 

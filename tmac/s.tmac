@@ -1,6 +1,6 @@
 .ig
 
-Copyright 1989-2021 Free Software Foundation, Inc.
+Copyright 1989-2021,2026 Free Software Foundation, Inc.
           2022-2023 G. Branden Robinson
 
 Written by James Clark (jjc@jclark.com)
@@ -98,6 +98,83 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .de di
 .	if \\n[.$] .ds @last-file-seen \\n[.F]\"
 .	@divert \\$*
+..
+.
+.if !r PDFFEAT .nr PDFFEAT 0
+.if !'\?\*[.T]\?'\?pdf\?' .nr PDFFEAT 0
+.nr nhct 0 1
+.nr NHbox 0
+.ds spdf:txt_default see: +
+.if \n[PDFFEAT]=1 \{\
+.nr PDFHREF.VIEW.LEADING  10.0p
+.nr gottitle*pdf 0
+.ds pdf:curcol default
+.\}
+.
+.de @XR
+.  if !'\\*[.T]'pdf' \{\
+.     nop \\$3\\$4\\$2
+.     return
+.  \}
+.  ds spdf!txt \\*[spdf:txt_default]
+.  ds spdf!opts -D "\\$1"
+.  if \\n(.$>1 .as spdf!opts " -A "\\$2"
+.  if \\n(.$>2 .as spdf!opts " -P "\\$3"
+.  if \\n(.$>3 .ds spdf!txt \\$4
+.  ds spdf!ast \\*[spdf!txt]
+.  ds spdf!ast_ql
+.  ds spdf!ast_qr
+.  substring spdf!ast -1 -1
+.  if '\\*[spdf!ast]'+' \{\
+.     ds spdf!ast *
+.     ds spdf!ast_ql \[lq]
+.     ds spdf!ast_qr \[rq]
+.  \}
+.  if '\\*[spdf!ast]'*' \{\
+.    pdf:lookup \\$1
+.    ie !'\\*[pdf:lookup-result]'' \{\
+.      if '\\*[spdf!ast]'*' \{\
+.        chop spdf!txt
+.        as spdf!txt \&\\*[spdf!ast_ql]\\*[pdf:lookup-value]\\*[spdf!ast_qr]
+.      \}
+.    \}
+.    el \{\
+.      ds spdf!txt Unknown(\\$1)
+.      if !rspdf!unk \{\
+.        if '\\*[.T]'pdf' .tm \
+[ms]: \\n[.F]:\\n[.c]: forward reference to '\\$1' detected (please run using 'pdfmom --roff -ms')
+.        nr spdf!unk 1
+.      \}
+.    \}
+.  \}
+.  ie \\n[PDFFEAT]>0 .pdfhref L \\*[spdf!opts] -- \\*[spdf!txt]\c
+.  el .nop \\$3\\*[spdf!txt]\\$2
+.  rm spdf!opts
+.  rm spdf!txt
+.  rm spdf!ast
+.  rm spdf!ast_ql
+.  rm spdf!ast_qr
+..
+.
+.
+.de @XM
+.  ie \\n[PDFFEAT]>0 \{\
+.     ds pdf:id \\$1
+.     shift
+.     pdfhref M -D \\*[pdf:id] -- \\$@
+.     rm pdf:id
+.  \}
+.  el \{\
+.     nr pdf:bm.nk +1
+.     if !d pdf:bm\\n[pdf:bm.nk].tag \{\
+.        ds pdf:bm\\n[pdf:bm.nk].tag \\$1
+.        ds pdf:bm\\n[pdf:bm.nk].val \\$2
+.     \}
+.     if d PDF.EXPORT \{\
+.        tm .ds pdf:bm\\n[pdf:bm.nk].tag \\$1
+.        tm .ds pdf:bm\\n[pdf:bm.nk].val \\$2
+.     \}
+.  \}
 ..
 .
 .\" Wrap the `bp` request so that we disregard the enablement of
@@ -250,6 +327,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .	shift
 .\}
 .if rPO .po \\n(POu
+.if \\n[PDFFEAT]=1 \{\
+.  if \\n[cov*rp-no-repeat-info]=1 .nr cov*pdf 1
+.  pdfpagename title
+.  nr gottitle*pdf 1
+.
+.\}
 ..
 .de TL
 .br
@@ -320,6 +403,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .als MC LP
 .als RT LP
 .als XS LP
+.als XR LP
+.als XM LP
 .
 .de cov*ab-init
 .als cov*ab-init @nop
@@ -345,6 +430,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .als AU par@AU
 .als AI par@AI
 .als TL par@TL
+.als XR @XR
+.als XM @XM
 ..
 .
 .de @AB
@@ -420,6 +507,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .		CHECK-FOOTER-AND-KEEP
 .	\}
 .	br
+.\}
+.if \\n[PDFFEAT]=1 \{\
+.  if d cov*tl-div \{\
+.    asciify cov*tl-div
+.    chop cov*tl-div
+.    pdfinfo /Title \\*[cov*tl-div]
+.  \}
+.  ds pdfauthor \"
+.  nr cov*i 1
+.  while \\n[cov*i]<=\\n[cov*n-au] \{\
+.    asciify cov*au-div!\\n[cov*i]
+.    chop cov*au-div!\\n[cov*i]
+.    if \\n[cov*i]>1 .as pdfauthor ", "
+.    as pdfauthor \\*[cov*au-div!\\n[cov*i]]
+.    nr cov*i +1
+.  \}
+.  pdfinfo /Author "\\*[pdfauthor]"
+.  pdfpagenumbering D . 1
+.  fl
+.  sp -1v
+.  di toc*div
+.    pdfpagenumbering r . 1
+.    fl
+.    sp -1v
+.  di
 .\}
 ..
 .de cov*rp-print
@@ -1572,11 +1684,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .\" AT&T ms implementation does not expect an argument, but groff ms
 .\" allows ".SH n" to make a heading's type size match ".NH n", for same
 .\" "n", when \n[GROWPS] and \n[PSINCR] are set.
+.  if \\n[NHbox] .br \" needed to fire off @NH-end if 2 NH's adjacent
 .  nr sh*psincr 0
 .  if 0\\$1>0 .nr sh*psincr (\\n[GROWPS]-0\\$1)*\\n[PSINCR]
 .  SH-NO-TAG
 .  DEVTAG-SH 1
 .  if '\*(.T'html' .nr s@devtag-needs-end-of-heading 1
+.  ds nh*bm  sh:bm\\n+[nhct]
+.  if \\n[.$]>1 .ds nh*bm \\$2
+.\" .  if \\n[PDFFEAT]>0 \{\
+.  nr NHbox +1
+.    box @NHpdf
+.    dt 1v @NH-end
+.\" .  \}
 ..
 .\" TL, AU, and AI are aliased to these in cov*ab-init.
 .de par@TL
@@ -1621,9 +1741,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .de \\$1
 .ds par*lic \" empty
 .ds par*ic \" empty
-.if \\n[.$]>2 \{\
-.	as par*lic \,\"
-.	as par*ic \/\"
+.if (\\n[.$]>2)  \{\
+.  as par*lic \,\"
+.  as par*ic \/\"
 .\}
 .if \En[.$]>3 .@warning excess arguments to .\\$1 ignored
 .ie \En[.$] \{\
@@ -1732,6 +1852,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .als SN SN-DOT
 .\" numbered heading
 .de @NH
+.if \\n[NHbox] .br \" needed to fire off @NH-end if 2 NH's adjacent
 .ie '\\$1'S' \{\
 .	shift
 .	nr nh*hl 0
@@ -1782,6 +1903,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .DEVTAG-NH "\\$1"
 .if '\*(.T'html' .nr s@devtag-needs-end-of-heading 1
 \\*[SN-STYLE]
+.  ds nh*bm  nh:bm\\n+[nhct]
+.  if \\n[.$]>1 .ds nh*bm \\$2
+.\" .  if \\n[PDFFEAT]>0 \{\
+.  nr NHbox +1
+.    box @NHpdf
+.    dt 1v @NH-end
+.\" .  \}
+..
+.de @NH-end
+.  nr NHbox -1
+.  fl
+.  box
+.  chop @NHpdf
+\&\\*[@NHpdf]
+.  asciify @NHpdf
+.  ie \\n[PDFFEAT]>0 .pdfbookmark -T \\*[nh*bm] \\n[nh*hl] "\\*[@NHpdf]"
+.  el \{\
+.     nr pdf:bm.nk +1
+.     if !d pdf:bm\\n[pdf:bm.nk].tag \{\
+.        ds pdf:bm\\n[pdf:bm.nk].tag \\*[nh*bm]
+.        ds pdf:bm\\n[pdf:bm.nk].val \\*[@NHpdf]
+.     \}
+.     if d PDF.EXPORT \{\
+.        tm .ds pdf:bm\\n[pdf:bm.nk].tag \\*[nh*bm]
+.        tm .ds pdf:bm\\n[pdf:bm.nk].val \\*[@NHpdf]
+.     \}
+.  \}
+.  rm @NHpdf
 ..
 .\" ****************************
 .\" ******** module toc ********
@@ -1809,11 +1958,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .	na
 .	ll -8n \" XXX: take TC-MARGIN into account?
 .	in (n;0\\$2)
+.       if \\n[PDFFEAT]>0 \{\
+.           pdfhref L -S -D \\*[nh*bm]
+.           sp -1v
+.       \}
 .\}
 .el .@error .XA without .XS
 ..
 .de XE
 .ie '\\n(.z'toc*div' \{\
+.       if \\n[PDFFEAT]>0 .nop \X'pdf: markend'\m[default]\c
 .	if d toc*num .toc*end-entry
 .	ev
 .	di
@@ -1869,6 +2023,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .XN-INIT
 .XH-UPDATE-TOC \\n[nh*hl] \\$@
 \&\\$*
+.sp
 ..
 .de toc*end-entry
 .if !'\\*[toc*num]'' \\a\\t\\*[toc*num]
@@ -1899,6 +2054,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ..
 .\" print the table of contents on page i
 .de TC
+.  if \\n[PDFFEAT]=1 .if \\n[gottitle*pdf] .pdfswitchtopage after title
 .P1
 .pg@begin 1 i
 .PX \\$1

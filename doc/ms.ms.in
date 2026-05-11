@@ -1,7 +1,7 @@
 .\" groff -ept -ms
 .\" nroff -t -rLL=$(stty size | cut -f2 -d' ')n -ms
 .\"
-.\" Copyright      2001 Free Software Foundation, Inc.
+.\" Copyright 2001,2026 Free Software Foundation, Inc.
 .\"           2020-2025 G. Branden Robinson
 .\"
 .\" This file is part of groff, the GNU roff typesetting system.
@@ -59,6 +59,7 @@
 .  ds RH \\n[%]\"
 .\}
 .ds CF groff @VERSION@\"
+.RP
 .TL
 Using
 .BI groff
@@ -89,7 +90,8 @@ automatically numbered headings,
 several paragraph styles,
 a variety of text styling options,
 footnotes,
-and multi-column page layouts.
+multi-column page layouts,
+and support for PDF features when using -Tpdf.
 .
 .I ms
 supports the
@@ -167,6 +169,14 @@ identifiers use only capital letters,
 numerals,
 and
 .CW \- \[rq]. \[lq]
+.
+.PP
+To turn on PDF features please use
+.CW -rPDFFEAT=1
+in the groff command.
+Changes to the operation of
+.I ms
+when PDFFEAT is on are shown in \m[red]red\m[] below.
 .
 .
 .KS
@@ -450,7 +460,7 @@ Organize longer documents as follows.
 Calling the
 .CW RP
 macro at the beginning of your document puts the document description
-(see below)
+.XR RP "" "" "(see below)"
 on a cover page.
 .
 Otherwise,
@@ -475,7 +485,8 @@ spacing,
 headers and footers,
 and footnote arrangement.
 .
-See section \[lq]Document control settings\[rq] below.
+.XR doc-control "" "" "See section \*[Q]Document control settings\\*[U]"
+below.
 .
 .
 .IP "\fBDocument description\fP"
@@ -485,7 +496,8 @@ one or more authors' names and affiliated institutions,
 an abstract,
 and a date or other identifier.
 .
-See section \[lq]Document description macros\[rq] below.
+.XR doc-desc "" "" "See section \\*[Q]Document description macros\\*[U]"
+below.
 .
 .
 .IP "\fBBody text\fP"
@@ -505,7 +517,8 @@ tables,
 diagrams,
 and similar material.
 .
-See section \[lq]Body text\[rq] below.
+.XR body-text "" "" "See section \\*[Q]Body text\\*[U]"
+below.
 .
 .
 .IP "\fBTables of contents\fP"
@@ -528,7 +541,10 @@ the traditional procedure was to manually relocate the pages containing
 the table of contents between the cover page and the body text.
 .
 Today,
-page resequencing is more often done in the digital domain.
+page resequencing is more often done in the digital domain,
+\m[red]and if you use a separate title page with
+.XR RP "" "" RP
+the TOC will be positioned immediately after the title.\m[black]
 .
 An index works similarly,
 but because it typically needs to be sorted after collection,
@@ -540,7 +556,7 @@ its preparation requires separate processing.
 .  br
 .  bp
 .\}
-.NH 1
+.NH 1 doc-control
 Document control settings
 .XS
 Document control settings
@@ -557,7 +573,7 @@ string,
 or special character before calling any
 .I ms
 macro other than
-.CW RP .
+.XR RP . "" "\f[CR]RP\f[]"
 .
 .\" Improve a column heading if we have the elbow room.
 .ds Next \" empty
@@ -697,7 +713,7 @@ this is the case only for output to terminals.
 .
 .
 .\" ------------------------
-.NH 1
+.NH 1 doc-desc
 Document description macros
 .XS
 Document description macros
@@ -766,6 +782,7 @@ is called.
 .  br
 .  ne 12v
 .\}
+.XM RP
 .TS H
 box;
 lb lb
@@ -955,7 +972,7 @@ T}
 .  br
 .  bp
 .\}
-.NH 1
+.NH 1 body-text
 Body text
 .XS
 Body text
@@ -1063,7 +1080,8 @@ entered with the keyboard.
 These and many others are available as special character escape
 sequences\*[-]see
 the
-.I groff_char (7)
+.ie \n[PDFFEAT]>0 .pdfhref W -D "man:/7/groff_char" -- \f[I]groff_char\f[](7)
+.el .I groff_char (7)
 man page.
 .
 .TS
@@ -1164,7 +1182,9 @@ The optional
 is not indented and is empty by default.
 .
 It has several applications;
-see subsection \[lq]Lists\[rq] below.
+see subsection
+.XR lists "" "" +
+below.
 .
 .I width
 overrides the indentation amount in
@@ -1263,7 +1283,7 @@ T}
 .
 .
 .KS
-.NH 2
+.NH 2 head
 Headings
 .XS
 	Headings
@@ -1290,13 +1310,14 @@ Call a paragraphing macro to end the heading text and start the
 section's content.
 .
 .
+.XM NH *
 .TS
 box;
 cb cb
 lf(CR) lx .
 Macro	Description
 _
-\&.NH [\f[I]depth\f[]]	T{
+\&.NH [\f[I]depth\f[]] \fI\m[red][name]\m[]\fP	T{
 Set an automatically numbered heading.
 .
 .I ms
@@ -1334,6 +1355,11 @@ and then
 .CW ".NH\~3" \[rq]\c \[lq]
 .I "groff ms" "" \[em]
 emits a warning on the standard error stream.
+\m[red]The
+.I name
+is used to assign a named destination for use with the
+.XR XR "" "" \f[CR].XR\f[]
+command.\m[black]
 T}
 \&.NH S \f[I]heading-depth-index\f[]\f[R] .\|.\|.\f[]	T{
 Alternatively,
@@ -1458,13 +1484,14 @@ and
 table of contents entries.
 .
 .
+.XM SH SH
 .TS
 box;
 cb cb
 lf(CR) lx .
 Macro	Description
 _
-\&.SH [\f[I]depth\f[]]	T{
+\&.SH [\f[I]depth\f[]] \fI\m[red][name]\m[]\fP	T{
 Set an unnumbered heading.
 .
 The optional
@@ -1481,6 +1508,11 @@ numbered heading at the same depth when the
 and
 .CW \[rs]n[PSINCR]
 heading size adjustment mechanism is in effect.
+\m[red]The
+.I name
+is used to assign a named destination for use with the
+.XR XR "" "" \f[CR].XR\f[]
+command.\m[black]
 T}
 .TE
 .
@@ -1943,7 +1975,7 @@ _
 .KE
 .
 .
-.NH 2
+.NH 2 lists
 Lists
 .XS
 	Lists
@@ -3178,7 +3210,8 @@ Swedish.
 Load the desired localization macro package after
 .I ms ;
 see the
-.I groff_tmac (5)
+.ie \n[PDFFEAT]>0 .pdfhref W -D "man:/5/groff_tmac" -- \fIgroff_tmac\fP(5)
+.el .I groff_tmac (5)
 man page.
 .
 .
@@ -3239,7 +3272,8 @@ The minus sign glyph can also be accessed by the shorthand
 .CW \[rs]\[mi] .
 .
 These and many others are documented in the
-.I groff_char (7)
+.ie \n[PDFFEAT]>0 .pdfhref W -D "man:/7/groff_char" -- \fIgroff_char\fP(7)
+.el .I groff_char (7)
 man page.
 .
 .
@@ -3607,9 +3641,11 @@ script to reorder the pages in
 .I troff 's
 output,
 with
-.I pdfjam (1),
+.ie \n[PDFFEAT]>0 .pdfhref W -D "man:/1/pdfjam" -- \fIpdfjam\fP(1)
+.el .I pdfjam (1)
 or with
-.I gropdf (1)'s
+.ie \n[PDFFEAT]>0 .pdfhref W -D "man:/1/gropdf" -A 's -- \fIgropdf\fP(1)
+.el .I gropdf (1)'s
 .CW pdfswitchtopage
 macro,
 for example.
@@ -4051,6 +4087,144 @@ register.
 .  bp
 .\}
 .NH 1
+Using PDF features with
+.I ms
+.XS
+Using PDF features with
+.I ms
+.XE
+.LP
+If you run an
+.I ms
+document with
+.CW -Tpdf
+and
+.CW -rPDFFEAT=1
+the PDF features shown in this document
+will be incorporated.
+The PDF produced will show an overview
+bookmark panel, the pdf \*[Q]properties\*[U]
+information will include the document title
+and author(s), any TOC included will have
+clickable entries which can navigate the document,
+and if the document has a cover page (introduced with
+.XR RP ) "" \f[CR]RP\f[]
+the TOC will be relocated to after the cover.
+.LP
+There are also two new macro calls available.
+.
+.
+.pdfhref M -D XR XR
+.TS
+box;
+cb cb
+lf(CR) lx .
+Macro	Description
+_
+\m[red].XR \fIname\fP [\fIafter\fP [\fIbefore\fP [\fIhotlink-text\fP]]]\m[]	T{
+The
+.I name
+parameter should match a
+.I name
+given to a
+.XR NH "" "" NH
+or
+.XR SH "" "" SH
+section/subsection.
+(See section
+.XR head ")." "" Headings
+.I hotlink-text
+is the text which will be clickable.
+If the text ends with
+.CW \*[Q]+\*[U]
+or
+.CW \*[Q]*\*[U] ,
+(the expansion characters),
+the text associated with the section heading will replace
+the character (enclosed with double quotes if the
+final character is
+.CW \*[Q]+\*[U] ).
+If no
+.I hotlink-text
+is given, the value of
+.CW \[rs]*[spdf:txt_default]
+is used.
+Which is initially set to
+\*[Q]see: +\*[U].
+(Note the expansion character).
+But you can change it.
+T}
+_
+\m[red].XM \fIname\fP [\fItext\fP]\m[]	T{
+Mark a particular position in the document with a
+.I name .
+Any
+.I text
+given will be used to replace a trailing expansion character in an
+.CW .XR
+command which references the
+.I name .
+It is useful if you wish to name an arbitrary location in the
+document, so you can setup a link to a picture, diagram or even
+a single paragraph.
+T}
+.TE
+.LP
+Using
+.CW .XR
+for a \[lq]forward\[rq] link
+(where the destination is \[lq]later\[rq] in the document),
+will not work properly if the link uses expansion characters
+and
+.I groff
+only sees a single pass of the document.
+So either use the full text, without a trailing expansion
+character in the
+.CW .XR
+forward link, or use the multi-pass command
+.
+.
+.LP
+.TS
+box center;
+L.
+T{
+.nf
+.CW
+pdfmom\** --roff -ms -rPDFFEAT=1 file.ms > file.pdf
+T}
+.TE
+.
+.FS
+The command can be shortened to
+.CW "pdfms -rPDFFEAT=1 ..."
+if you have created a link to the
+.CW pdfmom
+command called
+.CW pdfms .
+.FE
+.
+.
+.LP
+Running an
+.I ms
+document with \fInroff\fP,
+is only a single pass, so the above advice about not using
+expansion characters with forward links also applies.
+.LP
+All of the PDF features mentioned in this document can be
+disabled if the
+.I groff
+command includes
+.CW -rPDFFEAT=0 .
+.
+.
+.\" ------------------------
+.if t \{\
+.  br
+.  bp
+.\}
+.NH 1
 Differences from historical
 .BI ms
 .XS
@@ -4458,7 +4632,8 @@ documents;
 contemporary ones should not use them because they can render poorly.
 .
 See
-.I groff_char (7)
+.ie \n[PDFFEAT]>0 .pdfhref W -D "man:/7/groff_char" -- \fIgroff_char\fP(7)
+.el .I groff_char (7)
 instead.
 .
 .

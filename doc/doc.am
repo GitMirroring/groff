@@ -67,7 +67,8 @@ DOC_GMP_COVER_PAGE = doc/groff-man-pages-cover.groff
 # Files located in the source tree
 DOCFILES_INST = \
   doc/me-revisions \
-  doc/pic.ms
+  doc/pic.ms \
+  doc/Groff-PDF-Features.ms
 DOCFILES_NOINST = \
   doc/groff-man-pages-cover.groff.in \
   doc/meintro.me.in \
@@ -87,13 +88,14 @@ PROCESSEDDOCFILES_HTML = \
 endif
 PROCESSEDDOCFILES_PDF = \
   doc/automake.pdf \
-  doc/groff-man-pages.pdf
+  doc/groff-man-pages.pdf \
+  doc/ms.pdf \
+  doc/pic.pdf \
+  doc/Groff-PDF-Features.pdf
 PROCESSEDDOCFILES_PS = \
   doc/meref.ps \
   doc/meintro.ps \
-  doc/meintro_fr.ps \
-  doc/ms.ps \
-  doc/pic.ps
+  doc/meintro_fr.ps
 PROCESSEDDOCFILES_TXT = \
   doc/groff-man-pages.utf8.txt
 # XXX: $(PROCESSEDDOCFILES_HTML) is omitted because pic.html gets
@@ -379,13 +381,19 @@ SUFFIXES += .ms.in .ms
 	$(AM_V_GEN)$(MKDIR_P) `dirname $@` \
 	&& $(DOC_SED) $< >$@
 
-doc/ms.ps: doc/ms.ms $(TMAC_PACKAGE_MS) eqn pic tbl
+doc/ms.pdf: doc/ms.ms $(TMAC_PACKAGE_MS) eqn pic tbl pdfmom
 	$(GROFF_V)$(MKDIR_P) `dirname $@` \
-	&& $(DOC_GROFF) -pet -Tps -ms doc/ms.ms >$@
+	&& $(DOC_PDFMOM) -pet -Tpdf -rPDFFEAT=1 -ms doc/ms.ms >$@
 
-doc/pic.ps: $(doc_srcdir)/pic.ms $(TMAC_PACKAGE_MS) eqn pic tbl
+doc/pic.pdf: $(doc_srcdir)/pic.ms $(TMAC_PACKAGE_MS) eqn pic tbl
 	$(GROFF_V)$(MKDIR_P) `dirname $@` \
-	&& $(DOC_GROFF) -pet -Tps -ms $(doc_srcdir)/pic.ms >$@
+	&& $(DOC_GROFF) -pet -Tpdf -ms -rPDFFEAT=1 $(doc_srcdir)/pic.ms >$@
+
+doc/Groff-PDF-Features.pdf: $(doc_srcdir)/Groff-PDF-Features.ms tbl doc/gnu.eps \
+	$(TMAC_PACKAGE_MS) eqn pic tbl pdfmom
+	$(GROFF_V)$(MKDIR_P) `dirname $@` \
+	&& $(DOC_PDFMOM) --roff -tU -P-pa4 -rPDFFEAT=1 -ms -msboxes \
+	-I $(doc_builddir) -I $(doc_srcdir) $(doc_srcdir)/Groff-PDF-Features.ms >$@
 
 doc/webpage.ps: $(DOC_GNU_EPS) tmac/pspic.tmac tmac/www.tmac tbl
 doc/webpage.ps: $(doc_srcdir)/webpage.ms $(TMAC_PACKAGE_MS)

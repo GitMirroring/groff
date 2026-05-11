@@ -1,3 +1,49 @@
+2026-05-11  Deri James  <deri@chuzzlewit.myzen.co.uk>
+
+	[ms]: add PDF support.
+
+	* tmac/s.tmac  (initial): Depend on register PDFFEAT set to 1
+	to add features. Only allowed with -Tpdf. Alias new XR/XM
+	to LP (to prevent use before ms is initialised).
+	(XR/@XR): Macro for internal links.
+	(XM/@XM): Macro to 'mark' position in document.
+	(RP): Name 'title' page, used to relocate TOC in .TC.
+	(cov*ab-init) turn on XR/XM.
+	(cov*print): Extract title and author for PDF meta data.
+	(@SH): Extra param (2) name bookmark, XR can link to it.
+	Setup diversion (box) to collect bookmark text.
+	(@NH): Extra param (2) name bookmark, XR can link to it.
+	Setup diversion (box) to collect bookmark text.
+	(@NH-end): Diversion trap when NH/SH has collected one
+	line of OUTPUT.
+	(XA): Start hotlink text (in TOC).
+	(XE): Stop marking hotlink.
+	(.TC): If .RP seen, move TOC to page after 'title'.
+
+	* doc/ms.ms.in (Initial): Add RP so that the TOC moves
+	after the cover.
+	(abstract): Mention PDF features.
+	(Introduction): Get PDF features by setting PDFFEAT.
+	(document Structure): Change references to hotlinks.
+	(Tables of Contents): Explain how to move TOC.
+	(NH/SH): New param 'name' and document.
+	(Using PDF features with ms): New section.
+	(Throughouut)): Name various sections to support
+	hotlinking. Change man page references to hotlinks.
+
+	* tmac/groff_ms.7.man:
+	* doc/groff.texi.in: Sync changes with ms.ms.
+
+	* doc/Groff-PDF-Features.ms (new file): Document
+	PDF features in pdf.tmac and macro packages mom,
+	man/mandoc, ms.
+
+	* doc/doc.am: Build the new file above and switch
+	ms.ms and pic.ms to generate pdfs with features on.
+
+	* NEWS: Announce changes to s.tmac and acknowledge
+	antecedents of spdf.tmac.
+
 2026-05-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[groff]: Rename test scripts to accommodate case-insensitive
