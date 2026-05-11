@@ -1,3 +1,15 @@
+2026-05-11  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/devices/grohtml/html-text.cpp: Slightly refactor.  Use
+	ISO C++98 exceptions to handle heap storage allocation failures.
+	Align code style a bit more with groff conventions.
+	Preprocessor-include C++ "<new>" header file.
+	(html_text::push_para, html_text::do_para): Catch
+	`std:bad_alloc` exceptions and `fatal()` out with an attempt to
+	describe what we were doing.
+
+	Continues the long process of fixing Savannah #68192.
+
 2026-05-11  Deri James  <deri@chuzzlewit.myzen.co.uk>
 
 	[ms]: Add PDF support.

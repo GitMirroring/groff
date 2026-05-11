@@ -30,6 +30,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <stddef.h> // size_t: prerequisite of color.h
 
+#include <new> // std::bad_alloc
+
 // libgroff
 #include "symbol.h" // prerequisite of color.h
 #include "color.h" // prerequisite of html-text.h
@@ -395,7 +397,15 @@ void html_text::do_push (tag_definition *p)
 
 void html_text::push_para (HTML_TAG t, void *arg, html_indent *in)
 {
-  tag_definition *p= new tag_definition;
+  tag_definition *p = 0 /* nullptr */;
+
+  try {
+    p = new tag_definition;
+  }
+  catch (const std::bad_alloc &exc) {
+    fatal("cannot allocate storage for tag_definition object to push it"
+	  " onto the HTML paragraph stack");
+  }
 
   p->type         = t;
   p->arg1         = arg;
@@ -415,7 +425,16 @@ void html_text::push_para (HTML_TAG t)
 
 void html_text::push_para (color *c)
 {
-  tag_definition *p = new tag_definition;
+  tag_definition *p = 0 /* nullptr */;
+
+  try {
+    p = new tag_definition;
+  }
+  catch (const std::bad_alloc &exc) {
+    fatal("cannot allocate storage for tag_definition object with color"
+	  " '%1' to push it onto the HTML paragraph stack",
+	  c->nm.contents());
+  }
 
   p->type         = COLOR_TAG;
   p->arg1         = 0 /* nullptr */;
@@ -719,12 +738,18 @@ void html_text::do_para (simple_output *op, const char *arg1,
 			 int indentation_value, int page_offset,
 			 int line_length, int space)
 {
-  html_indent *ind;
+  html_indent *ind = 0 /* nullptr */;
 
-  if (indentation_value == 0)
-    ind = 0 /* nullptr */;
-  else
-    ind = new html_indent(op, indentation_value, page_offset, line_length);
+  if (indentation_value != 0) {
+    try {
+      ind = new html_indent(op, indentation_value, page_offset,
+			    line_length);
+    }
+    catch (const std::bad_alloc &exc) {
+      fatal("cannot allocate storage for html_indent object when"
+	    " starting a paragraph");
+    }
+  }
   do_para(arg1, ind, space);
 }
 
