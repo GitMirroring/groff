@@ -1,3 +1,11 @@
+2026-05-11  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* COPYRIGHT: Delete.  I managed to overlook the (all lowercase)
+	"copyright" file Peter already had here.
+	* mom.am (EXTRA_DIST): Stop shipping it.
+
+	Begins fixing <https://savannah.gnu.org/bugs/?68333>.
+
 2026-04-21  Richard Purdie <richard.purdie@linuxfoundation.org>
 
 	* mom.am (MOMPROCESSEDEXAMPLEFILES): Update target to depend on
