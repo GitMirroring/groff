@@ -4,7 +4,7 @@
 	"copyright" file Peter already had here.
 	* mom.am (EXTRA_DIST): Stop shipping it.
 
-	Begins fixing <https://savannah.gnu.org/bugs/?68333>.
+	Begins fixing <https://savannah.gnu.org/bugs/?68327>.
 
 2026-04-21  Richard Purdie <richard.purdie@linuxfoundation.org>
 

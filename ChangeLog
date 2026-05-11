@@ -11,7 +11,7 @@
 
 	* src/roff/groff/groff.am (groff_TESTS): Reflect rename.
 
-	Fixes <https://savannah.gnu.org/bugs/?68336>.  Thanks to
+	Fixes <https://savannah.gnu.org/bugs/?68327>.  Thanks to
 	John Gardner for the report.  Problem introduced by me in commit
 	58adafa251, 22 April.
 
