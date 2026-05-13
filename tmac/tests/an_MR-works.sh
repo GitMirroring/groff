@@ -64,15 +64,15 @@ echo "$output" | grep -Eq '91[[:space:]]+x X tty: link man:bar\(1\)$' \
     || wail
 
 echo "checking for correct man page title font style" >&2
-echo "$output" | grep -Eq '92[[:space:]]+f2' \
+echo "$output" | grep -Eq '92[[:space:]]+f[[:space:]]*2' \
     || wail
-echo "$output" | grep -Eq '93[[:space:]]+tbar' \
+echo "$output" | grep -Eq '93[[:space:]]+t[[:space:]]*bar' \
     || wail
 
 echo "checking for correct man page section font style" >&2
-echo "$output" | grep -Eq '94[[:space:]]+f1' \
+echo "$output" | grep -Eq '94[[:space:]]+f[[:space:]]*1' \
     || wail
-echo "$output" | grep -Eq '95[[:space:]]+t\(1\)' \
+echo "$output" | grep -Eq '95[[:space:]]+t[[:space:]]*\(1\)' \
     || wail
 
 echo "checking for closing 'link' device extension command" >&2

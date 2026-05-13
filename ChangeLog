@@ -1,3 +1,10 @@
+2026-05-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/tests/an_MR-works.sh: Future-proof test against more
+	spaceful "grout" (still within CSTR #54/#97 specifications).
+
+	See <https://savannah.gnu.org/bugs/?63544>.
+
 2026-05-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[hpftodit]: Give command a proper header file for external
