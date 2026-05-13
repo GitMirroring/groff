@@ -44,6 +44,9 @@ foo \- a command with a very short name
 .SH Description
 The real work is done by
 .MR bar 1 .
+It gets the job done best,
+.MR baz
+none.
 .'
 
 output=$(printf '%s\n' "$input" | "$groff" -Tascii -rU1 -man -Z | nl)
@@ -58,6 +61,15 @@ echo "$output"
 #   96  V280
 #   97  H912
 #   98  x X tty: link
+# ...
+#   111  tbest,
+#   112  wf2
+#   113  h24
+#   114  tbaz
+#   115  wf1
+#   116  h24
+#   117  tnone.
+
 
 echo "checking for opening 'link' device extension command" >&2
 echo "$output" | grep -Eq '91[[:space:]]+x X tty: link man:bar\(1\)$' \
@@ -79,12 +91,24 @@ echo "checking for closing 'link' device extension command" >&2
 echo "$output" | grep -Eq '98[[:space:]]+x X tty: link$' \
     || wail
 
+echo "checking for correct man page topic font style when MR given" \
+    "only one argument" >&2
+
+echo "$output" \
+    | grep -Eq '112[[:space:]]+(w[[:space:]]*)f[[:space:]]*2' \
+    || wail
+echo "$output" | grep -Eq '114[[:space:]]+t[[:space:]]*baz' \
+    || wail
+
 output=$(echo "$input" | "$groff" -man -Thtml)
 echo "$output"
 
 echo "checking for correctly formatted man URI in HTML output" >&2
 echo "$output" | grep -Fq '<a href="man:bar(1)"><i>bar</i>(1)</a>.' \
     || wail
+
+echo "checking for correctly formatted lone MR macro argument" >&2
+echo "$output" | grep -Fq 'best, <i>baz</i> none.' || wail
 
 test -z "$fail"
 
