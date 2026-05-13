@@ -16,7 +16,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
 
 groff="${abs_top_builddir:-.}/test-groff"
 
@@ -27,6 +26,8 @@ wail () {
     fail=yes
 }
 
+# Unit-test the MR macro.
+
 # Keep preconv from being run.
 #
 # The "unset" in Solaris /usr/xpg4/bin/sh can actually fail.
@@ -36,14 +37,16 @@ then
     exit 77 # skip
 fi
 
-input='.TH foo 1 2021-10-06 "groff test suite"
+input='.
+.TH foo 1 2021-10-06 "groff test suite"
 .SH Name
-foo \\- a command with a very short name
+foo \- a command with a very short name
 .SH Description
 The real work is done by
-.MR bar 1 .'
+.MR bar 1 .
+.'
 
-output=$(echo "$input" | "$groff" -Tascii -rU1 -man -Z | nl)
+output=$(printf '%s\n' "$input" | "$groff" -Tascii -rU1 -man -Z | nl)
 echo "$output"
 
 # Expected:
@@ -85,4 +88,4 @@ echo "$output" | grep -Fq '<a href="man:bar(1)"><i>bar</i>(1)</a>.' \
 
 test -z "$fail"
 
-# vim:set ai et sw=4 ts=4 tw=72:
+# vim:set autoindent expandtab shiftwidth=4 tabstop=4 textwidth=72:
