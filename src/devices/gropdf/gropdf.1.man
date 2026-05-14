@@ -818,7 +818,7 @@ are not free software.
 Historically,
 because their presence was mandated by the PostScript standard,
 one could expect to find support for them in any conforming device
-or software PostScript renderer.
+or software renderer.
 .
 PostScript
 (\[lq]Level 1\[rq])
@@ -890,7 +890,7 @@ Fonts from the URW foundry
 (\[lq]U\[rq])
 are compatible extensions of the Adobe fonts
 with extended glyph coverage,
-including support for Cyrillic script.
+including support for Cyrillic and East Asian scripts.
 .
 .IR groff 's
 build process uses
