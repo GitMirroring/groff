@@ -1953,14 +1953,17 @@ _endif()dnl
 .IR text ]
 Set
 .I text
-in an italic or oblique face.
+in a
+.I slanted
+(italic or oblique)
+face.
 .
 Given no argument,
 .B I
 plants a one-line input trap;
 text on the next line,
 which can be further formatted with a macro,
-is set in an italic or oblique face.
+is set in a slanted face.
 .
 .
 _ifstyle()dnl
@@ -4142,7 +4145,7 @@ see
 If the
 .B MF
 string ends in \[lq]I\[rq],
-the package assumes it to be an oblique typeface,
+the package assumes it to be an slanted typeface,
 and applies italic corrections before and after man page topics and
 identifiers.
 .
