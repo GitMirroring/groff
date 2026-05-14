@@ -1,3 +1,11 @@
+2026-05-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/preproc/html/pre-html.cpp (html_system, make_string)
+	(min, max, addArg, addRegDef, print_args):
+	* src/preproc/html/pushback.cpp (localexit):
+	Declare `static`; external linkage is not required.  Fixes
+	`-Wmissing-declarations` GCC warning.
+
 2026-05-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/devices/grohtml/html-text.cpp: Slightly refactor.  Use

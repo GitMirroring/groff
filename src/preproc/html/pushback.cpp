@@ -97,7 +97,7 @@ pushBackBuffer::~pushBackBuffer ()
  *  localexit - wraps exit with a return code to aid the ERROR macro.
  */
 
-int localexit (int i)
+static int localexit (int i)
 {
   exit(i);
   return( 1 );

@@ -402,7 +402,7 @@ static char *get_image_generator(void)
  *  html_system - A wrapper for system().
  */
 
-void html_system(const char *s, int redirect_stdout)
+static void html_system(const char *s, int redirect_stdout)
 {
   if (debugging) {
     fprintf(stderr, "%s: debug: executing: ", program_name);
@@ -449,7 +449,7 @@ void html_system(const char *s, int redirect_stdout)
  *                failure as invariably fatal.
  */
 
-const char *make_string(const char *fmt, ...)
+static const char *make_string(const char *fmt, ...)
 {
   size_t size = 0;
   char *p = 0 /* nullptr */;
@@ -990,7 +990,7 @@ int imageList::createPage(int pageno)
  *  min - Return the minimum of two numbers.
  */
 
-int min(int x, int y)
+static int min(int x, int y)
 {
   if (x < y)
     return x;
@@ -1002,7 +1002,7 @@ int min(int x, int y)
  *  max - Return the maximum of two numbers.
  */
 
-int max(int x, int y)
+static int max(int x, int y)
 {
   if (x > y)
     return x;
@@ -1254,7 +1254,7 @@ static void alterDeviceTo(int argc, char *argv[], int toImage)
  *  addArg - Append newarg onto the command list for groff.
  */
 
-char **addArg(int argc, char *argv[], char *newarg)
+static char **addArg(int argc, char *argv[], char *newarg)
 {
   char **new_argv = (char **)malloc((argc + 2) * sizeof(char *));
   int i = 0;
@@ -1281,7 +1281,7 @@ char **addArg(int argc, char *argv[], char *newarg)
  *              list for troff.
  */
 
-char **addRegDef(int argc, char *argv[], const char *numReg)
+static char **addRegDef(int argc, char *argv[], const char *numReg)
 {
   char **new_argv = (char **)malloc((argc + 2) * sizeof(char *));
   int i = 0;
@@ -1317,7 +1317,7 @@ void dump_args(int argc, char *argv[])
  *  print_args - Print arguments as if issued on the command line.
  */
 
-void print_args(int argc, char *argv[])
+static void print_args(int argc, char *argv[])
 {
   if (debugging) {
     fprintf(stderr, "%s: debug: executing: ", program_name);
