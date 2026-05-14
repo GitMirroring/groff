@@ -26,9 +26,10 @@ wail() {
     fail=yes
 }
 
-# Unit test the Xr maco.
+# Unit-test the Xr macro.
 
-input='.Dd 2024-02-22
+input='.
+.Dd 2024-02-22
 .Dt foo 1
 .Os "groff test suite"
 .Sh Name
@@ -63,7 +64,8 @@ Or
 about
 .Xr groff Pf - Xr man
 and
-.Xr groff Ns - Ns Xr ms .'
+.Xr groff Ns - Ns Xr ms .
+.'
 
 output=$(echo "$input" | "$groff" -rU0 -mdoc -Tascii -P-cbou \
     2>/dev/null)
@@ -73,7 +75,7 @@ echo "$output"
 echo "$error"
 
 echo "checking for error diagnostic on argumentless Xr call (-rU0)" >&2
-echo "$error" | grep -q '9' || wail
+echo "$error" | grep -q ':10:' || wail
 
 echo "checking two-argument Xr call with full cross reference (-rU0)" \
     >&2
@@ -110,7 +112,7 @@ echo "$output"
 echo "$error"
 
 echo "checking for error diagnostic on argumentless Xr call (-rU1)" >&2
-echo "$error" | grep -q '9' || wail
+echo "$error" | grep -q ':10:' || wail
 
 echo "checking two-argument Xr call with full cross reference (-rU1)" \
     >&2
@@ -141,4 +143,4 @@ echo "$output" | grep -Fq 'Or about groff -man and groff-ms.' || wail
 
 test -z "$fail"
 
-# vim:set ai et sw=4 ts=4 tw=72:
+# vim:set autoindent expandtab shiftwidth=4 tabstop=4 textwidth=72:
