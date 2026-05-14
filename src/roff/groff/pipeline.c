@@ -81,10 +81,8 @@ int run_pipeline(int, char ***, bool);
 extern "C" {
 #endif
 
-extern void c_error(const char *, const char *, const char *,
-		    const char *);
-extern void c_fatal(const char *, const char *, const char *,
-		    const char *);
+#include "groff.h" // c_error(), c_fatal()
+
 extern const char *i_to_a(int);		/* from libgroff */
 
 #ifdef __cplusplus

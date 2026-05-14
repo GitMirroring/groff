@@ -54,6 +54,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "relocate.h"
 #include "defs.h"
 
+extern "C" {
+#include "groff.h" // c_error(), c_fatal()
+}
+
 #define GXDITVIEW "gxditview"
 
 // troff will be passed an argument of -rXREG=1 if the -X option is
