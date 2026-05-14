@@ -1118,7 +1118,7 @@ Miscellaneous
    1.23.0, we ship groff's Texinfo manual in several formats as part of
    groff's distribution archive.  We ask that distributors provide their
    users with all formats appropriate to the platform (GNU Info, HTML,
-   plain text, TeX DVI, and PDF).  Thanks to onf.
+   plain text, TeX DVI, and/or PDF).  Thanks to onf.
 
 *  Polish language input documents are now supported, including
    hyphenation patterns from the CTAN project and localized strings
@@ -1155,7 +1155,7 @@ Miscellaneous
 
 *  groff now looks for the Netpbm program pamcut(1) rather than
    pnmcut(1).  Per its developers, the former was introduced in 2001
-   ago and the latter withdrawn in 2009.
+   and the latter withdrawn in 2009.
 
 *  The Makefile macro `DEVICE` has been renamed to `DEFAULT_DEVICE`; be
    aware if your builds don't use "ps" as the default output device.
@@ -1164,14 +1164,14 @@ Miscellaneous
    in groff's Texinfo manual.
 
 *  groff's Texinfo manual now adapts its content to the groff command
-   prefix configured at build time.  If the build is configured without
-   a leading "g"--omitting it has been groff's default for many years,
-   possibly forever--then our Texinfo manual now omits that prefix when
-   mentioning the affected commands (all replacements for AT&T troff
-   commands).  This way, if you select a command prefix, say "limbo",
-   and rebuild the Texinfo manual, the manual reflects the prefix used
-   by your build configuration, and talks about "limboeqn",
-   "limbotroff", "limborefer", and so on.
+   prefix configured at build time (as its man pages long have).  If the
+   build is configured without a leading "g"--omitting it has been
+   groff's default for many years, possibly forever--then our Texinfo
+   manual now omits that prefix when mentioning the affected commands
+   (all replacements for AT&T troff commands).  This way, if you select
+   a command prefix, say "limbo", and rebuild the Texinfo manual, the
+   manual reflects the prefix used by your build configuration, and
+   talks about "limboeqn", "limbotroff", "limborefer", and so on.
 
 
 VERSION 1.23.0
