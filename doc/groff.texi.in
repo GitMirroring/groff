@@ -6105,7 +6105,7 @@ Normally, the occurrence of a visible non-end-of-sentence character (as
 opposed to a space or tab) immediately after an end-of-sentence
 character cancels detection of the end of a sentence.
 For example,
-it would be incorrect for the formatter to infer the end of a sentence
+the formatter would be incorrect to infer the end of a sentence
 after the dot in @samp{3.14159}.
 However,
 it treats several characters
