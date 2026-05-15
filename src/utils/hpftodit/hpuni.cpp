@@ -1,5 +1,6 @@
 /* Copyright 2003-2024 Free Software Foundation, Inc.
-     Written by Jeff Conrad (jeff_conrad@msn.com)
+
+Written by Jeff Conrad (jeff_conrad@msn.com)
 
 This file is part of groff, the GNU roff typesetting system.
 
