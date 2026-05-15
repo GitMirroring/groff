@@ -1,5 +1,18 @@
 2026-05-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[hpftodit]: Give command a proper header file for external
+	symbol.
+
+	* src/utils/hpftodit/hpftodit.cpp: Move `extern` declaration of
+	symbol defined in "hpuni.cpp" from here...
+	* src/utils/hpftodit/hpftodit.h: ...to this new file.
+	* src/utils/hpftodit/hpftodit.cpp:
+	* src/utils/hpftodit/hpuni.cpp: Preprocessor-include new file.
+	* src/utils/hpftodit/hpftodit.am: Add new file to
+	`hpftodit_SOURCES` macro definition.
+
+2026-05-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[groff]: Give command a proper header file for external symbols.
 
 	* src/roff/groff/pipeline.c: Move `extern` declarations of

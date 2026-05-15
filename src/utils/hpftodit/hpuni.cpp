@@ -29,6 +29,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "unicode.h"
 
+#include "hpftodit.h" // hp_msl_to_unicode_code()
+
 struct hp_msl_to_unicode {
   char *value;
 };
@@ -697,7 +699,7 @@ hp_msl_to_unicode_init::hp_msl_to_unicode_init() {
 const char *hp_msl_to_unicode_code(const char *s)
 {
   hp_msl_to_unicode *result = hp_msl_to_unicode_table.lookup(s);
-  return result ? result->value : 0;
+  return result ? result->value : 0 /* nullptr */;
 }
 
 // Local Variables:

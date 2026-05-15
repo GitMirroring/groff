@@ -49,8 +49,9 @@ put filename in error messages (or fix lib)
 #include "nonposix.h"
 #include "unicode.h"
 
+#include "hpftodit.h" // hp_msl_to_unicode_code()
+
 extern "C" const char *Version_string;
-extern const char *hp_msl_to_unicode_code(const char *);
 
 #define equal(a, b) (strcmp(a, b) == 0)
 // only valid if is_uname(c) has returned true

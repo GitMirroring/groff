@@ -24,8 +24,8 @@ EXTRA_DIST += src/utils/hpftodit/hpftodit.1.man
 hpftodit_LDADD = libgroff.a $(LIBM) lib/libgnu.a
 hpftodit_SOURCES = \
   src/utils/hpftodit/hpftodit.cpp \
+  src/utils/hpftodit/hpftodit.h \
   src/utils/hpftodit/hpuni.cpp
-
 
 # Local Variables:
 # mode: makefile-automake
