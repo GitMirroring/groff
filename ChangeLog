@@ -686,7 +686,7 @@
 	`load_font()` public member function to insert new `bool`-valued
 	argument defaulting `true`.  It governs whether an error
 	diagnostic is issued if a font description file can't be opened.
-	Update declaration of `load` protected member function with a
+	Update declaration of `load()` protected member function with a
 	new `bool`-valued first argument defaulting true, for the same
 	purpose, since the former function wraps the latter.
 	* src/libs/libgroff/font.cpp (font::load_font): Update
