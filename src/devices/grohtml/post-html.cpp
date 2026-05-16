@@ -5314,14 +5314,14 @@ void html_printer::write_navigation (const string &top,
     handle_valid_flag(FALSE);
     fputs("[ ", stdout);
     if ((strcmp(prev.contents(), "") != 0)
-	&& prev != top
-	&& prev != current) {
+	&& (prev != top)
+	&& (prev != current)) {
       emit_link(prev, "prev");
       need_bar = TRUE;
     }
     if ((strcmp(next.contents(), "") != 0)
-	&& next != top
-	&& next != current) {
+	&& (next != top)
+	&& (next != current)) {
       if (need_bar)
 	fputs(" | ", stdout);
       emit_link(next, "next");
@@ -5329,7 +5329,7 @@ void html_printer::write_navigation (const string &top,
     }
     if (top != "<standard input>"
 	&& (strcmp(top.contents(), "") != 0)
-	&& top != current) {
+	&& (top != current)) {
       if (need_bar)
 	fputs(" | ", stdout);
       emit_link(top, "top");

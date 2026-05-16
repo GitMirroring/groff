@@ -1,3 +1,9 @@
+2026-05-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/devices/grohtml/post-html.cpp
+	(html_printer::write_navigation): Fix code style nit.
+	Parenthesize formally complex expressions.
+
 2026-05-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/tests/an_MR-works.sh: Validate behavior of macro when
