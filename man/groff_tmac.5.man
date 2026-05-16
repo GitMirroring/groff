@@ -236,7 +236,7 @@ and loads the corresponding macro package.
 Multiple man pages,
 in either format,
 can be handled;
-.I \%andoc
+.I \%mandoc
 reloads each macro package as necessary.
 .
 .
@@ -244,8 +244,8 @@ reloads each macro package as necessary.
 .SS "General full-service packages"
 .\" ====================================================================
 .
-The following packages each support composition of documents of any
-kind,
+The following packages each support composition of documents
+of any kind,
 from single-page memos to lengthy monographs.
 .
 They are similar in functionality;
