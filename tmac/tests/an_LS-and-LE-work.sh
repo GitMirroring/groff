@@ -76,10 +76,29 @@ the Z80:
 .IP 4.
 the 8086:
 .B LOOPZ
+.LE
+.LS definition 0 5n \" maybe a poor fit for HP, but oh well
+.HP
+Let\[cq]s hang,
+bro.
+Ut enim ad minima veniam,
+quis nostrum exercitationem ullam corporis suscipitlaboriosam,
+nisi ut aliquid ex ea commodi consequatur?
+.HP 10n
+I can hang longer than you.
+Quis autem vel eum iure reprehenderit,
+qui inea voluptate velit esse,
+quam nihil molestiae consequatur,
+vel illum,
+qui dolorem eum fugiat,
+quo voluptas nulla pariatur?
+.LE
 .'
 
 output=$(printf "%s\n" "$input" \
-    | "$groff" -r LL=65n -m an -T ascii -P -cbou | nl -ba)
+    | "$groff" -rDEBUG=1 -r LL=65n -m an -T ascii -P -cbou \
+    | nl -ba | tr '\t' ' ')
+
 echo "$output"
 
 # Expected output:
@@ -89,22 +108,22 @@ echo "$output"
 #      4       foo - frobnicate a bar
 #      5
 #      6  Description
-#      7       *      alpha
-#      8       *      beta
-#      9       *      gamma
+#      7       *   alpha
+#      8       *   beta
+#      9       *   gamma
 #     10
-#     11                 charlie
-#     12                        Sed ut perspiciatis.
-#     13
-#     14                 delta  Unde omnis iste natus error sit voluptatem.
+#     11                 charlie     Sed ut perspiciatis.
+#     12
+#     13                 delta       Unde omnis iste natus error sit volup-
+#     14                             tatem.
 #     15
-#     16                        Totam  rem aperiam eaque ipsa, quae ab illo
-#     17                        inventore  veritatis  et  quasi  architecto
-#     18                        beatae vitae dicta sunt.
+#     16                             Totam  rem aperiam eaque ipsa, quae ab
+#     17                             illo inventore veritatis et quasi  ar-
+#     18                             chitecto beatae vitae dicta sunt.
 #     19
-#     20                 echo   Accusantium doloremque laudantium.
+#     20                 echo        Accusantium doloremque laudantium.
 #     21
-#     22       *      delta
+#     22       *   delta
 #     23
 #     24     Assembly language
 #     25       Several  computer  architectures satisfy Turing-completeness
@@ -115,16 +134,34 @@ echo "$output"
 #     30       3.     the Z80: DJNZ
 #     31       4.     the 8086: LOOPZ
 #     32
-#     33  groff test suite            2026-05-10                     foo(1)
+#     33       Let's hang, bro.  Ut enim ad minima veniam, quis nostrum ex-
+#     34            ercitationem ullam corporis suscipitlaboriosam, nisi ut
+#     35            aliquid ex ea commodi consequatur?
+#     36
+#     37       I can hang longer than you.  Quis autem vel eum iure  repre-
+#     38                 henderit,  qui inea voluptate velit esse, quam ni-
+#     39                 hil molestiae consequatur, vel illum, qui  dolorem
+#     40                 eum fugiat, quo voluptas nulla pariatur?
+#     41
+#     42  groff test suite            2026-05-10                     foo(1)
 
 echo "checking that list compactness is applied" >&2
 echo "$output" | grep -Eqx '[[:space:]]+8[[:space:]]+\* +beta' || wail
 echo "checking that nested list indentation accumulates" >&2
-echo "$output" | grep -Eqx '[[:space:]]+11[[:space:]]{16}charlie' \
+echo "$output" \
+    | grep -Eq '^[[:space:]]+11[[:space:]]{16}charlie {5}Sed' \
     || wail
 echo "checking that compactness not applied to continuation pararaphs" \
     >&2
 echo "$output" | grep -Eq '[[:space:]]+16[[:space:]]+Totam' || wail
+echo "checking that hanging paragraph employs indentation of" \
+    "containing list" >&2
+echo "$output" | grep -Eq '[[:space:]]+34[[:space:]]{11}ercitationem' \
+    || wail
+echo "checking that identation argument to hanging paragraph macro" \
+    "overrides list indentation" >&2
+echo "$output" | grep -Eq '[[:space:]]+38[[:space:]]{16}henderit' \
+    || wail
 
 test -z "$fail"
 

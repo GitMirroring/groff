@@ -1102,8 +1102,7 @@ These macros are GNU extensions.
 .
 .TP
 .BI .LS\~ type\~\c
-.RI [ compactness ]
-.\"RI [ compactness \~[ indentation ]
+.RI [ compactness \~[ indentation ]
 .IR (since\~ groff \~1.25) \" TODO: remove note once novelty dies down
 Start
 (or open)
@@ -1120,9 +1119,9 @@ or
 is a Boolean value directing suppression of inter-paragraph spacing
 between list items.
 .
-.\".I indentation
-.\"specifies an indentation amount for the body of each list item;
-.\"it is then unnecessary to specify this argument to the list item macros.
+.I indentation
+specifies an indentation amount for the body of each list item;
+it is then unnecessary to specify this argument to the list item macros.
 .
 Use
 .B IP

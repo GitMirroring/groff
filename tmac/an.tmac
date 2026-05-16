@@ -911,12 +911,14 @@ contains unsupported escape sequence
 .  if \\n[.it] .an-warn cannot call .\\$0 while an input trap is pending
 .  if \\n[DEBUG] .tm GBR: mark VALID07: \\$0
 .  an*break-paragraph 1
+.  if (\\n[an*list-depth] > 0) \{\
+.    if \\n[DEBUG] .tm GBR: mark VALID15: \\$0
+.    if !'\?\\*[an*list-indent!\\n[an*list-depth]]\?'\?\?' \{\
+.      if \\n[DEBUG] .tm GBR: mark VALID16: \\$0
+.      nr an*prevailing-indent \\*[an*list-indent!\\n[an*list-depth]]
+.    \}
+.  \}
 .  if \\n[.$] .nr an*prevailing-indent (n;\\$1)
-.\"el \{\
-.\"  if (\\n[an*list-depth] > 0)
-.\"  if !'\?\\*[an*list-indent!\\n[an*list-depth]]\?'\?\?' \
-.\"    nr an*prevailing-indent \\*[an*list-indent!\\n[an*list-depth]]
-.\"\}
 .  if '\\n[.z]'an*paragraph-tag' \{\
 .    an-warn cannot nest .\\$0 or .TQ inside .\\$0; supply a tag
 .    return
@@ -938,6 +940,13 @@ contains unsupported escape sequence
 .    if \\n[DEBUG] .tm GBR: mark VALID08: \\$0
 .    an*break-paragraph 1
 .    ne (1v + 1u)
+.    if (\\n[an*list-depth] > 0) \{\
+.      if \\n[DEBUG] .tm GBR: mark VALID17: \\$0
+.      if !'\?\\*[an*list-indent!\\n[an*list-depth]]\?'\?\?' \{\
+.        if \\n[DEBUG] .tm GBR: mark VALID18: \\$0
+.        nr an*prevailing-indent \\*[an*list-indent!\\n[an*list-depth]]
+.      \}
+.    \}
 .    in (\\n[an*margin]u + \\n[an*prevailing-indent]u)
 .  \}
 .  el \{\
@@ -954,12 +963,14 @@ contains unsupported escape sequence
 .  an*break-paragraph 1
 .  ll \\n[LL]u
 .  ne (1v + 1u)
+.  if (\\n[an*list-depth] > 0) \{\
+.     if \\n[DEBUG] .tm GBR: mark VALID19: \\$0
+.    if !'\?\\*[an*list-indent!\\n[an*list-depth]]\?'\?\?' \{\
+.      if \\n[DEBUG] .tm GBR: mark VALID20: \\$0
+.      nr an*prevailing-indent \\*[an*list-indent!\\n[an*list-depth]]
+.    \}
+.  \}
 .  if \\n[.$] .nr an*prevailing-indent (n;\\$1)
-.\"el \{\
-.\"  if (\\n[an*list-depth] > 0)
-.\"  if !'\?\\*[an*list-indent!\\n[an*list-depth]]\?'\?\?' \
-.\"    nr an*prevailing-indent \\*[an*list-indent!\\n[an*list-depth]]
-.\"\}
 .  in (\\n[an*margin]u + \\n[an*prevailing-indent]u)
 .  ti \\n[an*margin]u
 .  DEVTAG-COL 1

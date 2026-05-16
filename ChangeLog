@@ -1,5 +1,27 @@
 2026-05-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[man]: Implement `LS`/`LE` indentation management.
+
+	* tmac/an.tmac (TP, IP, HP): If macro called in a list context
+	{the "list depth" is greater than zero}, and an indentation for
+	the current list depth is defined, set the prevailing indent to
+	that indentation.  {We still, and subsequently, override the
+	prevailing indent with the indentation argument to these macros,
+	if present.}
+
+	* tmac/groff_man.7.man.in (List enclosure macros): Document it.
+
+	* tmac/tests/an_LS-and-LE-work.sh: Unit-test effect of list
+	indentation on `HP` macro behavior.  Update test expecations of
+	`TP` behavior now that indentation is inherited.  Apply a
+	tab-to-space-translating tr(1) command on the test output,
+	fearing inconsistencies among Unices in how nl(1) prefixes the
+	lines it filters.
+
+	Continues fixing <https://savannah.gnu.org/bugs/?68335>.
+
+2026-05-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grotty/tty.cpp: Preprocessor-include
 	"<string.h>" header file, since strcmp(3) and strncmp(3) are
 	used (the former only in `#if 0`-ed code).
