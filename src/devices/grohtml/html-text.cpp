@@ -29,6 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #endif
 
 #include <stddef.h> // size_t: prerequisite of color.h
+#include <string.h> // strcmp(), strlen()
 
 #include <new> // std::bad_alloc
 

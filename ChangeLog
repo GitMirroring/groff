@@ -1,5 +1,13 @@
 2026-05-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grohtml/html-text.cpp: Preprocessor-include
+	"<string.h>" header file, since strcmp(3) and strlen(3) are
+	used.
+	* src/devices/grohtml/post-html.cpp: Preprocessor-include
+	"<strings.h>" header file, since strcasecmp(3) is used.
+
+2026-05-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/preconv/preconv.cpp: Preprocessor-include
 	"<strings.h>" header file, since strcasecmp(3) is used.
 
