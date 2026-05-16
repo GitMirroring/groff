@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <stdio.h> // EOF, FILE, fprintf(), fputs(), printf(),
 		   // putchar(), setbuf(), stderr, stdout
 #include <stdlib.h> // exit(), EXIT_SUCCESS, getenv(), strtol()
+#include <string.h> // strcmp(), strncmp()
 
 // GNU extensions to C standard library
 #include <getopt.h> // getopt_long()

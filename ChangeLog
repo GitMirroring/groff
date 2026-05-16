@@ -1,5 +1,11 @@
 2026-05-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grotty/tty.cpp: Preprocessor-include
+	"<string.h>" header file, since strcmp(3) and strncmp(3) are
+	used (the former only in `#if 0`-ed code).
+
+2026-05-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grohtml/html-text.cpp: Preprocessor-include
 	"<string.h>" header file, since strcmp(3) and strlen(3) are
 	used.
