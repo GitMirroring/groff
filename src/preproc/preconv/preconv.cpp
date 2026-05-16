@@ -39,7 +39,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 		   // getc(), printf(), putchar(), rewind(), SEEK_SET,
 		   // stderr, stdin, stdout, ungetc()
 #include <stdlib.h> // calloc(), exit(), EXIT_SUCCESS, free(), malloc()
-#include <string.h> // sterror()
+#include <string.h> // strchr(), strcmp(), strcpy(), sterror(),
+		    // strlen(), strncpy(), strstr()
+#include <strings.h> // strcasecmp()
 #include <sys/stat.h> // fstat(), stat
 #ifdef HAVE_UCHARDET
 #include <uchardet/uchardet.h>
