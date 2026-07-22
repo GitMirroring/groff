@@ -1,3 +1,10 @@
+2026-07-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[pic]: Partially migrate to strdup(3).
+
+	* src/preproc/pic/lex.cpp (process_body): Migrate from
+	libgroff's `strsave()` to POSIX's strdup(3).
+
 2026-11-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[libgroff]: Slightly refactor; use default argument.

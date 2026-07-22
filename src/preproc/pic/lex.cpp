@@ -180,7 +180,7 @@ int macro_input::peek()
 
 static char *process_body(const char *body)
 {
-  char *s = strsave(body);
+  char *s = strdup(body);
   size_t j = 0;
   for (size_t i = 0; s[i] != '\0'; i++)
     if (s[i] == '$' && csdigit(s[i + 1])) {
