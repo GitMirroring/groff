@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright 2019-2020 G. Branden Robinson
+# Copyright 2019-2026 G. Branden Robinson
 #
 # This file is part of groff, the GNU roff typesetting system.
 #
@@ -16,9 +16,17 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
 
 groff="${abs_top_builddir:-.}/test-groff"
+
+fail=
+
+wail () {
+   echo "...FAILED"
+   fail=yes
+}
+
+# Unit-test `stringdown` and `stringup` requests.
 
 input=".pl 1v
 .ds resume R\\['e]sum\\['e]\\\"
@@ -29,4 +37,16 @@ input=".pl 1v
 \\*[resume]"
 expected="Résumé résumé RÉSUMÉ"
 actual=$(echo "$input" | "$groff" -Tutf8)
-test "$actual" = "$expected"
+
+echo "checking that stringdown and stringup requests work" >&2
+test "$actual" = "$expected" || wail
+
+# Regression-test Savannah #68618.
+echo "checking that stringdown and stringup requests do not format" \
+    "excess arguments" >&2
+printf "foo\n.stringdown bar baz\n.stringdown qux jat\nurp\n" \
+    | "$groff" -a | grep -Fqx 'foo urp' || wail
+
+test -z "$fail"
+
+# vim:set autoindent expandtab shiftwidth=4 tabstop=4 textwidth=72:
