@@ -214,6 +214,21 @@ Background
   overstating the recency of their efforts is, in the lay opinion of the
   maintainer as of this writing, neglectful of responsibility.
 
+* The volume of original expression, not of raw content, establishes a
+  basis for copyright.  The U.S. Supreme Court rejected the so-called
+  "sweat of the brow doctrine" in _Feist Publications, Inc. v. Rural
+  Telephone Service Co._, 499 U.S. 340 (1991).  Even if a statute or
+  case law were to declare a minimum quantum of copyright-eligible
+  content in terms of Shannon entropy, the law would still mandate an
+  analysis of that content's level of creativity, a test it could fail.
+  A perfectly random bit stream can rapidly exceed the information
+  content of a human-crafted haiku, but copyright adjudicators are more
+  likely to locate creativity in the haiku than the bit stream, which
+  could be the product of thermodynamic noise.  Organizations like the
+  FSF establish thresholds like "15 lines changed" to ease their own
+  administrative procedures, but no such criterion is binding upon a
+  court deciding a copyright case.
+
 * For a deeper treatment of the subject from a domain expert, please see
   Jessica D. Litman's monograph, _Digital Copyright_, freely available
   on the Web at <https://repository.law.umich.edu/books/1/>.
