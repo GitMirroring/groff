@@ -1,5 +1,25 @@
 2026-08-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Fix Savannah #68616.
+
+	* src/roff/troff/input.cpp: Fix incorrect lexical analysis of
+	`stringdown` and `stringup` request arguments.  Request
+	handlers themselves should call `skip_line()` after processing
+	all arguments of interest; this should not be done by "helper"
+	functions if we can avoid it.  Failing to appropriately allocate
+	responsibility in this case led to excess request arguments
+	being formatted as text instead of ignored.
+	(do_string_case_transform): Stop calling `skip_line()` and
+	`tok.next()` here...
+	(stringdown_request, stringup_request): ...in favor of calling
+	`skip_line()` here.
+
+	Fixes <https://savannah.gnu.org/bugs/?68618>.  Problem dates
+	back to introduction of these requests by me in commit
+	41d05cbfac, 2019-07-04.  Thanks to Ingo Schwarze for the report.
+
+2026-08-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Regression-test Savannah #68618.
 
 	* src/roff/groff/tests/stringdown-and-stringup-requests-work.sh:

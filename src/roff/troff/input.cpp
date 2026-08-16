@@ -5870,16 +5870,13 @@ static void do_string_case_transform(case_xform_mode mode)
   assert((STRING_DOWNCASE == mode) || (STRING_UPCASE == mode));
   symbol s = read_identifier();
   assert(s != 0 /* nullptr */);
-  if (s.is_null()) {
-    skip_line();
+  if (s.is_null())
     return;
-  }
   request_or_macro *p = lookup_request(s);
   macro *m = p->to_macro();
   if (0 /* nullptr */ == m) {
     error("cannot apply string case transformation to request '%1'",
 	  s.contents());
-    skip_line();
     return;
   }
   string_iterator iter1(*m);
@@ -5901,7 +5898,6 @@ static void do_string_case_transform(case_xform_mode mode)
     mac->append(nc);
   }
   request_dictionary.define(s, mac);
-  tok.next();
 }
 
 // Transform each byte of the string argument's contents to lowercase.
@@ -5914,6 +5910,7 @@ static void stringdown_request() // .stringdown
     return;
   }
   do_string_case_transform(STRING_DOWNCASE);
+  skip_line();
 }
 
 // Transform each byte of the string argument's contents to uppercase.
@@ -5926,6 +5923,7 @@ static void stringup_request() // .stringup
     return;
   }
   do_string_case_transform(STRING_UPCASE);
+  skip_line();
 }
 
 static void substring_request() // .substring
