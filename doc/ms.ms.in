@@ -170,7 +170,9 @@ Whereas
 suits brief references,
 .I ms
 can handle long or complex works
-intended for printing and possible publication.
+that require deep sectioning,
+footnotes,
+or multiple columnation.
 .
 .
 .PP

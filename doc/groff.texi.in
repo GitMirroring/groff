@@ -3125,7 +3125,9 @@ Whereas
 suits brief references,
 @file{ms}
 can handle long or complex works
-intended for printing and possible publication.
+that require deep sectioning,
+footnotes,
+or multiple columnation.
 
 Macro,
 register,
