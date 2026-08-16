@@ -4662,7 +4662,7 @@ If your page renders adequately without one,
 use the simpler form.
 .
 If you need to indent multiple (unmarked) paragraphs,
-consider setting an inset region with
+consider insetting a region with
 .B RS
 and
 .B RE
