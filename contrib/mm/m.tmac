@@ -142,10 +142,11 @@ http://savannah.gnu.org/bugs/?group=groff.
 .el     .ll 6i
 .\"---------------------------------------------
 .\"	Configure type size and vertical spacing.  If given on the
-.\"	command line, these have already been converted to basic units.
+.\"	command line, these have already been converted to scaled points
+.\"	or basic units, respectively.
 .if r S \{\
 .	if \n[S]<=0 \{\
-.		@usage ignoring out-of-range S register value: \n[S]z
+.		@usage ignoring out-of-range S register value: \n[S]s
 .		rr S
 .	\}
 .\}

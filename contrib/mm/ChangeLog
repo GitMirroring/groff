@@ -1,5 +1,10 @@
 2026-08-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac: Fix misleading diagnostic issued when `S` register
+	value is out of range.
+
+2026-08-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac: Reorganize initialization code for clarity.
 
 2026-05-09  G. Branden Robinson <g.branden.robinson@gmail.com>
