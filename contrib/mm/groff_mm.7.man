@@ -676,9 +676,8 @@ in memorandum types 0 and 4 and documents using the
 .I ms
 cover page style.
 .
-If not defined
-(the default),
-internally defined macros handle this task;
+If not defined,
+internal macros handle this task;
 see subsection \[lq]Internals\[rq] and section \[lq]Files\[rq] below.
 .
 Applications include setting the firm name in a different font family
@@ -1457,8 +1456,9 @@ captions this list.
 .IB left \[aq] center \[aq] right \[aq]\|\[dq]\c
 ]
 Define the even-page footer,
-which is formatted just above the normal page footer on even-numbered
-pages.
+which
+.I mm
+formats just above the normal page footer on even-numbered pages.
 .
 See
 .BR PF .
@@ -1473,8 +1473,9 @@ defines the string
 .IB left \[aq] center \[aq] right \[aq]\|\[dq]\c
 ]
 Define the even-page header,
-which is formatted just below the normal page header on even-numbered
-pages.
+which
+.I mm
+formats just below the normal page header on even-numbered pages.
 .
 See
 .BR PH .
@@ -3056,8 +3057,10 @@ below.
 .IB left \[aq] center \[aq] right \[aq]\|\[dq]\c
 ]
 Define the odd-page footer,
-which is formatted just above the normal page footer on odd-numbered
-pages.
+which
+.I mm
+formats
+just above the normal page footer on odd-numbered pages.
 .
 See
 .BR PF .
@@ -3072,8 +3075,10 @@ defines the string
 .IB left \[aq] center \[aq] right \[aq]\|\[dq]\c
 ]
 Define the odd-page header,
-which is formatted just below the normal page header on odd-numbered
-pages.
+which
+.I mm
+formats
+just below the normal page header on odd-numbered pages.
 .
 See
 .BR PH .
@@ -3085,9 +3090,10 @@ defines the string
 .
 .TP
 .B OP
-Ensure that subsequent text is formatted at the top of an odd-numbered
-page;
-no page break is performed if the drawing position is already there.
+Format subsequent text at the top of an odd-numbered page,
+breaking the page up to twice if necessary.
+.
+No page break is performed if the drawing position is already there.
 .
 .
 .br
@@ -3848,12 +3854,13 @@ centered,
 above the contents caption.
 .
 Page numbering restarts at 1,
-in register format \[lq]i\[rq].
+using register format \[lq]i\[rq].
 .
 If the
 .B Oc
 register is true,
-numbering of these pages is suppressed.
+.I mm
+suppresses numbering of these pages.
 .
 .
 .IP
@@ -3886,7 +3893,7 @@ and if its corresponding register
 .BR Lt ,
 or
 .BR Lx )
-is set.
+evaluates true.
 .
 .BI TX xx
 and
@@ -4576,7 +4583,7 @@ The default
 .TP
 .B Qrf
 \[lq]See chapter \[rs]E*[Qrfh],
-page \[rs]En[Qrfp].\[rq]
+page \[rs]E*[Qrfp].\[rq]
 .
 If your document uses multiple heading levels,
 you might redefine this string to use the word \[lq]section\[rq]
@@ -4708,7 +4715,7 @@ is in use
 .
 .TP
 .B Aph
-formats an appendix heading
+enables formatting of an appendix heading
 (and title,
 if supplied);
 see
@@ -5254,7 +5261,7 @@ see
 configures the base amount of vertical space used for separation
 in the document.
 .
-.I mm
+.I "groff mm"
 applies this spacing to many contexts,
 sometimes with multipliers;
 see
@@ -5334,7 +5341,8 @@ T}
 .
 .TP
 .B Np
-numbers paragraphs with a leading mark in the format
+configures numbering of paragraphs,
+prefixing them with a leading mark in the form
 .IR s . p ,
 where
 .IR s \~is
@@ -5462,7 +5470,7 @@ overriding the
 .B HP
 string.
 .
-If not set,
+If false,
 .B S
 calls affect headers and footers only when followed by
 .BR PH ,
@@ -5489,7 +5497,7 @@ see
 .
 .TP
 .B Pt
-determines when a first-line indentation is applied to a paragraph;
+determines when a first-line indentation applies to a paragraph;
 see
 .B P
 .RB ( 0 ).
