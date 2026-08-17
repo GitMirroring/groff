@@ -319,9 +319,7 @@ http://savannah.gnu.org/bugs/?group=groff.
 .ds Apptext \" empty
 .\" spacing before and after static displays (if undefined, Lsp is used)
 .\" .nr Dsp 1v
-.\" more heading level counters
-.as HF " 2 2 2 2 2 2 2
-.as HP " 0 0 0 0 0 0 0
+.\" add more heading level counters
 .nr H8 0 1
 .nr H9 0 1
 .nr H10 0 1
@@ -329,6 +327,9 @@ http://savannah.gnu.org/bugs/?group=groff.
 .nr H12 0 1
 .nr H13 0 1
 .nr H14 0 1
+.\" extend header font selection and type size controls respectively
+.as HF " 2 2 2 2 2 2 2
+.as HP " 0 0 0 0 0 0 0
 .\" add a dot after level one heading number?
 .nr H1dot 1
 .\" put vertical space of \n[Hps2] before headings of level <= Hps
