@@ -981,7 +981,7 @@ In a
 document,
 use the indexed character escape sequence
 .B \[rs]N
-to specify a glyph by index.
+to specify a glyph by a non-negative index.
 .
 .
 .P
@@ -1003,7 +1003,7 @@ the glyph
 .B \[rs][Po]
 is represented by
 .RB \[lq] &pound; \[rq]
-in HTML 4.0.
+in HTML\~4.
 .
 For efficiency,
 these data are now compiled directly into
