@@ -6858,7 +6858,8 @@ and
 do not.
 .
 The only way to determine if a font selection operation succeeded
-in the latter group of formatters
+in the latter
+.IR troff s \" generic
 is to save the value of the
 .B .f
 register prior to attempting the change,
@@ -6866,6 +6867,11 @@ make the attempt,
 then compare the saved value to the current one;
 if they differ,
 the font selection presumably succeeded.
+.
+.RI \%( mandoc
+does not implement a
+.B .f
+register.)
 .
 Since doing so requires
 .B nr
@@ -6877,6 +6883,23 @@ requests,
 such a procedure cannot be performed amid
 .B \[rs]f
 sequences on an input line.
+.
+.
+.P
+AT&T
+.IR troff 's \" AT&T
+.B yr
+register has a Y2K bug;
+GNU
+.I troff \" GNU
+simulates the bug for consistency due to its widespread usage,
+but provides an alternative register implementing
+AT&T's
+.I documented
+semantics;
+see
+.B \[rs]n[year]
+in subsection \[lq]New registers\[rq] above.
 .
 .
 .P
@@ -6996,12 +7019,21 @@ GNU
 sets the automatic hyphenation mode to the value of the
 .B \%.hydefault
 register;
-the AT&T implementation sets it to
+AT&T
+.I troff \" AT&T
+sets it to
 .RB \[lq] 1 \[rq],
 which is not suitable in GNU
 .I troff \" GNU
 for some languages,
 including English.
+.
+See the table in the \[lq]Manipulating Hyphenation\[rq] section
+of
+.IR "Groff: The GNU Implementation of troff" ,
+the
+.I groff
+Texinfo manual.
 .
 .
 .P
@@ -7060,8 +7092,10 @@ to the
 request,
 permitting initial embedded spaces in it,
 and reads it to the end of the input line in copy mode.
-This difference permits the formatter to handle files
-with spaces in their names,
+This difference permits
+GNU
+.I troff \" GNU
+to handle files with spaces in their names,
 but requires more care with trailing comments,
 and doubling of an initial neutral double quote
 .RB \[lq] \[dq] \[rq]
@@ -7330,7 +7364,8 @@ and populate diversions.
 .
 There is no such thing as a space character in
 GNU
-.IR troff .\" GNU
+.I troff \" GNU
+output.
 .
 Formatting converts characters into
 (sequences of)

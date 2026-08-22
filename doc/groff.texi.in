@@ -24346,14 +24346,18 @@ and Solaris
 @command{troff}s @c DWB, Plan 9, Solaris
 set it in roman.
 The only way to determine if a font selection operation succeeded
-in the latter group of formatters
+in the latter
+@command{troff}s @c generic
 is to save the value of the
 @code{.f}
 register prior to attempting the change,
 make the attempt,
 then compare the saved value to the current one;
 if they differ,
-the font selection presumably succeeded.
+the font selection presumably succeeded.@footnote{@command{mandoc}
+does not implement a
+@code{.f}
+register.}
 Since doing so requires
 @code{nr}
 and
@@ -24364,6 +24368,19 @@ requests,
 such a procedure cannot be performed amid
 @code{\f}
 sequences on an input line.
+
+@acronym{AT&T}
+@code{troff}'s @c AT&T
+@code{yr}
+register has a Y2K bug;
+GNU
+@command{troff} @c GNU
+simulates the bug for consistency due to its widespread usage,
+but provides an alternative register implementing
+@acronym{AT&T}'s
+@emph{documented}
+semantics;
+recall @ref{Host System Service Access}.
 
 Formatters that don't implement
 GNU
@@ -24455,12 +24472,15 @@ GNU
 sets the automatic hyphenation mode to the value of the
 @code{.hydefault}
 register;
-the @acronym{AT&T} implementation sets it to
+@acronym{AT&T}
+@command{troff} @c AT&T
+sets it to
 @samp{1},
 which is not suitable in GNU
 @command{troff}
 for some languages,
 including English.
+Recall the table in @ref{Manipulating Hyphenation}.
 
 GNU
 @command{troff} @c GNU
@@ -24532,8 +24552,10 @@ request,
 permitting initial embedded spaces in it,
 and reads it to the end of the input line in copy mode.
 Recall @ref{Copy Mode}.
-This difference permits the formatter to handle files
-with spaces in their names,
+This difference permits
+GNU
+@command{troff} @c GNU
+to handle files with spaces in their names,
 but requires more care with trailing comments,
 and doubling of an initial neutral double quote
 @samp{"}
@@ -24556,6 +24578,7 @@ inverting its truth value with each occurrence.
     @error{} false
 @endExample
 
+@noindent
 AT&T
 @command{troff} @c AT&T
 regards the foregoing conditional expression as malformed
@@ -24804,7 +24827,8 @@ and populate diversions
 (recall @ref{Diversions}).
 There is no such thing as a space character in
 GNU
-@command{troff}. @c GNU
+@command{troff} @c GNU
+output.
 Formatting converts characters into
 (sequences of)
 glyphs.
