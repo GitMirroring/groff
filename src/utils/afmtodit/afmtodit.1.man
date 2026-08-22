@@ -100,7 +100,7 @@ generates a font description file for use with
 and
 .B pdf
 output devices from an
-Adobe Font Metric
+Adobe Font Metric (AFM)
 file,
 .IR afm-file .
 .
@@ -109,7 +109,8 @@ associates a
 .I groff
 ordinary or special character name with a PostScript glyph name.
 .
-Output is written in
+.I \%afmtodit
+writes output in
 .MR groff_font @MAN5EXT@
 format to
 .I font-description-file,
@@ -150,10 +151,15 @@ each
 .I groff-char
 must occur at most once.
 .
-Lines starting with \[lq]#\[rq] and blank lines are ignored.
+.I \%afmtodit
+ignores blank lines and lines starting with \[lq]#\[rq].
 .
-If the file isn't found in the current directory,
-it is sought in the
+If
+.I \%afmtodit
+does not find
+.I map-file
+in the current directory,
+it searches the
 .I devps/generate
 subdirectory of the default font directory.
 .
@@ -179,17 +185,18 @@ document.
 In particular,
 this is true for glyph variants named in the form
 .RI \[lq] foo . bar \[rq];
-all glyph names containing one or more periods are mapped to unnamed
-entities.
+.I \%afmtodit
+maps all glyph names containing one or more periods to unnamed entities.
+.\" XXX: What's an "entity"?
 .
-Unless
+Normally,
+.I \%afmtodit
+uses the encoding defined in the AFM file
+(that is,
+it interprets entries with non-negative codes);
+but see the
 .B \-e
-is specified,
-the encoding defined in the AFM file
-(i.e.,
-entries
-with non-negative codes)
-is used.
+option.
 .
 Refer to section \[lq]Using Symbols\[rq] in
 .IR "Groff: The GNU Implementation of troff" ,
@@ -320,9 +327,9 @@ all exit afterward.
 Use
 .I slant
 as the slant (\[lq]angle\[rq]) parameter in the font description file;
-this is used by
-.I groff
-in the positioning of accents.
+GNU
+.I @g@troff
+uses it to correctly position diacritical marks relative to base glyphs.
 .
 By default
 .I \%afmtodit
@@ -353,12 +360,14 @@ as the device description file rather than the default
 .IR DESC .
 .
 If not found in the current directory,
-the
+.I \%afmtodit
+searches the
 .I devps
-subdirectory of the default font directory is searched
-(this is true for both the default device description file and a file
+subdirectory of the default font directory.
+.
+(This is true for both the default device description file and a file
 given with option
-.BR \-d ).
+.BR \-d .)
 .
 .
 .TP
@@ -426,9 +435,12 @@ This option is normally needed only with italic
 (or oblique)
 fonts.
 .
-The font description files distributed with
-.I groff
-were created using an option of
+.IR groff 's
+developers created the
+the font description files distributed in the
+.I devps
+directory
+using an option of
 .B \-i50
 for italic fonts.
 .
@@ -446,16 +458,19 @@ instead of
 Omit any kerning data from the
 .I groff
 font;
-use only for monospaced (constant-width) fonts.
+use only with monospaced (constant-width) fonts.
 .
 .
 .TP
 .B \-m
 Prevent negative left italic correction values.
 .
-Font description files for roman styles distributed with
-.I groff
-were created with
+For roman styles,
+.IR groff 's
+developers created the
+the font description files distributed in the
+.I devps
+directory using options
 .RB \[lq] \-i0\~\-m \[rq]
 to improve spacing with
 .MR @g@eqn @MAN1EXT@ .
@@ -463,9 +478,9 @@ to improve spacing with
 .
 .TP
 .B \-n
-Don't output a
+Emit no
 .RB \[lq] ligatures \[rq]
-command for this font;
+directives for this font;
 use with monospaced (constant-width) fonts.
 .
 .
@@ -477,7 +492,7 @@ see section \[lq]Diagnostics\[rq] below.
 .
 .TP
 .B \-s
-Add the
+Emit
 .RB \[lq] special \[rq]
 directive to the font description file.
 .
@@ -491,7 +506,9 @@ as the width of inter-word spaces.
 .
 .TP
 .B \-x
-Don't use the built-in Adobe Glyph List.
+Ignore
+.IR groff 's
+built-in Adobe Glyph List.
 .
 .
 .\" ====================================================================
