@@ -506,7 +506,7 @@ Documentation License''.
 @title groff
 @subtitle The GNU implementation of @code{troff}
 @subtitle version @VERSION@
-@subtitle July 2026
+@subtitle August 2026
 @author Trent@tie{}A.@: Fisher
 @author Werner Lemberg
 @author G.@tie{}Branden Robinson
@@ -12159,6 +12159,12 @@ instead of @code{tr} it prints @samp{a}.
 
 @c =====================================================================
 
+@c TODO: Try to reorganize this manual so that we can present this node
+@c before discussing fine-grained typesetting features that nroff mode
+@c supports poorly or not at all.  XXX: That goal might conflict with
+@c another goal: that of minimizing forward references.
+@c
+@c TODO: Cover this material in groff(7) and groff_diff(7).
 @node @code{troff} and @code{nroff} Modes
 @anchor{Troff and Nroff mode} @c 1.22.4
 @section @code{troff} and @code{nroff} Modes
@@ -12168,21 +12174,21 @@ instead of @code{tr} it prints @samp{a}.
 @cindex mode, @code{nroff}
 
 Historically,
-@command{nroff}
+@command{nroff} @c AT&T
 and
-@command{troff}
+@command{troff} @c AT&T
 were two separate programs;
 the former for terminal output,
 the latter for typesetters.
 GNU
-@command{troff} @c GNU
+@command{@g@troff} @c GNU
 merges both functions into one executable@footnote{A
 GNU
-@command{nroff} @c GNU
+@command{@g@nroff} @c GNU
 program is available for convenience;
 it runs
 GNU
-@command{troff}
+@command{@g@troff} @c GNU
 to perform formatting;
 see
 @cite{@g@nroff@r{(1)}}.}
@@ -12194,47 +12200,92 @@ for PostScript,
 and so on)
 that interprets its output.
 When discussing @acronym{AT&T}
-@code{troff},
+@code{troff}, @c AT&T, overall project
 it makes sense to talk about
 @dfn{@code{nroff} mode}
 and
 @dfn{@code{troff} mode}
 since the differences are hard-coded.
 GNU
-@command{troff}
+@command{@g@troff} @c GNU
 takes information from device and font description files
 without handling requests specially if a terminal output device is used,
 so such a strong distinction is unnecessary.
 
-Usually, a macro package can be used with all output devices.
-Nevertheless, it is sometimes necessary to make a distinction between
-terminal and non-terminal devices: GNU @code{troff} provides two
-built-in conditions @samp{n} and @samp{t} for the @code{if}, @code{ie},
-and @code{while} requests to decide whether GNU @code{troff} shall
-behave like @code{nroff} or like
-@code{troff}.@footnote{@xref{Conditionals and Loops}, for more on
-built-in conditions.}
+Usually,
+a macro package can be used with any output device.
+Nevertheless,
+it is sometimes necessary to distinguish
+terminal and non-terminal devices:@:
+the formatter provides the conditional expressions@footnote{@xref{Conditionals and Loops}.}
+@samp{n}
+and
+@samp{t}
+to help documents format as desired for
+these device classes,
+which have divergent capabilities.
+@acronym{AT&T}
+@code{nroff} @c AT&T
+silently ignores requests and escape sequences
+that change the type size,
+for example.
+
+GNU
+@command{@g@troff} @c GNU
+furthermore offers requests that configure it to behave like
+@command{nroff} @c generic
+or like
+@command{troff}. @c generic
+This feature spares the document author the tedium
+of guarding changes of type size or font family with
+@samp{if t}
+control lines or similar.
 
 @Defreq {troff, }
 @pindex troffrc
 @pindex troffrc-end
-Make the @samp{t} built-in condition true (and the @samp{n} built-in
-condition false) for @code{if}, @code{ie}, and @code{while} conditional
-requests.  This is the default if GNU @code{troff} (@emph{not}
-@code{groff}) is started with the @option{-R} switch to avoid loading of
-the startup files @file{troffrc} and @file{troffrc-end}.  Without
-@option{-R}, GNU @code{troff} stays in @code{troff} mode if the output
-device is not a terminal (e.g., `ps').
+Make the
+@samp{t}
+built-in condition true
+(and the
+@samp{n}
+built-in condition false)
+in conditional expressions.
+This is the default.
+However,
+GNU
+@command{@g@troff} @c GNU
+normally reads the startup files
+@file{troffrc}
+and
+@file{troffrc-end},
+which can alter it.
+Recall
+@option{-R}
+from @ref{Groff Options}.
 @endDefreq
 
 @Defreq {nroff, }
 @pindex tty.tmac
-Make the @samp{n} built-in condition true (and the @samp{t} built-in
-condition false) for @code{if}, @code{ie}, and @code{while} conditional
-requests.  This is the default if GNU @code{troff} uses a terminal
-output device; the code for switching to @code{nroff} mode is in the
-file @file{tty.tmac}, which is loaded by the startup file
-@code{troffrc}.
+Make the
+@samp{n}
+built-in condition true
+(and the
+@samp{t}
+built-in condition false)
+in conditional expressions.
+The file
+@file{tty.tmac}
+switches
+GNU
+@command{@g@troff} @c GNU
+to
+@code{nroff} @c mode
+mode;
+@file{troffrc}
+loads it if the name of the output device
+matches that of a known ``typewriter-like device'';
+recall @ref{Groff Options}.
 @endDefreq
 
 
