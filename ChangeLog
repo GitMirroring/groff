@@ -207,7 +207,7 @@
 	Fixes <https://savannah.gnu.org/bugs/?68552>.  Thanks to Bruno
 	Haible for the investigation and advice.  Problem apparently
 	introduced by me in commit dd7bf97938, 23 November, but in the
-	instance for which we have a reproducer, this heap overwrite
+	instance for which we have a reproducer, this heap overwrite was
 	not reached because it was masked by a prior null pointer
 	dereference (in `lookup_request()`, which was set up to fail by
 	`do_request()`; see Savannah #68558).
