@@ -112,6 +112,11 @@ sub process_arguments {
       next;
     }
 
+    if ($arg eq '--debug') {
+      $debugging = 1;
+      next; # Don't pass the option to groff.
+    }
+
     if ($delayed_option) {
       if ($delayed_option eq '-m') {
 	push @requested_package, $arg;
@@ -149,9 +154,7 @@ sub process_arguments {
     version() if ($arg eq '-v' || $arg eq '--version');
     usage(0) if ($arg eq '-h' || $arg eq '--help');
 
-    if ($arg eq '--debug') {
-      $debugging = 1;
-    } elsif ($arg =~ '^--.') {
+    if ($arg =~ '^--.') {
       fail("unrecognized grog option '$arg'; ignored");
       usage(1);
       next;

@@ -1,3 +1,14 @@
+2026-08-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[grog]: Fix Savannah #68635.
+
+	* src/utils/grog/grog.pl (process_arguments): Relocate test for
+	`--debug` option such that we don't interpolate it into the
+	argument list we build for groff, which won't recognize it.
+
+	Fixes <https://savannah.gnu.org/bugs/?68635>.  Problem
+	introduced by me in commit b161e50e93, 2026-07-17.
+
 2026-08-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Fix Savannah #68616.
