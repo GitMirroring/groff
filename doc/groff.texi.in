@@ -12381,12 +12381,14 @@ page margins.@footnote{@xref{Output Line Annotation}.}
 @DefreqItem {po, @t{-}@Var{offset}}
 @DefregListEndx {.o}
 @pindex tty.tmac
-Set page offset to
+The
+@code{po}
+request sets the page offset to
 @var{offset};
 if
 @var{offset}
 is signed,
-adjust the page offset by its value.
+it adjusts the page offset by its value.
 The default scaling unit is
 @samp{m}.
 The default offset is
@@ -12402,6 +12404,7 @@ and zero if there is none.
 Read-only register
 @samp{.o}
 interpolates the page offset.
+
 @cindex CSTR@tie{}#54 errata
 @cindex CSTR@tie{}#54 erratum, @code{po} request
 This request is incorrectly documented in the @acronym{AT&T}
