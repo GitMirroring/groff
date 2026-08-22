@@ -339,7 +339,7 @@ they must appear at the outermost lexical scope.
 This roughly means that they can't appear within braces that are
 necessary to disambiguate the input;
 .I @g@eqn
-will diagnose an error in this event.
+diagnoses an error in this event.
 .
 (See subsection \[lq]Macros\[rq] below for additional token separation
 rules.)
@@ -1582,18 +1582,25 @@ commas and parentheses also serve as token separators.
 A macro argument is not terminated by a comma inside parentheses nested
 within it.
 .
-In a macro definition,
-.BI $ n\c
-,
+When GNU
+.I eqn \" GNU
+interpolates a macro,
+it replaces each occurrence of
+.BI $ n
+in its definition,
 where
 .I n
 is between 1 and\~9 inclusive,
-is replaced by the
+with the
 .IR n th
 argument;
 if there are fewer than
 .IR n \~arguments,
-it is replaced by nothing.
+GNU
+.I eqn \" GNU
+replaces
+.BI $ n
+by nothing.
 .
 .
 .\" ====================================================================
@@ -1735,10 +1742,12 @@ primitive
 sets a character's type,
 which determines the face used to set it.
 .
-The
+GNU
+.I eqn \" GNU
+sets the
 .RB \%\[lq] letter \[rq]
-type is set in italics;
-others are set in roman.
+type in italics,
+and others in roman.
 .
 Use the
 .B bold
@@ -2261,7 +2270,9 @@ this being the difference between the widths of the
 parameter used by binary operators and that of the full space.
 .
 Independently,
-we can define a macro \[lq]frac\[rq] for setting fractions.
+with GNU
+.I eqn \" GNU
+we can define a parameterized macro \[lq]frac\[rq] to typeset fractions.
 .
 .
 .br
