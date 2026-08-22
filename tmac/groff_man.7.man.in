@@ -409,7 +409,7 @@ See section \[lq]Notes\[rq] below for examples of cases where better
 alternatives to empty arguments in macro calls are available.
 _endif()dnl
 .
-Most macro arguments are formatted as text in the output;
+Most macro arguments format as text in the output;
 exceptions are noted.
 .
 _ifstyle()dnl
@@ -4779,7 +4779,7 @@ The
 .B SH
 and
 .B SS
-sectioning macros clear relative insets;
+sectioning macros clear relative insets:
 .B RE
 calls have no effect until
 .B RS
@@ -4812,6 +4812,14 @@ _
 \fIanother-paragraph	\fIanother-paragraph
 _
 .TE
+.
+.
+.IP
+You may find the
+.B LS
+and
+.B LE
+macros helpful in managing the indentation of list items.
 .
 .
 .IP \[bu]
