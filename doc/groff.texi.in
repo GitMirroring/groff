@@ -12524,8 +12524,8 @@ request are invocations by paragraphing macros;
 and
 (2) to set up a ``normal'' temporary indentation of negative sign
 offsetting a positive indentation
-that applies to the whole parargraph,
-known as a ``hanging indent''.
+that applies to the whole parargraph.
+The latter combination is known as a ``hanging indent''.
 @endDefreq
 
 @DefreqList {ll, [@Var{length}]}
