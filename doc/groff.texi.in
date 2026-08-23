@@ -22384,10 +22384,14 @@ this means a loss of information.
 @Defreq {close, stream}
 @cindex closing file (@code{close})
 @cindex file, closing (@code{close})
-Close the specified @var{stream}; the stream is no longer an acceptable
-argument to the @code{write} request.
+Close the specified
+@var{stream},
+making it unacceptable as an argument to the
+@code{write}
+request.
 
-Here a simple macro to write an index entry.
+Here's how a document might arrange to construct an (unsorted) index
+for itself.
 
 @Example
 .open idx test.idx
