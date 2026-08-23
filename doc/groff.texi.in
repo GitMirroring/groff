@@ -22809,7 +22809,7 @@ GNU
 @command{troff} @c GNU
 has that knowledge,
 and iterates through the output line's node list,
-using its discretion to discard these hyphen glyph nodes
+exercising its discretion to discard these hyphen glyph nodes
 everywhere except when hyphenating a word at the end of the line.}
 
 If we change
@@ -22864,7 +22864,8 @@ It contains these elements.
 
 @cindex @code{\v}, internal representation
 @noindent
-@command{@g@troff}
+GNU
+@command{troff} @c GNU
 inserts elements 1,
 7,
 and@tie{}8;
