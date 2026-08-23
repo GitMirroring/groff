@@ -22007,8 +22007,11 @@ contents and filters it out
 before sending it to the output driver.
 
 @need 1000
-To define a macro@tie{}@code{x} containing the contents of
-file@tie{}@file{f}, use
+You can define a
+diversion@tie{}@code{x}
+containing the contents of
+file@tie{}@file{f}
+as follows.
 
 @Example
 .ev 1
@@ -22019,8 +22022,21 @@ file@tie{}@file{f}, use
 @endExample
 
 @noindent
-The calls to @code{ev} prevent the partially collected output line
-from becoming part of the diversion; recall @ref{Diversions}.
+Switching environments prevents
+any existing partially collected output line
+from becoming part of the diversion;
+recall @ref{Diversions}.
+
+You could use a box diversion to achieve the same end,
+but if filling is enabled you must ensure
+that the output line breaks before closing the diversion.
+
+@Example
+.box x
+.trf f
+.br
+.box
+@endExample
 
 @cindex AT&T troff bugs
 @cindex AT&T troff bug, in @code{cf} request
@@ -22030,8 +22046,8 @@ In @acronym{AT&T}
 @code{cf}
 copies the contents of
 @var{file}
-to the output immediately even if a diversion is active;
-this behavior is so anomalous that it must be considered a bug.
+to the output immediately even if a diversion is open;
+this behavior is so anomalous that we consider it a bug.
 @endDefreq
 
 @Defreq {nx, [[@code{"}]@Var{file}]}
