@@ -22286,23 +22286,22 @@ Hello, world!
 @cindex file, opening (@code{open})
 @cindex appending to a file (@code{opena})
 @cindex file, appending to (@code{opena})
-Open
+The
+@code{open}
+request opens
 @var{file}
-for writing and associate a stream named
+for writing and associates a stream named
 @var{ident}
 with it,
 making it available for
 @code{write}
 requests.
-
 The
 @code{opena}
-request is like
-@code{open},
+request is similar,
 but appends to
 @var{file}
 if it already exists instead of overwriting it.
-
 @cindex safer mode
 @cindex mode, safer
 @cindex unsafe mode
@@ -22315,7 +22314,6 @@ GNU
 or a front end program the
 @option{-U}
 command-line option to enable unsafe mode.
-
 The
 @code{pstream}
 request dumps the list of open streams
