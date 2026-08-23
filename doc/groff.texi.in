@@ -22329,12 +22329,25 @@ to the standard error stream.@footnote{@xref{Debugging}.}
 @cindex @code{writec} request, and copy mode
 @cindex mode, copy, and @code{writec} request
 @cindex file stream, writing to (@code{write}, @code{writec})
-Write @var{contents} to @var{stream}, which must previously have been
-the subject of an @code{open} (or @code{opena}) request.  GNU
-@command{troff} flushes the stream after writing to it.
-
-The @code{writec} request is like @code{write}, but only @code{write}
-appends a newline to @var{contents}.
+The
+@code{write}
+request writes
+@var{contents}
+and a newline to
+@var{stream},
+which must previously have been the subject of an
+@code{open}
+(or
+@code{opena})
+request.
+GNU
+@command{troff}
+flushes the stream after writing to it.
+The
+@code{writec}
+request is similar,
+but does not write a newline to
+@var{stream}.
 @endDefreq
 
 @Defreq {writem, stream name}
