@@ -6771,6 +6771,25 @@ once removed,
 they can be recreated only as normal writable registers
 and will not otherwise reflect the configuration of the formatter.
 .
+.
+.P
+Solaris and Heirloom Doctools
+.IR troff s' \" Solaris, Heirloom
+.B rm
+and
+.B rr
+requests halt argument processing
+upon encountering an invalid identifier.
+.
+Those of
+GNU,
+DWB,
+and Plan\~9 from User Space
+.IR troff s \" GNU, DWB, Plan 9
+do not;
+they remove objects named by any subsequent valid arguments.
+.
+.
 .P
 GNU
 .I troff \" GNU
@@ -6820,24 +6839,6 @@ spaces or tabs between the ordinary control character and a
 .RB \[lq] .\& \[rq]
 or macro name that would normally end a macro definition
 prevent it from doing so.
-.
-.
-.P
-Solaris and Heirloom Doctools
-.IR troff s' \" Solaris, Heirloom
-.B rm
-and
-.B rr
-requests halt argument processing
-upon encountering an invalid identifier.
-.
-Those of
-GNU,
-DWB,
-and Plan\~9 from User Space
-.IR troff s \" GNU, DWB, Plan 9
-do not;
-they remove any subsequent valid arguments.
 .
 .
 .P
