@@ -22217,11 +22217,13 @@ for maintaining the validity of the input to the output driver.
 @cindex running system commands
 @DefreqList {sy, [@code{"}]@Var{command}}
 @DefregListEndx {systat}
-Execute the specified shell command(s).
-The formatter reads the remainder of the input line into a buffer
+The
+@code{sy}
+request executes the specified shell command(s).
+The formatter reads the remainder of the input line into a buffer,
 and passes it to
-@cite{system@r{(3)}}.
-The formatter does not capture the output produced by the command(s).
+@cite{system@r{(3)}}
+without capturing the output produced by the command(s).
 
 @cindex safer mode
 @cindex mode, safer
@@ -22249,12 +22251,15 @@ are esoteric;
 the request interpolates
 neither the standard output nor the standard error streams of
 @var{command}
-into the document---worse,
+into the document.
+Worse,
 @acronym{AT&T}
 @command{troff} @c AT&T
 afforded no means of verifying that
 @var{command}
-operated as expected.
+operated as expected---thus the
+GNU
+@code{systat} register extension.
 We therefore offer a silly example of its use,
 making a document refuse to format if the system user name
 running the formatter is
