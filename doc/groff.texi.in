@@ -22110,11 +22110,17 @@ Body of letter.
 
 @cindex @code{ex} request, used with @code{nx} and @code{rd}
 @noindent
-When this is run, a file containing the following lines should be
-redirected in.  Requests included in this file are executed as though
-they were part of the form letter.  The last block of input is the
-@code{ex} request, which tells GNU @code{troff} to stop processing.  If
-this were not there, @code{troff} would not know when to stop.
+When the foregoing runs,
+redirect standard input from a file like that shown below to
+@command{troff}. @c generic
+The formatter executes any requests it contains
+as though they were part of the form letter.
+The last line of the file is an
+@code{ex}
+request,
+which tells the formatter to stop processing.
+If it were absent,
+the formatter would hang awaiting further input.
 
 @Example
 Trent A. Fisher
@@ -22149,12 +22155,14 @@ Multiple
 @code{pi}
 requests construct a multi-stage pipeline
 in the same order as the formatter encounters the requests.
+Thus,
 
 @Example
 .pi foo
 .pi bar
 @endExample
 
+@noindent
 is the same as
 @w{@samp{.pi foo | bar}}.
 
