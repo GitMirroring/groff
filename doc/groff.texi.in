@@ -21824,10 +21824,14 @@ Recall @ref{Copy Mode}.
 @DefreqListEndx {soquiet, [@code{"}]@Var{file}}
 @cindex including a file (@code{so})
 @cindex file, inclusion (@code{so})
-Replace the request's control line
-with the contents of
+The
+@code{so}
+request replaces its own control line with the contents of
 @var{file},
-``sourcing'' it.
+``sourcing'' it:@:
+the formatter then interprets the contents of
+@var{file}
+as input.
 GNU
 @command{troff} @c GNU
 searches for
