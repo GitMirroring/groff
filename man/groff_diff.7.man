@@ -6868,7 +6868,8 @@ then compare the saved value to the current one;
 if they differ,
 the font selection presumably succeeded.
 .
-.RI \%( mandoc
+(\c
+.MR mandoc 1
 does not implement a
 .B .f
 register.)

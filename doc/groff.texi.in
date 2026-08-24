@@ -24354,7 +24354,7 @@ register prior to attempting the change,
 make the attempt,
 then compare the saved value to the current one;
 if they differ,
-the font selection presumably succeeded.@footnote{@command{mandoc}
+the font selection presumably succeeded.@footnote{@cite{mandoc@r{(1)}}
 does not implement a
 @code{.f}
 register.}
