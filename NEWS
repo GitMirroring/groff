@@ -7,7 +7,7 @@
     notice and this notice are preserved.
 
 This file describes recent user-visible changes in groff.  Bug fixes are
-not described.  There are more details in the man and info pages.
+not described.  groff's man pages and Texinfo manual offer more details.
 
 VERSION 1.25.0 release candidate 2
 ==================================
