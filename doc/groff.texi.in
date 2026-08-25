@@ -24367,7 +24367,7 @@ and
 requests,
 such a procedure cannot be performed amid
 @code{\f}
-sequences on an input line.
+sequences on a text line.
 
 @acronym{AT&T}
 @code{troff}'s @c AT&T

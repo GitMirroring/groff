@@ -6883,7 +6883,7 @@ and
 requests,
 such a procedure cannot be performed amid
 .B \[rs]f
-sequences on an input line.
+sequences on a text line.
 .
 .
 .P
