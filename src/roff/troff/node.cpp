@@ -4410,8 +4410,9 @@ device_extension_node::device_extension_node(const macro &m, tfont *t,
 void device_extension_node::dump_properties()
 {
   node::dump_properties();
-  fputs(", \"macro\": ", stderr);
+  fputs(", \"macro\": {", stderr);
   mac.json_dump();
+  fputc('}', stderr);
   fputs(", \"tfont\": ", stderr);
   tf->get_name().json_dump();
   fputs(", \"stroke_color\": ", stderr);
