@@ -203,154 +203,6 @@ prefer
 .
 .
 .\" ====================================================================
-.SH Options
-.\" ====================================================================
-.
-.B \-\-help
-displays a usage message,
-while
-.B \-v
-and
-.B \%\-\-version
-show version information;
-all exit afterward.
-.
-.
-.TP
-.B \-c
-Be more compatible with
-.IR tpic ;
-implies
-.BR \-t .
-.
-Lines beginning with
-.B \[rs]
-are not passed through transparently.
-.
-Lines beginning with
-.B .\&
-are passed through with the initial
-.B .\&
-changed to
-.BR \[rs] .
-.
-GNU
-.I pic \" GNU
-gives a line beginning with
-.B .ps
-special treatment:
-it takes an optional integer argument specifying the line thickness
-(pen size)
-in milliinches,
-a missing argument restores the previous line thickness,
-and the default line thickness is 8\~milliinches.
-.
-The line thickness thus specified takes effect only when a
-non-negative line thickness has not been specified by use of the
-.B \%thickness
-attribute or by setting the
-.B \%linethick
-variable.
-.
-.
-.TP
-.B \-C
-Recognize
-.BR .PS ,
-.BR .PE ,
-.BR .PF ,
-and
-.B .PY
-even when followed by a character other than space or newline.
-.
-.
-.TP
-.B \-n
-Don't use
-.I groff
-extensions to the
-.I troff \" generic
-drawing commands.
-.
-Specify this option if a postprocessor you're using doesn't support
-these extensions,
-described in
-.MR groff_out @MAN5EXT@ .
-.
-This option also causes
-.I @g@pic
-not to use zero-length lines to draw dots in
-.I troff \" generic
-mode.
-.
-.
-.TP
-.B \-S
-Enable safer mode and ignore any subsequent
-.B \-U
-option.
-.
-In
-.I "safer mode,"
-.I @g@pic
-ignores
-.B sh
-commands,
-which can be useful when operating on untrustworthy input.
-.
-.I @g@pic
-operates in safer mode by default.
-.
-.
-.TP
-.B \-t
-Produce \*[tx] output.
-.
-.
-.TP
-.B \-U
-Operate in
-.I unsafe mode;
-.B sh
-commands are interpreted.
-.
-.
-.TP
-.B \-z
-In \*[tx] mode,
-draw dots using zero-length lines.
-.
-.
-.P
-GNU
-.I pic \" GNU
-ignores the following options recognized by other versions of
-.IR pic . \" generic
-.
-.
-.TP 8n \" "-T dev" + 2n
-.B \-D
-Draw all lines using the \[rs]D escape sequence.
-GNU
-.I pic \" GNU
-always does this.
-.
-.
-.TP
-.BI \-T\~ dev
-Generate output for the
-.I troff \" generic
-device
-.IR dev .
-.
-This option is unnecessary in GNU
-.I pic \" GNU
-because the
-.I troff \" generic
-it generates is device-independent.
-.
-.
-.\" ====================================================================
 .SH Usage
 .\" ====================================================================
 .
@@ -1488,6 +1340,154 @@ utility for converting
 .I pic
 input to a wide variety of other image formats,
 including SVG.
+.
+.
+.\" ====================================================================
+.SH Options
+.\" ====================================================================
+.
+.B \-\-help
+displays a usage message,
+while
+.B \-v
+and
+.B \%\-\-version
+show version information;
+all exit afterward.
+.
+.
+.TP
+.B \-c
+Be more compatible with
+.IR tpic ;
+implies
+.BR \-t .
+.
+Lines beginning with
+.B \[rs]
+are not passed through transparently.
+.
+Lines beginning with
+.B .\&
+are passed through with the initial
+.B .\&
+changed to
+.BR \[rs] .
+.
+GNU
+.I pic \" GNU
+gives a line beginning with
+.B .ps
+special treatment:
+it takes an optional integer argument specifying the line thickness
+(pen size)
+in milliinches,
+a missing argument restores the previous line thickness,
+and the default line thickness is 8\~milliinches.
+.
+The line thickness thus specified takes effect only when a
+non-negative line thickness has not been specified by use of the
+.B \%thickness
+attribute or by setting the
+.B \%linethick
+variable.
+.
+.
+.TP
+.B \-C
+Recognize
+.BR .PS ,
+.BR .PE ,
+.BR .PF ,
+and
+.B .PY
+even when followed by a character other than space or newline.
+.
+.
+.TP
+.B \-n
+Don't use
+.I groff
+extensions to the
+.I troff \" generic
+drawing commands.
+.
+Specify this option if a postprocessor you're using doesn't support
+these extensions,
+described in
+.MR groff_out @MAN5EXT@ .
+.
+This option also causes
+.I @g@pic
+not to use zero-length lines to draw dots in
+.I troff \" generic
+mode.
+.
+.
+.TP
+.B \-S
+Enable safer mode and ignore any subsequent
+.B \-U
+option.
+.
+In
+.I "safer mode,"
+.I @g@pic
+ignores
+.B sh
+commands,
+which can be useful when operating on untrustworthy input.
+.
+.I @g@pic
+operates in safer mode by default.
+.
+.
+.TP
+.B \-t
+Produce \*[tx] output.
+.
+.
+.TP
+.B \-U
+Operate in
+.I unsafe mode;
+.B sh
+commands are interpreted.
+.
+.
+.TP
+.B \-z
+In \*[tx] mode,
+draw dots using zero-length lines.
+.
+.
+.P
+GNU
+.I pic \" GNU
+ignores the following options recognized by other versions of
+.IR pic . \" generic
+.
+.
+.TP 8n \" "-T dev" + 2n
+.B \-D
+Draw all lines using the \[rs]D escape sequence.
+GNU
+.I pic \" GNU
+always does this.
+.
+.
+.TP
+.BI \-T\~ dev
+Generate output for the
+.I troff \" generic
+device
+.IR dev .
+.
+This option is unnecessary in GNU
+.I pic \" GNU
+because the
+.I troff \" generic
+it generates is device-independent.
 .
 .
 .\" ====================================================================
