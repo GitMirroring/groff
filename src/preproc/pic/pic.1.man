@@ -490,7 +490,7 @@ such strings may contain the delimiter character or unbalanced braces.
 .BI for\~ variable \~=\~ expr1 " to " expr2\~\c
 .RB [ by \~[ * ]\c
 .IR expr3 ]\~\c
-.BI do\~ "X body X"
+.BI "do {\~" body \~}
 Set
 .I variable
 to
@@ -534,28 +534,14 @@ If the range constraint on
 isn't met,
 the loop does not execute.
 .
-.I X
-can be any character not in
-.IR body .
-.
 .TP
-.BI if\~ expr \~then\~\c
-.IR "X if-true X" \~[\c
-.BI else\~ "Y if-false Y\c"
-]
+.BI if\~ expr "\~then {\~" if-true \~}\~\c
+.RB [ "else {\~" if-false \~} ]
 Evaluate
 .IR expr ;
 if it is non-zero then do
 .IR if-true ,
 otherwise do
-.IR if-false .
-.
-.I X
-can be any character not in
-.IR if-true .
-.
-.I Y
-can be any character not in
 .IR if-false .
 .
 .TP
@@ -618,7 +604,7 @@ when formatted with
 .
 .
 .TP
-.BI sh\~ "X command X"
+.BI "sh {" command \~}
 Pass
 .I command
 to a shell via
@@ -639,8 +625,8 @@ at this point in the file.
 .TP
 .BR copy\~ [ \[dq]\c
 .IB filename \[dq]\c
-.RB ]\~ thru\~\c
-.IR "X body X" \~\c \" space in roman: we must use 2-font macro with \c
+.RB ]\~ "thru {\~\c"
+.IB body \~}\~\c
 .RB [ until\~ \[dq]\c
 .IB word \[dq]\c
 ]
@@ -684,10 +670,6 @@ GNU
 reads lines only until encountering one beginning with
 .IR word ;
 which it then discards.
-.
-.I X
-can be any character not in
-.IR body .
 .
 For example,
 .
