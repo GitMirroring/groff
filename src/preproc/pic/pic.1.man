@@ -487,8 +487,10 @@ such strings may contain the delimiter character or unbalanced braces.
 .
 .
 .TP
-\fBfor\fR \fIvariable\fR \fB=\fR \fIexpr1\fR \fBto\fR \fIexpr2\fR \
-[\fBby\fR [\fB*\fR]\,\fIexpr3\/\fR] \fBdo\fR \fIX\fR \fIbody\fR \fIX\fR
+.BI for\~ variable \~=\~ expr1 " to " expr2\~\c
+.RB [ by \~[ * ]\c
+.IR expr3 ]\~\c
+.BI do\~ "X body X"
 Set
 .I variable
 to
@@ -537,8 +539,10 @@ can be any character not in
 .IR body .
 .
 .TP
-\fBif\fR \fIexpr\fR \fBthen\fR \fIX\fR \fIif-true\fR \fIX\fR \
-[\fBelse\fR \fIY\fR \fIif-false\fR \fIY\fR]
+.BI if\~ expr \~then\~\c
+.IR "X if-true X" \~[\c
+.BI else\~ "Y if-false Y\c"
+]
 Evaluate
 .IR expr ;
 if it is non-zero then do
@@ -614,7 +618,7 @@ when formatted with
 .
 .
 .TP
-\fBsh\fR \fIX\fR \fIcommand\fR \fIX\fR
+.BI sh\~ "X command X"
 Pass
 .I command
 to a shell via
@@ -626,7 +630,7 @@ option not specified.
 .
 .
 .TP
-\fBcopy\fR \fB"\,\fIfilename\/\fB"\fR
+.BI "copy \[dq]" filename \[dq]
 Include
 .I filename
 at this point in the file.
