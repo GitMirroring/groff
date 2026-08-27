@@ -470,8 +470,6 @@ accept delimiters,
 shown in their synopses as braces
 .BR "{ }" .
 .
-Nesting of braces is supported.
-.
 Any other characters
 (except a space,
 tab,
@@ -479,6 +477,10 @@ or newline)
 .\" XXX even crazy control characters, ugh--src/preproc/pic/lex.cpp:1266
 may be used as alternative delimiters,
 in which case the members of a given pair must be identical.
+.
+Delimiters can nest;
+delimiter pairs other than braces must be distinct if nested.
+.
 .
 GNU
 .I pic \" GNU
