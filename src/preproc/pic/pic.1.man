@@ -322,9 +322,10 @@ draw dots using zero-length lines.
 .
 .
 .P
-The following options supported by other versions of
-.I pic \" generic
-are ignored.
+GNU
+.I pic \" GNU
+ignores the following options recognized by other versions of
+.IR pic . \" generic
 .
 .
 .TP 8n \" "-T dev" + 2n
