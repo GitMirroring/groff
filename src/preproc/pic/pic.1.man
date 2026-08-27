@@ -547,78 +547,6 @@ such strings may contain the delimiter character or unbalanced braces.
 .
 .
 .TP
-.BI for\~ variable \~=\~ expr1 " to " expr2\~\c
-.RB [ by \~[ * ]\c
-.IR expr3 ]\~\c
-.BI "do {\~" body \~}
-Set
-.I variable
-to
-.IR expr1 .
-.
-While the value of
-.I variable
-is less than or equal to
-.IR expr2 ,
-do
-.I body
-and increment
-.I variable
-by
-.IR expr3 ;
-if
-.B by
-is not given,
-increment
-.I variable
-by 1.
-.
-.I expr3
-can be negative,
-in which case
-.I variable
-is then tested whether it is greater than or equal to
-.IR expr2 .
-.
-A
-.B *
-prefix on
-.I variable
-multiplies it by
-.I expr3
-(which must be greater than zero)
-at each iteration rather than incrementing it.
-.
-If the range constraint on
-.I expr3
-isn't met,
-the loop does not execute.
-.
-.TP
-.BI if\~ expr "\~then {\~" if-true \~}\~\c
-.RB [ "else {\~" if-false \~} ]
-Evaluate
-.IR expr ;
-if it is non-zero then do
-.IR if-true ,
-otherwise do
-.IR if-false .
-.
-.TP
-.BI print\~ arg\c
-\~.\|.\|.
-Catenate and write arguments to the standard error stream followed by a
-newline.
-.
-Each
-.I arg
-must be an expression,
-a position,
-or text.
-.
-This feature is useful for debugging.
-.
-.TP
 .BI command\~ arg\c
 \~.\|.\|.
 .\" Move right margin to indentation since we must indent more later.
@@ -661,18 +589,6 @@ x is 14.
 when formatted with
 .IR troff . \" generic
 .RE
-.
-.
-.TP
-.BI "sh {" command \~}
-Pass
-.I command
-to a shell via
-.MR system 3 .
-.
-Ignored if
-.B \-U
-option not specified.
 .
 .
 .TP
@@ -774,27 +690,63 @@ its first character is interpreted as a delimiter.
 .
 .
 .TP
-.BR reset\~ [\c
-.IR pvar\~ .\|.\|.]
-.TQ
-.BI reset\~ pvar1\c
-.RB [ , "[ ] \c"
-.IR pvar2 \~.\|.\|.]
-Reset predefined global variables
-.I pvar
-\&.\|.\|.\& to their default values;
-without arguments,
-reset all such variables to their default values.
+.BI for\~ variable \~=\~ expr1 " to " expr2\~\c
+.RB [ by \~[ * ]\c
+.IR expr3 ]\~\c
+.BI "do {\~" body \~}
+Set
+.I variable
+to
+.IR expr1 .
 .
-Variable names may be separated by commas, \" at most one at a time
-spaces, \" in any quantity (at least one if no comma)
-or both.
+While the value of
+.I variable
+is less than or equal to
+.IR expr2 ,
+do
+.I body
+and increment
+.I variable
+by
+.IR expr3 ;
+if
+.B by
+is not given,
+increment
+.I variable
+by 1.
 .
-Assigning a value to
-.B scale
-also causes all predefined global variables that control dimensions
-to be reset to their default values times the new value of
-.BR scale .
+.I expr3
+can be negative,
+in which case
+.I variable
+is then tested whether it is greater than or equal to
+.IR expr2 .
+.
+A
+.B *
+prefix on
+.I variable
+multiplies it by
+.I expr3
+(which must be greater than zero)
+at each iteration rather than incrementing it.
+.
+If the range constraint on
+.I expr3
+isn't met,
+the loop does not execute.
+.
+.
+.TP
+.BI if\~ expr "\~then {\~" if-true \~}\~\c
+.RB [ "else {\~" if-false \~} ]
+Evaluate
+.IR expr ;
+if it is non-zero then do
+.IR if-true ,
+otherwise do
+.IR if-false .
 .
 .
 .TP
@@ -824,6 +776,57 @@ validation of it is limited.
 .B plot
 is deprecated in favour of
 .BR sprintf .
+.
+.
+.TP
+.BI print\~ arg\c
+\~.\|.\|.
+Catenate and write arguments to the standard error stream followed by a
+newline.
+.
+Each
+.I arg
+must be an expression,
+a position,
+or text.
+.
+This feature is useful for debugging.
+.
+.
+.TP
+.BR reset\~ [\c
+.IR pvar\~ .\|.\|.]
+.TQ
+.BI reset\~ pvar1\c
+.RB [ , "[ ] \c"
+.IR pvar2 \~.\|.\|.]
+Reset predefined global variables
+.I pvar
+\&.\|.\|.\& to their default values;
+without arguments,
+reset all such variables to their default values.
+.
+Variable names may be separated by commas, \" at most one at a time
+spaces, \" in any quantity (at least one if no comma)
+or both.
+.
+Assigning a value to
+.B scale
+also causes all predefined global variables that control dimensions
+to be reset to their default values times the new value of
+.BR scale .
+.
+.
+.TP
+.BI "sh {" command \~}
+Pass
+.I command
+to a shell via
+.MR system 3 .
+.
+Ignored if
+.B \-U
+option not specified.
 .
 .
 .\" ====================================================================
