@@ -750,35 +750,6 @@ otherwise do
 .
 .
 .TP
-.BI plot\~ expr\~\c
-.RI [\[dq] text \[dq]]
-Create a text object by using
-.I text
-as a format string for
-.MR sprintf 3
-with an argument of
-.IR expr .
-.
-If
-.I text
-is omitted,
-.B \[dq]%g\[dq]
-is implied.
-.
-Attributes can be specified in the same way as for a normal text object.
-.
-.I Caution:
-be very careful that you specify an appropriate format string in
-.I text;
-.IR @g@pic 's
-validation of it is limited.
-.
-.B plot
-is deprecated in favour of
-.BR sprintf .
-.
-.
-.TP
 .BI print\~ arg\c
 \~.\|.\|.
 Catenate and write arguments to the standard error stream followed by a
