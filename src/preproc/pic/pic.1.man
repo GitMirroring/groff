@@ -461,6 +461,64 @@ instead of
 .
 .
 .\" ====================================================================
+.SS "Update of global variables"
+.\" ====================================================================
+.
+GNU
+.I pic \" GNU
+supports assignment to global variables from a local scope
+with a syntax extension.
+.
+.
+.TP
+.IB var \~:=\~ expr
+.RS
+Update an existing variable.
+.
+.I var
+must already be defined,
+and
+.I expr
+is assigned to
+.I var
+without creating a variable local to the current block.
+.
+(By contrast,
+.B =
+defines
+.I var
+in the current block if it is not already defined there,
+and then changes the value in the current block only.)
+.
+For example,
+.
+.RS
+.EX
+.B .PS
+.B x = 3
+.B y = 3
+.B [
+.B   x := 5
+.B   y = 5
+.B ]
+.B print x y
+.B .PE
+.EE
+.RE
+.
+writes
+.
+.RS
+.EX
+5 3
+.EE
+.RE
+.
+to the standard error stream.
+.RE
+.
+.
+.\" ====================================================================
 .SS Commands
 .\" ====================================================================
 .
@@ -766,53 +824,6 @@ validation of it is limited.
 .B plot
 is deprecated in favour of
 .BR sprintf .
-.
-.TP
-.IB var \~:=\~ expr
-.RS
-Update an existing variable.
-.
-.I var
-must already be defined,
-and
-.I expr
-is assigned to
-.I var
-without creating a variable local to the current block.
-.
-(By contrast,
-.B =
-defines
-.I var
-in the current block if it is not already defined there,
-and then changes the value in the current block only.)
-.
-For example,
-.
-.RS
-.EX
-.B .PS
-.B x = 3
-.B y = 3
-.B [
-.B   x := 5
-.B   y = 5
-.B ]
-.B print x " " y
-.B .PE
-.EE
-.RE
-.
-writes
-.
-.RS
-.EX
-5 3
-.EE
-.RE
-.
-to the standard error stream.
-.RE
 .
 .
 .\" ====================================================================
