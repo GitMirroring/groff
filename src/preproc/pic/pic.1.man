@@ -728,26 +728,26 @@ its first character is interpreted as a delimiter.
 .
 .
 .TP
-.B reset
+.BR reset\~ [\c
+.IR pvar\~ .\|.\|.]
 .TQ
 .BI reset\~ pvar1\c
-.RB [ , ]\~\c
-.IR pvar2 \~.\|.\|.
-Reset predefined variables
-.IR pvar1 ,
-.I pvar2
+.RB [ , "[ ] \c"
+.IR pvar2 \~.\|.\|.]
+Reset predefined global variables
+.I pvar
 \&.\|.\|.\& to their default values;
-if no arguments are given,
-reset all predefined variables to their default values.
+without arguments,
+reset all such variables to their default values.
 .
-Variable names may be separated by commas,
-spaces,
+Variable names may be separated by commas, \" at most one at a time
+spaces, \" in any quantity (at least one if no comma)
 or both.
 .
 Assigning a value to
 .B scale
-also causes all predefined variables that control dimensions to be reset
-to their default values times the new value of
+also causes all predefined global variables that control dimensions
+to be reset to their default values times the new value of
 .BR scale .
 .
 .
