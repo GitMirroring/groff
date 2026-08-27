@@ -202,11 +202,8 @@ prefer
 .BR PF .
 .
 .
-.\" ====================================================================
-.SH Usage
-.\" ====================================================================
-.
-This section primarily discusses the differences between GNU
+.P
+The following subsections primarily discuss differences between GNU
 .I pic \" GNU
 and the Eighth Edition Unix version of AT&T
 .I pic \" AT&T
