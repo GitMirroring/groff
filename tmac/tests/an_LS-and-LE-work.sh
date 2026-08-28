@@ -93,6 +93,15 @@ vel illum,
 qui dolorem eum fugiat,
 quo voluptas nulla pariatur?
 .LE
+.P
+Let us have an inline compact list.
+.LS itemized 1
+.IP \[bu]
+bosons
+.IP \[bu]
+fermions
+.LE
+obey different spin statistics.
 .'
 
 output=$(printf "%s\n" "$input" \
@@ -143,7 +152,12 @@ echo "$output"
 #     39                 hil molestiae consequatur, vel illum, qui  dolorem
 #     40                 eum fugiat, quo voluptas nulla pariatur?
 #     41
-#     42  groff test suite            2026-05-10                     foo(1)
+#     42      Let us have an inline compact list.
+#     43      *      bosons
+#     44      *      fermions
+#     45      obey different spin statistics.
+#     46
+#     47 groff test suite            2026-05-10                     foo(1)
 
 echo "checking that list compactness is applied" >&2
 echo "$output" | grep -Eqx '[[:space:]]+8[[:space:]]+\* +beta' || wail
@@ -162,6 +176,8 @@ echo "checking that identation argument to hanging paragraph macro" \
     "overrides list indentation" >&2
 echo "$output" | grep -Eq '[[:space:]]+38[[:space:]]{16}henderit' \
     || wail
+echo "checking that break occurs after inline compact list" >&2
+echo "$output" | grep -Eq '[[:space:]]+45[[:space:]]{6}obey' || wail
 
 test -z "$fail"
 

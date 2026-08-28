@@ -1,3 +1,8 @@
+2026-08-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/tests/an_LS-and-LE-work.sh: Regression-test Savannah
+	#68656.
+
 2026-08-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/node.cpp
