@@ -651,44 +651,124 @@ option not specified.
 .
 .
 .\" ====================================================================
-.SS Expressions
+.SS "Arithmetic expressions"
 .\" ====================================================================
 .
-The syntax for expressions has been significantly extended.
+GNU
+.I pic \" GNU
+supports several additional arithmetic expressions.
 .
 .
-.P
-.IB  x\  \[ha]\  y
-(exponentiation)
-.br
+.LS definition 0 13n \" not compact; size for `max(e1, e2)` + 2n
+.TP
+.IB  x\~ \[ha]\~ y
+Exponentiate.
+.
+Compute
+.I x
+raised to the
+.I y th
+power using
+.MR pow 3 .
+.
+.
+.TP
 .BI sin( x )
-.br
+Compute sine of
+.I x
+(in radians)
+using
+.MR sin 3 .
+.
+.
+.TP
 .BI cos( x )
-.br
-.BI atan2( y , \ x )
-.br
+Compute cosine of
+.I x
+(in radians)
+using
+.MR cos 3 .
+.
+.
+.TP
+.BI atan2( y , \~x )
+Compute arctangent of ratio
+.I y
+over
+.I x
+(in radians)
+using
+.MR atan2 3 .
+.
+.
+.TP
 .BI log( x )
-(base 10)
-.br
+Compute base-10 logarithm of
+.I x
+using
+.MR log10 3 .
+.
+.
+.TP
 .BI exp( x )
-(base 10, i.e.\&
-.ie t 10\v'-.4m'\fIx\*(ic\fR\v'.4m')
-.el   10\[ha]\fIx\fR)
-.br
+Compute 10 to the
+.IR x th
+power using
+.MR exp10 3 .
+.
+.
+.TP
 .BI sqrt( x )
-.br
+Compute principal square root of
+.I x
+using
+.MR sqrt 3 .
+.
+.
+.TP
 .BI int( x )
-.br
+Compute integral portion of
+.I x
+using \[+-]\c
+.MR floor 3 ,
+as
+.I x
+is greater or less than zero.
+.
+.
+.TP
 .B rand()
-(return a random number between 0 and 1)
-.br
+Compute a pseudorandom number between 0 and 1
+using
+.MR rand 3 .
+.
+.
+.TP
 .BI srand( x )
-(set the random number seed)
-.br
+Seed the pseudorandom number generator with value
+.I x
+using
+.MR srand 3 .
+.
+.
+.TP
 .BI max( e1 , \ e2 )
-.br
+Compute the maximum of expressions
+.I e1
+and
+.IR e2 .
+.
+.
+.TP
 .BI min( e1 , \ e2 )
-.br
+Compute the minumum of expressions
+.I e1
+and
+.IR e2 .
+.LE
+.
+.
+.TP
 .BI ! e
 .br
 \fIe1\fB && \fIe2\fR
