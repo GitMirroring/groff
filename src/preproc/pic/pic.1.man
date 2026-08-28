@@ -768,34 +768,86 @@ and
 .LE
 .
 .
+.\" ====================================================================
+.SS "Logical expressions"
+.\" ====================================================================
+.
+GNU
+.I pic \" GNU
+supports several additional logical expressions.
+.
+.
+.LS definition 0 18n \" not compact; size for `"str1" == "str2"` +2n
 .TP
 .BI ! e
-.br
-\fIe1\fB && \fIe2\fR
-.br
-\fIe1\fB || \fIe2\fR
-.br
-\fIe1\fB == \fIe2\fR
-.br
-\fIe1\fB != \fIe2\fR
-.br
-\fIe1\fB >= \fIe2\fR
-.br
-\fIe1\fB > \fIe2\fR
-.br
-\fIe1\fB <= \fIe2\fR
-.br
-\fIe1\fB < \fIe2\fR
-.br
-\fB"\,\fIstr1\*(ic\fB" == "\,\fIstr2\*(ic\fB"\fR
-.br
-\fB"\,\fIstr1\*(ic\fB" != "\,\fIstr2\*(ic\fB"\fR
-.br
+Evaluate complement of expression
+.IR e .
 .
 .
-.LP
+.TP
+.IB e1 \~&&\~ e2
+Compute Boolean conjunction of expressions
+.I e1
+and
+.IR e2 ,
+evaluating
+.I e2
+only if
+.I e1
+evaluates true.
+.
+.
+.TP
+.IB e1 \~||\~ e2
+Compute Boolean disjunction of expressions
+.I e1
+and
+.IR e2 ,
+evaluating
+.I e2
+only if
+.I e1
+evaluates false.
+.
+.
+.TP
+.IB e1 \~==\~ e2
+.TQ
+.IB e1 \~!=\~ e2
+Evaluate expressions
+.I e1
+and
+.I e2
+for (in)equality.
+.
+.
+.TP
+.IB e1 \~>=\~ e2
+.TQ
+.IB e1 \~>\~ e2
+.TQ
+.IB e1 \~<=\~ e2
+.TQ
+.IB e1 \~<\~ e2
+Evaluate relative magnitudes of
+.I e1
+and
+.IR e2 .
+.
+.
+.TP
+.BI \[dq] str1 "\[dq] == \[dq]" str2 \[dq]
+.TQ
+.BI \[dq] str1 "\[dq] != \[dq]" str2 \[dq]
+Evaluate string expressions
+.I str1
+and
+.I str2
+for (in)equality.
+.
 String comparison expressions must be parenthesised in some contexts
 to avoid ambiguity.
+.LE
 .
 .
 .\" ====================================================================
