@@ -3862,7 +3862,7 @@ and
 SunOS\~4.0 (1988) added
 .BR SB .
 .
-Unix System\~V (1988) incorporated the
+Unix System\~V Release\~4 (1988) incorporated the
 .B lq
 and
 .B rq
