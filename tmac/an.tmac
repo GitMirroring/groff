@@ -892,12 +892,16 @@ contains unsupported escape sequence
 .  if \\n[.$] \&\\$*
 ..
 .
-.\" Set an ordinary paragraph.
-.de1 P
-.  an*break-paragraph
+.de1 an*reset-paragraph
 .  ll \\n[LL]u
 .  in \\n[an*margin]u
 .  nr an*prevailing-indent \\n[IN]
+..
+.
+.\" Set an ordinary paragraph.
+.de1 P
+.  an*break-paragraph
+.  an*reset-paragraph
 ..
 .
 .\" Accommodate ms(7) paragraphing refugees.
@@ -1529,6 +1533,7 @@ contains unsupported escape sequence
 .  if !\\n[an*list-depth] \
 .    an*warn ignoring .\\$0 call when no list open
 .  if \\n[DEBUG] .tm GBR: mark VALID14: \\$0
+.  an*reset-paragraph
 .  rm an*list-indent!\\n[an*list-depth]
 .  rr an*list-is-compact!\\n[an*list-depth]
 .  rm an*list-type!\\n[an*list-depth]

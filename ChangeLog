@@ -1,5 +1,19 @@
 2026-08-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an.tmac: Refactor to separate inter-paragraph spacing
+	operations from paragraph "dimensioning" (line length, inset,
+	indentation).
+	(an*reset-paragraph): New macro paragraph resets paragraph
+	dimensions, assuming duties formerly handled by `P`.
+	(P): Call new macro, retaining `an*break-paragraph` call.
+	(LE): Call new macro.
+
+	Fixes <https://savannah.gnu.org/bugs/?68656>.  Thanks to Alex
+	Colomar for identifying an `LS`/`LE` use case revealing this
+	gap.
+
+2026-08-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/tests/an_LS-and-LE-work.sh: Regression-test Savannah
 	#68656.
 
