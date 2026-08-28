@@ -832,11 +832,6 @@ The syntax for expressions has been significantly extended.
 .B rand()
 (return a random number between 0 and 1)
 .br
-.BI rand( x )
-(return a random number between 1 and
-.IR x ;
-deprecated)
-.br
 .BI srand( x )
 (set the random number seed)
 .br
