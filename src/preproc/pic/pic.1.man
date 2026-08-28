@@ -1419,7 +1419,8 @@ that can infer the bounding box and perform a format conversion.
 .
 One of these is
 the PostScript interpreter Ghostscript
-.RI ( gs (1)),
+(\c
+.MR gs 1 ),
 which exposes format converters via its
 .B \%\-sDEVICE=
 option.
