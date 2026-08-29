@@ -915,7 +915,7 @@ Input until
 .b .)c
 is collected,
 its longest output line centered,
-and the remainder aligned with respect to that line;
+and the remainder left-aligned with respect to the centered line;
 contrast with the line-by-line centering obtained with
 \(lq\c
 .b ".(b C" \(rq.
