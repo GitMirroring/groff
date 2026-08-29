@@ -177,7 +177,7 @@ then
 .I \%afmtodit
 puts the PostScript glyph into the
 .I groff
-font description file as an unnamed glyph which can only be accessed
+font description file as an unnamed glyph that can only be accessed
 by the \[lq]\eN\[rq] escape sequence in a
 .I roff
 document.
@@ -249,10 +249,11 @@ option is used,
 .I \%afmtodit
 automatically generates an italic correction,
 a left italic correction,
-and a subscript correction for each glyph\[em]\c
+and a subscript correction for each glyph;
 .MR groff_font @MAN5EXT@
-explains the significance of these\[em]\c
-they can be specified for individual glyphs by
+explains the significance of these.
+.
+They can be specified for individual glyphs by
 adding to the
 .I afm-file
 lines of the form:
@@ -339,8 +340,8 @@ specified in the AFM file;
 with true italic fonts it is sometimes desirable to use a slant that is
 less than this.
 .
-If you find that an italic font places accents over base glyphs
-too far to the right,
+If you find that an italic font places accents too far to the right
+over base glyphs,
 use
 .B \-a
 to give it a smaller slant.
@@ -595,8 +596,7 @@ where the ignored AGL name contains four hexadecimal digits
 .IR XXXX .
 .
 The Adobe Glyph List (AGL) has its own names for glyphs;
-they are often
-different from
+they often differ from
 .IR groff 's
 special character names.
 .
