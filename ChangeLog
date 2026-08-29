@@ -1,5 +1,20 @@
 2026-08-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an.tmac (IP): If invoked without arguments, call
+	`an*break-paragraph` likewise, so that we don't defeat
+	inter-paragraph spacing.  In other words, let's work as
+	documented.
+
+	"Use IP without arguments to associate successive paragraphs
+	with an existing list item; to these, inter‐paragraph spacing
+	applies even in compact lists."
+
+	Fixes <https://savannah.gnu.org/bugs/?68658>.  Thanks to Alex
+	Colomar for identifying an `LS`/`LE` use case revealing this
+	gap.
+
+2026-08-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/tests/an_LS-and-LE-work.sh: Regression-test Savannah
 	#68658.
 
