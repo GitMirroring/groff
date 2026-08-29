@@ -1237,7 +1237,7 @@ The explanation of Figure 8-3's program is now complete.
 .PP
 (In case you dislike compass points, the names \fB.top\fP,
 \&\fB.bottom\fP, \fB.left\fP and \fB.right\fP are synonyms for \fB.n\fP,
-\&\fB.s\fP, \fB.e\fP, and \fB.w\fP respectively; they can even be
+\&\fB.s\fP, \fB.w\fP, and \fB.e\fP respectively; they can even be
 abbreviated to \fB.t\fP, \fB.b\fP, \fB.l\fP and \fB.r\fP).
 .PP
 The names \fBcenter\fP, \fBtop\fP, \fBbottom\fP, \fBleft\fP, \fBright\fP,
