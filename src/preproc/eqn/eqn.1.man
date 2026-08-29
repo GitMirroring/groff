@@ -2305,8 +2305,11 @@ x = frac(- b \[+-] sqrt { b sup 2 - 4 a c }, 2 a)
 .SH "See also"
 .\" ====================================================================
 .
+.UR https://\:github\:.com/\:g\-branden\-robinson/\
+\:retypesetting\-mathematics/\:releases/\:download/\:v2/\:eqnuser\:.pdf
 \[lq]Typesetting Mathematics\[em]User's Guide\[rq]
 (2nd edition),
+.UE
 by Brian W.\& Kernighan
 and Lorinda L.\& Cherry,
 1978,
