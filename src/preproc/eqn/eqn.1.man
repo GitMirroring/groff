@@ -2051,7 +2051,7 @@ but emits nothing corresponding to
 .B \%delim
 delimiters.
 .
-They can,
+Their placement can,
 however,
 be recognized as character sequences that begin with \[lq]<math>\[rq],
 end with \[lq]</math>\[rq],
