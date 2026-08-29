@@ -232,6 +232,16 @@ and avoid names starting with
 The names employed
 by any preprocessors in use
 should also not be repurposed.
+.pp
+In this manual,
+we employ AT&T
+.i troff \" AT&T
+syntax for continuity with the \*(ME package's history.
+If you don't require portability to AT&T
+.i troff \" AT&T
+or BSD \*(ME,
+you can use \*G's extended syntax;
+see \fIgroff_diff\fP(7).
 .\" dead-tree pagination
 .br
 .ne 8v
