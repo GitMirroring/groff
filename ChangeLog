@@ -1,5 +1,10 @@
 2026-08-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/tests/an_LS-and-LE-work.sh: Regression-test Savannah
+	#68658.
+
+2026-08-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/an.tmac: Refactor to separate inter-paragraph spacing
 	operations from paragraph "dimensioning" (line length, inset,
 	indentation).

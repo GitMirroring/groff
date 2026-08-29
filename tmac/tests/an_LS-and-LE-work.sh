@@ -102,6 +102,19 @@ bosons
 fermions
 .LE
 obey different spin statistics.
+.P
+Sometimes we want a multi-paragraph discussion even in a compact list.
+.LS itemized 1
+.IP \[bu]
+hadrons
+.IP
+This,
+too,
+can be done,
+with fermions and bosons in combination.
+.IP \[bu]
+bogons
+.LE
 .'
 
 output=$(printf "%s\n" "$input" \
@@ -157,7 +170,15 @@ echo "$output"
 #     44      *      fermions
 #     45      obey different spin statistics.
 #     46
-#     47 groff test suite            2026-05-10                     foo(1)
+#     47      Sometimes  we  want  a  multi-paragraph discussion even in a
+#     48      compact list.
+#     49      *      hadrons
+#     50
+#     51             This, too, can be done, with fermions and  bosons  in
+#     52             combination.
+#     53      *      bogons
+#     54
+#     55 groff test suite            2026-05-10                     foo(1)
 
 echo "checking that list compactness is applied" >&2
 echo "$output" | grep -Eqx '[[:space:]]+8[[:space:]]+\* +beta' || wail
@@ -178,6 +199,9 @@ echo "$output" | grep -Eq '[[:space:]]+38[[:space:]]{16}henderit' \
     || wail
 echo "checking that break occurs after inline compact list" >&2
 echo "$output" | grep -Eq '[[:space:]]+45[[:space:]]{6}obey' || wail
+echo "checking that argumentless IP call in compact list produces" \
+    "inter-paragraph space" >&2
+echo "$output" | grep -Eq '[[:space:]]+50[[:space:]]+$' || wail
 
 test -z "$fail"
 
