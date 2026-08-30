@@ -1128,9 +1128,13 @@ is one of
 or
 .RB \%\[lq] itemized \[rq].
 .
+.I "groff man"
+interprets
 .I compactness
-is a Boolean value directing suppression of inter-paragraph spacing
-between list items.
+as a Boolean value
+(positive integers are true,
+others false)
+directing suppression of inter-paragraph spacing between list items.
 .
 .I indentation
 specifies an indentation amount for the body of each list item;
