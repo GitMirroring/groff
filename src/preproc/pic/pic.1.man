@@ -1224,7 +1224,7 @@ for locating the midpoints of edges.
 GNU
 .B pic
 numbers vertices and midpoints in drawing order starting from
-.B 1 .
+.BR 1 .
 .
 You can abbreviate
 .B \%.vertex
