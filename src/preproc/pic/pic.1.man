@@ -1240,7 +1240,7 @@ as
 .
 .P
 For example,
-.IP
+.RS
 .EX
 arrow down
 polygon up 0.5 right 1 \[rs]
@@ -1248,10 +1248,8 @@ then down 0.5 right 1 \[rs]
 then down 0.5 left 1 \[rs]
 with .v2 at last line.end
 arrow down from last polygon.v4
+.RE
 .EE
-.
-.
-.P
 creates and correctly places a flowchart decision diamond.
 .
 .
