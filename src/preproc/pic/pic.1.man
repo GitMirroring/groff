@@ -214,103 +214,6 @@ Many of these differences also apply to later versions of AT&T
 .
 .
 .\" ====================================================================
-.SS "\*[tx] mode"
-.\" ====================================================================
-.
-\*[tx]-compatible output is produced when the
-.B \-t
-option is specified.
-.
-You must use a \*[tx] driver that supports
-.I tpic
-version 2 specials.
-.
-.RI ( tpic
-was a fork of AT&T
-.I pic \" AT&T
-by Tim Morgan of the University of California at Irvine that diverged
-from its source around 1984.
-.
-It is best known today for lending its name to a group of
-.B \[rs]special
-commands it produced for \*[tx].)
-.\" http://ftp.cs.stanford.edu/tex/texhax/texhax90.019
-.
-.
-.P
-Lines beginning with
-.B \[rs]
-are passed through unaltered except for a
-.B %
-suffix to avoid unwanted spaces.
-.
-Use this feature to change fonts or the value of
-.BR \[rs]baselineskip .
-.
-Other applications may produce undesirable results;
-use at your own risk.
-.
-By default,
-lines beginning with a dot are not treated specially\[em]but see the
-.B \-c
-option.
-.
-.
-.P
-In \*[tx] mode,
-.I @g@pic
-defines a vbox called
-.B \[rs]graph
-for each picture.
-.
-Use GNU
-.IR pic 's \" GNU
-.B figname
-command to change the name of the vbox.
-.
-You must print that vbox yourself using the command
-.
-.RS
-.EX
-\[rs]centerline{\[rs]box\[rs]graph}
-.EE
-.RE
-.
-for instance.
-.
-Since the vbox has a height of zero\[em]it is defined with
-.BR \[rs]vtop \[em]\c
-this produces slightly more vertical space above the picture than
-below it;
-.
-.RS
-.EX
-\[rs]centerline{\[rs]raise 1em\[rs]box\[rs]graph}
-.EE
-.RE
-.
-would avoid this.
-.
-To give the vbox a positive height and a depth of zero
-(as used by \*[lx]'s
-.IR \%graphics.sty ,
-for example),
-define the following macro in your document.
-.
-.RS
-.EX
-\[rs]def\[rs]gpicbox#1{%
-  \[rs]vbox{\[rs]unvbox\[rs]csname #1\[rs]endcsname\[rs]kern 0pt}}
-.EE
-.RE
-.
-You can then simply say
-.B \[rs]gpicbox{graph}
-instead of
-.BR \[rs]box\[rs]graph .
-.
-.
-.\" ====================================================================
 .SS "Update of global variables"
 .\" ====================================================================
 .
@@ -1470,6 +1373,103 @@ utility for converting
 .I pic
 input to a wide variety of other image formats,
 including SVG.
+.
+.
+.\" ====================================================================
+.SS "Generating \*[tx] output"
+.\" ====================================================================
+.
+\*[tx]-compatible output is produced when the
+.B \-t
+option is specified.
+.
+You must use a \*[tx] driver that supports
+.I tpic
+version 2 specials.
+.
+.RI ( tpic
+was a fork of AT&T
+.I pic \" AT&T
+by Tim Morgan of the University of California at Irvine that diverged
+from its source around 1984.
+.
+It is best known today for lending its name to a group of
+.B \[rs]special
+commands it produced for \*[tx].)
+.\" http://ftp.cs.stanford.edu/tex/texhax/texhax90.019
+.
+.
+.P
+Lines beginning with
+.B \[rs]
+are passed through unaltered except for a
+.B %
+suffix to avoid unwanted spaces.
+.
+Use this feature to change fonts or the value of
+.BR \[rs]baselineskip .
+.
+Other applications may produce undesirable results;
+use at your own risk.
+.
+By default,
+lines beginning with a dot are not treated specially\[em]but see the
+.B \-c
+option.
+.
+.
+.P
+In \*[tx] mode,
+.I @g@pic
+defines a vbox called
+.B \[rs]graph
+for each picture.
+.
+Use GNU
+.IR pic 's \" GNU
+.B figname
+command to change the name of the vbox.
+.
+You must print that vbox yourself using the command
+.
+.RS
+.EX
+\[rs]centerline{\[rs]box\[rs]graph}
+.EE
+.RE
+.
+for instance.
+.
+Since the vbox has a height of zero\[em]it is defined with
+.BR \[rs]vtop \[em]\c
+this produces slightly more vertical space above the picture than
+below it;
+.
+.RS
+.EX
+\[rs]centerline{\[rs]raise 1em\[rs]box\[rs]graph}
+.EE
+.RE
+.
+would avoid this.
+.
+To give the vbox a positive height and a depth of zero
+(as used by \*[lx]'s
+.IR \%graphics.sty ,
+for example),
+define the following macro in your document.
+.
+.RS
+.EX
+\[rs]def\[rs]gpicbox#1{%
+  \[rs]vbox{\[rs]unvbox\[rs]csname #1\[rs]endcsname\[rs]kern 0pt}}
+.EE
+.RE
+.
+You can then simply say
+.B \[rs]gpicbox{graph}
+instead of
+.BR \[rs]box\[rs]graph .
 .
 .
 .\" ====================================================================
