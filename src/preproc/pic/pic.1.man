@@ -11,7 +11,7 @@ or TeX
 .\"
 .\" Copyright 1989-2004 Free Software Foundation, Inc.
 .\"                2021 Doug McIlroy
-.\"           2021-2025 G. Branden Robinson
+.\"           2021-2026 G. Branden Robinson
 .\"                2024 Duncan Losin
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
