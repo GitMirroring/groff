@@ -1381,14 +1381,6 @@ Begin a floating keep.
 End (floating) keep.
 .
 .
-.P
-As an alternative to the keep mechanism,
-the
-.B ne
-request forces a page break if there is not at least the amount of
-vertical space specified in its argument remaining on the page.
-.
-.
 .br
 .ne 5v
 .PP
