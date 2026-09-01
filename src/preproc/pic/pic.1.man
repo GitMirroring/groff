@@ -397,7 +397,7 @@ clause is specified,
 GNU
 .I pic \" GNU
 reads lines only until encountering one beginning with
-.IR word ;
+.IR word ,
 which it then discards.
 .
 For example,
