@@ -1,5 +1,20 @@
 2026-09-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[ms]: Improve diagnostics involving keeps/diversions.
+
+	* tmac/s.tmac: Introduce new Boolean-valued register in `kp`
+	module, `kp*in-keep`, tracking that element of package state.
+	(pg@super-eject): Enhance diagnostic to supply a hint about why
+	a diversion might still be open when the document ends.
+	(KS, KF): Check `kp*in-keep`; if already true, throw error
+	diagnostic and return early.  Otherwise, make it true.
+	(KE): Make `kp*in-keep` false.  Clarify error diagnostic.
+
+	Fixes <https://savannah.gnu.org/bugs/?64466>.  Thanks to Doug
+	McIlroy for the report.
+
+2026-09-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* configure.ac: Defeat C23/C++23 presumption.  We want to be
 	able to build with ISO C99/C++98 compilers, but also invite
 	Gnulib to supply its own C11/C++11-ish `static_assert()`

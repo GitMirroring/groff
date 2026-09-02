@@ -834,7 +834,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .de pg@super-eject
 .br
 .if !'\\n(.z'' \{\
-.	ds @msg diversion open while ejecting page\"
+.	ds @msg diversion open while ejecting page;\"
+.	as @msg " possible .KS/.KF/.KE mismatch\"
 .	as @msg " (last file seen: \\*[@last-file-seen])\"
 .	@error-recover \\*[@msg]
 .	rm @msg
@@ -1047,12 +1048,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .\" ******** module kp ********
 .\" ***************************
 .\" Keeps.
+.nr kp*in-keep 0
 .de KS
 .br
+.if \\n[kp*in-keep] \{\
+.	@error ignoring .\\$0: cannot nest keeps
+.	return
+.\}
+.nr kp*in-keep 1
 .di kp@div
 ..
 .de KF
+.if \\n[kp*in-keep] \{\
+.	@error ignoring .\\$0: cannot nest keeps
+.	return
+.\}
 .if !'\\n(.z'' .@error-recover .KF while diversion open
+.nr kp*in-keep 1
 .di kp@fdiv
 .ev k
 .if \\n[@is-initialized] \{\
@@ -1062,9 +1074,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ..
 .de KE
 .nr kp*did-closure-succeed 0
+.nr kp*in-keep 0
 .if '\\n(.z'kp@div'  .kp*end
 .if '\\n(.z'kp@fdiv' .kp*fend
-.if !\\n[kp*did-closure-succeed] .@error .KE without .KS or .KF
+.if !\\n[kp*did-closure-succeed] .@error .KE without (valid) .KS or .KF
 .rr kp*did-closure-succeed
 ..
 .de @div-end!kp@div
