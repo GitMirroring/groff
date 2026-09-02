@@ -966,6 +966,7 @@ and Multics.
 ancestor
 .I RUNOFF
 was written in the MAD language by Jerry Saltzer
+.\" MAD: "Michigan Algorithmic Decoder", an ALGOL 58 implementation
 to prepare his Ph.D.\& thesis on the Compatible Time Sharing System
 (CTSS),
 a project of the Massachusetts Institute of Technology (MIT).
