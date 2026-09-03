@@ -5027,10 +5027,15 @@ see
 .B Hc
 sets the threshold for centering a heading.
 .
-Headings at levels above this value use the prevailing alignment
-(that is,
-they are not centered);
-see
+Headings at levels above this value use the prevailing alignment;
+that is,
+the
+.B H
+and
+.B HU
+macros do not force centering.
+.
+See
 .B H
 .RB ( 0 ).
 .
