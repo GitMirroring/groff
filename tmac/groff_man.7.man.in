@@ -270,7 +270,7 @@ we thus often use the verb \[lq]to set\[rq] in the sense
 .
 The formatter
 .MR @g@troff @MAN1EXT@
-collects words from the input and
+collects words from its input and
 .I fills
 output lines with as many as can fit.
 .
@@ -278,17 +278,22 @@ output lines with as many as can fit.
 are separated by spaces and newlines.
 .\" Also tabs and leaders, but let's not discuss those in man(7).
 .
-A transition to a new output line is called a
-.I break.
+While collection proceeds,
+an output line is termed
+.I pending.
 .
-Breaks can occur at explicit hyphens,
-at
+A
+.I break
+is a transition to a new output line;
+it occurs when the pending output line fills up
+after an explicit hyphen,
+a
 .B \e%
 or
 .B \e:
-escape sequences
+escape sequence
 (see subsection \[lq]Portability\[rq] below),
-or at predetermined locations in a word
+or at a predetermined location in a word
 if automatic hyphenation is enabled
 (see the
 .B \-rHY
@@ -401,12 +406,12 @@ If a macro accepts multiple arguments,
 those containing space \" or tab (in Plan 9 troff [only?])
 characters must be double-quoted to be interpreted correctly.
 .
-If you require an empty macro argument,
-specify it as a pair of neutral double quotes
-.RB ( \[dq]\^\[dq] ).
-.
-See section \[lq]Notes\[rq] below for examples of cases where better
-alternatives to empty arguments in macro calls are available.
+Specify an empty macro argument,
+if required,
+as a pair of neutral double quotes
+.RB ( \[dq]\^\[dq] );
+section \[lq]Notes\[rq] below
+presents alternatives to empty arguments in macro calls.
 _endif()dnl
 .
 Most macro arguments format as text in the output;
@@ -5007,7 +5012,7 @@ are the
 .I only
 reliable means of obtaining directional single quotation marks in AT&T
 .IR troff ; \" AT&T
-in that implementation,
+in its implementations,
 often no special character escape sequences exist to obtain them.
 .
 Further,
@@ -5065,8 +5070,7 @@ retries an update from the repository until it succeeds.
 .
 .P
 If this procedure seems complex,
-petition your distributor to revert their remapping of the
-\[ga] and \[aq] characters.
+petition your distributor to revert their remappings of \[ga] and \[aq].
 .RE
 .
 .
@@ -5079,8 +5083,7 @@ don't format correctly.
 .IP
 The
 .BI \[rs][ xx ]
-special character escape sequence is a
-GNU
+syntax is a GNU
 .I troff
 extension also supported by
 .I mandoc,
@@ -5105,7 +5108,7 @@ no closing parenthesis is used.
 .I xx
 must be exactly two characters;
 .MR groff_char @MAN7EXT@
-lists portable special character identifiers.
+marks special character identifiers that are portable.
 _endif()dnl
 .
 .
@@ -5210,7 +5213,7 @@ and the
 .BR LS / LE
 macros for
 .I groff
-1.25 (August 2026).
+1.25 (September 2026).
 .
 .
 .P
