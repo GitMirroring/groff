@@ -44,9 +44,16 @@ AM_SILENT_RULES([yes])
 # checks for programs
 # Autoconf [2.70,2.72] tries to cram C11 and C++11 down our throats.  We
 # don't (yet) want them.
+#
+# And we also need to defeat a presumption of C23 and C++23 availability
+# so that we can layer Gnulib's `static_assert` on top of our C99/C++98
+# source base.  groff doesn't use single-argument `static_assert`, but
+# Gnulib itself does.
 ac_cv_prog_cc_c11=no
+ac_cv_prog_cc_c23=no
 AC_PROG_CC
 ac_cv_prog_cxx_cxx11=no
+ac_cv_prog_cxx_cxx23=no
 AC_PROG_CXX
 gl_EARLY
 gl_INIT

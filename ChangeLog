@@ -1,3 +1,12 @@
+2026-09-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* configure.ac: Defeat C23/C++23 presumption.  We want to be
+	able to build with ISO C99/C++98 compilers, but also invite
+	Gnulib to supply its own C11/C++11-ish `static_assert()`
+	implementation.
+	See: <https://cgit.git.savannah.gnu.org/cgit/gnulib.git/commit/\
+	?id=a4aa733b3651ed437d37fe51f14b8f5986e7ef8e>.
+
 2026-09-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* gnulib: Update stable/2026-07 branch to pick up bug fixes.
