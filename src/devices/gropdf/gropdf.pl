@@ -331,7 +331,19 @@ my @defaultmb=(0,0,595,842);
 my $stream='';  # Current Text/Graphics stream
 my $cftsz=10;   # Current font sz
 my $cft;	# Current Font
-my $lwidth=1;   # current linewidth
+# There are two ways of setting the line width for drawn lines in groff.
+# The old way (used by at least tbl if 'linesize(n)' used) is to calculate
+# the width based on the current font size (.ps n) using the formula:-
+#
+#     ((($desc{res}/(72*$desc{sizescale}))*$linewidth*$cftsz)/1000)
+#
+# $linewidth defaults to 40 so 'linesize(1)' will result in lines being
+# drawn at .04 pts.
+#
+# Groff introduced a new way of setting line width with \D't n' in millipoints
+my $lwidtht=-1;   # current linewidth (from Dt / unitwidth) -1 means off
+my $lwidths=.04;  # current linewidth (from s)
+my $outwidth=-1;  # current linewidth in pdf, -1 = not set
 my $linecap=1;
 my $linejoin=1;
 my $textcol=''; # Current groff text
@@ -3917,20 +3929,26 @@ sub do_s
     {
 	PutLine();
 	$cftsz=$par;
-	Set_LWidth() if $lwidth < 1;
 	$fontchg=1;
     }
     else
     {
 	$cftsz=$par;
-	Set_LWidth() if $lwidth < 1;
     }
+
+    $lwidths=((($desc{res}/(72*$desc{sizescale}))*$linewidth*$cftsz)/1000);
 }
 
 sub Set_LWidth
 {
-    IsGraphic();
-    $stream.=((($desc{res}/(72*$desc{sizescale}))*$linewidth*$cftsz)/1000)." w\n";
+    my $lw=d3(($lwidtht==-1)?$lwidths:$lwidtht);
+
+    if ($lw != $outwidth)
+    {
+	$stream.="$lw w\n";
+	$outwidth=$lw;
+    }
+
     return;
 }
 
@@ -4022,6 +4040,7 @@ sub do_D
     $par=substr($par,1);
 
     IsGraphic();
+    Set_LWidth();
 
     if ($Dcmd eq 'F')
     {
@@ -4177,11 +4196,10 @@ sub do_D
 	foreach my $p (@p) { $p/=$unitwidth; }
 #	$xpos+=$p[0]*100;	       # WTF!!!
 #	int lw = ((font::res/(72*font::sizescale))*linewidth*env->size)/1000;
-	$p[0]=(($desc{res}/(72*$desc{sizescale}))*$linewidth*$cftsz)/1000 if $p[0] < 0;
-	$lwidth=$p[0];
-	$stream.="$p[0] w\n";
+	$lwidtht=$p[0];
+	$lwidtht=-1 if $lwidtht < 0;
 	$poschg=1;
-	$xpos+=$lwidth;
+	$xpos+=$lwidtht;
     }
     elsif ($Dcmd eq 'a')
     {
@@ -4292,7 +4310,7 @@ sub PlotArcSegment
     my $cos=sprintf("%0.5f",cos($ang));
     my $sin=sprintf("%0.5f",sin($ang));
     my @mat=($cos,$sin,-$sin,$cos,0,0);
-    my $lw=$lwidth/$r;
+    my $lw=$outwidth/$r;
 
     if ($frot)
     {

@@ -1,3 +1,33 @@
+2026-09-03  Deri James  <deri@chuzzlewit.myzen.co.uk>
+
+	Make gropdf behave the same as grops wrt stroked line width.
+
+	The issue is that grops has 2 ways of setting the line width:-
+
+	Mode 1 (the original - used by tbl if you include linesize(n))
+	is to make lines proportional to the current font size.
+
+	Mode 2 (a groff extension) is to use the drawing command \D't n'
+	(millipoints).
+
+	Issuing \D't -1' switches to mode 1, any positive number selects
+	mode 2.
+
+	grops starts in mode 1, gropdf starts in mode 2, this changes
+	gropdf to start in mode 1.
+
+	* src/devices/gropdf/gropdf.pl (initial): Replace single 'lwidth'
+	with separate 'lwidths' (mode 1) and 'lwidtht' (mode 2). 'outwidth'
+	is the current linewidth in the output stream.
+	(sub do_s): Don't call Set_LWidth() each time font size changes,
+	only needed if a drawing command is received, but do set 'lwidths'
+	to a proportional width.
+	(Set_LWidth()): Output relevant lwidth only if different from
+	current setting.
+	(sub do_D t): Set 'lwidtht'.
+	(sub PlotArcSegment): Now use 'outwidth' which is currently set
+	width.
+
 2026-08-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/an.tmac (IP): If invoked without arguments, call
