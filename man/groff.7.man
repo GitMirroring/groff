@@ -7158,8 +7158,7 @@ but the polygon is filled.
 .TP
 .BI \[rs]D\[aq]t\~ "n" \[aq]
 Set stroke thickness of geometric objects to
-.RI to\~ n
-basic units.
+.IR n\~ "basic units."
 .
 A zero
 .I n

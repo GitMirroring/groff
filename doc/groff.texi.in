@@ -19612,10 +19612,15 @@ polygon would occlude the text.
 @item \D't @var{n}'
 @cindex line thickness (@samp{\D't @dots{}'})
 @cindex thickness of lines (@samp{\D't @dots{}'})
-Set the stroke thickness of geometric objects to @var{n} basic units.  A
-zero @var{n} selects the minimum supported thickness.  A negative
-@var{n} selects a thickness proportional to the type size; this is the
-default.
+Set the stroke thickness of geometric objects to
+@var{n}@tie{}basic units.
+A zero
+@var{n}
+selects the minimum supported thickness.
+A negative
+@var{n}
+selects a thickness proportional to the type size;
+this is the default.
 @end table
 @endDefesc
 @c END Keep (roughly) parallel with subsection "Drawing commands" of
