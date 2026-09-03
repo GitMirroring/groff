@@ -288,10 +288,8 @@ documents that expect it to always be available.
 .
 .P
 .I \%grohtml
-furthermore supports a naming scheme for East Asian typefaces
-shared with
-.MR gropdf @MAN1EXT@ ,
-.MR grops @MAN1EXT@ ,
+shares a naming scheme for East Asian typefaces with
+.MR grops @MAN1EXT@
 and
 .MR grotty @MAN1EXT@ .
 .

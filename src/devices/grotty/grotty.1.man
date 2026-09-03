@@ -422,8 +422,7 @@ attempts to set or change the font family or type size are ignored.
 .P
 .I grotty
 shares a naming scheme for East Asian typefaces with
-.MR grohtml @MAN1EXT@ ,
-.MR gropdf @MAN1EXT@ ,
+.MR grohtml @MAN1EXT@
 and
 .MR grops @MAN1EXT@ .
 .
