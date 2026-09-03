@@ -563,7 +563,8 @@ or
 .B \-h
 Use literal horizontal tab characters in the output.
 .
-Tabs are assumed to be set every 8 columns.
+.I \%grotty
+assumes that tabs are set every 8 columns.
 .
 .
 .TP
