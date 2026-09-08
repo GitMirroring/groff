@@ -96,9 +96,7 @@ input into the language understood by
 It copies each
 .IR file 's
 contents to the standard output stream,
-transforming each
-.I "table region"
-between lines starting with
+transforming input between lines starting with
 .B .TS
 and
 .B .TE
@@ -145,14 +143,17 @@ reads the standard input stream.
 .\" ====================================================================
 .
 .I @g@tbl
-expects to find table descriptions between input lines that begin with
+expects to find a
+.I "table region"
+between input lines that begin with
 .B .TS
 (table start)
 and
 .B .TE
 (table end).
 .
-Each such table region encloses one or more table descriptions.
+Each table region encloses one or more
+.I "table descriptions."
 .
 Within a table region,
 table descriptions beyond the first must each be preceded
