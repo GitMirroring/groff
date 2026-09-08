@@ -4940,7 +4940,7 @@ when set inline
 and
 .BR EE ),
 should be quoted
-to ensure that the boundaries of the literal
+to ensure that its boundaries
 are clear even when the material is stripped of font styling
 by,
 for example,
