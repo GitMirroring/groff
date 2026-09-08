@@ -1,3 +1,10 @@
+2026-09-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	Regression-test Savannah #68667.
+
+	* tests/lists-indent-correctly-with-scaling-unit.sh: Do it.
+	* mm.am (mm_TESTS): Run test.
+
 2026-08-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m.tmac: Fix misleading diagnostic issued when `S` register

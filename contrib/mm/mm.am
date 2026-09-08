@@ -88,6 +88,7 @@ mm_TESTS = \
   contrib/mm/tests/indexing-works.sh \
   contrib/mm/tests/letter-with-bottom-block-works.sh \
   contrib/mm/tests/letters-format-correctly.sh \
+  contrib/mm/tests/lists-indent-correctly-with-scaling-unit.sh \
   contrib/mm/tests/lists-indent-correctly.sh \
   contrib/mm/tests/marks-in-nested-ML-lists-are-correct.sh \
   contrib/mm/tests/memoranda-format-correctly.sh \
