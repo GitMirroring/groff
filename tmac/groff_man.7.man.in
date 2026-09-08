@@ -3871,7 +3871,16 @@ and
 SunOS\~4.0 (1988) added
 .BR SB .
 .
-Unix System\~V Release\~4 (1988) incorporated the
+Unix System\~V Release\~4 (1989) incorporated the
+.\" It's unclear, and may be ill-defined, when SVr4 was "released", as
+.\" it seems to have been progressively rolled out to various licensees
+.\" over time--even if social media tech bros claim to have innovated
+.\" that practice.  Contemporary materials indicate that SVr4 was
+.\" _announced_ in October 1988 jointly by AT&T and Sun, but its source
+.\" code tape, a "reference implementation", didn't ship to the public
+.\" for over a year (in a preview of the game Microsoft would later play
+.\" with "Chicago", later known as Windows 95).  GBR uses the 1989 date
+.\" for consistency with his work on the ncurses man pages.
 .B lq
 and
 .B rq
