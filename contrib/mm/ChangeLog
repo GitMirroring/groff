@@ -1,5 +1,20 @@
 2026-09-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (VL, BVL): Alter internal logic to avoid interpolating
+	first macro argument too soon.  Because `LB` expects this
+	numeric expression to be implicitly in ens, not basic units, we
+	can't store it to a register first lest we lose any associated
+	scaling unit, throwing off `LB`'s computation of text
+	indentation.
+
+	Fixes <https://savannah.gnu.org/bugs/?68667>.  Thanks to Deri
+	James for the report of erroneous `BVL` behavior and for
+	tracking down a relevant commit.  Investigation reveals that
+	`VL` had the same defect.  Problems introduced by me in commits
+	084c44dd7b and 0afa651fdd, both 2024-07-02.
+
+2026-09-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Regression-test Savannah #68667.
 
 	* tests/lists-indent-correctly-with-scaling-unit.sh: Do it.
