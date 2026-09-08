@@ -745,10 +745,12 @@ to end the list.
 .RI [ sequence-number\~ [ title ]]
 Begin an appendix.
 .
+Appendices have an associated counter.
+.
 If
 .I sequence-number
 is omitted,
-it increments
+the counter increments
 (or is initialized
 .RB to\~ 1 ,
 .\" ...technically, initialized to zero but autoincremented.
