@@ -332,14 +332,14 @@ All other input lines are
 .I "text lines"
 to be formatted.
 .
+.I man
+is a
+.I "macro package."
+.
 A
 .I macro
 collects control and/or text lines
 to ease document composition.
-.
-.I man
-is a
-.I "macro package."
 .
 To call a macro,
 put its name after a dot on a control line.
