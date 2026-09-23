@@ -2594,6 +2594,10 @@ sub LoadPDF
         LoadStream($pdf->[$ObjStm],$pdf);
         my $pos=$pdf->[$ObjStm]->{OBJ}->{First};
         my $s=$pdf->[$ObjStm]->{STREAM};
+        while ($s=~m/(\s+%\s*\w*)\n/gp)
+        {
+	    $s=${^PREMATCH}.(" " x length($1))."\n".${^POSTMATCH}
+        }
         my @o=split(' ',substr($s,0,$pos));
         substr($s,0,$pos)='';
         push(@o,-1,length($s));
