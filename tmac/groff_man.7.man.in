@@ -3677,11 +3677,12 @@ text on the next line,
 which can be further formatted with a macro,
 is set smaller and in bold.
 .
-Use of this macro,
+.I groff
+deprecates use of this macro,
 an extension originating in SunOS\~4.0
-.IR troff ,\" SunOS
-.\" ...and which Clark included in groff man(7) from 1.01 or earlier...
-is deprecated.
+.IR troff .\" SunOS
+.ne 2v
+.\" ...and which Clark included in groff man(7) from 1.01 or earlier.
 .
 .B SM
 without an argument,
