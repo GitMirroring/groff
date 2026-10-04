@@ -61,14 +61,14 @@ intersection of multiple constraints.
 1.  We use GNU Automake.
 2.  We don't run Make recursively.  (Quod vide Peter Miller.)
 3.  We try to support both in-tree and out-of-tree ("VPATH") builds.
-4.  We try to support both GNU Make and BSD Make.  (This is an unusual
-    and unpopular choice, and makes partisans of both tools angry.)
+4.  We try to use only POSIX Make features so that our build procedure
+    is reasonably portable.
 
 If you're having problems with Makefile rules, double check that you
 haven't fallen into one of several traps.
 
-A.  You can't use pattern rules ("%.foo: %.bar").  BSD Make doesn't
-    support them.
+A.  You can't use pattern rules ("%.foo: %.bar").  POSIX does not
+    specify them.
 
 B.  You can use the special variable `$<` _only_ in suffix rules.  POSIX
     Issue 8 (2024) doesn't specify it as having meaning anywhere else.
@@ -89,16 +89,17 @@ D.  Prerequisites in the source tree must be written relative to the
 	$(AM_V_at)$(MKDIR_P) $(top_builddir)/man
 	$(AM_V_GEN)$(SOELIMBIN) $(man_srcdir)/groff.7.man.in > $@
 
-    Bear in mind that, roughly speaking, BSD Make populates the nodes in
-    its dependency graph with _strings_, and GNU Make populates the
-    nodes with _references to files_.  For example, GNU Make knows that
-    '././foo' and './foo' are the same.  BSD Make does not.
+    Bear in mind that, roughly speaking, Make programs descended from
+    4.4BSD ("BSD Make") populate the nodes in its dependency graph with
+    _strings_, and GNU Make populates the nodes with _references to
+    files_.  For example, GNU Make knows that '././foo' and './foo' are
+    the same.  BSD Make does not.
 
 E.  Notice how we used `soelim` as the name of the target's
     _prerequisite_, but the macro `SOELIMBIN` in the _recipe_.  That's
-    because the prerequisite is interpreted by Make. Interpretatons can
-    differ--note point D above--whereas the recipe is interpreted (after
-    Make macro and special variable expansion) by the shell.
+    because the prerequisite is interpreted by Make.  Interpretations
+    can differ--note point D above--whereas the recipe is interpreted
+    (after Make macro and special variable expansion) by the shell.
 
 F.  Machine-language programs that the groff build creates and then uses
     to generate other build targets via shell commands should be
