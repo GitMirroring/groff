@@ -4972,8 +4972,8 @@ inline examples,
 mentions of individual characters or short strings,
 and (sub)section headings in man pages\[rq].
 .
-Multi-word literals,
-such as Unix commands with arguments,
+A multi-word literal,
+such as a Unix command with arguments,
 when set inline
 (as opposed to displayed between
 .B EX
