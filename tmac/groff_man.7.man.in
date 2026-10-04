@@ -3152,8 +3152,8 @@ and perhaps with some other formatters.
 .B \ee
 Format the
 .I roff
-escape character on the output;
-widely used in man pages to render a backslash glyph.
+escape character as a glyph;
+use this to format a backslash.
 .
 .\" Don't bold the ec request in this discussion; it's not a major
 .\" topic of _this_ page as it would be in groff(7).  Also, we don't
@@ -3161,7 +3161,7 @@ widely used in man pages to render a backslash glyph.
 .\" attention to it.
 It works reliably as long as the \[lq]ec\[rq] request is not used,
 which should never happen in man pages,
-and it is slightly more portable than the more explicit
+and is portable to legacy implementations that lack the
 .B \e[rs]
 (\[lq]reverse solidus\[rq]) special character escape sequence.
 .
@@ -3297,11 +3297,8 @@ Solaris
 .
 .TP
 .B \e\-
-Minus sign.
-.
-.B \e\-
-produces the basic Latin hyphen-minus (U+002D) specifying Unix
-command-line options and frequently used in file names.
+Minus sign,
+used as the Unix command-line option prefix and in file names.
 .
 .RB \[lq] \- \[rq]
 is a hyphen in
@@ -3327,10 +3324,8 @@ as a right single quotation mark.
 .B \e[oq]
 .TQ
 .B \e[cq]
-Opening (left) and closing (right) single quotation marks.
-.
-Use these for paired directional single quotes,
-\[oq]like this\[cq].
+Opening (left) and closing (right) single quotation marks,
+used for \[oq]paired directional single quotes\[cq].
 .
 .
 .TP
@@ -3365,9 +3360,7 @@ as an argument delimiter.
 .TQ
 .B \e[rq]
 Left and right double quotation marks.
-.
-Use these for paired directional double quotes,
-\[lq]like this\[rq].
+used for \[oq]paired directional double quotes\[cq].
 .
 .
 .TP
