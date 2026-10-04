@@ -295,9 +295,9 @@ escape sequence
 (see subsection \[lq]Portability\[rq] below),
 or at a predetermined location in a word
 if automatic hyphenation is enabled
-(see the
+(see
 .B \-rHY
-option in section \[lq]Options\[rq] below).
+in section \[lq]Options\[rq] below).
 .
 An output line may be supplemented with
 .I "inter-sentence space,"
@@ -2797,7 +2797,7 @@ control structures,
 or register,
 string,
 and macro definitions,
-causing a document's contents
+causing document contents
 to be omitted
 or presented incomprehensibly.
 .
