@@ -805,7 +805,9 @@ macro call if no (sub-)sectioning or ordinary paragraphing macro has
 intervened;
 or the amount of the
 .B IN
-register.
+register
+(see section \[lq]Options\[rq] below).
+.
 .
 .B RS
 calls can nest;
@@ -933,7 +935,8 @@ Text on output lines after the first is indented by
 if specified,
 and by the amount of the
 .B IN
-register otherwise.
+register otherwise
+(see section \[lq]Options\[rq] below).
 .
 .
 .IP
@@ -968,14 +971,13 @@ Text on subsequent lines is indented by
 if specified,
 and by the amount of the
 .B IN
-register otherwise.
+register otherwise
+(see section \[lq]Options\[rq] below).
 .
 If the tag,
 plus the \[lq]tag spacing\[rq] stored in the
 .B TS
-register
-(see section \[lq]Options\[rq] below)
-is wider than the indentation,
+register is wider than the indentation,
 the package breaks the line after the tag.
 _ifstyle()dnl
 .
