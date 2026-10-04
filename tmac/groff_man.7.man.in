@@ -2510,19 +2510,29 @@ device.
 .SS Registers
 .\" ====================================================================
 .
-Registers are described in section \[lq]Options\[rq] below.
+The
+.I man
+package reserves certain registers
+to permit a document's readers to fine tune its rendering.
 .
-They can be set not only on the command line but in the site
+By not manipulating these registers,
+the document honors user preferences.
+.
+Configure such \[lq]stylesheet\[rq] registers on the command line
+(see section \[lq]Options\[rq] below)
+or in the
 .I man.local
-file as well;
-see section \[lq]Files\[rq] below.
+file
+(see section \[lq]Files\[rq] below).
 .
 .
 .\" ====================================================================
 .SS Strings
 .\" ====================================================================
 .
-The following strings are defined for use in man pages.
+The
+.I man
+package defines the following strings for use by documents.
 .
 _ifnotstyle()dnl
 None of these is necessary in man pages
@@ -2532,7 +2542,7 @@ see
 _endif()dnl
 .
 .I "groff man"
-supports others for configuration of rendering parameters;
+reserves others for configuration of rendering parameters;
 see section \[lq]Options\[rq] below.
 .
 .
@@ -4684,9 +4694,17 @@ especially when no mark argument is supplied\[em]an indentation argument
 is not required.
 .
 By setting an explicit indentation,
-you may be overriding the reader's preference as set with the
-.B \-rIN
-option.
+you may be overriding the reader's
+.\" avoid stranded line at page top
+.\" ...and then hyphenated word at preceding page bottom
+.\" Note: `ne` defeats hyphenation value 2, because the trap isn't
+.\" "close" yet.
+.if t \%\c
+preference
+.ne 2v
+as set by the
+.B IN
+register.
 .
 If your page renders adequately without one,
 use the simpler form.
