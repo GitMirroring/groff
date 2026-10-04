@@ -2724,7 +2724,7 @@ exclusively.
 One can
 .I maintain
 that input in a more convenient encoding,
-using
+then use
 .MR preconv @MAN1EXT@ ,
 as with
 .MR groff @MAN1EXT@ 's
