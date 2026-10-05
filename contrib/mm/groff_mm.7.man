@@ -5781,9 +5781,9 @@ see section \[lq]Files\[rq] below.
 .
 .P
 .BR LT 's
-behavior depends on the
+behavior depends on its
 .I style
-argument given to it;
+argument;
 it calls macros with names suffixed accordingly.
 .
 It is therefore possible to define additional letter types,
