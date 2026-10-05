@@ -3135,6 +3135,8 @@ bordered boxes when the
 output device is used.
 .
 .
+.br
+.ne 2v
 .PP
 .IR "Groff: The GNU Implementation of troff" ,
 by Trent A.\& Fisher and Werner Lemberg,

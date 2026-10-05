@@ -570,6 +570,8 @@ adapted for
 by James Clark and G.\& Branden Robinson.
 .
 .
+.br
+.ne 2v
 .P
 .IR "Groff: The GNU Implementation of troff" ,
 by Trent A.\& Fisher and Werner Lemberg,
