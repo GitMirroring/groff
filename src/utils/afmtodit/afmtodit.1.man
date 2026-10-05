@@ -654,6 +654,8 @@ these messages are suppressed in favor of a count of how many
 would have been emitted were the option not present.
 .
 .
+.br
+.ne 4v
 .\" ====================================================================
 .SH "See also"
 .\" ====================================================================

@@ -1168,6 +1168,8 @@ because a malicious shell script that requires no arguments
 compromises the host just as effectively.
 .
 .
+.br
+.ne 4v
 .\" ====================================================================
 .SH "See also"
 .\" ====================================================================
