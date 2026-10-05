@@ -4713,6 +4713,24 @@ The default
 .SH Registers
 .\" ====================================================================
 .
+Register names of one character in length generally
+.I must
+be configured from the command line,
+because they affect
+.IR mm 's
+initialization.
+.
+Those of greater length generally
+.I cannot
+be usefully configured at the command line;
+package initialization overrides their assignments.
+.
+Use
+.B nr
+requests at the beginning of input to configure the latter kind.
+.
+.
+.P
 Default register values,
 where meaningful,
 are shown in parentheses.
