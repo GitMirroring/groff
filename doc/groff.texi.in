@@ -506,7 +506,7 @@ Documentation License''.
 @title groff
 @subtitle The GNU implementation of @code{troff}
 @subtitle version @VERSION@
-@subtitle September 2026
+@subtitle October 2026
 @author Trent@tie{}A.@: Fisher
 @author Werner Lemberg
 @author G.@tie{}Branden Robinson
@@ -22543,7 +22543,7 @@ as-is.
 Special characters that typeset as Unicode basic Latin characters
 are translated to basic Latin characters accordingly.
 So that any Unicode code point can be represented
-in device extension commands,
+in a device extension command,
 for example in an author's name in document metadata
 or as a usefully named bookmark or hyperlink anchor,
 GNU

@@ -1570,8 +1570,8 @@ that lack a Unicode definition.
 .
 .
 .IP
-So that any Unicode code point can be represented in device extension
-commands,
+So that any Unicode code point can be represented
+in a device extension command,
 for example in an author's name in document metadata
 or as a usefully named bookmark or hyperlink anchor,
 GNU
