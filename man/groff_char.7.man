@@ -598,7 +598,7 @@ L2 Lf(CR)1 L L2 Lf(CR)1 L.
 \[Fc]	\e[Fc]	right double chevron	\[^e]	\e[\[ha]e]	e circumflex
 \[14]	\e[14]	one quarter symbol	\[:e]	\e[:e]	e dieresis
 \[12]	\e[12]	one half symbol	\[`i]	\e[\[ga]i]	i grave
-\[34]	\e[34]	three quarters symbol	\['i]	\e[\[aq]i]	e acute
+\[34]	\e[34]	three quarters symbol	\['i]	\e[\[aq]i]	i acute
 \[r?]	\e[r?]	inverted question mark	\[^i]	\e[\[ha]i]	i circumflex
 \[`A]	\e[\[ga]A]	A grave	\[:i]	\e[:i]	i dieresis
 \['A]	\e[\[aq]A]	A acute	\[Sd]	\e[Sd]	lowercase eth

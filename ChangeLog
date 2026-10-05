@@ -1,3 +1,12 @@
+2026-10-05  Álvar Ibeas <a.ibeas@gmx.com>
+
+	* man/groff_char(7)
+	(Eight-bit encodings and Latin-1 supplement): Fix typo in
+	description of special character `'i`.
+
+	Fixes <https://savannah.gnu.org/bugs/?68741>.  [Problem
+	introduced by me in commit 3e583c9541, 2020-09-01.  --GBR]
+
 2026-10-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[grn]: Fix Savannah #68686.
