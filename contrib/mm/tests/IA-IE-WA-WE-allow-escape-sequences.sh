@@ -73,11 +73,12 @@ echo "$output"
 
 echo "checking that escape sequences are handled between WA and WE" >&2
 # "Édouard"
-echo "$output" | grep -q '^0000360.*c3 89 64 6f 75 61 72 64' || wail
+echo "$output" \
+    | grep -Eq '^0000360.*c3 +89 +64 +6f +75 +61 +72 +64' || wail
 
 echo "checking that escape sequences are handled between IA and IE" >&2
 # "ndé"
-echo "$output" | grep -q '^0000720 6e 64 c3 a9' || wail
+echo "$output" | grep -Eq '^0000720 +6e +64 +c3 +a9' || wail
 
 test -z "$fail"
 
