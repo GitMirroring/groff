@@ -476,8 +476,8 @@ Here is some advice on writing portable automated test scripts.
   might need to be weakened to the following to work on macOS.
     grep -Eqx '0000000 +A +\\b +B +\\b +C       D +\\n *'
 
-* The "od" command on macOS, NetBSD, and OpenBSD puts extra space
-  characters between the hexadecimal values when using the "-t x1"
+* The "od" command on macOS, FreeBSD, NetBSD, and OpenBSD puts extra
+  space characters between the hexadecimal values when using the "-t x1"
   format; GNU od does not.
 
   So a regex like this that works with GNU od:
@@ -486,7 +486,7 @@ Here is some advice on writing portable automated test scripts.
     grep -q '81  *30  *55  *81  *30  *56  *81  *6c  *e2'
 
 * The "od" command on FreeBSD 14.0 and 15.0, NetBSD 10.0, and OpenBSD
-  7.8 (at least) pad out the line length with spaces to 73 columns; GNU
+  7.8 (at least) pads out the line length with spaces to 73 columns; GNU
   od does not.
 
   So a regex like this that works with GNU od:
