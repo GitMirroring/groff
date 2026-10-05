@@ -1539,11 +1539,7 @@ and spaces in
 .IR character-sequence .
 .
 .
-.\" XXX: Force paragraph spacing here.  I know--it's terrible.  And
-.\" unnecessary once we get this giant discussion moved to its own
-.\" (sub)section.
-.sp \n[PD]u
-.\"IP
+.IP
 The formatter's special character repertoire is unknown
 to output drivers outside of glyphs named in a device's fonts,
 and even then they may not possess complete coverage of the names
@@ -1573,8 +1569,7 @@ the baseline rule,
 that lack a Unicode definition.
 .
 .
-.sp \n[PD]u
-.\"IP
+.IP
 So that any Unicode code point can be represented in device extension
 commands,
 for example in an author's name in document metadata
@@ -1596,8 +1591,7 @@ For these transformations,
 the formatter ignores character translations and definitions.
 .
 .
-.sp \n[PD]u
-.\"IP
+.IP
 GNU
 .I troff \" GNU
 converts several ordinary characters that typeset as non-basic Latin
@@ -1620,9 +1614,9 @@ transforms to
 .RB \[lq]\| \[rs][u2019] \|\[rq].
 .
 .
-.sp \n[PD]u
+.br
 .ne 3v
-.\"IP
+.IP
 Contrariwise,
 GNU
 .I troff \" GNU
