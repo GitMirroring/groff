@@ -35,9 +35,10 @@ EXTRA_DIST += \
   man/groff_tmac.5.man \
   man/roff.7.man
 
-man/groff.7.man: man/groff.7.man.in soelim
-	$(AM_V_at)$(MKDIR_P) $(top_builddir)/man
-	$(AM_V_GEN)$(SOELIMBIN) $(man_srcdir)/groff.7.man.in > $@
+man/groff.7.man: $(DOC_LINE_LAYOUT_ROFF) man/groff.7.man.in soelim
+	$(AM_V_at)$(MKDIR_P) $(top_builddir)/man \
+	&& $(SOELIMBIN) -I `dirname $(DOC_LINE_LAYOUT_ROFF)` \
+	  $(man_srcdir)/groff.7.man.in > $@
 
 # Case of out-of-source build: we must create the 'man' directory.
 BUILT_SOURCES += man

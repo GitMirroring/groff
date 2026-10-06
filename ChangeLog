@@ -1,5 +1,14 @@
 2026-10-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* man/man.am (man/groff.7.man): Fix man/groff.7.man generation.
+	Add `$(DOC_LINE_LAYOUT_ROFF)` as prerequisite.  Run soelim(1)
+	with a `-I` so that even in a "distcheck" build (or an
+	exotically out-of-tree ordinary one), that file can be found.
+
+	Continues fixing Savannah #68716.
+
+2026-10-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* doc/doc.am: Tidy up.  Define `DOC_LINE_LAYOUT_ROFF` macro
 	before appendment to `EXTRA_DIST` macro so that we can
 	interpolate it there.
