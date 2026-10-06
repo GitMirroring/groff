@@ -373,7 +373,7 @@ given with option
 .
 .TP
 .BI \-e\~ enc-file
-Re\[e ad]code the PostScript font to use the encoding described
+Re\[e ad]ncode the PostScript font to use the encoding described
 in
 .IR enc-file .
 .
