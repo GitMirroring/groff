@@ -391,12 +391,12 @@ ASCII
 STX,
 ETX,
 and
-BEL
-(Control+B,
+BEL\c
+\[em]Control+B,
 Control+C,
 and
-Control+G)
-respectively)
+Control+G,
+respectively\[em]\c
 have been observed in
 .I roff
 documents,
