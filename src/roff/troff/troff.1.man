@@ -727,7 +727,7 @@ T}
 .
 .sp \n[PD]u
 font	131072	T{
-A non-existent font was selected.
+An attempt was made to select a font that does not exist.
 .
 This category is enabled by default.
 T}

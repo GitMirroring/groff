@@ -23760,7 +23760,7 @@ occurs in compatibility mode.
 
 @item font
 @itemx 131072
-A non-existent font was selected.
+An attempt was made to select a font that does not exist.
 This category is enabled by default.
 
 @item ig
