@@ -748,7 +748,7 @@ and
 .I str2
 for (in)equality.
 .
-String comparison expressions must be parenthesised in some contexts
+String comparison expressions must be parenthesized in some contexts
 to avoid ambiguity.
 .LE
 .
