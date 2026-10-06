@@ -70,6 +70,9 @@ DOC_PDFMOM = \
   GROFF_BIN_PATH="$(GROFF_BIN_PATH)" \
   $(PDFMOMBIN) $(MFLAG) $(FFLAG) -ww -b $(pdfmomoption) --roff
 
+# We avoid GNUish use of `$<` in target rule, so define macro to DRY.
+DOC_LINE_LAYOUT_ROFF = doc/line-layout.roff
+
 # These images are used by several documents in the groff source tree.
 DOC_GNU_EPS = doc/gnu.eps
 DOC_GNU_PNG = doc/gnu.png
@@ -882,7 +885,7 @@ EXTRA_DIST += \
   doc/gnu.xpm \
   $(DOC_GNU_EPS) \
   $(DOC_GNU_PNG) \
-  doc/line-layout.roff \
+  $(DOC_LINE_LAYOUT_ROFF) \
   $(DOC_LINE_LAYOUT_EPS) \
   $(DOC_LINE_LAYOUT_PNG)
 
@@ -921,9 +924,6 @@ $(DOC_GNU_PNG): doc/gnu.xpm
 	  exit 1; \
 	fi; \
 	xpmtoppm $(top_srcdir)/doc/gnu.xpm | pnmtopng >$@
-
-# We avoid GNUish use of `$<` in target rule, so define macro to DRY.
-DOC_LINE_LAYOUT_ROFF = doc/line-layout.roff
 
 # We kludge in a copy of `DOC_LINE_LAYOUT_ROFF` because we GNU and BSD
 # Makes differ in `VPATH` handling such that we can't define that macro

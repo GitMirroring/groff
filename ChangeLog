@@ -1,3 +1,9 @@
+2026-10-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* doc/doc.am: Tidy up.  Define `DOC_LINE_LAYOUT_ROFF` macro
+	before appendment to `EXTRA_DIST` macro so that we can
+	interpolate it there.
+
 2026-10-05  Álvar Ibeas <a.ibeas@gmx.com>
 
 	* man/groff_char(7)
