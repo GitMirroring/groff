@@ -15625,8 +15625,8 @@ Stop the interpretation of a numerical expression.
 
 @Example
 \l'4i-'
-    @error{} warning: expected numeric expression,
-    @error{} got character "'"
+    @error{} error: numeric expression containing
+    @error{} character '"' is invalid
 \l'4i\&-'
     @result{} ----------------------------------------
 @endExample
