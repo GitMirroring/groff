@@ -15557,7 +15557,8 @@ character, and enjoys several applications.
 
 @itemize @bullet
 @item
-Prevent insertion of extra space after an end-of-sentence character.
+Prevent insertion of supplemental inter-sentence space
+after an end-of-sentence character.
 
 @Example
 Test.

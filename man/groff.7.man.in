@@ -2197,8 +2197,8 @@ which is constitutive of output but invisible.
 Its presence alters the interpretation context of a subsequent input
 character,
 and enjoys several applications:
-preventing the insertion of extra space after an end-of-sentence
-character,
+preventing insertion of supplemental inter-sentence space
+after an end-of-sentence character,
 preventing interpretation of a control character at the beginning of an
 input line,
 preventing kerning between two glyphs,
