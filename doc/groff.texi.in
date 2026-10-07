@@ -13458,6 +13458,7 @@ its body or running text---selecting a specific family only for titles
 or examples, for instance---and change the default family on the command
 line.
 
+@need 1000
 @DefreqList {fam, [@Var{family}]}
 @DefregItemx {.fam}
 @DefescItemx {\\F, , f, }
@@ -15555,6 +15556,7 @@ one.  Contrast an empty input document with one containing only
 Its presence alters the interpretation context of a subsequent input
 character, and enjoys several applications.
 
+@need 1000
 @itemize @bullet
 @item
 @cindex supplemental inter-sentence space, using dummy character to suppress
@@ -15633,6 +15635,7 @@ in an otherwise ambiguous context.
 @endExample
 @end itemize
 
+@need 1000
 The dummy character escape sequence sees use in macro definitions as a
 means of ensuring that arguments are treated as text even if they begin
 with spaces or control characters.
