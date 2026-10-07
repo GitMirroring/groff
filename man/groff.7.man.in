@@ -2202,9 +2202,11 @@ after an end-of-sentence character,
 preventing interpretation of a control character at the beginning of an
 input line,
 preventing kerning between two glyphs,
-and permitting the
+permitting the
 .B tr
-request to remap a character to \[lq]nothing\[rq].
+request to remap a character to \[lq]nothing\[rq],
+and marking the end of a numerical expression
+in an otherwise ambiguous context.
 .
 .B \[rs])
 works as

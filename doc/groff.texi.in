@@ -15621,7 +15621,8 @@ Post universitum, alea jacta est, OK?
 @endExample
 
 @item
-Stop the interpretation of a numerical expression.
+Mark the end of a numerical expression
+in an otherwise ambiguous context.
 
 @Example
 \l'4i-'
