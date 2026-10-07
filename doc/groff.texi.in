@@ -15966,12 +15966,14 @@ including the implicit page trap,
 interrupt this procedure.
 
 @item
+An interrupted break procedure resumes here
+after traps are handled.
 Apply any configured adjustment
-and marginal annotations@footnote{@xref{Output Line Annotation}.},
+and marginal annotations,@footnote{@xref{Output Line Annotation}.}
 and append the pending output line
-to the current diversion@footnote{@xref{Diversions}.}
-(often,
-the output device's current page).
+to the current diversion@footnote{@xref{Diversions}.}.
+(Often,
+the ``diversion'' corresponds to the the output device's current page.)
 
 @item
 @cindex extra post-vertical line space (@code{\x})
