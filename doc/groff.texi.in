@@ -15557,6 +15557,9 @@ character, and enjoys several applications.
 
 @itemize @bullet
 @item
+@cindex supplemental inter-sentence space, using dummy character to suppress
+@cindex inter-sentence space, supplemental, using dummy character to suppress
+@cindex space, supplemental inter-sentence, using dummy character to suppress
 Prevent insertion of supplemental inter-sentence space
 after an end-of-sentence character.
 
