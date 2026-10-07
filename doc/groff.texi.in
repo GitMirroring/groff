@@ -13239,7 +13239,7 @@ Select the typeface
 @var{font}.
 If
 @var{font}
-is an integer,
+is a non-negative integer,
 the formatter interprets it as a mounting position;
 the font mounted there is selected.
 If that position refers to an abstract style,
