@@ -5917,20 +5917,22 @@ static void chop_request() // .chop
     return;
   }
   symbol s = read_identifier();
-  assert(s != 0 /* nullptr */);
-  if (!s.is_null()) {
-    request_or_macro *p = lookup_request(s);
-    macro *m = p->to_macro();
-    if (0 /* nullptr */ == m)
-      error("cannot chop request '%1'", s.contents());
-    // TODO: If it's empty, do nothing, quietly?
-    else if (m->is_empty())
-      error("cannot chop empty %1 '%2'",
-	    (m->is_diversion() ? "diversion" : "macro or string"),
-	    s.contents());
-    else
-      m->chop();
+  if (s.is_null()) {
+    // The identifier was garbage, like `a\&b`.
+    skip_line();
+    return;
   }
+  request_or_macro *p = lookup_request(s);
+  macro *m = p->to_macro();
+  if (0 /* nullptr */ == m)
+    error("cannot chop request '%1'", s.contents());
+  // TODO: If it's empty, do nothing, quietly?
+  else if (m->is_empty())
+    error("cannot chop empty %1 '%2'",
+	  (m->is_diversion() ? "diversion" : "macro or string"),
+	  s.contents());
+  else
+    m->chop();
   skip_line();
 }
 
