@@ -45,6 +45,9 @@ troff
    character codes less than decimal 32 (except 10, the line feed) and
    greater than decimal 127.
 
+*  A new read-only, string-valued register `.pi` reports the output
+   pipeline constructed by one or more `pi` requests.
+
 *  A new read-only register `.ul` reports the count of productive input
    lines remaining to be underlined in the environment (as configured
    by either the `cu` or `ul` requests).

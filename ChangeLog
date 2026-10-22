@@ -1,5 +1,23 @@
 2026-10-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Implement `.pi` register for orthogonality and to make
+	the output filtration pipeline readily inspectable.
+
+	* src/roff/troff/input.cpp (pipe_command_reg): New file-local
+	class handles dynamically computed data.  (The class
+	`readonly_text_reg` is not appropriate because it has _static_
+	contents that are computed once only, at formatter startup.  The
+	global `pipe_command` is populated, and can be updated, by the
+	input stream--until output commences.)
+	(pipe_command_reg::get_string): Member function returns
+	`pipe_command` (a C string).
+
+	* doc/groff.texi.in (Host System Service Access):
+	* man/groff.7.man.in (Read-only registers):
+	* man/groff_diff.7.man (New register): Document it.
+
+2026-10-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (init_input_requests): Trivially
 	refactor.  Sort definitions of read-only registers in en_US
 	lexicographic order.

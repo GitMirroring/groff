@@ -5418,6 +5418,13 @@ Interpolate\~1 during page ejection,
 .
 .
 .TP
+.B \[rs]n[.pi]
+Interpolate the pipeline configured by
+.B pi
+requests.
+.
+.
+.TP
 .B \[rs]n[.pn]
 Interpolate next page number
 (either that set by

@@ -22150,7 +22150,8 @@ Dear Mr. Adollar,
 .ex
 @endExample
 
-@Defreq {pi, [@code{"}]@Var{command}}
+@DefreqList {pi, [@code{"}]@Var{command}}
+@DefregListEndx {.pi}
 Use
 the formatter's device-independent output
 as the input to the commands specified in
@@ -22167,16 +22168,16 @@ Multiple
 @code{pi}
 requests construct a multi-stage pipeline
 in the same order as the formatter encounters the requests.
-Thus,
+The read-only register
+@code{.pi}
+interpolates the configured pipeline.
 
 @Example
 .pi foo
 .pi bar
+.pnr .pi
+    @error{} .pi     foo|bar
 @endExample
-
-@noindent
-is the same as
-@w{@samp{.pi foo | bar}}.
 
 @code{pi}
 must be invoked before

@@ -9567,6 +9567,16 @@ const char *enclosing_want_att_compat_reg::get_string()
 		: want_att_compat_stack.top());
 }
 
+class pipe_command_reg : public reg {
+public:
+  const char *get_string();
+};
+
+const char *pipe_command_reg::get_string()
+{
+  return pipe_command;
+}
+
 class readonly_text_register : public reg {
   const char *s;
 public:
@@ -10621,6 +10631,7 @@ void init_input_requests()
   register_dictionary.define(".g", new readonly_text_register(1));
   register_dictionary.define(".H", new readonly_register(&hresolution));
   register_dictionary.define(".O", new readonly_register(&suppression_level));
+  register_dictionary.define(".pi", new pipe_command_reg);
   register_dictionary.define(".R", new readonly_text_register(INT_MAX));
   register_dictionary.define(".U", new readonly_boolean_register(&want_unsafe_requests));
   register_dictionary.define(".V", new readonly_register(&vresolution));
