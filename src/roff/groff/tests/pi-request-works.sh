@@ -27,13 +27,13 @@ wail () {
 }
 
 echo "checking that 'pi' request works" >&2
-output=$(printf '.pi sed s/^/#/\nhello\n' | "$groff" -UZ)
+output=$(printf '.pi sed s/^/#/\nhello\n' | "$groff" -UZ) || wail
 echo "$output"
 echo "$output" | grep -Eqx '^#t *hello'
 
 echo "checking that parser returns to correct state after 'pi'" >&2
 output=$(printf '.pi cat\n.tm goodbye\n' \
-    | "$groff" -UZ 2>&1 > /dev/null)
+    | "$groff" -UZ 2>&1 > /dev/null) || wail
 echo $output
 echo $output | grep -Fqx goodbye || wail
 

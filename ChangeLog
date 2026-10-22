@@ -1,3 +1,10 @@
+2026-10-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/groff/tests/pi-request-works.sh: Improve test.  Fail
+	if groff exits with a nonzero status, which happens if an
+	ASAN-enabled build detects memory untidiness.  This enables us
+	to detect problems like Savannah #68815.
+
 2026-10-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Revise `rn` input validation.
