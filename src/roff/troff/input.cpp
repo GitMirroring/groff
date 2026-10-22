@@ -5887,18 +5887,19 @@ static void alias_macro() // .als
     return;
   }
   symbol s1 = read_identifier();
-  assert(s1 != 0 /* nullptr */);
-  if (!s1.is_null()) {
-    symbol s2 = read_identifier();
-    if (s2.is_null())
-      warning(WARN_MISSING, "name aliasing request expects identifier"
-	      " of existing request, macro, string, or diversion as"
-	      " second argument");
-    else {
-      if (!request_dictionary.alias(s1, s2))
-	error("cannot alias undefined name '%1'", s2.contents());
-    }
+  if (s1.is_null()) {
+    // The identifier was garbage, like `a\&b`.
+    skip_line();
+    return;
   }
+  symbol s2 = read_identifier();
+  if (s2.is_null()) {
+    // The identifier was garbage, like `a\&b`.
+    skip_line();
+    return;
+  }
+  if (!request_dictionary.alias(s1, s2))
+    error("cannot alias undefined name '%1'", s2.contents());
   skip_line();
 }
 
