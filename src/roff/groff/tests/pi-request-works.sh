@@ -31,6 +31,12 @@ output=$(printf '.pi sed s/^/#/\nhello\n' | "$groff" -UZ) || wail
 echo "$output"
 echo "$output" | grep -Eqx '^#t *hello'
 
+echo "checking that multiple 'pi' requests work" >&2
+output=$(printf '.pi sed s/^/#/\n.pi sed s/^#/##/\n.pnr .pi\nhello\n' \
+  | "$groff" -UZ) || wail
+echo "$output"
+echo "$output" | grep -Eqx '^##t *hello'
+
 echo "checking that parser returns to correct state after 'pi'" >&2
 output=$(printf '.pi cat\n.tm goodbye\n' \
     | "$groff" -UZ 2>&1 > /dev/null) || wail

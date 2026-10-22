@@ -1,5 +1,11 @@
 2026-10-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/groff/tests/pi-request-works.sh: Add test of multiple
+	pipeline command construction.  Dump new `.pi` register while
+	we're at it.
+
+2026-10-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Implement `.pi` register for orthogonality and to make
 	the output filtration pipeline readily inspectable.
 
