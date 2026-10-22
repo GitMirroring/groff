@@ -1,5 +1,11 @@
 2026-10-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (init_input_requests): Trivially
+	refactor.  Sort definitions of read-only registers in en_US
+	lexicographic order.
+
+2026-10-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Fix Savannah #68815.
 
 	* src/roff/troff/input.cpp (pipe_output): Drop array-deletion of
