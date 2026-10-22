@@ -5892,6 +5892,12 @@ static void alias_macro() // .als
     skip_line();
     return;
   }
+  if (!has_arg()) {
+    warning(WARN_MISSING, "name aliasing request"
+			  " expects two arguments");
+    skip_line();
+    return;
+  }
   symbol s2 = read_identifier();
   if (s2.is_null()) {
     // The identifier was garbage, like `a\&b`.
