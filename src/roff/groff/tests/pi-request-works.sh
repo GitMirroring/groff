@@ -16,15 +16,14 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
 
 groff="${abs_top_builddir:-.}/test-groff"
 
 fail=
 
 wail () {
-  echo ...FAILED >&2
-  fail=YES
+    echo ...FAILED >&2
+    fail=YES
 }
 
 echo "checking that 'pi' request works" >&2
@@ -34,10 +33,10 @@ echo "$output" | grep -Eqx '^#t *hello'
 
 echo "checking that parser returns to correct state after 'pi'" >&2
 output=$(printf '.pi cat\n.tm goodbye\n' \
-  | "$groff" -UZ 2>&1 > /dev/null)
+    | "$groff" -UZ 2>&1 > /dev/null)
 echo $output
 echo $output | grep -Fqx goodbye || wail
 
 test -z "$fail"
 
-# vim:set autoindent expandtab shiftwidth=2 tabstop=2 textwidth=72:
+# vim:set autoindent expandtab shiftwidth=4 tabstop=4 textwidth=72:
