@@ -9731,7 +9731,6 @@ static void pipe_output() // .pi
   }
   else
     pipe_command = pc;
-  delete[] pc;
   // No skip_line() here; we called read_rest_of_line_as_argument().
   tok.next();
 }

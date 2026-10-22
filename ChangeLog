@@ -1,5 +1,18 @@
 2026-10-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Fix Savannah #68815.
+
+	* src/roff/troff/input.cpp (pipe_output): Drop array-deletion of
+	`pc` on unconditional path through command (after validation
+	checks).  We _don't_ want to delete `pc` if we have copied its
+	value to the global `pipe_command`, as we then risk a use-after-
+	free (detected by GCC 12's ASAN).
+
+	Fixes <https://savannah.gnu.org/bugs/?68815>.  Problem
+	introduced by me in commit 8a62f58d92, 2025-02-23.
+
+2026-10-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/groff/tests/pi-request-works.sh: Improve test.  Fail
 	if groff exits with a nonzero status, which happens if an
 	ASAN-enabled build detects memory untidiness.  This enables us
