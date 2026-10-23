@@ -1558,15 +1558,15 @@ void table::add_entry(int r, int c, const string &str,
     }
     int gcommentpos = str.find("\\#");
     // If both types of comment are present, the first is what matters.
-    if ((gcommentpos != -1) && (gcommentpos < commentpos))
-      commentpos = gcommentpos;
-    if (commentpos != -1) {
+    if (gcommentpos != -1) {
       int controlpos = str.search('.');
       if ((-1 == str.search('\n')) // not a text block, AND
 	  && ((-1 == controlpos) // (no control character in line OR
 	      || (0 == controlpos))) // control character at line start)
 	warning_with_file_and_line(fn, ln, "comment escape sequence"
 				   " '\\#' in entry \"%1\"", s);
+      if (gcommentpos < commentpos)
+	commentpos = gcommentpos;
     }
     // A \! escape sequence after a comment has started is okay.
     int exclpos = str.find("\\!");

@@ -1,3 +1,14 @@
+2026-10-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/preproc/tbl/table.cpp (table::add_entry): Fix duplicative
+	and misleading warning about *roff comment escape sequences in
+	table entries arising due to logic error.  Resequence update of
+	`commentpos` local to follow warning about use of `\#` in table
+	entry, and revise a conditional to use `gcommentpos`.
+
+	Fixes <https://savannah.gnu.org/bugs/?68825>.  Problem
+	introduced by me in commit 207723e5bf, 2024-10-06.
+
 2026-10-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Fix Savannah #68819.
