@@ -2053,12 +2053,12 @@ static node *do_zero_width_output() // \Z
   start_token.next();
   if (!want_att_compat && !start_token.is_usable_as_delimiter())
     warning(WARN_DELIM, "using %1 to delimit"
-			" a zero-width sequence escape sequence"
+			" a zero-width output escape sequence"
 			" is deprecated", start_token.description());
   else if (want_att_compat
            && !start_token.is_usable_as_delimiter(false,
 		  DELIMITER_ATT_STRING_EXPRESSION)) {
-    warning(WARN_DELIM, "zero-width sequence escape sequence"
+    warning(WARN_DELIM, "zero-width output escape sequence"
 	    " does not accept %1 as a delimiter",
 	    start_token.description());
     return 0 /* nullptr */;
@@ -6649,12 +6649,12 @@ static void do_register() // \R
   start_token.next();
   if (!want_att_compat && !start_token.is_usable_as_delimiter())
     warning(WARN_DELIM, "using %1 to delimit"
-			" a register assignment escape sequence"
+			" a register update escape sequence"
 			" is deprecated", start_token.description());
   else if (want_att_compat
            && !start_token.is_usable_as_delimiter(false,
 		  DELIMITER_ATT_STRING_EXPRESSION)) {
-    warning(WARN_DELIM, "register assignment escape sequence"
+    warning(WARN_DELIM, "register update escape sequence"
 	    " does not accept %1 as a delimiter",
 	    start_token.description());
     return;

@@ -1,5 +1,11 @@
 2026-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (do_zero_width_output, do_register):
+	Revise self-descriptions of the `\Z` and `\R` escape sequences
+	for clarity.
+
+2026-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (do_overstrike, do_bracket)
 	(do_name_test, do_zero_width_output, read_size, do_register)
 	(do_width, read_title_parts, do_device_extension)
