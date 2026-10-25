@@ -1779,7 +1779,8 @@ node *do_overstrike() // \o
   token start_token;
   start_token.next();
   if (!want_att_compat && !start_token.is_usable_as_delimiter())
-    warning(WARN_DELIM, "using %1 as an escape sequence delimiter"
+    warning(WARN_DELIM, "using %1 to delimit"
+			" an overstrike escape sequence"
 			" is deprecated", start_token.description());
   else if (want_att_compat
            && !start_token.is_usable_as_delimiter(false,
@@ -1848,7 +1849,8 @@ static node *do_bracket() // \b
   token start_token;
   start_token.next();
   if (!want_att_compat && !start_token.is_usable_as_delimiter())
-    warning(WARN_DELIM, "using %1 as an escape sequence delimiter"
+    warning(WARN_DELIM, "using %1 to delimit"
+			" a bracket-building escape sequence"
 			" is deprecated", start_token.description());
   else if (want_att_compat
            && !start_token.is_usable_as_delimiter(false,
@@ -1908,7 +1910,8 @@ static const char *do_name_test() // \A
   token start_token;
   start_token.next();
   if (!want_att_compat && !start_token.is_usable_as_delimiter())
-    warning(WARN_DELIM, "using %1 as an escape sequence delimiter"
+    warning(WARN_DELIM, "using %1 to delimit"
+			" a name test escape sequence"
 			" is deprecated", start_token.description());
   else if (want_att_compat
            && !start_token.is_usable_as_delimiter(false,
@@ -2049,7 +2052,8 @@ static node *do_zero_width_output() // \Z
   token start_token;
   start_token.next();
   if (!want_att_compat && !start_token.is_usable_as_delimiter())
-    warning(WARN_DELIM, "using %1 as an escape sequence delimiter"
+    warning(WARN_DELIM, "using %1 to delimit"
+			" a zero-width sequence escape sequence"
 			" is deprecated", start_token.description());
   else if (want_att_compat
            && !start_token.is_usable_as_delimiter(false,
@@ -6480,7 +6484,8 @@ static bool read_size(int *x) // \s
     val *= sizescale;
   }
   else if (!want_att_compat && !tok.is_usable_as_delimiter())
-    warning(WARN_DELIM, "using %1 as an escape sequence delimiter"
+    warning(WARN_DELIM, "using %1 to delimit"
+			" a type size escape sequence"
 			" is deprecated", tok.description());
   else if (want_att_compat
            && !tok.is_usable_as_delimiter(false,
@@ -6643,7 +6648,8 @@ static void do_register() // \R
   token start_token;
   start_token.next();
   if (!want_att_compat && !start_token.is_usable_as_delimiter())
-    warning(WARN_DELIM, "using %1 as an escape sequence delimiter"
+    warning(WARN_DELIM, "using %1 to delimit"
+			" a register assignment escape sequence"
 			" is deprecated", start_token.description());
   else if (want_att_compat
            && !start_token.is_usable_as_delimiter(false,
@@ -6690,7 +6696,8 @@ static void do_width() // \w
   token start_token;
   start_token.next();
   if (!want_att_compat && !start_token.is_usable_as_delimiter())
-    warning(WARN_DELIM, "using %1 as an escape sequence delimiter"
+    warning(WARN_DELIM, "using %1 to delimit"
+			" a width computation escape sequence"
 			" is deprecated", start_token.description());
   else if (want_att_compat
            && !start_token.is_usable_as_delimiter(false,
@@ -6761,7 +6768,8 @@ void read_title_parts(node **part, hunits *part_width)
     return;
   token start(tok);
   if (!want_att_compat && !tok.is_usable_as_delimiter())
-    warning(WARN_DELIM, "using %1 as a title request delimiter"
+    warning(WARN_DELIM, "using %1 to delimit"
+			" the parts of a title request"
 			" is deprecated", start.description());
   int start_level = input_stack::get_level();
   tok.next();
@@ -7018,7 +7026,8 @@ static node *do_device_extension() // \X
   token start_token;
   start_token.next();
   if (!want_att_compat && !start_token.is_usable_as_delimiter())
-    warning(WARN_DELIM, "using %1 as an escape sequence delimiter"
+    warning(WARN_DELIM, "using %1 to delimit"
+			" a device extension command escape sequence"
 			" is deprecated", start_token.description());
   else if (want_att_compat
            && !start_token.is_usable_as_delimiter(false,
@@ -10787,7 +10796,8 @@ static node *read_drawing_command() // \D
   token start_token;
   start_token.next();
   if (!want_att_compat && !start_token.is_usable_as_delimiter())
-    warning(WARN_DELIM, "using %1 as an escape sequence delimiter"
+    warning(WARN_DELIM, "using %1 to delimit"
+			" a drawing command escape sequence"
 			" is deprecated", start_token.description());
   else if (want_att_compat
            && !start_token.is_usable_as_delimiter(false,
