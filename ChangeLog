@@ -1,5 +1,13 @@
 2026-10-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (do_overstrike, do_bracket)
+	(do_name_test, do_expr_test, do_zero_width_output, do_width)
+	(do_device_extension, read_drawing_command): Prevent emission of
+	confusing warning diagnostic when a newline is used
+	{deprecatedly} as a delimiter.
+
+2026-10-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (is_char_usable_as_delimiter): Revise
 	and restructure.  Revise: return `true` for Control+A (default
 	leader character) through Control+I (default tab character) plus

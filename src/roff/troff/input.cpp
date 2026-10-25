@@ -1799,7 +1799,10 @@ node *do_overstrike() // \o
 #endif
   for (;;) {
     tok.next();
-    if (tok.is_newline() || tok.is_eof()) {
+    // TODO: Simplify to the following when `TODO` above is done.
+    // if (tok.is_newline() || tok.is_eof()) {
+    if ((!start_token.is_newline() && tok.is_newline()) || tok.is_eof())
+    {
       // token::description() writes to static, class-wide storage, so
       // we must allocate a copy of it before issuing the next
       // diagnostic.
@@ -1866,7 +1869,10 @@ static node *do_bracket() // \b
   int start_level = input_stack::get_level();
   for (;;) {
     tok.next();
-    if (tok.is_newline() || tok.is_eof()) {
+    // TODO: Simplify to the following when `TODO` above is done.
+    // if (tok.is_newline() || tok.is_eof()) {
+    if ((!start_token.is_newline() && tok.is_newline()) || tok.is_eof())
+    {
       // token::description() writes to static, class-wide storage, so
       // we must allocate a copy of it before issuing the next
       // diagnostic.
@@ -1922,7 +1928,10 @@ static const char *do_name_test() // \A
   bool got_some_char = false;
   for (;;) {
     tok.next();
-    if (tok.is_newline() || tok.is_eof()) {
+    // TODO: Simplify to the following when `TODO` above is done.
+    // if (tok.is_newline() || tok.is_eof()) {
+    if ((!start_token.is_newline() && tok.is_newline()) || tok.is_eof())
+    {
       // token::description() writes to static, class-wide storage, so
       // we must allocate a copy of it before issuing the next
       // diagnostic.
@@ -1978,7 +1987,10 @@ static const char *do_expr_test() // \B
   // There may be garbage after the expression but before the closing
   // delimiter.  Eat it.
   for (;;) {
-    if (tok.is_newline() || tok.is_eof()) {
+    // TODO: Simplify to the following when `TODO` above is done.
+    // if (tok.is_newline() || tok.is_eof()) {
+    if ((!start_token.is_newline() && tok.is_newline()) || tok.is_eof())
+    {
       char *delimdesc = strdup(start_token.description());
       warning(WARN_DELIM, "missing closing delimiter in numeric"
 	      " expression validation escape sequence; expected %1,"
@@ -2057,7 +2069,10 @@ static node *do_zero_width_output() // \Z
   int start_level = input_stack::get_level();
   for (;;) {
     tok.next();
-    if (tok.is_newline() || tok.is_eof()) {
+    // TODO: Simplify to the following when `TODO` above is done.
+    // if (tok.is_newline() || tok.is_eof()) {
+    if ((!start_token.is_newline() && tok.is_newline()) || tok.is_eof())
+    {
       // token::description() writes to static, class-wide storage, so
       // we must allocate a copy of it before issuing the next
       // diagnostic.
@@ -6696,7 +6711,10 @@ static void do_width() // \w
   curenv = &env;
   for (;;) {
     tok.next();
-    if (tok.is_newline() || tok.is_eof()) {
+    // TODO: Simplify to the following when `TODO` above is done.
+    // if (tok.is_newline() || tok.is_eof()) {
+    if ((!start_token.is_newline() && tok.is_newline()) || tok.is_eof())
+    {
       // token::description() writes to static, class-wide storage, so
       // we must allocate a copy of it before issuing the next
       // diagnostic.
@@ -7021,7 +7039,10 @@ static node *do_device_extension() // \X
     topdiv->begin_page();
   for (;;) {
     tok.next();
-    if (tok.is_newline() || tok.is_eof()) {
+    // TODO: Simplify to the following when `TODO` above is done.
+    // if (tok.is_newline() || tok.is_eof()) {
+    if ((!start_token.is_newline() && tok.is_newline()) || tok.is_eof())
+    {
       // token::description() writes to static, class-wide storage, so
       // we must allocate a copy of it before issuing the next
       // diagnostic.
@@ -10810,7 +10831,10 @@ static node *read_drawing_command() // \D
 	  maxpoints *= 2;
 	  delete[] oldpoint;
 	}
-	if (tok.is_newline() || tok.is_eof()) {
+	// TODO: Simplify to the following when `TODO` above is done.
+	// if (tok.is_newline() || tok.is_eof()) {
+	if ((!start_token.is_newline() && tok.is_newline())
+	    || tok.is_eof()) {
 	  // token::description() writes to static, class-wide storage,
 	  // so we must allocate a copy of it before issuing the next
 	  // diagnostic.
