@@ -1,5 +1,16 @@
 2026-10-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (is_char_usable_as_delimiter): Revise
+	and restructure.  Revise: return `true` for Control+A (default
+	leader character) through Control+I (default tab character) plus
+	Control+L (form feed) and DEL.  Restructure: because this
+	function is "hot"--it gets hit over 4.6 million times in a groff
+	build--arrange the most expected case of delimiter (a valid
+	printable character) on the "straight-line" path, assuming a
+	forward branch is not taken.
+
+2026-10-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Fix Savannah #68832.
 
 	* src/roff/troff/input.cpp (do_overstrike, do_bracket)

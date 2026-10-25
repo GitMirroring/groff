@@ -2968,35 +2968,57 @@ bool token::operator!=(const token &t)
 // doesn't tokenize it) and accepts a user-specified delimiter.
 static bool is_char_usable_as_delimiter(int c)
 {
-  // Reject all characters that can validly begin a numeric expression.
+  if (csprint(c))
+    // Reject all characters that can validly begin a numeric expression.
+    switch (c) {
+    case '0':
+    case '1':
+    case '2':
+    case '3':
+    case '4':
+    case '5':
+    case '6':
+    case '7':
+    case '8':
+    case '9':
+    case '+':
+    case '-':
+    // Several characters are valid in a numeric expression only
+    // _non-initially_, and so are not ambiguous.  We present them here
+    // as documentation.
+    // case '/':
+    // case '*':
+    // case '%':
+    // case '<':
+    // case '>':
+    // case '=':
+    // case '&':
+    // case ':':
+    case '(':
+    // case ')':
+    case '.':
+    case '|':
+      return false;
+    default:
+      return true;
+    }
   switch (c) {
-  case '0':
-  case '1':
-  case '2':
-  case '3':
-  case '4':
-  case '5':
-  case '6':
-  case '7':
-  case '8':
-  case '9':
-  case '+':
-  case '-':
-  // case '/':
-  // case '*':
-  // case '%':
-  // case '<':
-  // case '>':
-  // case '=':
-  // case '&':
-  // case ':':
-  case '(':
-  // case ')':
-  case '.':
-  case '|':
-    return false;
-  default:
+  // Accept Control+A (default leader character) through Control+I
+  // (default tab character) plus Control+L (form feed) and DEL.
+  case 1:
+  case 2:
+  case 3:
+  case 4:
+  case 5:
+  case 6:
+  case 7:
+  case 8:
+  case 9:
+  case 12:
+  case 127:
     return true;
+  default:
+    return false;
   }
 }
 
