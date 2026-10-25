@@ -1780,7 +1780,7 @@ node *do_overstrike() // \o
   start_token.next();
   if (!want_att_compat && !start_token.is_usable_as_delimiter())
     warning(WARN_DELIM, "using %1 as an escape sequence delimiter"
-			" is deprecated", tok.description());
+			" is deprecated", start_token.description());
   else if (want_att_compat
            && !start_token.is_usable_as_delimiter(false,
 		  DELIMITER_ATT_STRING_EXPRESSION)) {
@@ -1846,7 +1846,7 @@ static node *do_bracket() // \b
   start_token.next();
   if (!want_att_compat && !start_token.is_usable_as_delimiter())
     warning(WARN_DELIM, "using %1 as an escape sequence delimiter"
-			" is deprecated", tok.description());
+			" is deprecated", start_token.description());
   else if (want_att_compat
            && !start_token.is_usable_as_delimiter(false,
 		  DELIMITER_ATT_STRING_EXPRESSION)) {
@@ -1903,7 +1903,7 @@ static const char *do_name_test() // \A
   start_token.next();
   if (!want_att_compat && !start_token.is_usable_as_delimiter())
     warning(WARN_DELIM, "using %1 as an escape sequence delimiter"
-			" is deprecated", tok.description());
+			" is deprecated", start_token.description());
   else if (want_att_compat
            && !start_token.is_usable_as_delimiter(false,
 		  DELIMITER_ATT_STRING_EXPRESSION)) {
@@ -2038,7 +2038,7 @@ static node *do_zero_width_output() // \Z
   start_token.next();
   if (!want_att_compat && !start_token.is_usable_as_delimiter())
     warning(WARN_DELIM, "using %1 as an escape sequence delimiter"
-			" is deprecated", tok.description());
+			" is deprecated", start_token.description());
   else if (want_att_compat
            && !start_token.is_usable_as_delimiter(false,
 		  DELIMITER_ATT_STRING_EXPRESSION)) {
@@ -6607,7 +6607,7 @@ static void do_register() // \R
   start_token.next();
   if (!want_att_compat && !start_token.is_usable_as_delimiter())
     warning(WARN_DELIM, "using %1 as an escape sequence delimiter"
-			" is deprecated", tok.description());
+			" is deprecated", start_token.description());
   else if (want_att_compat
            && !start_token.is_usable_as_delimiter(false,
 		  DELIMITER_ATT_STRING_EXPRESSION)) {
@@ -6722,7 +6722,7 @@ void read_title_parts(node **part, hunits *part_width)
   token start(tok);
   if (!want_att_compat && !tok.is_usable_as_delimiter())
     warning(WARN_DELIM, "using %1 as a title request delimiter"
-			" is deprecated", tok.description());
+			" is deprecated", start.description());
   int start_level = input_stack::get_level();
   tok.next();
   for (int i = 0; i < 3; i++) {
@@ -6979,7 +6979,7 @@ static node *do_device_extension() // \X
   start_token.next();
   if (!want_att_compat && !start_token.is_usable_as_delimiter())
     warning(WARN_DELIM, "using %1 as an escape sequence delimiter"
-			" is deprecated", tok.description());
+			" is deprecated", start_token.description());
   else if (want_att_compat
            && !start_token.is_usable_as_delimiter(false,
 		  DELIMITER_ATT_STRING_EXPRESSION)) {
@@ -10745,7 +10745,7 @@ static node *read_drawing_command() // \D
   start_token.next();
   if (!want_att_compat && !start_token.is_usable_as_delimiter())
     warning(WARN_DELIM, "using %1 as an escape sequence delimiter"
-			" is deprecated", tok.description());
+			" is deprecated", start_token.description());
   else if (want_att_compat
            && !start_token.is_usable_as_delimiter(false,
 		  DELIMITER_ATT_STRING_EXPRESSION)) {

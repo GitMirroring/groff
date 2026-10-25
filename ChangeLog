@@ -1,5 +1,23 @@
 2026-10-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Fix Savannah #68832.
+
+	* src/roff/troff/input.cpp (do_overstrike, do_bracket)
+	(do_name_test, do_zero_width_output, do_register)
+	(read_title_parts, do_device_extension, read_drawing_command):
+	Fix misleading warnings in category "delim"; when reporting use
+	of a deprecated delimiter, identify the correct token as
+	deprecated.  This change also avoids assert(3)ion failures when
+	`NDEBUG` is not defined and the input parser is in a certain
+	state.
+
+	Fixes <https://savannah.gnu.org/bugs/?68832>.  Problems
+	introduced by me in commits d7824cb7ba, 12032e1211, a38054a1d1,
+	201833b36d, 5d570e2210, ffcf52f605, and b459b2c6b0, (all
+	2025-11-23) and commit 4b09e1688c, 2025-12-29.
+
+2026-10-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[groff]: Regression-test Savannah #68832.
 
 	* src/roff/groff/tests/\
