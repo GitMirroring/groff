@@ -6846,6 +6846,8 @@ static void translate_font_request() // .ftr
   skip_line();
 }
 
+// TODO: Support reading a list of font identifiers as arguments, like
+// `pnr` and `pm`.  Will need to reject nonnegative integers.
 static void print_font_translation_request() // .pftr
 {
   dictionary_iterator iter(font_translation_dictionary);

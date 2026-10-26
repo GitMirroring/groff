@@ -8586,6 +8586,8 @@ grostream::~grostream()
 
 object_dictionary stream_dictionary(20);
 
+// TODO: Support reading a list of stream identifiers as arguments, like
+// `pnr` and `pm`.
 static void print_stream_request() // .pstream
 {
   object_dictionary_iterator iter(stream_dictionary);
