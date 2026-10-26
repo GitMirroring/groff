@@ -130,6 +130,8 @@
 	* man/groff.7.man.in (Read-only registers):
 	* man/groff_diff.7.man (New register): Document it.
 
+	Fixes <https://savannah.gnu.org/bugs/?68816>.
+
 2026-10-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (init_input_requests): Trivially
