@@ -6825,20 +6825,28 @@ static void translate_font_request() // .ftr
     return;
   }
   symbol from = read_identifier(true /* want_diagnostic */);
-  // has_arg()+read_identifier() should ensure the assertion succeeds.
-  assert(!from.is_null());
+  if (from.is_null()) {
+    // The identifier was garbage, like `a\&b`.
+    skip_line();
+    return;
+  }
   if (is_nonnegative_integer(from.contents())) {
     error("cannot translate a font mounting position");
     skip_line();
     return;
   }
   symbol to = read_identifier();
-  if ((!to.is_null()) && is_nonnegative_integer(to.contents())) {
+  if (to.is_null()) {
+    // The identifier was garbage, like `a\&b`.
+    skip_line();
+    return;
+  }
+  if (is_nonnegative_integer(to.contents())) {
     error("cannot translate to a font mounting position");
     skip_line();
     return;
   }
-  if (to.is_null() || from == to)
+  if (from == to)
     font_translation_dictionary.remove(from);
   else
     (void) font_translation_dictionary.lookup(from,
