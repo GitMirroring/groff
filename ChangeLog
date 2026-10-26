@@ -1,5 +1,22 @@
 2026-10-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Fix Savannah #68837.
+
+	* src/roff/troff/input.cpp (read_font_identifier): Replace
+	assert(3)ion that could be tripped by invalid characters in
+	font identifier (or mounting position) with skip of input
+	line and early return.  Add assert(3)ion that the `symbol`
+	returned by `read_identifier()` is not `empty()`, since that
+	appears to be impossible at present.  Add fallback conditional
+	test for `NDEBUG` builds to return `false` if that is the case.
+	Since we now return early if the symbol is not invalid and not
+	empty, drop subsequent tests of these conditions.
+
+	Fixes <https://savannah.gnu.org/bugs/?68837>.  Problem
+	introduced by me in commit 3dc11a61aa, 18 April.
+
+2026-10-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[groff]: Regression-test Savannah #68837.
 
 	* src/roff/groff/tests/\

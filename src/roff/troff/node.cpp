@@ -7056,20 +7056,25 @@ static bool read_font_identifier(font_lookup_info *finfo)
   // interpretable as an (unsigned) decimal integer.  If is, we treat it
   // as a mounting position.  If not, we treat it as a font "name".
   symbol s = read_identifier();
+  if (s.is_null()) {
+    // The identifier was garbage, like `a\&b`.
+    skip_line();
+    return false;
+  }
+  assert(!s.is_empty());
+  if (s.is_empty()) // NDEBUG
+    return false;
   bool is_number = true;
-  assert(!s.is_null() && !s.is_empty());
-  if (!s.is_null() && !s.is_empty()) {
-    const char *p = s.contents();
-    assert(*p != 0 /* nullptr */);
-    // Silently ignore a leading minus sign so we can issue a range
-    // warning later.
-    if ((csdigit(*p)) || ('-' == *p))
-      p++;
-    for (; (p != 0 /* nullptr */) && (*p != '\0'); p++) {
-      if (!csdigit(*p)) {
-	is_number = false;
-	break;
-      }
+  const char *p = s.contents();
+  assert(*p != 0 /* nullptr */);
+  // Silently ignore a leading minus sign so we can issue a range
+  // warning later.
+  if ((csdigit(*p)) || ('-' == *p))
+    p++;
+  for (; (p != 0 /* nullptr */) && (*p != '\0'); p++) {
+    if (!csdigit(*p)) {
+      is_number = false;
+      break;
     }
   }
   if (is_number) {
@@ -7089,15 +7094,13 @@ static bool read_font_identifier(font_lookup_info *finfo)
   }
   else {
     finfo->requested_name = const_cast<char *>(s.contents());
-    if (!s.is_null()) {
-      int mp = mounting_position_of_font(s);
-      if (mp < 0) {
-	mp = next_available_font_mounting_position();
-	if (mount_font_at_position(s, mp))
-	  finfo->position = mp;
-      }
-      finfo->position = curenv->get_family()->resolve(mp);
+    int mp = mounting_position_of_font(s);
+    if (mp < 0) {
+      mp = next_available_font_mounting_position();
+      if (mount_font_at_position(s, mp))
+	finfo->position = mp;
     }
+    finfo->position = curenv->get_family()->resolve(mp);
   }
   return (finfo->position != FONT_NOT_MOUNTED);
 }
