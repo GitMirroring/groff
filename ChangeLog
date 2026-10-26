@@ -1,5 +1,13 @@
 2026-10-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[groff]: Regression-test Savannah #68837.
+
+	* src/roff/groff/tests/\
+	error-fzoom-request-given-bogus-argument.sh: New file; do it.
+	* src/roff/groff/groff.am: Update `groff_TESTS` to run test.
+
+2026-10-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp (translate_font_request): Replace
 	assert(3)ion that could be tripped by invalid characters in
 	font identifier with skip of input line.  Also revise logic to
