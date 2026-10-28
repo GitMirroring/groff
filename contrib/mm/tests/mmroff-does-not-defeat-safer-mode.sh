@@ -19,6 +19,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 mmroff="${abs_top_builddir:-.}/mmroff"
+groff="${abs_top_builddir:-.}/test-groff"
 fontdir="${abs_top_builddir:-.}/font"
 src="${abs_top_srcdir:-..}"
 
@@ -44,6 +45,7 @@ input='.
 printf "%s\n" "$input" \
     | GROFF_BIN_PATH=. GROFF_FONT_PATH="$fontdir":"$src"/font \
         GROFF_TMAC_PATH="$src"/contrib/mm:"$src"/tmac \
+        GROFF_COMMAND="$groff" \
         "$mmroff"
 
 if ! test -f "$oops_file"

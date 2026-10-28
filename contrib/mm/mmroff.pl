@@ -30,7 +30,9 @@ use Config;
 
 (my $progname = $0) =~s @.*/@@;
 
-my $groff; # forward declaration for `autopsy`
+# Locate groff executable.
+my $groff = "groff";
+$groff=$ENV{GROFF_COMMAND} if exists ($ENV{GROFF_COMMAND});
 
 sub abort
 {
@@ -92,21 +94,6 @@ if (grep(/^-x$/, @ARGV)) {
 	$want_only_ref_update = 1;
 	@ARGV = grep(!/^-x$/, @ARGV);
 }
-
-# Locate groff executable.
-my $path = $ENV{'GROFF_BIN_PATH'};
-
-if ($path) {
-	for my $dir (split($Config{path_sep}, $path)) {
-		my $candidate = "$dir/groff";
-		if (-x $candidate) {
-			$groff = $candidate;
-			last;
-		}
-	}
-}
-
-$groff = "groff" if (!$groff);
 
 # mmroff should always have -mm, but not twice
 @ARGV = grep(!/^-mm$/, @ARGV);

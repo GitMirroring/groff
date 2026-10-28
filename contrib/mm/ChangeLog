@@ -1,5 +1,22 @@
 2026-10-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* mmroff.pl: Adopt pdfmom(1)'s method of locating the groff
+	executable, employing the undocumented `GROFF_COMMAND`
+	environment variable so we can point mmroff at "test-groff" when
+	building groff and using "make check" or "make distcheck".  The
+	previous method was not reliable when building from Git in the
+	source tree.  Set up `groff` scalar early, override its value
+	with that of `GROFF_COMMAND` if defined, stop manually searching
+	`GROFF_BIN_PATH` for it (since `GROFF_COMMAND` is expected to
+	contain a resolvable file name), and do not hard-code "groff" as
+	a fall back if the search fails.
+	* tests/GETST-works.sh:
+	* tests/mmroff-does-not-defeat-safer-mode.sh: Define a new
+	`groff` top-of-script variable, and later put it into the
+	environment as `GROFF_COMMAND`.
+
+2026-10-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tests/mmroff-does-not-defeat-safer-mode.sh: Set up environment
 	for "mmroff" wrapper script as we do in the "GETST-work.sh" test
 	script and the similar "pdfmom" wrapper script, configuring

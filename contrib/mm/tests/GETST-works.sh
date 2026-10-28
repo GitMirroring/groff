@@ -19,6 +19,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 mmroff="${abs_top_builddir:-.}/mmroff"
+groff="${abs_top_builddir:-.}/test-groff"
 fontdir="${abs_top_builddir:-.}/font"
 src="${abs_top_srcdir:-..}"
 
@@ -55,6 +56,7 @@ mmdir=$src/contrib/mm/
 
 GROFF_BIN_PATH=. GROFF_FONT_PATH="$fontdir":"$src"/font \
     GROFF_TMAC_PATH="$src"/contrib/mm:"$src"/tmac \
+    GROFF_COMMAND="$groff" \
     "$mmroff" -t -T utf8 -P -cbou "$artifacts_dir"/use-reference.mm \
     | grep -q 'Use Table 1 to'
 status=$?
