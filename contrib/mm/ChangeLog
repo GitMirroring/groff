@@ -1,3 +1,10 @@
+2026-10-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tests/mmroff-does-not-defeat-safer-mode.sh: Set up environment
+	for "mmroff" wrapper script as we do in the "GETST-work.sh" test
+	script and the similar "pdfmom" wrapper script, configuring
+	`GROFF_BIN_PATH`, `GROFF_FONT_PATH`, `GROFF_TMAC_PATH`.
+
 2026-10-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* mmroff.pl: Fix Savannah #68782.  Decode wait status on
