@@ -1,3 +1,9 @@
+2026-10-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/utils/pdfmom/pdfmom.pl (autopsy): If the wait status of
+	the groff command we tried to run is -1, report the name of the
+	groff command we actually tried to run, not "groff" literally.
+
 2026-10-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Fix Savannah #68837.

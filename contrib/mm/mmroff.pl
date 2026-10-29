@@ -47,7 +47,7 @@ sub autopsy
     my $finding;
 
     if ($waitstatus == -1) {
-	$finding = "cannot run groff: $!\n";
+	$finding = "cannot run $groff: $!\n";
     }
     elsif ($? & 127) {
 	$finding = sprintf("$groff died with signal %d, %s core dump\n",
