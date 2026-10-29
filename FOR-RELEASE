@@ -79,9 +79,9 @@ prepared, as applicable.
 * Run the "set-man-page-time-stamps" Makefile target from your build
   directory to fix up the stamps on the man pages.
 
-* Build (and test!) a distribution archive with "make distcheck".  It's
-  not a good idea for any tests to be failing, but if they are, note the
-  fact prominently in the release notes.
+* Build (and test!) a distribution archive with "make distclean" and
+  "make distcheck".  It's not a good idea for any tests to be failing,
+  but if they are, note the fact prominently in the release notes.
 
 * For official releases only (not release candidates), update
   "doc/webpage.ms" to record the new version number and month of its
@@ -96,11 +96,15 @@ prepared, as applicable.
 
     $ git tag -s -m 'release candidate 1.24.0.rc2' 1.24.0.rc2
 
-* Build and test a distribution archive again with "make distcheck".
-  It's important to do this so that the archive unpacks to an
-  appropriately named source directory.  It's even more important after
-  tagging a first release candidate, because doing so increments the
-  version number visible in installed file names (such as
+* Rebootstrap your Git checkout to propagate the new tag into the
+  computed version string used everywhere except "NEWS" and
+  "arch/mingw/grap2graph.cmd", noted above.
+
+* Build and test a distribution archive again with "make distclean" and
+  "make distcheck".  It's important to do this so that the archive
+  unpacks to an appropriately named source directory.  It's even more
+  important after tagging a first release candidate, because doing so
+  increments the version number visible in installed file names (such as
   "/usr/share/groff/1.24.0").
 
 * If the distribution archive from the previous step is unacceptable,
