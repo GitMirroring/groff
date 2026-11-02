@@ -46,6 +46,12 @@ troff
    interpolation (such as `\n+[myreg]` or `\n-[count]`) is (uselessly)
    applied to a non-auto-crementing register.
 
+soelim
+------
+
+*  soelim now recognizes an option `-x` that promotes failure to open
+   any included file to a fatal error.
+
 
 VERSION 1.25.0
 ==============

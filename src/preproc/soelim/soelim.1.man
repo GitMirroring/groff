@@ -64,7 +64,7 @@ or other text files
 .\" ====================================================================
 .
 .SY @g@soelim
-.RB [ \-Crt ]
+.RB [ \-Crtx ]
 .RB [ \-I
 .IR dir ]
 .RI [ input-file\~ .\|.\|.]
@@ -459,6 +459,13 @@ and
 .B \-t
 are given,
 the last one specified controls.
+.
+.
+.TP
+.B \-x
+Exit with an error status if an
+.I included-file
+cannot be opened.
 .
 .
 .\" ====================================================================

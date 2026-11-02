@@ -54,7 +54,7 @@ static bool do_file(const char *);
 
 static void usage(FILE *stream)
 {
-  fprintf(stream, "usage: %s [-Crt] [-I dir] [input-file ...]\n"
+  fprintf(stream, "usage: %s [-Crtx] [-I dir] [input-file ...]\n"
 	  "usage: %s {-v | --version}\n"
 	  "usage: %s --help\n",
 	  program_name, program_name, program_name);
@@ -67,7 +67,8 @@ static void usage(FILE *stream)
 "requests as well to record the name and line number of each\n"
 "input-file and included-file.  Use the -t option to produce TeX\n"
 "comments instead of roff requests.  Use the -r option to write\n"
-"neither.  See the soelim(1) manual page.\n",
+"neither.  Specify the -x option to make failure to open an\n"
+"included-file a fatal error.  See the soelim(1) manual page.\n",
 	  stream);
 }
 
