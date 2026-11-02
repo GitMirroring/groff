@@ -1,5 +1,12 @@
 2026-11-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/soelim/soelim.cpp (do_file): In raw mode, don't
+	add a newline to the end of file lacking one.
+
+	Begins fixing Savannah #68719.
+
+2026-11-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[soelim]: Regression-test Savannah #68719.
 
 	* src/preproc/soelim/tests/r-option-works.sh: New file; do it.

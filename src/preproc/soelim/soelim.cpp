@@ -233,10 +233,15 @@ static bool do_file(const char *filename)
 	 SEEN_DOT_lf,
 	 OTHER } state
       = START;
+  bool file_ends_with_newline = false;
+  int prevc = 0;
   for (;;) {
     int c = getc(fp);
-    if (c == EOF)
+    if (c == EOF) {
+      if ('\n' == prevc)
+	file_ends_with_newline = true;
       break;
+    }
     switch (state) {
     case START:
       if (c == '.')
@@ -342,32 +347,33 @@ static bool do_file(const char *filename)
     default:
       assert(0 == "unhandled state in file parser");
     }
+    prevc = c;
   }
   // We've reached the end of input.
   switch (state) {
   case SEEN_DOT:
-    fputs(".\n", stdout);
+    putc('.', stdout);
     break;
   case SEEN_DOT_l:
-    fputs(".l\n", stdout);
+    fputs(".l", stdout);
     break;
   case SEEN_DOT_s:
-    fputs(".s\n", stdout);
+    fputs(".s", stdout);
     break;
   case SEEN_DOT_lf:
-    fputs(".lf\n", stdout);
+    fputs(".lf", stdout);
     break;
   case SEEN_DOT_so:
-    fputs(".so\n", stdout);
+    fputs(".so", stdout);
     break;
   case OTHER:
-    putc('\n', stdout);
-    break;
   case START:
     break;
   default:
     assert(0 == "unhandled state in file parser at EOF");
   }
+  if (!want_raw_output && !file_ends_with_newline)
+    putc('\n', stdout);
   if (fp != stdin)
     if (fclose(fp) < 0)
       fatal("cannot close '%1': %2", whole_filename.contents(),

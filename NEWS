@@ -49,6 +49,9 @@ troff
 soelim
 ------
 
+*  soelim now appends a trailing newline to files it reads that are
+   lacking them, unless the `-r` ("raw") option is specified.
+
 *  soelim now recognizes an option `-x` that promotes failure to open
    any included file to a fatal error.
 
