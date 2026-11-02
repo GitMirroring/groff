@@ -1,5 +1,13 @@
 2026-11-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[soelim]: Test `-t` option operation.
+
+	* src/preproc/soelim/tests/t-option-works.sh: New file.
+	* src/preproc/soelim/soelim.am: Update `soelim_TESTS` to run
+	test.
+
+2026-11-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[soelim]: Test accurate `lf` request production.
 
 	* src/preproc/soelim/tests/produces-accurate-lf-requests.sh: New
