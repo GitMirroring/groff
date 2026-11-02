@@ -224,7 +224,14 @@ static bool do_file(const char *filename)
   current_filename = whole_filename.contents();
   current_lineno = 1;
   set_location();
-  enum { START, MIDDLE, HAD_DOT, HAD_s, HAD_so, HAD_l, HAD_lf } state
+  // finite state machine matching lines starting with ".so" and ".lf"
+  enum { START,
+	 SEEN_DOT,
+	 SEEN_DOT_s,
+	 SEEN_DOT_so,
+	 SEEN_DOT_l,
+	 SEEN_DOT_lf,
+	 OTHER } state
       = START;
   for (;;) {
     int c = getc(fp);
@@ -233,7 +240,7 @@ static bool do_file(const char *filename)
     switch (state) {
     case START:
       if (c == '.')
-	state = HAD_DOT;
+	state = SEEN_DOT;
       else {
 	putchar(c);
 	if (c == '\n') {
@@ -241,21 +248,21 @@ static bool do_file(const char *filename)
 	  state = START;
 	}
 	else
-	  state = MIDDLE;
+	  state = OTHER;
       }
       break;
-    case MIDDLE:
+    case OTHER:
       putchar(c);
       if (c == '\n') {
 	current_lineno++;
 	state = START;
       }
       break;
-    case HAD_DOT:
+    case SEEN_DOT:
       if (c == 's')
-	state = HAD_s;
+	state = SEEN_DOT_s;
       else if (c == 'l')
-	state = HAD_l;
+	state = SEEN_DOT_l;
       else {
 	putchar('.');
 	putchar(c);
@@ -264,12 +271,12 @@ static bool do_file(const char *filename)
 	  state = START;
 	}
 	else
-	  state = MIDDLE;
+	  state = OTHER;
       }
       break;
-    case HAD_s:
+    case SEEN_DOT_s:
       if (c == 'o')
-	state = HAD_so;
+	state = SEEN_DOT_so;
       else  {
 	putchar('.');
 	putchar('s');
@@ -279,10 +286,10 @@ static bool do_file(const char *filename)
 	  state = START;
 	}
 	else
-	  state = MIDDLE;
+	  state = OTHER;
       }
       break;
-    case HAD_so:
+    case SEEN_DOT_so:
       if (c == ' ' || c == '\n' || want_att_compat) {
 	string line;
 	for (; c != EOF && c != '\n'; c = getc(fp))
@@ -296,12 +303,12 @@ static bool do_file(const char *filename)
       else {
 	fputs(".so", stdout);
 	putchar(c);
-	state = MIDDLE;
+	state = OTHER;
       }
       break;
-    case HAD_l:
+    case SEEN_DOT_l:
       if (c == 'f')
-	state = HAD_lf;
+	state = SEEN_DOT_lf;
       else {
 	putchar('.');
 	putchar('l');
@@ -311,10 +318,10 @@ static bool do_file(const char *filename)
 	  state = START;
 	}
 	else
-	  state = MIDDLE;
+	  state = OTHER;
       }
       break;
-    case HAD_lf:
+    case SEEN_DOT_lf:
       if (c == ' ' || c == '\n' || want_att_compat) {
 	string line;
 	for (; c != EOF && c != '\n'; c = getc(fp))
@@ -329,30 +336,31 @@ static bool do_file(const char *filename)
       else {
 	fputs(".lf", stdout);
 	putchar(c);
-	state = MIDDLE;
+	state = OTHER;
       }
       break;
     default:
       assert(0 == "unhandled state in file parser");
     }
   }
+  // We've reached the end of input.
   switch (state) {
-  case HAD_DOT:
+  case SEEN_DOT:
     fputs(".\n", stdout);
     break;
-  case HAD_l:
+  case SEEN_DOT_l:
     fputs(".l\n", stdout);
     break;
-  case HAD_s:
+  case SEEN_DOT_s:
     fputs(".s\n", stdout);
     break;
-  case HAD_lf:
+  case SEEN_DOT_lf:
     fputs(".lf\n", stdout);
     break;
-  case HAD_so:
+  case SEEN_DOT_so:
     fputs(".so\n", stdout);
     break;
-  case MIDDLE:
+  case OTHER:
     putc('\n', stdout);
     break;
   case START:
