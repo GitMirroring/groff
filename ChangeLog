@@ -1,5 +1,14 @@
 2026-11-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[soelim]: Test use of leading quotes after `.so` tokens.
+
+	* src/preproc/soelim/tests/\
+	leading-quote-before-file-name-works.sh: New file.
+	* src/preproc/soelim/soelim.am: Update `soelim_TESTS` to run
+	test.
+
+2026-11-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[soelim]: Add smoke test.
 
 	* src/preproc/soelim/tests/smoke-test.sh: New file; do it.
