@@ -372,8 +372,11 @@ static bool do_file(const char *filename)
   default:
     assert(0 == "unhandled state in file parser at EOF");
   }
-  if (!want_raw_output && !file_ends_with_newline)
-    putc('\n', stdout);
+  if (!file_ends_with_newline) {
+    warning("end of file lacks a newline");
+    if (!want_raw_output)
+      putc('\n', stdout);
+  }
   if (fp != stdin)
     if (fclose(fp) < 0)
       fatal("cannot close '%1': %2", whole_filename.contents(),

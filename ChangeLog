@@ -1,5 +1,14 @@
 2026-11-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/soelim/soelim.cpp (do_file): Throw warning if an
+	input or included file lacks a final newline.
+
+	Fixes <https://savannah.gnu.org/bugs/?68719>.  Thanks to Ralph
+	Corderoy for the 2018 report to the mailing list and Dave Kemper
+	for bringing it to renewed attention.
+
+2026-11-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/soelim/soelim.cpp (do_file): In raw mode, don't
 	add a newline to the end of file lacking one.
 
