@@ -1,5 +1,14 @@
 2026-11-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[soelim]: Regression-test Savannah #68875.
+
+	* src/preproc/soelim/tests/\
+	warning-escaped-space-gets-lineno-right.sh: New file; do it.
+	* src/preproc/soelim/soelim.am: Update `soelim_TESTS` to run
+	test.
+
+2026-11-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/soelim/soelim.cpp (do_file): Throw warning if an
 	input or included file lacks a final newline.
 
