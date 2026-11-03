@@ -27,6 +27,7 @@ soelim_TESTS = \
   src/preproc/soelim/tests/produces-accurate-lf-requests.sh \
   src/preproc/soelim/tests/smoke-test.sh \
   src/preproc/soelim/tests/space-in-argument-works.sh \
+  src/preproc/soelim/tests/r-option-works.sh \
   src/preproc/soelim/tests/t-option-works.sh \
   src/preproc/soelim/tests/x-option-works.sh
 TESTS += $(soelim_TESTS)
