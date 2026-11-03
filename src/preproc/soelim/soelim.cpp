@@ -169,8 +169,13 @@ static void do_so(const char *line)
 	filename += '\\';
 	break;
       case ' ':
+	// Temporarily decrement the line counter because our caller
+	// incremented it; we're complaining about the `so` line itself.
+	// Postponing the caller's increment creates worse problems.
+	current_lineno--;
 	warning("escaping a space is unnecessary and not compatible"
 		" with troff syntax");
+	current_lineno++;
 	filename += ' ';
 	// TODO: groff 1.24.0 release + 2 years?
 	// is_filename_valid = false; // or fall through

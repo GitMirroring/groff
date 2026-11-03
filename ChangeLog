@@ -1,5 +1,14 @@
 2026-11-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/soelim/soelim.cpp (do_so): Fix line number
+	reported in diagnostic warning of escaped space.
+
+	Fixes <https://savannah.gnu.org/bugs/?68875>.  Problem
+	introduced by me with the new diagnostic in commit c275819670,
+	2025-08-02.
+
+2026-11-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[soelim]: Regression-test Savannah #68875.
 
 	* src/preproc/soelim/tests/\
