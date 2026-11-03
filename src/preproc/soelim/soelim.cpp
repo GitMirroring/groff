@@ -357,6 +357,8 @@ static bool do_file(const char *filename)
     break;
   case START:
     break;
+  default:
+    assert(0 == "unhandled state in file parser at EOF");
   }
   if (fp != stdin)
     if (fclose(fp) < 0)
