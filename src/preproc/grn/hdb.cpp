@@ -2,7 +2,7 @@
  *
  * Originally written by Barry Roitblat, 1982.
  * Adapted to GNU troff by Daniel Senderowicz 99/12/29.
- * Modified 2000-2024 by the Free Software Foundation, Inc.
+ * Modified 2021-2022 by G. Branden Robinson
  *
  * This file contains no AT&T code and is in the public domain.
  *
