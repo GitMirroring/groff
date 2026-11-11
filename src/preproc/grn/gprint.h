@@ -1,5 +1,7 @@
 /* Last non-groff version: gprint.h  1.1  84/10/08
  *
+ * This file contains no AT&T code and is in the public domain.
+ *
  * This file contains standard definitions used by the gprint program.
  */
 
