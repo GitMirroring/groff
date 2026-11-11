@@ -10307,7 +10307,7 @@ int main(int argc, char **argv)
       {
 	printf("GNU troff (groff) version %s\n", Version_string);
 	exit(EXIT_SUCCESS);
-	break;
+	break; // NOTREACHED
       }
     case 'I':
       // Search path for .psbb files
@@ -10416,7 +10416,7 @@ int main(int argc, char **argv)
     case CHAR_MAX + 1: // --help
       usage(stdout, argv[0]);
       exit(EXIT_SUCCESS);
-      break;
+      break; // NOTREACHED
     case '?':
       if (optopt != 0)
 	error("unrecognized command-line option '%1'", char(optopt));
@@ -10425,13 +10425,13 @@ int main(int argc, char **argv)
 	      argv[(optind - 1)]);
       usage(stderr, argv[0]);
       exit(2);
-      break;		// never reached
+      break;		// NOTREACHED
     case ':':
       error("command-line option '%1' requires an argument",
 	    char(optopt));
       usage(stderr, argv[0]);
       exit(2);
-      break;		// never reached
+      break;		// NOTREACHED
     default:
       assert(0 == "unhandled case of command-line option");
     }
@@ -10520,7 +10520,7 @@ int main(int argc, char **argv)
   if (optind >= argc || want_stdin_read_last)
     process_input_file("-");
   exit_troff();
-  return 0;			// not reached
+  return 0; // NOTREACHED
 }
 
 static void configure_desired_warnings_request() // .warn
