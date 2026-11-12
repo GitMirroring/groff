@@ -1,3 +1,24 @@
+2026-11-12  Jaipaul Cheernam <jaipaul.cheernam@est.tech>
+
+	* m4/groff.m4 (GROFF_G): Apply the "g" command prefix only when
+	the troff on PATH runs and reports a non-GNU ".g" value, not
+	whenever its output differs from "1".  A troff that is installed
+	but fails to run--as the native groff does when cross
+	compiling, lacking its device files--is no longer mistaken for
+	a groff-incompatible troff.
+
+	[An existing troff program might fail to produce any output if
+	it's compiled (a) for a different ABI or (b) with ASAN and
+	`ASAN_OPTIONS=detect_leaks=0` is not in the environment.  Owing
+	to its age, GNU troff has lots of memory leaks and cleaning them
+	up is a long-term project.  (This is likely true of other troffs
+	as well.)
+
+	Fixes <https://savannah.gnu.org/bugs/?686901.  Problem
+	introduced by me in commit 96b8274a90, 14 October, itself a
+	follow-up to commit 142b8d93fc, 8 October.  Evidently this stuff
+	is harder than it looks.  --GBR]
+
 2026-11-12  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Report macro file search path in `--version` output.
