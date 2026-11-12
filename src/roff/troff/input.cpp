@@ -10270,6 +10270,7 @@ int main(int argc, char **argv)
   string_list *macros = 0 /* nullptr */;
   string_list *register_assignments = 0 /* nullptr */;
   string_list *string_assignments = 0 /* nullptr */;
+  bool want_version_report = false;
   bool want_stdin_read_last = false;
   bool have_explicit_device_argument = false;
   bool have_explicit_default_family = false;
@@ -10304,11 +10305,8 @@ int main(int argc, char **argv)
 	 != EOF)
     switch (c) {
     case 'v':
-      {
-	printf("GNU troff (groff) version %s\n", Version_string);
-	exit(EXIT_SUCCESS);
-	break; // NOTREACHED
-      }
+      want_version_report = true;
+      break; // NOTREACHED
     case 'I':
       // Search path for .psbb files
       // and most other non-system input files.
@@ -10437,6 +10435,13 @@ int main(int argc, char **argv)
     }
   if (want_unsafe_requests)
     mac_path = &macro_path;
+  if (want_version_report) {
+    (void) printf("GNU troff (groff) version %s\n", Version_string);
+    (void) putc('\n', stdout);
+    (void) printf("macro search path: %s\n",
+		  mac_path->contents());
+    exit(EXIT_SUCCESS);
+  }
   set_string(".T", device);
   // TODO: Kill this off in groff 1.24.0 release + 2 years.  See env.cpp.
   if ((strcmp("pdf", device) == 0) || strcmp("ps", device) == 0)

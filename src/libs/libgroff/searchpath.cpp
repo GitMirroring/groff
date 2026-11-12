@@ -91,6 +91,11 @@ search_path::~search_path()
   delete[] dirs;
 }
 
+const char *search_path::contents() const
+{
+  return static_cast<const char *>(dirs);
+}
+
 void search_path::command_line_dir(const char *s)
 {
   char *old = dirs;

@@ -25,6 +25,7 @@ public:
   search_path(const char *envvar, const char *standard,
 	      int add_home, int add_current);
   ~search_path();
+  const char* contents() const;
   void command_line_dir(const char *);
   FILE *open_file(const char *, char **);
   FILE *open_file_cautiously(const char *, char ** = 0 /* nullptr */,

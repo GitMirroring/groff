@@ -1,3 +1,29 @@
+2026-11-12  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Report macro file search path in `--version` output.
+
+	* src/include/searchpath.h (class search_path): Declare new
+	member function `contents()`, which, like the same-named member
+	functions of groff's `string` and `symbol` classes, returns a
+	pointer to `const char`.
+	* src/libs/libgroff/searchpath.cpp (search_path::contents):
+	Return the contents of `dirs` as-is (but hardened to `const`).
+	A refactoring of this class might store directory names as
+	elements of a list (an `std::vector`?) and compute the path
+	element separator.  On the other hand, no one seems for several
+	years to have bothered building groff on a non-POSIX system.
+	* src/roff/troff/input.cpp (main): Declare new Boolean variable
+	`want_version_report`, defaulting `false`.  When processing `-v`
+	command-line option, simply set this flag to `true` and stop
+	printing anything or exiting early.  We need to process the
+	remainder of the command line to determine what the macro file
+	search path is; `-M` options might follow `-v`.  After
+	command-line processing is complete, check the flag variable,
+	and if it is true, report version and macro path search
+	information, and exit(3) successfully.
+
+	Fixes <https://savannah.gnu.org/bugs/?68600>.
+
 2026-11-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[tbl]: Guard unreachable code with new preprocessor
