@@ -1057,6 +1057,10 @@ AC_DEFUN([GROFF_TMAC],
 ])
 
 
+dnl TODO: Permit `GROFF_COMMAND_PREFIX` environment variable to override
+dnl this check.  But be careful, as the variable being unset has a
+dnl _different meaning_ from being set but null.
+dnl
 # Check the build environment for a `troff` executable that defines a
 # built-in register `.g`.  It always interpolates `1` in GNU troff.
 # If the build environment's troff does not thus advertise GNU troff
@@ -1067,14 +1071,15 @@ AC_DEFUN([GROFF_G], [
   AC_MSG_CHECKING([whether a groff-incompatible troff is installed])
   if test -n "`command -v troff`"
   then
-    troff_dotg=`(echo .tm '|n(.g' | tr '|' '\\\\' | troff -z -i 2>/dev/null) \
+    troff_dotg=`(echo .tm '|n(.g' | tr '|' '\\\\' \
+		 | troff -z -i 2>/dev/null) \
       2>/dev/null`
     if test -n "$troff_dotg" && test "$troff_dotg" != 1
     then
       g=g
     fi
   fi
-  if test "$g" = "g"
+  if test "$g" = g
   then
     AC_MSG_RESULT([yes])
   else

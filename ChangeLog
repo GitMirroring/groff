@@ -1,3 +1,9 @@
+2026-11-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m4/groff.m4 (GROFF_G): Fix code style nits.  Break long input
+	lines.  Unquote comparand lacking shell metacharacters in
+	test(1) expression.
+
 2026-11-12  Jaipaul Cheernam <jaipaul.cheernam@est.tech>
 
 	* m4/groff.m4 (GROFF_G): Apply the "g" command prefix only when
