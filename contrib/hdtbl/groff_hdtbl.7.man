@@ -269,7 +269,7 @@ to the command line of groff (before the document file which contains
 .I hdtbl
 macros).
 .
-Then you can include on or more tables in your document, where each one
+Then you can include one or more tables in your document, where each one
 must be started and ended with the
 .CR .TBL
 and
