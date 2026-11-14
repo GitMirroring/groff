@@ -1,3 +1,10 @@
+2026-11-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m4/groff.m4 (GROFF_G): Report value of `.g` register alongside
+	determination of installed troff's groff-compatibility.  This
+	makes it easier to discern if the troff we found failed to run
+	at all, which should aid troubleshooting.
+
 2026-11-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m4/groff.m4 (GROFF_G): Fix code style nits.  Break long input

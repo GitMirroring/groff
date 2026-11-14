@@ -1081,9 +1081,9 @@ AC_DEFUN([GROFF_G], [
   fi
   if test "$g" = g
   then
-    AC_MSG_RESULT([yes])
+    AC_MSG_RESULT([yes (.g='$g')])
   else
-    AC_MSG_RESULT([no])
+    AC_MSG_RESULT([no (.g='$g')])
   fi
   AC_SUBST([g])
 ])
