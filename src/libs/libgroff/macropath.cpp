@@ -29,10 +29,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #define MACROPATH_ENVVAR "GROFF_TMAC_PATH"
 
-// TODO: Boolify 3rd argument.
-search_path macro_path(MACROPATH_ENVVAR, MACROPATH, 1);
-search_path safer_macro_path(MACROPATH_ENVVAR, MACROPATH, 0);
-search_path config_macro_path(MACROPATH_ENVVAR, MACROPATH, 0);
+search_path macro_path(MACROPATH_ENVVAR, MACROPATH, true);
+search_path safer_macro_path(MACROPATH_ENVVAR, MACROPATH, false);
+search_path config_macro_path(MACROPATH_ENVVAR, MACROPATH, false);
 
 // Local Variables:
 // fill-column: 72

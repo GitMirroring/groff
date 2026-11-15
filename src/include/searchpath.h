@@ -21,9 +21,8 @@ class search_path {
   char *dirs;
   unsigned init_len; // TODO: size_t
 public:
-  // TODO: Boolify 3rd argument.
   search_path(const char * /* envvar */, const char * /* standard */,
-	      int add_current);
+	      bool);
   ~search_path();
   const char* contents() const;
   void command_line_dir(const char *);

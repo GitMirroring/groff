@@ -40,7 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 // Initialize inclusion search path with only the current directory.
 static search_path include_search_path(0 /* nullptr */, 0 /* nullptr */,
-				       1);
+				       true);
 
 bool want_att_compat = false;
 bool want_raw_output = false;

@@ -71,7 +71,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 extern "C" const char *Version_string;
 
 // Initialize inclusion search path with only the current directory.
-search_path include_search_path(0 /* nullptr */, 0 /* nullptr */, 1);
+search_path include_search_path(0 /* nullptr */, 0 /* nullptr */, true);
 
 static int landscape_flag = 0;
 static int manual_feed_flag = 0;

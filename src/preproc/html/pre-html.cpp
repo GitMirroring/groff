@@ -238,7 +238,7 @@ static const char devhtml_desc[] = "devhtml/DESC";
 static const char devps_desc[] = "devps/DESC";
 
 const char *const FONT_ENV_VAR = "GROFF_FONT_PATH";
-static search_path font_path(FONT_ENV_VAR, FONTPATH, 0);
+static search_path font_path(FONT_ENV_VAR, FONTPATH, false);
 static html_dialect dialect = html4;
 
 

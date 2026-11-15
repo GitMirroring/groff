@@ -1,5 +1,24 @@
 2026-11-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[libgroff]: Slightly refactor; boolify.
+
+	* src/include/searchpath.h (class search_path): Demote type of
+	third constructor argument from `int` to `bool` in declaration.
+	* src/libs/libgroff/searchpath.cpp: Likewise in the definition.
+	Rename argument from `add_current` to
+	`add_current_working_directory` for clarity.
+	* src/devices/grops/ps.cpp:
+	* src/libs/libgroff/fontfile.cpp:
+	* src/libs/libgroff/macropath.cpp:
+	* src/preproc/html/pre-html.cpp:
+	* src/preproc/soelim/soelim.cpp:
+	* src/roff/troff/input.cpp: Update constructor callers to use
+	Boolean rather than integer literals.
+
+	Continues the long process of fixing Savannah #66672.
+
+2026-11-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/include/searchpath.h (class search_path): Fix code style
 	nit.  Comment formal argument names in function declarations,
 	when multiple arguments use the same type, as a compromise with
