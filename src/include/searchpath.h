@@ -22,7 +22,7 @@ class search_path {
   unsigned init_len; // TODO: size_t
 public:
   // TODO: Boolify 3rd argument.
-  search_path(const char *envvar, const char *standard,
+  search_path(const char * /* envvar */, const char * /* standard */,
 	      int add_current);
   ~search_path();
   const char* contents() const;

@@ -1,5 +1,12 @@
 2026-11-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/include/searchpath.h (class search_path): Fix code style
+	nit.  Comment formal argument names in function declarations,
+	when multiple arguments use the same type, as a compromise with
+	the Stroustrup-style C++ used in most of groff.
+
+2026-11-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Drop unreachable code and invariant function parameters.
 
 	* src/include/searchpath.h (class search_path): Drop `add_home`
