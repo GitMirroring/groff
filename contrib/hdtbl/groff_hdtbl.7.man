@@ -265,16 +265,17 @@ package, or add the option
 .
 .
 .PP
-to the command line of groff (before the document file which contains
-.I hdtbl
-macros).
+to the
+.I groff
+command line.
 .
-Then you can include one or more tables in your document, where each one
-must be started and ended with the
+Then you can include one or more tables in your document,
+where each one must be started and ended with the
 .CR .TBL
 and
 .CR .ETB
-macros, respectively.
+macros,
+respectively.
 .
 .
 .PP
