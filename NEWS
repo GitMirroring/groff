@@ -16,6 +16,13 @@ VERSION next
 troff
 -----
 
+*  The user's home directory is no longer present in the default macro
+   file search path.  To restore GNU troff's former behavior in this
+   respect, use a command-line option or environment variable.
+
+     $ groff -M "$HOME"
+     $ GROFF_TMAC_PATH="$HOME" groff
+
 *  The `ne` request no longer performs an operation if it is given an
    invalid argument.  This change is inconsistent with AT&T troff but
    more consistent with general *roff syntax.

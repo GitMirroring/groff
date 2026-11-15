@@ -1,3 +1,17 @@
+2026-11-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/libs/libgroff/macropath.cpp: Drop inclusion of user's home
+	directory from initialization of `macro_path` and
+	`safer_macro_path`.
+	* doc/groff.texi.in (Macro Directories):
+	* src/roff/troff/troff.1.man (Environment): Drop notice of the
+	aforementioned inclusion.
+
+	Fixes <https://savannah.gnu.org/bugs/?68890>.  Thanks to Morten
+	Bo Johansen for the report; to him and Deri James, Peter
+	Schaffter, Larry Kollar, and Doug McIlroy for input; and to Dave
+	Kemper for corralling feedback.
+
 2026-11-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m4/groff.m4 (GROFF_G): Report value of `.g` register alongside

@@ -1913,11 +1913,6 @@ The current working directory (only if in unsafe mode using the
 @option{-U} command-line option).
 
 @item
-@cindex home directory
-@cindex directory, home
-The user's home directory, found in the @env{HOME} environment variable.
-
-@item
 @cindex site-local directory
 @cindex directory, site-local
 @cindex platform-specific directory

@@ -992,7 +992,6 @@ will scan directories given as arguments to any specified
 options before these,
 then the current directory
 (only if in unsafe mode),
-the user's home directory,
 .if !'@COMPATIBILITY_WRAPPERS@'no' \{\
 a platform-specific directory
 .RI ( @SYSTEMMACRODIR@ ),
