@@ -22,7 +22,7 @@ class search_path {
   unsigned init_len; // TODO: size_t
 public:
   search_path(const char * /* envvar */, const char * /* standard */,
-	      bool);
+	      bool = false);
   ~search_path();
   const char* contents() const;
   void command_line_dir(const char *);

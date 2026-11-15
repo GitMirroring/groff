@@ -29,9 +29,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #define MACROPATH_ENVVAR "GROFF_TMAC_PATH"
 
+// Init only "unsafe" macro path with the current working directory.
 search_path macro_path(MACROPATH_ENVVAR, MACROPATH, true);
-search_path safer_macro_path(MACROPATH_ENVVAR, MACROPATH, false);
-search_path config_macro_path(MACROPATH_ENVVAR, MACROPATH, false);
+search_path safer_macro_path(MACROPATH_ENVVAR, MACROPATH);
+search_path config_macro_path(MACROPATH_ENVVAR, MACROPATH);
 
 // Local Variables:
 // fill-column: 72
