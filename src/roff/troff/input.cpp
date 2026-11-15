@@ -172,7 +172,7 @@ bool want_html_debugging = true;	// enable more diagnostics
 search_path *mac_path = &safer_macro_path;
 
 // Initialize inclusion search path with only the current directory.
-search_path include_search_path(0 /* nullptr */, 0 /* nullptr */, 0, 1);
+search_path include_search_path(0 /* nullptr */, 0 /* nullptr */, 1);
 
 static int read_character_in_copy_mode(node ** /* nd; 0 to discard */,
     bool /* is_defining_macro */ = false,

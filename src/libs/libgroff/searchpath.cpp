@@ -53,11 +53,9 @@ static bool is_directory(const char *name)
 }
 
 search_path::search_path(const char *envvar, const char *standard,
-			 int add_home, int add_current)
+			 int add_current)
 {
   char *home = 0 /* nullptr */;
-  if (add_home)
-    home = getenv("HOME");
   char *e = 0 /* nullptr */;
   if (envvar != 0 /* nullptr */)
     e = getenv(envvar);
