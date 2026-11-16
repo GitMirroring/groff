@@ -106,7 +106,7 @@ extern int command_char;
 // as dots by the output device
 extern int zero_length_line_flag;
 extern int driver_extension_flag;
-extern int compatible_flag;
+extern bool want_att_compat;
 extern bool want_unsafe_mode;
 extern char *graphname;
 

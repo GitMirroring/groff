@@ -51,7 +51,7 @@ bool want_alternate_flyback = false;
 int zero_length_line_flag = 0;
 // Non-zero means we're using a groff driver.
 int driver_extension_flag = 1;
-int compatible_flag = 0;
+bool want_att_compat = false;
 bool want_unsafe_mode = false;
 int command_char = '.';		// the character that introduces lines
 				// that should be passed through transparently
@@ -110,7 +110,7 @@ int top_input::get()
 	int d = getc(fp);
 	if (d != EOF)
 	  ungetc(d, fp);
-	if (d == EOF || d == ' ' || d == '\n' || compatible_flag) {
+	if (d == EOF || d == ' ' || d == '\n' || want_att_compat) {
 	  eof = 1;
 	  want_flyback = (c == 'F');
 	  want_alternate_flyback = (c == 'Y');
@@ -124,7 +124,7 @@ int top_input::get()
 	c = getc(fp);
 	if (c != EOF)
 	  ungetc(c, fp);
-	if (c == EOF || c == ' ' || c == '\n' || compatible_flag) {
+	if (c == EOF || c == ' ' || c == '\n' || want_att_compat) {
 	  error("nested .PS");
 	  eof = 1;
 	  return EOF;
@@ -178,7 +178,7 @@ int top_input::peek()
 	int d = getc(fp);
 	if (d != EOF)
 	  ungetc(d, fp);
-	if (d == EOF || d == ' ' || d == '\n' || compatible_flag) {
+	if (d == EOF || d == ' ' || d == '\n' || want_att_compat) {
 	  eof = 1;
 	  want_flyback = (c == 'F');
 	  want_alternate_flyback = (c == 'Y');
@@ -193,7 +193,7 @@ int top_input::peek()
 	c = getc(fp);
 	if (c != EOF)
 	  ungetc(c, fp);
-	if (c == EOF || c == ' ' || c == '\n' || compatible_flag) {
+	if (c == EOF || c == ' ' || c == '\n' || want_att_compat) {
 	  error("nested .PS");
 	  eof = 1;
 	  return EOF;
@@ -389,7 +389,7 @@ void do_file(const char *filename)
       }
       break;
     case HAD_PS:
-      if (c == ' ' || c == '\n' || compatible_flag) {
+      if (c == ' ' || c == '\n' || want_att_compat) {
 	ungetc(c, fp);
 	do_picture(fp);
 	state = START;
@@ -416,7 +416,7 @@ void do_file(const char *filename)
       }
       break;
     case HAD_lf:
-      if (c == ' ' || c == '\n' || compatible_flag) {
+      if (c == ' ' || c == '\n' || want_att_compat) {
 	string line;
 	while (c != EOF) {
 	  line += c;
@@ -571,7 +571,7 @@ int main(int argc, char **argv)
 	 != EOF)
     switch (opt) {
     case 'C':
-      compatible_flag = 1;
+      want_att_compat = true;
       break;
     case 'D':
     case 'T':

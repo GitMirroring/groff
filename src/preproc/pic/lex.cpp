@@ -121,7 +121,7 @@ bool file_input::read_line()
     if (!(line.length() >= 3 && line[0] == '.' && line[1] == 'P'
 	  && (line[2] == 'S' || line[2] == 'E' || line[2] == 'F')
 	  && (line.length() == 3 || line[3] == ' ' || line[3] == '\n'
-	      || compatible_flag))) {
+	      || want_att_compat))) {
       line += '\0';
       ptr = line.contents();
       return true;
