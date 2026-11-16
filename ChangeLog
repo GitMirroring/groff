@@ -1,3 +1,9 @@
+2026-11-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/preproc/pic/pic.ypp (reset, reset_all): Fix code style
+	nits.  Update definitions and forward declarations to mark
+	functions `static`, as they do not require external linkage.
+
 2026-07-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[pic]: Partially migrate to strdup(3).
