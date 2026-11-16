@@ -170,7 +170,7 @@ public:
 
 void set_troff_location(const char *, int);
 
-extern int compatible_flag;
+extern bool want_att_compat;
 
 // Local Variables:
 // fill-column: 72

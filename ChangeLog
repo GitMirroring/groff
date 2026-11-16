@@ -1,3 +1,21 @@
+2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[tbl]: Boolify AT&T compatibility flag.
+
+	Demote `compatible_flag` from `int` to `bool` and rename it to
+	`want_att_compat`.
+
+	* src/preproc/tbl/table.h: Update declaration.
+	* src/preproc/tbl/main.cpp: Initialize it with Boolean, not
+	integer, literal.
+	(main): Assign to it with Boolean, not integer, literal.
+	* src/preproc/tbl/main.cpp (table_input::get)
+	(process_input_file, process_data):
+	* src/preproc/tbl/table.cpp (table::init_output): Update
+	dereference sites.
+
+	Continues the long process of fixing Savannah #66672.
+
 2026-11-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/libs/libgroff/searchpath.cpp (search_path::search_path):

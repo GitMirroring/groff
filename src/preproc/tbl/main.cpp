@@ -43,7 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 extern "C" const char *Version_string;
 
-int compatible_flag = 0;
+bool want_att_compat = false;
 
 class table_input {
   FILE *fp;
@@ -89,7 +89,7 @@ int table_input::get()
       if ((c = getc(fp)) == '.') {
 	if ((c = getc(fp)) == 'T') {
 	  if ((c = getc(fp)) == 'E') {
-	    if (compatible_flag) {
+	    if (want_att_compat) {
 	      state = END;
 	      return EOF;
 	    }
@@ -144,7 +144,7 @@ int table_input::get()
 	  current_lineno++;
 	  c = getc(fp);
 	}
-	else if (c == 'a' && compatible_flag) {
+	else if (c == 'a' && want_att_compat) {
 	  state = LEADER_1;
 	  return '\\';
 	}
@@ -257,7 +257,7 @@ void process_input_file(FILE *fp)
       }
       break;
     case HAD_TS:
-      if (c == ' ' || c == '\n' || compatible_flag) {
+      if (c == ' ' || c == '\n' || want_att_compat) {
 	putchar('.');
 	putchar('T');
 	putchar('S');
@@ -312,7 +312,7 @@ void process_input_file(FILE *fp)
       }
       break;
     case HAD_lf:
-      if (c == ' ' || c == '\n' || compatible_flag) {
+      if (c == ' ' || c == '\n' || want_att_compat) {
 	string line;
 	while (c != EOF) {
 	  line += c;
@@ -1541,7 +1541,7 @@ static table *process_data(table_input &in, format *f, options *opt)
 		  }
 		  break;
 		case GOT_lf:
-		  if (c == ' ' || c == '\n' || compatible_flag) {
+		  if (c == ' ' || c == '\n' || want_att_compat) {
 		    string args;
 		    input_entry += ".lf";
 		    while (c != EOF) {
@@ -1763,7 +1763,7 @@ int main(int argc, char **argv)
          != EOF)
     switch (opt) {
     case 'C':
-      compatible_flag = 1;
+      want_att_compat = true;
       break;
     case 'v':
       {

@@ -1886,7 +1886,7 @@ void table::init_output()
     prints(".nr " LINESIZE_REG " \\n[.s]\n");
   if (!(flags & CENTER))
     prints(".nr " SAVED_CENTER_REG " \\n[.ce]\n");
-  if (compatible_flag)
+  if (want_att_compat)
     prints(".ds " LEADER_REG " \\a\n");
   if (!(flags & NOKEEP))
     prints(".if !r " USE_KEEPS_REG " .nr " USE_KEEPS_REG " 1\n");
