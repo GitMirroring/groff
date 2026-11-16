@@ -581,13 +581,13 @@ static int look_up_keyword(const char *str, int len)
     { "xslanted", XSLANTED },
     { "yslanted", YSLANTED },
   };
-  
+
   const keyword *start = table;
   const keyword *end = table + countof(table);
   while (start < end) {
     // start <= target < end
     const keyword *mid = start + (end - start)/2;
-    
+
     int cmp = docmp(str, len, mid->name, strlen(mid->name));
     if (cmp == 0)
       return mid->token;
@@ -1037,7 +1037,7 @@ static int get_token(bool want_macro_expansion = true)
     case '7':
     case '8':
     case '9':
-      {   
+      {
 	int overflow = 0;
 	n = 0;
 	for (;;) {
