@@ -157,7 +157,8 @@ Each table region encloses one or more
 .
 Within a table region,
 table descriptions beyond the first
-are called
+change its layout;
+they are called
 .I "continued descriptions"
 and must each be preceded
 by an input line beginning with
@@ -702,20 +703,16 @@ in boxed tables.
 .
 .
 .P
-To change the table format within a
-.I @g@tbl
-region,
-use the
+A line starting with
 .B .T&
-token at the start of a line.
-.
+announces a continued description.
 Follow it with a format specification and table data,
 but
 .I not
 region options.
 .
-The quantity of columns in a format thus introduced cannot increase
-relative to the previous format;
+The quantity of columns in a continued description cannot increase
+relative to the previous description;
 in that case,
 you must end the table region and start another.
 .
