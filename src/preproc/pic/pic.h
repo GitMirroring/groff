@@ -55,7 +55,7 @@ public:
   virtual ~input();
   virtual int get() = 0;
   virtual int peek() = 0;
-  virtual int get_location(const char **, int *);
+  virtual bool get_location(const char **, int *);
   friend class input_stack;
   friend class copy_rest_thru_input;
 };
@@ -72,7 +72,7 @@ public:
   ~file_input();
   int get();
   int peek();
-  int get_location(const char **, int *);
+  bool get_location(const char **, int *);
 };
 
 void lex_init(input *);

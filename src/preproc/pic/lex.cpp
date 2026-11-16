@@ -79,9 +79,9 @@ input::~input()
 {
 }
 
-int input::get_location(const char **, int *)
+bool input::get_location(const char **, int *)
 {
-  return 0;
+  return false;
 }
 
 file_input::file_input(FILE *f, const char *fn)
@@ -145,11 +145,11 @@ int file_input::peek()
     return EOF;
 }
 
-int file_input::get_location(const char **fnp, int *lnp)
+bool file_input::get_location(const char **fnp, int *lnp)
 {
   *fnp = filename;
   *lnp = lineno;
-  return 1;
+  return true;
 }
 
 macro_input::macro_input(const char *str)
@@ -278,7 +278,7 @@ public:
   static void clear();
   static int get_char();
   static int peek_char();
-  static int get_location(const char **fnp, int *lnp);
+  static bool get_location(const char **, int *);
   static void push_back(unsigned char c, int was_bol = 0);
   static int bol();
 };
@@ -382,12 +382,12 @@ void input_stack::push_back(unsigned char c, int was_bol)
   bol_flag = was_bol;
 }
 
-int input_stack::get_location(const char **fnp, int *lnp)
+bool input_stack::get_location(const char **fnp, int *lnp)
 {
   for (input *p = current_input; p; p = p->next)
     if (p->get_location(fnp, lnp))
-      return 1;
-  return 0;
+      return true;
+  return false;
 }
 
 string context_buffer;
@@ -1748,7 +1748,7 @@ public:
   ~simple_file_input();
   int get();
   int peek();
-  int get_location(const char **, int *);
+  bool get_location(const char **, int *);
 };
 
 simple_file_input::simple_file_input(FILE *p, const char *s)
@@ -1786,11 +1786,11 @@ int simple_file_input::peek()
   return c;
 }
 
-int simple_file_input::get_location(const char **fnp, int *lnp)
+bool simple_file_input::get_location(const char **fnp, int *lnp)
 {
   *fnp = filename;
   *lnp = lineno;
-  return 1;
+  return true;
 }
 
 

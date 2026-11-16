@@ -1,5 +1,24 @@
 2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[pic]: Boolify `get_location()` member functions.
+
+	* src/preproc/pic/pic.h (class input)
+	(class file_input):
+	* src/preproc/pic/lex.cpp (class input_stack)
+	(class simple_file_input):
+	* src/preproc/pic/main.cpp (class top_input): Demote declaration
+	of `get_location()` from `int` to `bool`.
+	* src/preproc/pic/lex.cpp (input::get_location)
+	(file_input::get_location)
+	(input_stack::get_location)
+	(simple_file_input::get_location):
+	* src/preproc/pic/main.cpp (top_input::get_location): Return
+	Boolean rather than integer literals.
+
+	Continues the long process of fixing Savannah #66672.
+
+2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[pic]: Migrate to strdup(3).
 
 	* src/preproc/pic/lex.cpp

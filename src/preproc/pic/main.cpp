@@ -73,7 +73,7 @@ public:
   top_input(FILE *);
   int get();
   int peek();
-  int get_location(const char **, int *);
+  bool get_location(const char **, int *);
 };
 
 top_input::top_input(FILE *p) : fp(p), bol(1), eof(0)
@@ -223,11 +223,11 @@ int top_input::peek()
   return c;
 }
 
-int top_input::get_location(const char **filenamep, int *linenop)
+bool top_input::get_location(const char **filenamep, int *linenop)
 {
   *filenamep = current_filename;
   *linenop = current_lineno;
-  return 1;
+  return true;
 }
 
 static void do_picture(FILE *fp)
