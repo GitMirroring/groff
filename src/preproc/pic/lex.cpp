@@ -94,7 +94,7 @@ file_input::~file_input()
   fclose(fp);
 }
 
-int file_input::read_line()
+bool file_input::read_line()
 {
   for (;;) {
     line.clear();
@@ -117,14 +117,14 @@ int file_input::read_line()
       }
     }
     if (line.length() == 0)
-      return 0;
+      return false;
     if (!(line.length() >= 3 && line[0] == '.' && line[1] == 'P'
 	  && (line[2] == 'S' || line[2] == 'E' || line[2] == 'F')
 	  && (line.length() == 3 || line[3] == ' ' || line[3] == '\n'
 	      || compatible_flag))) {
       line += '\0';
       ptr = line.contents();
-      return 1;
+      return true;
     }
   }
 }

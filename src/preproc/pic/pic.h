@@ -66,7 +66,7 @@ class file_input : public input {
   int lineno;
   string line;
   const char *ptr;
-  int read_line();
+  bool read_line();
 public:
   file_input(FILE *, const char *);
   ~file_input();

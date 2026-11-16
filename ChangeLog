@@ -1,5 +1,16 @@
 2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[pic]: Boolify `read_line()` member function.
+
+	* src/preproc/pic/pic.h (class file_input): Demote declaration
+	of `read_line()` from `int` to `bool`.
+	* src/preproc/pic/lex.cpp (file_input::read_line): Return
+	Boolean rather than integer literals.
+
+	Continues the long process of fixing Savannah #66672.
+
+2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[pic]: Boolify `get_location()` member functions.
 
 	* src/preproc/pic/pic.h (class input)
