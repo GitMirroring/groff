@@ -1,5 +1,19 @@
 2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/pic/lex.cpp: Slightly refactor.  Boolify argument
+	to `get_token()` and rename it from `lookup_flag` to
+	`want_macro_expansion`, to make its purpose clearer.
+	(get_token): Use new parameter name.
+	(do_define)
+	(do_undef)
+	(do_lookahead)
+	(yylex): Update call sites to use Boolean, not integer,
+	literals.
+
+	Continues the long process of fixing Savannah #66672.
+
+2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/pic/lex.cpp: Trivially refactor.  Rename
 	`lookup_keyword()` to `look_up_keyword()`.  "Lookup" is a
 	{somewhat informal} noun, while "look up" is a verb.
