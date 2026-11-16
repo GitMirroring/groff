@@ -1,5 +1,14 @@
 2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/pic/lex.cpp (get_token): Slightly refactor; use
+	default argument.  Default to `true`.
+	(do_lookahead)
+	(yylex): Update call sites to drop argument.
+
+	Continues the long process of fixing Savannah #66672.
+
+2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/pic/lex.cpp: Slightly refactor.  Boolify argument
 	to `get_token()` and rename it from `lookup_flag` to
 	`want_macro_expansion`, to make its purpose clearer.

@@ -949,7 +949,7 @@ static int get_token_after_dot(int c)
 
 // Return encoded token value, which is selected from a bunch of
 // preprocessor-defined integer literals, not a proper type.
-static int get_token(bool want_macro_expansion)
+static int get_token(bool want_macro_expansion = true)
 {
   context_buffer.clear();
   for (;;) {
@@ -1420,6 +1420,7 @@ static int get_delimited()
 
 static void do_define()
 {
+  // Don't perform macro expansion on the token we're defining.
   int t = get_token(false /* want_macro_expansion */);
   if (t != VARIABLE && t != LABEL) {
     lex_error("can only define variable or placename");
@@ -1436,6 +1437,7 @@ static void do_define()
 
 static void do_undef()
 {
+  // Don't perform macro expansion on the token we're undefining.
   int t = get_token(false /* want_macro_expansion */);
   if (t != VARIABLE && t != LABEL) {
     lex_error("can only define variable or placename");
@@ -1861,7 +1863,7 @@ void do_lookahead()
 {
   if (lookahead_token == -1) {
     old_context_buffer = context_buffer;
-    lookahead_token = get_token(true /* want_macro_expansion */);
+    lookahead_token = get_token();
   }
 }
 
@@ -1894,7 +1896,7 @@ int yylex()
       lookahead_token = -1;
     }
     else
-      t = get_token(true /* want_macro_expansion */);
+      t = get_token();
     switch (t) {
     case '\n':
       return ';';
@@ -1930,7 +1932,7 @@ int yylex()
     case LEFT:
       // change LEFT to LEFT_CORNER when followed by OF
       old_context_buffer = context_buffer;
-      lookahead_token = get_token(true /* want_macro_expansion */);
+      lookahead_token = get_token();
       if (lookahead_token == OF)
 	return LEFT_CORNER;
       else
@@ -1938,7 +1940,7 @@ int yylex()
     case RIGHT:
       // change RIGHT to RIGHT_CORNER when followed by OF
       old_context_buffer = context_buffer;
-      lookahead_token = get_token(true /* want_macro_expansion */);
+      lookahead_token = get_token();
       if (lookahead_token == OF)
 	return RIGHT_CORNER;
       else
@@ -1946,7 +1948,7 @@ int yylex()
     case UPPER:
       // recognise UPPER only before LEFT or RIGHT
       old_context_buffer = context_buffer;
-      lookahead_token = get_token(true /* want_macro_expansion */);
+      lookahead_token = get_token();
       if (lookahead_token != LEFT && lookahead_token != RIGHT) {
 	yylval.str = strsave("upper");
 	return VARIABLE;
@@ -1956,7 +1958,7 @@ int yylex()
     case LOWER:
       // recognise LOWER only before LEFT or RIGHT
       old_context_buffer = context_buffer;
-      lookahead_token = get_token(true /* want_macro_expansion */);
+      lookahead_token = get_token();
       if (lookahead_token != LEFT && lookahead_token != RIGHT) {
 	yylval.str = strsave("lower");
 	return VARIABLE;
@@ -1966,7 +1968,7 @@ int yylex()
     case NORTH:
       // recognise NORTH only before OF
       old_context_buffer = context_buffer;
-      lookahead_token = get_token(true /* want_macro_expansion */);
+      lookahead_token = get_token();
       if (lookahead_token != OF) {
 	yylval.str = strsave("north");
 	return VARIABLE;
@@ -1976,7 +1978,7 @@ int yylex()
     case SOUTH:
       // recognise SOUTH only before OF
       old_context_buffer = context_buffer;
-      lookahead_token = get_token(true /* want_macro_expansion */);
+      lookahead_token = get_token();
       if (lookahead_token != OF) {
 	yylval.str = strsave("south");
 	return VARIABLE;
@@ -1986,7 +1988,7 @@ int yylex()
     case EAST:
       // recognise EAST only before OF
       old_context_buffer = context_buffer;
-      lookahead_token = get_token(true /* want_macro_expansion */);
+      lookahead_token = get_token();
       if (lookahead_token != OF) {
 	yylval.str = strsave("east");
 	return VARIABLE;
@@ -1996,7 +1998,7 @@ int yylex()
     case WEST:
       // recognise WEST only before OF
       old_context_buffer = context_buffer;
-      lookahead_token = get_token(true /* want_macro_expansion */);
+      lookahead_token = get_token();
       if (lookahead_token != OF) {
 	yylval.str = strsave("west");
 	return VARIABLE;
@@ -2006,7 +2008,7 @@ int yylex()
     case TOP:
       // recognise TOP only before OF
       old_context_buffer = context_buffer;
-      lookahead_token = get_token(true /* want_macro_expansion */);
+      lookahead_token = get_token();
       if (lookahead_token != OF) {
 	yylval.str = strsave("top");
 	return VARIABLE;
@@ -2016,7 +2018,7 @@ int yylex()
     case BOTTOM:
       // recognise BOTTOM only before OF
       old_context_buffer = context_buffer;
-      lookahead_token = get_token(true /* want_macro_expansion */);
+      lookahead_token = get_token();
       if (lookahead_token != OF) {
 	yylval.str = strsave("bottom");
 	return VARIABLE;
@@ -2026,7 +2028,7 @@ int yylex()
     case CENTER:
       // recognise CENTER only before OF
       old_context_buffer = context_buffer;
-      lookahead_token = get_token(true /* want_macro_expansion */);
+      lookahead_token = get_token();
       if (lookahead_token != OF) {
 	yylval.str = strsave("center");
 	return VARIABLE;
@@ -2036,7 +2038,7 @@ int yylex()
     case START:
       // recognise START only before OF
       old_context_buffer = context_buffer;
-      lookahead_token = get_token(true /* want_macro_expansion */);
+      lookahead_token = get_token();
       if (lookahead_token != OF) {
 	yylval.str = strsave("start");
 	return VARIABLE;
@@ -2046,7 +2048,7 @@ int yylex()
     case END:
       // recognise END only before OF
       old_context_buffer = context_buffer;
-      lookahead_token = get_token(true /* want_macro_expansion */);
+      lookahead_token = get_token();
       if (lookahead_token != OF) {
 	yylval.str = strsave("end");
 	return VARIABLE;
