@@ -1,5 +1,34 @@
 2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/pic/lex.cpp: Boolify "BOL" handling.
+	(class input_stack): Demote member variable `bol_flag` from
+	`int` to `bool` and rename it `at_beginning_of_line`.  Demote
+	second argument to `push_back()` member function from `int` to
+	`bool` and default it with Boolean, not integer, literal.
+	Demote member function `bol()`'s return type from `int` to
+	`bool` and rename it `is_at_beginning_of_line()`.
+	(input_stack::at_beginning_of_line): Assign to (static) class
+	member variable of `bool` type using Boolean, not integer,
+	literal.
+	(input_stack::bol): Rename this...
+	(input_stack::is_at_beginning_of_line): ...to this, and update
+	name of private variable dereferenced from `bol_flag` to
+	`at_beginning_of_line`.
+	(input_stack::clear): Assign Boolean literal to
+	`at_beginning_of_line` instead of integer to `bol_flag`.
+	(input_stack::get_char)
+	(input_stack::push_back): Assign to `at_beginning_of_line`
+	instead `bol_flag`.
+	(input_stack::push_back): Rename second argument from `was_bol`
+	to `was_at_bol`.
+	(get_token): Rename local variable `bol` to `is_at_bol` and
+	demote it from `int` to `bool`.  Assign to it with value of
+	`is_at_beginning_of_line()` member function, not `bol()`.
+
+	Continues the long process of fixing Savannah #66672.
+
+2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/pic/lex.cpp (class copy_thru_input): Boolify
 	`get_line()` member function.  Demote return type from `int` to
 	`bool`.

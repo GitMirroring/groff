@@ -274,23 +274,23 @@ int argument_macro_input::peek()
 
 class input_stack {
   static input *current_input;
-  static int bol_flag; // TODO: boolify
+  static bool at_beginning_of_line;
 public:
   static void push(input *);
   static void clear();
   static int get_char();
   static int peek_char();
   static bool get_location(const char **, int *);
-  static void push_back(unsigned char, int = 0);
-  static int bol();
+  static void push_back(unsigned char, bool = false);
+  static bool is_at_beginning_of_line();
 };
 
-int input_stack::bol_flag = 0;
+bool input_stack::at_beginning_of_line = false;
 input *input_stack::current_input = 0 /* nullptr */;
 
-inline int input_stack::bol()
+inline bool input_stack::is_at_beginning_of_line()
 {
-  return bol_flag;
+  return at_beginning_of_line;
 }
 
 void input_stack::clear()
@@ -300,7 +300,7 @@ void input_stack::clear()
     current_input = current_input->next;
     delete tem;
   }
-  bol_flag = 1;
+  at_beginning_of_line = true;
 }
 
 void input_stack::push(input *in)
@@ -326,7 +326,7 @@ int input_stack::get_char()
   while (current_input != 0) {
     int c = current_input->get();
     if (c != EOF) {
-      bol_flag = ('\n' == c);
+      at_beginning_of_line = ('\n' == c);
       return c;
     }
     // don't pop the top-level input off the stack
@@ -378,10 +378,10 @@ int char_input::peek()
   return c;
 }
 
-void input_stack::push_back(unsigned char c, int was_bol)
+void input_stack::push_back(unsigned char c, bool was_at_bol)
 {
   push(new char_input(c));
-  bol_flag = was_bol;
+  at_beginning_of_line = was_at_bol;
 }
 
 bool input_stack::get_location(const char **fnp, int *lnp)
@@ -958,9 +958,9 @@ static int get_token(bool want_macro_expansion = true)
   context_buffer.clear();
   for (;;) {
     int n = 0;
-    int bol = input_stack::bol();
+    bool is_at_bol = input_stack::is_at_beginning_of_line();
     int c = input_stack::get_char();
-    if (bol && (c == command_char)) {
+    if (is_at_bol && (c == command_char)) {
       token_buffer.clear();
       token_buffer += c;
       // the newline is not part of the token
