@@ -79,6 +79,8 @@ void lex_init(input *);
 int get_location(char **, int *);
 
 void do_copy(const char *file);
+
+// pic.ypp
 void parse_init();
 void parse_cleanup();
 
