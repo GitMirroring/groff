@@ -1,5 +1,14 @@
 2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/pic/lex.ypp (get_token)
+	(copy_file_thru_input::inget)
+	(get_thru_arg): Explicitly compare variable of pointer type to
+	ISO C++98 null pointer literal, instead of punning it down to a
+	Boolean.  Arrange equality comparisons to avoid inadvertent
+	assignment to lvalue.
+
+2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/pic/pic.ypp: Trivially refactor.  Rename
 	`lookup_label()` to `look_up_label()` in foward declaration and
 	definition.  "Lookup" is a (somewhat informal) noun, while "look

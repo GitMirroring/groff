@@ -1331,7 +1331,7 @@ static int get_token(bool want_macro_expansion = true)
 	      input_stack::push(new macro_input(def));
 	  }
 	}
-	if (!def) {
+	if (0 /* nullptr */ == def) {
 	  context_buffer = token_buffer;
 	  if (csupper(token_buffer[0]))
 	    return LABEL;
@@ -1596,7 +1596,7 @@ copy_file_thru_input::~copy_file_thru_input()
 
 int copy_file_thru_input::inget()
 {
-  if (!in)
+  if (0 /* nullptr */ == in)
     return EOF;
   else
     return in->get();
@@ -1842,7 +1842,7 @@ static char *get_thru_arg()
     context_buffer = token_buffer;
     token_buffer += '\0';
     char *def = macro_table.lookup(token_buffer.contents());
-    if (def)
+    if (def != 0 /* nullptr */)
       return strsave(def);
     // I guess it wasn't a macro after all; so push the macro name back.
     for (size_t i = (token_buffer.length() - 1); i > 0; i--)
