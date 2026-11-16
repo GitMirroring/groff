@@ -272,7 +272,7 @@ int argument_macro_input::peek()
 
 class input_stack {
   static input *current_input;
-  static int bol_flag;
+  static int bol_flag; // TODO: boolify
 public:
   static void push(input *);
   static void clear();
@@ -473,6 +473,8 @@ static int docmp(const char *s1, int n1, const char *s2, int n2)
     return memcmp(s1, s2, n1);
 }
 
+// Return encoded token value, which is selected from a bunch of
+// preprocessor-defined integer literals, not a proper type.
 static int look_up_keyword(const char *str, int len)
 {
   static struct keyword {
@@ -597,6 +599,8 @@ static int look_up_keyword(const char *str, int len)
   return 0;
 }
 
+// Return encoded token value, which is selected from a bunch of
+// preprocessor-defined integer literals, not a proper type.
 static int get_token_after_dot(int c)
 {
   // get_token deals with the case where c is a digit
@@ -943,6 +947,8 @@ static int get_token_after_dot(int c)
   }
 }
 
+// Return encoded token value, which is selected from a bunch of
+// preprocessor-defined integer literals, not a proper type.
 static int get_token(int lookup_flag /* TODO: boolify */)
 {
   context_buffer.clear();
@@ -1342,6 +1348,7 @@ static int get_token(int lookup_flag /* TODO: boolify */)
   }
 }
 
+// TODO: boolify
 static int get_delimited()
 {
   token_buffer.clear();
