@@ -1,5 +1,16 @@
 2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/pic/lex.cpp (class copy_thru_input): Demote `done`
+	member variable from `int` to `bool`.
+	(copy_thru_input::copy_thru_input): Update constructor
+	initializer to use Boolean, not integer, literal.
+	(copy_thru_input::get_line): Assign to `done` using Boolean, not
+	integer, literal.
+
+	Continues the long process of fixing Savannah #66672.
+
+2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/pic/lex.cpp (do_copy, copy_file_thru): Revise
 	error diagnostic; favor "cannot" over "can't".
 

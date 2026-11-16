@@ -1562,7 +1562,7 @@ void do_copy(const char *filename)
 }
 
 class copy_thru_input : public input {
-  int done;
+  bool done;
   char *body;
   char *until;
   const char *p;
@@ -1634,7 +1634,7 @@ int copy_rest_thru_input::inget()
 }
 
 copy_thru_input::copy_thru_input(const char *b, const char *u)
-: done(0)
+: done(false)
 {
   ap = 0 /* nullptr */;
   body = process_body(b);
@@ -1737,7 +1737,7 @@ int copy_thru_input::get_line()
     line += '\0';
   }
   if (until != 0 && argc > 0 && strcmp(&line[argv[0]], until) == 0) {
-    done = 1;
+    done = true;
     return 0;
   }
   return (argc > 0) || ('\n' == c);
