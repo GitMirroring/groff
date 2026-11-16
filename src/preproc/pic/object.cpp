@@ -25,9 +25,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <assert.h>
 #include <math.h> // M_PI, acos(), atan2(), cos(), sin()
 #include <stdlib.h> // free()
+#include <string.h> // strdup()
 
 #include "cset.h" // csupper()
-#include "lib.h" // strsave()
 
 #include "pic.h"
 
@@ -59,7 +59,7 @@ void output::set_args(const char *s)
   if (s == 0 || *s == '\0')
     args = 0;
   else
-    args = strsave(s);
+    args = strdup(s);
 }
 
 int output::supports_filled_polygons()
@@ -631,12 +631,12 @@ void graphic_object::set_yslanted(double)
 
 void graphic_object::set_fill_color(char *c)
 {
-  color_fill = strsave(c);
+  color_fill = strdup(c);
 }
 
 void graphic_object::set_outline_color(char *c)
 {
-  outline_color = strsave(c);
+  outline_color = strdup(c);
 }
 
 char *graphic_object::get_outline_color()
@@ -779,7 +779,7 @@ void closed_object::set_yslanted(double s)
 
 void closed_object::set_fill_color(char *f)
 {
-  color_fill = strsave(f);
+  color_fill = strdup(f);
 }
 
 class box_object : public closed_object {
@@ -1524,7 +1524,7 @@ void polygon_object::set_fill(double f)
 
 void polygon_object::set_fill_color(char *f)
 {
-  color_fill = strsave(f);
+  color_fill = strdup(f);
 }
 
 void polygon_object::set_vertex_number(int vnum) {

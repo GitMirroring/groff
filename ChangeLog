@@ -1,5 +1,28 @@
 2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[pic]: Migrate to strdup(3).
+
+	* src/preproc/pic/lex.cpp
+	(macro_input::macro_input)
+	(interpolate_macro_with_args)
+	(copy_thru_input::copy_thru_input)
+	(get_thru_arg)
+	(yylex):
+	* src/preproc/pic/main.cpp (do_picture):
+	* src/preproc/pic/object.cpp
+	(output::set_args)
+	(graphic_object::set_fill_color)
+	(graphic_object::set_outline_color)
+	(closed_object::set_fill_color):
+	(polygon_object::set_fill_color):
+	* src/preproc/pic/pic.ypp (do_sprintf):
+	* src/preproc/pic/troff.cpp (troff_output::set_color): Migrate
+	from libgroff's `strsave()` to POSIX's strdup(3).
+
+	Continues the long process of fixing Savannah #66672.
+
+2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/pic/lex.ypp (get_token)
 	(copy_file_thru_input::inget)
 	(get_thru_arg): Explicitly compare variable of pointer type to

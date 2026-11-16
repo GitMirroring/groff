@@ -27,10 +27,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <math.h> // pow()
 #include <stdcountof.h>
 #include <stdio.h> // EOF, FILE, fclose(), fopen(), getc(), ungetc()
-#include <string.h> // strerror()
+#include <string.h> // strdup(), strerror()
 
 #include "cset.h" // csdigit(), csupper()
-#include "lib.h" // is_invalid_input_char(), strsave()
+#include "lib.h" // is_invalid_input_char()
 
 #include "pic.h"
 #include "pic.hpp"
@@ -154,7 +154,7 @@ int file_input::get_location(const char **fnp, int *lnp)
 
 macro_input::macro_input(const char *str)
 {
-  p = s = strsave(str);
+  p = s = strdup(str);
 }
 
 macro_input::~macro_input()
@@ -425,7 +425,7 @@ static void interpolate_macro_with_args(const char *body)
 	  }
 	  else if (token_buffer.length() > 0) {
 	    token_buffer += '\0';
-	    argv[argc] = strsave(token_buffer.contents());
+	    argv[argc] = strdup(token_buffer.contents());
 	  }
 	}
 	// for 'foo()', argc = 0
@@ -1432,7 +1432,7 @@ static void do_define()
   if (!get_delimited())
     return;
   token_buffer += '\0';
-  macro_table.define(name, strsave(token_buffer.contents()));
+  macro_table.define(name, strdup(token_buffer.contents()));
 }
 
 static void do_undef()
@@ -1635,7 +1635,7 @@ copy_thru_input::copy_thru_input(const char *b, const char *u)
   ap = 0;
   body = process_body(b);
   p = 0;
-  until = strsave(u);
+  until = strdup(u);
 }
 
 
@@ -1843,14 +1843,14 @@ static char *get_thru_arg()
     token_buffer += '\0';
     char *def = macro_table.lookup(token_buffer.contents());
     if (def != 0 /* nullptr */)
-      return strsave(def);
+      return strdup(def);
     // I guess it wasn't a macro after all; so push the macro name back.
     for (size_t i = (token_buffer.length() - 1); i > 0; i--)
       input_stack::push_back(token_buffer[(i - 1)]);
   }
   if (get_delimited()) {
     token_buffer += '\0';
-    return strsave(token_buffer.contents());
+    return strdup(token_buffer.contents());
   }
   else
     return 0 /* nullptr */;
@@ -1882,7 +1882,7 @@ int yylex()
     else {
       if (get_delimited()) {
 	token_buffer += '\0';
-	yylval.str = strsave(token_buffer.contents());
+	yylval.str = strdup(token_buffer.contents());
 	return DELIMITED;
       }
       else
@@ -1922,12 +1922,12 @@ int yylex()
 	yylval.lstr.filename = 0;
 	yylval.lstr.lineno = -1;
       }
-      yylval.lstr.str = strsave(token_buffer.contents());
+      yylval.lstr.str = strdup(token_buffer.contents());
       return t;
     case LABEL:
     case VARIABLE:
       token_buffer += '\0';
-      yylval.str = strsave(token_buffer.contents());
+      yylval.str = strdup(token_buffer.contents());
       return t;
     case LEFT:
       // change LEFT to LEFT_CORNER when followed by OF
@@ -1950,7 +1950,7 @@ int yylex()
       old_context_buffer = context_buffer;
       lookahead_token = get_token();
       if (lookahead_token != LEFT && lookahead_token != RIGHT) {
-	yylval.str = strsave("upper");
+	yylval.str = strdup("upper");
 	return VARIABLE;
       }
       else
@@ -1960,7 +1960,7 @@ int yylex()
       old_context_buffer = context_buffer;
       lookahead_token = get_token();
       if (lookahead_token != LEFT && lookahead_token != RIGHT) {
-	yylval.str = strsave("lower");
+	yylval.str = strdup("lower");
 	return VARIABLE;
       }
       else
@@ -1970,7 +1970,7 @@ int yylex()
       old_context_buffer = context_buffer;
       lookahead_token = get_token();
       if (lookahead_token != OF) {
-	yylval.str = strsave("north");
+	yylval.str = strdup("north");
 	return VARIABLE;
       }
       else
@@ -1980,7 +1980,7 @@ int yylex()
       old_context_buffer = context_buffer;
       lookahead_token = get_token();
       if (lookahead_token != OF) {
-	yylval.str = strsave("south");
+	yylval.str = strdup("south");
 	return VARIABLE;
       }
       else
@@ -1990,7 +1990,7 @@ int yylex()
       old_context_buffer = context_buffer;
       lookahead_token = get_token();
       if (lookahead_token != OF) {
-	yylval.str = strsave("east");
+	yylval.str = strdup("east");
 	return VARIABLE;
       }
       else
@@ -2000,7 +2000,7 @@ int yylex()
       old_context_buffer = context_buffer;
       lookahead_token = get_token();
       if (lookahead_token != OF) {
-	yylval.str = strsave("west");
+	yylval.str = strdup("west");
 	return VARIABLE;
       }
       else
@@ -2010,7 +2010,7 @@ int yylex()
       old_context_buffer = context_buffer;
       lookahead_token = get_token();
       if (lookahead_token != OF) {
-	yylval.str = strsave("top");
+	yylval.str = strdup("top");
 	return VARIABLE;
       }
       else
@@ -2020,7 +2020,7 @@ int yylex()
       old_context_buffer = context_buffer;
       lookahead_token = get_token();
       if (lookahead_token != OF) {
-	yylval.str = strsave("bottom");
+	yylval.str = strdup("bottom");
 	return VARIABLE;
       }
       else
@@ -2030,7 +2030,7 @@ int yylex()
       old_context_buffer = context_buffer;
       lookahead_token = get_token();
       if (lookahead_token != OF) {
-	yylval.str = strsave("center");
+	yylval.str = strdup("center");
 	return VARIABLE;
       }
       else
@@ -2040,7 +2040,7 @@ int yylex()
       old_context_buffer = context_buffer;
       lookahead_token = get_token();
       if (lookahead_token != OF) {
-	yylval.str = strsave("start");
+	yylval.str = strdup("start");
 	return VARIABLE;
       }
       else
@@ -2050,7 +2050,7 @@ int yylex()
       old_context_buffer = context_buffer;
       lookahead_token = get_token();
       if (lookahead_token != OF) {
-	yylval.str = strsave("end");
+	yylval.str = strdup("end");
 	return VARIABLE;
       }
       else

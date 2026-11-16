@@ -31,7 +31,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <stdcountof.h>
 #include <stdio.h> // fflush(), fprintf(), snprintf(), sprintf(), stderr
 #include <stdlib.h> // rand(), srand(), system()
-#include <string.h> // strcat(), strchr(), strcmp(), strcpy(), strlen()
+#include <string.h> // strcat(), strchr(), strcmp(), strcpy(), strdup(),
+		    // strlen()
 
 #ifdef NEED_DECLARATION_RAND
 #undef rand
@@ -52,8 +53,6 @@ extern "C" {
 #endif /* NEED_DECLARATION_SRAND */
 
 #include <vector>
-
-#include "lib.h" // strsave()
 
 #include "pic.h"
 
@@ -2032,7 +2031,7 @@ char *do_sprintf(const char *fmt, const double *v, int nv)
       result += *fmt++;
   }
   result += '\0';
-  return strsave(result.contents());
+  return strdup(result.contents());
 }
 
 void clean_up_parser()

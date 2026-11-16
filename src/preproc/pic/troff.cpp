@@ -25,8 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <assert.h>
 #include <stdlib.h> // free()
 #include <stdio.h> // fputs(), printf(), putchar(), puts(), stdout
-
-#include "lib.h" // strsave()
+#include <string.h> // strdup()
 
 #include "pic.h"
 #include "common.h"
@@ -537,11 +536,11 @@ void troff_output::set_color(char *color_fill, char *color_outlined)
     // but that won't work anyway
     if (color_fill) {
       printf(".fcolor %s\n", color_fill);
-      last_filled = strsave(color_fill);
+      last_filled = strdup(color_fill);
     }
     if (color_outlined) {
       printf(".gcolor %s\n", color_outlined);
-      last_outlined = strsave(color_outlined);
+      last_outlined = strdup(color_outlined);
     }
   }
 }

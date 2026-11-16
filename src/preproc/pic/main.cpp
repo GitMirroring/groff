@@ -30,11 +30,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 		   // fprintf(), fputs(), getc(), printf(), setbuf(),
 		   // stderr, stdin, stdout, ungetc()
 #include <stdlib.h> // exit(), EXIT_FAILURE, EXIT_SUCCESS, free()
-#include <string.h> // strerror()
+#include <string.h> // strdup(), strerror()
 
 #include <getopt.h> // getopt_long()
 
-#include "lib.h" // strsave()
 #include "stringclass.h" // prerequisite of "lf.h"
 #include "lf.h" // normalize_file_name_for_lf_request()
 
@@ -237,7 +236,7 @@ static void do_picture(FILE *fp)
   int c;
   if (!graphname)
     free(graphname);
-  graphname = strsave("graph");		// default picture name in TeX mode
+  graphname = strdup("graph");	// default picture name in TeX mode
   while ((c = getc(fp)) == ' ')
     ;
   if (c == '<') {
@@ -262,7 +261,7 @@ static void do_picture(FILE *fp)
       const char *old_filename = current_filename;
       int old_lineno = current_lineno;
       // filenames must be permanent
-      do_file(strsave(filename.contents()));
+      do_file(strdup(filename.contents()));
       current_filename = old_filename;
       current_lineno = old_lineno;
     }
