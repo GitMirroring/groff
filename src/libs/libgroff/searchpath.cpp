@@ -55,14 +55,11 @@ static bool is_directory(const char *name)
 search_path::search_path(const char *envvar, const char *standard,
 			 bool add_current_working_directory)
 {
-  char *home = 0 /* nullptr */;
   char *e = 0 /* nullptr */;
   if (envvar != 0 /* nullptr */)
     e = getenv(envvar);
   dirs = new char[((e && *e) ? strlen(e) + 1 : 0)
 		  + (add_current_working_directory ? 1 + 1 : 0)
-		  + (((home != 0 /* nullptr */) && (*home != '\0'))
-		     ? strlen(home) + 1 : 0)
 		  + ((standard && *standard) ? strlen(standard) : 0)
 		  + 1];
   *dirs = '\0';
@@ -72,10 +69,6 @@ search_path::search_path(const char *envvar, const char *standard,
   }
   if (add_current_working_directory) {
     strcat(dirs, ".");
-    strcat(dirs, PATH_SEP);
-  }
-  if (home && *home) {
-    strcat(dirs, home);
     strcat(dirs, PATH_SEP);
   }
   if (standard && *standard)
