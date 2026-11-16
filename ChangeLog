@@ -1,5 +1,23 @@
 2026-11-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[pic]: Fix memory leak.
+
+	* src/preproc/pic/pic.h: Declare new function
+	`clean_up_parser()`.
+	* src/preproc/pic/pic.ypp: Preprocessor-include C++ <vector>
+	header file.  Declare global `place_list`, an STL vector of
+	pointers to `place`.
+	(define_label, define_variable): Store heap-allocated `place`
+	pointer to `place_list`.
+	(clean_up_parser): New function walks the `place_list` and
+	array-deletes the `place` pointers within.
+	* src/preproc/pic/main.cpp (main): Call `clean_up_parser()` when
+	exiting normally.
+
+	Begins the long process of fixing Savannah #68922.
+
+2026-11-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/pic/pic.ypp (reset, reset_all): Fix code style
 	nits.  Update definitions and forward declarations to mark
 	functions `static`, as they do not require external linkage.

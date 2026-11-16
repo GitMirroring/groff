@@ -696,6 +696,7 @@ int main(int argc, char **argv)
   }
 #endif
   delete out;
+  clean_up_parser();
   if (ferror(stdout))
     fatal("error status on standard output stream");
   if (fflush(stdout) < 0)

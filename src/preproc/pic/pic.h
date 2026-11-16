@@ -83,6 +83,7 @@ void do_copy(const char *file);
 // pic.ypp
 void parse_init();
 void parse_cleanup();
+void clean_up_parser();
 
 void lex_error(const char *message,
 	       const errarg &arg1 = empty_errarg,

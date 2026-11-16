@@ -51,6 +51,8 @@ extern "C" {
 }
 #endif /* NEED_DECLARATION_SRAND */
 
+#include <vector>
+
 #include "lib.h" // strsave()
 
 #include "pic.h"
@@ -1818,9 +1820,12 @@ place *lookup_label(const char *label)
   }
 }
 
+std::vector<place *> place_list;
+
 void define_label(const char *label, const place *pl)
 {
   place *p = new place[1];
+  place_list.push_back(p);
   *p = *pl;
   current_table->define(label, p);
 }
@@ -1838,6 +1843,7 @@ int lookup_variable(const char *name, double *val)
 void define_variable(const char *name, double val)
 {
   place *p = new place[1];
+  place_list.push_back(p);
   p->obj = 0;
   p->x = val;
   p->y = 0.0;
@@ -2027,6 +2033,14 @@ char *do_sprintf(const char *fmt, const double *v, int nv)
   }
   result += '\0';
   return strsave(result.contents());
+}
+
+void clean_up_parser()
+{
+  while (!place_list.empty()) {
+    delete[] place_list.back();
+    place_list.pop_back();
+  }
 }
 
 // Local Variables:
