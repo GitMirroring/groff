@@ -1569,7 +1569,7 @@ class copy_thru_input : public input {
   int argv[pic_macro_maximum_arg_count];
   size_t argc;
   string line;
-  int get_line();
+  bool get_line();
   virtual int inget() = 0;
 public:
   copy_thru_input(const char *b, const char *u);
@@ -1710,10 +1710,10 @@ int copy_thru_input::peek()
   return EOF;
 }
 
-int copy_thru_input::get_line()
+bool copy_thru_input::get_line()
 {
   if (done)
-    return 0;
+    return false;
   line.clear();
   argc = 0;
   int c = inget();
@@ -1737,7 +1737,7 @@ int copy_thru_input::get_line()
   }
   if (until != 0 && argc > 0 && strcmp(&line[argv[0]], until) == 0) {
     done = true;
-    return 0;
+    return false;
   }
   return (argc > 0) || ('\n' == c);
 }
