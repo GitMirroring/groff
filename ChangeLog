@@ -1,5 +1,14 @@
 2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/pic/pic.ypp: Trivially refactor.  Rename
+	`lookup_label()` to `look_up_label()` in foward declaration and
+	definition.  "Lookup" is a (somewhat informal) noun, while "look
+	up" is a verb.
+	<placeless_element, label>
+	(look_up_variable): Update call site.
+
+2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/pic/pic.ypp <placeless_element, label>
 	(lookup_label, look_up_variable): Explicitly compare variable of
 	pointer type to ISO C++98 null pointer literal, instead of

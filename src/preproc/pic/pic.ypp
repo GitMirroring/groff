@@ -66,7 +66,7 @@ void yyerror(const char *);
 static void reset(const char *nm);
 static void reset_all();
 
-place *lookup_label(const char *);
+place *look_up_label(const char *);
 void define_label(const char *label, const place *pl);
 
 direction current_direction;
@@ -352,7 +352,7 @@ placeless_element:
 		}
 	| VARIABLE ':' '=' any_expr
 		{
-		  place *p = lookup_label($1);
+		  place *p = look_up_label($1);
 		  if (0 /* nullptr */ == p) {
 		    lex_error("variable '%1' not defined", $1);
 		    YYABORT;
@@ -1327,7 +1327,7 @@ place:
 label:
 	LABEL
 		{
-		  place *p = lookup_label($1);
+		  place *p = look_up_label($1);
 		  if (0 /* nullptr */ == p) {
 		    lex_error("there is no place '%1'", $1);
 		    YYABORT;
@@ -1805,7 +1805,7 @@ static struct pic_defaults_table {
   { "maxpsht", 11.0, 0 },
 };
 
-place *lookup_label(const char *label)
+place *look_up_label(const char *label)
 {
   saved_state *state = current_saved_state;
   PTABLE(place) *tbl = current_table;
@@ -1832,7 +1832,7 @@ void define_label(const char *label, const place *pl)
 
 bool look_up_variable(const char *name, double *val)
 {
-  place *pl = lookup_label(name);
+  place *pl = look_up_label(name);
   if (pl != 0 /* nullptr */) {
     *val = pl->x;
     return true;
