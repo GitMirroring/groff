@@ -1830,14 +1830,14 @@ void define_label(const char *label, const place *pl)
   current_table->define(label, p);
 }
 
-int look_up_variable(const char *name, double *val)
+bool look_up_variable(const char *name, double *val)
 {
   place *pl = lookup_label(name);
   if (pl) {
     *val = pl->x;
-    return 1;
+    return true;
   }
-  return 0;
+  return false;
 }
 
 void define_variable(const char *name, double val)

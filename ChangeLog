@@ -1,5 +1,16 @@
 2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[pic]: Boolify.  Demote `look_up_variable()` function from `int`
+	to `bool`.
+
+	* src/preproc/pic/object.h: Update declaration.
+	* src/preproc/pic/pic.ypp: Update definition.
+	(look_up_variable): Return Boolean, not integer, literals.
+
+	Continues the long process of fixing Savannah #66672.
+
+2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[pic]: Trivially refactor.  Rename `lookup_variable()` function
 	to `look_up_variable()`.  "Lookup" is a (somewhat informal)
 	noun, while "look up" is a verb.

@@ -232,7 +232,7 @@ object *make_object(object_spec *, position *, direction *);
 object *make_mark_object();
 object *make_command_object(char *, const char *, int);
 
-int look_up_variable(const char *name, double *val);
+bool look_up_variable(const char *name, double *val);
 void define_variable(const char *name, double val);
 
 void print_picture(object *);
