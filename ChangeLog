@@ -1,5 +1,20 @@
 2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/pic/lex.cpp (yylex): Fix code style nit.  Return
+	zero of character type (`\0`) rather than integer.  The
+	idiomatic use of lex/flex is deliberately slovenly typed,
+	assuming a 7- or 8-bit character type and package a bunch of
+	integral token identifiers into the copious headroom in an `int`
+	beyond the range of a valid `char`.  Nothing bad could possibly
+	happen when your fundamental character type is actually wider
+	and has values that collide with your token identifiers, which
+	could have been in an `enum` but aren't.  Real Programmers don't
+	need data types.  At any rate I intend this change to help the
+	reader grasp that the `0` literal here is not a null pointer
+	constant, which it idiomatically can be in ISO C++98.
+
+2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/pic/lex.cpp: Fix code style nits.  Drop names of
 	unambiguous parameters from member function declarations,
 	Stroustrup-style.  Parenthesize formally complex expressions.

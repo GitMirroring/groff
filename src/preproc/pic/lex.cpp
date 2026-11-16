@@ -1872,6 +1872,7 @@ void do_lookahead()
 
 extern int yylex();
 
+// Return a character or integer-encoded token identifier.
 int yylex()
 {
   if (delim_flag) {
@@ -1880,7 +1881,7 @@ int yylex()
       if ((yylval.str = get_thru_arg()) != 0)
 	return DELIMITED;
       else
-	return 0;
+	return '\0';
     }
     else {
       if (get_delimited()) {
@@ -1889,7 +1890,7 @@ int yylex()
 	return DELIMITED;
       }
       else
-	return 0;
+	return '\0';
     }
   }
   for (;;) {
@@ -1904,7 +1905,7 @@ int yylex()
     case '\n':
       return ';';
     case EOF:
-      return 0;
+      return '\0';
     case DEFINE:
       do_define();
       break;
