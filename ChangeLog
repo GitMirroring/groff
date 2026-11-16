@@ -1,5 +1,25 @@
 2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[pic]: Trivially refactor.  Rename `lookup_variable()` function
+	to `look_up_variable()`.  "Lookup" is a (somewhat informal)
+	noun, while "look up" is a verb.
+
+	* src/preproc/pic/object.h: Update declaration.
+	* src/preproc/pic/pic.ypp: Update definition.
+	* src/preproc/pic/lex.cpp (for_input::get, for_input::peek):
+	* src/preproc/pic/object.cpp (output::compute_scale)
+	(object_spec::make_box)
+	(object_spec::make_text)
+	(object_spec::make_ellipse)
+	(object_spec::make_circle)
+	(object_spec::make_line)
+	(object_spec::make_arc)
+	(object_spec::make_linear)
+	(object_spec::make_object)
+	(print_picture): Update call sites.
+
+2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tbl]: Boolify AT&T compatibility flag.
 
 	Demote `compatible_flag` from `int` to `bool` and rename it to

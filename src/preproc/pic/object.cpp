@@ -102,9 +102,9 @@ double output::compute_scale(double sc, const position &ll, const position &ur)
       sc = 1.0;
     distance sdim = dim/sc;
     double max_width = 0.0;
-    lookup_variable("maxpswid", &max_width);
+    look_up_variable("maxpswid", &max_width);
     double max_height = 0.0;
-    lookup_variable("maxpsht", &max_height);
+    look_up_variable("maxpsht", &max_height);
     if ((max_width > 0.0 && sdim.x > max_width)
 	|| (max_height > 0.0 && sdim.y > max_height)) {
       double xscale = dim.x/max_width;
@@ -859,19 +859,19 @@ graphic_object *object_spec::make_box(position *curpos, direction *dirp)
     if ((flags & IS_SAME) && have_last_box)
       height = last_box_height;
     else
-      lookup_variable("boxht", &height);
+      look_up_variable("boxht", &height);
   }
   if (!(flags & HAS_WIDTH)) {
     if ((flags & IS_SAME) && have_last_box)
       width = last_box_width;
     else
-      lookup_variable("boxwid", &width);
+      look_up_variable("boxwid", &width);
   }
   if (!(flags & HAS_RADIUS)) {
     if ((flags & IS_SAME) && have_last_box)
       radius = last_box_radius;
     else
-      lookup_variable("boxrad", &radius);
+      look_up_variable("boxrad", &radius);
   }
   last_box_width = width;
   last_box_height = height;
@@ -1046,14 +1046,14 @@ text_object::text_object(const position &d)
 graphic_object *object_spec::make_text(position *curpos, direction *dirp)
 {
   if (!(flags & HAS_HEIGHT)) {
-    lookup_variable("textht", &height);
+    look_up_variable("textht", &height);
     int nitems = 0;
     for (text_item *t = text; t; t = t->next)
       nitems++;
     height *= nitems;
   }
   if (!(flags & HAS_WIDTH))
-    lookup_variable("textwid", &width);
+    look_up_variable("textwid", &width);
   text_object *p = new text_object(position(width, height));
   if (!position_rectangle(p, curpos, dirp)) {
     delete p;
@@ -1102,13 +1102,13 @@ graphic_object *object_spec::make_ellipse(position *curpos, direction *dirp)
     if ((flags & IS_SAME) && have_last_ellipse)
       height = last_ellipse_height;
     else
-      lookup_variable("ellipseht", &height);
+      look_up_variable("ellipseht", &height);
   }
   if (!(flags & HAS_WIDTH)) {
     if ((flags & IS_SAME) && have_last_ellipse)
       width = last_ellipse_width;
     else
-      lookup_variable("ellipsewid", &width);
+      look_up_variable("ellipsewid", &width);
   }
   last_ellipse_width = width;
   last_ellipse_height = height;
@@ -1150,7 +1150,7 @@ graphic_object *object_spec::make_circle(position *curpos, direction *dirp)
     if ((flags & IS_SAME) && have_last_circle)
       radius = last_circle_radius;
     else
-      lookup_variable("circlerad", &radius);
+      look_up_variable("circlerad", &radius);
   }
   last_circle_radius = radius;
   have_last_circle = 1;
@@ -1668,7 +1668,7 @@ linear_object *object_spec::make_line(position *curpos, direction *dirp)
     v[i] = s->pos;
   }
   if (flags & IS_DEFAULT_CHOPPED) {
-    lookup_variable("circlerad", &start_chop);
+    look_up_variable("circlerad", &start_chop);
     end_chop = start_chop;
     flags |= IS_CHOPPED;
   }
@@ -1942,7 +1942,7 @@ linear_object *object_spec::make_arc(position *curpos, direction *dirp)
   else
     startpos = *curpos;
   if (!(flags & HAS_RADIUS))
-    lookup_variable("arcrad", &radius);
+    look_up_variable("arcrad", &radius);
   // compute the end
   position endpos;
   if (flags & HAS_TO)
@@ -2010,13 +2010,13 @@ graphic_object *object_spec::make_linear(position *curpos, direction *dirp)
     if (flags & HAS_HEIGHT)
       a.height = height;
     else
-      lookup_variable("arrowht", &a.height);
+      look_up_variable("arrowht", &a.height);
     if (flags & HAS_WIDTH)
       a.width = width;
     else
-      lookup_variable("arrowwid", &a.width);
+      look_up_variable("arrowwid", &a.width);
     double solid;
-    lookup_variable("arrowhead", &solid);
+    look_up_variable("arrowhead", &solid);
     a.solid = solid != 0.0;
     obj->add_arrows(at_start, at_end, a);
   }
@@ -2071,7 +2071,7 @@ object *object_spec::make_object(position *curpos, direction *dirp)
     if (flags & HAS_THICKNESS)
       th = thickness;
     else
-      lookup_variable("linethick", &th);
+      look_up_variable("linethick", &th);
     obj->set_thickness(th);
     if (flags & IS_OUTLINED)
       obj->set_outline_color(outlined);
@@ -2084,7 +2084,7 @@ object *object_spec::make_object(position *curpos, direction *dirp)
 	obj->set_fill_color(shaded);
       else {
 	if (flags & IS_DEFAULT_FILLED)
-	  lookup_variable("fillval", &fill);
+	  look_up_variable("fillval", &fill);
 	if (fill < 0.0)
 	  error("bad fill value %1", fill);
 	else
@@ -2216,7 +2216,7 @@ void print_picture(object *obj)
   for (object *p = obj; p; p = p->next)
     p->update_bounding_box(&bb);
   double scale;
-  lookup_variable("scale", &scale);
+  look_up_variable("scale", &scale);
   out->start_picture(scale, bb.ll, bb.ur);
   print_object_list(obj);
   out->finish_picture();

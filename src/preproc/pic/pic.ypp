@@ -687,36 +687,36 @@ object_spec:
 	| LINE
 		{
 		  $$ = new object_spec(LINE_OBJECT);
-		  lookup_variable("lineht", & $$->segment_height);
-		  lookup_variable("linewid", & $$->segment_width);
+		  look_up_variable("lineht", & $$->segment_height);
+		  look_up_variable("linewid", & $$->segment_width);
 		  $$->dir = current_direction;
 		}
 	| POLYGON
 		{
 		  $$ = new object_spec(POLYGON_OBJECT);
-		  lookup_variable("lineht", & $$->segment_height);
-		  lookup_variable("linewid", & $$->segment_width);
+		  look_up_variable("lineht", & $$->segment_height);
+		  look_up_variable("linewid", & $$->segment_width);
 		  $$->dir = current_direction;
 		}
 	| ARROW
 		{
 		  $$ = new object_spec(ARROW_OBJECT);
-		  lookup_variable("lineht", & $$->segment_height);
-		  lookup_variable("linewid", & $$->segment_width);
+		  look_up_variable("lineht", & $$->segment_height);
+		  look_up_variable("linewid", & $$->segment_width);
 		  $$->dir = current_direction;
 		}
 	| MOVE
 		{
 		  $$ = new object_spec(MOVE_OBJECT);
-		  lookup_variable("moveht", & $$->segment_height);
-		  lookup_variable("movewid", & $$->segment_width);
+		  look_up_variable("moveht", & $$->segment_height);
+		  look_up_variable("movewid", & $$->segment_width);
 		  $$->dir = current_direction;
 		}
 	| SPLINE
 		{
 		  $$ = new object_spec(SPLINE_OBJECT);
-		  lookup_variable("lineht", & $$->segment_height);
-		  lookup_variable("linewid", & $$->segment_width);
+		  look_up_variable("lineht", & $$->segment_height);
+		  look_up_variable("linewid", & $$->segment_width);
 		  $$->dir = current_direction;
 		}
 	| text							%prec TEXT
@@ -961,7 +961,7 @@ object_spec:
 		{
 		  $$ = $1;
 		  $$->flags |= IS_DOTTED;
-		  lookup_variable("dashwid", & $$->dash_width);
+		  look_up_variable("dashwid", & $$->dash_width);
 		}
 	| object_spec DOTTED expr
 		{
@@ -973,7 +973,7 @@ object_spec:
 		{
 		  $$ = $1;
 		  $$->flags |= IS_DASHED;
-		  lookup_variable("dashwid", & $$->dash_width);
+		  look_up_variable("dashwid", & $$->dash_width);
 		}
 	| object_spec DASHED expr
 		{
@@ -1584,7 +1584,7 @@ expr_lower_than:
 expr_not_lower_than:
 	VARIABLE
 		{
-		  if (!lookup_variable($1, & $$)) {
+		  if (!look_up_variable($1, & $$)) {
 		    lex_error("there is no variable '%1'", $1);
 		    YYABORT;
 		  }
@@ -1830,7 +1830,7 @@ void define_label(const char *label, const place *pl)
   current_table->define(label, p);
 }
 
-int lookup_variable(const char *name, double *val)
+int look_up_variable(const char *name, double *val)
 {
   place *pl = lookup_label(name);
   if (pl) {
@@ -1876,7 +1876,7 @@ static void reset(const char *nm)
       double val = defaults_table[i].val;
       if (defaults_table[i].scaled) {
 	double scale;
-	lookup_variable("scale", &scale);
+	look_up_variable("scale", &scale);
 	val *= scale;
       }
       define_variable(defaults_table[i].name, val);

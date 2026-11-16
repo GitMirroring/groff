@@ -1480,7 +1480,7 @@ int for_input::get()
       return '\n';
     }
     double val;
-    if (!lookup_variable(var, &val)) {
+    if (!look_up_variable(var, &val)) {
       lex_error("body of 'for' terminated enclosing block");
       return EOF;
     }
@@ -1508,7 +1508,7 @@ int for_input::peek()
   if (!done_newline)
     return '\n';
   double val;
-  if (!lookup_variable(var, &val))
+  if (!look_up_variable(var, &val))
     return EOF;
   if (by_is_multiplicative) {
     if (val * by > to)
