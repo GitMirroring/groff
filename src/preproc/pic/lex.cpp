@@ -1352,8 +1352,7 @@ static int get_token(bool want_macro_expansion = true)
   }
 }
 
-// TODO: boolify
-static int get_delimited()
+static bool get_delimited()
 {
   token_buffer.clear();
   int c = input_stack::get_char();
@@ -1361,7 +1360,7 @@ static int get_delimited()
     c = input_stack::get_char();
   if (EOF == c) {
     lex_error("missing delimiter");
-    return 0;
+    return false;
   }
   context_buffer = char(c);
   int had_newline = 0; // TODO: boolify
@@ -1372,7 +1371,7 @@ static int get_delimited()
     c = input_stack::get_char();
     if (EOF == c) {
       lex_error("missing closing delimiter");
-      return 0;
+      return false;
     }
     if ('\n' == c)
       had_newline = 1;
@@ -1419,7 +1418,7 @@ static int get_delimited()
       break;
     token_buffer += c;
   }
-  return 1;
+  return true;
 }
 
 static void do_define()
