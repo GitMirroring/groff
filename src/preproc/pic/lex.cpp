@@ -71,7 +71,7 @@ public:
   int peek();
 };
 
-input::input() : next(0)
+input::input() : next(0 /* nullptr */)
 {
 }
 
@@ -101,18 +101,18 @@ bool file_input::read_line()
     lineno++;
     for (;;) {
       int c = getc(fp);
-      if (c == '\r') {
+      if ('\r' == c) {
 	c = getc(fp);
 	if (c != '\n')
 	  lex_error("invalid input character code %1", '\r');
       }
-      if (c == EOF)
+      if (EOF == c)
 	break;
       else if (is_invalid_input_char(c))
 	lex_error("invalid input character code %1", c);
       else {
 	line += char(c);
-	if (c == '\n')
+	if ('\n' == c)
 	  break;
       }
     }
@@ -131,7 +131,7 @@ bool file_input::read_line()
 
 int file_input::get()
 {
-  if (*ptr != '\0' || read_line())
+  if ((*ptr != '\0') || read_line())
     return (unsigned char)*ptr++;
   else
     return EOF;
@@ -139,7 +139,7 @@ int file_input::get()
 
 int file_input::peek()
 {
-  if (*ptr != '\0' || read_line())
+  if ((*ptr != '\0') || read_line())
     return (unsigned char)*ptr;
   else
     return EOF;
@@ -164,7 +164,7 @@ macro_input::~macro_input()
 
 int macro_input::get()
 {
-  if (p == 0 || *p == '\0')
+  if ((0 /* nullptr */ == p) || ('\0' == *p))
     return EOF;
   else
     return (unsigned char)*p++;
@@ -172,7 +172,7 @@ int macro_input::get()
 
 int macro_input::peek()
 {
-  if (p == 0 || *p == '\0')
+  if ((0 /* nullptr */ == p) || ('\0' == *p))
     return EOF;
   else
     return (unsigned char)*p;
@@ -181,10 +181,10 @@ int macro_input::peek()
 static char *process_body(const char *body)
 {
   char *s = strdup(body);
-  size_t j = 0;
-  for (size_t i = 0; s[i] != '\0'; i++)
+  size_t j = 0U;
+  for (size_t i = 0U; s[i] != '\0'; i++)
     if (s[i] == '$' && csdigit(s[i + 1])) {
-      size_t n = 0;
+      size_t n = 0U;
       int start = i;
       i++;
       while (csdigit(s[i]))
@@ -198,7 +198,7 @@ static char *process_body(const char *body)
 	  arg += s[k];
 	lex_error("invalid macro argument number %1", arg.contents());
       }
-      else if (n > 0)
+      else if (n > 0U)
 	s[j++] = ARG1 + n - 1;
       i--;
     }
@@ -210,34 +210,36 @@ static char *process_body(const char *body)
 
 argument_macro_input::argument_macro_input(const char *body, size_t ac,
     char **av)
-: ap(0), argc(ac)
+: ap(0 /* nullptr */), argc(ac)
 {
-  for (size_t i = 0; i < argc; i++)
+  for (size_t i = 0U; i < argc; i++)
     argv[i] = av[i];
   p = s = process_body(body);
 }
 
 argument_macro_input::~argument_macro_input()
 {
-  for (size_t i = 0; i < argc; i++)
+  for (size_t i = 0U; i < argc; i++)
     free(argv[i]);
   free(s);
 }
 
 int argument_macro_input::get()
 {
-  if (ap) {
+  if (ap != 0 /* nullptr */) {
     if (*ap != '\0')
       return (unsigned char)*ap++;
-    ap = 0;
+    ap = 0 /* nullptr */;
   }
-  if (p == 0)
+  if (0 /* nullptr */ == p)
     return EOF;
   while ((unsigned char)*p >= ARG1
 	 && (unsigned char)*p <= ARG1 + pic_macro_maximum_arg_count - 1)
   {
     size_t i = (unsigned char)*p++ - ARG1;
-    if (i < argc && argv[i] != 0 && argv[i][0] != '\0') {
+    if ((i < argc)
+	&& (argv[i] != 0 /* nullptr */)
+	&& (argv[i][0] != '\0')) {
       ap = argv[i];
       return (unsigned char)*ap++;
     }
@@ -249,12 +251,12 @@ int argument_macro_input::get()
 
 int argument_macro_input::peek()
 {
-  if (ap) {
+  if (ap != 0 /* nullptr */) {
     if (*ap != '\0')
       return (unsigned char)*ap;
-    ap = 0;
+    ap = 0 /* nulltr */;
   }
-  if (p == 0)
+  if (0 /* nullptr */ == p)
     return EOF;
   while ((unsigned char)*p >= ARG1
 	 && (unsigned char)*p <= ARG1 + pic_macro_maximum_arg_count - 1)
@@ -279,12 +281,12 @@ public:
   static int get_char();
   static int peek_char();
   static bool get_location(const char **, int *);
-  static void push_back(unsigned char c, int was_bol = 0);
+  static void push_back(unsigned char, int = 0);
   static int bol();
 };
 
-input *input_stack::current_input = 0;
 int input_stack::bol_flag = 0;
+input *input_stack::current_input = 0 /* nullptr */;
 
 inline int input_stack::bol()
 {
@@ -293,7 +295,7 @@ inline int input_stack::bol()
 
 void input_stack::clear()
 {
-  while (current_input != 0) {
+  while (current_input != 0 /* nullptr */) {
     input *tem = current_input;
     current_input = current_input->next;
     delete tem;
@@ -324,11 +326,11 @@ int input_stack::get_char()
   while (current_input != 0) {
     int c = current_input->get();
     if (c != EOF) {
-      bol_flag = c == '\n';
+      bol_flag = ('\n' == c);
       return c;
     }
     // don't pop the top-level input off the stack
-    if (current_input->next == 0)
+    if (0 /* nullptr */ == current_input->next)
       return EOF;
     input *tem = current_input;
     current_input = current_input->next;
@@ -343,7 +345,7 @@ int input_stack::peek_char()
     int c = current_input->peek();
     if (c != EOF)
       return c;
-    if (current_input->next == 0)
+    if (0 /* nullptr */ == current_input->next)
       return EOF;
     input *tem = current_input;
     current_input = current_input->next;
@@ -384,7 +386,7 @@ void input_stack::push_back(unsigned char c, int was_bol)
 
 bool input_stack::get_location(const char **fnp, int *lnp)
 {
-  for (input *p = current_input; p; p = p->next)
+  for (input *p = current_input; p != 0 /* nullptr */; p = p->next)
     if (p->get_location(fnp, lnp))
       return true;
   return false;
@@ -411,11 +413,13 @@ static void interpolate_macro_with_args(const char *body)
     token_buffer.clear();
     for (;;) {
       c = input_stack::get_char();
-      if (c == EOF) {
+      if (EOF == c) {
 	lex_error("end of input while scanning macro arguments");
 	break;
       }
-      if (state == NORMAL && level == 0 && (c == ',' || c == ')')) {
+      if ((state == NORMAL)
+	  && (level == 0)
+	  && ((',' == c) || (')' == c))) {
 	if (!is_ignoring_arguments) {
 	  if (argc == pic_macro_maximum_arg_count) {
 	    lex_warning("pic supports at most %1 macro arguments;"
@@ -429,7 +433,7 @@ static void interpolate_macro_with_args(const char *body)
 	  }
 	}
 	// for 'foo()', argc = 0
-	if (argc > 0 || c != ')' || i > 0)
+	if ((argc > 0) || (c != ')') || (i > 0))
 	  if (!is_ignoring_arguments)
 	    argc++;
 	break;
@@ -437,15 +441,15 @@ static void interpolate_macro_with_args(const char *body)
       token_buffer += char(c);
       switch (state) {
       case NORMAL:
-	if (c == '"')
+	if ('"' == c)
 	  state = IN_STRING;
-	else if (c == '(')
+	else if ('(' == c)
 	  level++;
-	else if (c == ')')
+	else if (')' == c)
 	  level--;
 	break;
       case IN_STRING:
-	if (c == '"')
+	if ('"' == c)
 	  state = NORMAL;
 	else if (c == '\\')
 	  state = IN_STRING_QUOTED;
@@ -589,14 +593,14 @@ static int look_up_keyword(const char *str, int len)
     const keyword *mid = start + (end - start)/2;
 
     int cmp = docmp(str, len, mid->name, strlen(mid->name));
-    if (cmp == 0)
+    if (0 == cmp)
       return mid->token;
     if (cmp < 0)
       end = mid;
     else
       start = mid + 1;
   }
-  return 0;
+  return 0; // no match
 }
 
 // Return encoded token value, which is selected from a bunch of
@@ -608,24 +612,24 @@ static int get_token_after_dot(int c)
   case 'h':
     input_stack::get_char();
     c = input_stack::peek_char();
-    if (c == 't') {
+    if ('t' == c) {
       input_stack::get_char();
       context_buffer = ".ht";
       return DOT_HT;
     }
-    else if (c == 'e') {
+    else if ('e' == c) {
       input_stack::get_char();
       c = input_stack::peek_char();
-      if (c == 'i') {
+      if ('i' == c) {
 	input_stack::get_char();
 	c = input_stack::peek_char();
-	if (c == 'g') {
+	if ('g' == c) {
 	  input_stack::get_char();
 	  c = input_stack::peek_char();
-	  if (c == 'h') {
+	  if ('h' == c) {
 	    input_stack::get_char();
 	    c = input_stack::peek_char();
-	    if (c == 't') {
+	    if ('t' == c) {
 	      input_stack::get_char();
 	      context_buffer = ".height";
 	      return DOT_HT;
@@ -651,19 +655,19 @@ static int get_token_after_dot(int c)
   case 'c':
     input_stack::get_char();
     c = input_stack::peek_char();
-    if (c == 'e') {
+    if ('e' == c) {
       input_stack::get_char();
       c = input_stack::peek_char();
-      if (c == 'n') {
+      if ('n' == c) {
 	input_stack::get_char();
 	c = input_stack::peek_char();
-	if (c == 't') {
+	if ('t' == c) {
 	  input_stack::get_char();
 	  c = input_stack::peek_char();
-	  if (c == 'e') {
+	  if ('e' == c) {
 	    input_stack::get_char();
 	    c = input_stack::peek_char();
-	    if (c == 'r') {
+	    if ('r' == c) {
 	      input_stack::get_char();
 	      context_buffer = ".center";
 	      return DOT_C;
@@ -681,12 +685,12 @@ static int get_token_after_dot(int c)
   case 'n':
     input_stack::get_char();
     c = input_stack::peek_char();
-    if (c == 'e') {
+    if ('e' == c) {
       input_stack::get_char();
       context_buffer = ".ne";
       return DOT_NE;
     }
-    else if (c == 'w') {
+    else if ('w' == c) {
       input_stack::get_char();
       context_buffer = ".nw";
       return DOT_NW;
@@ -699,10 +703,10 @@ static int get_token_after_dot(int c)
   case 'e':
     input_stack::get_char();
     c = input_stack::peek_char();
-    if (c == 'n') {
+    if ('n' == c) {
       input_stack::get_char();
       c = input_stack::peek_char();
-      if (c == 'd') {
+      if ('d' == c) {
 	input_stack::get_char();
 	context_buffer = ".end";
 	return DOT_END;
@@ -716,16 +720,16 @@ static int get_token_after_dot(int c)
   case 'w':
     input_stack::get_char();
     c = input_stack::peek_char();
-    if (c == 'i') {
+    if ('i' == c) {
       input_stack::get_char();
       c = input_stack::peek_char();
-      if (c == 'd') {
+      if ('d' == c) {
 	input_stack::get_char();
 	c = input_stack::peek_char();
-	if (c == 't') {
+	if ('t' == c) {
 	  input_stack::get_char();
 	  c = input_stack::peek_char();
-	  if (c == 'h') {
+	  if ('h' == c) {
 	    input_stack::get_char();
 	    context_buffer = ".width";
 	    return DOT_WID;
@@ -742,27 +746,27 @@ static int get_token_after_dot(int c)
   case 's':
     input_stack::get_char();
     c = input_stack::peek_char();
-    if (c == 'e') {
+    if ('e' == c) {
       input_stack::get_char();
       context_buffer = ".se";
       return DOT_SE;
     }
-    else if (c == 'w') {
+    else if ('w' == c) {
       input_stack::get_char();
       context_buffer = ".sw";
       return DOT_SW;
     }
     else {
-      if (c == 't') {
+      if ('t' == c) {
 	input_stack::get_char();
 	c = input_stack::peek_char();
-	if (c == 'a') {
+	if ('a' == c) {
 	  input_stack::get_char();
 	  c = input_stack::peek_char();
-	  if (c == 'r') {
+	  if ('r' == c) {
 	    input_stack::get_char();
 	    c = input_stack::peek_char();
-	    if (c == 't') {
+	    if ('t' == c) {
 	      input_stack::get_char();
 	      context_buffer = ".start";
 	      return DOT_START;
@@ -780,10 +784,10 @@ static int get_token_after_dot(int c)
   case 't':
     input_stack::get_char();
     c = input_stack::peek_char();
-    if (c == 'o') {
+    if ('o' == c) {
       input_stack::get_char();
       c = input_stack::peek_char();
-      if (c == 'p') {
+      if ('p' == c) {
 	input_stack::get_char();
 	context_buffer = ".top";
 	return DOT_N;
@@ -795,13 +799,13 @@ static int get_token_after_dot(int c)
   case 'l':
     input_stack::get_char();
     c = input_stack::peek_char();
-    if (c == 'e') {
+    if ('e' == c) {
       input_stack::get_char();
       c = input_stack::peek_char();
-      if (c == 'f') {
+      if ('f' == c) {
 	input_stack::get_char();
 	c = input_stack::peek_char();
-	if (c == 't') {
+	if ('t' == c) {
 	  input_stack::get_char();
 	  context_buffer = ".left";
 	  return DOT_W;
@@ -815,26 +819,26 @@ static int get_token_after_dot(int c)
   case 'r':
     input_stack::get_char();
     c = input_stack::peek_char();
-    if (c == 'a') {
+    if ('a' == c) {
       input_stack::get_char();
       c = input_stack::peek_char();
-      if (c == 'd') {
+      if ('d' == c) {
 	input_stack::get_char();
 	context_buffer = ".rad";
 	return DOT_RAD;
       }
       input_stack::push_back('a');
     }
-    else if (c == 'i') {
+    else if ('i' == c) {
       input_stack::get_char();
       c = input_stack::peek_char();
-      if (c == 'g') {
+      if ('g' == c) {
 	input_stack::get_char();
 	c = input_stack::peek_char();
-	if (c == 'h') {
+	if ('h' == c) {
 	  input_stack::get_char();
 	  c = input_stack::peek_char();
-	  if (c == 't') {
+	  if ('t' == c) {
 	    input_stack::get_char();
 	    context_buffer = ".right";
 	    return DOT_E;
@@ -850,19 +854,19 @@ static int get_token_after_dot(int c)
   case 'b':
     input_stack::get_char();
     c = input_stack::peek_char();
-    if (c == 'o') {
+    if ('o' == c) {
       input_stack::get_char();
       c = input_stack::peek_char();
-      if (c == 't') {
+      if ('t' == c) {
 	input_stack::get_char();
 	c = input_stack::peek_char();
-	if (c == 't') {
+	if ('t' == c) {
 	  input_stack::get_char();
 	  c = input_stack::peek_char();
-	  if (c == 'o') {
+	  if ('o' == c) {
 	    input_stack::get_char();
 	    c = input_stack::peek_char();
-	    if (c == 'm') {
+	    if ('m' == c) {
 	      input_stack::get_char();
 	      context_buffer = ".bottom";
 	      return DOT_S;
@@ -881,19 +885,19 @@ static int get_token_after_dot(int c)
   case 'v':
     input_stack::get_char();
     c = input_stack::peek_char();
-    if (c == 'e') {
+    if ('e' == c) {
       input_stack::get_char();
       c = input_stack::peek_char();
-      if (c == 'r') {
+      if ('r' == c) {
 	input_stack::get_char();
 	c = input_stack::peek_char();
-	if (c == 't') {
+	if ('t' == c) {
 	  input_stack::get_char();
 	  c = input_stack::peek_char();
-	  if (c == 'e') {
+	  if ('e' == c) {
 	    input_stack::get_char();
 	    c = input_stack::peek_char();
-	    if (c == 'x') {
+	    if ('x' == c) {
 	      input_stack::get_char();
 	      context_buffer = ".vertex";
 	      return DOT_V;
@@ -909,25 +913,25 @@ static int get_token_after_dot(int c)
   case 'm':
     input_stack::get_char();
     c = input_stack::peek_char();
-    if (c == 'i') {
+    if ('i' == c) {
       input_stack::get_char();
       c = input_stack::peek_char();
-      if (c == 'd') {
+      if ('d' == c) {
 	input_stack::get_char();
 	c = input_stack::peek_char();
-	if (c == 'p') {
+	if ('p' == c) {
 	  input_stack::get_char();
 	  c = input_stack::peek_char();
-	  if (c == 'o') {
+	  if ('o' == c) {
 	    input_stack::get_char();
 	    c = input_stack::peek_char();
-	    if (c == 'i') {
+	    if ('i' == c) {
 	      input_stack::get_char();
 	      c = input_stack::peek_char();
-	      if (c == 'n') {
+	      if ('n' == c) {
 		input_stack::get_char();
 		c = input_stack::peek_char();
-		if (c == 't') {
+		if ('t' == c) {
 		  input_stack::get_char();
 		  context_buffer = ".midpoint";
 		  return DOT_MID;
@@ -956,13 +960,13 @@ static int get_token(bool want_macro_expansion = true)
     int n = 0;
     int bol = input_stack::bol();
     int c = input_stack::get_char();
-    if (bol && c == command_char) {
+    if (bol && (c == command_char)) {
       token_buffer.clear();
       token_buffer += c;
       // the newline is not part of the token
       for (;;) {
 	c = input_stack::peek_char();
-	if (c == EOF || c == '\n')
+	if ((EOF == c) || ('\n' == c))
 	  break;
 	input_stack::get_char();
 	token_buffer += char(c);
@@ -990,7 +994,7 @@ static int get_token(bool want_macro_expansion = true)
       do {
 	c = input_stack::get_char();
       } while (c != '\n' && c != EOF);
-      if (c == '\n')
+      if ('\n' == c)
 	context_buffer = '\n';
       return c;
     case '"':
@@ -1001,7 +1005,7 @@ static int get_token(bool want_macro_expansion = true)
 	if (c == '\\') {
 	  context_buffer += '\\';
 	  c = input_stack::peek_char();
-	  if (c == '"') {
+	  if ('"' == c) {
 	    input_stack::get_char();
 	    token_buffer += '"';
 	    context_buffer += '"';
@@ -1009,15 +1013,15 @@ static int get_token(bool want_macro_expansion = true)
 	  else
 	    token_buffer += '\\';
 	}
-	else if (c == '\n') {
+	else if ('\n' == c) {
 	  error("newline in string");
 	  break;
 	}
-	else if (c == EOF) {
+	else if (EOF == c) {
 	  error("missing '\"'");
 	  break;
 	}
-	else if (c == '"') {
+	else if ('"' == c) {
 	  context_buffer += '"';
 	  break;
 	}
@@ -1049,7 +1053,7 @@ static int get_token(bool want_macro_expansion = true)
 	  n += c - '0';
 	  context_buffer += char(c);
 	  c = input_stack::peek_char();
-	  if (c == EOF || !csdigit(c))
+	  if ((EOF == c) || !csdigit(c))
 	    break;
 	  c = input_stack::get_char();
 	}
@@ -1060,7 +1064,7 @@ static int get_token(bool want_macro_expansion = true)
 	    token_double += c - '0';
 	    context_buffer += char(c);
 	    c = input_stack::peek_char();
-	    if (c == EOF || !csdigit(c))
+	    if ((EOF == c) || !csdigit(c))
 	      break;
 	    c = input_stack::get_char();
 	  }
@@ -1087,7 +1091,7 @@ static int get_token(bool want_macro_expansion = true)
 	  double factor = 1.0;
 	  for (;;) {
 	    c = input_stack::peek_char();
-	    if (c == EOF || !csdigit(c))
+	    if ((EOF == c) || !csdigit(c))
 	      break;
 	    input_stack::get_char();
 	    context_buffer += char(c);
@@ -1095,8 +1099,8 @@ static int get_token(bool want_macro_expansion = true)
 	    if (c != '0')
 	      token_double += factor*(c - '0');
 	  }
-	  if (c != 'e' && c != 'E') {
-	    if (c == 'i' || c == 'I') {
+	  if ((c != 'e') && (c != 'E')) {
+	    if (('i' == c) || ('I' == c)) {
 	      context_buffer += char(c);
 	      input_stack::get_char();
 	    }
@@ -1111,11 +1115,11 @@ static int get_token(bool want_macro_expansion = true)
 	  input_stack::get_char();
 	  c = input_stack::peek_char();
 	  int sign = '+';
-	  if (c == '+' || c == '-') {
+	  if (('+' == c) || ('-' == c)) {
 	    sign = c;
 	    input_stack::get_char();
 	    c = input_stack::peek_char();
-	    if (c == EOF || !csdigit(c)) {
+	    if ((EOF == c) || !csdigit(c)) {
 	      input_stack::push_back(sign);
 	      input_stack::push_back(echar);
 	      return NUMBER;
@@ -1124,7 +1128,7 @@ static int get_token(bool want_macro_expansion = true)
 	    context_buffer += char(sign);
 	  }
 	  else {
-	    if (c == EOF || !csdigit(c)) {
+	    if ((EOF == c) || !csdigit(c)) {
 	      input_stack::push_back(echar);
 	      return NUMBER;
 	    }
@@ -1135,7 +1139,7 @@ static int get_token(bool want_macro_expansion = true)
 	  n = c - '0';
 	  for (;;) {
 	    c = input_stack::peek_char();
-	    if (c == EOF || !csdigit(c))
+	    if ((EOF == c) || !csdigit(c))
 	      break;
 	    input_stack::get_char();
 	    context_buffer += char(c);
@@ -1143,7 +1147,7 @@ static int get_token(bool want_macro_expansion = true)
 	  }
 	  if (sign == '-')
 	    n = -n;
-	  if (c == 'i' || c == 'I') {
+	  if (('i' == c) || ('I' == c)) {
 	    context_buffer += char(c);
 	    input_stack::get_char();
 	  }
@@ -1153,7 +1157,7 @@ static int get_token(bool want_macro_expansion = true)
       case 'n':
 	input_stack::get_char();
 	c = input_stack::peek_char();
-	if (c == 'd') {
+	if ('d' == c) {
 	  input_stack::get_char();
 	  token_int = n;
 	  context_buffer += "nd";
@@ -1164,7 +1168,7 @@ static int get_token(bool want_macro_expansion = true)
       case 'r':
 	input_stack::get_char();
 	c = input_stack::peek_char();
-	if (c == 'd') {
+	if ('d' == c) {
 	  input_stack::get_char();
 	  token_int = n;
 	  context_buffer += "rd";
@@ -1175,7 +1179,7 @@ static int get_token(bool want_macro_expansion = true)
       case 't':
 	input_stack::get_char();
 	c = input_stack::peek_char();
-	if (c == 'h') {
+	if ('h' == c) {
 	  input_stack::get_char();
 	  token_int = n;
 	  context_buffer += "th";
@@ -1186,7 +1190,7 @@ static int get_token(bool want_macro_expansion = true)
       case 's':
 	input_stack::get_char();
 	c = input_stack::peek_char();
-	if (c == 't') {
+	if ('t' == c) {
 	  input_stack::get_char();
 	  token_int = n;
 	  context_buffer += "st";
@@ -1201,10 +1205,10 @@ static int get_token(bool want_macro_expansion = true)
     case '\'':
       {
 	c = input_stack::peek_char();
-	if (c == 't') {
+	if ('t' == c) {
 	  input_stack::get_char();
 	  c = input_stack::peek_char();
-	  if (c == 'h') {
+	  if ('h' == c) {
 	    input_stack::get_char();
 	    context_buffer = "'th";
 	    return TH;
@@ -1228,10 +1232,10 @@ static int get_token(bool want_macro_expansion = true)
       }
     case '<':
       c = input_stack::peek_char();
-      if (c == '-') {
+      if ('-' == c) {
 	input_stack::get_char();
 	c = input_stack::peek_char();
-	if (c == '>') {
+	if ('>' == c) {
 	  input_stack::get_char();
 	  context_buffer = "<->";
 	  return DOUBLE_ARROW_HEAD;
@@ -1239,7 +1243,7 @@ static int get_token(bool want_macro_expansion = true)
 	context_buffer = "<-";
 	return LEFT_ARROW_HEAD;
       }
-      else if (c == '=') {
+      else if ('=' == c) {
 	input_stack::get_char();
 	context_buffer = "<=";
 	return LESSEQUAL;
@@ -1248,7 +1252,7 @@ static int get_token(bool want_macro_expansion = true)
       return '<';
     case '-':
       c = input_stack::peek_char();
-      if (c == '>') {
+      if ('>' == c) {
 	input_stack::get_char();
 	context_buffer = "->";
 	return RIGHT_ARROW_HEAD;
@@ -1257,7 +1261,7 @@ static int get_token(bool want_macro_expansion = true)
       return '-';
     case '!':
       c = input_stack::peek_char();
-      if (c == '=') {
+      if ('=' == c) {
 	input_stack::get_char();
 	context_buffer = "!=";
 	return NOTEQUAL;
@@ -1266,7 +1270,7 @@ static int get_token(bool want_macro_expansion = true)
       return '!';
     case '>':
       c = input_stack::peek_char();
-      if (c == '=') {
+      if ('=' == c) {
 	input_stack::get_char();
 	context_buffer = ">=";
 	return GREATEREQUAL;
@@ -1275,7 +1279,7 @@ static int get_token(bool want_macro_expansion = true)
       return '>';
     case '=':
       c = input_stack::peek_char();
-      if (c == '=') {
+      if ('=' == c) {
 	input_stack::get_char();
 	context_buffer = "==";
 	return EQUALEQUAL;
@@ -1284,7 +1288,7 @@ static int get_token(bool want_macro_expansion = true)
       return '=';
     case '&':
       c = input_stack::peek_char();
-      if (c == '&') {
+      if ('&' == c) {
 	input_stack::get_char();
 	context_buffer = "&&";
 	return ANDAND;
@@ -1293,7 +1297,7 @@ static int get_token(bool want_macro_expansion = true)
       return '&';
     case '|':
       c = input_stack::peek_char();
-      if (c == '|') {
+      if ('|' == c) {
 	input_stack::get_char();
 	context_buffer = "||";
 	return OROR;
@@ -1306,7 +1310,7 @@ static int get_token(bool want_macro_expansion = true)
 	token_buffer = c;
 	for (;;) {
 	  c = input_stack::peek_char();
-	  if (c == EOF || (!csalnum(c) && c != '_'))
+	  if ((EOF == c) || (!csalnum(c) && c != '_'))
 	    break;
 	  input_stack::get_char();
 	  token_buffer += char(c);
@@ -1323,7 +1327,7 @@ static int get_token(bool want_macro_expansion = true)
 	  def = macro_table.lookup(token_buffer.contents());
 	  token_buffer.set_length(token_buffer.length() - 1);
 	  if (def) {
-	    if (c == '(') {
+	    if ('(' == c) {
 	      input_stack::get_char();
 	      interpolate_macro_with_args(def);
 	    }
@@ -1353,35 +1357,35 @@ static int get_delimited()
 {
   token_buffer.clear();
   int c = input_stack::get_char();
-  while (c == ' ' || c == '\t' || c == '\n')
+  while ((' ' == c) || ('\t' == c) || ('\n' == c))
     c = input_stack::get_char();
-  if (c == EOF) {
+  if (EOF == c) {
     lex_error("missing delimiter");
     return 0;
   }
   context_buffer = char(c);
-  int had_newline = 0;
+  int had_newline = 0; // TODO: boolify
   int start = c;
   int level = 0;
   enum { NORMAL, IN_STRING, IN_STRING_QUOTED, DELIM_END } state = NORMAL;
   for (;;) {
     c = input_stack::get_char();
-    if (c == EOF) {
+    if (EOF == c) {
       lex_error("missing closing delimiter");
       return 0;
     }
-    if (c == '\n')
+    if ('\n' == c)
       had_newline = 1;
     else if (!had_newline)
       context_buffer += char(c);
     switch (state) {
     case NORMAL:
       if (start == '{') {
-	if (c == '{') {
+	if ('{' == c) {
 	  level++;
 	  break;
 	}
-	if (c == '}') {
+	if ('}' == c) {
 	  if (--level < 0)
 	    state = DELIM_END;
 	  break;
@@ -1393,17 +1397,17 @@ static int get_delimited()
 	  break;
 	}
       }
-      if (c == '"')
+      if ('"' == c)
 	state = IN_STRING;
       break;
     case IN_STRING_QUOTED:
-      if (c == '\n')
+      if ('\n' == c)
 	state = NORMAL;
       else
 	state = IN_STRING;
       break;
     case IN_STRING:
-      if (c == '"' || c == '\n')
+      if (('"' == c) || ('\n' == c))
 	state = NORMAL;
       else if (c == '\\')
 	state = IN_STRING_QUOTED;
@@ -1456,7 +1460,7 @@ class for_input : public input {
   int by_is_multiplicative;
   double by;
   const char *p;
-  int done_newline;
+  int done_newline; // TODO: rename, boolify
 public:
   for_input(char *, double, double, int, double, char *);
   ~for_input();
@@ -1479,7 +1483,7 @@ for_input::~for_input()
 
 int for_input::get()
 {
-  if (p == 0)
+  if (0 /* nullptr */ == p)
     return EOF;
   for (;;) {
     if (*p != '\0')
@@ -1500,7 +1504,7 @@ int for_input::get()
     define_variable(var, val);
     if ((from <= to && val > to)
 	|| (from >= to && val < to)) {
-      p = 0;
+      p = 0 /* nullptr */;
       return EOF;
     }
     p = body;
@@ -1510,7 +1514,7 @@ int for_input::get()
 
 int for_input::peek()
 {
-  if (p == 0)
+  if (0 /* nullptr */ == p)
     return EOF;
   if (*p != '\0')
     return (unsigned char)*p;
@@ -1537,9 +1541,9 @@ void do_for(char *var, double from, double to, int by_is_multiplicative,
 	    double by, char *body)
 {
   define_variable(var, from);
-  if ((by_is_multiplicative && by <= 0)
-      || (by > 0 && from > to)
-      || (by < 0 && from < to))
+  if ((by_is_multiplicative && (by <= 0))
+      || ((by > 0) && (from > to))
+      || ((by < 0) && (from < to)))
     return;
   input_stack::push(new for_input(var, from, to,
 				  by_is_multiplicative, by, body));
@@ -1550,7 +1554,7 @@ void do_copy(const char *filename)
 {
   errno = 0;
   FILE *fp = fopen(filename, "r");
-  if (fp == 0) {
+  if (0 /* nullptr */ == fp) {
     lex_error("can't open '%1': %2", filename, strerror(errno));
     return;
   }
@@ -1615,11 +1619,11 @@ copy_rest_thru_input::copy_rest_thru_input(const char *b, const char *u)
 
 int copy_rest_thru_input::inget()
 {
-  while (next != 0) {
+  while (next != 0 /* nullptr */) {
     int c = next->get();
     if (c != EOF)
       return c;
-    if (next->next == 0)
+    if (0 /* nullptr */ == next->next)
       return EOF;
     input *tem = next;
     next = next->next;
@@ -1632,9 +1636,9 @@ int copy_rest_thru_input::inget()
 copy_thru_input::copy_thru_input(const char *b, const char *u)
 : done(0)
 {
-  ap = 0;
+  ap = 0 /* nullptr */;
   body = process_body(b);
-  p = 0;
+  p = 0 /* nullptr */;
   until = strdup(u);
 }
 
@@ -1647,19 +1651,19 @@ copy_thru_input::~copy_thru_input()
 
 int copy_thru_input::get()
 {
-  if (ap) {
+  if (ap != 0 /* nullptr */) {
     if (*ap != '\0')
       return (unsigned char)*ap++;
-    ap = 0;
+    ap = 0 /* nullptr */;
   }
   for (;;) {
-    if (p == 0) {
+    if (0 /* nullptr */ == p) {
       if (!get_line())
 	break;
       p = body;
     }
     if (*p == '\0') {
-      p = 0;
+      p = 0 /* nullptr */;
       return '\n';
     }
     while ((unsigned char)*p >= ARG1
@@ -1679,13 +1683,13 @@ int copy_thru_input::get()
 
 int copy_thru_input::peek()
 {
-  if (ap) {
+  if (ap != 0 /* nullptr */) {
     if (*ap != '\0')
       return (unsigned char)*ap;
-    ap = 0;
+    ap = 0 /* nullptr */;
   }
   for (;;) {
-    if (p == 0) {
+    if (0 /* nullptr */ == p) {
       if (!get_line())
 	break;
       p = body;
@@ -1715,9 +1719,9 @@ int copy_thru_input::get_line()
   argc = 0;
   int c = inget();
   for (;;) {
-    while (c == ' ')
+    while (' ' == c)
       c = inget();
-    if (c == EOF || c == '\n')
+    if ((EOF == c) || '\n' == c)
       break;
     if (argc == pic_macro_maximum_arg_count) {
       do {
@@ -1736,7 +1740,7 @@ int copy_thru_input::get_line()
     done = 1;
     return 0;
   }
-  return argc > 0 || c == '\n';
+  return (argc > 0) || ('\n' == c);
 }
 
 class simple_file_input : public input {
@@ -1769,7 +1773,7 @@ int simple_file_input::get()
     error("invalid input character code %1", c);
     c = getc(fp);
   }
-  if (c == '\n')
+  if ('\n' == c)
     lineno++;
   return c;
 }
@@ -1798,7 +1802,7 @@ void copy_file_thru(const char *filename, const char *body, const char *until)
 {
   errno = 0;
   FILE *fp = fopen(filename, "r");
-  if (fp == 0) {
+  if (0 /* nullptr */ == fp) {
     lex_error("can't open '%1': %2", filename, strerror(errno));
     return;
   }
@@ -1818,23 +1822,22 @@ void push_body(const char *s)
   input_stack::push(new macro_input(s));
 }
 
-// TODO: boolify
-int delim_flag = 0;
+int delim_flag = 0; // TODO: boolify
 
 static char *get_thru_arg()
 {
   int c = input_stack::peek_char();
-  while (c == ' ') {
+  while (' ' == c) {
     input_stack::get_char();
     c = input_stack::peek_char();
   }
-  if (c != EOF && csalpha(c)) {
+  if ((c != EOF) && csalpha(c)) {
     // looks like a macro
     input_stack::get_char();
     token_buffer = c;
     for (;;) {
       c = input_stack::peek_char();
-      if (c == EOF || (!csalnum(c) && c != '_'))
+      if ((EOF == c) || (!csalnum(c) && c != '_'))
 	break;
       input_stack::get_char();
       token_buffer += char(c);
@@ -1919,7 +1922,7 @@ int yylex()
       token_buffer += '\0';
       if (!input_stack::get_location(&yylval.lstr.filename,
 				     &yylval.lstr.lineno)) {
-	yylval.lstr.filename = 0;
+	yylval.lstr.filename = 0 /* nullptr */;
 	yylval.lstr.lineno = -1;
       }
       yylval.lstr.str = strdup(token_buffer.contents());
@@ -2071,7 +2074,8 @@ void lex_error(const char *message,
   if (!input_stack::get_location(&filename, &lineno))
     error(message, arg1, arg2, arg3);
   else
-    error_with_file_and_line(filename, lineno, message, arg1, arg2, arg3);
+    error_with_file_and_line(filename, lineno, message, arg1, arg2,
+			     arg3);
 }
 
 void lex_warning(const char *message,
@@ -2084,7 +2088,8 @@ void lex_warning(const char *message,
   if (!input_stack::get_location(&filename, &lineno))
     warning(message, arg1, arg2, arg3);
   else
-    warning_with_file_and_line(filename, lineno, message, arg1, arg2, arg3);
+    warning_with_file_and_line(filename, lineno, message, arg1, arg2,
+			       arg3);
 }
 
 extern void yyerror(const char *);
@@ -2093,7 +2098,7 @@ void yyerror(const char *s)
 {
   const char *filename;
   int lineno;
-  const char *context = 0;
+  const char *context = 0 /* nullptr */;
   if (lookahead_token == -1) {
     if (context_buffer.length() > 0) {
       context_buffer += '\0';
@@ -2107,8 +2112,8 @@ void yyerror(const char *s)
     }
   }
   if (!input_stack::get_location(&filename, &lineno)) {
-    if (context) {
-      if (context[0] == '\n' && context[1] == '\0')
+    if (context != 0 /* nullptr */) {
+      if (('\n' == context[0]) && ('\0' == context[1]))
 	error("%1 before newline", s);
       else
 	error("%1 before '%2'", s, context);
@@ -2117,15 +2122,17 @@ void yyerror(const char *s)
       error("%1 at end of picture", s);
   }
   else {
-    if (context) {
-      if (context[0] == '\n' && context[1] == '\0')
-	error_with_file_and_line(filename, lineno, "%1 before newline", s);
+    if (context != 0 /* nullptr */) {
+      if (('\n' == context[0]) && ('\0' == context[1]))
+	error_with_file_and_line(filename, lineno, "%1 before newline",
+				 s);
       else
 	error_with_file_and_line(filename, lineno, "%1 before '%2'",
 				 s, context);
     }
     else
-      error_with_file_and_line(filename, lineno, "%1 at end of picture", s);
+      error_with_file_and_line(filename, lineno, "%1 at end of picture",
+			       s);
   }
 }
 

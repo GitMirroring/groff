@@ -1,5 +1,16 @@
 2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/pic/lex.cpp: Fix code style nits.  Drop names of
+	unambiguous parameters from member function declarations,
+	Stroustrup-style.  Parenthesize formally complex expressions.
+	Arrange equality comparisons to avoid inadvertent assignment to
+	lvalue.  Explicitly compare variable of pointer type to ISO
+	C++98 null pointer literal, instead of punning it down to a
+	Boolean.  Compare unsigned integral types to explicitly unsigned
+	integer literals.
+
+2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[pic]: Boolify `read_line()` member function.
 
 	* src/preproc/pic/pic.h (class file_input): Demote declaration
