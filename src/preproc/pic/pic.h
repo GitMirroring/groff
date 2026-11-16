@@ -50,6 +50,8 @@ extern void do_lookahead();
 
 class input {
   input *next;
+  input(const input &); // prohibit copying
+  input &operator=(const input &); // prohibit assignment
 public:
   input();
   virtual ~input();

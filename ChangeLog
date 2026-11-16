@@ -1,5 +1,14 @@
 2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[pic]: Apply the C++ "rule of three".
+
+	* src/preproc/pic/lex.cpp (class input_stack): Define stub
+	constructor to prevent instantiation of static class.
+	* src/preproc/pic/pic.h (class input): Define stub copy
+	constructor and assignment operator.
+
+2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/pic/lex.cpp: Boolify "BOL" handling.
 	(class input_stack): Demote member variable `bol_flag` from
 	`int` to `bool` and rename it `at_beginning_of_line`.  Demote

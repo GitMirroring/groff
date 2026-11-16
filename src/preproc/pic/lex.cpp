@@ -272,7 +272,10 @@ int argument_macro_input::peek()
   return (unsigned char)*p;
 }
 
+// Because the constructor is private, we don't need to prohibit copy or
+// assignment.
 class input_stack {
+  input_stack(); // prohibit instantiation
   static input *current_input;
   static bool at_beginning_of_line;
 public:
