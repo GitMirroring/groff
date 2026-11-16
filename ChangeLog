@@ -1,5 +1,10 @@
 2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/pic/lex.cpp (do_copy, copy_file_thru): Revise
+	error diagnostic; favor "cannot" over "can't".
+
+2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/pic/lex.cpp (yylex): Fix code style nit.  Return
 	zero of character type (`\0`) rather than integer.  The
 	idiomatic use of lex/flex is deliberately slovenly typed,

@@ -1555,7 +1555,7 @@ void do_copy(const char *filename)
   errno = 0;
   FILE *fp = fopen(filename, "r");
   if (0 /* nullptr */ == fp) {
-    lex_error("can't open '%1': %2", filename, strerror(errno));
+    lex_error("cannot open '%1': %2", filename, strerror(errno));
     return;
   }
   input_stack::push(new file_input(fp, filename));
@@ -1803,7 +1803,7 @@ void copy_file_thru(const char *filename, const char *body, const char *until)
   errno = 0;
   FILE *fp = fopen(filename, "r");
   if (0 /* nullptr */ == fp) {
-    lex_error("can't open '%1': %2", filename, strerror(errno));
+    lex_error("cannot open '%1': %2", filename, strerror(errno));
     return;
   }
   input *in = new copy_file_thru_input(new simple_file_input(fp, filename),
