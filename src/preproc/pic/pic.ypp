@@ -353,7 +353,7 @@ placeless_element:
 	| VARIABLE ':' '=' any_expr
 		{
 		  place *p = lookup_label($1);
-		  if (!p) {
+		  if (0 /* nullptr */ == p) {
 		    lex_error("variable '%1' not defined", $1);
 		    YYABORT;
 		  }
@@ -1328,7 +1328,7 @@ label:
 	LABEL
 		{
 		  place *p = lookup_label($1);
-		  if (!p) {
+		  if (0 /* nullptr */ == p) {
 		    lex_error("there is no place '%1'", $1);
 		    YYABORT;
 		  }
@@ -1813,7 +1813,7 @@ place *lookup_label(const char *label)
     place *pl = tbl->lookup(label);
     if (pl)
       return pl;
-    if (!state)
+    if (0 /* nullptr */ == state)
       return 0 /* nullptr */;
     tbl = state->tbl;
     state = state->prev;
@@ -1833,7 +1833,7 @@ void define_label(const char *label, const place *pl)
 bool look_up_variable(const char *name, double *val)
 {
   place *pl = lookup_label(name);
-  if (pl) {
+  if (pl != 0 /* nullptr */) {
     *val = pl->x;
     return true;
   }

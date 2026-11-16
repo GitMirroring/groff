@@ -1,5 +1,13 @@
 2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/pic/pic.ypp <placeless_element, label>
+	(lookup_label, look_up_variable): Explicitly compare variable of
+	pointer type to ISO C++98 null pointer literal, instead of
+	punning it down to a Boolean.  Arrange equality comparisons to
+	avoid inadvertent assignment to lvalue.
+
+2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/pic/lex.cpp (get_token): Slightly refactor; use
 	default argument.  Default to `true`.
 	(do_lookahead)
