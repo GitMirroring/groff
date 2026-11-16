@@ -1,5 +1,12 @@
 2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/pic/lex.cpp: Trivially refactor.  Rename
+	`lookup_keyword()` to `look_up_keyword()`.  "Lookup" is a
+	{somewhat informal} noun, while "look up" is a verb.
+	(get_token): Update call site.
+
+2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[pic]: Boolify.  Demote `look_up_variable()` function from `int`
 	to `bool`.
 

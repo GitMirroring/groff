@@ -473,7 +473,7 @@ static int docmp(const char *s1, int n1, const char *s2, int n2)
     return memcmp(s1, s2, n1);
 }
 
-static int lookup_keyword(const char *str, int len)
+static int look_up_keyword(const char *str, int len)
 {
   static struct keyword {
     const char *name;
@@ -1305,8 +1305,8 @@ static int get_token(int lookup_flag /* TODO: boolify */)
 	  input_stack::get_char();
 	  token_buffer += char(c);
 	}
-	int tok = lookup_keyword(token_buffer.contents(),
-				 token_buffer.length());
+	int tok = look_up_keyword(token_buffer.contents(),
+				  token_buffer.length());
 	if (tok != 0) {
 	  context_buffer = token_buffer;
 	  return tok;
