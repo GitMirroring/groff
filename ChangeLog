@@ -1,3 +1,11 @@
+2026-11-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/preproc/tbl/main.cpp (describe_character): Zero the
+	static buffer contents so that garbage can't accumulate in it.
+	Since the string written there is always null-terminated,
+	failing to do so _shouldn't_ ever be a problem, but it's a
+	relatively cheap operation that happens only on an error path.
+
 2026-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[pic]: Boolify AT&T compatibility flag.

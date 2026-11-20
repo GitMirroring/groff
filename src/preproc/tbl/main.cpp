@@ -806,6 +806,7 @@ static const char *describe_character(int c)
   const size_t descbufsize = strlen(cc) + 1 /* ' ' */ + INT_DIGITS
 			     + 1 /* '\0' */;
   static char descbuf[descbufsize];
+  (void) memset(descbuf, 0, (descbufsize * sizeof(char)));
   if (csprint(c)) {
     char quote = '\'';
     if ('\'' == c)
