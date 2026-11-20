@@ -414,7 +414,7 @@
 	[libgroff]: Slightly refactor; use default argument.
 
 	* src/include/searchpath.h (class search_path): Default third
-	third constructor argument to `false`.
+	constructor argument to `false`.
 	* src/libs/libgroff/fontfile.cpp:
 	* src/libs/libgroff/macropath.cpp:
 	* src/preproc/html/pre-html.cpp: Simplify constructor callers
