@@ -905,14 +905,12 @@ User Manual\[rq]
 .SH Authors
 .\" ====================================================================
 .
-The GNU implementation of
-.I chem
-was written by
 .MT groff\-bernd\:.warken\-72@\:web\:.de
 Bernd Warken
-.ME .
-.
-It is based on the documentation of Brian Kernighan's original
+.ME
+wrote this implementation of
+.IR chem ,
+consulting the documentation of Brian Kernighan's original
 .I awk
 version of
 .IR chem .

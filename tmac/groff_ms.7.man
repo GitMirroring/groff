@@ -3072,18 +3072,19 @@ is a wrapper enabling the package to be loaded with the option
 .SH Authors
 .\" ====================================================================
 .
-The GNU implementation of the
+James Clark wrote the initial GNU implementation of
 .I ms
-macro package was written by James Clark and contributors.
+with the aid of contributors,
+along with early revisions of this document.
 .
-This document was written by Clark,
 .MT lkollar@\:despammed\:.com
 Larry Kollar
-.ME ,
+.ME
 and
 .MT g.branden\:.robinson@\:gmail\:.com
 G.\& Branden Robinson
-.ME .
+.ME
+updated it in subsequent years.
 .
 .
 .br

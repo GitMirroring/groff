@@ -258,12 +258,10 @@ is as follows.
 .\" This is done so that the box sizes (in the pic(1) diagram) and arrow
 .\" alignments (in the text alternative) can remain fixed.
 .if !'@g@'\%' \{\
-In the diagrams below,
-the traditional names for
+The diagrams below use the traditional names for
 .I soelim
 and
-.I troff
-are used;
+.I troff;
 on this system,
 the GNU implementations are installed as
 .I @g@soelim

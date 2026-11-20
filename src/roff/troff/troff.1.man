@@ -1105,11 +1105,10 @@ necessary.
 .SH Authors
 .\" ====================================================================
 .
-The GNU implementation of
+James Clark wrote the initial GNU implementation of
 .I troff \" generic
-was originally written by James Clark;
-he also wrote the original version of this document,
-which was updated by
+as well as early revisions of this document.
+.
 .MT wl@\:gnu\:.org
 Werner Lemberg
 .ME ,
@@ -1119,7 +1118,8 @@ Bernd Warken
 and
 .MT g.branden\:.robinson@\:gmail\:.com
 G.\& Branden Robinson
-.ME .
+.ME
+updated it in subsequent years.
 .
 .
 .br
