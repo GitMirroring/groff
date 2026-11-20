@@ -1088,7 +1088,7 @@ Output drivers
 *  gropdf now supports characters outside the Unicode Basic Latin subset
    in bookmarks, named destinations, and external hyperlinks.  (They
    must be encoded using groff's Unicode special character escape
-   sequences; the preconv preprocessor is helpful to simply this
+   sequences; the preconv preprocessor is helpful to simplify this
    requirement.)  Thanks to Deri James.
 
 *  gropdf now recognizes a `GROPDF_OPTIONS` environment variable,
