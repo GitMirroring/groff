@@ -905,7 +905,7 @@ User Manual\[rq]
 .SH Authors
 .\" ====================================================================
 .
-The GNU version of
+The GNU implementation of
 .I chem
 was written by
 .MT groff\-bernd\:.warken\-72@\:web\:.de

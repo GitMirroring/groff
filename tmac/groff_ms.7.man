@@ -3072,7 +3072,7 @@ is a wrapper enabling the package to be loaded with the option
 .SH Authors
 .\" ====================================================================
 .
-The GNU version of the
+The GNU implementation of the
 .I ms
 macro package was written by James Clark and contributors.
 .

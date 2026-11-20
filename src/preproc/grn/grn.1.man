@@ -487,7 +487,7 @@ before
 .IR @g@grn ,
 .MR @g@pic @MAN1EXT@ ,
 and/or
-.IR ideal . \" no GNU version yet
+.IR ideal . \" no GNU implementation yet
 .
 If
 .MR @g@eqn @MAN1EXT@

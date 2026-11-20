@@ -806,7 +806,7 @@ Arrowheads have a \fBwidth\fP attribute, the distance across the rear;
 and a \fBheight\fP attribute, the length of the arrowhead along the shaft.
 .PP
 Arrowhead style is controlled by the style variable \fBarrowhead\fP.
-The DWB and GNU versions interpret it differently.
+The DWB and GNU implementations interpret it differently.
 DWB defaults to open arrowheads and an \fBarrowhead\fP value of\~2; the
 Kernighan paper says a value of\~7 makes solid arrowheads.
 GNU \fBgpic\fP defaults to solid arrowheads and an \fBarrowhead\fP value

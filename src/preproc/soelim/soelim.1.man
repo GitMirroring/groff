@@ -265,7 +265,7 @@ and
 .I troff
 are used;
 on this system,
-the GNU versions are installed as
+the GNU implementations are installed as
 .I @g@soelim
 and
 .IR @g@troff .

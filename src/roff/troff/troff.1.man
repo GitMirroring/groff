@@ -1105,7 +1105,7 @@ necessary.
 .SH Authors
 .\" ====================================================================
 .
-The GNU version of
+The GNU implementation of
 .I troff \" generic
 was originally written by James Clark;
 he also wrote the original version of this document,

@@ -85,7 +85,7 @@ input='.TH foo 1 2022-12-04 "groff test suite"
 .SH Name
 foo \- frobnicate a bar
 .SH Authors
-The GNU version of
+The GNU implementation of
 .I foo
 was written by
 .MT q@\:example\:.com
