@@ -1999,6 +1999,7 @@ and
 .BI .bd\~ "special-font font"
 Stop emboldening
 .I special-font
+in all environments
 when
 .I font
 is selected.
@@ -4644,7 +4645,8 @@ request.
 .TP
 .BI .tkf\~ f\~s1\~n1\~s2\~n2
 Enable track kerning for
-.RI font\~ f.
+.RI font\~ f
+in all environments.
 If the selected font
 .RI is\~ f,
 increase the advance width by an amount between

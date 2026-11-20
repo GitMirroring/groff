@@ -13456,7 +13456,8 @@ Set magnification of
 @var{font}
 to factor
 @var{zoom},
-a multiplier in thousandths applied to the type size.
+a multiplier in thousandths applied to the type size,
+in all environments.
 @var{zoom}
 must be non-negative.
 @code{fzoom}
@@ -15301,7 +15302,10 @@ is a font identifier or mounting position.
 @DefregListEndx {.b}
 @cindex imitating boldface (@code{bd})
 @cindex boldface, imitating (@code{bd})
-Embolden @var{font} by overstriking its glyphs offset by @var{offset}
+Embolden
+@var{font}
+in all environments by overstriking its glyphs offset by
+@var{offset}
 units minus one.
 
 Two syntax forms are available.
@@ -15347,7 +15351,8 @@ request).
 Apply
 @dfn{constant glyph spacing}
 to font
-@var{font}.
+@var{font}
+in all environments.
 @cindex advance width
 @cindex width, advance
 The
@@ -15486,8 +15491,9 @@ if the reader notices the effect.
 @Defreq {tkf, f s1 n1 s2 n2}
 @cindex activating track kerning (@code{tkf})
 @cindex track kerning, activating (@code{tkf})
-Enable track kerning for
-font@tie{}@var{f}.
+Configure track kerning for
+font@tie{}@var{f}
+in all environments.
 If the selected font
 is@tie{}@var{f},
 increase the advance width by an amount between

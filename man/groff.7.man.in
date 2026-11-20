@@ -3322,12 +3322,14 @@ option of
 .REQ .bd font
 Stop emboldening font
 .I font
+in all environments
 by overstriking its glyphs.
 .
 .TPx
 .REQ .bd "font n"
 Embolden
 .I font
+in all environments
 by overstriking its glyphs offset by
 .IR n \-1
 units.
@@ -3340,6 +3342,7 @@ See
 .REQ .bd "special-font font"
 Stop emboldening
 .I special-font
+in all environments
 when
 .I font
 is selected.
@@ -3353,10 +3356,12 @@ not a mounting position.
 .TPx
 .REQ .bd "special-font font n"
 Embolden
-.I special-font,
-overstriking its glyphs offset by
+.I special-font
+in all environments
+by overstriking its glyphs offset by
 .IR n \-1
-units when
+units,
+when
 .I font
 is selected.
 .
@@ -3622,12 +3627,14 @@ compatibility mode per Boolean expression
 .TPx
 .REQ .cs font
 Disable constant glyph spacing for font
-.I font.
+.I font
+in all environments.
 .
 .TPx
 .REQ .cs "font n"
 Enable constant glyph spacing for font
-.IR font ,
+.I font
+in all environments,
 overriding the advance width of every glyph in font to
 .IR n /36
 ems.
@@ -3635,7 +3642,8 @@ ems.
 .TPx
 .REQ .cs "font n p"
 Enable constant glyph spacing for font
-.IR font ,
+.I font
+in all environments,
 overriding the advance width of every glyph in font to
 .IR n /36
 ems with an assumed em size of
@@ -4162,7 +4170,8 @@ to
 .TQ
 .REQ .fzoom f\~\f[B]1000\f[]
 Stop magnifying
-.RI font\~ f .
+.RI font\~ f
+in all environments.
 .
 .IR f \~must
 be a resolved font name,
@@ -4173,7 +4182,8 @@ not an abstract style or mounting position.
 Set zoom factor
 .I zoom
 for
-.RI font\~ f .
+.RI font\~ f
+in all environments.
 .
 .I zoom
 must be a non-negative integer;
@@ -5654,7 +5664,8 @@ Temporarily indent next output line
 .TPx
 .REQ .tkf "font s1 n1 s2 n2"
 Enable track kerning for font
-.I font.
+.I font
+in all environments.
 If the selected font is
 .I font,
 increase the advance width by an amount between
