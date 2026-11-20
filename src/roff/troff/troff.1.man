@@ -190,7 +190,8 @@ while
 .B \-v
 and
 .B \%\-\-version
-show version information;
+show version
+and macro file search path information;
 all exit afterward.
 .
 .
