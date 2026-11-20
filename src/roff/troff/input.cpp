@@ -1703,7 +1703,7 @@ static void activate_color() // .color
   else
     is_color_desired = true;
   if (is_color_desired && !permit_color_output) {
-    error("color output disabled via command line");
+    error("color output was disabled by command-line '-c' option");
     is_color_desired = false;
   }
   want_color_output = is_color_desired;

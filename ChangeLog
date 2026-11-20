@@ -1,5 +1,11 @@
 2026-11-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (activate_color): Recast error
+	diagnostic when input attempts to configure command-line-
+	disabled color output.
+
+2026-11-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/tbl/main.cpp (describe_character): Zero the
 	static buffer contents so that garbage can't accumulate in it.
 	Since the string written there is always null-terminated,
