@@ -163,6 +163,27 @@ their impact.
     meaning of its "expand" region option such that it no longer
     horizontally compresses tables as well, _would_ be 'NEWS'-worthy.
 
+Why not generate the change log file from Git commit history?
+.............................................................
+
+A.  Commit messges cannot be revised.
+B.  GNU Savannah doesn't permit force-pushes (which may be wise).
+C.  People make mistakes in commit log messages.  They make incorrect
+    claims of fact, typo Savannah ticket numbers and so forth.
+D.  Any error in a change log file can be corrected in a change log
+    file.
+E.  The commit message is good for auxiliary commentary from one
+    developer to another.  For instance, you can illustrate the effect
+    of changes and fixes that don't warrant a regression test, such as
+    the restructuring of a diagnostic message.  Performance
+    measurements, which can be important at the time of commit but can
+    become less relevant over time, can also be usefully recorded there.
+    Such stuff clutters a change log, which generally restricts itself
+    to descriptions of logic changes, or observations of fact or design
+    choices that seem especially important to communicate--and which, if
+    mistaken, can be corrected in a change log...but not in a commit
+    message.
+
 
 Incorporating changes by others
 -------------------------------
