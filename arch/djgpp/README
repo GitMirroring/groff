@@ -4,11 +4,11 @@
     modification, are permitted in any medium without royalty provided
     the copyright notice and this notice are preserved.
 
-This is a port of GNU Groff to DJGPP v2.03 or later.
-Groff is the GNU version of document formatting tools related to
-'troff'.
+This is a port of GNU groff to DJGPP v2.03 or later.  groff is a
+document formatting system, a reimplementation and extension of the
+AT&T troff typesetting system for Unix operating systems.
 
-This README file describes how to build and install Groff on MS-DOS or
+This file describes how to build and install groff on MS-DOS or
 MS-Windows systems using the DJGPP port of GNU C/C++ compiler and
 development tools.
 
