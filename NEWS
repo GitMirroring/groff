@@ -53,7 +53,7 @@ soelim
    lacking them, unless the `-r` ("raw") option is specified.
 
 *  soelim now recognizes an option `-x` that promotes failure to open
-   any included file to a fatal error.
+   any included file from a warning to a fatal error.
 
 
 VERSION 1.25.0
