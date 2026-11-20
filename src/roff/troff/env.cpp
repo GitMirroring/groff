@@ -3692,6 +3692,7 @@ void environment::dump()
 		 : adjust_mode == ADJUST_CENTER
 		     ? "center/off"
 		     : "right/off");
+  errprint("  forcing adjustment: %1\n", is_spreading ? "yes" : "no");
   if (centered_line_count > 0)
     errprint("  lines remaining to center: %1\n", centered_line_count);
   if (right_aligned_line_count > 0)
@@ -3740,7 +3741,6 @@ void environment::dump()
   errprint("  computing tab stops from: %1\n",
 	   using_line_tabs ? "output line start (\"line tabs\")"
 	     : "input line start");
-  errprint("  forcing adjustment: %1\n", is_spreading ? "yes" : "no");
   if (margin_character_node != 0 /* nullptr */) {
     errprint("  margin character flags: %1\n",
 	     margin_character_flags == MC_ON

@@ -1,5 +1,12 @@
 2026-11-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp (environment::dump): Rearrange report
+	to disclose "forced" adjustment (caused by `\p` escape sequence)
+	immediately after other alignment/adjustment information, so
+	that we more closely group related properties.
+
+2026-11-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp (configure_track_kerning_request)
 	(constantly_space_font_request): Clarify error diagnostics.
 
