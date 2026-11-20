@@ -8,6 +8,12 @@
 
 2026-11-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grotty/tty.cpp (tty_printer::add_char): Explicitly
+	compare variable of pointer type to ISO C++98 null pointer
+	literal, instead of punning it down to a Boolean.
+
+2026-11-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp (environment::dump): Rearrange report
 	to disclose "forced" adjustment (caused by `\p` escape sequence)
 	immediately after other alignment/adjustment information, so

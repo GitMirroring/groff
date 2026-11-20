@@ -470,7 +470,9 @@ void tty_printer::add_char(output_character c, int w,
   // at each hpos, and otherwise in order of occurrence.
 
   tty_glyph **pp;
-  for (pp = lines + (vpos - 1); *pp; pp = &(*pp)->next)
+  for (pp = lines + (vpos - 1);
+       *pp != 0 /* nullptr */;
+       pp = &(*pp)->next)
     if ((*pp)->hpos < hpos
 	|| ((*pp)->hpos == hpos && (*pp)->order() >= g->order()))
       break;
