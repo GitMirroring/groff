@@ -1,5 +1,10 @@
 2026-11-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (configure_track_kerning_request)
+	(constantly_space_font_request): Clarify error diagnostics.
+
+2026-11-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (activate_color): Recast error
 	diagnostic when input attempts to configure command-line-
 	disabled color output.

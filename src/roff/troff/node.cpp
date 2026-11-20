@@ -7556,7 +7556,7 @@ static void configure_track_kerning_request() // .tkf
   }
   font_lookup_info finfo;
   if (!read_font_identifier(&finfo))
-    font_lookup_error(finfo, "for track kerning");
+    font_lookup_error(finfo, "to configure track kerning");
   else {
     int n = finfo.position, min_s, max_s;
     hunits min_a, max_a;
@@ -7589,7 +7589,7 @@ static void constantly_space_font_request() // .cs
   }
   font_lookup_info finfo;
   if (!read_font_identifier(&finfo))
-    font_lookup_error(finfo, "for constant spacing");
+    font_lookup_error(finfo, "to configure constant spacing");
   else {
     int n = finfo.position, x, y;
     if (!has_arg() || !read_integer(&x))
