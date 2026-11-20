@@ -524,9 +524,7 @@
 	* src/libs/libgroff/searchpath.cpp (search_path::contents):
 	Return the contents of `dirs` as-is (but hardened to `const`).
 	A refactoring of this class might store directory names as
-	elements of a list (an `std::vector`?) and compute the path
-	element separator.  On the other hand, no one seems for several
-	years to have bothered building groff on a non-POSIX system.
+	elements of a list (an `std::vector`?).
 	* src/roff/troff/input.cpp (main): Declare new Boolean variable
 	`want_version_report`, defaulting `false`.  When processing `-v`
 	command-line option, simply set this flag to `true` and stop
