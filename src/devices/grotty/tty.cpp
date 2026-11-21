@@ -475,7 +475,7 @@ void tty_printer::add_char(output_character c, int w,
 
   tty_glyph **pp;
   for (pp = lines + (vpos - 1);
-       *pp != 0 /* nullptr */;
+       (pp != 0 /* nullptr */) && (*pp != 0 /* nullptr */);
        pp = &(*pp)->next)
     if ((*pp)->hpos < hpos
 	|| ((*pp)->hpos == hpos && (*pp)->order() >= g->order()))

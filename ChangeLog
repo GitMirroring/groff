@@ -1,5 +1,14 @@
 2026-11-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grotty/tty.cpp (tty_printer::add_char): Add null
+	pointer check.  In principle, we could make `pp`'s non-nullity
+	an assert(3)ion instead, as it should be invariant, but doing so
+	would require rewriting the `for` loop, as `pp` is updated as
+	part of what the ISO C standard calls "expression-3", the one
+	that runs after each execution of the loop body.
+
+2026-11-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grotty/tty.cpp (tty_printer::add_char): When
 	making a large vertical motion that far exceeds the existing
 	page length, double the size of the page's line count _until_
