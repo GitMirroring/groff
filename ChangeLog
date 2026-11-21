@@ -1,3 +1,11 @@
+2026-11-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/div.cpp (write_any_trailer_and_exit): Drop
+	assert(3) call.  A top-level diversion does not exist at
+	formatter exit if the program cannot locate and load a device
+	description file.  This scenario is a fatal error but a valid
+	scenario.
+
 2026-11-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/env.cpp (environment::dump): Rearrange report
