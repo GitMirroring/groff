@@ -425,7 +425,11 @@ void tty_printer::add_char(output_character c, int w,
       tty_glyph **old_lines = lines;
       // If we exceed the previous page length, double the size so that
       // we don't thrash the allocator.  See Savannah #68145.
-      int new_nlines = nlines * 2;
+      int new_nlines = nlines;
+      while (vpos > new_nlines)
+	new_nlines *= 2;
+      if (new_nlines < 0)
+	fatal("vertical motion to line %1 is too large", vpos);
       lines = 0 /* nullptr */;
       try {
 	lines = new tty_glyph *[new_nlines];

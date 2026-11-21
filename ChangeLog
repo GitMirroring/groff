@@ -1,3 +1,16 @@
+2026-11-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/devices/grotty/tty.cpp (tty_printer::add_char): When
+	making a large vertical motion that far exceeds the existing
+	page length, double the size of the page's line count _until_
+	the new vertical position (`vpos`) lies within it, instead of
+	only once.  Check for integer overflow when increasing the page
+	length and throw fatal error if it occurs.
+
+	Fixes <https://savannah.gnu.org/bugs/?68942>.  Problem
+	introduced by me in commit b5ede708b9, 17 March, when revising
+	memory management strategy to address Savannah #68145.
+
 2026-11-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[grotty]: Regression-test Savannah #68942.
