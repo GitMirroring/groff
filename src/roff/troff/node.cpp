@@ -6861,16 +6861,35 @@ static void translate_font_request() // .ftr
   skip_line();
 }
 
-// TODO: Support reading a list of font identifiers as arguments, like
-// `pnr` and `pm`.  Will need to reject nonnegative integers.
 static void print_font_translation_request() // .pftr
 {
-  dictionary_iterator iter(font_translation_dictionary);
   symbol from, to;
+  if (has_arg()) {
+    do {
+      from = read_identifier();
+      if (from.is_null()) {
+	skip_rest_of_argument();
+	continue;
+      }
+      if (is_nonnegative_integer(from.contents())) {
+	error("font translation applies to a font identifier,"
+	      " not a mounting position (%1)", from.contents());
+	continue;
+      }
+      to = get_font_translation(from);
+      // If the name translates to itself, there is no translation; the
+      // `from` font might not even exist.
+      if (strcmp(from.contents(), to.contents()) != 0)
+	errprint("%1\t%2\n", from.contents(), to.contents());
+    } while (has_arg());
+  }
+  else {
+  dictionary_iterator iter(font_translation_dictionary);
   // We must use the nuclear `reinterpret_cast` operator because GNU
   // troff's dictionary types use a pre-STL approach to containers.
   while (iter.get(&from, reinterpret_cast<void **>(&to)))
     errprint("%1\t%2\n", from.contents(), to.contents());
+  }
   fflush(stderr);
   skip_line();
 }

@@ -1,5 +1,12 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (print_font_translation_request):
+	Accept arguments; interpret each as a font identifier, and
+	report the translation thereof if it is not the identity
+	mapping.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp (print_font_translation_request): Fix
 	code style nit.  Drop explicit return from end of function
 	returning `void`.
