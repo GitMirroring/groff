@@ -131,6 +131,13 @@
 	Fixes <https://savannah.gnu.org/bugs/?68942>.  Problem
 	introduced by me in commit b5ede708b9, 17 March, when revising
 	memory management strategy to address Savannah #68145.
+	Originally reported as Debian #1153649 by Samuel Thibault as a
+	build failure of the "brltty" package.  Thanks to Colin Watson
+	for illustrating a reproduction procedure--which proved
+	squirrely and difficult to tightly isolate from the input
+	document; its giant vertical motion, possibly an artifact
+	introduced by linuxdoc(1) worth investigating--and for
+	confirming the fix in a proper Debian package build environment.
 
 2026-11-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
