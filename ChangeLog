@@ -1,5 +1,11 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grotty/tty.cpp (tty_printer::add_char): Recast
+	and rearrange sanity-checking error diagnostics.  Consistently
+	place quanization checks, which are fatal if they fail, first.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grotty/tty.cpp (tty_printer::add_char): Reënable
 	sanity check of horizontal drawing position quantization; it
 	should be a multiple of the horizontal motion quantum.  Clark

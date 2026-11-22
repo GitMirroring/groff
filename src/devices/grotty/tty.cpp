@@ -401,8 +401,9 @@ void tty_printer::add_char(output_character c, int w,
 			   color *fore, color *back,
 			   unsigned char mode)
 {
-  if (h % font::hor != 0)
-    fatal("horizontal position not a multiple of horizontal motion quantum");
+  if ((h % font::hor) != 0)
+    fatal("horizontal position is not a multiple"
+	  "of horizontal motion quantum");
   int hpos = h / font::hor;
   // A negative horizontal drawing position is uncommon, but possible.
   // "tmac/tests/e_line-numbering-works.sh" illustrates a case.
@@ -412,15 +413,15 @@ void tty_printer::add_char(output_character c, int w,
   if (hpos > SHRT_MAX)
     fatal("discarding character with huge horizontal position %1;"
 	  " is terminal wider than %2 character cells?", h, SHRT_MAX);
-  // The first output line corresponds to drawing position `font::vert`.
+  if ((v % font::vert) != 0)
+    fatal("vertical position is not a multiple"
+	  " of vertical motion quantum");
   int vpos = v / font::vert;
+  // The first output line corresponds to drawing position `font::vert`.
   if (vpos <= 0) {
     error("discarding output above first line of terminal");
     return;
   }
-  if ((v % font::vert) != 0)
-    fatal("vertical position not a multiple of vertical motion"
-	  " quantum");
   if (vpos > nlines) {
     tty_glyph **old_lines = lines;
     // If we exceed the previous page length, double the size so that we
