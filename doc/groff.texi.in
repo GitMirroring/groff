@@ -15694,7 +15694,7 @@ Post universitum, alea jacta est, OK?
 
 @item
 Mark the end of a numerical expression
-in an otherwise ambiguous context.
+that would otherwise be ambiguous.
 
 @Example
 \l'4i-'
