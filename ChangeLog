@@ -1,5 +1,14 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[soelim]: Add test exercising FSM states.
+
+	* src/preproc/soelim/tests/exercise-finite-state-machine.sh:
+	New file; test the FSM with unusual inputs.
+	* src/preproc/soelim/soelim.am: Update `soelim_TESTS` to run
+	test.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[soelim]: Add warning diagnostic.
 
 	* src/preproc/soelim/soelim.cpp (do_so): Warn when an invalid
