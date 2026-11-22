@@ -23376,12 +23376,17 @@ the meaning of which varies by output device,
 follow.
 @endDefreq
 
-@Defreq {pftr, }
+@Defreq {pftr, [@Var{font-id} @r{@dots{}}]}
 @cindex dumping font translations (@code{pftr})
 @cindex font translations, dumping (@code{pftr})
 @cindex translations, font, dumping (@code{pftr})
 Report,
 to the standard error stream,
+the translation of each
+@var{font-id}
+(which can be an abstract style but not a mounting position),
+or,
+without arguments,
 the list of all font translations.
 Recall the
 @code{ftr}

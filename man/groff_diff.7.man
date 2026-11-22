@@ -4060,9 +4060,15 @@ follow.
 .
 .
 .TP
-.B .pftr
+.BR .pftr \~[\c
+.IR font-id \~\&.\|.\|.]
 Report,
 to the standard error stream,
+the translation of each
+.I font-id
+(which can be an abstract style but not a mounting position),
+or,
+without arguments,
 the list of all font translations.
 .
 See

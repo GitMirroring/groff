@@ -4915,6 +4915,14 @@ to the standard error stream,
 the list of all font translations.
 .
 .TPx
+.REQ .pftr "font-id \fR\&.\|.\|.\&\fP"
+Report,
+to the standard error stream,
+the font translation of each
+.I font-id,
+if one exists.
+.
+.TPx
 .REQ .phw
 Report,
 to the standard error stream,
