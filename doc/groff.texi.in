@@ -25202,12 +25202,35 @@ and
 @file{BI},
 respectively).
 
-Device and font description files are read both by the formatter, GNU
-@code{troff}, and by output drivers.  The programs delegate these files'
-processing to an internal library, @file{libgroff}, ensuring their
-consistent interpretation.
+Both the formatter,
+GNU
+@command{troff},
+and output drivers read device and font description files.@footnote{Some
+preprocessors read them as well,
+to obtain font metrics.}
+The programs delegate these files' processing to an internal library,
+@file{libgroff},
+ensuring their consistent interpretation.@footnote{@command{gropdf},
+written in Perl,
+performs its own parsing of these files.}
 
-All integers used by these files must be specified in decimal format.
+All integers appearing in these files must use decimal format.
+
+Device description files are typically written by hand,
+using an existing one for another device as an example.
+Because fonts can be numerous,
+@code{roff}
+users find convenient scripted generation of their description files,
+and may use a template file
+that the script copies and supplements with typeface-specific data.
+Examples appear in the
+@code{groff}
+source code distribution archive.
+End users can also employ
+Peter Schaffter's interactive and user-friendly font installer,
+available in
+@file{/usr/local/share/doc/groff-1.25.0/examples/install-font.bash}
+or a similar location on your system.
 
 @menu
 * DESC File Format::
