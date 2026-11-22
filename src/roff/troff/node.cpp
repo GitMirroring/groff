@@ -6873,7 +6873,6 @@ static void print_font_translation_request() // .pftr
     errprint("%1\t%2\n", from.contents(), to.contents());
   fflush(stderr);
   skip_line();
-  return;
 }
 
 static void mount_font_at_position_request() // .fp

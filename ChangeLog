@@ -1,5 +1,11 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (print_font_translation_request): Fix
+	code style nit.  Drop explicit return from end of function
+	returning `void`.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/pic/lex.cpp (get_token, get_thru_arg): Fix code
 	style nit.  Parenthesize formally complex expressions.
 
