@@ -1,5 +1,18 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[soelim]: Add warning diagnostic.
+
+	* src/preproc/soelim/soelim.cpp (do_so): Warn when an invalid
+	escape sequence occurs in the argument after the ".so" token,
+	and identify the offending sequence.
+
+	* src/preproc/soelim/tests/warning-invalid-escape-sequence.sh:
+	New file; test it.
+	* src/preproc/soelim/soelim.am: Update `soelim_TESTS` to run
+	test.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[grotty]: Recognize "TERM=dumb".
 
 	* src/devices/grotty/tty.cpp (configure_plain_text_output): New

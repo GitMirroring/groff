@@ -159,6 +159,7 @@ static void do_so(const char *line)
   string filename;
   bool is_filename_valid = true;
   const char *q = p;
+  char invalid_char = '\0';
   if ('"' == *q)
     q++;
   for (; is_filename_valid && (*q != '\0') && (*q != '\n'); q++)
@@ -181,13 +182,21 @@ static void do_so(const char *line)
 	// is_filename_valid = false; // or fall through
 	break;
       default:
+	invalid_char = *q;
 	is_filename_valid = false;
 	break;
       }
     }
     else
       filename += char(*q);
-  if (is_filename_valid && (filename.length() > 0)) {
+  if (!is_filename_valid) {
+    // Temporarily decrement the line counter as above.
+    current_lineno--;
+    warning("not sourcing invalid file name"
+	    " containing invalid sequence \"\\%1\"", invalid_char);
+    current_lineno++;
+  }
+  else if ((filename.length() > 0)) {
     filename += '\0';
     const char *fn = current_filename;
     int ln = current_lineno;
