@@ -70,7 +70,7 @@
 
 	* src/devices/grotty/tty.cpp (tty_printer::add_char): Recast
 	and rearrange sanity-checking error diagnostics.  Consistently
-	place quanization checks, which are fatal if they fail, first.
+	place quantization checks, which are fatal if they fail, first.
 
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -146,8 +146,8 @@
 	* src/roff/troff/div.cpp (write_any_trailer_and_exit): Drop
 	assert(3) call.  A top-level diversion does not exist at
 	formatter exit if the program cannot locate and load a device
-	description file.  This scenario is a fatal error but a valid
-	scenario.
+	description file.  This scenario is an expected fatal error
+	scenario, as when the user typos the argument to option `-T`.
 
 2026-11-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
