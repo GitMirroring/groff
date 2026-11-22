@@ -68,6 +68,11 @@ Output drivers
    overstriking sequences nor ISO 6429 escape sequences appear in its
    output.
 
+*  grotty now checks the process environment for the variable `TERM`; if
+   it is set to "dumb", the program configures itself as if the options
+   `-cboOu` had been specified, producing plain text output as described
+   in the previous item.
+
 
 VERSION 1.25.0
 ==============

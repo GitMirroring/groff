@@ -1047,12 +1047,27 @@ static void update_options()
   }
 }
 
+// equivalent to `-cboOu`
+static void configure_plain_text_output()
+{
+  use_overstriking_drawing_scheme = true; // meaning: not SGR
+  // Now shut off all the ways overstriking can happen.
+  want_emboldening_by_overstriking = false;
+  want_glyph_composition_by_overstriking = false;
+  want_continuous_underlining = false;
+  want_italics_by_underlining = false;
+}
+
 int main(int argc, char **argv)
 {
   program_name = argv[0];
   static char stderr_buf[BUFSIZ];
   if (getenv("GROFF_NO_SGR") != 0 /* nullptr */)
     use_overstriking_drawing_scheme = true;
+  const char *terminal_type = getenv("TERM");
+  if ((terminal_type != 0 /* nullptr */)
+      && (strcmp(terminal_type, "dumb") == 0))
+    configure_plain_text_output();
   setbuf(stderr, stderr_buf);
   setlocale(LC_CTYPE, "");
   int c;

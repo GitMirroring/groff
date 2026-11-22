@@ -677,6 +677,18 @@ option were specified;
 see subsection \[lq]Legacy output format\[rq] above.
 .
 .
+.TP
+.I TERM
+If set to
+.RB \[lq] dumb \[rq],
+.I grotty
+behaves as if the options
+.B \-cboOu
+are specified,
+producing plain text output;
+it produces neither SGR/OSC nor overstriking sequences.
+.
+.
 .br
 .ne 3v \" Keep section heading and paragraph tag together.
 .\" ====================================================================

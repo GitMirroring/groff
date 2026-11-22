@@ -1,5 +1,22 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[grotty]: Recognize "TERM=dumb".
+
+	* src/devices/grotty/tty.cpp (configure_plain_text_output): New
+	function sets Booleans as the options `-cboOu` would.
+	(main): Call this function if the environment variable `TERM`
+	equals `dumb`.
+
+	* src/devices/grotty/grotty.1.man (Environment): Document it.
+
+	* src/devices/grotty/tests/\
+	TERM-equals-dumb-in-environment-works.sh:
+	* src/devices/grotty/grotty.am: Test it.
+
+	Fixes <https://savannah.gnu.org/bugs/?67947>.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[grotty]: Implement `-O` option to suppress operation of groff's
 	"continuous underlining" extension.
 
