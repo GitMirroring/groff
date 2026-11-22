@@ -1,5 +1,11 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grotty/tty.cpp (tty_printer::add_char): Improve
+	fix for Savannah #68942.  Ensure that `new_nlines` can undergo
+	integer wraparound at most once per trip through this function.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[soelim]: Add test exercising FSM states.
 
 	* src/preproc/soelim/tests/exercise-finite-state-machine.sh:
