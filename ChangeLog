@@ -1,5 +1,13 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grotty/tty.cpp (tty_printer::add_char): Reënable
+	sanity check of horizontal drawing position quantization; it
+	should be a multiple of the horizontal motion quantum.  Clark
+	disabled this check as "too expensive" in groff 1.05 (1992), but
+	it no longer appears to be.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grotty/tty.cpp (tty_printer::add_char): Make more
 	informative the error diagnostics when the horizontal drawing
 	position is a large negative or positive value.
