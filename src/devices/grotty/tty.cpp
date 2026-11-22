@@ -413,13 +413,18 @@ void tty_printer::add_char(output_character c, int w,
     error("character with ridiculous horizontal position discarded");
     return;
   }
-  int vpos;
+  // The first output line corresponds to drawing position `font::vert`.
+  int vpos = v / font::vert;
+  if (vpos <= 0) {
+    error("output above first line discarded");
+    return;
+  }
+  if ((v % font::vert) != 0)
+    fatal("vertical position not a multiple of vertical motion"
+	  " quantum");
   if ((v == cached_v) && (cached_v != 0))
     vpos = cached_vpos;
   else {
-    if ((v % font::vert) != 0)
-      fatal("vertical position not a multiple of vertical motion"
-	    " quantum");
     vpos = v / font::vert;
     if (vpos > nlines) {
       tty_glyph **old_lines = lines;
@@ -443,12 +448,6 @@ void tty_printer::add_char(output_character c, int w,
       memcpy(lines, old_lines, nlines * sizeof(tty_glyph *));
       delete[] old_lines;
       nlines = new_nlines;
-    }
-    // Note that the first output line corresponds to groff
-    // position font::vert.
-    if (vpos <= 0) {
-      error("output above first line discarded");
-      return;
     }
     cached_v = v;
     cached_vpos = vpos;
