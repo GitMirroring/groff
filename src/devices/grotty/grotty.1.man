@@ -10,6 +10,7 @@ output driver for typewriter-like (terminal) devices
 .\" ====================================================================
 .\"
 .\" Copyright 1989-2025 Free Software Foundation, Inc.
+.\"           2019-2024 G. Branden Robinson
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
