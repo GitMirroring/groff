@@ -6884,11 +6884,11 @@ static void print_font_translation_request() // .pftr
     } while (has_arg());
   }
   else {
-  dictionary_iterator iter(font_translation_dictionary);
-  // We must use the nuclear `reinterpret_cast` operator because GNU
-  // troff's dictionary types use a pre-STL approach to containers.
-  while (iter.get(&from, reinterpret_cast<void **>(&to)))
-    errprint("%1\t%2\n", from.contents(), to.contents());
+    dictionary_iterator iter(font_translation_dictionary);
+    // We must use the nuclear `reinterpret_cast` operator because GNU
+    // troff's dictionary types use a pre-STL approach to containers.
+    while (iter.get(&from, reinterpret_cast<void **>(&to)))
+      errprint("%1\t%2\n", from.contents(), to.contents());
   }
   fflush(stderr);
   skip_line();
