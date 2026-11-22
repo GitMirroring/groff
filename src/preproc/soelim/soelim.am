@@ -25,13 +25,13 @@ soelim_TESTS = \
   src/preproc/soelim/tests/exercise-finite-state-machine.sh \
   src/preproc/soelim/tests/leading-quote-before-file-name-works.sh \
   src/preproc/soelim/tests/passes-through-input-with-eighth-bit-set.sh \
-  src/preproc/soelim/tests/warning-escaped-space-gets-lineno-right.sh \
-  src/preproc/soelim/tests/warning-invalid-escape-sequence.sh \
   src/preproc/soelim/tests/produces-accurate-lf-requests.sh \
+  src/preproc/soelim/tests/r-option-works.sh \
   src/preproc/soelim/tests/smoke-test.sh \
   src/preproc/soelim/tests/space-in-argument-works.sh \
-  src/preproc/soelim/tests/r-option-works.sh \
   src/preproc/soelim/tests/t-option-works.sh \
+  src/preproc/soelim/tests/warning-escaped-space-gets-lineno-right.sh \
+  src/preproc/soelim/tests/warning-invalid-escape-sequence.sh \
   src/preproc/soelim/tests/x-option-works.sh
 TESTS += $(soelim_TESTS)
 EXTRA_DIST += $(soelim_TESTS)
