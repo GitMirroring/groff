@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright 2026 Free Software Foundation, Inc.
+# Copyright 2026 G. Branden Robinson
 #
 # This file is part of groff, the GNU roff typesetting system.
 #
