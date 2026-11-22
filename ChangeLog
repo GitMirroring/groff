@@ -5,6 +5,11 @@
 	report the translation thereof if it is not the identity
 	mapping.
 
+	* src/roff/groff/tests/\
+	error-pftr-request-given-bogus-argument.sh:
+	* src/roff/groff/tests/pftr-request-works.sh: New files; do it.
+	* src/roff/groff/groff.am: Update `groff_TESTS` to run tests.
+
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/node.cpp (print_font_translation_request): Fix
