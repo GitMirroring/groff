@@ -1,5 +1,12 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp
+	(device_extension_node::dump_properties): Identify the character
+	sequence sent to "grout" as "contents", not "macro"; the latter
+	is a badly misleading term in this context.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grotty/tty.cpp (tty_printer::add_char): Improve
 	fix for Savannah #68942.  Ensure that `new_nlines` can undergo
 	integer wraparound at most once per trip through this function.
