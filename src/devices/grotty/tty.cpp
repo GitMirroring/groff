@@ -420,29 +420,29 @@ void tty_printer::add_char(output_character c, int w,
   if ((v % font::vert) != 0)
     fatal("vertical position not a multiple of vertical motion"
 	  " quantum");
-    if (vpos > nlines) {
-      tty_glyph **old_lines = lines;
-      // If we exceed the previous page length, double the size so that
-      // we don't thrash the allocator.  See Savannah #68145.
-      int new_nlines = nlines;
-      while (vpos > new_nlines)
-	new_nlines *= 2;
-      if (new_nlines < 0)
-	fatal("vertical motion to line %1 is too large", vpos);
-      lines = 0 /* nullptr */;
-      try {
-	lines = new tty_glyph *[new_nlines];
-      }
-      catch (const std::bad_alloc &e) {
-	fatal("cannot allocate %1 bytes to render %2 lines"
-	      " of terminal output", (new_nlines * sizeof(tty_glyph)),
-	      new_nlines);
-      }
-      memset(lines, 0, new_nlines * sizeof(tty_glyph *));
-      memcpy(lines, old_lines, nlines * sizeof(tty_glyph *));
-      delete[] old_lines;
-      nlines = new_nlines;
+  if (vpos > nlines) {
+    tty_glyph **old_lines = lines;
+    // If we exceed the previous page length, double the size so that we
+    // don't thrash the allocator.  See Savannah #68145.
+    int new_nlines = nlines;
+    while (vpos > new_nlines)
+      new_nlines *= 2;
+    if (new_nlines < 0)
+      fatal("vertical motion to line %1 is too large", vpos);
+    lines = 0 /* nullptr */;
+    try {
+      lines = new tty_glyph *[new_nlines];
     }
+    catch (const std::bad_alloc &e) {
+      fatal("cannot allocate %1 bytes to render %2 lines"
+	    " of terminal output", (new_nlines * sizeof(tty_glyph)),
+	    new_nlines);
+    }
+    memset(lines, 0, new_nlines * sizeof(tty_glyph *));
+    memcpy(lines, old_lines, nlines * sizeof(tty_glyph *));
+    delete[] old_lines;
+    nlines = new_nlines;
+  }
   tty_glyph *g = 0 /* nullptr */;
   try {
     g = new tty_glyph;
