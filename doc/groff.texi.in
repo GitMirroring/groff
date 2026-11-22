@@ -23344,9 +23344,14 @@ follow.
 @cindex translations, font, dumping (@code{pftr})
 Report,
 to the standard error stream,
-the list of font translations.
-Recall the @code{ftr} request description in @ref{Selecting Fonts}.
-The ``from'' font identifier is listed first,
+the list of all font translations.
+Recall the
+@code{ftr}
+request description from @ref{Selecting Fonts}.
+On each line,
+GNU
+@command{troff} @c GNU
+lists the ``from'' font identifier first,
 followed by its ``to'' translation.
 @endDefreq
 

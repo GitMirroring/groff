@@ -4049,13 +4049,16 @@ follow.
 .B .pftr
 Report,
 to the standard error stream,
-the list of font translations.
+the list of all font translations.
 .
 See
 .B ftr
 above.
 .
-The \[lq]from\[rq] font identifier is listed first,
+On each line,
+GNU
+.I troff \" GNU
+lists the \[lq]from\[rq] font identifier first,
 followed by its \[lq]to\[rq] translation.
 .
 .

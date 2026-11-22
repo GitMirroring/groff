@@ -4912,7 +4912,7 @@ follow.
 .REQ .pftr
 Report,
 to the standard error stream,
-the list of font translations.
+the list of all font translations.
 .
 .TPx
 .REQ .phw
