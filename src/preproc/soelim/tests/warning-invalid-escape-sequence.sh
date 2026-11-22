@@ -17,7 +17,7 @@
 
 soelim="${abs_top_builddir:-.}/soelim"
 
-# Invalid escape sequences should produce a warning
+# An invalid escape sequence should produce a warning.
 
 warning=$(printf '.so foo\\bar\n' | "$soelim" 2>&1 > /dev/null)
 printf '%s\n' "$warning"
