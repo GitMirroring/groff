@@ -3073,9 +3073,9 @@ is a wrapper enabling the package to be loaded with the option
 .\" ====================================================================
 .
 James Clark wrote the initial GNU implementation of
-.I ms
-with the aid of contributors,
-along with early revisions of this document.
+.I ms,
+along with early revisions of this document,
+with the aid of contributors.
 .
 .MT lkollar@\:despammed\:.com
 Larry Kollar
