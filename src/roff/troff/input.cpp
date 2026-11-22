@@ -10435,8 +10435,9 @@ int main(int argc, char **argv)
   if (want_version_report) {
     (void) printf("GNU troff (groff) version %s\n", Version_string);
     (void) putc('\n', stdout);
-    (void) printf("macro search path: %s\n",
+    (void) printf("macro file search path: %s\n",
 		  mac_path->contents());
+    (void) putc('\n', stdout);
     exit(EXIT_SUCCESS);
   }
   set_string(".T", device);
