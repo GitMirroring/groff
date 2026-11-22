@@ -13709,7 +13709,7 @@ GNU
 @command{troff}
 searches
 @env{GROFF_FONT_PATH}
-for a file name matching the identifier and mount it on demand.
+for a file name matching the identifier and mounts it on demand.
 
 @need 500
 @c TODO: Add request `rfp` to unmount a font?
