@@ -13410,7 +13410,7 @@ as follows.@footnote{@xref{Output Line Annotation}.}
 @endExample
 @endDefreq
 
-@Defreq {ftr, f [@Var{g}]}
+@Defreq {ftr, from-font-id [@Var{to-font-id}]}
 @cindex font translation (@code{ftr})
 @cindex @code{ft} request, and font translations
 @cindex @code{ul} request, and font translations
@@ -13425,15 +13425,53 @@ as follows.@footnote{@xref{Output Line Annotation}.}
 @cindex @code{if} request, and font translations
 @cindex @code{ie} request, and font translations
 @cindex @code{while} request, and font translations
-Translate font name@tie{}@var{f} to@tie{}@var{g}.  Where the @code{\f}
+Translate
+(or remap)
+the font identifier
+@var{from-font-id}
+to
+@var{to-font-id}.
+Each
+@var{font-id}
+can be an abstract style but not a mounting position.
+Where the
+@code{\f}
 escape sequence,
-the @code{F} and @code{S} conditional expression operators,
+the
+@code{F}
 and
-the @code{ft}, @code{ul}, @code{bd}, @code{cs}, @code{tkf},
-@code{special}, @code{fspecial}, @code{fp}, or @code{sty} requests refer
-to@tie{}@var{f}, GNU @command{troff} uses @var{g} instead.  Omit @var{g}
-or repeat @var{f} as@tie{}@var{g} to untranslate @var{f}.  @var{f} and
-@var{g} need not be mounted fonts.
+@code{S}
+conditional expression operators,
+and the
+@code{ft},
+@code{ul},
+@code{bd},
+@code{cs},
+@code{tkf},
+@code{special},
+@code{fspecial},
+@code{fp},
+or
+@code{sty}
+requests refer to
+@var{from-font-id},
+GNU
+@command{troff} @c GNU
+uses
+@var{to-font-id}
+instead.
+Omit
+@var{to-font-id}
+or repeat
+@var{from-font-id}
+as
+@var{to-font-id}
+to untranslate
+@var{from-font-id}.
+@var{from-font-id}
+and
+@var{to-font-id}
+need not be mounted fonts.
 
 Obtain a report of font translations defined by
 @code{ftr}

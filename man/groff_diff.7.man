@@ -3275,23 +3275,28 @@ See
 .
 .
 .TP
-.BI .ftr\~ f\~\c
-.RI [ g ]
+.BI .ftr\~ from-font-id\~\c
+.RI [ to-font-id ]
 Translate
-.RI font\~ f
-.RI to\~ g .
+(or remap)
+the font identifier
+.I from-font-id
+to
+.I to-font-id.
 .
-Whenever a font
-.RI named\~ f
-is referred to in an
+Each
+.I font-id
+can be an abstract style but not a mounting position.
+.
+Where the
 .B \[rs]f
 escape sequence,
-in the
+the
 .B F
 and
 .B S
 conditional expression operators,
-or in the
+and the
 .BR ft ,
 .BR ul ,
 .BR bd ,
@@ -3302,16 +3307,25 @@ or in the
 .BR fp ,
 or
 .B sty
-requests,
-.RI font\~ g
-is used.
-If
-.I g
-is omitted or identical
-.RI to\~ f ,
-then
-.RI font\~ f
-is not translated.
+requests refer to
+.I from-font-id,
+GNU
+.I troff \" GNU
+uses
+.I to-font-id
+instead.
+Omit
+.I to-font-id
+or repeat
+.I from-font-id
+as
+.I to-font-id
+to untranslate
+.I from-font-id.
+.I from-font-id
+and
+.I to-font-id
+need not be mounted fonts.
 .
 .
 .TP

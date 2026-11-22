@@ -4152,16 +4152,16 @@ Also see
 .esc f .
 .
 .TPx
-.REQ .ftr font
+.REQ .ftr font-id
 Remove translation of font
-.IR font .
+.IR font-id .
 .
 .TPx
-.REQ .ftr "font1 font2"
+.REQ .ftr "from-font-id to-font-id"
 Translate font name
-.I font1
+.I from-font-id
 to
-.IR font2 .
+.I to-font-id.
 .
 .TPx
 .REQ .fzoom f
