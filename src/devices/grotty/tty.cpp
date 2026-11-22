@@ -474,6 +474,7 @@ void tty_printer::add_char(output_character c, int w,
   // at each hpos, and otherwise in order of occurrence.
 
   tty_glyph **pp;
+  // Use `vpos - 1` because the first output line is at `font::vert`.
   for (pp = lines + (vpos - 1);
        (pp != 0 /* nullptr */) && (*pp != 0 /* nullptr */);
        pp = &(*pp)->next)
