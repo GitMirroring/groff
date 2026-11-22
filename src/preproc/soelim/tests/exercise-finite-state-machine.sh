@@ -40,11 +40,20 @@ echo "checking that partial requests are passed through" >&2
 echo "$output" | tr '\n' ' ' | grep -Fq '.lf 1 "- . .s .so .l .lf .' \
     || wail
 
-# Check these same cases when they immediately precede EOF.  In the
+# A request or macro name that only _initially_ matches a token of
+# interest is not a proper match.
+
+output=$(printf ".sostuff\n.lfstuff\n" | "$soelim")
+echo "$output"
+echo "checking that 'overlong' requests are passed through" >&2
+echo "$output" | tr '\n' ' ' | grep -Fq '.lf 1 "- .sostuff .lfstuff' \
+    || wail
+
+# Check partial matches when they immediately precede EOF.  In the
 # absence of the `-r` option, GNU soelim appends the terminal newline
 # missing from the input stream.
 
-for token in .s .so .l .lf
+for token in . .s .so .l .lf
 do
     echo "checking that token '"$token"' before EOF passes through" >&2
     output=$(printf "%s" $token | "$soelim")
