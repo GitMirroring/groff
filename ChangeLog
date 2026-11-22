@@ -1,5 +1,14 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[grotty]: Unit-test continuous underlining.
+
+	* src/devices/grotty/tests/continuous-underlining-works.sh: New
+	file; do it.
+	* src/devices/grotty/grotty.am: Update `grotty_TESTS` to run
+	test.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grotty/tty.cpp (tty_printer::add_char): Recast
 	and rearrange sanity-checking error diagnostics.  Consistently
 	place quanization checks, which are fatal if they fail, first.
