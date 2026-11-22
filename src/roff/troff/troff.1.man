@@ -972,7 +972,7 @@ A list of directories in which to seek the selected output device's
 directory of device and font description files.
 .
 .I @g@troff
-will scan directories given as arguments to any specified
+scans directories given as arguments to any specified
 .B \-F
 options before these,
 then in a site-specific directory
@@ -989,7 +989,7 @@ after them.
 A list of directories in which to search for macro files.
 .
 .I @g@troff
-will scan directories given as arguments to any specified
+scans directories given as arguments to any specified
 .B \-M
 options before these,
 then the current directory
