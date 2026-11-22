@@ -34,6 +34,7 @@ EXTRA_DIST += \
   src/devices/grotty/grotty.1.man
 
 grotty_TESTS = \
+  src/devices/grotty/tests/O-option-works.sh \
   src/devices/grotty/tests/basic-latin-glyphs-map-correctly.sh \
   src/devices/grotty/tests/continuous-underlining-works.sh \
   src/devices/grotty/tests/do-not-segv-on-huge-vertical-motion.sh \

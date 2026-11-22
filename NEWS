@@ -55,6 +55,19 @@ soelim
 *  soelim now recognizes an option `-x` that promotes failure to open
    any included file from a warning to a fatal error.
 
+Output drivers
+--------------
+
+*  grotty now supports a `-O` option that suppresses recognition of
+   groff's extended `u` device command, which implements continuous
+   underlining.  The only practical consequence this has is that spaces
+   within a continuously underlined area don't become `_`.  Graphical
+   characters _do_ still get underlined, other options notwithstanding.
+   The advantage (and motivation) is that by specifying `-cboOu`, you
+   can force grotty to produce plain text output--meaning neither
+   overstriking sequences nor ISO 6429 escape sequences appear in its
+   output.
+
 
 VERSION 1.25.0
 ==============

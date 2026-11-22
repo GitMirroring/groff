@@ -1,5 +1,25 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[grotty]: Implement `-O` option to suppress operation of groff's
+	"continuous underlining" extension.
+
+	* src/devices/grotty/tty.cpp: Add new global Boolean
+	`want_continuous_underlining` to parameterize it.  Default true.
+	(tty_printer::special): Recognize `x u` grout command only if
+	`want_continuous_underlining` is true.
+	(main): Inform getopt_long(3) of new option letter.  Handle it.
+	(usage): Document it.
+
+	* src/devices/grotty/grotty.1.man (Synopsis, Options): Document
+	it.
+
+	* src/devices/grotty/tests/O-option-works.sh:
+	* src/devices/grotty/grotty.am: Test it.
+
+	Fixes <https://savannah.gnu.org/bugs/?68863>.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[grotty]: Unit-test continuous underlining.
 
 	* src/devices/grotty/tests/continuous-underlining-works.sh: New

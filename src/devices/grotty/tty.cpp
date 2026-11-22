@@ -73,6 +73,7 @@ static bool do_bold;
 static bool want_italics_by_underlining = true;
 static bool do_underline;
 static bool want_glyph_composition_by_overstriking = true;
+static bool want_continuous_underlining = true;
 static bool allow_drawing_commands = true;
 static bool want_sgr_italics = false;
 static bool do_sgr_italics;
@@ -485,7 +486,7 @@ void tty_printer::simple_add_char(const output_character c,
 
 void tty_printer::special(char *arg, const environment *env, char type)
 {
-  if (type == 'u') {
+  if ((type == 'u') && want_continuous_underlining) {
     add_char(*arg - '0', 0, env->hpos, env->vpos, env->col, env->fill,
 	     CU_MODE);
     return;
@@ -1060,7 +1061,7 @@ int main(int argc, char **argv)
     { "version", no_argument, 0 /* nullptr */, 'v' },
     { 0 /* nullptr */, 0, 0 /* nullptr */, 0 }
   };
-  while ((c = getopt_long(argc, argv, ":bBcdfF:hiI:ortuUv",
+  while ((c = getopt_long(argc, argv, ":bBcdfF:hiI:oOrtuUv",
 			  long_options, 0 /* nullptr */))
 	 != EOF)
     switch (c) {
@@ -1086,6 +1087,10 @@ int main(int argc, char **argv)
     case 'u':
       // Do not underline.
       want_italics_by_underlining = false;
+      break;
+    case 'O':
+      // Do not continuously underline.
+      want_continuous_underlining = false;
       break;
     case 'o':
       // Do not overstrike (other than emboldening and underlining).
@@ -1156,8 +1161,8 @@ int main(int argc, char **argv)
 static void usage(FILE *stream)
 {
   fprintf(stream,
-"usage: %s [-dfhot] [-i|-r] [-F font-directory] [file ...]\n"
-"usage: %s -c [-bBdfhouU] [-F font-directory] [file ...]\n"
+"usage: %s [-dfhoOt] [-i|-r] [-F font-directory] [file ...]\n"
+"usage: %s -c [-bBdfhoOuU] [-F font-directory] [file ...]\n"
 "usage: %s {-v | --version}\n"
 "usage: %s --help\n",
 	  program_name, program_name, program_name, program_name);

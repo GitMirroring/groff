@@ -52,7 +52,7 @@ output driver for typewriter-like (terminal) devices
 .\" ====================================================================
 .
 .SY grotty
-.RB [ \-dfhot ]
+.RB [ \-dfhoOt ]
 .RB [ \-i \||\| \-r ]
 .RB [ \-F\~\c
 .IR font-directory ]
@@ -62,7 +62,7 @@ output driver for typewriter-like (terminal) devices
 .
 .P
 .SY "grotty \-c"
-.RB [ \-bBdfhouU ]
+.RB [ \-bBdfhoOuU ]
 .RB [ \-F\~\c
 .IR font-directory ]
 .RI [ file\~ .\|.\|.]
@@ -593,6 +593,14 @@ see options
 .B \-b
 and
 .BR \-u ).
+.
+.
+.TP
+.B \-O
+Suppress recognition of continuous underlining device command.
+.\" The only practical consequence this has is that spaces within a
+.\" continuously underlined area don't become `_`.  Graphical characters
+.\" _do_ still get underlined, other options notwithstanding.
 .
 .
 .TP
