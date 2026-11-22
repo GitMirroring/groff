@@ -1313,7 +1313,7 @@ static int get_token(bool want_macro_expansion = true)
 	token_buffer = c;
 	for (;;) {
 	  c = input_stack::peek_char();
-	  if ((EOF == c) || (!csalnum(c) && c != '_'))
+	  if ((EOF == c) || (!csalnum(c) && (c != '_')))
 	    break;
 	  input_stack::get_char();
 	  token_buffer += char(c);
@@ -1839,7 +1839,7 @@ static char *get_thru_arg()
     token_buffer = c;
     for (;;) {
       c = input_stack::peek_char();
-      if ((EOF == c) || (!csalnum(c) && c != '_'))
+      if ((EOF == c) || (!csalnum(c) && (c != '_')))
 	break;
       input_stack::get_char();
       token_buffer += char(c);

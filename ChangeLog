@@ -1,5 +1,10 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/pic/lex.cpp (get_token, get_thru_arg): Fix code
+	style nit.  Parenthesize formally complex expressions.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Revise `--version` output.
 
 	* src/roff/troff/input.cpp (main): Speak of "macro file search
