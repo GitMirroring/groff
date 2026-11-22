@@ -407,10 +407,14 @@ void tty_printer::add_char(output_character c, int w,
     fatal("horizontal position not a multiple of horizontal motion quantum");
 #endif
   int hpos = h / font::hor;
-  if (hpos < SHRT_MIN || hpos > SHRT_MAX) {
-    error("character with ridiculous horizontal position discarded");
-    return;
-  }
+  // A negative horizontal drawing position is uncommon, but possible.
+  // "tmac/tests/e_line-numbering-works.sh" illustrates a case.
+  if (hpos < SHRT_MIN)
+    fatal("discarding character with huge negative horizontal position"
+	  " %1", h);
+  if (hpos > SHRT_MAX)
+    fatal("discarding character with huge horizontal position %1;"
+	  " is terminal wider than %2 character cells?", h, SHRT_MAX);
   // The first output line corresponds to drawing position `font::vert`.
   int vpos = v / font::vert;
   if (vpos <= 0) {

@@ -1,5 +1,14 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grotty/tty.cpp (tty_printer::add_char): Make more
+	informative the error diagnostics when the horizontal drawing
+	position is a large negative or positive value.
+
+	Fixes <https://savannah.gnu.org/bugs/?62833>.  Thanks to Bjarni
+	Ingi Gislason for the report.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grotty/tty.cpp (tty_printer::add_char): Tweak
 	error diagnostic when discarding output above the first line of
 	the terminal, as can happen with negative vertical motions
