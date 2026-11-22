@@ -304,7 +304,7 @@ tty_printer::tty_printer()
   }
   // TODO: Skip color setup if terminfo `colors` capability is "-1".
   long dummy;
-  // Create the eight ANSI X3.64/ECMA-48/ISO 6429 standard colors.
+  // Create the eight ECMA-48/ISO 6429 standard colors.
   // black, white
   (void) has_color(0, 0, 0, &dummy, 0);
   (void) has_color(color::MAX_COLOR_VAL,
