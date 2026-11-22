@@ -414,7 +414,7 @@ void tty_printer::add_char(output_character c, int w,
   // The first output line corresponds to drawing position `font::vert`.
   int vpos = v / font::vert;
   if (vpos <= 0) {
-    error("output above first line discarded");
+    error("discarding output above first line of terminal");
     return;
   }
   if ((v % font::vert) != 0)

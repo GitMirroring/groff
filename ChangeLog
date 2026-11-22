@@ -1,5 +1,12 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grotty/tty.cpp (tty_printer::add_char): Tweak
+	error diagnostic when discarding output above the first line of
+	the terminal, as can happen with negative vertical motions
+	relative to the first output line.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grotty/tty.cpp (tty_printer::add_char): Refactor.
 	Drop caching of vertical drawing position (`cached_v`) and its
 	quantization to a terminal line number (`cached_vpos`).  Doing
