@@ -26,7 +26,8 @@ wail () {
   fail=yes
 }
 
-input='.pl 1v
+input='.
+.pl 1v
 .ll 9n
 abc def\p
 .na
@@ -57,9 +58,10 @@ opq rst\p
 uvw xyz\p
 .ad b
 .ad 100
-ABC DEF\p'
+ABC DEF\p
+.'
 
-output=$(echo "$input" | "$groff" -T ascii)
+output=$(printf '%s\n' "$input" | "$groff" -T ascii)
 echo "$output"
 
 # Expected output:
