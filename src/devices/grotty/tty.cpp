@@ -202,8 +202,6 @@ public:
 class tty_printer : public printer {
   tty_glyph **lines;
   int nlines;
-  int cached_v;
-  int cached_vpos;
   long curr_fore_idx;
   long curr_back_idx;
   bool is_underlining;
@@ -298,7 +296,7 @@ bool tty_printer::has_color(unsigned int r,
   return is_known_color;
 }
 
-tty_printer::tty_printer() : cached_v(0)
+tty_printer::tty_printer()
 {
   if (font::is_unicode) {
     hline_char = 0x2500;
@@ -422,10 +420,6 @@ void tty_printer::add_char(output_character c, int w,
   if ((v % font::vert) != 0)
     fatal("vertical position not a multiple of vertical motion"
 	  " quantum");
-  if ((v == cached_v) && (cached_v != 0))
-    vpos = cached_vpos;
-  else {
-    vpos = v / font::vert;
     if (vpos > nlines) {
       tty_glyph **old_lines = lines;
       // If we exceed the previous page length, double the size so that
@@ -449,9 +443,6 @@ void tty_printer::add_char(output_character c, int w,
       delete[] old_lines;
       nlines = new_nlines;
     }
-    cached_v = v;
-    cached_vpos = vpos;
-  }
   tty_glyph *g = 0 /* nullptr */;
   try {
     g = new tty_glyph;

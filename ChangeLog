@@ -1,6 +1,14 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/devices/grotty/tty.cpp (tty_printer::add_char): Refactor.
+	Drop caching of vertical drawing position (`cached_v`) and its
+	quantization to a terminal line number (`cached_vpos`).  Doing
+	so is a complication that seems to produce no performance
+	improvement.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/devices/grotty/tty.cpp (tty_printer::add_char): Refactor.
 	Perform sanity checks on vertical drawing position earlier.
 	Also always initialize `vpos` local variable.
 
