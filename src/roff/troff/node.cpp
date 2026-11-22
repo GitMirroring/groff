@@ -260,8 +260,8 @@ int resolve_current_font_to_mounting_position(environment *env)
 /* font_info functions */
 
 // TODO?: -> std::vector<font info *>
-static font_info **font_table = 0 /* nullptr */;
-static int font_table_size = 0; // TODO?: font_table.size()
+static font_info **mounted_font = 0 /* nullptr */;
+static int mounted_font_size = 0; // TODO?: mounted_font.size()
 
 font_info::font_info(symbol nm, int n, symbol enm, font *f)
 : last_tfont(0 /* nullptr */), number(n), last_size(0),
@@ -316,7 +316,7 @@ tfont *make_tfont(tfont_spec &spec)
 int env_get_zoom(environment *env)
 {
   int fontno = env->get_family()->resolve(env->get_font());
-  return font_table[fontno]->get_zoom();
+  return mounted_font[fontno]->get_zoom();
 }
 
 // this is the current_font, fontno is where we found the character,
@@ -332,7 +332,7 @@ tfont *font_info::get_tfont(font_size fs, int height, int slant,
       || global_ligature_mode != last_ligature_mode
       || global_kern_mode != last_kern_mode
       || fontno != number) {
-	font_info *f = font_table[fontno];
+	font_info *f = mounted_font[fontno];
 	tfont_spec spec(f->external_name, f->number, f->fm, fs, height,
 			slant);
 	for (conditional_bold *p = cond_bold_list;
@@ -477,8 +477,8 @@ symbol font_info::get_name()
 
 symbol get_font_name(int fontno, environment *env)
 {
-  symbol f = font_table[fontno]->get_name();
-  if (font_table[fontno]->is_style()) {
+  symbol f = mounted_font[fontno]->get_name();
+  if (mounted_font[fontno]->is_style()) {
     return catenate(env->get_family()->nm, f);
   }
   return f;
@@ -486,8 +486,8 @@ symbol get_font_name(int fontno, environment *env)
 
 symbol get_style_name(int fontno)
 {
-  if (font_table[fontno]->is_style())
-    return font_table[fontno]->get_name();
+  if (mounted_font[fontno]->is_style())
+    return mounted_font[fontno]->get_name();
   else
     return EMPTY_SYMBOL;
 }
@@ -4390,8 +4390,8 @@ device_extension_node::device_extension_node(const macro &m, bool b)
   int char_height = curenv->get_char_height();
   int char_slant = curenv->get_char_slant();
   int fontno = resolve_current_font_to_mounting_position(curenv);
-  tf = font_table[fontno]->get_tfont(fs, char_height, char_slant,
-				     fontno);
+  tf = mounted_font[fontno]->get_tfont(fs, char_height, char_slant,
+				       fontno);
   if (curenv->is_composite())
     tf = tf->get_plain();
   gcol = curenv->get_stroke_color();
@@ -5577,14 +5577,14 @@ static node *make_composite_node(charinfo *s, environment *env)
     error("cannot format composite glyph: no current font");
     return 0 /* nullptr */;
   }
-  assert((fontno < font_table_size)
-	 && (font_table[fontno] != 0 /* nullptr*/));
+  assert((fontno < mounted_font_size)
+	 && (mounted_font[fontno] != 0 /* nullptr*/));
   node *n = charinfo_to_node_list(s, env);
   font_size fs = env->get_font_size();
   int char_height = env->get_char_height();
   int char_slant = env->get_char_slant();
-  tfont *tf = font_table[fontno]->get_tfont(fs, char_height, char_slant,
-					    fontno);
+  tfont *tf = mounted_font[fontno]->get_tfont(fs, char_height,
+					      char_slant, fontno);
   if (env->is_composite())
     tf = tf->get_plain();
   return new composite_node(n, s, tf, 0, 0, 0);
@@ -5598,10 +5598,10 @@ static node *make_glyph_node(charinfo *s, environment *env,
     error("cannot format glyph: no current font");
     return 0 /* nullptr */;
   }
-  assert((fontno < font_table_size)
-	 && (font_table[fontno] != 0 /* nullptr*/));
+  assert((fontno < mounted_font_size)
+	 && (mounted_font[fontno] != 0 /* nullptr*/));
   int fn = fontno;
-  bool found = font_table[fontno]->contains(s);
+  bool found = mounted_font[fontno]->contains(s);
   if (!found) {
     macro *mac = s->get_macro();
     if ((mac != 0 /* nullptr */) && s->is_fallback())
@@ -5612,15 +5612,15 @@ static node *make_glyph_node(charinfo *s, environment *env,
 		" font", s->get_number());
       return 0 /* nullptr */;
     }
-    special_font_list *sf = font_table[fontno]->sf;
+    special_font_list *sf = mounted_font[fontno]->sf;
     while ((sf != 0 /* nullptr */) && !found) {
       fn = sf->n;
-      if (font_table[fn])
-	found = font_table[fn]->contains(s);
+      if (mounted_font[fn])
+	found = mounted_font[fn]->contains(s);
       sf = sf->next;
     }
     if (!found) {
-      symbol f = font_table[fontno]->get_name();
+      symbol f = mounted_font[fontno]->get_name();
       string gl(f.contents());
       gl += ' ';
       gl += s->nm.contents();
@@ -5633,8 +5633,8 @@ static node *make_glyph_node(charinfo *s, environment *env,
       sf = global_special_fonts;
       while ((sf != 0 /* nullptr */) && !found) {
 	fn = sf->n;
-	if (font_table[fn])
-	  found = font_table[fn]->contains(s);
+	if (mounted_font[fn])
+	  found = mounted_font[fn]->contains(s);
 	sf = sf->next;
       }
     }
@@ -5642,10 +5642,10 @@ static node *make_glyph_node(charinfo *s, environment *env,
       if (mac && s->is_special())
 	return make_composite_node(s, env);
     if (!found) {
-      for (fn = 0; fn < font_table_size; fn++)
-	if (font_table[fn]
-	    && font_table[fn]->is_special()
-	    && font_table[fn]->contains(s)) {
+      for (fn = 0; fn < mounted_font_size; fn++)
+	if (mounted_font[fn]
+	    && mounted_font[fn]->is_special()
+	    && mounted_font[fn]->contains(s)) {
 	  found = true;
 	  break;
 	}
@@ -5682,8 +5682,8 @@ static node *make_glyph_node(charinfo *s, environment *env,
   font_size fs = env->get_font_size();
   int char_height = env->get_char_height();
   int char_slant = env->get_char_slant();
-  tfont *tf = font_table[fontno]->get_tfont(fs, char_height, char_slant,
-					    fn);
+  tfont *tf = mounted_font[fontno]->get_tfont(fs, char_height,
+					      char_slant, fn);
   if (env->is_composite())
     tf = tf->get_plain();
   color *gcol = env->get_stroke_color();
@@ -6644,23 +6644,25 @@ bool diverted_copy_file_node::is_tag()
   return false;
 }
 
-// Grow the font_table so that its size is > n.
+// Grow the mounted_font so that its size is > n.
 
-static void grow_font_table(int n)
+static void grow_mounted_font(int n)
 {
-  assert(n >= font_table_size);
-  font_info **old_font_table = font_table;
-  int old_font_table_size = font_table_size;
-  font_table_size = font_table_size ? ((font_table_size * 3) / 2) : 10;
-  if (font_table_size <= n)
-    font_table_size = n + 10;
-  font_table = new font_info *[font_table_size];
-  if (old_font_table_size)
-    memcpy(font_table, old_font_table,
-	   old_font_table_size*sizeof(font_info *));
-  delete[] old_font_table;
-  for (int i = old_font_table_size; i < font_table_size; i++)
-    font_table[i] = 0 /* nullptr */;
+  assert(n >= mounted_font_size);
+  font_info **old_mounted_font = mounted_font;
+  int old_mounted_font_size = mounted_font_size;
+  mounted_font_size = mounted_font_size
+		      ? ((mounted_font_size * 3) / 2)
+		      : 10;
+  if (mounted_font_size <= n)
+    mounted_font_size = n + 10;
+  mounted_font = new font_info *[mounted_font_size];
+  if (old_mounted_font_size)
+    memcpy(mounted_font, old_mounted_font,
+	   old_mounted_font_size*sizeof(font_info *));
+  delete[] old_mounted_font;
+  for (int i = old_mounted_font_size; i < mounted_font_size; i++)
+    mounted_font[i] = 0 /* nullptr */;
 }
 
 dictionary font_translation_dictionary(17);
@@ -6720,30 +6722,30 @@ static bool assign_font_and_file_name_to_mounting_position(
     return false;
   else
     fm = static_cast<font *>(p);
-  if (n >= font_table_size) {
-    if ((n - font_table_size) > 1000) {
+  if (n >= mounted_font_size) {
+    if ((n - mounted_font_size) > 1000) {
       error("requested font mounting position %1 too much larger than"
 	    " first unused position %2", n,
 	    next_available_font_mounting_position());
       return false;
     }
-    grow_font_table(n);
+    grow_mounted_font(n);
   }
-  else if (font_table[n] != 0 /* nullptr */)
-    delete font_table[n];
-  font_table[n] = new font_info(name, n, filename, fm);
+  else if (mounted_font[n] != 0 /* nullptr */)
+    delete mounted_font[n];
+  mounted_font[n] = new font_info(name, n, filename, fm);
   font_family::invalidate_selected_font_mounting_position(n);
   return true;
 }
 
 static void print_font_mounting_position_request() // .pfp
 {
-  for (int i = 0; i < font_table_size; i++) {
-    font_info *fi = font_table[i];
+  for (int i = 0; i < mounted_font_size; i++) {
+    font_info *fi = mounted_font[i];
     if (0 /* nullptr */ == fi) // No font mounted here.
       continue;
     errprint("%1\t%2", i, fi->get_name().contents());
-    font *f = font_table[i]->get_font();
+    font *f = mounted_font[i]->get_font();
     if (f != 0 /* nullptr */) { // It's not an abstract style.
       errprint("\t%1", f->get_filename());
       if (f->get_internal_name() != 0 /* nullptr */)
@@ -6771,7 +6773,7 @@ bool mount_font_at_position(symbol name, int n, symbol external_name)
 bool is_abstract_style(symbol s)
 {
   int i = mounting_position_of_font(s);
-  return (i < 0) ? false : font_table[i]->is_style();
+  return (i < 0) ? false : mounted_font[i]->is_style();
 }
 
 // Is `name` in family `fam` mounted or available for mounting?
@@ -6795,17 +6797,17 @@ bool is_font_available(symbol fam, symbol name)
 bool mount_style(int n, symbol name)
 {
   assert(n >= 0);
-  if (n >= font_table_size) {
-    if ((n - font_table_size) > 1000) {
+  if (n >= mounted_font_size) {
+    if ((n - mounted_font_size) > 1000) {
       error("font position too much larger than first unused position");
       return false;
     }
-    grow_font_table(n);
+    grow_mounted_font(n);
   }
-  else if (font_table[n] != 0 /* nullptr */)
-    delete font_table[n];
-  font_table[n] = new font_info(get_font_translation(name), n,
-				NULL_SYMBOL, 0);
+  else if (mounted_font[n] != 0 /* nullptr */)
+    delete mounted_font[n];
+  mounted_font[n] = new font_info(get_font_translation(name), n,
+				  NULL_SYMBOL, 0);
   font_family::invalidate_selected_font_mounting_position(n);
   return true;
 }
@@ -6931,8 +6933,8 @@ int font_family::resolve(int mounting_position)
     return FONT_NOT_MOUNTED;
   if (pos < map_size && map[pos] >= 0)
     return map[pos];
-  if (!((pos < font_table_size)
-	&& (font_table[pos] != 0 /* nullptr */)))
+  if (!((pos < mounted_font_size)
+	&& (mounted_font[pos] != 0 /* nullptr */)))
     return FONT_NOT_MOUNTED;
   if (pos >= map_size) {
     int old_map_size = map_size;
@@ -6947,18 +6949,19 @@ int font_family::resolve(int mounting_position)
     for (int j = old_map_size; j < map_size; j++)
       map[j] = FONT_NOT_MOUNTED;
   }
-  if (!(font_table[pos]->is_style()))
+  if (!(mounted_font[pos]->is_style()))
     return map[pos] = pos;
-  symbol sty = font_table[pos]->get_name();
+  symbol sty = mounted_font[pos]->get_name();
   symbol f = catenate(nm, sty);
   int n;
   // Don't use mounting_position_of_font(), because that might return a
   // style and because we don't want to translate the name.
-  for (n = 0; n < font_table_size; n++)
-    if ((font_table[n] != 0 /* nullptr */) && font_table[n]->is_named(f)
-	&& !font_table[n]->is_style())
+  for (n = 0; n < mounted_font_size; n++)
+    if ((mounted_font[n] != 0 /* nullptr */)
+	&& mounted_font[n]->is_named(f)
+	&& !mounted_font[n]->is_style())
       break;
-  if (n >= font_table_size) {
+  if (n >= mounted_font_size) {
     n = next_available_font_mounting_position();
     if (!assign_font_and_file_name_to_mounting_position(f, f, n))
       return FONT_NOT_MOUNTED;
@@ -6981,7 +6984,7 @@ font_family *lookup_family(symbol nm)
 
 void font_family::invalidate_selected_font_mounting_position(int n)
 {
-  assert(n >= 0 && n < font_table_size);
+  assert(n >= 0 && n < mounted_font_size);
   dictionary_iterator iter(family_dictionary);
   symbol nam;
   font_family *fam;
@@ -7037,14 +7040,14 @@ static void font_lookup_error(font_lookup_info& finfo,
 bool is_valid_font_mounting_position(int n)
 {
   return ((n >= 0)
-	  && (n < font_table_size)
-	  && (font_table[n] != 0 /* nullptr */));
+	  && (n < mounted_font_size)
+	  && (mounted_font[n] != 0 /* nullptr */));
 }
 
 bool is_valid_font(int n)
 {
   return (is_valid_font_mounting_position(n)
-	  && !(font_table[n]->is_style()));
+	  && !(mounted_font[n]->is_style()));
 }
 
 // Read the next token and look it up as a font name or position number.
@@ -7154,7 +7157,7 @@ static void define_font_specific_character_request() // .fschar
     skip_line();
     return;
   }
-  symbol f = font_table[finfo.position]->get_name();
+  symbol f = mounted_font[finfo.position]->get_name();
   define_character(CHAR_FONT_SPECIFIC_FALLBACK, f.contents());
   // Normally we skip the remainder of the line unconditionally at the
   // end of a request-implementing function, but `define_character()`
@@ -7177,7 +7180,7 @@ static void remove_font_specific_character_request() // .rfschar
     font_lookup_error(finfo, "to remove font-specific fallback"
 		      " character");
   else {
-    symbol f = font_table[finfo.position]->get_name();
+    symbol f = mounted_font[finfo.position]->get_name();
     while (!tok.is_terminator()) {
       if (!tok.is_space() && !tok.is_tab()) {
 	charinfo *s = tok.get_charinfo(true /* is_mandatory */);
@@ -7247,7 +7250,7 @@ static void set_font_specific_special_fonts_request() // .fspecial
     font_lookup_error(finfo, "to mark other fonts as special"
 			     " contingently upon it"); // a mouthful :-/
   else
-    read_special_font_identifiers(&font_table[finfo.position]->sf);
+    read_special_font_identifiers(&mounted_font[finfo.position]->sf);
   skip_line();
 }
 
@@ -7283,7 +7286,7 @@ static void zoom_font_request() // .fzoom
     skip_line();
     return;
   }
-  if (font_table[fpos]->is_style()) {
+  if (mounted_font[fpos]->is_style()) {
     warning(WARN_FONT, "ignoring request to set font zoom factor on an"
 	    " abstract style");
     skip_line();
@@ -7303,7 +7306,7 @@ static void zoom_font_request() // .fzoom
     skip_line();
     return;
   }
-  font_table[fpos]->set_zoom(zoom);
+  mounted_font[fpos]->set_zoom(zoom);
   skip_line();
 }
 
@@ -7311,7 +7314,7 @@ int next_available_font_mounting_position()
 {
   int i;
   for (i = 1;
-       (i < font_table_size) && (font_table[i] != 0 /* nullptr */);
+       (i < mounted_font_size) && (mounted_font[i] != 0 /* nullptr */);
        i++)
     ;
   return i;
@@ -7320,9 +7323,9 @@ int next_available_font_mounting_position()
 int mounting_position_of_font(symbol s)
 {
   s = get_font_translation(s);
-  for (int i = 0; i < font_table_size; i++)
-    if ((font_table[i] != 0 /* nullptr */)
-	&& font_table[i]->is_named(s))
+  for (int i = 0; i < mounted_font_size; i++)
+    if ((mounted_font[i] != 0 /* nullptr */)
+	&& mounted_font[i]->is_named(s))
       return i;
   return FONT_NOT_MOUNTED;
 }
@@ -7332,7 +7335,7 @@ hunits env_font_emboldening_offset(environment *env, int n)
   if (is_valid_font_mounting_position(n)) {
     hunits offset;
     int fontno = env->get_family()->resolve(env->get_font());
-    if (font_table[fontno]->is_emboldened(&offset))
+    if (mounted_font[fontno]->is_emboldened(&offset))
       return offset.to_units() + 1;
     else
       return H0;
@@ -7360,7 +7363,7 @@ hunits env_space_width(environment *env)
   if (!is_valid_font_mounting_position(fn))
     return scale(fs.to_units() / 3, env->get_space_size(), 12);
   else
-    return font_table[fn]->get_space_width(fs, env->get_space_size());
+    return mounted_font[fn]->get_space_width(fs, env->get_space_size());
 }
 
 hunits env_sentence_space_width(environment *env)
@@ -7371,7 +7374,7 @@ hunits env_sentence_space_width(environment *env)
   if (!is_valid_font_mounting_position(fn))
     return scale(fs.to_units() / 3, sss, 12);
   else
-    return font_table[fn]->get_space_width(fs, sss);
+    return mounted_font[fn]->get_space_width(fs, sss);
 }
 
 hunits env_half_narrow_space_width(environment *env)
@@ -7381,7 +7384,7 @@ hunits env_half_narrow_space_width(environment *env)
   if (!is_valid_font_mounting_position(fn))
     return H0;
   else
-    return font_table[fn]->get_half_narrow_space_width(fs);
+    return mounted_font[fn]->get_half_narrow_space_width(fs);
 }
 
 hunits env_narrow_space_width(environment *env)
@@ -7391,7 +7394,7 @@ hunits env_narrow_space_width(environment *env)
   if (!is_valid_font_mounting_position(fn))
     return H0;
   else
-    return font_table[fn]->get_narrow_space_width(fs);
+    return mounted_font[fn]->get_narrow_space_width(fs);
 }
 
 // XXX: We can only conditionally (un)embolden a font specified by name,
@@ -7468,9 +7471,9 @@ static void embolden_font_request() // .bd
 	  && read_measurement(&offset,
 			      (unsigned char)('u')) // TODO: grochar
 	  && (offset >= 1))
-	font_table[f]->set_conditional_bold(n, hunits(offset - 1));
+	mounted_font[f]->set_conditional_bold(n, hunits(offset - 1));
       else
-	font_table[f]->conditional_unbold(n);
+	mounted_font[f]->conditional_unbold(n);
     }
     else {
       warning(WARN_STYLE, "interpreting second argument to font"
@@ -7481,9 +7484,9 @@ static void embolden_font_request() // .bd
       if (read_measurement(&offset,
 			   (unsigned char)('u')) // TODO: grochar
 	  && (offset >= 1))
-	font_table[n]->set_bold(hunits(offset - 1));
+	mounted_font[n]->set_bold(hunits(offset - 1));
       else
-	font_table[n]->unbold();
+	mounted_font[n]->unbold();
       if (has_arg())
 	warning(WARN_FONT, "ignoring third argument to font emboldening"
 		" request when first interpreted as mounting position"
@@ -7491,7 +7494,7 @@ static void embolden_font_request() // .bd
     }
   }
   else
-    font_table[n]->unbold();
+    mounted_font[n]->unbold();
   skip_line();
 }
 
@@ -7570,11 +7573,11 @@ static void configure_track_kerning_request() // .tkf
 	&& read_hunits(&max_a,
 		       (unsigned char)('p'))) { // TODO: grochar
       track_kerning_function tk(min_s, min_a, max_s, max_a);
-      font_table[n]->set_track_kern(tk);
+      mounted_font[n]->set_track_kern(tk);
     }
     else {
       track_kerning_function tk;
-      font_table[n]->set_track_kern(tk);
+      mounted_font[n]->set_track_kern(tk);
     }
   }
   skip_line();
@@ -7593,17 +7596,17 @@ static void constantly_space_font_request() // .cs
   else {
     int n = finfo.position, x, y;
     if (!has_arg() || !read_integer(&x))
-      font_table[n]->set_constant_space(CONSTANT_SPACE_NONE);
+      mounted_font[n]->set_constant_space(CONSTANT_SPACE_NONE);
     else {
       if (!has_arg()
 	  || !read_measurement(&y,
 			       (unsigned char)('z'))) // TODO: grochar
-	font_table[n]->set_constant_space(CONSTANT_SPACE_RELATIVE, x);
+	mounted_font[n]->set_constant_space(CONSTANT_SPACE_RELATIVE, x);
       else
-	font_table[n]->set_constant_space(CONSTANT_SPACE_ABSOLUTE,
-					  scale(y*x,
-						units_per_inch,
-						36 * 72 * sizescale));
+	mounted_font[n]->set_constant_space(CONSTANT_SPACE_ABSOLUTE,
+					    scale(y*x,
+						  units_per_inch,
+						  36 * 72 * sizescale));
     }
   }
   skip_line();

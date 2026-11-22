@@ -1,5 +1,13 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp: Rename `static` global array
+	`font_table` to `mounted_font`, making it more obvious that the
+	integer index is a *roff mounting position.  Rename `static`
+	global variable `font_table_size` to `mounted_font_size`--not a
+	great name, but future refactoring will eliminate it altogether.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp
 	(device_extension_node::dump_properties): Identify the character
 	sequence sent to "grout" as "contents", not "macro"; the latter
