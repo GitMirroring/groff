@@ -1,5 +1,30 @@
 2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp: Refactor.  Migrate representation of
+	*roff's environment stack from a hand-rolled linked list
+	`struct` called `env_list_node` to an STL vector.  Why an STL
+	vector and not an STL stack?  Because mutation operations occur
+	only at the distal end--environment pointers are added (pushed)
+	and removed (popped).  But we also want to be able to iterate
+	through the vector non-destructively to report ("peek at") its
+	contents and determine whether a given environment is stacked or
+	not.  Delete `env_list_node` structure definition.  Retype
+	`env_stack` from it to `std::vector<environment *>`.
+	(init_environments): Actually stack the initial environment.
+	`curenv` is now merely a convenience pointer, and it might be
+	wise to replace most or all instances of it with
+	`env_stack.back()`, because we might risk decoherence problems
+	otherwise.  But for now, things work.
+	(environment_switch_request): When pushing an environment onto
+	the stack, replace creation of new node in linked list with
+	`push_back()` operation on `env_stack`.  Rewrite test for
+	invalid attempt to pop a single-item environment stack with a
+	test for an `env_stack.size()` of `1`.  When popping the stack,
+	`env_stack.pop_back()` and assign `env_stack.back()` to
+	`curenv`.  Drop linked-list node copying logic.
+
+2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp (environment_switch_request): Fix code
 	style nit.  Explicitly compare variable of pointer type to ISO
 	C++98 null pointer literal, instead of punning it down to a

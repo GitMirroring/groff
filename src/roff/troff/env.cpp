@@ -88,13 +88,12 @@ enum {
   HYPHEN_MAX = 63
 };
 
-struct env_list_node {
-  environment *env;
-  env_list_node *next;
-  env_list_node(environment *e, env_list_node *p) : env(e), next(p) {}
-};
-
-env_list_node *env_stack;
+// We use an STL vector to simulate a stack because mutation operations
+// occur only at the distal end--environment pointers are added (pushed)
+// and removed (popped).  But we also want to be able to iterate through
+// the vector non-destructively to report ("peek at") its contents and
+// determine whether a given environment is stacked or not.
+std::vector<environment *> env_stack;
 dictionary env_dictionary(10);
 environment *curenv;
 static int next_line_number = 0;
@@ -334,8 +333,10 @@ static symbol default_environment_name("0");
 
 void init_environments()
 {
-  curenv = new environment(default_environment_name);
-  (void) env_dictionary.lookup(default_environment_name, curenv);
+  environment *e = new environment(default_environment_name);
+  (void) env_dictionary.lookup(default_environment_name, e);
+  env_stack.push_back(e);
+  curenv = e;
 }
 
 // Set tab character, used to fill out the remainder of a tab stop where
@@ -3965,12 +3966,12 @@ static void environment_switch_request() // .ev
       e = new environment(nm);
       (void) env_dictionary.lookup(nm, e);
     }
-    env_stack = new env_list_node(curenv, env_stack);
+    env_stack.push_back(e);
     curenv = e;
   }
   else {
     // Pop environment stack.
-    if (env_stack == 0 /* nullptr */) {
+    if (env_stack.size() == 1) {
       error("cannot pop the only environment in the stack");
       skip_line();
       return;
@@ -3980,13 +3981,11 @@ static void environment_switch_request() // .ev
     bool seen_space = curenv->seen_space;
     bool seen_eol   = curenv->seen_eol;
     bool suppress_next_eol = curenv->suppress_next_eol;
-    curenv = env_stack->env;
+    env_stack.pop_back();
+    curenv = env_stack.back();
     curenv->seen_space = seen_space;
     curenv->seen_eol   = seen_eol;
     curenv->suppress_next_eol = suppress_next_eol;
-    env_list_node *tem = env_stack;
-    env_stack = env_stack->next;
-    delete tem;
   }
   skip_line();
 }
