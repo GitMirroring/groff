@@ -322,7 +322,7 @@ font_size::font_size(int sp)
   p = size_list[nranges - 1].max;
 }
 
-int font_size::to_units()
+int font_size::to_units() const
 {
   return scale(p, units_per_inch, sizescale*72);
 }

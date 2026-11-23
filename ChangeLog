@@ -1,5 +1,17 @@
 2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.{h,cpp}: Slightly refactor.
+	* src/roff/troff/env.h (class font_size): Mark pure accessor
+	member functions as `const`.
+	* src/roff/troff/env.h:
+	(font_size::to_points)
+	(font_size::to_scaled_points)
+	(font_size::operator==)
+	(font_size::operator!=):
+	* src/roff/troff/env.cpp (font_size::to_units): Likewise.
+
+2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp: Slightly refactor.
 	(class font_info): Mark pure accessor member functions as
 	`const`.

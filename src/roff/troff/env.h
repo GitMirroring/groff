@@ -31,11 +31,11 @@ class font_size {
 public:
   font_size();
   font_size(int points);
-  int to_points();
-  int to_scaled_points();
-  int to_units();
-  int operator==(font_size);
-  int operator!=(font_size);
+  int to_points() const;
+  int to_scaled_points() const;
+  int to_units() const;
+  int operator==(font_size) const;
+  int operator!=(font_size) const;
   static void init_size_list(int * /* sizes */);
   static void dump_size_list();
 };
@@ -44,22 +44,22 @@ inline font_size::font_size() : p(0)
 {
 }
 
-inline int font_size::operator==(font_size fs)
+inline int font_size::operator==(font_size fs) const
 {
   return p == fs.p;
 }
 
-inline int font_size::operator!=(font_size fs)
+inline int font_size::operator!=(font_size fs) const
 {
   return p != fs.p;
 }
 
-inline int font_size::to_scaled_points()
+inline int font_size::to_scaled_points() const
 {
   return p;
 }
 
-inline int font_size::to_points()
+inline int font_size::to_points() const
 {
   return (p / sizescale);
 }
