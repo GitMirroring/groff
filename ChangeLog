@@ -1,5 +1,14 @@
 2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp (print_environment_request): Alter
+	`pev` report.  Invoking the `pev` request without arguments no
+	longer reports environment properties.  It instead reports the
+	names of stacked environments, starting at the top (current
+	environment).  It then lists the names of unstacked
+	environments, only if any exist.
+
+2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp: Refactor.  Migrate representation of
 	*roff's environment stack from a hand-rolled linked list
 	`struct` called `env_list_node` to an STL vector.  Why an STL

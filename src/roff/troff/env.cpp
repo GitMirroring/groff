@@ -3814,8 +3814,6 @@ void environment::dump()
   fflush(stderr);
 }
 
-// TODO: Revise to report, without arguments, only the environment stack
-// contents from top to bottom, then list unstacked environments.
 static void print_environment_request() // .pev
 {
   symbol s;
@@ -3838,16 +3836,33 @@ static void print_environment_request() // .pev
     } while(has_arg());
   }
   else {
-    errprint("Current Environment:\n");
-    curenv->dump();
-    dictionary_iterator iter(env_dictionary);
-    while (iter.get(&s, (void **)&e)) {
-      assert(!s.is_null());
-      errprint("Environment %1:\n", s.contents());
-      if (e != curenv)
-	e->dump();
-      else
-	errprint("  current\n");
+    errprint("environment stack:\n");
+    const char star[] = "\t*";
+    const char empty[] = "";
+    const char *marker = star;
+    std::vector<environment *>::reverse_iterator it
+      = env_stack.rbegin();
+    for (; it != env_stack.rend(); ++it) {
+      errprint("\t%1%2\n", (*it)->name.contents(), marker);
+      marker = empty;
+    }
+    dictionary_iterator dict_it(env_dictionary);
+    symbol nm;
+    bool need_heading = true;
+    while (dict_it.get(&nm, 0 /* nullptr */)) {
+      bool is_in_stack = false;
+      for (it = env_stack.rbegin(); it != env_stack.rend(); ++it)
+	if ((*it)->name == nm) {
+	  is_in_stack = true;
+	  break;
+	}
+      if (!is_in_stack) {
+	if (need_heading) {
+	  errprint("unstacked environments:\n");
+	  need_heading = false;
+	}
+	errprint("\t%1\n", nm.contents());
+      }
     }
   }
   fflush(stderr);
