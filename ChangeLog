@@ -10,6 +10,12 @@
 	* src/roff/groff/tests/pev-request-works.sh: Test new `pev`
 	request behavior.
 
+	* doc/groff.texi.in (Debugging):
+	* man/groff.7.man.in (Request short reference):
+	* man/groff_diff.7.man (New requests): Document it.
+
+	Fixes <https://savannah.gnu.org/bugs/?68907>.
+
 2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/env.cpp: Refactor.  Migrate representation of

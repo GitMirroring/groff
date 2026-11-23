@@ -37,6 +37,12 @@ troff
 *  The `pev` request now accepts arguments.  Each is interpreted as an
    environment identifier, whose properties are reported if it exists.
 
+*  The `pev` request now issues a different report when invoked without
+   arguments.  It reports the names of environments in the stack,
+   marking the current environment with a tab and asterisk, and if
+   unstacked environments exist, lists them subsequently under a
+   separate heading.
+
 *  The `pev` request now reports the environment's modified glyph height
    and slant, as applicable; and its selected control and no-break
    control characters.

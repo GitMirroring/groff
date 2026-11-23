@@ -23352,11 +23352,12 @@ to the standard error stream,
 @c exist but don't have meaningful values while a control line is being
 @c interpreted to make the report.
 properties of each environment
-@var{env-id},
-or,
-without arguments,
-those of the current environment,
-followed by those of all other environments.
+@var{env-id}.
+Omit arguments to obtain a summary of available environments.
+The request reports the names of environments in the stack,
+marking the current environment with a tab and asterisk,
+and if unstacked environments exist,
+lists them subsequently under a separate heading.
 @endDefreq
 
 @Defreq {pfp, [@Var{pos @r{@dots{}}]}}

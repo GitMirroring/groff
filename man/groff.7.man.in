@@ -4885,10 +4885,10 @@ followed by its \[lq]to\[rq] mapping.
 .
 .TPx
 .REQ .pev
-Report,
-to the standard error stream,
-properties of the current environment,
-followed by those of all other environments.
+Report the names of environments in the stack,
+marking the current environment with a tab and asterisk,
+and if unstacked environments exist,
+list them subsequently under a separate heading.
 .
 .TPx
 .REQ .pev "env-id \fR\&.\|.\|.\&\fP"

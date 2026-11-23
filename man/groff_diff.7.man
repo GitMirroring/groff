@@ -4041,11 +4041,14 @@ to the standard error stream,
 .\" exist but don't have meaningful values while a control line is being
 .\" interpreted to make the report.
 properties of each environment
-.I env-id,
-or,
-without arguments,
-those of the current environment,
-followed by those of all other environments.
+.I env-id.
+.
+Omit arguments to obtain a summary of available environments.
+.
+The request reports the names of environments in the stack,
+marking the current environment with a tab and asterisk,
+and if unstacked environments exist,
+lists them subsequently under a separate heading.
 .
 .
 .TP
