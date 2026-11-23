@@ -3961,7 +3961,7 @@ static void environment_switch_request() // .ev
     }
     environment *e
       = static_cast<environment *>(env_dictionary.lookup(nm));
-    if (!e) {
+    if (0 /* nullptr */ == e) {
       e = new environment(nm);
       (void) env_dictionary.lookup(nm, e);
     }

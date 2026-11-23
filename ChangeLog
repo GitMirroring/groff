@@ -1,5 +1,12 @@
 2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp (environment_switch_request): Fix code
+	style nit.  Explicitly compare variable of pointer type to ISO
+	C++98 null pointer literal, instead of punning it down to a
+	Boolean.
+
+2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp (environment_switch_request):
 	Restructure logic to recognize that an invalid argument is not
 	the same thing as no argument.  Explicitly skip the remainder of
