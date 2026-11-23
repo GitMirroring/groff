@@ -1,3 +1,11 @@
+2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/env.cpp: Trivially refactor.
+	(environment_switch): Rename this...
+	(environment_switch_request): ...to this.
+
+	(init_env_requests): Update wire-uppery.
+
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/env.cpp (print_environment_request): Accept

@@ -3945,7 +3945,7 @@ static void environment_copy() // .evc
   skip_line();
 }
 
-static void environment_switch() // .ev
+static void environment_switch_request() // .ev
 {
   if (curenv->is_dummy()) {
     error("cannot switch out of dummy environment");
@@ -4684,7 +4684,7 @@ void init_env_requests()
   init_request("brp", break_with_forced_adjustment_request);
   init_request("ce", center);
   init_request("cu", continuous_underline);
-  init_request("ev", environment_switch);
+  init_request("ev", environment_switch_request);
   init_request("evc", environment_copy);
   init_request("fam", family_change);
   init_request("fc", field_characters_request);
