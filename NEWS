@@ -46,6 +46,9 @@ troff
    position), which is then looked up in the set of font translations
    and reported if any translation exists.
 
+*  The `pstream` request now accepts arguments.  Each is interpreted as
+   a groff file stream, whose properties are reported if open.
+
 *  The formatter now emits a warning in category "style" if the escape
    character precedes itself or a dot ('.') when the formatter is in
    interpretation mode; in other words, when not in copy mode.

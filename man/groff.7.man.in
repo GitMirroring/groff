@@ -5132,6 +5132,11 @@ a pair of empty brackets
 represents an empty list.
 .
 .TPx
+.REQ .pstream "stream \fR\&.\|.\|.\&\fP"
+Report the properties of each named open
+.I stream.
+.
+.TPx
 .REQ .pwh
 If the top-level diversion is the current diversion,
 report the names and positions of all page location traps

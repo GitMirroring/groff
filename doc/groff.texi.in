@@ -23494,7 +23494,7 @@ If arguments are omitted,
 report the foregoing properties of all defined registers.
 @endDefreq
 
-@Defreq {pstream, }
+@Defreq {pstream, [@Var{stream} @r{@dots{}}]}
 @cindex dumping open streams (@code{pstream})
 @cindex open streams, dumping (@code{pstream})
 @cindex streams, open, dumping (@code{pstream})
@@ -23502,7 +23502,10 @@ Report,
 in
 @acronym{JSON}
 syntax to the standard error stream,
-the properties of
+the properties of each named open
+@var{stream}
+or,
+without arguments,
 all open streams.
 These properties comprise
 the name of each open stream,

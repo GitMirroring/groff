@@ -4202,12 +4202,17 @@ which is passed to
 .
 .
 .TP
-.B .pstream
+.BR .pstream \~[\c
+.IR stream \~.\|.\|.]
 Report,
 in
 JSON
 syntax to the standard error stream,
-the properties of all open streams.
+the properties of each named open
+.I stream
+or,
+without arguments,
+all open streams.
 These properties comprise
 the name of each open stream,
 the name of the file backing it,
