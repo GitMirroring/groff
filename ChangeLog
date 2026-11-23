@@ -1,5 +1,16 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (dump_font_mounting_position): New
+	function dumps to standard error information, if any, about font
+	mounted at position given in argument.
+
+	(print_font_mounting_position_request): Accept arguments;
+	interpret each as a font mounting position, and dump its info if
+	it is valid and in range.  Migrate existing report of all
+	occupied mounting positions to use new function.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp: Trivially refactor.  Rename
 	file-local class `composite_node` to `user_defined_glyph_node`.
 	Update member function names and calls.

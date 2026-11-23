@@ -6742,22 +6742,46 @@ static bool assign_font_and_file_name_to_mounting_position(
   return true;
 }
 
+static void dump_font_mounting_position(int pos)
+{
+  assert(pos >= 0);
+  if (pos < 0) // NDEBUG
+    return;
+  if (pos > mounted_font_size)
+    return;
+  font_info *fi = mounted_font[pos];
+  if (0 /* nullptr */ == fi) // No font mounted here.
+    return;
+  errprint("%1\t%2", pos, fi->get_name().contents());
+  font *f = mounted_font[pos]->get_font();
+  if (f != 0 /* nullptr */) { // It's not an abstract style.
+    errprint("\t%1", f->get_filename());
+    if (f->get_internal_name() != 0 /* nullptr */)
+      errprint("\t%1", f->get_internal_name());
+  }
+  errprint("\n");
+}
+
 static void print_font_mounting_position_request() // .pfp
 {
-  for (int i = 0; i < mounted_font_size; i++) {
-    font_info *fi = mounted_font[i];
-    if (0 /* nullptr */ == fi) // No font mounted here.
-      continue;
-    errprint("%1\t%2", i, fi->get_name().contents());
-    font *f = mounted_font[i]->get_font();
-    if (f != 0 /* nullptr */) { // It's not an abstract style.
-      errprint("\t%1", f->get_filename());
-      if (f->get_internal_name() != 0 /* nullptr */)
-	errprint("\t%1", f->get_internal_name());
-    }
-    errprint("\n");
-    fflush(stderr);
+  int pos; // mounting position
+  if (has_arg()) {
+    do {
+      if (!read_integer(&pos)) {
+	skip_rest_of_argument();
+	continue;
+      }
+      if (pos < 0) {
+	error("cannot report negative font mounting position %1", pos);
+	continue;
+      }
+      dump_font_mounting_position(pos);
+    } while (has_arg());
   }
+  else
+    for (pos = 0; pos < mounted_font_size; pos++)
+      dump_font_mounting_position(pos);
+  fflush(stderr);
   skip_line();
 }
 
