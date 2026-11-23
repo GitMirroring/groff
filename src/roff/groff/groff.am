@@ -109,6 +109,7 @@ groff_TESTS = \
   src/roff/groff/tests/error-close-request-given-empty-argument.sh \
   src/roff/groff/tests/error-defcolor-request-given-bogus-arguments.sh \
   src/roff/groff/tests/error-dt-request-given-bogus-arguments.sh \
+  src/roff/groff/tests/error-ev-request-given-bogus-argument.sh \
   src/roff/groff/tests/error-evc-request-given-bogus-argument.sh \
   src/roff/groff/tests/error-ftr-request-given-bogus-arguments.sh \
   src/roff/groff/tests/error-fzoom-request-given-bogus-argument.sh \

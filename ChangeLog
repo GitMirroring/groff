@@ -1,5 +1,13 @@
 2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[groff]: Regression-test Savannah #68954.
+
+	* src/roff/groff/tests/error-ev-request-given-bogus-argument.sh:
+	New file; do it.
+	* src/roff/groff/groff.am Update `groff_TESTS` to run test.
+
+2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp (environment_switch_request): Make `ev`
 	return early on error.  Apply the usual `skip_line()` and
 	`return` idiom when encountering invalid input.
