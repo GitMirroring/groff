@@ -21,9 +21,9 @@
 groff="${abs_top_builddir:-.}/test-groff"
 
 input='.
-.pev
+.pev 0
 .sizes 2-20 36
-.pev
+.pev 0
 .'
 
 echo "checking that 'sizes' request works" >&2
