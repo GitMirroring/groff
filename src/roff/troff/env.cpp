@@ -3953,6 +3953,7 @@ static void environment_switch_request() // .ev
     return;
   }
   if (has_arg()) {
+    // Push environment named in argument onto the stack.
     symbol nm = read_long_identifier();
     if (nm.is_null()) {
       skip_line();
@@ -3968,11 +3969,14 @@ static void environment_switch_request() // .ev
     curenv = e;
   }
   else {
+    // Pop environment stack.
     if (env_stack == 0 /* nullptr */) {
       error("cannot pop the only environment in the stack");
       skip_line();
       return;
     }
+    // XXX: Why are these 3 properties stashed in the environment if we
+    // always override them when popping?
     bool seen_space = curenv->seen_space;
     bool seen_eol   = curenv->seen_eol;
     bool suppress_next_eol = curenv->suppress_next_eol;
