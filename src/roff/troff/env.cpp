@@ -3814,15 +3814,32 @@ void environment::dump()
 }
 
 // TODO: Revise to report, without arguments, only the environment stack
-// contents from top to bottom; report details only of environments
-// named in arguments.
+// contents from top to bottom, then list unstacked environments.
 static void print_environment_request() // .pev
 {
+  symbol s;
+  environment *e;
+  if (has_arg()) {
+    do {
+      s = read_identifier();
+      if (s.is_null()) {
+	skip_rest_of_argument();
+	continue;
+      }
+      e = static_cast<environment *>(env_dictionary.lookup(s));
+      if (e != 0 /* nullptr */) {
+	// If you end your environment name with a colon, I got no
+	// sympathy for ya.
+	errprint("environment %1:\n", s.contents());
+	fflush(stderr);
+	e->dump();
+      }
+    } while(has_arg());
+  }
+  else {
   errprint("Current Environment:\n");
   curenv->dump();
   dictionary_iterator iter(env_dictionary);
-  symbol s;
-  environment *e;
   while (iter.get(&s, (void **)&e)) {
     assert(!s.is_null());
     errprint("Environment %1:\n", s.contents());
@@ -3830,6 +3847,7 @@ static void print_environment_request() // .pev
       e->dump();
     else
       errprint("  current\n");
+  }
   }
   fflush(stderr);
   skip_line();

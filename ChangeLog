@@ -1,5 +1,11 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp (print_environment_request): Accept
+	arguments; interpret each as an environment identifier, and dump
+	the properties thereof if it exists.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (struct grostream): Declare new
 	member function `dump()`.
 	(grostream::dump): New member function takes (arbitrary) stream
