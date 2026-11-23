@@ -1,5 +1,17 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (struct grostream): Declare new
+	member function `dump()`.
+	(grostream::dump): New member function takes (arbitrary) stream
+	name as argument and dumps stream properties in JSON format to
+	standard error stream.  Logic factored out from
+	`print_stream_request()`.
+	(print_stream_request): Accept arguments; interpret each as a
+	stream name, and dump its info if it exists.  in range.  Migrate
+	existing report of all open streams to use new function.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (struct grostream): Fix code style
 	nit.  Drop names of unambiguous parameters from member function
 	declaration, Stroustrup-style.

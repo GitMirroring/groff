@@ -8575,6 +8575,7 @@ struct grostream : object {
   FILE * const file;
   grostream(const char *, symbol, FILE *);
   ~grostream();
+  void dump(symbol);
 };
 
 grostream::grostream(const char *fn, symbol m, FILE *fp)
@@ -8586,31 +8587,52 @@ grostream::~grostream()
 {
 }
 
+void grostream::dump(symbol nm)
+{
+  errprint("{\"stream\": ");
+  nm.json_dump();
+  errprint(", \"file name\": ");
+  filename.json_dump();
+  errprint(", \"mode\": ");
+  mode.json_dump();
+  errprint("}");
+  fflush(stderr);
+}
+
 object_dictionary stream_dictionary(20);
 
-// TODO: Support reading a list of stream identifiers as arguments, like
-// `pnr` and `pm`.
 static void print_stream_request() // .pstream
 {
-  object_dictionary_iterator iter(stream_dictionary);
-  symbol stream_name;
+  symbol nm; // stream identifier
   grostream *grost;
-  errprint("[");
   bool need_comma = false;
-  while (iter.get(&stream_name, (object **)&grost)) {
-    assert(!stream_name.is_null());
-    if (stream_name != 0 /* nullptr */) {
-      if (need_comma)
-	errprint(", ");
-      errprint("{\"stream\": ");
-      stream_name.json_dump();
-      errprint(", \"file name\": ");
-      grost->filename.json_dump();
-      errprint(", \"mode\": ");
-      grost->mode.json_dump();
-      errprint("}");
-      fflush(stderr);
-      need_comma = true;
+  errprint("[");
+  if (has_arg()) {
+    do {
+      nm = read_identifier();
+      if (nm.is_null()) {
+	skip_rest_of_argument();
+	continue;
+      }
+      grost = static_cast<grostream *>(stream_dictionary.lookup(nm));
+      if (grost != 0 /* nullptr */) {
+	if (need_comma)
+	  errprint(", ");
+	grost->dump(nm);
+	need_comma = true;
+      }
+    } while (has_arg());
+  }
+  else {
+    object_dictionary_iterator iter(stream_dictionary);
+    while (iter.get(&nm, (object **)&grost)) {
+      assert(!nm.is_null());
+      if (nm != 0 /* nullptr */) {
+	if (need_comma)
+	  errprint(", ");
+	grost->dump(nm);
+	need_comma = true;
+      }
     }
   }
   // !need_comma implies that the list was empty.  JSON convention is to
