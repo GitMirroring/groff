@@ -1,5 +1,11 @@
 2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp: Slightly refactor.
+	(struct grostream): Mark `dump()` member function as `const`.
+	(grostream::dump): Likewise.
+
+2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/tbl/main.cpp (describe_character): Be ISO C++98-
 	correct.  Don't try to statically allocate a VLA.  Use a pointer
 	to heap memory instead.  Fixes `-Wvla-cxx-extension`

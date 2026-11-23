@@ -8578,7 +8578,7 @@ struct grostream : object {
   FILE * const file;
   grostream(const char *, symbol, FILE *);
   ~grostream();
-  void dump(symbol);
+  void dump(symbol) const;
 };
 
 grostream::grostream(const char *fn, symbol m, FILE *fp)
@@ -8590,7 +8590,7 @@ grostream::~grostream()
 {
 }
 
-void grostream::dump(symbol nm)
+void grostream::dump(symbol nm) const
 {
   errprint("{\"stream\": ");
   nm.json_dump();
