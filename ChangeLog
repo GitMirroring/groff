@@ -1,5 +1,18 @@
 2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp: Slightly refactor.
+	(class font_info): Mark pure accessor member functions as
+	`const`.
+	(font_info::contains)
+	(font_info::get_name)
+	(font_info::get_zoom)
+	(font_info::is_emboldened)
+	(font_info::is_named)
+	(font_info::is_special)
+	(font_info::is_style): Likewise.
+
+2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp: Slightly refactor.
 	(struct grostream): Mark `dump()` member function as `const`.
 	(grostream::dump): Likewise.

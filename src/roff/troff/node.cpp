@@ -174,24 +174,24 @@ class font_info {
 public:
   special_font_list *sf;
   font_info(symbol, int, symbol, font *);
-  bool contains(charinfo *);
+  bool contains(charinfo *) const;
   void set_bold(hunits);
   void unbold();
   void set_conditional_bold(int, hunits);
   void conditional_unbold(int);
   void set_track_kern(track_kerning_function &);
   void set_constant_space(constant_space_type, units = 0);
-  bool is_named(symbol);
-  symbol get_name();
+  bool is_named(symbol) const;
+  symbol get_name() const;
   tfont *get_tfont(font_size, int, int, int);
   hunits get_space_width(font_size, int);
   hunits get_narrow_space_width(font_size);
   hunits get_half_narrow_space_width(font_size);
-  bool is_emboldened(hunits *); // "by how many hunits?" in argument
-  bool is_special();
-  bool is_style();
+  bool is_emboldened(hunits *) const; // "by how many hunits?" in arg
+  bool is_special() const;
+  bool is_style() const;
   void set_zoom(int);
-  int get_zoom();
+  int get_zoom() const;
   font *get_font() const;
   friend symbol get_font_name(int, environment *);
   friend symbol get_style_name(int);
@@ -272,17 +272,17 @@ font_info::font_info(symbol nm, int n, symbol enm, font *f)
 {
 }
 
-inline bool font_info::contains(charinfo *ci)
+inline bool font_info::contains(charinfo *ci) const
 {
   return (fm != 0 /* nullptr */) && fm->contains(ci->as_glyph());
 }
 
-inline bool font_info::is_special()
+inline bool font_info::is_special() const
 {
   return (fm != 0 /* nullptr */) && fm->is_special();
 }
 
-inline bool font_info::is_style()
+inline bool font_info::is_style() const
 {
   return (0 /* nullptr */ == fm);
 }
@@ -293,7 +293,7 @@ void font_info::set_zoom(int zoom)
   fm->set_zoom(zoom);
 }
 
-inline int font_info::get_zoom()
+inline int font_info::get_zoom() const
 {
   if (is_style())
     return 0;
@@ -381,7 +381,7 @@ tfont *font_info::get_tfont(font_size fs, int height, int slant,
   return last_tfont;
 }
 
-bool font_info::is_emboldened(hunits *res)
+bool font_info::is_emboldened(hunits *res) const
 {
   if (has_emboldening) {
     *res = bold_offset;
@@ -465,12 +465,12 @@ void font_info::flush()
   last_tfont = 0;
 }
 
-bool font_info::is_named(symbol s)
+bool font_info::is_named(symbol s) const
 {
   return internal_name == s;
 }
 
-symbol font_info::get_name()
+symbol font_info::get_name() const
 {
   return internal_name;
 }
