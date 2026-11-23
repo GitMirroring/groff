@@ -9,6 +9,11 @@
 	it is valid and in range.  Migrate existing report of all
 	occupied mounting positions to use new function.
 
+	* src/roff/groff/tests/\
+	error-pfp-request-given-bogus-argument.sh:
+	* src/roff/groff/tests/pfp-request-works.sh: New files; test it.
+	* src/roff/groff/groff.am: Update `groff_TESTS` to run tests.
+
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/node.cpp: Trivially refactor.  Rename
