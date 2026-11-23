@@ -133,8 +133,8 @@ groff_TESTS = \
   src/roff/groff/tests/fi-and-nf-requests-work.sh \
   src/roff/groff/tests/fp-request-does-not-traverse-directories.sh \
   src/roff/groff/tests/fzoom-request-works.sh \
-  src/roff/groff/tests/handle-special-input-code-points.sh \
   src/roff/groff/tests/handle-right-brace-escape-as-macro-argument.sh \
+  src/roff/groff/tests/handle-special-input-code-points.sh \
   src/roff/groff/tests/hcode-request-copies-spec-char-code.sh \
   src/roff/groff/tests/hcode-request-works.sh \
   src/roff/groff/tests/hla-request-works.sh \
@@ -176,8 +176,8 @@ groff_TESTS = \
   src/roff/groff/tests/regression_savannah_58337.sh \
   src/roff/groff/tests/regression_savannah_59202.sh \
   src/roff/groff/tests/rhw-request-works.sh \
-  src/roff/groff/tests/roman-format-register-interpolation-works.sh \
   src/roff/groff/tests/rm-request-works.sh \
+  src/roff/groff/tests/roman-format-register-interpolation-works.sh \
   src/roff/groff/tests/rr-request-works.sh \
   src/roff/groff/tests/safer-mode-works.sh \
   src/roff/groff/tests/set-stroke-thickness.sh \
