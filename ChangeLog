@@ -1,5 +1,18 @@
 2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp: Revise identifier error diagnostics.
+	Much as we'd like to, we can't say what the consequence of an
+	invalid identifier is; some requests, like `rm`, `rr`, and the
+	dumpers (`pchar`, `pev`, etc.) skip over them; others abort
+	their operation.  Some pretend that the invalid identifier isn't
+	there and perform a surprising alternative operation (see, e.g.,
+	Savannah #68954), but I am steadily removing that form of "error
+	handling" from GNU troff.
+	(diagnose_invalid_identifier, read_input_until_terminator): Drop
+	potentially misleading gerunds from error messages.
+
+2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp (environment_switch_request): Recast
 	diagnostic to make more conceptual sense; while "underflow" is a
 	technically correct description, the user is unlikely to know

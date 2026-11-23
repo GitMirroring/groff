@@ -3374,7 +3374,8 @@ static void diagnose_invalid_identifier()
       && !tok.is_tab() && !tok.is_right_brace()
       // We don't want to give a warning for .el\{
       && !tok.is_left_brace())
-    error("ignoring identifier containing %1", tok.description());
+    // Some requests skip invalid identifiers; most abort the operation.
+    error("identifier containing %1 is invalid", tok.description());
 }
 
 symbol read_identifier(bool want_diagnostic)
@@ -3451,8 +3452,10 @@ static symbol read_input_until_terminator(bool want_diagnostic,
       // Of C0 controls, Solaris, Heirloom, and Plan 9 troff support
       // ^[BCEFG] (only) in identifiers.  DWB 3.3 supports none.
       assert(buf[i] != ' '); // ensure caller handled spaces
-      error("ignoring identifier containing invalid character code %1",
-	    static_cast<int>(buf[i]));
+      // Some requests skip invalid identifiers; most abort the
+      // operation.
+      error("identifier containing invalid character code %1"
+	    " is invalid", static_cast<int>(buf[i]));
       delete[] buf;
       return NULL_SYMBOL;
     }
