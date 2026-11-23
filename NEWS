@@ -38,6 +38,9 @@ troff
    and slant, as applicable; and its selected control and no-break
    control characters.
 
+*  The `pfp` request now accepts arguments.  Each is interpreted as a
+   font mounting position, which is reported if occupied.
+
 *  The `pftr` request now accepts arguments.  Each is interpreted as a
    font identifier (which can be an abstract style but not a mounting
    position), which is then looked up in the set of font translations

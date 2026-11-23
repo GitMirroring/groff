@@ -23350,7 +23350,7 @@ Report the state of the current environment followed by that of all
 other environments to the standard error stream.
 @endDefreq
 
-@Defreq {pfp, }
+@Defreq {pfp, [@Var{pos @r{@dots{}}]}}
 @cindex dumping occupied font mounting positions (@code{pfp})
 @cindex occupied font mounting positions, dumping (@code{pfp})
 @cindex font mounting positions, occupied, dumping (@code{pfp})
@@ -23358,6 +23358,10 @@ other environments to the standard error stream.
 @cindex positions, font mounting, occupied, dumping (@code{pfp})
 Report,
 to the standard error stream,
+information about each occupied font mounting position
+@var{pos},
+or,
+without arguments,
 the list of occupied font mounting positions.
 Recall the
 @code{fp}

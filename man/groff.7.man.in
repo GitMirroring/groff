@@ -4909,6 +4909,13 @@ the meaning of which varies by output device,
 follow.
 .
 .TPx
+.REQ .pfp "pos \fR\&.\|.\|.\&\fP"
+Report,
+to the standard error stream,
+information about each occupied font mounting position
+.I pos.
+.
+.TPx
 .REQ .pftr
 Report,
 to the standard error stream,

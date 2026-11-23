@@ -14,6 +14,12 @@
 	* src/roff/groff/tests/pfp-request-works.sh: New files; test it.
 	* src/roff/groff/groff.am: Update `groff_TESTS` to run tests.
 
+	* doc/groff.texi.in (Debugging):
+	* man/groff.7.man.in (Request short reference):
+	* man/groff_diff.7.man (New requests): Document it.
+
+	Fixes <https://savannah.gnu.org/bugs/?68904>.
+
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/node.cpp: Trivially refactor.  Rename

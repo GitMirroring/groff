@@ -4039,9 +4039,14 @@ other environments to the standard error stream.
 .
 .
 .TP
-.B .pfp
+.BR .pfp \~[\c
+.IR pos \~\&.\|.\|.]
 Report,
 to the standard error stream,
+information about each occupied font mounting position
+.I pos,
+or,
+without arguments,
 the list of occupied font mounting positions.
 .\" Recall the @code{fp} request description in @ref{Selecting Fonts}.
 .
