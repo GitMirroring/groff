@@ -3992,7 +3992,9 @@ static void environment_switch_request() // .ev
       return;
     }
     // XXX: Why are these 3 properties stashed in the environment if we
-    // always override them when popping?
+    // always override them when popping?  Answer: MTSM uses these;
+    // pic.html formats incorrectly after figure captions if we rip them
+    // out.  We may be able to trash them if/when we dispose of MTSM.
     bool seen_space = curenv->seen_space;
     bool seen_eol   = curenv->seen_eol;
     bool suppress_next_eol = curenv->suppress_next_eol;
