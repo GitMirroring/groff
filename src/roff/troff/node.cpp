@@ -5589,7 +5589,8 @@ static node *make_user_defined_glyph_node(charinfo *s, environment *env)
 					      char_slant, fontno);
   if (env->is_composite())
     tf = tf->get_plain();
-  return new user_defined_glyph_node(n, s, tf, 0, 0, 0);
+  return new user_defined_glyph_node(n, s, tf, 0 /* nullptr */, 0,
+				     0 /* nullptr */);
 }
 
 static node *make_glyph_node(charinfo *s, environment *env,
