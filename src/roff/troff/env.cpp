@@ -308,7 +308,8 @@ font_size::font_size(int sp)
 {
   for (int i = 0; i < nranges; i++) {
     if (sp < size_list[i].min) {
-      if (i > 0 && size_list[i].min - sp >= sp - size_list[i - 1].max)
+      if ((i > 0)
+	  && (size_list[i].min - sp) >= (sp - size_list[i - 1].max))
 	p = size_list[i - 1].max;
       else
 	p = size_list[i].min;
@@ -324,7 +325,7 @@ font_size::font_size(int sp)
 
 int font_size::to_units() const
 {
-  return scale(p, units_per_inch, sizescale*72);
+  return scale(p, units_per_inch, (sizescale * 72));
 }
 
 // we can't do this in a static constructor because various dictionaries

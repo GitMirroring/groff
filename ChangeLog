@@ -1,5 +1,11 @@
 2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp (font_size::font_size)
+	(font_size::to_units): Fix code style nit.  Parenthesize
+	formally complex expressions.
+
+2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.{h,cpp}: Slightly refactor.
 	* src/roff/troff/env.h (class font_size): Mark pure accessor
 	member functions as `const`.
