@@ -7,6 +7,9 @@
 	environment).  It then lists the names of unstacked
 	environments, only if any exist.
 
+	* src/roff/groff/tests/pev-request-works.sh: Test new `pev`
+	request behavior.
+
 2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/env.cpp: Refactor.  Migrate representation of

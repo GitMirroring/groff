@@ -31,10 +31,12 @@ input='.
 .ev 1
 .ft TI
 .pev 1
+.ev
+.pev
 .'
 
 error=$(printf '%s\n' "$input" | "$groff" -T ps 2>&1)
-#echo "$error"
+echo "$error"
 
 echo 'checking report of environment 0' >&2
 echo "$error" | sed '/environment 1:/,$d' \
@@ -43,6 +45,14 @@ echo "$error" | sed '/environment 1:/,$d' \
 echo 'checking report of environment 1' >&2
 echo "$error" | sed '1,/environment 1:/d' \
     | grep -Eq "resolved font selection: [0-9]+ \('TI'\)" || wail
+
+echo 'checking environment summary report (stacked environments)' >&2
+echo "$error" | sed -n '/environment stack:/,/^unstacked/p' \
+    | grep -Eqx '[[:space:]]0[[:space:]]\*' || wail
+
+echo 'checking environment summary report (unstacked environments)' >&2
+echo "$error" | sed '1,/unstacked environments:/d' \
+    | grep -Eqx '[[:space:]]1' || wail
 
 test -z "$fail"
 
