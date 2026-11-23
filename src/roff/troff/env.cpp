@@ -3837,17 +3837,17 @@ static void print_environment_request() // .pev
     } while(has_arg());
   }
   else {
-  errprint("Current Environment:\n");
-  curenv->dump();
-  dictionary_iterator iter(env_dictionary);
-  while (iter.get(&s, (void **)&e)) {
-    assert(!s.is_null());
-    errprint("Environment %1:\n", s.contents());
-    if (e != curenv)
-      e->dump();
-    else
-      errprint("  current\n");
-  }
+    errprint("Current Environment:\n");
+    curenv->dump();
+    dictionary_iterator iter(env_dictionary);
+    while (iter.get(&s, (void **)&e)) {
+      assert(!s.is_null());
+      errprint("Environment %1:\n", s.contents());
+      if (e != curenv)
+	e->dump();
+      else
+	errprint("  current\n");
+    }
   }
   fflush(stderr);
   skip_line();
