@@ -1,5 +1,15 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp: Trivially refactor.  Rename
+	file-local class `composite_node` to `user_defined_glyph_node`.
+	Update member function names and calls.
+	(class user_defined_glyph_node): Update constructor and
+	destructor declarations.
+	(user_defined_glyph_node::type): Update self-reported data type
+	used in node dumping.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp (print_font_translation_request):
 	Accept arguments; interpret each as a font identifier, and
 	report the translation thereof if it is not the identity

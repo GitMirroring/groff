@@ -4816,20 +4816,20 @@ hunits suppress_node::width()
   return H0;
 }
 
-/* composite_node */
+/* user_defined_glyph_node */
 
-// A composite (glyph) node corresponds to a user-defined GNU troff
+// A user-defined glyph node corresponds to a user-defined GNU troff
 // character with a macro definition.
 
 // Not derived from `container_node`; implements custom contained node
 // dumper in dump_node().
-class composite_node : public charinfo_node {
+class user_defined_glyph_node : public charinfo_node {
   node *nodes;
   tfont *tf;
 public:
-  composite_node(node *, charinfo *, tfont *, statem *, int,
-		 node * = 0 /* nullptr */);
-  ~composite_node();
+  user_defined_glyph_node(node *, charinfo *, tfont *, statem *, int,
+			  node * = 0 /* nullptr */);
+  ~user_defined_glyph_node();
   node *copy();
   hunits width();
   node *last_char_node();
@@ -4851,24 +4851,25 @@ public:
   void dump_node();
 };
 
-composite_node::composite_node(node *p, charinfo *c, tfont *t,
-			       statem *s, int divlevel, node *x)
+user_defined_glyph_node::user_defined_glyph_node(node *p, charinfo *c,
+						 tfont *t, statem *s,
+						 int divlevel, node *x)
 : charinfo_node(c, s, divlevel, x), nodes(p), tf(t)
 {
 }
 
-composite_node::~composite_node()
+user_defined_glyph_node::~user_defined_glyph_node()
 {
   delete_node_list(nodes);
 }
 
-node *composite_node::copy()
+node *user_defined_glyph_node::copy()
 {
-  return new composite_node(copy_node_list(nodes), ci, tf, state,
-			    div_nest_level);
+  return new user_defined_glyph_node(copy_node_list(nodes), ci, tf,
+				     state, div_nest_level);
 }
 
-hunits composite_node::width()
+hunits user_defined_glyph_node::width()
 {
   hunits x;
   if (tf->is_constantly_spaced(&x))
@@ -4883,12 +4884,12 @@ hunits composite_node::width()
   return x;
 }
 
-node *composite_node::last_char_node()
+node *user_defined_glyph_node::last_char_node()
 {
   return this;
 }
 
-vunits composite_node::vertical_width()
+vunits user_defined_glyph_node::vertical_width()
 {
   vunits v = V0;
   for (node *tem = nodes; tem != 0 /* nullptr */; tem = tem->next)
@@ -4896,17 +4897,17 @@ vunits composite_node::vertical_width()
   return v;
 }
 
-units composite_node::size()
+units user_defined_glyph_node::size()
 {
   return tf->get_size().to_units();
 }
 
-hyphenation_type composite_node::get_hyphenation_type()
+hyphenation_type user_defined_glyph_node::get_hyphenation_type()
 {
   return HYPHENATION_PERMITTED;
 }
 
-void composite_node::asciify(macro *m)
+void user_defined_glyph_node::asciify(macro *m)
 {
   if (!is_output_suppressed) {
     unsigned char c = ci->get_asciify_code();
@@ -4919,19 +4920,19 @@ void composite_node::asciify(macro *m)
   }
 }
 
-void composite_node::ascii_print(ascii_output_file *ascii)
+void user_defined_glyph_node::ascii_print(ascii_output_file *ascii)
 {
   ascii_print_reverse_node_list(ascii, nodes);
 }
 
-hyphen_list *composite_node::get_hyphen_list(hyphen_list *tail,
-					     int *count)
+hyphen_list *user_defined_glyph_node::get_hyphen_list(hyphen_list *tail,
+						      int *count)
 {
   (*count)++;
   return new hyphen_list(ci->get_hyphenation_code(), tail);
 }
 
-node *composite_node::add_self(node *nn, hyphen_list **p)
+node *user_defined_glyph_node::add_self(node *nn, hyphen_list **p)
 {
   assert(ci->get_hyphenation_code() == (*p)->hyphenation_code);
   next = nn;
@@ -4944,7 +4945,7 @@ node *composite_node::add_self(node *nn, hyphen_list **p)
   return nn;
 }
 
-tfont *composite_node::get_tfont()
+tfont *user_defined_glyph_node::get_tfont()
 {
   return tf;
 }
@@ -4961,7 +4962,8 @@ node *reverse_node_list(node *n)
   return r;
 }
 
-void composite_node::vertical_extent(vunits *minimum, vunits *maximum)
+void user_defined_glyph_node::vertical_extent(vunits *minimum,
+					      vunits *maximum)
 {
   nodes = reverse_node_list(nodes);
   node_list_vertical_extent(nodes, minimum, maximum);
@@ -5503,7 +5505,7 @@ void dbreak_node::tprint(troff_output_file *out)
   tprint_reverse_node_list(out, none);
 }
 
-void composite_node::tprint(troff_output_file *out)
+void user_defined_glyph_node::tprint(troff_output_file *out)
 {
   hunits bold_offset;
   bool is_emboldened = tf->is_emboldened(&bold_offset);
@@ -5535,7 +5537,7 @@ void composite_node::tprint(troff_output_file *out)
     out->right(track_kern);
 }
 
-void composite_node::dump_properties()
+void user_defined_glyph_node::dump_properties()
 {
   node::dump_properties();
   // GNU troff multiplexes the distinction of ordinary vs. special
@@ -5560,7 +5562,7 @@ void composite_node::dump_properties()
   fflush(stderr);
 }
 
-void composite_node::dump_node()
+void user_defined_glyph_node::dump_node()
 {
   fputc('{', stderr);
   dump_properties();
@@ -5570,7 +5572,7 @@ void composite_node::dump_node()
   fflush(stderr);
 }
 
-static node *make_composite_node(charinfo *s, environment *env)
+static node *make_user_defined_glyph_node(charinfo *s, environment *env)
 {
   int fontno = resolve_current_font_to_mounting_position(env);
   if (fontno < 0) {
@@ -5587,7 +5589,7 @@ static node *make_composite_node(charinfo *s, environment *env)
 					      char_slant, fontno);
   if (env->is_composite())
     tf = tf->get_plain();
-  return new composite_node(n, s, tf, 0, 0, 0);
+  return new user_defined_glyph_node(n, s, tf, 0, 0, 0);
 }
 
 static node *make_glyph_node(charinfo *s, environment *env,
@@ -5605,7 +5607,7 @@ static node *make_glyph_node(charinfo *s, environment *env,
   if (!found) {
     macro *mac = s->get_macro();
     if ((mac != 0 /* nullptr */) && s->is_fallback())
-      return make_composite_node(s, env);
+      return make_user_defined_glyph_node(s, env);
     if (s->is_numbered()) {
       if (want_warnings)
 	warning(WARN_CHAR, "character code %1 not defined in current"
@@ -5627,7 +5629,7 @@ static node *make_glyph_node(charinfo *s, environment *env,
       gl += '\0';
       charinfo *ci = lookup_charinfo(symbol(gl.contents()));
       if (ci && ci->get_macro())
-	return make_composite_node(ci, env);
+	return make_user_defined_glyph_node(ci, env);
     }
     if (!found) {
       sf = global_special_fonts;
@@ -5640,7 +5642,7 @@ static node *make_glyph_node(charinfo *s, environment *env,
     }
     if (!found)
       if (mac && s->is_special())
-	return make_composite_node(s, env);
+	return make_user_defined_glyph_node(s, env);
     if (!found) {
       for (fn = 0; fn < mounted_font_size; fn++)
 	if ((mounted_font[fn] != 0 /* nullptr*/)
@@ -5712,7 +5714,7 @@ node *make_node(charinfo *ci, environment *env)
     ci = tem;
   macro *mac = ci->get_macro();
   if (mac && ci->is_normal())
-    return make_composite_node(ci, env);
+    return make_user_defined_glyph_node(ci, env);
   else
     return make_glyph_node(ci, env);
 }
@@ -5761,7 +5763,7 @@ node *node::add_char(charinfo *ci, environment *env,
     ci = tem;
   macro *mac = ci->get_macro();
   if (mac && ci->is_normal()) {
-    res = make_composite_node(ci, env);
+    res = make_user_defined_glyph_node(ci, env);
     if (res) {
       res->next = this;
       *widthp += res->width();
@@ -6346,24 +6348,25 @@ bool bracket_node::is_tag()
   return false;
 }
 
-bool composite_node::is_same_as(node *nd)
+bool user_defined_glyph_node::is_same_as(node *nd)
 {
-  return ((ci == static_cast<composite_node *>(nd)->ci)
+  return ((ci == static_cast<user_defined_glyph_node *>(nd)->ci)
 	  && same_node(nodes,
-	               static_cast<composite_node *>(nd)->nodes));
+	               static_cast<user_defined_glyph_node *>(nd)
+			   ->nodes));
 }
 
-const char *composite_node::type()
+const char *user_defined_glyph_node::type()
 {
-  return "composite node"; // XXX: composite WHAT? (character macro?)
+  return "user-defined glyph node";
 }
 
-bool composite_node::causes_tprint()
+bool user_defined_glyph_node::causes_tprint()
 {
   return false;
 }
 
-bool composite_node::is_tag()
+bool user_defined_glyph_node::is_tag()
 {
   return false;
 }
