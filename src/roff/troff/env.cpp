@@ -3949,8 +3949,9 @@ static void environment_switch_request() // .ev
 {
   if (curenv->is_dummy()) {
     error("cannot switch out of dummy environment");
+    skip_line();
+    return;
   }
-  else {
     symbol nm = read_long_identifier();
     if (nm.is_null()) {
       if (env_stack == 0 /* nullptr */)
@@ -3978,7 +3979,6 @@ static void environment_switch_request() // .ev
       env_stack = new env_list_node(curenv, env_stack);
       curenv = e;
     }
-  }
   skip_line();
 }
 

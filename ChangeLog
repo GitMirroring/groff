@@ -1,5 +1,11 @@
 2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp (environment_switch_request): Make `ev`
+	return early on error.  Apply the usual `skip_line()` and
+	`return` idiom when encountering invalid input.
+
+2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp: Revise identifier error diagnostics.
 	Much as we'd like to, we can't say what the consequence of an
 	invalid identifier is; some requests, like `rm`, `rr`, and the
