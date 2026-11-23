@@ -9,6 +9,12 @@
 
 	* src/roff/groff/groff.am: Update `groff_TESTS` to run tests.
 
+	* doc/groff.texi.in (Debugging):
+	* man/groff.7.man.in (Request short reference):
+	* man/groff_diff.7.man (New requests): Document it.
+
+	Fixes <https://savannah.gnu.org/bugs/?68905>.
+
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (struct grostream): Declare new

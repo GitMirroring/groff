@@ -23343,11 +23343,20 @@ The ``from'' code point is listed first,
 followed by its ``to'' mapping.
 @endDefreq
 
-@Defreq {pev, }
+@Defreq {pev, [@Var{env-id @r{@dots{}}]}}
 @cindex dumping environments (@code{pev})
 @cindex environments, dumping (@code{pev})
-Report the state of the current environment followed by that of all
-other environments to the standard error stream.
+Report,
+to the standard error stream,
+@c We do not say "the" properties; not all are reported because some
+@c exist but don't have meaningful values while a control line is being
+@c interpreted to make the report.
+properties of each environment
+@var{env-id},
+or,
+without arguments,
+those of the current environment,
+followed by those of all other environments.
 @endDefreq
 
 @Defreq {pfp, [@Var{pos @r{@dots{}}]}}

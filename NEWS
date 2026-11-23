@@ -34,6 +34,9 @@ troff
    saved by the most recent `sv` request, if it has not yet been output
    with the `os` request.
 
+*  The `pev` request now accepts arguments.  Each is interpreted as an
+   environment identifier, whose properties are reported if it exists.
+
 *  The `pev` request now reports the environment's modified glyph height
    and slant, as applicable; and its selected control and no-break
    control characters.

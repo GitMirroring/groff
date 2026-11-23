@@ -4033,9 +4033,19 @@ followed by its \[lq]to\[rq] mapping.
 .
 .
 .TP
-.B .pev
-Report the state of the current environment followed by that of all
-other environments to the standard error stream.
+.BR .pev \~[\c
+.IR env-id \~\&.\|.\|.]
+Report,
+to the standard error stream,
+.\" We do not say "the" properties; not all are reported because some
+.\" exist but don't have meaningful values while a control line is being
+.\" interpreted to make the report.
+properties of each environment
+.I env-id,
+or,
+without arguments,
+those of the current environment,
+followed by those of all other environments.
 .
 .
 .TP

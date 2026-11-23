@@ -4885,8 +4885,17 @@ followed by its \[lq]to\[rq] mapping.
 .
 .TPx
 .REQ .pev
-Report the state of the current environment followed by that of all
-other environments to the standard error stream.
+Report,
+to the standard error stream,
+properties of the current environment,
+followed by those of all other environments.
+.
+.TPx
+.REQ .pev "env-id \fR\&.\|.\|.\&\fP"
+Report,
+to the standard error stream,
+properties of each environment
+.I env-id.
 .
 .TPx
 .REQ .pfp
