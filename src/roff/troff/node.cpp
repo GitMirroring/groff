@@ -5615,7 +5615,7 @@ static node *make_glyph_node(charinfo *s, environment *env,
     special_font_list *sf = mounted_font[fontno]->sf;
     while ((sf != 0 /* nullptr */) && !found) {
       fn = sf->n;
-      if (mounted_font[fn])
+      if (mounted_font[fn] != 0 /* nullptr*/)
 	found = mounted_font[fn]->contains(s);
       sf = sf->next;
     }
@@ -5633,7 +5633,7 @@ static node *make_glyph_node(charinfo *s, environment *env,
       sf = global_special_fonts;
       while ((sf != 0 /* nullptr */) && !found) {
 	fn = sf->n;
-	if (mounted_font[fn])
+	if (mounted_font[fn] != 0 /* nullptr*/)
 	  found = mounted_font[fn]->contains(s);
 	sf = sf->next;
       }
@@ -5643,7 +5643,7 @@ static node *make_glyph_node(charinfo *s, environment *env,
 	return make_composite_node(s, env);
     if (!found) {
       for (fn = 0; fn < mounted_font_size; fn++)
-	if (mounted_font[fn]
+	if ((mounted_font[fn] != 0 /* nullptr*/)
 	    && mounted_font[fn]->is_special()
 	    && mounted_font[fn]->contains(s)) {
 	  found = true;
@@ -7615,7 +7615,7 @@ static void constantly_space_font_request() // .cs
 static void set_ligature_mode_request() // .lg
 {
   int lig;
-  if (has_arg() && read_integer(&lig) && lig >= 0 && lig <= 2)
+  if (has_arg() && read_integer(&lig) && (lig >= 0) && (lig <= 2))
     global_ligature_mode = lig;
   else
     global_ligature_mode = 1;

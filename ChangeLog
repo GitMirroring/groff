@@ -1,5 +1,14 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp: Fix code style nits.
+	(make_glyph_node): Explicitly compare variable of pointer type
+	to ISO C++98 null pointer literal, instead of punning it down to
+	a Boolean.
+	(make_glyph_node, set_ligature_mode_request): Parenthesize
+	formally complex expressions.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp: Rename `static` global array
 	`font_table` to `mounted_font`, making it more obvious that the
 	integer index is a *roff mounting position.  Rename `static`
