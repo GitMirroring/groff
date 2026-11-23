@@ -1,5 +1,11 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (struct grostream): Fix code style
+	nit.  Drop names of unambiguous parameters from member function
+	declaration, Stroustrup-style.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp (dump_font_mounting_position): New
 	function dumps to standard error information, if any, about font
 	mounted at position given in argument.

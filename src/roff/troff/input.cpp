@@ -8573,7 +8573,7 @@ struct grostream : object {
   const symbol filename;
   const symbol mode;
   FILE * const file;
-  grostream(const char *fn, symbol m, FILE *fp);
+  grostream(const char *, symbol, FILE *);
   ~grostream();
 };
 
