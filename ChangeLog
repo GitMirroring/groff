@@ -4,6 +4,11 @@
 	arguments; interpret each as an environment identifier, and dump
 	the properties thereof if it exists.
 
+	* src/roff/groff/tests/error-pev-request-given-bogus-argument.sh
+	* src/roff/groff/tests/pev-request-works.sh: New files; test it.
+
+	* src/roff/groff/groff.am: Update `groff_TESTS` to run tests.
+
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (struct grostream): Declare new
