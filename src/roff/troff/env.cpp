@@ -3952,24 +3952,12 @@ static void environment_switch_request() // .ev
     skip_line();
     return;
   }
-  symbol nm = read_long_identifier();
-  if (nm.is_null()) {
-    if (env_stack == 0 /* nullptr */)
-      error("cannot pop the only environment in the stack");
-    else {
-      bool seen_space = curenv->seen_space;
-      bool seen_eol   = curenv->seen_eol;
-      bool suppress_next_eol = curenv->suppress_next_eol;
-      curenv = env_stack->env;
-      curenv->seen_space = seen_space;
-      curenv->seen_eol   = seen_eol;
-      curenv->suppress_next_eol = suppress_next_eol;
-      env_list_node *tem = env_stack;
-      env_stack = env_stack->next;
-      delete tem;
+  if (has_arg()) {
+    symbol nm = read_long_identifier();
+    if (nm.is_null()) {
+      skip_line();
+      return;
     }
-  }
-  else {
     environment *e
       = static_cast<environment *>(env_dictionary.lookup(nm));
     if (!e) {
@@ -3978,6 +3966,23 @@ static void environment_switch_request() // .ev
     }
     env_stack = new env_list_node(curenv, env_stack);
     curenv = e;
+  }
+  else {
+    if (env_stack == 0 /* nullptr */) {
+      error("cannot pop the only environment in the stack");
+      skip_line();
+      return;
+    }
+    bool seen_space = curenv->seen_space;
+    bool seen_eol   = curenv->seen_eol;
+    bool suppress_next_eol = curenv->suppress_next_eol;
+    curenv = env_stack->env;
+    curenv->seen_space = seen_space;
+    curenv->seen_eol   = seen_eol;
+    curenv->suppress_next_eol = suppress_next_eol;
+    env_list_node *tem = env_stack;
+    env_stack = env_stack->next;
+    delete tem;
   }
   skip_line();
 }

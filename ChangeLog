@@ -1,5 +1,15 @@
 2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp (environment_switch_request):
+	Restructure logic to recognize that an invalid argument is not
+	the same thing as no argument.  Explicitly skip the remainder of
+	the line and return when given an invalid argument.  Perform a
+	pop operation only if given no argument.
+
+	Fixes <https://savannah.gnu.org/bugs/?68954>.
+
+2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[groff]: Regression-test Savannah #68954.
 
 	* src/roff/groff/tests/error-ev-request-given-bogus-argument.sh:
