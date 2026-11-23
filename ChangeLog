@@ -1,5 +1,17 @@
 2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp (environment_switch_request): Recast
+	diagnostic to make more conceptual sense; while "underflow" is a
+	technically correct description, the user is unlikely to know
+	that GNU troff stacks only environments that _aren't_ current;
+	*roff documentation in general suggests that only a simple stack
+	data structure (or equivalent) is used, without special storage
+	for the current environment "on deck"; and a forthcoming
+	refactoring is going to make that simpler arrangement effective
+	in GNU troff regardless.
+
+2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp: Trivially refactor.
 	(environment_switch): Rename this...
 	(environment_switch_request): ...to this.

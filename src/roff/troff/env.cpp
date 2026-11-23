@@ -3954,7 +3954,7 @@ static void environment_switch_request() // .ev
     symbol nm = read_long_identifier();
     if (nm.is_null()) {
       if (env_stack == 0 /* nullptr */)
-	error("environment stack underflow");
+	error("cannot pop the only environment in the stack");
       else {
 	bool seen_space = curenv->seen_space;
 	bool seen_eol   = curenv->seen_eol;
