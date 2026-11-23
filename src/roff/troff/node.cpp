@@ -7615,8 +7615,17 @@ static void constantly_space_font_request() // .cs
 static void set_ligature_mode_request() // .lg
 {
   int lig;
-  if (has_arg() && read_integer(&lig) && (lig >= 0) && (lig <= 2))
-    global_ligature_mode = lig;
+  if (has_arg()) {
+    if (read_integer(&lig)) {
+      if ((lig < 0) || (lig > 2)) {
+	warning(WARN_RANGE, "ligature mode must be in range 0..2,"
+		" got %1", lig);
+	skip_line();
+	return;
+      }
+      global_ligature_mode = lig;
+    }
+  }
   else
     global_ligature_mode = 1;
   skip_line();

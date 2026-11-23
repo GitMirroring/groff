@@ -1,5 +1,11 @@
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (set_ligature_mode_request): Throw
+	warning in category "range" when the ligature mode argument is
+	out of range.
+
+2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp: Fix code style nits.
 	(make_glyph_node): Explicitly compare variable of pointer type
 	to ISO C++98 null pointer literal, instead of punning it down to
