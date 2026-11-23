@@ -10,6 +10,12 @@
 	stream name, and dump its info if it exists.  in range.  Migrate
 	existing report of all open streams to use new function.
 
+	* src/roff/groff/tests/\
+	error-pstream-request-given-bogus-argument.sh:
+	* src/roff/groff/tests/pstream-request-works.sh: New files; test
+	it.
+	* src/roff/groff/groff.am: Update `groff_TESTS` to run tests.
+
 2026-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (struct grostream): Fix code style
