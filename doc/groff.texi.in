@@ -15731,7 +15731,7 @@ Post universitum, alea jacta est, OK?
 @endExample
 
 @item
-Mark the end of a numerical expression
+Mark the end of a numeric expression
 that would otherwise be ambiguous.
 
 @Example
@@ -19483,8 +19483,12 @@ or special character with which to draw the rule if the default is not
 desired.
 @cindex dummy character (@code{\&}), effect on @code{\l} escape sequence
 @cindex character, dummy (@code{\&}), effect on @code{\l} escape sequence
-If the character is valid in a numerical expression, put @code{\&} after
-@var{l} to disambiguate the input.
+If the character is valid in a numeric expression,
+put
+@code{\&}
+after
+@var{l}
+to disambiguate the input.
 
 @DefescList {\\l, @code{'}, l, @code{'}}
 @DefescListEnd {\\l, @code{'}, lc, @code{'}}
@@ -24390,7 +24394,7 @@ even if the interpolation context disables compatibility mode.
 @acronym{AT&T}
 @code{troff} @c AT&T
 recognized slightly varying sets of delimiters when expecting
-numerical expressions
+numeric expressions
 (as with the
 @code{\h}
 escape sequence),
