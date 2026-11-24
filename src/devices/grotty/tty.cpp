@@ -201,7 +201,7 @@ public:
 
 
 class tty_printer : public printer {
-  tty_glyph **lines;
+  tty_glyph **lines; // an array of `nlines` length of linked lists
   int nlines;
   long curr_fore_idx;
   long curr_back_idx;
@@ -424,9 +424,11 @@ void tty_printer::add_char(output_character c, int w,
     return;
   }
   if (vpos > nlines) {
+    // If the requested vertical position exceeds the current page
+    // length, double the length until it fits (or becomes storage-
+    // prohibitive) so that we don't thrash the allocator.  See Savannah
+    // #68145.
     tty_glyph **old_lines = lines;
-    // If we exceed the previous page length, double the size so that we
-    // don't thrash the allocator.  See Savannah #68145.
     int new_nlines = nlines;
     while ((vpos > new_nlines) && (new_nlines > 0))
       new_nlines *= 2;
