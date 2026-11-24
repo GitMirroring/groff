@@ -430,10 +430,10 @@ void tty_printer::add_char(output_character c, int w,
     // #68145.
     tty_glyph **old_lines = lines;
     int new_nlines = nlines;
-    while ((vpos > new_nlines) && (new_nlines > 0))
+    while ((vpos > new_nlines) && (new_nlines < (INT_MAX / 2)))
       new_nlines *= 2;
-    if (new_nlines < 0)
-      fatal("vertical motion to line %1 is too large", vpos);
+    if (vpos > new_nlines)
+      fatal("requested vertical motion to line %1 is too large", vpos);
     lines = 0 /* nullptr */;
     try {
       lines = new tty_glyph *[new_nlines];
