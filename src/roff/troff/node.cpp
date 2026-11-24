@@ -197,6 +197,8 @@ public:
   friend symbol get_style_name(int);
 };
 
+// XXX: Many of these member variables have duplicates in class
+// `font_info`.  Explain why.
 class tfont_spec {
 protected:
   symbol name;
