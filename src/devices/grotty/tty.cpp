@@ -1017,6 +1017,7 @@ void tty_printer::end_page(int page_length)
       putchar('\n');
   }
   delete[] lines;
+  lines = 0 /* nullptr */;
 }
 
 font *tty_printer::make_font(const char *nm)

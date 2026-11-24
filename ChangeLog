@@ -1,5 +1,10 @@
 2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grotty/tty.cpp (tty_printer::end_page): Nullify
+	`lines` pointer after invalidating it.
+
+2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp (print_environment_request): Alter
 	`pev` report.  Invoking the `pev` request without arguments no
 	longer reports environment properties.  It instead reports the
