@@ -404,7 +404,7 @@ void tty_printer::add_char(output_character c, int w,
 {
   if ((h % font::hor) != 0)
     fatal("horizontal position is not a multiple"
-	  "of horizontal motion quantum");
+	  " of horizontal motion quantum");
   int hpos = h / font::hor;
   // A negative horizontal drawing position is uncommon, but possible.
   // "tmac/tests/e_line-numbering-works.sh" illustrates a case.

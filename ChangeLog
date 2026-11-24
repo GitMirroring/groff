@@ -1,5 +1,10 @@
 2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grotty/tty.cpp (tty_printer::add_char): Restore
+	interword space to freshly resurrected fatal diagnostic.
+
+2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grotty/tty.cpp (tty_printer::end_page): Nullify
 	`lines` pointer after invalidating it.
 
