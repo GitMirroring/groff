@@ -1,5 +1,13 @@
 2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (mount_font_at_position_request)
+	(assign_style_to_font_mounting_position_request): Trivially
+	refactor.  Rename local variable `internal_name`, populated by
+	`read_identifier()`, to `id`, to dispel some of groff's
+	maddeningly confusing legacy of naming.
+
+2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp (class font_info): Trivially refactor.
 	Rename private member variable `internal_name` to `identifier`,
 	since it tracks the name used in *roff to identify the font.

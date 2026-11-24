@@ -6934,18 +6934,17 @@ static void mount_font_at_position_request() // .fp
     if (n < 0)
       error("font mounting position %1 is negative", n);
     else {
-      symbol internal_name
-	  = read_identifier(true /* want_diagnostic */);
-      if (!internal_name.is_null()) {
+      symbol id = read_identifier(true /* want_diagnostic */);
+      if (!id.is_null()) {
 	symbol filename = read_long_identifier();
-	if (!mount_font_at_position(internal_name, n, filename)) {
+	if (!mount_font_at_position(id, n, filename)) {
 	  string msg;
 	  if (filename != 0 /* nullptr */)
 	    msg += (string(" from file '") + filename.contents()
 		    + string("'"));
 	  msg += '\0';
 	  error("cannot load font description '%1'%2 for mounting",
-		internal_name.contents(), msg.contents());
+		id.contents(), msg.contents());
 	}
       }
     }
@@ -7061,10 +7060,10 @@ static void assign_style_to_font_mounting_position_request() // .sty
 	warning(WARN_MISSING, "abstract style configuration request"
 		" expects a style name as second argument");
       else {
-	symbol internal_name
+	symbol id
 	  = read_identifier(true /* want_diagnostic */);
-	if (!internal_name.is_null())
-	  (void) mount_style(n, internal_name);
+	if (!id.is_null())
+	  (void) mount_style(n, id);
       }
     }
   }
