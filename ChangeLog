@@ -1,5 +1,15 @@
 2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Add `pft` request.
+
+	* src/roff/troff/node.cpp (print_font_properties_request): New
+	function reports font properties that are bound to the font
+	itself (globally), rather than to the environment (as type size,
+	height, and slant are).
+	(init_node_requests): Wire up "pft" name to new function.
+
+2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp (font_lookup_error)
 	(read_and_resolve_font_identifier)
 	(select_underline_font_request)

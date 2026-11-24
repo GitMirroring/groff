@@ -7695,6 +7695,37 @@ static void constantly_space_font_request() // .cs
   skip_line();
 }
 
+static void print_font_properties_request() // .pft
+{
+  if (!has_arg()) {
+    warning(WARN_MISSING, "font property report request"
+	    " expects arguments");
+    skip_line();
+    return;
+  }
+  font_lookup_info finfo;
+  int mp, ump;
+  do {
+    if (!read_and_resolve_font_identifier(&finfo)) {
+      skip_rest_of_argument();
+      continue;
+    }
+    errprint("font");
+    mp = finfo.position;
+    ump = finfo.unresolved_position;
+    if (finfo.requested_name != 0 /* nullptr */)
+      errprint(" '%1'", finfo.requested_name);
+    else
+      errprint(" mounting position %1", ump);
+    if (mp != ump)
+      errprint(" resolves to mounting position %1", mp);
+    errprint("\n");
+    mounted_font[mp]->dump();
+  } while (has_arg());
+  fflush(stderr);
+  skip_line();
+}
+
 static void set_ligature_mode_request() // .lg
 {
   int lig;
@@ -7783,6 +7814,7 @@ void init_node_requests()
   init_request("kern", set_kerning_mode_request);
   init_request("lg", set_ligature_mode_request);
   init_request("pfp", print_font_mounting_position_request);
+  init_request("pft", print_font_properties_request);
   init_request("pftr", print_font_translation_request);
   init_request("rfschar", remove_font_specific_character_request);
   init_request("shc", soft_hyphen_character_request);
