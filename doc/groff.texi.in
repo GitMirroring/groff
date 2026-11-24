@@ -25692,7 +25692,7 @@ descriptions, one per line.  Each such glyph description comprises a set
 of fields separated by spaces or tabs and organized as follows.
 
 @quotation
-@var{name} @var{metrics} @var{type} @var{index} [@var{entity-name}]
+@var{name} @var{metrics} @var{extent} @var{index} [@var{entity-name}]
 [@code{--} @var{comment}]
 @end quotation
 
@@ -25816,7 +25816,7 @@ it should be less than the italic correction.
 
 For fonts used with typesetters,
 the
-@var{type}
+@var{extent}
 field gives a featural description of the glyph:@:
 it is a bit pair recording whether the glyph is an ascender,
 descender,
@@ -25830,7 +25830,7 @@ for each glyph and stored in the
 @code{ct}
 register.
 In font descriptions for terminals,
-all glyphs might have a type of zero,
+all glyphs might have extents of zero,
 regardless of their appearance.
 
 @table @code

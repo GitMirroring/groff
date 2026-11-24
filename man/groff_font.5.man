@@ -745,7 +745,7 @@ spaces or tabs and organized as follows.
 .
 .
 .IP
-.I name metrics type index
+.I name metrics extent index
 .RI [ entity-name ]
 .RB [ \-\-
 .IR comment ]
@@ -907,7 +907,7 @@ it should be less than the italic correction.
 .P
 For fonts used with typesetters,
 the
-.I type
+.I extent
 field gives a featural description of the glyph:
 it is a bit pair recording whether the glyph is an ascender,
 descender,
@@ -924,7 +924,7 @@ and stored in the
 register.
 .
 In font descriptions for terminals,
-all glyphs might have a type of zero,
+all glyphs might have extents of zero,
 regardless of their appearance.
 .
 .

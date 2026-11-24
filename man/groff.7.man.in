@@ -8343,7 +8343,8 @@ Input line number.
 .
 .TP
 .REG ct
-Union of character types of each glyph rendered into dummy environment
+Union of character extents
+of each glyph formatted in a dummy environment
 by
 .esc w .
 .
