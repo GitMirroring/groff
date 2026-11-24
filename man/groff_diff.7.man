@@ -630,7 +630,7 @@ units by default comprise those to the escape sequences
 .B \[rs]H
 and
 .BR \[rs]s ,
-.\" Legacy forms of the `\s` escape sequence don't accept numerical
+.\" Legacy forms of the `\s` escape sequence don't accept numeric
 .\" expressions--only integers.
 to the request
 .BR ps ,
@@ -5814,7 +5814,7 @@ interpolates the Gregorian year minus 1900.
 AT&T
 .I troff \" AT&T
 recognized slightly varying sets of delimiters when expecting
-numerical expressions
+numeric expressions
 (as with the
 .B \[rs]h
 escape sequence),

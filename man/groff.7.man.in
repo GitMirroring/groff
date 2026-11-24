@@ -2205,7 +2205,7 @@ preventing kerning between two glyphs,
 permitting the
 .B tr
 request to remap a character to \[lq]nothing\[rq],
-and marking the end of a numerical expression
+and marking the end of a numeric expression
 in an otherwise ambiguous context.
 .
 .B \[rs])
@@ -2918,7 +2918,7 @@ A few denotations are more specific.
 .
 .TPx
 .I b
-is a numerical expression evaluated as a Boolean;
+is a numeric expression evaluated as a Boolean;
 positive values are true,
 others false.
 .

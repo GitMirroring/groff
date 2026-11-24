@@ -549,7 +549,7 @@ measurements applicable to fonts must be proportional to the type size.
 .
 The font's
 .I "unit width"
-establishes a numerical basis
+establishes a numeric basis
 that permits all of its metrics to be expressed as integers
 if rendered at one point.
 .

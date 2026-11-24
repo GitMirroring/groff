@@ -268,7 +268,7 @@ It is this character set and
 the corresponding glyph repertoire for which AT&T
 .I troff
 was implemented.
-.\" From this point, do not talk about numerical character assignments.
+.\" From this point, do not talk about numeric character assignments.
 .
 .
 .P
@@ -766,7 +766,7 @@ in subsection \[lq]Accents\[rq] below.
 Unicode encodes far more characters than
 .I groff
 has names for;
-special character escape forms based on numerical code points enable
+special character escape forms based on numeric code points enable
 access to any of them.
 .
 Frequently used glyphs or glyph combinations can be stored in strings,

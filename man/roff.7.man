@@ -756,7 +756,7 @@ as macros can.
 .
 .P
 .I Registers
-store numerical values,
+store numeric values,
 including measurements.
 .
 The latter are generally in basic units;
