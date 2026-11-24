@@ -1,5 +1,13 @@
 2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (mount_font_at_position): Trivially
+	refactor.  Rename parameters for clarity.  `name` becomes `id`
+	{a troff identifier} and `external_name` becomes `dfn`, an
+	abbreviation now, shockingly, explained in a code comment
+	describing what this function does.
+
+2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp (mount_font_at_position_request)
 	(assign_style_to_font_mounting_position_request): Trivially
 	refactor.  Rename local variable `internal_name`, populated by

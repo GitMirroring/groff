@@ -6785,17 +6785,17 @@ static void print_font_mounting_position_request() // .pfp
   skip_line();
 }
 
-bool mount_font_at_position(symbol name, int n, symbol external_name)
+// Mount font known to troff as `id` at position `n` using font
+// description file name `dfn`.
+bool mount_font_at_position(symbol id, int n, symbol dfn)
 {
   assert(n >= 0);
-  name = get_font_translation(name);
-  if (external_name.is_null())
-    external_name = name;
+  id = get_font_translation(id);
+  if (dfn.is_null())
+    dfn = id;
   else
-    external_name = get_font_translation(external_name);
-  return assign_font_and_file_name_to_mounting_position(name,
-							external_name,
-							n);
+    dfn = get_font_translation(dfn);
+  return assign_font_and_file_name_to_mounting_position(id, dfn, n);
 }
 
 bool is_abstract_style(symbol s)
