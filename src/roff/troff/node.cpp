@@ -193,6 +193,7 @@ public:
   void set_zoom(int);
   int get_zoom() const;
   font *get_font() const;
+  void dump() const;
   friend symbol get_font_name(int, environment *);
   friend symbol get_style_name(int);
 };
@@ -306,6 +307,24 @@ inline int font_info::get_zoom() const
 font *font_info::get_font() const
 {
   return metrics;
+}
+
+void font_info::dump() const
+{
+  errprint("\tidentifier: %1\n", identifier.contents());
+  errprint("\tdescription file name: %1\n",
+	   description_file_name.contents());
+  errprint("\tmarked as special in description file: %1\n",
+	   is_special() ? "yes" : "no");
+  // We don't report the `is_style()` property because our caller always
+  // resolves a user-supplied font name or mounting position.
+  int zoom = get_zoom();
+  errprint("\tzoom factor: %1%2\n", zoom, (zoom == 0) ? " (none)" : "");
+  hunits embo;
+  if (is_emboldened(&embo))
+    errprint("\temboldening: %1u\n", embo.to_units());
+  else
+    errprint("\temboldening: none\n");
 }
 
 tfont *make_tfont(tfont_spec &spec)

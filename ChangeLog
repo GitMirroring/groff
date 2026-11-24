@@ -1,5 +1,11 @@
 2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (class font_info): Add font info
+	dumper.  Declare new public member function `dump()`.
+	(font_info::dump): Define it.
+
+2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[libgroff,troff]: Trivially refactor.  Rename "character type"
 	in function names (and one local variable) to "character
 	extent".
