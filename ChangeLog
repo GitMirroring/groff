@@ -1,5 +1,12 @@
 2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/tbl/main.cpp (describe_character): Be ISO C++98-
+	correct.  Don't try to statically allocate a VLA.  Use a pointer
+	to heap memory instead.  Fixes `-Wvla-cxx-extension`
+	`-Wgnu-folding-constant` warnings from Clang 21.
+
+2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grotty/tty.cpp (tty_printer::add_char): Report
 	correct size of failed memory allocation.  We don't need
 	`nlines` times the size of a `tty_glyph` structure, but `nlines`

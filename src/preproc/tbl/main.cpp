@@ -805,7 +805,9 @@ static const char *describe_character(int c)
   static const char cc[] = "character code";
   const size_t descbufsize = strlen(cc) + 1 /* ' ' */ + INT_DIGITS
 			     + 1 /* '\0' */;
-  static char descbuf[descbufsize];
+  // ISO C++ does not permit VLAs on the stack.
+  // C++03: new char[descbufsize]();
+  char *descbuf = new char[descbufsize];
   (void) memset(descbuf, 0, (descbufsize * sizeof(char)));
   if (csprint(c)) {
     char quote = '\'';
