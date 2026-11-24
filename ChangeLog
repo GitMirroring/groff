@@ -8,6 +8,10 @@
 	height, and slant are).
 	(init_node_requests): Wire up "pft" name to new function.
 
+	* src/roff/groff/tests/error-pft-request-given-bogus-argument.sh
+	* src/roff/groff/tests/pft-request-works.sh: New files; test it.
+	* src/roff/groff/groff.am: Update `groff_TESTS` to run tests.
+
 2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/node.cpp (font_lookup_error)

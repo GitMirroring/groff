@@ -122,6 +122,7 @@ groff_TESTS = \
   src/roff/groff/tests/error-pcolor-request-given-bogus-argument.sh \
   src/roff/groff/tests/error-pev-request-given-bogus-argument.sh \
   src/roff/groff/tests/error-pfp-request-given-bogus-argument.sh \
+  src/roff/groff/tests/error-pft-request-given-bogus-argument.sh \
   src/roff/groff/tests/error-pftr-request-given-bogus-argument.sh \
   src/roff/groff/tests/error-pi-request-given-empty-argument.sh \
   src/roff/groff/tests/error-pso-request-given-empty-argument.sh \
@@ -165,6 +166,7 @@ groff_TESTS = \
   src/roff/groff/tests/pdf-device-smoke-test.sh \
   src/roff/groff/tests/pev-request-works.sh \
   src/roff/groff/tests/pfp-request-works.sh \
+  src/roff/groff/tests/pft-request-works.sh \
   src/roff/groff/tests/pftr-request-works.sh \
   src/roff/groff/tests/phw-request-skips-line-if-no-hyph-lang.sh \
   src/roff/groff/tests/phw-request-works.sh \
