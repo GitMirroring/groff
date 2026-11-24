@@ -160,7 +160,7 @@ class font_info {
   int last_height;
   int last_slant;
   symbol identifier;
-  symbol external_name;
+  symbol description_file_name;
   font *fm;
   bool has_emboldening;
   hunits bold_offset;
@@ -263,9 +263,9 @@ int resolve_current_font_to_mounting_position(environment *env)
 static font_info **mounted_font = 0 /* nullptr */;
 static int mounted_font_size = 0; // TODO?: mounted_font.size()
 
-font_info::font_info(symbol nm, int n, symbol enm, font *f)
+font_info::font_info(symbol nm, int n, symbol dfn, font *f)
 : last_tfont(0 /* nullptr */), number(n), last_size(0),
-  identifier(nm), external_name(enm), fm(f),
+  identifier(nm), description_file_name(dfn), fm(f),
   has_emboldening(false), is_constant_spaced(CONSTANT_SPACE_NONE),
   last_ligature_mode(1), last_kern_mode(1),
   cond_bold_list(0 /* nullptr */), sf(0 /* nullptr */)
@@ -333,8 +333,8 @@ tfont *font_info::get_tfont(font_size fs, int height, int slant,
       || global_kern_mode != last_kern_mode
       || fontno != number) {
 	font_info *f = mounted_font[fontno];
-	tfont_spec spec(f->external_name, f->number, f->fm, fs, height,
-			slant);
+	tfont_spec spec(f->description_file_name, f->number, f->fm, fs,
+			height, slant);
 	for (conditional_bold *p = cond_bold_list;
 	     p != 0 /* nullptr */;
 	     p = p->next)
