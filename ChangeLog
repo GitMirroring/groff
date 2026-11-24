@@ -1,5 +1,12 @@
 2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (class font_info, class tfont_spec):
+	Trivially refactor.  Rename member variable `fm` of type
+	pointer-to-`font` to `metrics`, as that's what the `font` object
+	is used for.
+
+2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp: Trivially refactor.
 	(class font_info): Rename private member variable
 	`external_name` to `description_file_name`.

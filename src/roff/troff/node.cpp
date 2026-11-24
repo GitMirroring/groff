@@ -161,7 +161,7 @@ class font_info {
   int last_slant;
   symbol identifier;
   symbol description_file_name;
-  font *fm;
+  font *metrics;
   bool has_emboldening;
   hunits bold_offset;
   track_kerning_function track_kern;
@@ -201,7 +201,7 @@ class tfont_spec {
 protected:
   symbol name;
   int input_position;
-  font *fm;
+  font *metrics;
   font_size size;
   bool has_emboldening;
   bool has_constant_spacing;
@@ -265,7 +265,7 @@ static int mounted_font_size = 0; // TODO?: mounted_font.size()
 
 font_info::font_info(symbol nm, int n, symbol dfn, font *f)
 : last_tfont(0 /* nullptr */), number(n), last_size(0),
-  identifier(nm), description_file_name(dfn), fm(f),
+  identifier(nm), description_file_name(dfn), metrics(f),
   has_emboldening(false), is_constant_spaced(CONSTANT_SPACE_NONE),
   last_ligature_mode(1), last_kern_mode(1),
   cond_bold_list(0 /* nullptr */), sf(0 /* nullptr */)
@@ -274,35 +274,36 @@ font_info::font_info(symbol nm, int n, symbol dfn, font *f)
 
 inline bool font_info::contains(charinfo *ci) const
 {
-  return (fm != 0 /* nullptr */) && fm->contains(ci->as_glyph());
+  return (metrics != 0 /* nullptr */)
+	 && metrics->contains(ci->as_glyph());
 }
 
 inline bool font_info::is_special() const
 {
-  return (fm != 0 /* nullptr */) && fm->is_special();
+  return (metrics != 0 /* nullptr */) && metrics->is_special();
 }
 
 inline bool font_info::is_style() const
 {
-  return (0 /* nullptr */ == fm);
+  return (0 /* nullptr */ == metrics);
 }
 
 void font_info::set_zoom(int zoom)
 {
-  assert(fm != 0 /* nullptr */);
-  fm->set_zoom(zoom);
+  assert(metrics != 0 /* nullptr */);
+  metrics->set_zoom(zoom);
 }
 
 inline int font_info::get_zoom() const
 {
   if (is_style())
     return 0;
-  return fm->get_zoom();
+  return metrics->get_zoom();
 }
 
 font *font_info::get_font() const
 {
-  return fm;
+  return metrics;
 }
 
 tfont *make_tfont(tfont_spec &spec)
@@ -333,8 +334,8 @@ tfont *font_info::get_tfont(font_size fs, int height, int slant,
       || global_kern_mode != last_kern_mode
       || fontno != number) {
 	font_info *f = mounted_font[fontno];
-	tfont_spec spec(f->description_file_name, f->number, f->fm, fs,
-			height, slant);
+	tfont_spec spec(f->description_file_name, f->number, f->metrics,
+			fs, height, slant);
 	for (conditional_bold *p = cond_bold_list;
 	     p != 0 /* nullptr */;
 	     p = p->next)
@@ -495,7 +496,8 @@ symbol get_style_name(int fontno)
 hunits font_info::get_space_width(font_size fs, int space_sz)
 {
   if (is_constant_spaced == CONSTANT_SPACE_NONE)
-    return scale(hunits(fm->get_space_width(fs.to_scaled_points())),
+    return scale(hunits(
+         metrics->get_space_width(fs.to_scaled_points())),
 			space_sz, 12);
   else if (is_constant_spaced == CONSTANT_SPACE_ABSOLUTE)
     return constant_space;
@@ -507,8 +509,9 @@ hunits font_info::get_space_width(font_size fs, int space_sz)
 hunits font_info::get_narrow_space_width(font_size fs)
 {
   charinfo *ci = lookup_charinfo(symbol("|"));
-  if (fm->contains(ci->as_glyph()))
-    return hunits(fm->get_width(ci->as_glyph(), fs.to_scaled_points()));
+  if (metrics->contains(ci->as_glyph()))
+    return hunits(
+        metrics->get_width(ci->as_glyph(), fs.to_scaled_points()));
   else
     return hunits(fs.to_units()/6);
 }
@@ -516,8 +519,9 @@ hunits font_info::get_narrow_space_width(font_size fs)
 hunits font_info::get_half_narrow_space_width(font_size fs)
 {
   charinfo *ci = lookup_charinfo(symbol("^"));
-  if (fm->contains(ci->as_glyph()))
-    return hunits(fm->get_width(ci->as_glyph(), fs.to_scaled_points()));
+  if (metrics->contains(ci->as_glyph()))
+    return hunits(
+	metrics->get_width(ci->as_glyph(), fs.to_scaled_points()));
   else
     return hunits(fs.to_units()/12);
 }
@@ -526,7 +530,7 @@ hunits font_info::get_half_narrow_space_width(font_size fs)
 
 tfont_spec::tfont_spec(symbol nm, int n, font *f,
 		       font_size s, int h, int sl)
-: name(nm), input_position(n), fm(f), size(s),
+: name(nm), input_position(n), metrics(f), size(s),
   has_emboldening(false), has_constant_spacing(false), ligature_mode(1),
   kern_mode(1), height(h), slant(sl)
 {
@@ -536,7 +540,7 @@ tfont_spec::tfont_spec(symbol nm, int n, font *f,
 
 bool tfont_spec::operator==(const tfont_spec &spec)
 {
-  if (fm == spec.fm
+  if (metrics == spec.metrics
       && size == spec.size
       && input_position == spec.input_position
       && name == spec.name
@@ -559,7 +563,7 @@ bool tfont_spec::operator==(const tfont_spec &spec)
 
 tfont_spec tfont_spec::plain()
 {
-  return tfont_spec(name, input_position, fm, size, height, slant);
+  return tfont_spec(name, input_position, metrics, size, height, slant);
 }
 
 hunits tfont::get_width(charinfo *c)
@@ -567,18 +571,19 @@ hunits tfont::get_width(charinfo *c)
   if (has_constant_spacing)
     return constant_space_width;
   else if (has_emboldening)
-    return (hunits(fm->get_width(c->as_glyph(),
+    return (hunits(metrics->get_width(c->as_glyph(),
 		   size.to_scaled_points()))
 	    + track_kern + bold_offset);
   else
-    return (hunits(fm->get_width(c->as_glyph(),
+    return (hunits(metrics->get_width(c->as_glyph(),
 		   size.to_scaled_points()))
 	    + track_kern);
 }
 
 vunits tfont::get_char_height(charinfo *c)
 {
-  vunits v = fm->get_height(c->as_glyph(), size.to_scaled_points());
+  vunits v
+      = metrics->get_height(c->as_glyph(), size.to_scaled_points());
   if (height != 0 && height != size.to_scaled_points())
     return scale(v, height, size.to_scaled_points());
   else
@@ -587,7 +592,7 @@ vunits tfont::get_char_height(charinfo *c)
 
 vunits tfont::get_char_depth(charinfo *c)
 {
-  vunits v = fm->get_depth(c->as_glyph(), size.to_scaled_points());
+  vunits v = metrics->get_depth(c->as_glyph(), size.to_scaled_points());
   if (height != 0 && height != size.to_scaled_points())
     return scale(v, height, size.to_scaled_points());
   else
@@ -596,25 +601,26 @@ vunits tfont::get_char_depth(charinfo *c)
 
 hunits tfont::get_char_skew(charinfo *c)
 {
-  return hunits(fm->get_skew(c->as_glyph(), size.to_scaled_points(),
-			     slant));
+  return hunits(
+      metrics->get_skew(c->as_glyph(), size.to_scaled_points(), slant));
 }
 
 hunits tfont::get_italic_correction(charinfo *c)
 {
-  return hunits(fm->get_italic_correction(c->as_glyph(),
+  return hunits(metrics->get_italic_correction(c->as_glyph(),
 					  size.to_scaled_points()));
 }
 
 hunits tfont::get_left_italic_correction(charinfo *c)
 {
-  return hunits(fm->get_left_italic_correction(c->as_glyph(),
-					       size.to_scaled_points()));
+  return hunits(
+      metrics->get_left_italic_correction(c->as_glyph(),
+					  size.to_scaled_points()));
 }
 
 hunits tfont::get_subscript_correction(charinfo *c)
 {
-  return hunits(fm->get_subscript_correction(c->as_glyph(),
+  return hunits(metrics->get_subscript_correction(c->as_glyph(),
 					     size.to_scaled_points()));
 }
 
@@ -625,12 +631,12 @@ inline int tfont::get_input_position()
 
 inline int tfont::contains(charinfo *ci)
 {
-  return fm->contains(ci->as_glyph());
+  return metrics->contains(ci->as_glyph());
 }
 
 inline int tfont::get_character_type(charinfo *ci)
 {
-  return fm->get_character_type(ci->as_glyph());
+  return metrics->get_character_type(ci->as_glyph());
 }
 
 inline bool tfont::is_emboldened(hunits *res)
@@ -670,7 +676,7 @@ inline font_size tfont::get_size()
 
 inline int tfont::get_zoom()
 {
-  return fm->get_zoom();
+  return metrics->get_zoom();
 }
 
 inline symbol tfont::get_name()
@@ -702,15 +708,15 @@ charinfo *tfont::get_lig(charinfo *c1, charinfo *c2)
   if (c1->get_ascii_code() == 'f') {
     switch (c2->get_ascii_code()) {
     case 'f':
-      if (fm->has_ligature(font::LIG_ff))
+      if (metrics->has_ligature(font::LIG_ff))
 	ci = lookup_charinfo(SYMBOL_ff);
       break;
     case 'i':
-      if (fm->has_ligature(font::LIG_fi))
+      if (metrics->has_ligature(font::LIG_fi))
 	ci = lookup_charinfo(SYMBOL_fi);
       break;
     case 'l':
-      if (fm->has_ligature(font::LIG_fl))
+      if (metrics->has_ligature(font::LIG_fl))
 	ci = lookup_charinfo(SYMBOL_fl);
       break;
     }
@@ -718,16 +724,16 @@ charinfo *tfont::get_lig(charinfo *c1, charinfo *c2)
   else if (ligature_mode != 2 && c1->nm == SYMBOL_ff) {
     switch (c2->get_ascii_code()) {
     case 'i':
-      if (fm->has_ligature(font::LIG_ffi))
+      if (metrics->has_ligature(font::LIG_ffi))
 	ci = lookup_charinfo(SYMBOL_Fi);
       break;
     case 'l':
-      if (fm->has_ligature(font::LIG_ffl))
+      if (metrics->has_ligature(font::LIG_ffl))
 	ci = lookup_charinfo(SYMBOL_Fl);
       break;
     }
   }
-  if (ci != 0 /* nullptr */ && fm->contains(ci->as_glyph()))
+  if (ci != 0 /* nullptr */ && metrics->contains(ci->as_glyph()))
     return ci;
   return 0 /* nullptr */;
 }
@@ -737,7 +743,7 @@ inline bool tfont::is_kerned(charinfo *c1, charinfo *c2, hunits *res)
   if (0 == kern_mode)
     return false;
   else {
-    int n = fm->get_kern(c1->as_glyph(),
+    int n = metrics->get_kern(c1->as_glyph(),
 			 c2->as_glyph(),
 			 size.to_scaled_points());
     if (n) {
@@ -6691,7 +6697,7 @@ static bool assign_font_and_file_name_to_mounting_position(
     symbol name, symbol filename, int n)
 {
   assert(n >= 0);
-  font *fm = 0 /* nullptr */;
+  font *metrics = 0 /* nullptr */;
   void *p = font_dictionary.lookup(filename);
   if (0 /* nullptr */ == p) {
     // XXX: Most nroff mode users are readers of man pages, and man
@@ -6714,18 +6720,18 @@ static bool assign_font_and_file_name_to_mounting_position(
     //     hacker saddled with the hateful task of writing
     //     documentation.  See <https://lists.gnu.org/archive/html/
     //     groff/2026-04/msg00039.html>.  --GBR
-    fm = font::load_font(filename.contents(),
+    metrics = font::load_font(filename.contents(),
 			 !in_nroff_mode /* want_diagnostic */);
-    if (0 /* nullptr */ == fm) {
+    if (0 /* nullptr */ == metrics) {
       (void) font_dictionary.lookup(filename, &nonexistent_font);
       return false;
     }
-    (void) font_dictionary.lookup(name, fm);
+    (void) font_dictionary.lookup(name, metrics);
   }
   else if (&nonexistent_font == p)
     return false;
   else
-    fm = static_cast<font *>(p);
+    metrics = static_cast<font *>(p);
   if (n >= mounted_font_size) {
     if ((n - mounted_font_size) > 1000) {
       error("requested font mounting position %1 too much larger than"
@@ -6737,7 +6743,7 @@ static bool assign_font_and_file_name_to_mounting_position(
   }
   else if (mounted_font[n] != 0 /* nullptr */)
     delete mounted_font[n];
-  mounted_font[n] = new font_info(name, n, filename, fm);
+  mounted_font[n] = new font_info(name, n, filename, metrics);
   font_family::invalidate_selected_font_mounting_position(n);
   return true;
 }
@@ -6809,13 +6815,14 @@ bool is_font_available(symbol fam, symbol name)
 {
   if (is_abstract_style(name))
     name = catenate(fam, name); // Resolve the font name.
-  font *fm = 0 /* nullptr */;
+  font *metrics = 0 /* nullptr */;
   void *p = font_dictionary.lookup(name);
   if (0 /* nullptr */ == p) {
     // The font is not already mounted; could it be?
-    fm = font::load_font(name.contents(), false /* want_diagnostic */,
-			 true /* validate_only */);
-    return (fm != 0 /* nullptr */);
+    metrics = font::load_font(name.contents(),
+			      false /* want_diagnostic */,
+			      true /* validate_only */);
+    return (metrics != 0 /* nullptr */);
   }
   else if (&nonexistent_font == p)
     return false;
