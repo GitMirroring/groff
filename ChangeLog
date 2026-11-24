@@ -1,5 +1,12 @@
 2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (class font_info): Extend `font_info`
+	class.  Add `unresolved_position` member variable to keep track
+	of a requested typeface's corresponding mounting position before
+	resolution.  This is to aid the forthcoming font dumper request.
+
+2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp (class font_info): Add font info
 	dumper.  Declare new public member function `dump()`.
 	(font_info::dump): Define it.

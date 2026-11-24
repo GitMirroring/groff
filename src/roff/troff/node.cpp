@@ -134,6 +134,9 @@ public:
 
 struct font_lookup_info {
   int position;
+  // The unresolved position is prior to translation and the combination
+  // of an abstract style with the default family, as applicable.
+  int unresolved_position;
   int requested_position;
   char *requested_name;
   font_lookup_info();
@@ -7179,6 +7182,7 @@ static bool read_font_identifier(font_lookup_info *finfo)
       warning(WARN_FONT, "no font mounted at position %1", mp);
       return false;
     }
+    finfo->unresolved_position = mp;
     finfo->position = curenv->get_family()->resolve(mp);
   }
   else {
@@ -7189,6 +7193,7 @@ static bool read_font_identifier(font_lookup_info *finfo)
       if (mount_font_at_position(s, mp))
 	finfo->position = mp;
     }
+    finfo->unresolved_position = mp;
     finfo->position = curenv->get_family()->resolve(mp);
   }
   return (finfo->position != FONT_NOT_MOUNTED);
