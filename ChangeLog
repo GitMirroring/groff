@@ -1,5 +1,15 @@
 2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grotty/tty.cpp (tty_printer::add_char): Report
+	correct size of failed memory allocation.  We don't need
+	`nlines` times the size of a `tty_glyph` structure, but `nlines`
+	times the size of a _pointer_ to such a structure.
+
+	Continues commit 112ec43851, 20 November, fixing Savannah
+	#68942.
+
+2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grotty/tty.cpp (tty_printer::add_char): Stop
 	provoking UB while trying to prevent UB.  Rewrite test for
 	signed integer overflow.  See CERT C Rule INT32-C.  Clarify

@@ -440,7 +440,7 @@ void tty_printer::add_char(output_character c, int w,
     }
     catch (const std::bad_alloc &e) {
       fatal("cannot allocate %1 bytes to render %2 lines"
-	    " of terminal output", (new_nlines * sizeof(tty_glyph)),
+	    " of terminal output", (new_nlines * sizeof(tty_glyph *)),
 	    new_nlines);
     }
     memset(lines, 0, new_nlines * sizeof(tty_glyph *));
