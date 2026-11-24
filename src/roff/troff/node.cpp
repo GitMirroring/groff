@@ -462,7 +462,7 @@ void font_info::set_track_kern(track_kerning_function &tk)
 
 void font_info::flush()
 {
-  last_tfont = 0;
+  last_tfont = 0 /* nullptr */;
 }
 
 bool font_info::is_named(symbol s) const
