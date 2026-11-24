@@ -1286,7 +1286,7 @@ void environment::width_registers()
 {
   // this is used to implement \w; it sets the st, sb, ct registers
   vunits min = 0, max = 0, cur = 0;
-  int character_type = 0;
+  int character_extent = 0; // TODO: retype to an enum
   ssc_reg_contents = line ? line->subscript_correction().to_units() : 0;
   skw_reg_contents = line ? line->skew().to_units() : 0;
   line = reverse_node_list(line);
@@ -1305,14 +1305,14 @@ void environment::width_registers()
       min = cur;
     else if (cur > max)
       max = cur;
-    character_type |= tem->character_type();
+    character_extent |= tem->character_extent();
   }
   line = reverse_node_list(line);
   st_reg_contents = -min.to_units();
   sb_reg_contents = -max.to_units();
   rst_reg_contents = -real_min.to_units();
   rsb_reg_contents = -real_max.to_units();
-  ct_reg_contents = character_type;
+  ct_reg_contents = character_extent;
 }
 
 node *environment::extract_output_line()

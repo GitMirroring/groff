@@ -134,7 +134,8 @@ public:
 			// this value is positive.
   int get_space_width(int);	// Return the normal width of a space at the
 			// given point size.
-  int get_character_type(glyph *);	// Return a bit mask describing the
+// TODO: retype to an enum
+  int get_character_extent(glyph *);	// Return a bit mask describing the
 			// shape of the given glyph.  Bit 0 is set if the
 			// character has a descender.  Bit 1 is set if the
 			// character has a tall glyph.  See groff manual,

@@ -1,5 +1,49 @@
 2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[libgroff,troff]: Trivially refactor.  Rename "character type"
+	in function names (and one local variable) to "character
+	extent".
+
+	* src/include/font.h (class font): Update declaration:
+	`get_character_type()` -> `get_character_extent()`.
+	* src/libs/libgroff/font.cpp (font::get_character_type): Rename
+	this...
+	(font::get_character_extent): ...to this.
+	* src/roff/troff/env.cpp (environment::width_registers): Rename
+	local `character_type` to `character_extent`.
+	* src/roff/troff/node.h
+	(struct node):
+	(class zero_width_node):
+	(class left_italic_corrected_node): Update declaration
+	`character_type()` -> `character_extent()`.
+	* src/roff/troff/node.cpp:
+	(class tfont): Update declaration: `get_character_type()` ->
+	`get_character_extent()`.
+	(tfont::get_character_type): Rename this...
+	(tfont::get_character_extent): ...to this.
+	(class glyph_node): Update declaration `character_type()` ->
+	`character_extent()`.
+	(glyph_node::character_type): Rename this...
+	(glyph_node::character_extent): ...to this.
+	(class italic_corrected_node): Update declaration
+	`character_type()` -> `character_extent()`.
+	(italic_corrected_node::character_type): Rename this...
+	(italic_corrected_node::character_extent): ...to this.
+	(class break_char_node): Update declaration `character_type()`
+	-> `character_extent()`.
+	(break_char_node::character_type): Rename this...
+	(break_char_node::character_extent): ...to this.
+	(node_list_character_type): Rename this...
+	(node_list_character_extent): ...to this.
+	(zero_width_node::character_type): Rename this...
+	(zero_width_node::character_extent): ...to this.
+	(node:character_type): Rename this...
+	(node:character_extent): ...to this.
+	(left_italic_corrected_node::character_type): Rename this...
+	(left_italic_corrected_node::character_extent): ...to this.
+
+2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp (class font_info, class tfont_spec):
 	Trivially refactor.  Rename member variable `fm` of type
 	pointer-to-`font` to `metrics`, as that's what the `font` object

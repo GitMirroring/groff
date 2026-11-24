@@ -81,7 +81,7 @@ struct node {
   virtual vunits vertical_width();
   virtual node *last_char_node();
   virtual void vertical_extent(vunits *, vunits *);
-  virtual int character_type();
+  virtual int character_extent(); // TODO: retype to an enum
   virtual void set_vertical_size(vertical_size *);
   virtual int ends_sentence();
   virtual node *merge_self(node *);
@@ -510,7 +510,7 @@ public:
   bool causes_tprint();
   bool is_tag();
   void append(node *);
-  int character_type();
+  int character_extent(); // TODO: retype to an enum
   void vertical_extent(vunits *, vunits *);
 };
 
@@ -536,7 +536,7 @@ public:
   bool overlaps_vertically();
   hyphenation_type get_hyphenation_type();
   tfont *get_tfont();
-  int character_type();
+  int character_extent(); // TODO: retype to an enum
   hunits skew();
   hunits italic_correction();
   hunits subscript_correction();

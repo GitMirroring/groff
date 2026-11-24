@@ -239,7 +239,7 @@ public:
   charinfo *get_lig(charinfo *c1, charinfo *c2);
   bool is_kerned(charinfo *c1, charinfo *c2, hunits *res);
   int get_input_position();
-  int get_character_type(charinfo *);
+  int get_character_extent(charinfo *); // TODO: retype to an enum
   int get_height();
   int get_slant();
   vunits get_char_height(charinfo *);
@@ -636,9 +636,10 @@ inline int tfont::contains(charinfo *ci)
   return metrics->contains(ci->as_glyph());
 }
 
-inline int tfont::get_character_type(charinfo *ci)
+// TODO: retype to an enum
+inline int tfont::get_character_extent(charinfo *ci)
 {
-  return metrics->get_character_type(ci->as_glyph());
+  return metrics->get_character_extent(ci->as_glyph());
 }
 
 inline bool tfont::is_emboldened(hunits *res)
@@ -2045,7 +2046,7 @@ public:
   node *add_self(node *, hyphen_list **);
   void ascii_print(ascii_output_file *);
   void asciify(macro *);
-  int character_type();
+  int character_extent(); // TODO: retype to an enum
   bool is_same_as(node *);
   const char *type();
   bool causes_tprint();
@@ -2189,9 +2190,10 @@ node *glyph_node::merge_self(node *nd)
   return nd->merge_glyph_node(this);
 }
 
-int glyph_node::character_type()
+// TODO: retype to an enum
+int glyph_node::character_extent()
 {
-  return tf->get_character_type(ci);
+  return tf->get_character_extent(ci);
 }
 
 node *glyph_node::add_self(node *n, hyphen_list **p)
@@ -2924,7 +2926,7 @@ public:
   hyphenation_type get_hyphenation_type();
   tfont *get_tfont();
   hyphen_list *get_hyphen_list(hyphen_list *, int *);
-  int character_type();
+  int character_extent(); // TODO: retype to an enum
   void tprint(troff_output_file *);
   hunits subscript_correction();
   hunits skew();
@@ -3047,9 +3049,10 @@ hyphen_list *italic_corrected_node::get_hyphen_list(hyphen_list *tail,
   return nodes->get_hyphen_list(tail, count);
 }
 
-int italic_corrected_node::character_type()
+// TODO: retype to an enum
+int italic_corrected_node::character_extent()
 {
-  return nodes->character_type();
+  return nodes->character_extent();
 }
 
 class break_char_node : public container_node {
@@ -3067,7 +3070,7 @@ public:
   hunits width();
   vunits vertical_width();
   node *last_char_node();
-  int character_type();
+  int character_extent(); // TODO: retype to an enum
   int ends_sentence();
   node *add_self(node *, hyphen_list **);
   hyphen_list *get_hyphen_list(hyphen_list *, int *);
@@ -3132,9 +3135,10 @@ node *break_char_node::last_char_node()
   return nodes->last_char_node();
 }
 
-int break_char_node::character_type()
+// TODO: retype to an enum
+int break_char_node::character_extent()
 {
-  return nodes->character_type();
+  return nodes->character_extent();
 }
 
 int break_char_node::ends_sentence()
@@ -3405,17 +3409,19 @@ node *zero_width_node::copy()
 			     div_nest_level);
 }
 
-static int node_list_character_type(node *p)
+// TODO: retype to an enum
+static int node_list_character_extent(node *p)
 {
   int t = 0;
   for (; p != 0 /* nullptr */; p = p->next)
-    t |= p->character_type();
+    t |= p->character_extent();
   return t;
 }
 
-int zero_width_node::character_type()
+// TODO: retype to an enum
+int zero_width_node::character_extent()
 {
-  return node_list_character_type(nodes);
+  return node_list_character_extent(nodes);
 }
 
 static void node_list_vertical_extent(node *p, vunits *min, vunits *max)
@@ -3776,7 +3782,8 @@ bool node::set_unformat_flag()
   return true;
 }
 
-int node::character_type()
+// TODO: retype to an enum
+int node::character_extent()
 {
   return 0;
 }
@@ -6298,9 +6305,10 @@ node *left_italic_corrected_node::add_self(node *nd, hyphen_list **p)
   }
 }
 
-int left_italic_corrected_node::character_type()
+// TODO: retype to an enum
+int left_italic_corrected_node::character_extent()
 {
-  return (nodes != 0 /* nullptr */) ? nodes->character_type() : 0;
+  return (nodes != 0 /* nullptr */) ? nodes->character_extent() : 0;
 }
 
 bool overstrike_node::is_same_as(node *nd)

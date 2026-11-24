@@ -642,7 +642,8 @@ bool font::has_ligature(int mask)
   return (bool) (mask & ligatures);
 }
 
-int font::get_character_type(glyph *g)
+// TODO: retype to an enum
+int font::get_character_extent(glyph *g)
 {
   int idx = glyph_to_index(g);
   assert(idx >= 0);
