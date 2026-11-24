@@ -4078,6 +4078,22 @@ follow.
 .
 .
 .TP
+.BI .pft\~ font-id\~\c
+\&.\|.\|.\&
+Report,
+to the standard error stream,
+properties of each
+.I font-id
+(which can be a mounting position or an an abstract style).
+.
+Properties include the name of its description file,
+whether that file marks it as special,
+emboldening,
+and
+zoom factor.
+.
+.
+.TP
 .BR .pftr \~[\c
 .IR font-id \~\&.\|.\|.]
 Report,

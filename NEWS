@@ -50,6 +50,12 @@ troff
 *  The `pfp` request now accepts arguments.  Each is interpreted as a
    font mounting position, which is reported if occupied.
 
+*  A new request, `pft`, reports to to the standard error stream
+   properties of each of its font identifier argument (which can
+   (which can be a mounting position or an an abstract style).
+   Properties include the name of its description file, whether that
+   file marks it as special, emboldening, and zoom factor.
+
 *  The `pftr` request now accepts arguments.  Each is interpreted as a
    font identifier (which can be an abstract style but not a mounting
    position), which is then looked up in the set of font translations

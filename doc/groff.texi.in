@@ -23394,6 +23394,22 @@ the meaning of which varies by output device,
 follow.
 @endDefreq
 
+@Defreq {pft, @Var{font-id @r{@dots{}}}}
+@cindex dumping font properties (@code{pftr})
+@cindex font properties, dumping (@code{pftr})
+@cindex properties, font, dumping (@code{pftr})
+Report,
+to the standard error stream,
+properties of each
+@var{font-id}
+(which can be a mounting position or an an abstract style).
+Properties include the name of its description file,
+whether that file marks it as special,
+emboldening,
+and
+zoom factor.
+@endDefreq
+
 @Defreq {pftr, [@Var{font-id} @r{@dots{}}]}
 @cindex dumping font translations (@code{pftr})
 @cindex font translations, dumping (@code{pftr})
