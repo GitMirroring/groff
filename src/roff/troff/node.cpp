@@ -159,7 +159,7 @@ class font_info {
   font_size last_size;
   int last_height;
   int last_slant;
-  symbol internal_name;
+  symbol identifier;
   symbol external_name;
   font *fm;
   bool has_emboldening;
@@ -265,7 +265,7 @@ static int mounted_font_size = 0; // TODO?: mounted_font.size()
 
 font_info::font_info(symbol nm, int n, symbol enm, font *f)
 : last_tfont(0 /* nullptr */), number(n), last_size(0),
-  internal_name(nm), external_name(enm), fm(f),
+  identifier(nm), external_name(enm), fm(f),
   has_emboldening(false), is_constant_spaced(CONSTANT_SPACE_NONE),
   last_ligature_mode(1), last_kern_mode(1),
   cond_bold_list(0 /* nullptr */), sf(0 /* nullptr */)
@@ -467,12 +467,12 @@ void font_info::flush()
 
 bool font_info::is_named(symbol s) const
 {
-  return internal_name == s;
+  return identifier == s;
 }
 
 symbol font_info::get_name() const
 {
-  return internal_name;
+  return identifier;
 }
 
 symbol get_font_name(int fontno, environment *env)

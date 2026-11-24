@@ -1,3 +1,14 @@
+2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/node.cpp (class font_info): Trivially refactor.
+	Rename private member variable `internal_name` to `identifier`,
+	since it tracks the name used in *roff to identify the font.
+	{It's the `TR` in `\f[TR]`.}  Deeply confusingly, this _same
+	file_ and some groff documentation applies the term
+	"internalname" to the name space used by an external system to
+	identify a font.  For example, PostScript uses names like
+	"Times-Roman".
+
 2026-11-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/env.cpp (font_size::font_size)
