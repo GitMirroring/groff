@@ -1,5 +1,22 @@
 2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (font_lookup_error)
+	(read_and_resolve_font_identifier)
+	(select_underline_font_request)
+	(define_font_specific_character_request)
+	(remove_font_specific_character_request)
+	(read_special_font_identifiers)
+	(set_font_specific_special_fonts_request)
+	(zoom_font_request)
+	(embolden_font_request)
+	(configure_track_kerning_request)
+	(constantly_space_font_request): Trivially refactor.  Rename
+	arguments and local variables of type `font_lookup_info` named
+	`finfo` to `flinfo`, to avoid confusion with objects of class
+	`font_info`.
+
+2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp: Trivially refactor.
 	(read_font_identifier): Rename this...
 	(read_and_resolve_font_identifier): ...to this, since it does

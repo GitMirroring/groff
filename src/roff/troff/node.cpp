@@ -7109,16 +7109,16 @@ static void assign_style_to_font_mounting_position_request() // .sty
   skip_line();
 }
 
-static void font_lookup_error(font_lookup_info& finfo,
+static void font_lookup_error(font_lookup_info& flinfo,
 			      const char *msg)
 {
-  if (finfo.requested_name)
-    error("cannot select font '%1' %2", finfo.requested_name, msg);
-  else if (finfo.position == FONT_NOT_MOUNTED)
+  if (flinfo.requested_name)
+    error("cannot select font '%1' %2", flinfo.requested_name, msg);
+  else if (flinfo.position == FONT_NOT_MOUNTED)
     error("cannot select font %1", msg); // don't report position `-1`
   else
     error("cannot select font at position %1 %2",
-	  finfo.requested_position, msg);
+	  flinfo.requested_position, msg);
 }
 
 bool is_valid_font_mounting_position(int n)
@@ -7139,7 +7139,7 @@ bool is_valid_font(int n)
 // requested name or position, and the position actually resolved.
 //
 // TODO: This duplicates logic from env.cpp:select_font().  Refactor.
-static bool read_and_resolve_font_identifier(font_lookup_info *finfo)
+static bool read_and_resolve_font_identifier(font_lookup_info *flinfo)
 {
   tok.skip_spaces();
   // Painful.  We read the whole argument as a symbol, then see if it's
@@ -7183,17 +7183,17 @@ static bool read_and_resolve_font_identifier(font_lookup_info *finfo)
     }
   }
   else {
-    finfo->requested_name = const_cast<char *>(s.contents());
+    flinfo->requested_name = const_cast<char *>(s.contents());
     mp = mounting_position_of_font(s);
     if (mp < 0) {
       mp = next_available_font_mounting_position();
       if (mount_font_at_position(s, mp))
-	finfo->position = mp;
+	flinfo->position = mp;
     }
   }
-  finfo->unresolved_position = mp;
-  finfo->position = curenv->get_family()->resolve(mp);
-  return (finfo->position != FONT_NOT_MOUNTED);
+  flinfo->unresolved_position = mp;
+  flinfo->position = curenv->get_family()->resolve(mp);
+  return (flinfo->position != FONT_NOT_MOUNTED);
 }
 
 static int underline_fontno = 2;
@@ -7206,11 +7206,11 @@ static void select_underline_font_request() // .uf
     skip_line();
     return;
   }
-  font_lookup_info finfo;
-  if (!read_and_resolve_font_identifier(&finfo))
-    font_lookup_error(finfo, "to make it the underline font");
+  font_lookup_info flinfo;
+  if (!read_and_resolve_font_identifier(&flinfo))
+    font_lookup_error(flinfo, "to make it the underline font");
   else
-    underline_fontno = finfo.position;
+    underline_fontno = flinfo.position;
   skip_line();
 }
 
@@ -7227,9 +7227,9 @@ static void define_font_specific_character_request() // .fschar
     skip_line();
     return;
   }
-  font_lookup_info finfo;
-  if (!read_and_resolve_font_identifier(&finfo)) {
-    font_lookup_error(finfo, "to define font-specific fallback"
+  font_lookup_info flinfo;
+  if (!read_and_resolve_font_identifier(&flinfo)) {
+    font_lookup_error(flinfo, "to define font-specific fallback"
 		      " character");
     skip_line();
     return;
@@ -7240,7 +7240,7 @@ static void define_font_specific_character_request() // .fschar
     skip_line();
     return;
   }
-  symbol f = mounted_font[finfo.position]->get_name();
+  symbol f = mounted_font[flinfo.position]->get_name();
   define_character(CHAR_FONT_SPECIFIC_FALLBACK, f.contents());
   // Normally we skip the remainder of the line unconditionally at the
   // end of a request-implementing function, but `define_character()`
@@ -7258,12 +7258,12 @@ static void remove_font_specific_character_request() // .rfschar
     skip_line();
     return;
   }
-  font_lookup_info finfo;
-  if (!read_and_resolve_font_identifier(&finfo))
-    font_lookup_error(finfo, "to remove font-specific fallback"
+  font_lookup_info flinfo;
+  if (!read_and_resolve_font_identifier(&flinfo))
+    font_lookup_error(flinfo, "to remove font-specific fallback"
 		      " character");
   else {
-    symbol f = mounted_font[finfo.position]->get_name();
+    symbol f = mounted_font[flinfo.position]->get_name();
     while (!tok.is_terminator()) {
       if (!tok.is_space() && !tok.is_tab()) {
 	charinfo *s = tok.get_charinfo(true /* is_mandatory */);
@@ -7307,12 +7307,12 @@ static void read_special_font_identifiers(special_font_list **sp)
   }
   special_font_list **p = sp;
   while (has_arg()) {
-    font_lookup_info finfo;
-    if (!read_and_resolve_font_identifier(&finfo))
-      font_lookup_error(finfo, "to mark it as special");
+    font_lookup_info flinfo;
+    if (!read_and_resolve_font_identifier(&flinfo))
+      font_lookup_error(flinfo, "to mark it as special");
     else {
       special_font_list *tem = new special_font_list;
-      tem->n = finfo.position;
+      tem->n = flinfo.position;
       tem->next = 0 /* nullptr */;
       *p = tem;
       p = &(tem->next);
@@ -7328,12 +7328,12 @@ static void set_font_specific_special_fonts_request() // .fspecial
     skip_line();
     return;
   }
-  font_lookup_info finfo;
-  if (!read_and_resolve_font_identifier(&finfo))
-    font_lookup_error(finfo, "to mark other fonts as special"
-			     " contingently upon it"); // a mouthful :-/
+  font_lookup_info flinfo;
+  if (!read_and_resolve_font_identifier(&flinfo))
+    font_lookup_error(flinfo, "to mark other fonts as special"
+			      " contingently upon it"); // mouthful :-/
   else
-    read_special_font_identifiers(&mounted_font[finfo.position]->sf);
+    read_special_font_identifiers(&mounted_font[flinfo.position]->sf);
   skip_line();
 }
 
@@ -7350,22 +7350,22 @@ static void zoom_font_request() // .fzoom
     skip_line();
     return;
   }
-  font_lookup_info finfo;
-  if (!read_and_resolve_font_identifier(&finfo)) {
-    font_lookup_error(finfo, "to set its zoom factor");
+  font_lookup_info flinfo;
+  if (!read_and_resolve_font_identifier(&flinfo)) {
+    font_lookup_error(flinfo, "to set its zoom factor");
     skip_line();
     return;
   }
-  if (0 /* nullptr */ == finfo.requested_name) {
+  if (0 /* nullptr */ == flinfo.requested_name) {
     error("applying a zoom factor to a font mounting position"
 	  " is not yet supported");
     skip_line();
     return;
   }
   int fpos = next_available_font_mounting_position();
-  if (!(mount_font_at_position(finfo.requested_name, fpos))) {
+  if (!(mount_font_at_position(flinfo.requested_name, fpos))) {
     error("cannot mount font '%1' to set a zoom factor for it",
-	  finfo.requested_name);
+	  flinfo.requested_name);
     skip_line();
     return;
   }
@@ -7521,13 +7521,13 @@ static void embolden_font_request() // .bd
   bool emboldening_may_be_conditional = false;
   if (!csdigit(tok.ch()))
     emboldening_may_be_conditional = true;
-  font_lookup_info finfo;
-  if (!read_and_resolve_font_identifier(&finfo)) {
-    font_lookup_error(finfo, "for emboldening");
+  font_lookup_info flinfo;
+  if (!read_and_resolve_font_identifier(&flinfo)) {
+    font_lookup_error(flinfo, "for emboldening");
     skip_line();
     return;
   }
-  int n = finfo.position;
+  int n = flinfo.position;
   if (has_arg()) {
     // XXX: Here's another useful `is_ordinary_character()` spot.
     if ((!tok.is_any_character())
@@ -7542,13 +7542,13 @@ static void embolden_font_request() // .bd
     // .bd 2 4 \" embolden font position 2 by 3 (yes, 3) units
     // ...otherwise...
     if (emboldening_may_be_conditional && !(csdigit(tok.ch()))) {
-      font_lookup_info finfo2;
-      if (!read_and_resolve_font_identifier(&finfo2)) {
-	font_lookup_error(finfo2, "for conditional emboldening");
+      font_lookup_info flinfo2;
+      if (!read_and_resolve_font_identifier(&flinfo2)) {
+	font_lookup_error(flinfo2, "for conditional emboldening");
 	skip_line();
 	return;
       }
-      int f = finfo2.position;
+      int f = flinfo2.position;
       units offset;
       if (has_arg()
 	  && read_measurement(&offset,
@@ -7640,11 +7640,11 @@ static void configure_track_kerning_request() // .tkf
     skip_line();
     return;
   }
-  font_lookup_info finfo;
-  if (!read_and_resolve_font_identifier(&finfo))
-    font_lookup_error(finfo, "to configure track kerning");
+  font_lookup_info flinfo;
+  if (!read_and_resolve_font_identifier(&flinfo))
+    font_lookup_error(flinfo, "to configure track kerning");
   else {
-    int n = finfo.position, min_s, max_s;
+    int n = flinfo.position, min_s, max_s;
     hunits min_a, max_a;
     if (has_arg()
 	&& read_measurement(&min_s,
@@ -7673,11 +7673,11 @@ static void constantly_space_font_request() // .cs
     skip_line();
     return;
   }
-  font_lookup_info finfo;
-  if (!read_and_resolve_font_identifier(&finfo))
-    font_lookup_error(finfo, "to configure constant spacing");
+  font_lookup_info flinfo;
+  if (!read_and_resolve_font_identifier(&flinfo))
+    font_lookup_error(flinfo, "to configure constant spacing");
   else {
-    int n = finfo.position, x, y;
+    int n = flinfo.position, x, y;
     if (!has_arg() || !read_integer(&x))
       mounted_font[n]->set_constant_space(CONSTANT_SPACE_NONE);
     else {
