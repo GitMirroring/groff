@@ -1,5 +1,13 @@
 2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp: Trivially refactor.
+	(read_font_identifier): Rename this...
+	(read_and_resolve_font_identifier): ...to this, since it does
+	more work than most of GNU troff's input stream reading
+	functions.
+
+2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp (read_font_identifier): Slightly
 	refactor.  Make logic common to both branches of if-else control
 	flow unconditional.
