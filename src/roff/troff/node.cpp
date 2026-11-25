@@ -7169,6 +7169,7 @@ static bool read_font_identifier(font_lookup_info *finfo)
       break;
     }
   }
+  int mp;
   if (is_number) {
     errno = 0;
     long val = strtol(s.contents(), NULL, 10);
@@ -7177,25 +7178,23 @@ static bool read_font_identifier(font_lookup_info *finfo)
 	      " 0..%1, got %2", INT_MAX, s.contents());
       return false;
     }
-    int mp = int(val);
+    mp = int(val);
     if (!is_valid_font_mounting_position(mp)) {
       warning(WARN_FONT, "no font mounted at position %1", mp);
       return false;
     }
-    finfo->unresolved_position = mp;
-    finfo->position = curenv->get_family()->resolve(mp);
   }
   else {
     finfo->requested_name = const_cast<char *>(s.contents());
-    int mp = mounting_position_of_font(s);
+    mp = mounting_position_of_font(s);
     if (mp < 0) {
       mp = next_available_font_mounting_position();
       if (mount_font_at_position(s, mp))
 	finfo->position = mp;
     }
-    finfo->unresolved_position = mp;
-    finfo->position = curenv->get_family()->resolve(mp);
   }
+  finfo->unresolved_position = mp;
+  finfo->position = curenv->get_family()->resolve(mp);
   return (finfo->position != FONT_NOT_MOUNTED);
 }
 

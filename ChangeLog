@@ -1,5 +1,11 @@
 2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (read_font_identifier): Slightly
+	refactor.  Make logic common to both branches of if-else control
+	flow unconditional.
+
+2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp (class font_info): Extend `font_info`
 	class.  Add `unresolved_position` member variable to keep track
 	of a requested typeface's corresponding mounting position before
