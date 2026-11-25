@@ -22,6 +22,7 @@ EXTRA_DIST += \
   src/preproc/soelim/soelim.1.man
 
 soelim_TESTS = \
+  src/preproc/soelim/tests/accept-backslash-in-file-name.sh \
   src/preproc/soelim/tests/exercise-finite-state-machine.sh \
   src/preproc/soelim/tests/leading-quote-before-file-name-works.sh \
   src/preproc/soelim/tests/passes-through-input-with-eighth-bit-set.sh \

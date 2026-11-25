@@ -1,3 +1,12 @@
+2026-11-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[soelim]: Test acceptance of backslashes in file names.
+
+	* src/preproc/soelim/tests/accept-backslash-in-file-name.sh: New
+	file; test the `\e` and `\\` syntaxes.
+	* src/preproc/soelim/soelim.am: Update `soelim_TESTS` to run
+	test.
+
 2026-11-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Add `pft` request.
